@@ -1,0 +1,2 @@
+db_module=hardware.model
+history_dir=$base/hardware/sqlobject-history

@@ -1,0 +1,17 @@
+Introduction.
+
+The Fedora hardware profiler is a server-client system that does a hardware
+scan against a machine and sends those results to a server so the Fedora
+Project server.  The sends are anonymous and should not contain any private
+information other than the physical hardware information and basic OS info
+
+Server
+
+The server is a turbogears instance.  It and the client could very easily be
+modified to be used as an inventory system for an enterprise environment.
+Anyone interested in doing this please contact me.
+
+Client
+
+The client portion uses the RHN client to create a hardware object that then
+gets sent to the server.
