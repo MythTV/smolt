@@ -39,8 +39,41 @@ for device in hw:
         N = ''
 
 sendHostStr = "UUID=%s&lsbRelease=%s&OS=%s&defaultRunlevel=%s&language=%s&platform=%s&bogomips=%s&CPUVendor=%s&numCPUs=%s&CPUSpeed=%s&systemMemory=%s&systemSwap=%s&vendor=%s&system=%s" % (UUID, lsbRelease, OS, defaultRunlevel, language, platform, bogomips, CPUVendor, numCPUs, CPUSpeed, systemMemory, systemSwap, vendor, system)
-commands.getstatusoutput('/usr/bin/wget -O /dev/null -q http://publictest4.fedora.redhat.com/add --post-data="%s"' % sendHostStr)[1]
 
+
+print 'We are about to send the following information to the Fedora Smolt server:'
+print
+print '\tUUID: %s' % UUID
+print '\tlsbRelease: %s' % lsbRelease
+print '\tOS: %s' % OS
+print '\tdefaultRunlevel: %s' % defaultRunlevel
+print '\tlanguage: %s' % language
+print '\tplatform: %s' % platform
+print '\tbogomips: %s' % bogomips
+print '\tCPUVendor: %s' % CPUVendor
+print '\tnumCPUs: %s' % numCPUs
+print '\tCPUSpeed: %s' % CPUSpeed
+print '\tsystemMemory: %s' % systemMemory
+print '\tsystemSwap: %s' % systemSwap
+print '\tvendor: %s' % vendor
+print '\tsystem: %s' % system
+print
+print '\t\t Devices'
+print '\t\t================================='
+for device in hw:
+    try:
+        Bus = device['bus']
+        Driver = device['driver']
+        Class = device['class']
+        Description = device['desc']
+    except:
+        continue
+    else:
+        print '\t\t%s, %s, %s, %s' % (Bus, Driver, Class, Description)
+
+print 'Transmitting ...'
+
+commands.getstatusoutput('/usr/bin/wget -O /dev/null -q http://publictest4.fedora.redhat.com/add --post-data="%s"' % sendHostStr)[1]
 for device in hw:
     try:
         Bus = device['bus']
