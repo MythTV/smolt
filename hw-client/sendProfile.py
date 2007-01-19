@@ -4,20 +4,44 @@ import hardware
 import sys
 import os
 import commands
+import re
+import urlgrabber.grabber
 
-UUIDcmd = commands.getstatusoutput('/bin/cat /etc/sysconfig/hw-uuid')
-
-if(UUIDcmd[0] == 0):
-    UUID = UUIDcmd[1]
-else:
-    UUID = commands.getstatusoutput('/bin/cat /proc/sys/kernel/random/uuid> /tmp/hw-uuid; cat /tmp/hw-uuid')[1]
+try:
+    UUID = file('/etc/sysconfig/hw-uuid').read()
+except IOError:
+    try:
+        UUID = file('/proc/sys/kernel/random/uuid').read()
+        try:
+            file('/etc/sysconfig/hw-uuid', 'w').write(UUID)
+        except:
+            sys.stderr.write('Unable to save UUID, continuing...\n')
+    except IOError:
+        sys.stderr.write('Unable to determine UUID of system!\n')
+        sys.exit(1)
 
 hw = hardware.Hardware()
 lsbRelease = commands.getstatusoutput('/usr/bin/lsb_release')[1]
-OS = commands.getstatusoutput('/bin/cat /etc/redhat-release')[1]
-defaultRunlevel = commands.getstatusoutput('/bin/grep :initdefault: /etc/inittab')[1].split(':')[1]
-language = commands.getstatusoutput('echo $LANG')[1]
+
+try:
+    OS = file('/etc/redhat-release').read()
+except IOError:
+    OS = 'Unknown'
+
+initdefault_re = re.compile(r':(\d+):initdefault:')
+defaultRunlevel = 'Unknown'
+try:
+    inittab = file('/etc/inittab').read()
+    match = initdefault_re.search(inittab)
+    if match:
+        defaultRunlevel = match.group(1)
+except IOError:
+    sys.stderr.write('Unable to read /etc/inittab, continuing...')
+    
+language = os.environ['LANG']
+
 platform = bogomips = CPUVendor = numCPUs = CPUSpeed = systemMemory = systemSwap = vendor = system = ''
+
 for device in hw:
     try:
         platform = device['platform']
@@ -26,17 +50,17 @@ for device in hw:
         numCPUs = device['count']
         CPUSpeed = device['speed']
     except:
-        N = ''
+        pass
     try:
         systemMemory = device['ram']
         systemSwap = device['swap']
     except:
-        N = ''
+        pass
     try:
         vendor = device['vendor']
         system = device['system']
     except:
-        N = ''
+        pass
 
 sendHostStr = "UUID=%s&lsbRelease=%s&OS=%s&defaultRunlevel=%s&language=%s&platform=%s&bogomips=%s&CPUVendor=%s&numCPUs=%s&CPUSpeed=%s&systemMemory=%s&systemSwap=%s&vendor=%s&system=%s" % (UUID, lsbRelease, OS, defaultRunlevel, language, platform, bogomips, CPUVendor, numCPUs, CPUSpeed, systemMemory, systemSwap, vendor, system)
 
@@ -73,7 +97,16 @@ for device in hw:
 
 print 'Transmitting ...'
 
-commands.getstatusoutput('/usr/bin/wget -O /dev/null -q http://publictest4.fedora.redhat.com/add --post-data="%s"' % sendHostStr)[1]
+grabber = urlgrabber.grabber.URLGrabber()
+
+o=grabber.urlopen('http://publictest4.fedora.redhat.com/add', data=sendHostStr, http_headers=(('Content-length', '%i' % len(sendHostStr)),
+                                                                                            ('Content-type', 'application/x-www-form-urlencoded')))
+
+#print `o.read()`
+o.close()
+
+print 'sent host data'
+
 for device in hw:
     try:
         Bus = device['bus']
@@ -84,6 +117,13 @@ for device in hw:
         continue
     else:
         sendDeviceStr = "UUID=%s&Bus=%s&Driver=%s&Class=%s&Description=%s" % (UUID, Bus, Driver, Class, Description)
-        commands.getstatusoutput('/usr/bin/wget -O /dev/null -q http://publictest4.fedora.redhat.com/addDevice --post-data="%s"' % sendDeviceStr)[1]
+        #commands.getstatusoutput('/usr/bin/wget -O /dev/null -q http://publictest4.fedora.redhat.com/addDevice --post-data="%s"' % sendDeviceStr)[1]
+#        print '.'
+        o=grabber.urlopen('http://publictest4.fedora.redhat.com/addDevice', data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
+                                                                                                              ('Content-type', 'application/x-www-form-urlencoded')))
+#        print `o.read()`
+        o.close()
+        
+        print 'sent device data'
 
-print 'Thankyou, your uuid (in /etc/sysconfig/hw-uuid, is %s)' % UUID
+print 'Thankyou, your uuid (in /etc/sysconfig/hw-uuid), is %s' % UUID
