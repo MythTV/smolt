@@ -387,6 +387,7 @@ def read_cpuinfo():
     # class, desc (required to identify the hardware device)
     # count, type, model, model_number, model_ver, model_rev
     # bogomips, platform, speed, cache
+    
     hwdict = { 'class': "CPU",
                "desc" : "Processor",
                }
@@ -501,7 +502,7 @@ def read_cpuinfo():
             hwdict['speed'] = -1
         hwdict['other']         = get_entry(tmpdict, 'features')
 
-    elif uname in ['ppc64','ppc']:
+    elif uname in ['ppc64']:
         tmpdict = {}
         count = 0
         for cpu in string.split(cpulist, "\n\n"):
@@ -527,53 +528,14 @@ def read_cpuinfo():
         hwdict['model_ver'] = get_entry(tmpdict, 'revision')
         hwdict['bogomips'] = get_entry(tmpdict, 'bogomips')
         hwdict['vendor'] = get_entry(tmpdict, 'machine')
-        hwdict['type'] = get_entry(tmpdict, 'platform')
-        hwdict['system'] = get_entry(tmpdict, 'detected as')
         # strings are postpended with "mhz"
         mhz_speed = get_entry(tmpdict, 'clock')[:-3]
         try:
             hwdict['speed'] = int(round(float(mhz_speed)) - 1)
         except ValueError:
             hwdict['speed'] = -1
-       
-    elif uname in ["sparc64","sparc"]:
-        tmpdict = {}
-        bogomips = 0
-        for cpu in string.split(cpulist, "\n\n"):
-            if not len(cpu):
-                continue
-
-            for cpu_attr in string.split(cpu, "\n"):
-                if not len(cpu_attr):
-                    continue
-                vals = string.split(cpu_attr, ":")
-                if len(vals) != 2:
-                    # XXX: make at least some effort to recover this data...
-                    continue
-                name, value = string.strip(vals[0]), string.strip(vals[1])
-                if name.endswith('Bogo'): 
-                    if bogomips == 0:
-                         bogomips = int(round(float(value)) )
-                         continue
-                    continue
-                tmpdict[string.lower(name)] = string.lower(value)
-        system = ''
-        if not os.access("/proc/openprom/banner-name", os.R_OK):
-            system = 'Unknown'
-        if os.access("/proc/openprom/banner-name", os.R_OK):
-            system = open("/proc/openprom/banner-name", "r").read() 
-        hwdict['platform'] = uname
-        hwdict['count'] = get_entry(tmpdict, 'ncpus probed')
-        hwdict['model'] = get_entry(tmpdict, 'cpu')
-        hwdict['type'] = get_entry(tmpdict, 'type')
-        hwdict['model_ver'] = get_entry(tmpdict, 'type')
-        hwdict['bogomips'] = bogomips
-        hwdict['vendor'] = 'sun'
-        hwdict['cache'] = "" # pitty the kernel doesn't tell us this.
-        speed = int(round(float(bogomips))) / 2
-        hwdict['speed'] = speed
-        hwdict['system'] = system
          
+        
     else:
         # XXX: expand me. Be nice to others
         hwdict['platform']      = uname

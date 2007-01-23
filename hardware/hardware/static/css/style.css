@@ -5,15 +5,15 @@
 html, body, th, td {
   color: black;
   background-color: #ddd;
-  font: small "Lucida Grande", "Lucida Sans Unicode", geneva, verdana, sans-serif;
+  font: x-small "Lucida Grande", "Lucida Sans Unicode", geneva, verdana, sans-serif;
   margin: 0;
   padding: 0;
 }
 
 #header {
-  height: 60px;
+  height: 80px;
   width: 777px;
-  background: #1956A3 URL('../images/dna-banner.png') no-repeat;
+  background: blue URL('../images/header_inner.png') no-repeat;
   border-left: 1px solid #aaa;
   border-right: 1px solid #aaa;
   margin: 0 auto 0 auto;
@@ -122,23 +122,3 @@ span.code {
   background: #eef URL('../images/info.png') left center no-repeat;
   border: 1px solid #cce;
 }
-
-#stats th{
-	text-align: right;
-	font-weight: bold;
-	color: #072B61;
-	padding: 5px 5px 5px 5px;	
-	background: #DDDDDD;
-}
-
-#stats td{
-	padding: 5px;	
-	background: #EEEEEE;	
-}
-
-#runLevelList, #osList, #devicesList{
-    padding: 0px;
-    margin: 2px;
-    list-style: none;
-}
-
