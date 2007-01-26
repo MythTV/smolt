@@ -558,12 +558,10 @@ def read_cpuinfo():
                     continue
                 tmpdict[string.lower(name)] = string.lower(value)
         system = ''
-        if not os.access("/proc/openprom/name", os.R_OK):
+        if not os.access("/proc/openprom/banner-name", os.R_OK):
             system = 'Unknown'
-        if os.access("/proc/openprom/name", os.R_OK):
-            sys = open("/proc/openprom/name", "r").read() 
-            syspart = string.split(sys, ",")
-            system = syspart[1]
+        if os.access("/proc/openprom/banner-name", os.R_OK):
+            system = open("/proc/openprom/banner-name", "r").read() 
         hwdict['platform'] = uname
         hwdict['count'] = get_entry(tmpdict, 'ncpus probed')
         hwdict['model'] = get_entry(tmpdict, 'cpu')
