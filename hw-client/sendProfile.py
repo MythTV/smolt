@@ -100,9 +100,7 @@ print 'Transmitting ...'
 grabber = urlgrabber.grabber.URLGrabber()
 
 o=grabber.urlopen('http://publictest4.fedora.redhat.com/add', data=sendHostStr, http_headers=(('Content-length', '%i' % len(sendHostStr)),
-                                                                                            ('Content-type', 'application/x-www-form-urlencoded')))
-
-#print `o.read()`
+                                                                                              ('Content-type', 'application/x-www-form-urlencoded')))
 o.close()
 
 print 'sent host data'
@@ -117,13 +115,10 @@ for device in hw:
         continue
     else:
         sendDeviceStr = "UUID=%s&Bus=%s&Driver=%s&Class=%s&Description=%s" % (UUID, Bus, Driver, Class, Description)
-        #commands.getstatusoutput('/usr/bin/wget -O /dev/null -q http://publictest4.fedora.redhat.com/addDevice --post-data="%s"' % sendDeviceStr)[1]
-#        print '.'
         o=grabber.urlopen('http://publictest4.fedora.redhat.com/addDevice', data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
                                                                                                               ('Content-type', 'application/x-www-form-urlencoded')))
-#        print `o.read()`
         o.close()
         
         print 'sent device data'
 
-print 'Thankyou, your uuid (in /etc/sysconfig/hw-uuid), is %s' % UUID
+print 'Thank you, your uuid (in /etc/sysconfig/hw-uuid), is %s' % UUID
