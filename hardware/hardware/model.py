@@ -31,7 +31,7 @@ class Host(SQLObject):
     system = StringCol(title="Machine Model")
     CPUVendor = StringCol(title="CPU Vendor")
     numCPUs = IntCol(title="Number of CPUs")
-    CPUSpeed = StringCol(title="CPU Speed")
+    CPUSpeed = FloatCol(title="CPU Speed")
     language = StringCol(title="Language")
     defaultRunlevel = IntCol(title="Default Runlevel")
 
