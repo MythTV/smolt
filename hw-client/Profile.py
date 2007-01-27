@@ -24,7 +24,10 @@ class Profile:
                 sys.exit(1)
 
         self.hw = hardware.Hardware()
-        self.lsbRelease = commands.getstatusoutput('/usr/bin/lsb_release')[1]
+        
+        self.lsbRelease = ''
+        if os.access('/usr/bin/lsb_release', os.X_OK):
+            self.lsbRelease = commands.getstatusoutput('/usr/bin/lsb_release')[1]
 
         try:
             self.OS = file('/etc/redhat-release').read()
