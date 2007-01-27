@@ -66,6 +66,25 @@ class Profile:
                 self.system = device['system']
             except:
                 pass
+            if self.platform == '':
+                self.platform = 'Unknown'
+            if self.bogomips == '':
+                self.bogomips = 1
+            if self.CPUVendor == '':
+                self.CPUVendor = 'Unknown'
+            if self.numCPUs == '':
+                self.numCPUs = 1
+            if self.CPUSpeed == '':
+                self.CPUSpeed = 0
+            if self.systemMemory == '':
+                self.systemMemory = 0
+            if self.systemSwap == '':
+                self.systemSwap = 0
+            if self.vendor == '':
+                self.vendor = 'Unknown'
+            if self.system == '':
+                self.system = 'Unknown'
+
 
     def get_host_string(self):
         return "UUID=%s&lsbRelease=%s&OS=%s&defaultRunlevel=%s&language=%s&platform=%s&bogomips=%s&CPUVendor=%s&numCPUs=%s&CPUSpeed=%s&systemMemory=%s&systemSwap=%s&vendor=%s&system=%s" % (self.UUID, self.lsbRelease, self.OS, self.defaultRunlevel, self.language, self.platform, self.bogomips, self.CPUVendor, self.numCPUs, self.CPUSpeed, self.systemMemory, self.systemSwap, self.vendor, self.system)
