@@ -66,24 +66,24 @@ class Profile:
                 self.system = device['system']
             except:
                 pass
-            if self.platform == '':
-                self.platform = 'Unknown'
-            if self.bogomips == '':
-                self.bogomips = 1
-            if self.CPUVendor == '':
-                self.CPUVendor = 'Unknown'
-            if self.numCPUs == '':
-                self.numCPUs = 1
-            if self.CPUSpeed == '':
-                self.CPUSpeed = 0
-            if self.systemMemory == '':
-                self.systemMemory = 0
-            if self.systemSwap == '':
-                self.systemSwap = 0
-            if self.vendor == '':
-                self.vendor = 'Unknown'
-            if self.system == '':
-                self.system = 'Unknown'
+        if self.platform == '':
+            self.platform = 'Unknown'
+        if self.bogomips == '':
+            self.bogomips = 1
+        if self.CPUVendor == '':
+            self.CPUVendor = 'Unknown'
+        if self.numCPUs == '':
+            self.numCPUs = 1
+        if self.CPUSpeed == '':
+            self.CPUSpeed = 0
+        if self.systemMemory == '':
+            self.systemMemory = 0
+        if self.systemSwap == '':
+            self.systemSwap = 0
+        if self.vendor == '':
+            self.vendor = 'Unknown'
+        if self.system == '':
+            self.system = 'Unknown'
 
 
     def get_host_string(self):
