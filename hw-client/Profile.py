@@ -1,12 +1,10 @@
 #!/usr/bin/python
 
 import hardware
+import software
 import sys
 import os
-import commands
 import re
-
-initdefault_re = re.compile(r':(\d+):initdefault:')
 
 class Profile:
     def __init__(self):
@@ -25,24 +23,12 @@ class Profile:
 
         self.hw = hardware.read_hal()
         
-        self.lsbRelease = ''
-        if os.access('/usr/bin/lsb_release', os.X_OK):
-            self.lsbRelease = commands.getstatusoutput('/usr/bin/lsb_release')[1]
-
-        try:
-            self.OS = file('/etc/redhat-release').read()
-        except IOError:
-            self.OS = 'Unknown'
-
-        self.defaultRunlevel = 'Unknown'
-        try:
-            inittab = file('/etc/inittab').read()
-            match = initdefault_re.search(inittab)
-            if match:
-                self.defaultRunlevel = match.group(1)
-        except IOError:
-            sys.stderr.write('Unable to read /etc/inittab, continuing...')
-
+        self.lsbRelease = software.read_lsb_release()
+        
+        self.OS = software.read_os()
+        
+        self.defaultRunlevel = software.read_runlevel()
+        
         self.language = os.environ['LANG']
 
         cpuinfo = hardware.read_cpuinfo()
