@@ -23,7 +23,7 @@ class Profile:
                 sys.stderr.write('Unable to determine UUID of system!\n')
                 sys.exit(1)
 
-        self.hw = hardware.Hardware()
+        self.hw = hardware.read_hal()
         
         self.lsbRelease = ''
         if os.access('/usr/bin/lsb_release', os.X_OK):
@@ -45,44 +45,55 @@ class Profile:
 
         self.language = os.environ['LANG']
 
-        self.platform = self.bogomips = self.CPUVendor = self.numCPUs = self.CPUSpeed = self.systemMemory = self.systemSwap = self.vendor = self.system = ''
+        cpuinfo = hardware.read_cpuinfo()
 
-        for device in self.hw:
-            try:
-                self.platform = device['platform']
-                self.bogomips = device['bogomips']
-                self.CPUVendor = "%s - %s" % (device['type'], device['model'])
-                self.numCPUs = device['count']
-                self.CPUSpeed = device['speed']
-            except:
-                pass
-            try:
-                self.systemMemory = device['ram']
-                self.systemSwap = device['swap']
-            except:
-                pass
-            try:
-                self.vendor = device['vendor']
-                self.system = device['system']
-            except:
-                pass
-        if self.platform == '':
+        try:
+            self.platform = cpuinfo['platform']
+        except:
             self.platform = 'Unknown'
-        if self.bogomips == '':
+
+        try:
+            self.bogomips = cpuinfo['bogomips']
+        except:
             self.bogomips = 1
-        if self.CPUVendor == '':
+
+        try:
+            self.CPUVendor = '%s - %s' % (cpuinfo['type'], device['model'])
+        except:
             self.CPUVendor = 'Unknown'
-        if self.numCPUs == '':
+
+        try:
+            self.numCPUs = cpuinfo['count']
+        except:
             self.numCPUs = 1
-        if self.CPUSpeed == '':
+
+        try:
+            self.CPUSpeed = cpuinfo['speed']
+        except:
             self.CPUSpeed = 0
-        if self.systemMemory == '':
+            
+        memory = hardware.read_memory()
+
+        try:
+            self.systemMemory = device['ram']
+        except:
             self.systemMemory = 0
-        if self.systemSwap == '':
+
+        try:
+            self.systemSwap = device['swap']
+        except:
             self.systemSwap = 0
-        if self.vendor == '':
+
+        dmi = hardware.read_dmi()
+
+        try:
+            self.vendor = dmi['vendor']
+        except:
             self.vendor = 'Unknown'
-        if self.system == '':
+
+        try:
+            self.system = dmi['system']
+        except:
             self.system = 'Unknown'
 
 
