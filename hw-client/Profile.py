@@ -62,7 +62,7 @@ class Profile:
         if self.platform == '':
             self.platform = 'Unknown'
         if self.bogomips == '':
-            self.bogomips = 1
+            self.bogomips = 0
         if self.CPUVendor == '':
             self.CPUVendor = 'Unknown'
         if self.numCPUs == '':
