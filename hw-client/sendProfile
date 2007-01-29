@@ -7,8 +7,11 @@ import urlgrabber.grabber
 
 import Profile
 
+# read the profile
 profile = Profile.Profile()
 
+print 'We are about to send the following information to the Fedora Smolt server:'
+print
 profile.print_data()
 
 print 'Transmitting ...'

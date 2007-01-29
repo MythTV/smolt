@@ -1,10 +1,16 @@
 #!/usr/bin/python
 
 import hardware
-import software
 import sys
 import os
+import commands
 import re
+
+initdefault_re = re.compile(r':(\d+):initdefault:')
+
+# use hardware to get what we need as different archs get data from different
+# functions.  namely dmi is a bios only thing while  ppc and sparc have the
+# information elsewhere.
 
 class Profile:
     def __init__(self):
@@ -21,66 +27,68 @@ class Profile:
                 sys.stderr.write('Unable to determine UUID of system!\n')
                 sys.exit(1)
 
-        self.hw = hardware.read_hal()
+        self.hw = hardware.Hardware()
         
-        self.lsbRelease = software.read_lsb_release()
-        
-        self.OS = software.read_os()
-        
-        self.defaultRunlevel = software.read_runlevel()
-        
+        self.lsbRelease = ''
+        if os.access('/usr/bin/lsb_release', os.X_OK):
+            self.lsbRelease = commands.getstatusoutput('/usr/bin/lsb_release')[1]
+
+        try:
+            self.OS = file('/etc/redhat-release').read()
+        except IOError:
+            self.OS = 'Unknown'
+
+        self.defaultRunlevel = 'Unknown'
+        try:
+            inittab = file('/etc/inittab').read()
+            match = initdefault_re.search(inittab)
+            if match:
+                self.defaultRunlevel = match.group(1)
+        except IOError:
+            sys.stderr.write('Unable to read /etc/inittab, continuing...')
+
         self.language = os.environ['LANG']
 
-        cpuinfo = hardware.read_cpuinfo()
+        self.platform = self.bogomips = self.CPUVendor = self.numCPUs = self.CPUSpeed = self.systemMemory = self.systemSwap = self.vendor = self.system = ''
 
-        try:
-            self.platform = cpuinfo['platform']
-        except:
-            self.platform = 'Unknown'
-
-        try:
-            self.bogomips = cpuinfo['bogomips']
-        except:
-            self.bogomips = 1
-
-        try:
-            self.CPUVendor = '%s - %s' % (cpuinfo['type'], device['model'])
-        except:
-            self.CPUVendor = 'Unknown'
-
-        try:
-            self.numCPUs = cpuinfo['count']
-        except:
-            self.numCPUs = 1
-
-        try:
-            self.CPUSpeed = cpuinfo['speed']
-        except:
-            self.CPUSpeed = 0
-            
-        memory = hardware.read_memory()
-
-        try:
-            self.systemMemory = device['ram']
-        except:
-            self.systemMemory = 0
-
-        try:
-            self.systemSwap = device['swap']
-        except:
-            self.systemSwap = 0
-
-        dmi = hardware.read_dmi()
-
-        try:
-            self.vendor = dmi['vendor']
-        except:
-            self.vendor = 'Unknown'
-
-        try:
-            self.system = dmi['system']
-        except:
-            self.system = 'Unknown'
+        for device in self.hw:
+            try:
+                self.platform = device['platform']
+                self.bogomips = device['bogomips']
+                self.CPUVendor = "%s - %s" % (device['type'], device['model'])
+                self.numCPUs = device['count']
+                self.CPUSpeed = device['speed']
+            except:
+                pass
+            try:
+                self.systemMemory = device['ram']
+                self.systemSwap = device['swap']
+            except:
+                pass
+            try:
+                self.vendor = device['vendor']
+                self.system = device['system']
+            except:
+                pass
+# Defaults for when hardware doesnt return anything.  namely a new cpu type 
+            if self.platform == '':
+                self.platform = 'Unknown'
+            if self.bogomips == '':
+                self.bogomips = 1
+            if self.CPUVendor == '':
+                self.CPUVendor = 'Unknown'
+            if self.numCPUs == '':
+                self.numCPUs = 1
+            if self.CPUSpeed == '':
+                self.CPUSpeed = 0
+            if self.systemMemory == '':
+                self.systemMemory = 0
+            if self.systemSwap == '':
+                self.systemSwap = 0
+            if self.vendor == '':
+                self.vendor = 'Unknown'
+            if self.system == '':
+                self.system = 'Unknown'
 
 
     def get_host_string(self):
@@ -99,8 +107,6 @@ class Profile:
                 yield "UUID=%s&Bus=%s&Driver=%s&Class=%s&Description=%s" % (self.UUID, Bus, Driver, Class, Description)
 
     def print_data(self):
-        print 'We are about to send the following information to the Fedora Smolt server:'
-        print
         print '\tUUID: %s' % self.UUID
         print '\tlsbRelease: %s' % self.lsbRelease
         print '\tOS: %s' % self.OS
