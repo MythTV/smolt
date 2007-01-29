@@ -1,12 +1,10 @@
 #!/usr/bin/python
 
 import hardware
+import software
 import sys
 import os
-import commands
 import re
-
-initdefault_re = re.compile(r':(\d+):initdefault:')
 
 # use hardware to get what we need as different archs get data from different
 # functions.  namely dmi is a bios only thing while  ppc and sparc have the
@@ -30,24 +28,12 @@ class Profile:
 
         self.hw = hardware.Hardware()
         
-        self.lsbRelease = ''
-        if os.access('/usr/bin/lsb_release', os.X_OK):
-            self.lsbRelease = commands.getstatusoutput('/usr/bin/lsb_release')[1]
-
-        try:
-            self.OS = file('/etc/redhat-release').read()
-        except IOError:
-            self.OS = 'Unknown'
-
-        self.defaultRunlevel = 'Unknown'
-        try:
-            inittab = file('/etc/inittab').read()
-            match = initdefault_re.search(inittab)
-            if match:
-                self.defaultRunlevel = match.group(1)
-        except IOError:
-            sys.stderr.write('Unable to read /etc/inittab, continuing...')
-
+        self.lsbRelease = software.read_lsb_release()
+        
+        self.OS = software.read_os()
+        
+        self.defaultRunlevel = software.read_runlevel()
+        
         self.language = os.environ['LANG']
 
         self.platform = self.bogomips = self.CPUVendor = self.numCPUs = self.CPUSpeed = self.systemMemory = self.systemSwap = self.vendor = self.system = ''
@@ -71,11 +57,12 @@ class Profile:
                 self.system = device['system']
             except:
                 pass
-# Defaults for when hardware doesnt return anything.  namely a new cpu type 
+
+        # Defaults for when hardware doesnt return anything.  namely a new cpu type 
         if self.platform == '':
             self.platform = 'Unknown'
         if self.bogomips == '':
-            self.bogomips = 0
+            self.bogomips = 1
         if self.CPUVendor == '':
             self.CPUVendor = 'Unknown'
         if self.numCPUs == '':
@@ -90,7 +77,6 @@ class Profile:
             self.vendor = 'Unknown'
         if self.system == '':
             self.system = 'Unknown'
-
 
     def get_host_string(self):
         return "UUID=%s&lsbRelease=%s&OS=%s&defaultRunlevel=%s&language=%s&platform=%s&bogomips=%s&CPUVendor=%s&numCPUs=%s&CPUSpeed=%s&systemMemory=%s&systemSwap=%s&vendor=%s&system=%s" % (self.UUID, self.lsbRelease, self.OS, self.defaultRunlevel, self.language, self.platform, self.bogomips, self.CPUVendor, self.numCPUs, self.CPUSpeed, self.systemMemory, self.systemSwap, self.vendor, self.system)
