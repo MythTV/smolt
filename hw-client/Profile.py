@@ -10,7 +10,8 @@ initdefault_re = re.compile(r':(\d+):initdefault:')
 
 # use hardware to get what we need as different archs get data from different
 # functions.  namely dmi is a bios only thing while  ppc and sparc have the
-# information elsewhere.
+# information elsewhere.  
+# EFI is currently of unknown status
 
 class Profile:
     def __init__(self):
@@ -74,7 +75,7 @@ class Profile:
             if self.platform == '':
                 self.platform = 'Unknown'
             if self.bogomips == '':
-                self.bogomips = 1
+                self.bogomips = 0
             if self.CPUVendor == '':
                 self.CPUVendor = 'Unknown'
             if self.numCPUs == '':
