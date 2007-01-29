@@ -55,8 +55,10 @@ a.link, a, a.active {
 }
 
 h1,h2,h3,h4,h5,h6,#getting_started_steps {
-  font-family: "Century Schoolbook L", Georgia, serif;
-  font-weight: bold;
+    font-size: 1.7em;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", geneva, verdana, sans-serif;
+    padding: 0px;
+    margin: 0px;
 }
 
 h2 {
@@ -136,9 +138,13 @@ span.code {
 	background: #EEEEEE;	
 }
 
-#runLevelList, #osList, #devicesList{
-    padding: 0px;
-    margin: 2px;
-    list-style: none;
-}
 
+#floatingTitle{
+    border: 0px solid red;
+    color: #FDFFFC;
+    font-size: small;
+    float: right;
+    width: 300px;
+    text-align: right;
+    padding-right: 13px;
+}

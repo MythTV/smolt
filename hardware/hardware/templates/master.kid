@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?python import sitetemplate ?>
+<?python import time?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://purl.org/kid/ns#" py:extends="sitetemplate">
 
 <head py:match="item.tag=='{http://www.w3.org/1999/xhtml}head'" py:attrs="item.items()">
@@ -30,7 +31,14 @@
             <a href="/logout">Logout</a>
         </span>
     </div>
-    <div id="header">&nbsp;</div>
+    <div id="header">
+        <div id="floatingTitle">
+            <h1>Hardware : <script type="text/javascript" language="javascript">document.write(document.title);</script></h1>
+            ${time.strftime('%C %c')}
+        </div>
+        
+    </div>
+
     <div id="main_content">
     <div py:if="tg_flash" class="flash" py:content="tg_flash"></div>
 

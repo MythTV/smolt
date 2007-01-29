@@ -14,6 +14,14 @@
             <th valign="top">Total Registered Devices</th>
             <td><strong>${Device.select('1=1').count()}</strong></td>
         </tr>
+        <tr>
+            <th valign="top">Total bogomips</th>
+            <td><strong>${Stat["bogomipsTot"]}</strong></td>
+        </tr>
+        <tr>
+            <th valign="top">Total processors</th>
+            <td><strong>${Stat["cpusTot"]}</strong></td>
+        </tr>
 
         <tr>
             <th valign="top">Archs</th>
@@ -115,9 +123,8 @@
             </td>
         </tr>
 
-
         <tr>
-            <th>CPU Speed</th>
+            <th valign="top">CPU Speed</th>
             <td>
                 <table id="stats">
                     <tr py:for='cpuSpeed in Stat["cpuSpeed"]'>
@@ -131,7 +138,7 @@
         </tr>
 
         <tr>
-            <th>bogomips</th>
+            <th valign="top">bogomips</th>
             <td>
                 <table id="stats">
                     <tr py:for='bogomips in Stat["bogomips"]'>
@@ -143,8 +150,6 @@
                 </table>
             </td>
         </tr>
-
-
 
         <tr>
             <th valign="top">Top 20 Devices</th>

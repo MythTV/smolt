@@ -45,6 +45,10 @@ class Root(controllers.RootController):
             hostSQL.system = system.rstrip()
 
         except SQLObjectNotFound:
+            try:
+                bogomips = float(bogomips)
+            except:
+                bogomips = 0
             hostSQL = Host(UUID = UUID,
                         lsbRelease = lsbRelease.rstrip(),
                         OS = OS.rstrip(),
@@ -142,6 +146,12 @@ class Root(controllers.RootController):
         stats['bogomips'].append(Host._connection.queryAll('select (select "513 - 1024") as range, count(bogomips) as cnt from Host where bogomips > 512 and bogomips <= 1024')[0])
         stats['bogomips'].append(Host._connection.queryAll('select (select "1025 - 2048") as range, count(bogomips) as cnt from Host where bogomips > 1025 and bogomips <= 2048')[0])
         stats['bogomips'].append(Host._connection.queryAll('select (select "> 2048") as range, count(bogomips) as cnt from Host where bogomips > 2048')[0])
+
+        stats['bogomipsTot'] = float(Host._connection.queryAll('select sum((bogomips * num_cp_us)) as cnt from Host where bogomips > 0;')[0][0])
+
+        stats['cpusTot'] = int(Host._connection.queryAll('select sum(num_cp_us) as cnt from Host;')[0][0])
+
+        #stats['cpusTot'] = int(
  
  
 
