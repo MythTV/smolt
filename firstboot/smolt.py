@@ -20,7 +20,7 @@ _=gettext.gettext
 
 class childWindow:
     #You must specify a runPriority for the order in which you wish your module to run
-    runPriority = 240
+    runPriority = 107
     moduleName = (_("Smolt"))
 
     def launch(self, doDebug = None):
@@ -49,11 +49,8 @@ class childWindow:
 
         iter = textBuffer.get_iter_at_offset(0)
 
-
-	#line = os.popen('/sbin/runlevel', 'r').readline()
-
         for line in os.popen('/usr/bin/smoltPrint', 'r'):
-		textBuffer.insert(iter, line)
+        textBuffer.insert(iter, line)
 
         textView.set_buffer(textBuffer)
             
@@ -70,20 +67,20 @@ class childWindow:
 
     def apply(self, notebook):
         if self.okButton.get_active() == True:
-	    result = commands.getstatusoutput('/usr/bin/smoltSendProfile')
+        result = commands.getstatusoutput('/usr/bin/smoltSendProfile')
             return 0
         else:
             dlg = gtk.MessageDialog(None, 0, gtk.MESSAGE_QUESTION, gtk.BUTTONS_NONE,
                                     (_("Are you sure you wouldn't like to send the profile?  " 
                                        "Submitting your profile is a valuable source of information "
                                        "for our development and can help troubleshoot issues that "
-				       "may come up with your hardware ")))
+                                       "may come up with your hardware ")))
 
             dlg.set_position(gtk.WIN_POS_CENTER)
             dlg.set_modal(True)
 
             continueButton = dlg.add_button(_("_Reconsider sending"), 0)
-            shutdownButton = dlg.add_button(_("_No thanks"), 1)
+            shutdownButton = dlg.add_button(_("_No, do not send."), 1)
             continueButton.grab_focus()
 
             rc = dlg.run()
