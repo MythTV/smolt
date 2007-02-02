@@ -78,6 +78,15 @@ class Profile:
         if self.system == '':
             self.system = 'Unknown'
 
+        # If the CPU can do frequency scaling the CPU speed returned
+        # by /proc/cpuinfo might be less than the maximum possible for
+        # the processor. Check sysfs for the proper file, and if it
+        # exists, use that value.  Only use the value from CPU #0 and
+        # assume that the rest of the CPUs are the same.
+        
+        if os.path.exists('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'):
+            self.CPUSpeed = int(file('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq').read().strip()) / 1000
+            
     def get_host_string(self):
         return "UUID=%s&lsbRelease=%s&OS=%s&defaultRunlevel=%s&language=%s&platform=%s&bogomips=%s&CPUVendor=%s&numCPUs=%s&CPUSpeed=%s&systemMemory=%s&systemSwap=%s&vendor=%s&system=%s" % (self.UUID, self.lsbRelease, self.OS, self.defaultRunlevel, self.language, self.platform, self.bogomips, self.CPUVendor, self.numCPUs, self.CPUSpeed, self.systemMemory, self.systemSwap, self.vendor, self.system)
 
