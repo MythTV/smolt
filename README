@@ -13,7 +13,15 @@ The server is a turbogears instance.  It and the client could very easily be
 modified to be used as an inventory system for an enterprise environment.
 Anyone interested in doing this please contact me.
 
+
 Client
 
 The client portion uses the RHN client to create a hardware object that then
 gets sent to the server.
+
+Usage:
+     -h,--help           Display this help menu
+     -d,--debug          Enable debug information
+     -p,--printOnly      Print Information only, do not send
+     -s,--server=        serverUrl (http://yourSmoonServer/
+
