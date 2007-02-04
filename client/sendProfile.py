@@ -7,6 +7,8 @@ import urlgrabber.grabber
 
 import Profile
 
+smoonURL = 'http://smolt.fedoraproject.org/'
+
 # read the profile
 profile = Profile.Profile()
 
@@ -20,17 +22,17 @@ grabber = urlgrabber.grabber.URLGrabber()
 
 sendHostStr = profile.get_host_string()
 
-o=grabber.urlopen('http://publictest4.fedora.redhat.com/add', data=sendHostStr, http_headers=(('Content-length', '%i' % len(sendHostStr)),
+o=grabber.urlopen('%s/add' % smoonURL, data=sendHostStr, http_headers=(('Content-length', '%i' % len(sendHostStr)),
                                                                                               ('Content-type', 'application/x-www-form-urlencoded')))
 o.close()
 
-print 'sent host data'
+print '.'
 
 for sendDeviceStr in profile.get_device_string():
-    o=grabber.urlopen('http://publictest4.fedora.redhat.com/addDevice', data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
+    o=grabber.urlopen('%s/addDevice' % smoonURL, data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
                                                                                                           ('Content-type', 'application/x-www-form-urlencoded')))
     o.close()
         
-    print 'sent device data'
+    print '.'
 
 print 'Thank you, your uuid (in /etc/sysconfig/hw-uuid), is %s' % profile.UUID
