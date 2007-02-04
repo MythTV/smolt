@@ -14,10 +14,10 @@ import re
 class Profile:
     def __init__(self):
         try:
-            self.UUID = file('/etc/sysconfig/hw-uuid').read()
+            self.UUID = file('/etc/sysconfig/hw-uuid').read().strip()
         except IOError:
             try:
-                self.UUID = file('/proc/sys/kernel/random/uuid').read()
+                self.UUID = file('/proc/sys/kernel/random/uuid').read().strip()
                 try:
                     file('/etc/sysconfig/hw-uuid', 'w').write(self.UUID)
                 except:
@@ -28,33 +28,36 @@ class Profile:
 
         self.hw = hardware.Hardware()
         
-        self.lsbRelease = software.read_lsb_release()
+        self.lsbRelease = software.read_lsb_release().strip()
         
-        self.OS = software.read_os()
+        self.OS = software.read_os().strip()
         
-        self.defaultRunlevel = software.read_runlevel()
+        self.defaultRunlevel = software.read_runlevel().strip()
         
-        self.language = os.environ['LANG']
+	try:
+        	self.language = os.environ['LANG']
+	except KeyError:
+		self.language = 'Unknown'
 
         self.platform = self.bogomips = self.CPUVendor = self.numCPUs = self.CPUSpeed = self.systemMemory = self.systemSwap = self.vendor = self.system = ''
 
         for device in self.hw:
             try:
-                self.platform = device['platform']
-                self.bogomips = device['bogomips']
-                self.CPUVendor = "%s - %s" % (device['type'], device['model'])
-                self.numCPUs = device['count']
-                self.CPUSpeed = device['speed']
+                self.platform = device['platform'].strip()
+                self.bogomips = device['bogomips'].strip()
+                self.CPUVendor = "%s - %s" % (device['type'], device['model']).strip()
+                self.numCPUs = device['count'].strip()
+                self.CPUSpeed = device['speed'].strip()
             except:
                 pass
             try:
                 self.systemMemory = device['ram']
-                self.systemSwap = device['swap']
+                self.systemSwap = device['swap'].strip()
             except:
                 pass
             try:
-                self.vendor = device['vendor']
-                self.system = device['system']
+                self.vendor = device['vendor'].strip()
+                self.system = device['system'].strip()
             except:
                 pass
 
