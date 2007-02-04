@@ -117,10 +117,23 @@ class Root(controllers.RootController):
         stats['numCPUs'] = Host._connection.queryAll("Select num_cp_us, count(num_cp_us) as cnt from Host group by num_cp_us order by cnt desc")
         stats['numCPUstot'] = int(Host._connection.queryAll('Select count(num_cp_us) from Host;')[0][0])
 
+        stats['vendors'] = Host._connection.queryAll("Select vendor, count(vendor) as cnt from Host where vendor != 'Unknown' and vendor != '' group by vendor order by cnt desc limit 15;")
+
         stats['cpuVendor'] = Host._connection.queryAll("Select cpu_vendor, count(cpu_vendor) as cnt from Host group by cpu_vendor order by cnt desc")
+        cpuVen = {}
+
+        for stat in stats['cpuVendor']:
+            try:
+                cpuVen[stat[0].split('-')[0].strip()] = cpuVen[stat[0].split('-')[0].strip()] + 1
+            except:
+                cpuVen[stat[0].split('-')[0].strip()] = 1
+
+        stats['cpuVendor'] = cpuVen
+
+
         stats['cpuVendortot'] = int(Host._connection.queryAll('Select count(cpu_vendor) from Host;')[0][0])
  
-        stats['language'] = Host._connection.queryAll("Select language, count(language) as cnt from Host group by language order by cnt desc")
+        stats['language'] = Host._connection.queryAll("Select language, count(language) as cnt from Host group by language order by cnt desc limit 15")
         stats['languagetot'] = int(Host._connection.queryAll('Select count(language) from Host;')[0][0])
  
         stats['sysMem'] = []
@@ -145,9 +158,11 @@ class Root(controllers.RootController):
         stats['bogomips'].append(Host._connection.queryAll('select (select "=< 512") as range, count(bogomips) as cnt from Host where bogomips <= 512')[0])
         stats['bogomips'].append(Host._connection.queryAll('select (select "513 - 1024") as range, count(bogomips) as cnt from Host where bogomips > 512 and bogomips <= 1024')[0])
         stats['bogomips'].append(Host._connection.queryAll('select (select "1025 - 2048") as range, count(bogomips) as cnt from Host where bogomips > 1025 and bogomips <= 2048')[0])
-        stats['bogomips'].append(Host._connection.queryAll('select (select "> 2048") as range, count(bogomips) as cnt from Host where bogomips > 2048')[0])
+        stats['bogomips'].append(Host._connection.queryAll('select (select "2049 - 4000") as range, count(bogomips) as cnt from Host where bogomips > 2048 and bogomips <= 4000')[0])
+        stats['bogomips'].append(Host._connection.queryAll('select (select "> 4001") as range, count(bogomips) as cnt from Host where bogomips > 4001')[0])
 
         stats['bogomipsTot'] = float(Host._connection.queryAll('select sum((bogomips * num_cp_us)) as cnt from Host where bogomips > 0;')[0][0])
+        stats['cpuSpeedTot'] = float(Host._connection.queryAll('select sum((cpu_speed * num_cp_us)) as cnt from Host where cpu_speed > 0;')[0][0])
 
         stats['cpusTot'] = int(Host._connection.queryAll('select sum(num_cp_us) as cnt from Host;')[0][0])
 

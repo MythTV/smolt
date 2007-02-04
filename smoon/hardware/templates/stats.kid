@@ -22,6 +22,10 @@
             <th valign="top">Total processors</th>
             <td><strong>${Stat["cpusTot"]}</strong></td>
         </tr>
+        <tr>
+            <th valign="top">Total MHz</th>
+            <td><strong>${Stat["cpuSpeedTot"]}</strong></td>
+        </tr>
 
         <tr>
             <th valign="top">Archs</th>
@@ -33,6 +37,11 @@
                         <td><strong>${'%.1f' % (float(arch[1]) / Stat["archstot"] * 100) } %</strong></td>
                         <td><img py:for='i in range(1, int( float(arch[1]) / Stat["archstot"] * 100 ))' src='/static/images/tile.png' /></td>
                     </tr>
+                    <!--<tr>
+                        <td colspan="4">
+                            <img src="/cacti/smoltArch.png"/>
+                        </td>
+                    </tr>-->
                 </table>
             </td>
         </tr>
@@ -44,8 +53,8 @@
                     <tr py:for='OS in Stat["OS"]'>
                         <td align="right">${OS[0]}</td>
                         <td align="center">${OS[1]}</td>
-                        <td><strong>${'%.1f' % (float(OS[1]) / Stat["OStot"] * 100) } %</strong></td>
-                        <td><img py:for='i in range(1, int( float(OS[1]) / Stat["OStot"] * 100 ))' src='/static/images/tile.png' /></td>
+                        <td nowrap="true"><strong>${'%.1f' % (float(OS[1]) / Stat["OStot"] * 100) } %</strong></td>
+                        <td nowrap="true"><img py:for='i in range(1, int( float(OS[1]) / Stat["OStot"] * 100 ))' src='/static/images/tile.png' /></td>
                     </tr>
                 </table>
             </td>
@@ -66,7 +75,7 @@
         </tr>
 
         <tr>
-            <th valign="top">Language</th>
+            <th valign="top">Language (Top 15)</th>
             <td>
                 <table id="stats">
                     <tr py:for='lang in Stat["language"]'>
@@ -80,18 +89,34 @@
         </tr>
 
         <tr>
-            <th valign="top">CPU Vendor</th>
+            <th valign="top">Vendor (Top 15)</th>
             <td>
                 <table id="stats">
-                    <tr py:for='cpuVen in Stat["cpuVendor"]'>
-                        <td align="right">${cpuVen[0]}</td>
-                        <td align="center">${cpuVen[1]}</td>
-                        <td><strong>${'%.1f' % (float(cpuVen[1]) / Stat["cpuVendortot"] * 100) } %</strong></td>
-                        <td><img py:for='i in range(1, int( float(cpuVen[1]) / Stat["cpuVendortot"] * 100 ))' src='/static/images/tile.png' /></td>
+                    <tr py:for='vendor in Stat["vendors"]'>
+                        <td align="right">${vendor[0]}</td>
+                        <td align="center">${vendor[1]}</td>
+                        <td><strong>${'%.1f' % (float(vendor[1]) / Stat["languagetot"] * 100) } %</strong></td>
+                        <td><img py:for='i in range(1, int( float(vendor[1]) / Stat["languagetot"] * 100 ))' src='/static/images/tile.png' /></td>
                     </tr>
                 </table>
             </td>
         </tr>
+
+
+
+<!--        <tr>
+            <th valign="top">CPU Vendor</th>
+            <td>
+                <table id="stats">
+                    <tr py:for='cpuVen in Stat["cpuVendor"]'>
+                        <td align="right">${Stat["cpuVendor"][cpuVen]}</td>
+                        <td align="center">${cpuVen}</td>
+                        <td><strong>${'%.1f' % (float(Stat["cpuVendor"][cpuVen]) / Stat["cpuVendortot"] * 100) } %</strong></td>
+                        <td><img py:for='i in range(1, int( float(Stat["cpuVendor"][cpuVen]) / Stat["cpuVendortot"] * 100 ))' src='/static/images/tile.png' /></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>-->
 
 
 
