@@ -1,0 +1,10 @@
+Client:
+The client for smolt could use some work.
+
+    * Send PCI / USB Id's instead of the description
+    * Xen / VM flag (am I a guest?)
+    * Proper command flags (--server=, --printOnly (instead of a
+    * different smoltPrint), etc)
+    * Fix the sending mechanism (currently one send per host and per device)
+    * Gui (abadger1999 has proof of concept)
+    * Error checking (seriously) 
