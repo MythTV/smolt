@@ -15,10 +15,29 @@ class Root(controllers.RootController):
         # log.debug("Happy TurboGears Controller Responding For Duty")
         return dict(now=time.ctime())
 
-    @expose(template="hardware.templates.add")
+    @expose(template="hardware.templates.show")
+    def show(self, UUID=''):
+        try:
+            hostSQL = Host.byUUID(UUID.strip())
+        except:
+            return dict(hostObject='')
+        else:
+            return dict(hostObject=hostSQL)
+
+
+    @expose(template="hardware.templates.delete")
+    def delete(self, UUID=''):
+        try:
+            Host._connection.queryAll("delete from host_links where host_u_u_id='%s';" % UUID)
+            Host._connection.queryAll("delete from Host where u_u_id='%s';" % UUID)
+        except:
+            return dict(result='Failed')
+        return dict(result='Succeeded')
+
+    @expose(template="hardware.templates.show")
     def add(self, UUID, lsbRelease, OS, platform, bogomips, systemMemory, systemSwap, CPUVendor, numCPUs, CPUSpeed, language, defaultRunlevel, vendor, system):
         import time
-        UUID = UUID.rstrip()
+        UUID = UUID.strip()
 
         try:
             Host._connection.queryAll("delete from host_links where host_u_u_id='%s'" % UUID)
@@ -27,22 +46,22 @@ class Root(controllers.RootController):
 
         try:
             hostSQL = Host.byUUID(UUID)
-            hostSQL.lsbRelease = lsbRelease.rstrip()
-            hostSQL.OS = OS.rstrip()
-            hostSQL.platform = platform.rstrip()
+            hostSQL.lsbRelease = lsbRelease.strip()
+            hostSQL.OS = OS.strip()
+            hostSQL.platform = platform.strip()
             try:
                 hostSQL.bogomips = float(bogomips)
             except:
                 hostSQL.bogomips = 0
             hostSQL.systemMemory = int(systemMemory)
             hostSQL.systemSwap = int(systemSwap)
-            hostSQL.CPUVendor = CPUVendor.rstrip()
+            hostSQL.CPUVendor = CPUVendor.strip()
             hostSQL.numCPUs = int(numCPUs)
             hostSQL.CPUSpeed = float(CPUSpeed)
-            hostSQL.language = language.rstrip()
+            hostSQL.language = language.strip()
             hostSQL.defaultRunlevel = int(defaultRunlevel)
-            hostSQL.vendor = vendor.rstrip()
-            hostSQL.system = system.rstrip()
+            hostSQL.vendor = vendor.strip()
+            hostSQL.system = system.strip()
 
         except SQLObjectNotFound:
             try:
@@ -50,19 +69,19 @@ class Root(controllers.RootController):
             except:
                 bogomips = 0
             hostSQL = Host(UUID = UUID,
-                        lsbRelease = lsbRelease.rstrip(),
-                        OS = OS.rstrip(),
-                        platform = platform.rstrip(),
+                        lsbRelease = lsbRelease.strip(),
+                        OS = OS.strip(),
+                        platform = platform.strip(),
                         bogomips = float(bogomips),
                         systemMemory = int(systemMemory),
                         systemSwap = int(systemSwap),
-                        CPUVendor = CPUVendor.rstrip(),
+                        CPUVendor = CPUVendor.strip(),
                         numCPUs = int(numCPUs),
                         CPUSpeed = float(CPUSpeed),
-                        language = language.rstrip(),
+                        language = language.strip(),
                         defaultRunlevel = int(defaultRunlevel),
-                        vendor = vendor.rstrip(),
-                        system = system.rstrip())
+                        vendor = vendor.strip(),
+                        system = system.strip())
 
         return dict(hostObject=hostSQL)
 
@@ -70,11 +89,11 @@ class Root(controllers.RootController):
     def addDevice(self, UUID, Description, Bus, Driver, Class):
         import time
         from mx import DateTime
-        UUID = UUID.rstrip()
-        Description = Description.rstrip()
-        Bus = Bus.rstrip()
-        Driver = Driver.rstrip()
-        Class = Class.rstrip()
+        UUID = UUID.strip()
+        Description = Description.strip()
+        Bus = Bus.strip()
+        Driver = Driver.strip()
+        Class = Class.strip()
 
         try:
             deviceSQL = Device.byDescription(Description)
