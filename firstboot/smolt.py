@@ -21,7 +21,7 @@ _=gettext.gettext
 class childWindow:
     #You must specify a runPriority for the order in which you wish your module to run
     runPriority = 107
-    moduleName = (_("Smolt"))
+    moduleName = (_("Hardware Profile"))
 
     def launch(self, doDebug = None):
         self.doDebug = doDebug
@@ -31,7 +31,7 @@ class childWindow:
         self.vbox = gtk.VBox()
         self.vbox.set_size_request(400, 200)
 
-        msg = (_("Smolt"))
+        msg = (_("Hardware Profile"))
 
         title_pix = functions.imageFromFile("workstation.png")
 
@@ -47,15 +47,27 @@ class childWindow:
         textSW.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         textSW.add(textView)
 
+        label = gtk.Label(_("Smolt is a hardware profiler for The Fedora "
+                "Project.  Submitting your profile is a great way to give back "
+                "to the community as this information is used to help focus our"
+                " efforts on popular hardware and platforms.  Submissions are "
+                "anonymous."))
+
+        label.set_line_wrap(True)
+        label.set_alignment(0.0, 0.5)
+        label.set_size_request(500, -1)
+        internalVBox.pack_start(label, False, True)
+
+
         iter = textBuffer.get_iter_at_offset(0)
 
         for line in os.popen('/usr/bin/smoltPrint', 'r'):
-        textBuffer.insert(iter, line)
+        	textBuffer.insert(iter, line)
 
         textView.set_buffer(textBuffer)
             
-        self.okButton = gtk.RadioButton(None, (_("_Yes, I'd like to send my hardware profile")))
-        self.noButton = gtk.RadioButton(self.okButton, (_("N_o, I do not want to send my hardware profile")))
+        self.okButton = gtk.RadioButton(None, (_("_Send Profile")))
+        self.noButton = gtk.RadioButton(self.okButton, (_("D_o not send profile")))
         self.noButton.set_active(True)
 
         internalVBox.pack_start(textSW, True)
@@ -67,14 +79,14 @@ class childWindow:
 
     def apply(self, notebook):
         if self.okButton.get_active() == True:
-        result = commands.getstatusoutput('/usr/bin/smoltSendProfile')
+            result = commands.getstatusoutput('/usr/bin/smoltSendProfile')
             return 0
         else:
             dlg = gtk.MessageDialog(None, 0, gtk.MESSAGE_QUESTION, gtk.BUTTONS_NONE,
-                                    (_("Are you sure you wouldn't like to send the profile?  " 
-                                       "Submitting your profile is a valuable source of information "
-                                       "for our development and can help troubleshoot issues that "
-                                       "may come up with your hardware ")))
+                (_("Are you sure you wouldn't like to send the profile?  " 
+                "Submitting your profile is a valuable source of information "
+                "for our development and can help troubleshoot issues that "
+                "may come up with your hardware.")))
 
             dlg.set_position(gtk.WIN_POS_CENTER)
             dlg.set_modal(True)
