@@ -3,7 +3,7 @@
 import sys
 import getopt
 import urlgrabber.grabber
-import Profile
+import smolt
 
 DEBUG = 0
 printOnly = 0
@@ -14,11 +14,23 @@ sys.path.append('/usr/share/smolt/client')
 def error(message):
     print >> sys.stderr, message
 
+def ignoreDevice(device):
+    ignore = 1
+    if device.bus == 'Unknown':
+        return 1
+    if device.bus == 'usb' and device.type == None:
+        return 1
+    if device.bus == 'usb' and device.driver == 'hub':
+        return 1
+    if device.bus == 'sound' and device.driver == 'Unknown':
+        return 1
+    if device.bus == 'pnp' and (device.driver == 'Unknown' or device.driver == 'system'):
+        return 1
+    return 0
+
 def debug(message):
     if DEBUG == 1:
         print message
-
-
 
 def help():
     print "Usage:"
@@ -45,11 +57,42 @@ for opt, arg in opts:
         printOnly = 1
 
 # read the profile
-profile = Profile.Profile()
+profile = smolt.Hardware()
 
 print 'We are about to send the following information to the Fedora Smolt server:'
 print
-profile.print_data()
+print '\tUUID: %s' % profile.host.UUID
+print '\tOS: %s' % profile.host.os
+print '\tdefaultRunlevel: %s' % profile.host.defaultRunlevel
+print '\tlanguage: %s' % profile.host.language
+print '\tplatform: %s' % profile.host.platform
+print '\tbogomips: %s' % profile.host.bogomips
+print '\tCPUVendor: %s' % profile.host.cpuVendor
+print '\tnumCPUs: %s' % profile.host.numCpus
+print '\tCPUSpeed: %s' % profile.host.cpuSpeed
+print '\tsystemMemory: %s' % profile.host.systemMemory
+print '\tsystemSwap: %s' % profile.host.systemSwap
+print '\tvendor: %s' % profile.host.systemVendor
+print '\tsystem: %s' % profile.host.systemModel
+print
+print '\t\t Devices'
+print '\t\t================================='
+''' Returns 1 for ignored devices and 0 otherwise '''
+
+
+for device in profile.devices:
+    try:
+        Bus = profile.devices[device].bus
+        VendorID = profile.devices[device].vendorid
+        DeviceID = profile.devices[device].deviceid
+        Driver = profile.devices[device].driver
+        Type = profile.devices[device].type
+        Description = profile.devices[device].description
+    except:
+        continue
+    else:
+        if not ignoreDevice(profile.devices[device]):
+            print '\t\t(%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, Bus, Driver, Type, Description)
 
 if printOnly:
     sys.exit(0)
@@ -58,9 +101,10 @@ print 'Transmitting ...'
 
 grabber = urlgrabber.grabber.URLGrabber()
 
-sendHostStr = profile.get_host_string()
+sendHostStr = profile.hostSendString
 
 debug('smoon server URL: %s' % smoonURL)
+debug('sendHostStr: %s' % profile.hostSendString)
 debug('Sending Host')
 
 try:
@@ -73,16 +117,20 @@ except urlgrabber.grabber.URLGrabError, e:
 else:
     o.close()
 
-
-for sendDeviceStr in profile.get_device_string():
-    debug('Sending device')
-    try:
-        o=grabber.urlopen('%s/addDevice' % smoonURL, data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
+for device in profile.devices:
+    if not ignoreDevice(profile.devices[device]):
+        sendDeviceStr = profile.devices[device].deviceSendString
+        debug('Sending device')
+        debug('sendDeviceStr: %s' % sendDeviceStr)
+        try:
+            o=grabber.urlopen('%s/addDevice' % smoonURL, data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
                                                                                        ('Content-type', 'application/x-www-form-urlencoded')))
-    except urlgrabber.grabber.URLGrabError, e:
-        error('Error contacting server: %s' % e)
-        sys.exit(1)
-    else:
-        o.close()
+        except urlgrabber.grabber.URLGrabError, e:
+            error('Error contacting server: %s' % e)
+            sys.exit(1)
+        else:
+            o.close()
 
-print 'Thank you, your uuid (in /etc/sysconfig/hw-uuid), is %s' % profile.UUID
+print 'Thank you, your uuid (in /etc/sysconfig/hw-uuid), is %s' % profile.host.UUID
+
+
