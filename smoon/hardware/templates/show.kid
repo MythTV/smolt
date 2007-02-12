@@ -3,21 +3,35 @@
     py:extends="'master.kid'">
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" py:replace="''"/>
-<title>Welcome to TurboGears</title>
+<title>Show Box</title>
 </head>
 <body>
-
-        <span py:replace="hostObject.UUID">UUID</span><br/>
-        <span py:replace="hostObject.lsbRelease">lsbRelease</span><br/>
-        <span py:replace="hostObject.OS">OS</span><br/>
-        <span py:replace="hostObject.platform">platform</span><br/>
-        <span py:replace="hostObject.bogomips">bogomips</span><br/>
-        <span py:replace="hostObject.systemMemory">systemMemory</span><br/>
-        <span py:replace="hostObject.CPUVendor">CPUVendor</span><br/>
-        <span py:replace="hostObject.numCPUs">numCPUs</span><br/>
-        <span py:replace="hostObject.CPUSpeed">CPUSpeed</span><br/>
-        <span py:replace="hostObject.language">language</span><br/>
-        <span py:replace="hostObject.defaultRunlevel">defaultRunlevel</span><br/>
-
+        <h3>${hostObject.UUID}</h3>
+        <table id="show">
+            <tr><th>UUID:</th><td>${hostObject.UUID}</td></tr>
+            <tr><th>OS:</th><td>${hostObject.OS}</td></tr>
+            <tr><th>platform:</th><td>${hostObject.platform}</td></tr>
+            <tr><th>bogomips:</th><td>${hostObject.bogomips}</td></tr>
+            <tr><th>systemMemory:</th><td>${hostObject.systemMemory}</td></tr>
+            <tr><th>CPUVendor:</th><td>${hostObject.CPUVendor}</td></tr>
+            <tr><th>numCPUs:</th><td>${hostObject.numCPUs}</td></tr>
+            <tr><th>language:</th><td>${hostObject.language}</td></tr>
+            <tr><th>defaultRunlevel:</th><td>${hostObject.defaultRunlevel}</td></tr>
+            <tr><th>System Vendor:</th><td>${hostObject.vendor}</td></tr>
+            <tr><th>System Model:</th><td>${hostObject.system}</td></tr>
+        </table> 
+        <h3>Devices</h3>
+        <table id='show'>
+            <tr>
+                <th align='right'>Driver</th><th>Class</th><th>Bus</th><th>ID (Ven:Dev)</th><th align='left'>Description</th>
+            </tr>
+            <tr py:for='device in devices'>
+                <td align='right'>${device.Driver}</td>
+                <td align='center'>${device.Class}</td>
+                <td align='center'>${device.Bus}</td>
+                <td align='center'>${device.DeviceId}</td>
+                <td align='left'>${device.Description}</td>
+            </tr>
+        </table>
 </body>
 </html>

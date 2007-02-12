@@ -180,12 +180,12 @@
             <th valign="top">Top 20 Devices</th>
             <td>
                 <table id="stats">
-                    <tr py:for='dev in Stat["devices"]'>
+                    <!--<tr py:for='dev in Stat["devices"]'>
                         <td align="right">${dev[0]}</td>
                         <td align="center">${dev[1]}</td>
                         <td nowrap="true"><strong>${'%.1f' % (float(dev[1]) / Stat["devicestot"] * 100) } %</strong></td>
                         <td nowrap="true"><img py:for='i in range(1, int( float(dev[1]) / Stat["devicestot"] * 100 ))' src='/static/images/tile.png' /></td>
-                    </tr>
+                    </tr>-->
                     <!--<tr>
                         <td align="right">Other</td>
                         <td align="center"></td>

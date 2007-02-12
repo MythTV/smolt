@@ -126,18 +126,30 @@ span.code {
 }
 
 #stats th{
-	text-align: right;
-	font-weight: bold;
-	color: #072B61;
-	padding: 5px 5px 5px 5px;	
-	background: #DDDDDD;
+    text-align: right;
+    font-weight: bold;
+    color: #072B61;
+    padding: 5px 5px 5px 5px;    
+    background: #DDDDDD;
 }
 
 #stats td{
-	padding: 5px;	
-	background: #EEEEEE;	
+    padding: 5px;    
+    background: #EEEEEE;    
 }
 
+#show th{
+    text-align: right;
+    font-weight: bold;
+    color: #072B61;
+    padding: 5px 5px 5px 5px;    
+    background: #DDDDDD;
+}
+
+#show td{
+    padding: 5px;    
+    background: #EEEEEE;    
+}
 
 #floatingTitle{
     border: 0px solid red;

@@ -10,8 +10,12 @@
 <h1> Smolt is still in BETA! </h1>
 
 Most people probably want to go to <a href='/stats'>/stats</a>
+<h2>Lookup</h2>
+    <form method='GET' action='/show'>
+        UUID: <input type='text' name='UUID' size='32'/>
+    </form>
 <h2>Growth</h2>
-<img src="/cacti/smoltArch.png"/>
+    <img src="/cacti/smoltArch.png"/>
 
 </body>
 </html>
