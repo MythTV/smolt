@@ -7,9 +7,9 @@
 </head>
 <body>
 
-        <span py:replace="deviceObject.Description">Description</span><br/>
+<!--        <span py:replace="deviceObject.Description">Description</span><br/>
         <span py:replace="deviceObject.Bus">Bus</span><br/>
         <span py:replace="deviceObject.Class">Class</span><br/>
-        <span py:replace="deviceObject.Driver">Driver</span><br/>
+        <span py:replace="deviceObject.Driver">Driver</span><br/>-->
 </body>
 </html>

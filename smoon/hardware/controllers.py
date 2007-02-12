@@ -157,29 +157,29 @@ class Root(controllers.RootController):
         stats['languagetot'] = int(Host._connection.queryAll('Select count(language) from host;')[0][0])
  
         stats['sysMem'] = []
-        stats['sysMem'].append(Host._connection.queryAll('select (select "< 512") as range, count(system_memory) as cnt from host where system_memory <= 512')[0])
-        stats['sysMem'].append(Host._connection.queryAll('select (select "513 - 1024") as range, count(system_memory) as cnt from host where system_memory > 512 and system_memory <= 1024')[0])
-        stats['sysMem'].append(Host._connection.queryAll('select (select "1025 - 2048") as range, count(system_memory) as cnt from host where system_memory > 1025 and system_memory <= 2048')[0])
-        stats['sysMem'].append(Host._connection.queryAll('select (select "> 2048") as range, count(system_memory) as cnt from host where system_memory > 2048')[0])
+        stats['sysMem'].append(Host._connection.queryAll('select "< 512" as range, count(system_memory) as cnt from host where system_memory <= 512')[0])
+        stats['sysMem'].append(Host._connection.queryAll('select "513 - 1024" as range, count(system_memory) as cnt from host where system_memory > 512 and system_memory <= 1024')[0])
+        stats['sysMem'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(system_memory) as cnt from host where system_memory > 1025 and system_memory <= 2048')[0])
+        stats['sysMem'].append(Host._connection.queryAll('select "> 2048" as range, count(system_memory) as cnt from host where system_memory > 2048')[0])
 
         stats['swapMem'] = []
-        stats['swapMem'].append(Host._connection.queryAll('select (select "< 512") as range, count(system_swap) as cnt from host where system_swap <= 512')[0])
-        stats['swapMem'].append(Host._connection.queryAll('select (select "513 - 1024") as range, count(system_swap) as cnt from host where system_swap > 512 and system_swap <= 1024')[0])
-        stats['swapMem'].append(Host._connection.queryAll('select (select "1025 - 2048") as range, count(system_swap) as cnt from host where system_swap > 1025 and system_swap <= 2048')[0])
-        stats['swapMem'].append(Host._connection.queryAll('select (select "> 2048") as range, count(system_swap) as cnt from host where system_swap > 2048')[0])
+        stats['swapMem'].append(Host._connection.queryAll('select "< 512" as range, count(system_swap) as cnt from host where system_swap <= 512')[0])
+        stats['swapMem'].append(Host._connection.queryAll('select "513 - 1024" as range, count(system_swap) as cnt from host where system_swap > 512 and system_swap <= 1024')[0])
+        stats['swapMem'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(system_swap) as cnt from host where system_swap > 1025 and system_swap <= 2048')[0])
+        stats['swapMem'].append(Host._connection.queryAll('select "> 2048" as range, count(system_swap) as cnt from host where system_swap > 2048')[0])
 
         stats['cpuSpeed'] = []
-        stats['cpuSpeed'].append(Host._connection.queryAll('select (select "=< 512") as range, count(cpu_speed) as cnt from host where cpu_speed <= 512')[0])
-        stats['cpuSpeed'].append(Host._connection.queryAll('select (select "513 - 1024") as range, count(cpu_speed) as cnt from host where cpu_speed > 512 and cpu_speed <= 1024')[0])
-        stats['cpuSpeed'].append(Host._connection.queryAll('select (select "1025 - 2048") as range, count(cpu_speed) as cnt from host where cpu_speed > 1025 and cpu_speed <= 2048')[0])
-        stats['cpuSpeed'].append(Host._connection.queryAll('select (select "> 2048") as range, count(cpu_speed) as cnt from host where cpu_speed > 2048')[0])
+        stats['cpuSpeed'].append(Host._connection.queryAll('select "=< 512" as range, count(cpu_speed) as cnt from host where cpu_speed <= 512')[0])
+        stats['cpuSpeed'].append(Host._connection.queryAll('select "513 - 1024" as range, count(cpu_speed) as cnt from host where cpu_speed > 512 and cpu_speed <= 1024')[0])
+        stats['cpuSpeed'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(cpu_speed) as cnt from host where cpu_speed > 1025 and cpu_speed <= 2048')[0])
+        stats['cpuSpeed'].append(Host._connection.queryAll('select "> 2048" as range, count(cpu_speed) as cnt from host where cpu_speed > 2048')[0])
  
         stats['bogomips'] = []
-        stats['bogomips'].append(Host._connection.queryAll('select (select "=< 512") as range, count(bogomips) as cnt from host where bogomips <= 512')[0])
-        stats['bogomips'].append(Host._connection.queryAll('select (select "513 - 1024") as range, count(bogomips) as cnt from host where bogomips > 512 and bogomips <= 1024')[0])
-        stats['bogomips'].append(Host._connection.queryAll('select (select "1025 - 2048") as range, count(bogomips) as cnt from host where bogomips > 1025 and bogomips <= 2048')[0])
-        stats['bogomips'].append(Host._connection.queryAll('select (select "2049 - 4000") as range, count(bogomips) as cnt from host where bogomips > 2048 and bogomips <= 4000')[0])
-        stats['bogomips'].append(Host._connection.queryAll('select (select "> 4001") as range, count(bogomips) as cnt from host where bogomips > 4001')[0])
+        stats['bogomips'].append(Host._connection.queryAll('select "=< 512" as range, count(bogomips) as cnt from host where bogomips <= 512')[0])
+        stats['bogomips'].append(Host._connection.queryAll('select "513 - 1024" as range, count(bogomips) as cnt from host where bogomips > 512 and bogomips <= 1024')[0])
+        stats['bogomips'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(bogomips) as cnt from host where bogomips > 1025 and bogomips <= 2048')[0])
+        stats['bogomips'].append(Host._connection.queryAll('select "2049 - 4000" as range, count(bogomips) as cnt from host where bogomips > 2048 and bogomips <= 4000')[0])
+        stats['bogomips'].append(Host._connection.queryAll('select "> 4001" as range, count(bogomips) as cnt from host where bogomips > 4001')[0])
 
         stats['bogomipsTot'] = float(Host._connection.queryAll('select sum((bogomips * num_cp_us)) as cnt from host where bogomips > 0;')[0][0])
         stats['cpuSpeedTot'] = float(Host._connection.queryAll('select sum((cpu_speed * num_cp_us)) as cnt from host where cpu_speed > 0;')[0][0])
