@@ -29,8 +29,12 @@ class Root(controllers.RootController):
     @expose(template="hardware.templates.delete")
     def delete(self, UUID=''):
         try:
-            Host._connection.queryAll("delete from host_links where host_u_u_id='%s';" % UUID)
-            Host._connection.queryAll("delete from Host where u_u_id='%s';" % UUID)
+            host = Host.byUUID(UUID)
+        except:
+            return dict(result='UUID %s, does not exist' % UUID)
+        try:
+            Host._connection.queryAll("delete from host_links where host_link_id='%s';" % host.id)
+            Host._connection.queryAll("delete from host where '%s';" % host.id)
         except:
             return dict(result='Failed')
         return dict(result='Succeeded')
