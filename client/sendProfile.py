@@ -8,6 +8,7 @@ import smolt
 DEBUG = 0
 printOnly = 0
 smoonURL = 'http://smolt.fedoraproject.org/'
+user_agent = 'smolt/0.8'
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -38,10 +39,11 @@ def help():
     print "     -d,--debug          Enable debug information"
     print "     -p,--printOnly      Print Information only, do not send"
     print "     -s,--server=        serverUrl (http://yourSmoonServer/"
+    print "     -u,--useragent=     User Agent"
     sys.exit(2)
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'phds:', ['help', 'debug', 'printOnly', 'server='])
+    opts, args = getopt.getopt(sys.argv[1:], 'phds:u:', ['help', 'debug', 'printOnly', 'server=', 'useragent=', 'user_agent='])
 except getopt.GetoptError:
     help()
     sys.exit(2)
@@ -55,7 +57,9 @@ for opt, arg in opts:
         smoonURL = arg
     if opt in('-p', '--printOnly'):
         printOnly = 1
-
+    if opt in ('-u', '--useragent', '--user_agent'):
+        user_agent = arg
+        
 # read the profile
 profile = smolt.Hardware()
 
@@ -99,7 +103,7 @@ if printOnly:
 
 print 'Transmitting ...'
 
-grabber = urlgrabber.grabber.URLGrabber()
+grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent)
 
 sendHostStr = profile.hostSendString
 
