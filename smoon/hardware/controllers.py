@@ -142,6 +142,7 @@ class Root(controllers.RootController):
         stats['numCPUstot'] = int(Host._connection.queryAll('Select count(num_cp_us) from host;')[0][0])
 
         stats['vendors'] = Host._connection.queryAll("Select vendor, count(vendor) as cnt from host where vendor != 'Unknown' and vendor != '' group by vendor order by cnt desc limit 15;")
+        stats['systems'] = Host._connection.queryAll("Select system, count(system) as cnt from host where system != 'Unknown' and system != '' group by system order by cnt desc limit 15;")
 
         stats['cpuVendor'] = Host._connection.queryAll("Select cpu_vendor, count(cpu_vendor) as cnt from host group by cpu_vendor order by cnt desc")
         cpuVen = {}
