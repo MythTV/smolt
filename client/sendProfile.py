@@ -136,5 +136,3 @@ for device in profile.devices:
             o.close()
 
 print 'Thank you, your uuid (in /etc/sysconfig/hw-uuid), is %s' % profile.host.UUID
-
-

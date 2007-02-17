@@ -102,6 +102,20 @@
             </td>
         </tr>
 
+        <tr>
+            <th valign="top">Model (Top 15)</th>
+            <td>
+                <table id="stats">
+                    <tr py:for='system in Stat["systems"]'>
+                        <td align="right">${system[0]}</td>
+                        <td align="center">${system[1]}</td>
+                        <td><strong>${'%.1f' % (float(system[1]) / Stat["languagetot"] * 100) } %</strong></td>
+                        <td><img py:for='i in range(1, int( float(system[1]) / Stat["languagetot"] * 100 ))' src='/static/images/tile.png' /></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
 
 
 <!--        <tr>
