@@ -4,6 +4,7 @@ import sys
 import getopt
 import urlgrabber.grabber
 import smolt
+from urllib import urlencode
 
 DEBUG = 0
 printOnly = 0
@@ -93,6 +94,8 @@ print
 print '\t\t Devices'
 print '\t\t================================='
 
+devices = []
+
 for device in profile.devices:
     try:
         Bus = profile.devices[device].bus
@@ -106,6 +109,7 @@ for device in profile.devices:
     else:
         if not ignoreDevice(profile.devices[device]):
             print '\t\t(%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, Bus, Driver, Type, Description)
+            devices.append('%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, Bus, Driver, Type, Description))
 
 if not autoSend:
     if printOnly:
@@ -156,19 +160,36 @@ else:
     serverMessage(o.read())
     o.close()
 
-for device in profile.devices:
-    if not ignoreDevice(profile.devices[device]):
-        sendDeviceStr = profile.devices[device].deviceSendString
-        debug('Sending device')
-        debug('sendDeviceStr: %s' % sendDeviceStr)
-        try:
-            o=grabber.urlopen('%s/addDevice' % smoonURL, data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
-                                                                                       ('Content-type', 'application/x-www-form-urlencoded')))
-        except urlgrabber.grabber.URLGrabError, e:
-            error('Error contacting server: %s' % e)
-            sys.exit(1)
-        else:
-            serverMessage(o.read())
-            o.close()
+deviceStr = ''
+for dev in devices:
+    deviceStr = deviceStr + dev + '\n'
+sendDevicesStr = urlencode({'Devices' : deviceStr, 'UUID' : profile.host.UUID})
+
+try:
+    o=grabber.urlopen('%s/addDevices' % smoonURL, data=sendDevicesStr, http_headers=(
+                    ('Content-length', '%i' % len(sendDevicesStr)),
+                    ('Content-type', 'application/x-www-form-urlencoded')))
+except urlgrabber.grabber.URLGrabError, e:
+    error('Error contacting Server: %s' % e)
+    sys.exit(1)
+else:
+    serverMessage(o.read())
+    o.close()
+
+
+#for device in profile.devices:
+#    if not ignoreDevice(profile.devices[device]):
+#        sendDeviceStr = profile.devices[device].deviceSendString
+#        debug('Sending device')
+#        debug('sendDeviceStr: %s' % sendDeviceStr)
+#        try:
+#            o=grabber.urlopen('%s/addDevice' % smoonURL, data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
+#                                                                                       ('Content-type', 'application/x-www-form-urlencoded')))
+#        except urlgrabber.grabber.URLGrabError, e:
+#            error('Error contacting server: %s' % e)
+#            sys.exit(1)
+#        else:
+#            serverMessage(o.read())
+#            o.close()
 
 print 'To view your profile visit: %s/show?UUID=%s' % (smoonURL, profile.host.UUID)

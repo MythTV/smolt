@@ -142,6 +142,43 @@ class Root(controllers.RootController):
 
     @expose(template="hardware.templates.device")
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
+    def addDevices(self, UUID, Devices):
+        import time
+        from mx import DateTime
+        try:
+            host = Host.byUUID(UUID)
+        except SQLObjectNotFound:
+            raise ValueError("Critical: UUID not found - %s" % UUID)
+
+        for device in Devices.split('\n'):
+            if not device:
+                continue
+            try:
+                (VendorID, 
+                DeviceID,
+                Bus,
+                Driver,
+                Class,
+                Description) = device.split('|')
+                DeviceID = '%s:%s' % (DeviceID.strip(), VendorID.strip())
+            except:
+                raise ValueError("Critical: Device Read Failed - %s" % device)
+            try:
+                deviceSQL = Device.byDescription(Description)
+            except SQLObjectNotFound:
+                deviceSQL = Device(Description = Description,
+                            Bus = Bus,
+                            Driver = Driver,
+                            Class = Class,
+                            DeviceId = DeviceID,
+                            DateAdded = DateTime.now())
+            deviceSQL.DeviceId = DeviceID
+            link = HostLinks(deviceID=deviceSQL.id, hostLink=host.id)
+
+        return dict(deviceObject=deviceSQL)
+
+    @expose(template="hardware.templates.device")
+    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
     def addDevice(self, UUID, Description, Bus, Driver, Class, VendorID='0x0', DeviceID='0x0'):
         import time
         from mx import DateTime
