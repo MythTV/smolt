@@ -13,10 +13,10 @@ profiles.  In many ways smolt is designed to get hardware vendors and other
 3rd parties, we will be using smolt as a lever to gain better support for open
 source drivers and better support in general.
 
-IP Logging.  In Fedora's smolt install all web traffic goes through a proxy
+IP Logging:  In Fedora's smolt install all web traffic goes through a proxy
 server first.  This is the only place IP addresses are being logged and they
 are kept on that server for a period of 4 weeks at which time log rotation
-removes these logs.  The Fedora Project does not aggrigate ip addresses in
+removes these logs.  The Fedora Project does not aggregate ip addresses in
 the smolt database.  These logs are private and will not be available to the
 general public.
 
@@ -24,4 +24,3 @@ Users unhappy with this policy should simply not use smolt.  Users with
 questions about this policy should contact the Fedora Infrastructure Team at
 admin [at] fedoraproject.org  Also remember that users can delete their
 profiles at any time using "smoltDeleteProfile"
-
