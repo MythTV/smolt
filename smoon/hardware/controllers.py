@@ -7,6 +7,11 @@ from hardware.model import Host
 from hardware.model import Device
 from hardware.model import HostLinks
 from sqlobject import SQLObjectNotFound
+from turbogears import exception_handler
+
+# This is such a bad idea, yet here it is.
+CRYPTPASS = ''
+
 
 class Root(controllers.RootController):
     @expose(template="hardware.templates.welcome")
@@ -15,33 +20,82 @@ class Root(controllers.RootController):
         # log.debug("Happy TurboGears Controller Responding For Duty")
         return dict(now=time.ctime())
 
+    @expose(template="hardware.templates.error")
+    def errorClient(self, tg_exceptions=None):
+        ''' Exception handler, Sends messages back to the client'''
+        message = 'ServerMessage: %s' % tg_exceptions
+        return dict(handling_value=True,exception=message)
+
+    @expose(template="hardware.templates.error")
+    def errorWeb(self, tg_exceptions=None):
+        ''' Exception handler, Sends messages back to the client'''
+        message = 'Error: %s' % tg_exceptions
+        return dict(handling_value=True,exception=message)
+
+
+
     @expose(template="hardware.templates.show")
+    @exception_handler(errorWeb,rules="isinstance(tg_exceptions,ValueError)")
     def show(self, UUID=''):
-            UUID = u'%s' % UUID.strip()
-            UUID = UUID.encode('utf8')
- 
-            hostObject = Host.byUUID(UUID)
+            try:
+                UUID = u'%s' % UUID.strip()
+                UUID = UUID.encode('utf8')
+            except:
+                raise ValueError("Critical: Unicode Issue - Tell Mike!")
+
+            try:
+                hostObject = Host.byUUID(UUID)
+            except:
+                raise ValueError("Critical: UUID Not Found - %s" % UUID)
             devices = []
             for dev in hostObject.hostLink:
                 devices.append(Device.select('id=%s' % dev.deviceID)[0])
             return dict(hostObject=hostObject, devices=devices)
 
     @expose(template="hardware.templates.delete")
+    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, UUID=''):
         try:
             host = Host.byUUID(UUID)
         except:
-            return dict(result='UUID %s, does not exist' % UUID)
+            raise ValueError("Critical: UUID does not exist %s " % UUID)
         try:
             Host._connection.queryAll("delete from host_links where host_link_id='%s';" % host.id)
             Host._connection.queryAll("delete from host where '%s';" % host.id)
         except:
-            return dict(result='Failed')
-        return dict(result='Succeeded')
+            raise ValueError("Critical: Could not delete UUID - Please contact the smolt development team")
+        raise ValueError('Success: UUID Removed')
+
+    @expose(template="hardware.templates.token")
+    def token(self, UUID):
+        from Crypto.Cipher import XOR
+        import urllib
+        import time, datetime
+
+        crypt = XOR.new(CRYPTPASS)
+        str = "%s\n%s " % ( int(time.mktime(datetime.datetime.now().timetuple())), UUID)
+        # I hate obfuscation.  Its all I've got
+        token = crypt.encrypt(str)
+        return dict(token=urllib.quote(token))
 
     @expose(template="hardware.templates.show")
-    def add(self, UUID, OS, platform, bogomips, systemMemory, systemSwap, CPUVendor, numCPUs, CPUSpeed, language, defaultRunlevel, vendor, system, lsbRelease='Depricated', CPUModel='PleaseUpgradeSmolt'):
-        import time
+    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
+    def add(self, UUID, OS, platform, bogomips, systemMemory, systemSwap, CPUVendor, numCPUs, CPUSpeed, language, defaultRunlevel, vendor, system, token, lsbRelease='Depricated', CPUModel='PleaseUpgradeSmolt'):
+        from Crypto.Cipher import XOR
+        import urllib
+        import time, datetime
+
+        token = urllib.unquote(token)
+        crypt = XOR.new(CRYPTPASS)
+        tokenPlain = crypt.decrypt(token).split('\n')
+        tokenTime = int(tokenPlain[0])
+        tokenUUID = tokenPlain[1]
+        currentTime = int(time.mktime(datetime.datetime.now().timetuple()))
+        if currentTime - tokenTime > 20:
+            raise ValueError("Critical: Invalid Token")
+        if UUID.strip() != tokenUUID.strip():
+            raise ValueError("Critical: Invalid Token")
+
         UUID = UUID.strip()
         try:
             hostSQL = Host.byUUID(UUID)
@@ -87,13 +141,51 @@ class Root(controllers.RootController):
         return dict(hostObject=hostSQL, devices=[])
 
     @expose(template="hardware.templates.device")
+    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
+    def addDevices(self, UUID, Devices):
+        import time
+        from mx import DateTime
+        try:
+            host = Host.byUUID(UUID)
+        except SQLObjectNotFound:
+            raise ValueError("Critical: UUID not found - %s" % UUID)
+
+        for device in Devices.split('\n'):
+            if not device:
+                continue
+            try:
+                (VendorID, 
+                DeviceID,
+                Bus,
+                Driver,
+                Class,
+                Description) = device.split('|')
+                DeviceID = '%s:%s' % (DeviceID.strip(), VendorID.strip())
+            except:
+                raise ValueError("Critical: Device Read Failed - %s" % device)
+            try:
+                deviceSQL = Device.byDescription(Description)
+            except SQLObjectNotFound:
+                deviceSQL = Device(Description = Description,
+                            Bus = Bus,
+                            Driver = Driver,
+                            Class = Class,
+                            DeviceId = DeviceID,
+                            DateAdded = DateTime.now())
+            deviceSQL.DeviceId = DeviceID
+            link = HostLinks(deviceID=deviceSQL.id, hostLink=host.id)
+
+        return dict(deviceObject=deviceSQL)
+
+    @expose(template="hardware.templates.device")
+    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
     def addDevice(self, UUID, Description, Bus, Driver, Class, VendorID='0x0', DeviceID='0x0'):
         import time
         from mx import DateTime
         try:
             host = Host.byUUID(UUID)
         except SQLObjectNotFound:
-            return dict(deviceObject='Host Not found - Error') # will make this proper later
+            raise ValueError("Critical: UUID not found - %s" % UUID)
         Description = Description.strip()
         Bus = Bus.strip()
         Driver = Driver.strip()

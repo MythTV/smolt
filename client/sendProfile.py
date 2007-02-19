@@ -4,9 +4,11 @@ import sys
 import getopt
 import urlgrabber.grabber
 import smolt
+from urllib import urlencode
 
 DEBUG = 0
 printOnly = 0
+autoSend = 0
 smoonURL = 'http://smolt.fedoraproject.org/'
 user_agent = 'smolt/0.8'
 
@@ -38,12 +40,20 @@ def help():
     print "     -h,--help           Display this help menu"
     print "     -d,--debug          Enable debug information"
     print "     -p,--printOnly      Print Information only, do not send"
+    print "     -a,--autoSend       Don't prompt to send, just send"
     print "     -s,--server=        serverUrl (http://yourSmoonServer/"
     print "     -u,--useragent=     User Agent"
     sys.exit(2)
 
+def serverMessage(page):
+    for line in page.split("\n"):
+        if 'ServerMessage:' in line:
+            print 'Server Message: "%s"' % line.split('ServerMessage: ')[1]
+            if 'Critical' in line:
+                sys.exit(3)
+
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'phds:u:', ['help', 'debug', 'printOnly', 'server=', 'useragent=', 'user_agent='])
+    opts, args = getopt.getopt(sys.argv[1:], 'phads:u:', ['help', 'debug', 'printOnly', 'autoSend', 'server=', 'useragent=', 'user_agent='])
 except getopt.GetoptError:
     help()
     sys.exit(2)
@@ -56,7 +66,9 @@ for opt, arg in opts:
     if opt in ('-s', '--server'):
         smoonURL = arg
     if opt in('-p', '--printOnly'):
-        printOnly = 1
+       printOnly = 1
+    if opt in('-a', '--autoSend'):
+        autoSend = 1
     if opt in ('-u', '--useragent', '--user_agent'):
         user_agent = arg
         
@@ -81,8 +93,8 @@ print '\tsystem: %s' % profile.host.systemModel
 print
 print '\t\t Devices'
 print '\t\t================================='
-''' Returns 1 for ignored devices and 0 otherwise '''
 
+devices = []
 
 for device in profile.devices:
     try:
@@ -97,9 +109,17 @@ for device in profile.devices:
     else:
         if not ignoreDevice(profile.devices[device]):
             print '\t\t(%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, Bus, Driver, Type, Description)
+            devices.append('%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, Bus, Driver, Type, Description))
 
-if printOnly:
-    sys.exit(0)
+if not autoSend:
+    if printOnly:
+        sys.exit(0)
+    else:
+        send = raw_input("\nSend this information to the Smolt server? (y/n) ")
+        if send.lower() != 'y':
+            error('Exiting...')
+            sys.exit(4)
+
 
 print 'Transmitting ...'
 
@@ -108,6 +128,24 @@ grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent)
 sendHostStr = profile.hostSendString
 
 debug('smoon server URL: %s' % smoonURL)
+try:
+    token = grabber.urlopen('%s/token?UUID=%s' % (smoonURL, profile.host.UUID))
+except urlgrabber.grabber.URLGrabError, e:
+    error('Error contacting Server: %s' % e)
+    sys.exit(1)
+else:
+    for line in token.read().split('\n'):
+        if 'tok' in line:
+            tok = line.split(': ')[1]
+    token.close()
+
+try:
+    tok = tok
+except NameError, e:
+    error('Communication with server failed')
+    sys.exit(2)
+
+sendHostStr = sendHostStr + '&token=%s' % tok
 debug('sendHostStr: %s' % profile.hostSendString)
 debug('Sending Host')
 
@@ -119,20 +157,39 @@ except urlgrabber.grabber.URLGrabError, e:
     error('Error contacting Server: %s' % e)
     sys.exit(1)
 else:
+    serverMessage(o.read())
     o.close()
 
-for device in profile.devices:
-    if not ignoreDevice(profile.devices[device]):
-        sendDeviceStr = profile.devices[device].deviceSendString
-        debug('Sending device')
-        debug('sendDeviceStr: %s' % sendDeviceStr)
-        try:
-            o=grabber.urlopen('%s/addDevice' % smoonURL, data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
-                                                                                       ('Content-type', 'application/x-www-form-urlencoded')))
-        except urlgrabber.grabber.URLGrabError, e:
-            error('Error contacting server: %s' % e)
-            sys.exit(1)
-        else:
-            o.close()
+deviceStr = ''
+for dev in devices:
+    deviceStr = deviceStr + dev + '\n'
+sendDevicesStr = urlencode({'Devices' : deviceStr, 'UUID' : profile.host.UUID})
 
-print 'Thank you, your uuid (in /etc/sysconfig/hw-uuid), is %s' % profile.host.UUID
+try:
+    o=grabber.urlopen('%s/addDevices' % smoonURL, data=sendDevicesStr, http_headers=(
+                    ('Content-length', '%i' % len(sendDevicesStr)),
+                    ('Content-type', 'application/x-www-form-urlencoded')))
+except urlgrabber.grabber.URLGrabError, e:
+    error('Error contacting Server: %s' % e)
+    sys.exit(1)
+else:
+    serverMessage(o.read())
+    o.close()
+
+
+#for device in profile.devices:
+#    if not ignoreDevice(profile.devices[device]):
+#        sendDeviceStr = profile.devices[device].deviceSendString
+#        debug('Sending device')
+#        debug('sendDeviceStr: %s' % sendDeviceStr)
+#        try:
+#            o=grabber.urlopen('%s/addDevice' % smoonURL, data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
+#                                                                                       ('Content-type', 'application/x-www-form-urlencoded')))
+#        except urlgrabber.grabber.URLGrabError, e:
+#            error('Error contacting server: %s' % e)
+#            sys.exit(1)
+#        else:
+#            serverMessage(o.read())
+#            o.close()
+
+print 'To view your profile visit: %s/show?UUID=%s' % (smoonURL, profile.host.UUID)

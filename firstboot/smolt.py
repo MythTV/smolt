@@ -61,7 +61,7 @@ class childWindow:
 
         iter = textBuffer.get_iter_at_offset(0)
 
-        for line in os.popen('/usr/bin/smoltPrint', 'r'):
+        for line in os.popen('/usr/bin/smoltSendProfile -p', 'r'):
         	textBuffer.insert(iter, line)
 
         textView.set_buffer(textBuffer)
@@ -79,7 +79,7 @@ class childWindow:
 
     def apply(self, notebook):
         if self.okButton.get_active() == True:
-            result = commands.getstatusoutput('/usr/bin/smoltSendProfile &')
+            result = commands.getstatusoutput('/usr/bin/smoltSendProfile -a &')
             return 0
         else:
             dlg = gtk.MessageDialog(None, 0, gtk.MESSAGE_QUESTION, gtk.BUTTONS_NONE,

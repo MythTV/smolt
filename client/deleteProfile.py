@@ -13,6 +13,14 @@ sys.path.append('/usr/share/smolt/client')
 
 grabber = urlgrabber.grabber.URLGrabber()
 
+def serverMessage(page):
+    for line in page.split("\n"):
+        if 'ServerMessage:' in line:
+            error('Server Message: "%s"' % line.split('ServerMessage: ')[1])
+            if 'Critical' in line:
+                sys.exit(3)
+
+
 def error(message):
     print >> sys.stderr, message
 
@@ -56,6 +64,7 @@ except urlgrabber.grabber.URLGrabError, e:
     error('Error contacting Server: %s' % e)
     sys.exit(1)
 else:
+    serverMessage(o.read())
     o.close()
 
 print 'Profile Removed, please verify at %s/show?%s' % (smoonURL, delHostString)
