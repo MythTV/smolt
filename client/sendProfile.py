@@ -42,7 +42,7 @@ def help():
     print "     -p,--printOnly      Print Information only, do not send"
     print "     -a,--autoSend       Don't prompt to send, just send"
     print "     -s,--server=        serverUrl (http://yourSmoonServer/)"
-    print "     -u,--useragent=     User Agent"
+    print "     -u,--useragent=     Specify HTTP user agent (default '%s')" % user_agent
     sys.exit(2)
 
 def serverMessage(page):
