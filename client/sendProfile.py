@@ -41,7 +41,7 @@ def help():
     print "     -d,--debug          Enable debug information"
     print "     -p,--printOnly      Print Information only, do not send"
     print "     -a,--autoSend       Don't prompt to send, just send"
-    print "     -s,--server=        serverUrl (http://yourSmoonServer/"
+    print "     -s,--server=        serverUrl (http://yourSmoonServer/)"
     print "     -u,--useragent=     User Agent"
     sys.exit(2)
 
