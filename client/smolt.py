@@ -520,6 +520,15 @@ def read_cpuinfo():
             if hwdict["count"] == 0: # we have at least one
                 hwdict["count"] = 1
 
+    # If the CPU can do frequency scaling the CPU speed returned
+    # by /proc/cpuinfo might be less than the maximum possible for
+    # the processor. Check sysfs for the proper file, and if it
+    # exists, use that value.  Only use the value from CPU #0 and
+    # assume that the rest of the CPUs are the same.
+    
+    if os.path.exists('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'):
+        hwdict['speed'] = int(file('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq').read().strip()) / 1000
+
     # This whole things hurts a lot.
     return hwdict
 
