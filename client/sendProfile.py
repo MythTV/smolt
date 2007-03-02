@@ -4,6 +4,7 @@ import sys
 import getopt
 import urlgrabber.grabber
 import smolt
+import time
 from urllib import urlencode
 from urlparse import urljoin
 
@@ -13,6 +14,7 @@ autoSend = 0
 smoonURL = 'http://smolt.fedoraproject.org/'
 smoltProtocol = '.91'
 user_agent = 'smolt/%s' % smoltProtocol
+retry = 0
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -44,6 +46,7 @@ def help():
     print "     -p,--printOnly      Print Information only, do not send"
     print "     -a,--autoSend       Don't prompt to send, just send"
     print "     -s,--server=        serverUrl (http://yourSmoonServer/)"
+    print "     -r,--retry          Continue to send until success"
     print "     -u,--useragent=     Specify HTTP user agent (default '%s')" % user_agent
     sys.exit(2)
 
@@ -55,7 +58,7 @@ def serverMessage(page):
                 sys.exit(3)
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'phads:u:', ['help', 'debug', 'printOnly', 'autoSend', 'server=', 'useragent=', 'user_agent='])
+    opts, args = getopt.getopt(sys.argv[1:], 'phadrs:u:', ['help', 'debug', 'printOnly', 'autoSend', 'server=', 'retry', 'useragent=', 'user_agent='])
 except getopt.GetoptError:
     help()
     sys.exit(2)
@@ -69,6 +72,8 @@ for opt, arg in opts:
         smoonURL = arg
     if opt in('-p', '--printOnly'):
        printOnly = 1
+    if opt in('-r', '--retry'):
+        retry = 1
     if opt in('-a', '--autoSend'):
         autoSend = 1
     if opt in ('-u', '--useragent', '--user_agent'):
@@ -130,74 +135,73 @@ if not autoSend:
 
 print 'Transmitting ...'
 
-grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent)
 
-sendHostStr = profile.hostSendString
-
-debug('smoon server URL: %s' % smoonURL)
-try:
-    token = grabber.urlopen('%s/token?UUID=%s' % (smoonURL, profile.host.UUID))
-except urlgrabber.grabber.URLGrabError, e:
-    error('Error contacting Server: %s' % e)
-    sys.exit(1)
+def send():
+    grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent)
+    
+    sendHostStr = profile.hostSendString
+    
+    debug('smoon server URL: %s' % smoonURL)
+    try:
+        token = grabber.urlopen('%s/token?UUID=%s' % (smoonURL, profile.host.UUID))
+    except urlgrabber.grabber.URLGrabError, e:
+        error('Error contacting Server: %s' % e)
+        return 1
+    else:
+        for line in token.read().split('\n'):
+            if 'tok' in line:
+                tok = line.split(': ')[1]
+        token.close()
+    
+    try:
+        tok = tok
+    except NameError, e:
+        error('Communication with server failed')
+        return 1
+    
+    sendHostStr = sendHostStr + '&token=%s&smoltProtocol=%s' % (tok, smoltProtocol)
+    debug('sendHostStr: %s' % profile.hostSendString)
+    debug('Sending Host')
+    
+    try:
+        o=grabber.urlopen('%s/add' % smoonURL, data=sendHostStr, http_headers=(
+                        ('Content-length', '%i' % len(sendHostStr)),
+                        ('Content-type', 'application/x-www-form-urlencoded')))
+    except urlgrabber.grabber.URLGrabError, e:
+        error('Error contacting Server: %s' % e)
+        return 1
+    else:
+        serverMessage(o.read())
+        o.close()
+    
+    deviceStr = ''
+    for dev in devices:
+        deviceStr = deviceStr + dev + '\n'
+    sendDevicesStr = urlencode({'Devices' : deviceStr, 'UUID' : profile.host.UUID})
+    #debug(sendDevicesStr)
+    
+    try:
+        o=grabber.urlopen('%s/addDevices' % smoonURL, data=sendDevicesStr, http_headers=(
+                        ('Content-length', '%i' % len(sendDevicesStr)),
+                        ('Content-type', 'application/x-www-form-urlencoded')))
+    except urlgrabber.grabber.URLGrabError, e:
+        error('Error contacting Server: %s' % e)
+        return 1
+    else:
+        serverMessage(o.read())
+        o.close()
+    
+    url = urljoin(smoonURL, '/show?UUID=%s' % profile.host.UUID)
+    print 'To view your profile visit: %s' % url
+    return 0
+    
+if retry:
+    while 1:
+        if not send():
+            sys.exit(0)
+        error("Retry Enabled - Retrying")
+        time.sleep(5)
 else:
-    for line in token.read().split('\n'):
-        if 'tok' in line:
-            tok = line.split(': ')[1]
-    token.close()
-
-try:
-    tok = tok
-except NameError, e:
-    error('Communication with server failed')
-    sys.exit(2)
-
-sendHostStr = sendHostStr + '&token=%s&smoltProtocol=%s' % (tok, smoltProtocol)
-debug('sendHostStr: %s' % profile.hostSendString)
-debug('Sending Host')
-
-try:
-    o=grabber.urlopen('%s/add' % smoonURL, data=sendHostStr, http_headers=(
-                    ('Content-length', '%i' % len(sendHostStr)),
-                    ('Content-type', 'application/x-www-form-urlencoded')))
-except urlgrabber.grabber.URLGrabError, e:
-    error('Error contacting Server: %s' % e)
-    sys.exit(1)
-else:
-    serverMessage(o.read())
-    o.close()
-
-deviceStr = ''
-for dev in devices:
-    deviceStr = deviceStr + dev + '\n'
-sendDevicesStr = urlencode({'Devices' : deviceStr, 'UUID' : profile.host.UUID})
-#debug(sendDevicesStr)
-
-try:
-    o=grabber.urlopen('%s/addDevices' % smoonURL, data=sendDevicesStr, http_headers=(
-                    ('Content-length', '%i' % len(sendDevicesStr)),
-                    ('Content-type', 'application/x-www-form-urlencoded')))
-except urlgrabber.grabber.URLGrabError, e:
-    error('Error contacting Server: %s' % e)
-    sys.exit(1)
-else:
-    serverMessage(o.read())
-    o.close()
-
-
-#for device in profile.devices:
-#    if not ignoreDevice(profile.devices[device]):
-#        sendDeviceStr = profile.devices[device].deviceSendString
-#        debug('Sending device')
-#        debug('sendDeviceStr: %s' % sendDeviceStr)
-#        try:
-#            o=grabber.urlopen('%s/addDevice' % smoonURL, data=sendDeviceStr, http_headers=(('Content-length', '%i' % len(sendDeviceStr)),
-#                                                                                       ('Content-type', 'application/x-www-form-urlencoded')))
-#        except urlgrabber.grabber.URLGrabError, e:
-#            error('Error contacting server: %s' % e)
-#            sys.exit(1)
-#        else:
-#            serverMessage(o.read())
-#            o.close()
-url = urljoin(smoonURL, '/show?UUID=%s' % profile.host.UUID)
-print 'To view your profile visit: %s' % url
+    if send():
+        print "Could not send - Exiting"
+        sys.exit(1)

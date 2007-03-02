@@ -79,7 +79,8 @@ class childWindow:
 
     def apply(self, notebook):
         if self.okButton.get_active() == True:
-            result = commands.getstatusoutput('/usr/bin/smoltSendProfile -a &')
+            # You'd think I know better than this.
+            result = os.system('/usr/bin/smoltSendProfile -r -a &')
             return 0
         else:
             dlg = gtk.MessageDialog(None, 0, gtk.MESSAGE_QUESTION, gtk.BUTTONS_NONE,
