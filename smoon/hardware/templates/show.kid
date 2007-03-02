@@ -23,13 +23,16 @@
         <h3>Devices</h3>
         <table id='show'>
             <tr>
-                <th align='right'>Driver</th><th>Class</th><th>Bus</th><th>ID (Ven:Dev)</th><th align='left'>Description</th>
+                <th align='right'>Driver</th><th>Class</th><th>Bus</th><th>Vendor</th><th>Device</th><th>SubVendor</th><th>SubDevice</th><th align='left'>Description</th>
             </tr>
             <tr py:for='device in devices'>
                 <td align='right'>${device.Driver}</td>
                 <td align='center'>${device.Class}</td>
                 <td align='center'>${device.Bus}</td>
+                <td align='center'>${hex(device.VendorId)}</td>
                 <td align='center'>${device.DeviceId}</td>
+                <td align='center'>${device.SubsysDeviceId}</td>
+                <td align='center'>${device.SubsysVendorId}</td>
                 <td align='left'>${device.Description}</td>
             </tr>
         </table>

@@ -5,12 +5,14 @@ import getopt
 import urlgrabber.grabber
 import smolt
 from urllib import urlencode
+from urlparse import urljoin
 
 DEBUG = 0
 printOnly = 0
 autoSend = 0
 smoonURL = 'http://smolt.fedoraproject.org/'
-user_agent = 'smolt/0.8'
+smoltProtocol = '.91'
+user_agent = 'smolt/%s' % smoltProtocol
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -84,12 +86,15 @@ print '\tlanguage: %s' % profile.host.language
 print '\tplatform: %s' % profile.host.platform
 print '\tbogomips: %s' % profile.host.bogomips
 print '\tCPUVendor: %s' % profile.host.cpuVendor
+print '\tCPUModel: %s' % profile.host.cpuModel
 print '\tnumCPUs: %s' % profile.host.numCpus
 print '\tCPUSpeed: %s' % profile.host.cpuSpeed
 print '\tsystemMemory: %s' % profile.host.systemMemory
 print '\tsystemSwap: %s' % profile.host.systemSwap
 print '\tvendor: %s' % profile.host.systemVendor
 print '\tsystem: %s' % profile.host.systemModel
+print '\tformfactor: %s' % profile.host.formfactor
+print '\tkernel: %s' % profile.host.kernelVersion
 print
 print '\t\t Devices'
 print '\t\t================================='
@@ -101,6 +106,8 @@ for device in profile.devices:
         Bus = profile.devices[device].bus
         VendorID = profile.devices[device].vendorid
         DeviceID = profile.devices[device].deviceid
+        SubsysVendorID = profile.devices[device].subsysvendorid
+        SubsysDeviceID = profile.devices[device].subsysdeviceid
         Driver = profile.devices[device].driver
         Type = profile.devices[device].type
         Description = profile.devices[device].description
@@ -108,8 +115,8 @@ for device in profile.devices:
         continue
     else:
         if not ignoreDevice(profile.devices[device]):
-            print '\t\t(%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, Bus, Driver, Type, Description)
-            devices.append('%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, Bus, Driver, Type, Description))
+            print '\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description)
+            devices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
 
 if not autoSend:
     if printOnly:
@@ -145,7 +152,7 @@ except NameError, e:
     error('Communication with server failed')
     sys.exit(2)
 
-sendHostStr = sendHostStr + '&token=%s' % tok
+sendHostStr = sendHostStr + '&token=%s&smoltProtocol=%s' % (tok, smoltProtocol)
 debug('sendHostStr: %s' % profile.hostSendString)
 debug('Sending Host')
 
@@ -164,6 +171,7 @@ deviceStr = ''
 for dev in devices:
     deviceStr = deviceStr + dev + '\n'
 sendDevicesStr = urlencode({'Devices' : deviceStr, 'UUID' : profile.host.UUID})
+#debug(sendDevicesStr)
 
 try:
     o=grabber.urlopen('%s/addDevices' % smoonURL, data=sendDevicesStr, http_headers=(
@@ -191,5 +199,5 @@ else:
 #        else:
 #            serverMessage(o.read())
 #            o.close()
-
-print 'To view your profile visit: %s/show?UUID=%s' % (smoonURL, profile.host.UUID)
+url = urljoin(smoonURL, '/show?UUID=%s' % profile.host.UUID)
+print 'To view your profile visit: %s' % url

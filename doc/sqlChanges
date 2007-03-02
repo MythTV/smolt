@@ -1,0 +1,8 @@
+ALTER TABLE `device` ADD `vendor_id` INT NULL ,
+ADD `subsys_device_id` INT NULL ,
+ADD `subsys_vendor_id` INT NULL ;
+ALTER TABLE `device` CHANGE `vendor_device_id` `subsys_vendor_id` INT( 11 ) NULL DEFAULT NULL 
+ALTER TABLE `host` ADD `formfactor` TEXT NULL  
+
+#echo "select id, device_id from device" | mysql -u root smolt | sed 's/\:/ /g'| grep -v id | while read a b c; do echo "$a $((16#${b#0x})) $((16#${c#0x}))"; done | awk -f vendorhexint.awk  | mysql -u root smolt
+

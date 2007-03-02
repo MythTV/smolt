@@ -17,7 +17,9 @@ class Device(SQLObject):
     Class = StringCol()
     DateAdded = DateTimeCol(title="Date Added")
     DeviceId = StringCol(title='Device ID', length=16)  #Format: Vendor:Device
-
+    VendorId = IntCol()
+    SubsysVendorId = IntCol()
+    SubsysDeviceId = IntCol()
 class HostLinks(SQLObject):
     hostLink = ForeignKey('Host')
 #    hostUUID = UnicodeCol(title="Host",length=36,alternateID=True)
@@ -38,5 +40,7 @@ class Host(SQLObject):
     numCPUs = IntCol(title="Number of CPUs")
     CPUSpeed = FloatCol(title="CPU Speed")
     language = StringCol(title="Language")
+    kernelVersion = StringCol(title="Kernel")
+    formfactor = StringCol(title="Formfactor")
     defaultRunlevel = IntCol(title="Default Runlevel")
     hostLink = MultipleJoin('HostLinks', joinColumn='host_link_id')

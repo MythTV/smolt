@@ -95,13 +95,21 @@ class Device:
         except KeyError:
             self.bus = 'Unknown'
         try:
-            self.vendorid = hex(props['%s.vendor_id' % self.bus])
+            self.vendorid = props['%s.vendor_id' % self.bus]
         except KeyError:
-            self.vendorid = hex(0)
+            self.vendorid = None
         try:
-            self.deviceid = hex(props['%s.product_id' % self.bus])
+            self.deviceid = props['%s.product_id' % self.bus]
         except KeyError:
-            self.deviceid = hex(0)
+            self.deviceid = None
+        try:
+            self.subsysvendorid = props['%s.subsys_vendor_id' % self.bus]
+        except KeyError:
+            self.subsysvendorid = None
+        try:
+            self.subsysdeviceid = props['%s.subsys_product_id' % self.bus]
+        except KeyError:
+            self.subsysdeviceid = None
         try:
             self.description = props['info.product'].strip()
         except KeyError:
@@ -112,13 +120,15 @@ class Device:
             self.driver = 'Unknown'
         self.type = classify_hal(props)
         self.deviceSendString = urlencode({
-                            'UUID' :        self.UUID,
-                            'Bus' :         self.bus,
-                            'Driver' :      self.driver,
-                            'Class' :       self.type,
-                            'VendorID' :    self.vendorid,
-                            'DeviceID' :    self.deviceid,
-                            'Description' : self.description
+                            'UUID' :            self.UUID,
+                            'Bus' :             self.bus,
+                            'Driver' :          self.driver,
+                            'Class' :           self.type,
+                            'VendorID' :        self.vendorid,
+                            'DeviceID' :        self.deviceid,
+                            'VendorSubsysID' :  self.subsysvendorid,
+                            'DeviceSubsysID' :  self.subsysdeviceid,
+                            'Description' :     self.description
                             })
 
 class Host:
@@ -135,6 +145,7 @@ class Host:
         self.cpuSpeed = cpuInfo['speed']
         self.systemMemory = memory['ram']
         self.systemSwap = memory['swap']
+        self.kernelVersion = os.uname()[2]
         try:
             self.language = os.environ['LANG']
         except KeyError:
@@ -151,6 +162,10 @@ class Host:
             self.systemModel = hostInfo['system.product']
         except:
             self.systemModel = 'Unknown'
+        try:
+            self.formfactor = hostInfo['system.formfactor']
+        except:
+            self.formfactor = 'Unknown'
 
 class Hardware:
     devices = {}
@@ -178,7 +193,9 @@ class Hardware:
                             'systemMemory' :    self.host.systemMemory,
                             'systemSwap' :      self.host.systemSwap,
                             'vendor' :          self.host.systemVendor,
-                            'system' :          self.host.systemModel
+                            'system' :          self.host.systemModel,
+                            'kernelVersion' :   self.host.kernelVersion,
+                            'formfactor' :      self.host.formfactor
                             })
 
     def dbus_get_interface(self, bus, service, object, interface):
