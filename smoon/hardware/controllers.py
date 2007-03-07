@@ -9,6 +9,7 @@ from hardware.model import HostLinks
 from sqlobject import SQLObjectNotFound
 from turbogears import exception_handler
 from turbogears.widgets import Tabber, JumpMenu
+from hwdata import deviceMap
 import sys
 
 # This is such a bad idea, yet here it is.
@@ -50,8 +51,8 @@ class Root(controllers.RootController):
             devices = []
             for dev in hostObject.hostLink:
                 devices.append(Device.select('id=%s' % dev.deviceID)[0])
-            vendors = deviceMap()
-            return dict(hostObject=hostObject, devices=devices, vendors=vendors)
+            ven = deviceMap('pci')
+            return dict(hostObject=hostObject, devices=devices, ven=ven)
 
     @expose(template="hardware.templates.delete")
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
@@ -218,56 +219,23 @@ class Root(controllers.RootController):
             except:
                raise ValueError("Critical: Could not add device: %s" % Description)
         return dict(deviceObject=deviceSQL)
-
-#    @expose(template="hardware.templates.device")
-#    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
-#    def addDevice(self, UUID, Description, Bus, Driver, Class, VendorID=None, DeviceID=None, VendorSubsysID=None, DeviceSubsysID=None):
-#        import time
-#        from mx import DateTime
-#        try:
-#            host = Host.byUUID(UUID)
-#        except SQLObjectNotFound:
-#            raise ValueError("Critical: UUID not found - %s" % UUID)
-#        Description = Description.strip()
-#        Bus = Bus.strip()
-#        Driver = Driver.strip()
-#        Class = Class.strip()
-#        DeviceID = '%s:%s' % (DeviceID.strip(), VendorID.strip())
-#
-#        try:
-#            deviceSQL = Device.byDescription(Description)
-#
-#        except SQLObjectNotFound:
-#            deviceSQL = Device(Description = Description,
-#                            Bus = Bus,
-#                            Driver = Driver,
-#                            Class = Class,
-#                            DeviceId = DeviceID,
-#                            DateAdded = DateTime.now())
-#        deviceSQL.DeviceId = DeviceID
-#        link = HostLinks(deviceID=deviceSQL.id, hostLink=host.id)
-#        return dict(deviceObject=deviceSQL)
-
-    @expose(template="hardware.templates.raw")
-    def raw(self, UUID=None):
-        host = Host
-        hosts = host.select('1=1')
-        links = HostLinks
-        
-        return dict(Hosts=hosts, Device=Device, HostLinks=HostLinks)
+    
     @expose(template="hardware.templates.deviceclass")
     def byClass(self, type='VIDEO'):
         type = type.encode('utf8')
         typetest = (type,)
         classes = Host._connection.queryAll('select distinct(class) from device;')
+        pciVendors = deviceMap('pci')
+
         if typetest not in classes:
             return('%s' % classes)
         # We only want hosts that detected hardware (IE, hal was working properly)
         totalHosts = long(Host._connection.queryAll('select count(distinct(host_link_id)) from host_links;')[0][0])
         #types = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by host_links.device_id order by cnt desc limit 100;' % type)
         count = Host._connection.queryAll('select count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s";' % type)[0][0]
-        types = Host._connection.queryAll('select device.description, device.bus, device.driver, device.vendor_id, device.device_id, device.date_added, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by host_links.device_id order by cnt desc limit 100' % type)
-        return dict(types=types, type=type, totalHosts=totalHosts, count=count)
+        types = Host._connection.queryAll('select device.description, device.bus, device.driver, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id, device.date_added, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by host_links.device_id order by cnt desc limit 100' % type)
+        vendors = Host._connection.queryAll('select device.vendor_id, count(device.vendor_id) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by device.vendor_id order by cnt desc;' % type)
+        return dict(types=types, type=type, totalHosts=totalHosts, count=count, pciVendors=pciVendors, vendors=vendors)
 
     @expose(template="hardware.templates.devices")
     def devices(self):
@@ -316,7 +284,8 @@ class Root(controllers.RootController):
 
         stats['kernelVersion'] = Host._connection.queryAll("Select kernel_version, count(kernel_version) as cnt from host group by kernel_version order by cnt desc;")
 
- 
+        stats['formfactor'] = Host._connection.queryAll("Select formfactor, count(formfactor) as cnt from host group by formfactor order by cnt desc;")
+
         stats['language'] = Host._connection.queryAll("Select language, count(language) as cnt from host group by language order by cnt desc limit 15")
         stats['languagetot'] = stats['totalHosts']
         #int(Host._connection.queryAll('Select count(language) from host;')[0][0])
@@ -351,92 +320,4 @@ class Root(controllers.RootController):
 
         stats['cpusTot'] = int(Host._connection.queryAll('select sum(num_cp_us) as cnt from host;')[0][0])
 
-        #stats['cpusTot'] = int(
- 
- 
-
-#    id INTEGER PRIMARY KEY,
-#    u_u_id TEXT NOT NULL UNIQUE,
-#    lsb_release TEXT,
-#    o_s TEXT,
-#    platform TEXT,
-#    bogomips FLOAT,
-#    system_memory INT,
-#    system_swap INT,
-#    vendor TEXT,
-#    system TEXT,
-#    cpu_vendor TEXT,
-#    num_cp_us INT,
-#    cpu_speed TEXT,
-#    language TEXT,
-#    default_runlevel INT
-
-
         return dict(Host=Host, Device=Device, HostLinks=HostLinks, Stat=stats, tabs=tabs)
-
-class myVendor(object):
-    def __init__(self):
-        self.name = ""
-        self.num = ""
-        self.devices = {}
-
-class myDevice(object):
-    def __init__(self):
-        self.name = ""
-        self.num = ""
-        self.subvendors = {}
-        self.vendor = ""
-
-def deviceMap(bus='pci'):
-    fn = "/usr/share/hwdata/%s.ids" % bus
-
-    fo = open(fn, 'r')
-
-    vendors = {}
-    curvendor = None
-    curdevice = None
-    for line in fo.readlines():
-        if line.startswith('#') or not line.strip():
-            continue
-        elif not line.startswith('\t'):
-            curvendor = myVendor()
-            curvendor.num = line[0:4]
-            curvendor.name = line[6:-1]
-            vendors[curvendor.num] = curvendor
-            continue
-
-        elif line.startswith('\t\t'):
-            line = line.replace('\t', '')
-            thisdev = myDevice()
-            thisdev.vendor = line[0:4]
-            thisdev.num = line[5:9]
-            thisdev.name = line[11:-1]
-            subvend = myVendor()
-            subvend.num = thisdev.vendor
-            subvend.name = ""
-
-            if not curdevice.subvendors.has_key(subvend.num):
-                curdevice.subvendors[subvend.num] = subvend
-                subvend.devices[thisdev.num] = thisdev
-            else:
-                subvend = curdevice.subvendors[subvend.num]
-                subvend.devices[thisdev.num] = thisdev
-
-            continue
-
-        elif line.startswith('\t'):
-            line = line.replace('\t', '')
-            curdevice = myDevice()
-            curdevice.num = line[0:4]
-            curdevice.name = line[6:-1]
-            curdevice.vendor = curvendor.num
-            curvendor.devices[curdevice.num] = curdevice
-            continue        
-        else:
-            print line
-            continue
-    fo.close()
-    # This introduces a bug, will fix later.
-    vendors['0000'] = myVendor()
-    vendors['0000'].name = None
-    return vendors

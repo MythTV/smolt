@@ -9,7 +9,8 @@
 
 <h1> Smolt is still in BETA! </h1>
 
-Most people probably want to go to <a href='/stats'>/stats</a>
+Most people probably want to go to <a href='/stats'>/stats</a> or <a href='/devices'>/devices</a>
+
 <h2>Lookup</h2>
     <form method='GET' action='/show'>
         UUID: <input type='text' name='UUID' size='32'/>

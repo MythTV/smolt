@@ -110,38 +110,30 @@
                 </tr>
             </table>
         </div>
-        <div class="tabbertab"><h2>MHz</h2>
+        <div class="tabbertab"><h2>CPU</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+                <tr><th colspan="4">Speed (MHz)</th></tr>
                 <tr py:for='cpuSpeed in Stat["cpuSpeed"]'>
                     <th align="right">${cpuSpeed[0]}</th>
                     <td align="center">${cpuSpeed[1]}</td>
                     <td><strong>${'%.1f' % (float(cpuSpeed[1]) / Stat["languagetot"] * 100) } %</strong></td>
                     <td><img py:for='i in range(1, int( float(cpuSpeed[1]) / Stat["languagetot"] * 100 ))' src='/static/images/tile.png' /></td>
                 </tr>
-            </table>
-        </div>
-        <div class="tabbertab"><h2>CPUs</h2>
-            <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+                <tr><th colspan="4">Number of CPUs</th></tr>
                 <tr py:for='numCPUs in Stat["numCPUs"]'>
                     <th align="right">${numCPUs[0]}</th>
                     <td align="center">${numCPUs[1]}</td>
                     <td><strong>${'%.1f' % (float(numCPUs[1]) / Stat["languagetot"] * 100) } %</strong></td>
                     <td><img py:for='i in range(1, int( float(numCPUs[1]) / Stat["languagetot"] * 100 ))' src='/static/images/tile.png' /></td>
                 </tr>
-            </table>
-        </div>
-        <div class="tabbertab"><h2>CPUVendor</h2>
-            <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+                <tr><th colspan="4">CPU Vendor</th></tr>
                 <tr py:for='cpuVendor in Stat["cpuVendor"]'>
                     <th align="right">${cpuVendor[0]}</th>
                     <td align="center">${cpuVendor[1]}</td>
                     <td><strong>${'%.1f' % (float(cpuVendor[1]) / Stat["languagetot"] * 100) } %</strong></td>
                     <td><img py:for='i in range(1, int( float(cpuVendor[1]) / Stat["languagetot"] * 100 ))' src='/static/images/tile.png' /></td>
                 </tr>
-            </table>
-        </div>
-        <div class="tabbertab"><h2>bogomips</h2>
-            <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+                <tr><th colspan="4">Bogomips</th></tr>
                 <tr py:for='bogomips in Stat["bogomips"]'>
                     <th align="right">${bogomips[0]}</th>
                     <td align="center">${bogomips[1]}</td>
@@ -157,6 +149,16 @@
                     <td align="center">${kernelVersion[1]}</td>
                     <td><strong>${'%.1f' % (float(kernelVersion[1]) / Stat["languagetot"] * 100) } %</strong></td>
                     <td><img py:for='i in range(1, int( float(kernelVersion[1]) / Stat["languagetot"] * 100 ))' src='/static/images/tile.png' /></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>type</h2>
+            <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+                <tr py:for='formfactor in Stat["formfactor"]'>
+                    <th align="right">${formfactor[0]}</th>
+                    <td align="center">${formfactor[1]}</td>
+                    <td><strong>${'%.1f' % (float(formfactor[1]) / Stat["languagetot"] * 100) } %</strong></td>
+                    <td><img py:for='i in range(1, int( float(formfactor[1]) / Stat["languagetot"] * 100 ))' src='/static/images/tile.png' /></td>
                 </tr>
             </table>
         </div>
