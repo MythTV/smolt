@@ -16,7 +16,15 @@
 import dbus
 import software
 import os
+import urlgrabber.grabber
+import sys
+from urlparse import urljoin
 from urllib import urlencode
+
+smoonURL = 'http://smolt.fedoraproject.org/'
+smoltProtocol = '.91'
+user_agent = 'smolt/%s' % smoltProtocol
+DEBUG = 0
 
 try:
     import locale
@@ -157,18 +165,56 @@ class Host:
         try:
             self.systemVendor = hostInfo['system.vendor']
         except:
-            self.systemVendor = 'Unknown'
+            try:
+                self.systemVendor = cpuInfo['vendor']
+            except:
+                self.systemVendor = 'Unknown'
         try:
             self.systemModel = hostInfo['system.product']
         except:
-            self.systemModel = 'Unknown'
+            try:
+                self.systemModel = cpuInfo['system']
+            except:
+                self.systemModel = 'Unknown'
         try:
             self.formfactor = hostInfo['system.formfactor']
         except:
             self.formfactor = 'Unknown'
 
+def ignoreDevice(device):
+    ignore = 1
+    if device.bus == 'Unknown':
+        return 1
+    if device.bus == 'usb' and device.type == None:
+        return 1
+    if device.bus == 'usb' and device.driver == 'hub':
+        return 1
+    if device.bus == 'sound' and device.driver == 'Unknown':
+        return 1
+    if device.bus == 'pnp' and (device.driver == 'Unknown' or device.driver == 'system'):
+        return 1
+    return 0
+
+def serverMessage(page):
+    for line in page.split("\n"):
+        if 'ServerMessage:' in line:
+            print 'Server Message: "%s"' % line.split('ServerMessage: ')[1]
+            if 'Critical' in line:
+                sys.exit(3)
+
+
+def error(message):
+    print >> sys.stderr, message
+
+def debug(message):
+    if DEBUG == 1:
+        print message
+
+
+
 class Hardware:
     devices = {}
+    myDevices = []
     def __init__(self):
         systemBus = dbus.SystemBus()
         mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
@@ -210,6 +256,121 @@ class Hardware:
             svc = bus.get_service(service)
             iface = svc.get_object(object, interface)
         return iface
+
+
+    def send(self, user_agent=user_agent, smoonURL=smoonURL):
+        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent)
+        
+        sendHostStr = self.hostSendString
+        
+        for device in self.devices:
+            try:
+                Bus = self.devices[device].bus
+                VendorID = self.devices[device].vendorid
+                DeviceID = self.devices[device].deviceid
+                SubsysVendorID = self.devices[device].subsysvendorid
+                SubsysDeviceID = self.devices[device].subsysdeviceid
+                Driver = self.devices[device].driver
+                Type = self.devices[device].type
+                Description = self.devices[device].description
+            except:
+                continue
+            else:
+                if not ignoreDevice(self.devices[device]):
+                    self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+        
+        debug('smoon server URL: %s' % smoonURL)
+        try:
+            token = grabber.urlopen('%s/token?UUID=%s' % (smoonURL, self.host.UUID))
+        except urlgrabber.grabber.URLGrabError, e:
+            error('Error contacting Server: %s' % e)
+            return 1
+        else:
+            for line in token.read().split('\n'):
+                if 'tok' in line:
+                    tok = line.split(': ')[1]
+            token.close()
+        
+        try:
+            tok = tok
+        except NameError, e:
+            error('Communication with server failed')
+            return 1
+        
+        sendHostStr = sendHostStr + '&token=%s&smoltProtocol=%s' % (tok, smoltProtocol)
+        debug('sendHostStr: %s' % self.hostSendString)
+        debug('Sending Host')
+        
+        try:
+            o=grabber.urlopen('%s/add' % smoonURL, data=sendHostStr, http_headers=(
+                            ('Content-length', '%i' % len(sendHostStr)),
+                            ('Content-type', 'application/x-www-form-urlencoded')))
+        except urlgrabber.grabber.URLGrabError, e:
+            error('Error contacting Server: %s' % e)
+            return 1
+        else:
+            serverMessage(o.read())
+            o.close()
+        
+        deviceStr = ''
+        for dev in self.myDevices:
+            deviceStr = deviceStr + dev + '\n'
+        sendDevicesStr = urlencode({'Devices' : deviceStr, 'UUID' : self.host.UUID})
+        #debug(sendDevicesStr)
+        
+        try:
+            o=grabber.urlopen('%s/addDevices' % smoonURL, data=sendDevicesStr, http_headers=(
+                            ('Content-length', '%i' % len(sendDevicesStr)),
+                            ('Content-type', 'application/x-www-form-urlencoded')))
+        except urlgrabber.grabber.URLGrabError, e:
+            error('Error contacting Server: %s' % e)
+            return 1
+        else:
+            serverMessage(o.read())
+            o.close()
+        return 0
+        
+    def getProfile(self):
+        printBuffer = []
+        printBuffer.append('\tUUID: %s' % self.host.UUID)
+        printBuffer.append('\tOS: %s' % self.host.os)
+        printBuffer.append('\tdefaultRunlevel: %s' % self.host.defaultRunlevel)
+        printBuffer.append('\tlanguage: %s' % self.host.language)
+        printBuffer.append('\tplatform: %s' % self.host.platform)
+        printBuffer.append('\tbogomips: %s' % self.host.bogomips)
+        printBuffer.append('\tCPUVendor: %s' % self.host.cpuVendor)
+        printBuffer.append('\tCPUModel: %s' % self.host.cpuModel)
+        printBuffer.append('\tnumCPUs: %s' % self.host.numCpus)
+        printBuffer.append('\tCPUSpeed: %s' % self.host.cpuSpeed)
+        printBuffer.append('\tsystemMemory: %s' % self.host.systemMemory)
+        printBuffer.append('\tsystemSwap: %s' % self.host.systemSwap)
+        printBuffer.append('\tvendor: %s' % self.host.systemVendor)
+        printBuffer.append('\tsystem: %s' % self.host.systemModel)
+        printBuffer.append('\tformfactor: %s' % self.host.formfactor)
+        printBuffer.append('\tkernel: %s' % self.host.kernelVersion)
+        printBuffer.append('')
+        printBuffer.append('\t\t Devices')
+        printBuffer.append('\t\t=================================')
+        
+        #devices = []
+        
+        for device in self.devices:
+            try:
+                Bus = self.devices[device].bus
+                VendorID = self.devices[device].vendorid
+                DeviceID = self.devices[device].deviceid
+                SubsysVendorID = self.devices[device].subsysvendorid
+                SubsysDeviceID = self.devices[device].subsysdeviceid
+                Driver = self.devices[device].driver
+                Type = self.devices[device].type
+                Description = self.devices[device].description
+            except:
+                continue
+            else:
+                if not ignoreDevice(self.devices[device]):
+                    printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+                    self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+        return '\n'.join(printBuffer)
 
 # From RHN Client Tools
 

@@ -13,7 +13,7 @@ from hwdata import deviceMap
 import sys
 
 # This is such a bad idea, yet here it is.
-CRYPTPASS = 'FkD03oFbKdi3Fjee'
+CRYPTPASS = 'PleaseChangeMe11'
 smoltProtocol = '.91'
 
 
@@ -226,7 +226,7 @@ class Root(controllers.RootController):
         typetest = (type,)
         classes = Host._connection.queryAll('select distinct(class) from device;')
         pciVendors = deviceMap('pci')
-
+        tabs = Tabber()
         if typetest not in classes:
             return('%s' % classes)
         # We only want hosts that detected hardware (IE, hal was working properly)
@@ -235,7 +235,7 @@ class Root(controllers.RootController):
         count = Host._connection.queryAll('select count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s";' % type)[0][0]
         types = Host._connection.queryAll('select device.description, device.bus, device.driver, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id, device.date_added, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by host_links.device_id order by cnt desc limit 100' % type)
         vendors = Host._connection.queryAll('select device.vendor_id, count(device.vendor_id) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by device.vendor_id order by cnt desc;' % type)
-        return dict(types=types, type=type, totalHosts=totalHosts, count=count, pciVendors=pciVendors, vendors=vendors)
+        return dict(types=types, type=type, totalHosts=totalHosts, count=count, pciVendors=pciVendors, vendors=vendors, tabs=tabs)
 
     @expose(template="hardware.templates.devices")
     def devices(self):
@@ -274,10 +274,10 @@ class Root(controllers.RootController):
         stats['numCPUstot'] = stats['totalHosts']
         #int(Host._connection.queryAll('Select count(num_cp_us) from host;')[0][0])
 
-        stats['vendors'] = Host._connection.queryAll("Select vendor, count(vendor) as cnt from host where vendor != 'Unknown' and vendor != '' group by vendor order by cnt desc;")
-        stats['systems'] = Host._connection.queryAll("Select system, count(system) as cnt from host where system != 'Unknown' and system != '' group by system order by cnt desc;")
+        stats['vendors'] = Host._connection.queryAll("Select vendor, count(vendor) as cnt from host where vendor != 'Unknown' and vendor != '' group by vendor order by cnt desc limit 100;")
+        stats['systems'] = Host._connection.queryAll("Select system, count(system) as cnt from host where system != 'Unknown' and system != '' group by system order by cnt desc limit 100;")
 
-        stats['cpuVendor'] = Host._connection.queryAll("Select cpu_vendor, count(cpu_vendor) as cnt from host group by cpu_vendor order by cnt desc;")
+        stats['cpuVendor'] = Host._connection.queryAll("Select cpu_vendor, count(cpu_vendor) as cnt from host group by cpu_vendor order by cnt desc limit 100;")
 
         stats['cpuVendortot'] = stats['totalHosts']
         #int(Host._connection.queryAll('Select count(cpu_vendor) from host;')[0][0])
