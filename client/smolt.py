@@ -262,7 +262,7 @@ class Hardware:
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent)
         
         sendHostStr = self.hostSendString
-        
+        self.myDevices = []
         for device in self.devices:
             try:
                 Bus = self.devices[device].bus
