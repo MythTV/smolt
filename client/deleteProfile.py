@@ -3,13 +3,14 @@
 import sys
 import getopt
 import urlgrabber.grabber
+
+sys.path.append('/usr/share/smolt/client')
+
 import smolt
 
 DEBUG = 0
 printOnly = 0
 smoonURL = 'http://smolt.fedoraproject.org/'
-
-sys.path.append('/usr/share/smolt/client')
 
 grabber = urlgrabber.grabber.URLGrabber()
 
