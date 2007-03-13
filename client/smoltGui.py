@@ -11,8 +11,6 @@ sys.path.append('/usr/share/smolt/client')
 
 import smolt
 
-smoonURL = 'http://smolt.fedoraproject.org/'
-
 class SmoltGui(object):
     def __init__(self, args):
         self.profile = smolt.Hardware()
@@ -77,7 +75,7 @@ class SmoltGui(object):
                     gtk.BUTTONS_OK,
                     message_format='An error occurred while sending the data to the server.')
         else:
-            url = urljoin(smoonURL, '/show?UUID=%s' % self.profile.host.UUID)
+            url = urljoin(smolt.smoonURL, '/show?UUID=%s' % self.profile.host.UUID)
             finishMessage = gtk.MessageDialog(self.mainWindow,
                     gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
                     gtk.MESSAGE_INFO,
