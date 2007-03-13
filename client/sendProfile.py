@@ -2,11 +2,14 @@
 
 import sys
 import getopt
-import smolt
 import time
+from urlparse import urljoin
+
+sys.path.append('/usr/share/smolt/client')
+
+import smolt
 from smolt import debug
 from smolt import error
-from urlparse import urljoin
 
 smoonURL = 'http://smolt.fedoraproject.org/'
 smoltProtocol = '.91'
@@ -17,8 +20,6 @@ DEBUG = 0
 printOnly = 0
 autoSend = 0
 retry = 0
-
-sys.path.append('/usr/share/smolt/client')
 
 def help():
     print "Usage:"
