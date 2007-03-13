@@ -24,6 +24,7 @@ from urllib import urlencode
 smoonURL = 'http://smolt.fedoraproject.org/'
 smoltProtocol = '.91'
 user_agent = 'smolt/%s' % smoltProtocol
+timeout = 60.0
 DEBUG = 0
 
 try:
@@ -258,8 +259,8 @@ class Hardware:
         return iface
 
 
-    def send(self, user_agent=user_agent, smoonURL=smoonURL):
-        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent)
+    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         
         sendHostStr = self.hostSendString
         self.myDevices = []

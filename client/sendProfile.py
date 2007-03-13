@@ -11,7 +11,7 @@ from urlparse import urljoin
 smoonURL = 'http://smolt.fedoraproject.org/'
 smoltProtocol = '.91'
 user_agent = 'smolt/%s' % smoltProtocol
-
+timeout = 60.0
 
 DEBUG = 0
 printOnly = 0
@@ -29,10 +29,11 @@ def help():
     print "     -s,--server=        serverUrl (http://yourSmoonServer/)"
     print "     -r,--retry          Continue to send until success"
     print "     -u,--useragent=     Specify HTTP user agent (default '%s')" % user_agent
+    print "     -t,--timeout=       Specify HTTP timeout in seconds (default %1.1f seconds)" % timeout
     sys.exit(2)
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'phadrs:u:', ['help', 'debug', 'printOnly', 'autoSend', 'server=', 'retry', 'useragent=', 'user_agent='])
+    opts, args = getopt.getopt(sys.argv[1:], 'phadrs:u:t:', ['help', 'debug', 'printOnly', 'autoSend', 'server=', 'retry', 'useragent=', 'user_agent=', 'timeout='])
 except getopt.GetoptError:
     help()
     sys.exit(2)
@@ -52,6 +53,8 @@ for opt, arg in opts:
         autoSend = 1
     if opt in ('-u', '--useragent', '--user_agent'):
         user_agent = arg
+    if opt in ('-t', '--timeout'):
+        timeout = float(arg)
         
 # read the profile
 profile = smolt.Hardware()
@@ -69,12 +72,12 @@ if not autoSend:
     
 if retry:
     while 1:
-        if not profile.send(user_agent=user_agent, smoonURL=smoonURL):
+        if not profile.send(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
             sys.exit(0)
         error("Retry Enabled - Retrying")
         time.sleep(5)
 else:
-    if profile.send(user_agent=user_agent, smoonURL=smoonURL):
+    if profile.send(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
         print "Could not send - Exiting"
         sys.exit(1)
 
