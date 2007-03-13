@@ -25,7 +25,7 @@ smoonURL = 'http://smolt.fedoraproject.org/'
 smoltProtocol = '.91'
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
-DEBUG = 0
+DEBUG = False
 
 try:
     import locale
@@ -208,7 +208,7 @@ def error(message):
     print >> sys.stderr, message
 
 def debug(message):
-    if DEBUG == 1:
+    if DEBUG:
         print message
 
 

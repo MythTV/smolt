@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys
-import getopt
+from optparse import OptionParser
 import time
 from urlparse import urljoin
 
@@ -11,76 +11,71 @@ import smolt
 from smolt import debug
 from smolt import error
 
-smoonURL = 'http://smolt.fedoraproject.org/'
-smoltProtocol = '.91'
-user_agent = 'smolt/%s' % smoltProtocol
-timeout = 60.0
+parser = OptionParser(version = smolt.smoltProtocol)
 
-DEBUG = 0
-printOnly = 0
-autoSend = 0
-retry = 0
+parser.add_option('-d', '--debug',
+                  dest = 'DEBUG',
+                  default = False,
+                  action = 'store_true',
+                  help = 'enable debug information')
+parser.add_option('-s', '--server',
+                  dest = 'smoonURL',
+                  default = smolt.smoonURL,
+                  metavar = 'smoonURL',
+                  help = 'specify the URL of the server (default "%default")')
+parser.add_option('-p', '--printOnly',
+                  dest = 'printOnly',
+                  default = False,
+                  action = 'store_true',
+                  help = 'print information only, do not send')
+parser.add_option('-a', '--autoSend',
+                  dest = 'autoSend',
+                  default = False,
+                  action = 'store_true',
+                  help = 'don\'t prompt to send, just send')
+parser.add_option('-r', '--retry',
+                  dest = 'retry',
+                  default = False,
+                  action = 'store_true',
+                  help = 'continue to send until success')
+parser.add_option('-u', '--useragent', '--user_agent',
+                  dest = 'user_agent',
+                  default = smolt.user_agent,
+                  metavar = 'USERAGENT',
+                  help = 'specify HTTP user agent (default "%default")')
+parser.add_option('-t', '--timeout',
+                  dest = 'timeout',
+                  type = 'float',
+                  default = smolt.timeout,
+                  help = 'specify HTTP timeout in seconds (default %default seconds)')
 
-def help():
-    print "Usage:"
-    print "     -h,--help           Display this help menu"
-    print "     -d,--debug          Enable debug information"
-    print "     -p,--printOnly      Print Information only, do not send"
-    print "     -a,--autoSend       Don't prompt to send, just send"
-    print "     -s,--server=        serverUrl (http://yourSmoonServer/)"
-    print "     -r,--retry          Continue to send until success"
-    print "     -u,--useragent=     Specify HTTP user agent (default '%s')" % user_agent
-    print "     -t,--timeout=       Specify HTTP timeout in seconds (default %1.1f seconds)" % timeout
-    sys.exit(2)
+(opts, args) = parser.parse_args()
 
-try:
-    opts, args = getopt.getopt(sys.argv[1:], 'phadrs:u:t:', ['help', 'debug', 'printOnly', 'autoSend', 'server=', 'retry', 'useragent=', 'user_agent=', 'timeout='])
-except getopt.GetoptError:
-    help()
-    sys.exit(2)
+smolt.DEBUG = opts.DEBUG
 
-for opt, arg in opts:
-    if opt in ('-h', '--help'):
-        help()
-    if opt in ('-d', '--debug'):
-        DEBUG = 1
-    if opt in ('-s', '--server'):
-        smoonURL = arg
-    if opt in('-p', '--printOnly'):
-       printOnly = 1
-    if opt in('-r', '--retry'):
-        retry = 1
-    if opt in('-a', '--autoSend'):
-        autoSend = 1
-    if opt in ('-u', '--useragent', '--user_agent'):
-        user_agent = arg
-    if opt in ('-t', '--timeout'):
-        timeout = float(arg)
-        
 # read the profile
 profile = smolt.Hardware()
 print profile.getProfile()
 
-if not autoSend:
-    if printOnly:
+if not opts.autoSend:
+    if opts.printOnly:
         sys.exit(0)
     else:
         send = raw_input("\nSend this information to the Smolt server? (y/n) ")
         if send.lower() != 'y':
             error('Exiting...')
             sys.exit(4)
-
     
-if retry:
+if opts.retry:
     while 1:
-        if not profile.send(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+        if not profile.send(user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
             sys.exit(0)
         error("Retry Enabled - Retrying")
         time.sleep(5)
 else:
-    if profile.send(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+    if profile.send(user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
         print "Could not send - Exiting"
         sys.exit(1)
 
-url = urljoin(smoonURL, '/show?UUID=%s' % profile.host.UUID)
+url = urljoin(opts.smoonURL, '/show?UUID=%s' % profile.host.UUID)
 print 'To view your profile visit: %s' % url
