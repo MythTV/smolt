@@ -5,9 +5,11 @@
 import sys
 import subprocess
 import gtk
-import smolt
 from urlparse import urljoin
+
 sys.path.append('/usr/share/smolt/client')
+
+import smolt
 
 smoonURL = 'http://smolt.fedoraproject.org/'
 
