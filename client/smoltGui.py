@@ -83,7 +83,6 @@ class SmoltGui(object):
                     gtk.MESSAGE_INFO,
                     gtk.BUTTONS_OK,
                     message_format='The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in /etc/sysconfig/hw-uuid' % self.profile.host.UUID)
-        self.mainWindow.hide()
         finishMessage.show()
         finishMessage.run()
         self.quit_cb(None)
