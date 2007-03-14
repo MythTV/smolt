@@ -339,28 +339,40 @@ class Hardware:
         
     def getProfile(self):
         printBuffer = []
-        printBuffer.append('\tUUID: %s' % self.host.UUID)
-        printBuffer.append('\tOS: %s' % self.host.os)
-        printBuffer.append('\tDefault run level: %s' % self.host.defaultRunlevel)
-        printBuffer.append('\tLanguage: %s' % self.host.language)
-        printBuffer.append('\tPlatform: %s' % self.host.platform)
-        printBuffer.append('\tBogoMIPS: %s' % self.host.bogomips)
-        printBuffer.append('\tCPU Vendor: %s' % self.host.cpuVendor)
-        printBuffer.append('\tCPU Model: %s' % self.host.cpuModel)
-        printBuffer.append('\tNumber of CPUs: %s' % self.host.numCpus)
-        printBuffer.append('\tCPU Speed: %s' % self.host.cpuSpeed)
-        printBuffer.append('\tSystem Memory: %s' % self.host.systemMemory)
-        printBuffer.append('\tSystem Swap: %s' % self.host.systemSwap)
-        printBuffer.append('\tVendor: %s' % self.host.systemVendor)
-        printBuffer.append('\tSystem: %s' % self.host.systemModel)
-        printBuffer.append('\tForm factor: %s' % self.host.formfactor)
-        printBuffer.append('\tKernel: %s' % self.host.kernelVersion)
+        for label, data in self.hostIter():
+            printBuffer.append('\t%s: %s' % (label, data))
+            
         printBuffer.append('')
         printBuffer.append('\t\t Devices')
         printBuffer.append('\t\t=================================')
         
-        #devices = []
+        for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
+            printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+            self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+            
+        return '\n'.join(printBuffer)
+
+    def hostIter(self):
+        '''Iterate over host information.'''
+        yield 'UUID', self.host.UUID
+        yield 'OS', self.host.os
+        yield 'Default run level', self.host.defaultRunlevel
+        yield 'Language', self.host.language
+        yield 'Platform', self.host.platform
+        yield 'BogoMIPS', self.host.bogomips
+        yield 'CPU Vendor', self.host.cpuVendor
+        yield 'CPU Model', self.host.cpuModel
+        yield 'Number of CPUs', self.host.numCpus
+        yield 'CPU Speed', self.host.cpuSpeed
+        yield 'System Memory', self.host.systemMemory
+        yield 'System Swap', self.host.systemSwap
+        yield 'Vendor', self.host.systemVendor
+        yield 'System', self.host.systemModel
+        yield 'Form factor', self.host.formfactor
+        yield 'Kernel', self.host.kernelVersion
         
+    def deviceIter(self):
+        '''Iterate over our devices.'''
         for device in self.devices:
             try:
                 Bus = self.devices[device].bus
@@ -375,10 +387,8 @@ class Hardware:
                 continue
             else:
                 if not ignoreDevice(self.devices[device]):
-                    printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-                    self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-        return '\n'.join(printBuffer)
-
+                    yield VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description
+                
 # From RHN Client Tools
 
 def classify_hal(node):
