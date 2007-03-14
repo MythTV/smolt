@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-14 09:35+CDT\n"
+"POT-Creation-Date: 2007-03-14 11:41+CDT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,83 +71,111 @@ msgstr ""
 msgid "Communication with server failed"
 msgstr ""
 
-#: smolt.py:342
+#: smolt.py:347
+msgid "Devices"
+msgstr ""
+
+#: smolt.py:358
 msgid "UUID"
 msgstr ""
 
-#: smolt.py:343
+#: smolt.py:359
 msgid "OS"
 msgstr ""
 
-#: smolt.py:344
+#: smolt.py:360
 msgid "Default run level"
 msgstr ""
 
-#: smolt.py:345
+#: smolt.py:361
 msgid "Language"
 msgstr ""
 
-#: smolt.py:346
+#: smolt.py:362
 msgid "Platform"
 msgstr ""
 
-#: smolt.py:347
+#: smolt.py:363
 msgid "BogoMIPS"
 msgstr ""
 
-#: smolt.py:348
+#: smolt.py:364
 msgid "CPU Vendor"
 msgstr ""
 
-#: smolt.py:349
+#: smolt.py:365
 msgid "CPU Model"
 msgstr ""
 
-#: smolt.py:350
+#: smolt.py:366
 msgid "Number of CPUs"
 msgstr ""
 
-#: smolt.py:351
+#: smolt.py:367
 msgid "CPU Speed"
 msgstr ""
 
-#: smolt.py:352
+#: smolt.py:368
 msgid "System Memory"
 msgstr ""
 
-#: smolt.py:353
+#: smolt.py:369
 msgid "System Swap"
 msgstr ""
 
-#: smolt.py:354
+#: smolt.py:370
 msgid "Vendor"
 msgstr ""
 
-#: smolt.py:355
+#: smolt.py:371
 msgid "System"
 msgstr ""
 
-#: smolt.py:356
+#: smolt.py:372
 msgid "Form factor"
 msgstr ""
 
-#: smolt.py:357
+#: smolt.py:373
 msgid "Kernel"
-msgstr ""
-
-#: smolt.py:359
-msgid "Devices"
 msgstr ""
 
 #: smoltGui.py:37
 msgid "This is the hardware information smolt will send to the server."
 msgstr ""
 
-#: smoltGui.py:82
+#: smoltGui.py:58
+msgid "Label"
+msgstr ""
+
+#: smoltGui.py:64
+msgid "Data"
+msgstr ""
+
+#: smoltGui.py:81
+msgid "Device ID"
+msgstr ""
+
+#: smoltGui.py:88
+msgid "Bus"
+msgstr ""
+
+#: smoltGui.py:95
+msgid "Driver"
+msgstr ""
+
+#: smoltGui.py:102
+msgid "Type"
+msgstr ""
+
+#: smoltGui.py:109
+msgid "Description"
+msgstr ""
+
+#: smoltGui.py:148
 msgid "An error occurred while sending the data to the server."
 msgstr ""
 
-#: smoltGui.py:89
+#: smoltGui.py:155
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
