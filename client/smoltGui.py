@@ -30,14 +30,37 @@ from i18n import _
 import smolt
 
 class SmoltGui(object):
+    ui = '''<ui>
+  <menubar>
+    <menu action="File">
+      <menuitem action="Quit"/>
+    </menu>
+  </menubar>
+  <toolbar>
+    <toolitem action="Quit"/>
+    <separator/>
+    <toolitem action="Send"/>
+  </toolbar>
+</ui>
+'''
+    
     def __init__(self, args):
         self.profile = smolt.Hardware()
         self._create_gtk_windows()
 
     def _create_gtk_windows(self):
-        accelerators = gtk.AccelGroup()
+        actiongroup = gtk.ActionGroup('actiongroup')
+        actiongroup.add_actions([('Quit', gtk.STOCK_QUIT, '_Quit', None, 'Quit the program!', self.quit_cb),
+                                 ('Send', gtk.STOCK_GO_FORWARD, '_Send', None, _('Send your profile'), self.send_cb),
+                                 ('File', None, '_File')])
+                                
+        uim = gtk.UIManager()
+        uim.insert_action_group(actiongroup, 0)
+        uim.add_ui_from_string(self.ui)
+        accelerators = uim.get_accel_group()
+        
         self.mainWindow = gtk.Window()
-        self.mainWindow.set_property('title', 'smolt')
+        self.mainWindow.set_title('smolt')
         self.mainWindow.connect('delete_event', self.quit_cb)
         self.mainWindow.connect('destroy', self.quit_cb)
         self.mainWindow.add_accel_group(accelerators)
@@ -47,6 +70,14 @@ class SmoltGui(object):
         layout.show()
         self.mainWindow.add(layout)
 
+        menubar = uim.get_widget('ui/menubar')
+        menubar.show()
+        layout.pack_start(menubar, expand=False)
+
+        toolbar = uim.get_widget('ui/toolbar')
+        toolbar.show()
+        layout.pack_start(toolbar, expand=False)
+        
         header = gtk.Label(_('This is the hardware information smolt will send to the server.'))
         header.show()
         layout.pack_start(header, expand=False)
@@ -127,22 +158,6 @@ class SmoltGui(object):
         devicecolumn5.set_sort_column_id(4)
 
         tablevbox.pack_start(deviceview, expand=True)
-
-        buttonbox = gtk.HBox()
-        buttonbox.show()
-        layout.pack_start(buttonbox, expand=False)
-
-        closeButton = gtk.Button('_Cancel')
-        closeButton.show()
-        buttonbox.add(closeButton)
-        closeButton.connect('clicked', self.quit_cb)
-        closeButton.add_accelerator('clicked', accelerators,
-                ord('W'), gtk.gdk.CONTROL_MASK, gtk.ACCEL_VISIBLE)
-        
-        sendButton = gtk.Button('_Send')
-        sendButton.show()
-        buttonbox.add(sendButton)
-        sendButton.connect('clicked', self.send_cb)
 
     def quit_cb(self, *extra):
         '''Quit the program.'''
