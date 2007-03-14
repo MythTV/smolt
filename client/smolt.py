@@ -284,7 +284,7 @@ class Hardware:
         try:
             token = grabber.urlopen('%s/token?UUID=%s' % (smoonURL, self.host.UUID))
         except urlgrabber.grabber.URLGrabError, e:
-            error('Error contacting Server: %s' % e)
+            error(_('Error contacting Server: %s') % e)
             return 1
         else:
             for line in token.read().split('\n'):
@@ -295,7 +295,7 @@ class Hardware:
         try:
             tok = tok
         except NameError, e:
-            error('Communication with server failed')
+            error(_('Communication with server failed'))
             return 1
         
         sendHostStr = sendHostStr + '&token=%s&smoltProtocol=%s' % (tok, smoltProtocol)
@@ -307,7 +307,7 @@ class Hardware:
                             ('Content-length', '%i' % len(sendHostStr)),
                             ('Content-type', 'application/x-www-form-urlencoded')))
         except urlgrabber.grabber.URLGrabError, e:
-            error('Error contacting Server: %s' % e)
+            error(_('Error contacting Server: %s') % e)
             return 1
         else:
             serverMessage(o.read())
@@ -324,7 +324,7 @@ class Hardware:
                             ('Content-length', '%i' % len(sendDevicesStr)),
                             ('Content-type', 'application/x-www-form-urlencoded')))
         except urlgrabber.grabber.URLGrabError, e:
-            error('Error contacting Server: %s' % e)
+            error(_('Error contacting Server: %s') % e)
             return 1
         else:
             serverMessage(o.read())
@@ -474,9 +474,9 @@ def read_cpuinfo():
 
     # Okay, the kernel likes to give us the information we need in the
     # standard "C" locale.
-    if locale:
-        # not really needed if you don't plan on using atof()
-        locale.setlocale(locale.LC_NUMERIC, "C")
+    #if locale:
+    #    # not really needed if you don't plan on using atof()
+    #    locale.setlocale(locale.LC_NUMERIC, "C")
 
     cpulist = open("/proc/cpuinfo", "r").read()
     uname = os.uname()[4].lower()

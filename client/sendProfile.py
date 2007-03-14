@@ -1,5 +1,11 @@
 #!/usr/bin/python
 
+import locale
+locale.setlocale(locale.LC_ALL, '')
+
+import gettext
+gettext.install('smolt', '/usr/share/locale', unicode=1)
+
 import sys
 from optparse import OptionParser
 import time
@@ -17,37 +23,37 @@ parser.add_option('-d', '--debug',
                   dest = 'DEBUG',
                   default = False,
                   action = 'store_true',
-                  help = 'enable debug information')
+                  help = _('enable debug information'))
 parser.add_option('-s', '--server',
                   dest = 'smoonURL',
                   default = smolt.smoonURL,
                   metavar = 'smoonURL',
-                  help = 'specify the URL of the server (default "%default")')
+                  help = _('specify the URL of the server (default "%default")'))
 parser.add_option('-p', '--printOnly',
                   dest = 'printOnly',
                   default = False,
                   action = 'store_true',
-                  help = 'print information only, do not send')
+                  help = _('print information only, do not send'))
 parser.add_option('-a', '--autoSend',
                   dest = 'autoSend',
                   default = False,
                   action = 'store_true',
-                  help = 'don\'t prompt to send, just send')
+                  help = _('don\'t prompt to send, just send'))
 parser.add_option('-r', '--retry',
                   dest = 'retry',
                   default = False,
                   action = 'store_true',
-                  help = 'continue to send until success')
+                  help = _('continue to send until success'))
 parser.add_option('-u', '--useragent', '--user_agent',
                   dest = 'user_agent',
                   default = smolt.user_agent,
                   metavar = 'USERAGENT',
-                  help = 'specify HTTP user agent (default "%default")')
+                  help = _('specify HTTP user agent (default "%default")'))
 parser.add_option('-t', '--timeout',
                   dest = 'timeout',
                   type = 'float',
                   default = smolt.timeout,
-                  help = 'specify HTTP timeout in seconds (default %default seconds)')
+                  help = _('specify HTTP timeout in seconds (default %default seconds)'))
 
 (opts, args) = parser.parse_args()
 
@@ -70,12 +76,12 @@ if opts.retry:
     while 1:
         if not profile.send(user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
             sys.exit(0)
-        error("Retry Enabled - Retrying")
+        error(_('Retry Enabled - Retrying'))
         time.sleep(5)
 else:
     if profile.send(user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
-        print "Could not send - Exiting"
+        print _('Could not send - Exiting')
         sys.exit(1)
 
 url = urljoin(opts.smoonURL, '/show?UUID=%s' % profile.host.UUID)
-print 'To view your profile visit: %s' % url
+print _('To view your profile visit: %s') % url
