@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2007-03-14 09:35+CDT\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: deleteProfile.py:32 sendProfile.py:26
+msgid "enable debug information"
+msgstr ""
+
+#: deleteProfile.py:37 sendProfile.py:31
+msgid "specify the URL of the server (default \"%default\")"
+msgstr ""
+
+#: deleteProfile.py:42 sendProfile.py:36
+msgid "print information only, do not send"
+msgstr ""
+
+#: deleteProfile.py:47 sendProfile.py:51
+msgid "specify HTTP user agent (default \"%default\")"
+msgstr ""
+
+#: deleteProfile.py:52 sendProfile.py:56
+msgid "specify HTTP timeout in seconds (default %default seconds)"
+msgstr ""
+
+#: deleteProfile.py:70
+msgid "Error contacting Server:"
+msgstr ""
+
+#: deleteProfile.py:78
+msgid "Profile removed, please verify at"
+msgstr ""
+
+#: sendProfile.py:41
+msgid "don't prompt to send, just send"
+msgstr ""
+
+#: sendProfile.py:46
+msgid "continue to send until success"
+msgstr ""
+
+#: sendProfile.py:79
+msgid "Retry Enabled - Retrying"
+msgstr ""
+
+#: sendProfile.py:83
+msgid "Could not send - Exiting"
+msgstr ""
+
+#: sendProfile.py:87
+msgid "To view your profile visit: %s"
+msgstr ""
+
+#: smolt.py:293 smolt.py:316 smolt.py:333
+msgid "Error contacting Server: %s"
+msgstr ""
+
+#: smolt.py:304
+msgid "Communication with server failed"
+msgstr ""
+
+#: smolt.py:342
+msgid "UUID"
+msgstr ""
+
+#: smolt.py:343
+msgid "OS"
+msgstr ""
+
+#: smolt.py:344
+msgid "Default run level"
+msgstr ""
+
+#: smolt.py:345
+msgid "Language"
+msgstr ""
+
+#: smolt.py:346
+msgid "Platform"
+msgstr ""
+
+#: smolt.py:347
+msgid "BogoMIPS"
+msgstr ""
+
+#: smolt.py:348
+msgid "CPU Vendor"
+msgstr ""
+
+#: smolt.py:349
+msgid "CPU Model"
+msgstr ""
+
+#: smolt.py:350
+msgid "Number of CPUs"
+msgstr ""
+
+#: smolt.py:351
+msgid "CPU Speed"
+msgstr ""
+
+#: smolt.py:352
+msgid "System Memory"
+msgstr ""
+
+#: smolt.py:353
+msgid "System Swap"
+msgstr ""
+
+#: smolt.py:354
+msgid "Vendor"
+msgstr ""
+
+#: smolt.py:355
+msgid "System"
+msgstr ""
+
+#: smolt.py:356
+msgid "Form factor"
+msgstr ""
+
+#: smolt.py:357
+msgid "Kernel"
+msgstr ""
+
+#: smolt.py:359
+msgid "Devices"
+msgstr ""
+
+#: smoltGui.py:37
+msgid "This is the hardware information smolt will send to the server."
+msgstr ""
+
+#: smoltGui.py:82
+msgid "An error occurred while sending the data to the server."
+msgstr ""
+
+#: smoltGui.py:89
+msgid ""
+"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"%s\n"
+"stored in /etc/sysconfig/hw-uuid"
+msgstr ""
+
