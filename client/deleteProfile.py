@@ -1,5 +1,11 @@
 #!/usr/bin/python
 
+import locale
+locale.setlocale(locale.LC_ALL, '')
+
+import gettext
+gettext.install('smolt', '/usr/share/locale', unicode=1)
+
 import sys
 import urlgrabber.grabber
 from optparse import OptionParser
@@ -23,27 +29,27 @@ parser.add_option('-d', '--debug',
                   dest = 'DEBUG',
                   default = False,
                   action = 'store_true',
-                  help = 'enable debug information')
+                  help = _('enable debug information'))
 parser.add_option('-s', '--server',
                   dest = 'smoonURL',
                   default = smolt.smoonURL,
                   metavar = 'smoonURL',
-                  help = 'specify the URL of the server (default "%default")')
+                  help = _('specify the URL of the server (default "%default")'))
 parser.add_option('-p', '--printOnly',
                   dest = 'printOnly',
                   default = False,
                   action = 'store_true',
-                  help = 'print information only, do not send')
+                  help = _('print information only, do not send'))
 parser.add_option('-u', '--useragent',
                   dest = 'user_agent',
                   default = smolt.user_agent,
                   metavar = 'USERAGENT',
-                  help = 'specify HTTP user agent (default "%default")')
+                  help = _('specify HTTP user agent (default "%default")'))
 parser.add_option('-t', '--timeout',
                   dest = 'timeout',
                   type = 'float',
                   default = smolt.timeout,
-                  help = 'specify HTTP timeout in seconds (default %default seconds)')
+                  help = _('specify HTTP timeout in seconds (default %default seconds)'))
 
 (opts, args) = parser.parse_args()
 
@@ -61,11 +67,14 @@ try:
                     ('Content-length', '%i' % len(delHostString)),
                     ('Content-type', 'application/x-www-form-urlencoded')))
 except urlgrabber.grabber.URLGrabError, e:
-    error('Error contacting Server: %s' % e)
+    sys.stderr.write(_('Error contacting Server:'))
+    sys.stderr.write(str(e))
+    sys.stderr.write('\n')
     sys.exit(1)
 else:
     serverMessage(o.read())
     o.close()
 
-print 'Profile Removed, please verify at %s/show?%s' % (opts.smoonURL, delHostString)
+sys.stdout.write(_('Profile removed, please verify at'))
+sys.stdout.write(' %s/show?%s\n' % (opts.smoonURL, delHostString))
 

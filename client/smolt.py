@@ -290,7 +290,7 @@ class Hardware:
         try:
             token = grabber.urlopen('%s/token?UUID=%s' % (smoonURL, self.host.UUID))
         except urlgrabber.grabber.URLGrabError, e:
-            error('Error contacting Server: %s' % e)
+            error(_('Error contacting Server: %s') % e)
             return 1
         else:
             for line in token.read().split('\n'):
@@ -301,7 +301,7 @@ class Hardware:
         try:
             tok = tok
         except NameError, e:
-            error('Communication with server failed')
+            error(_('Communication with server failed'))
             return 1
         
         sendHostStr = sendHostStr + '&token=%s&smoltProtocol=%s' % (tok, smoltProtocol)
@@ -313,7 +313,7 @@ class Hardware:
                             ('Content-length', '%i' % len(sendHostStr)),
                             ('Content-type', 'application/x-www-form-urlencoded')))
         except urlgrabber.grabber.URLGrabError, e:
-            error('Error contacting Server: %s' % e)
+            error(_('Error contacting Server: %s') % e)
             return 1
         else:
             serverMessage(o.read())
@@ -330,7 +330,7 @@ class Hardware:
                             ('Content-length', '%i' % len(sendDevicesStr)),
                             ('Content-type', 'application/x-www-form-urlencoded')))
         except urlgrabber.grabber.URLGrabError, e:
-            error('Error contacting Server: %s' % e)
+            error(_('Error contacting Server: %s') % e)
             return 1
         else:
             serverMessage(o.read())
@@ -339,40 +339,28 @@ class Hardware:
         
     def getProfile(self):
         printBuffer = []
-        for label, data in self.hostIter():
-            printBuffer.append('\t%s: %s' % (label, data))
-            
+        printBuffer.append('\t' + _('UUID') + ': %s' % self.host.UUID)
+        printBuffer.append('\t' + _('OS') + ': %s' % self.host.os)
+        printBuffer.append('\t' + _('Default run level') + ': %s' % self.host.defaultRunlevel)
+        printBuffer.append('\t' + _('Language') + ': %s' % self.host.language)
+        printBuffer.append('\t' + _('Platform') + ': %s' % self.host.platform)
+        printBuffer.append('\t' + _('BogoMIPS') + ': %s' % self.host.bogomips)
+        printBuffer.append('\t' + _('CPU Vendor') + ': %s' % self.host.cpuVendor)
+        printBuffer.append('\t' + _('CPU Model') + ': %s' % self.host.cpuModel)
+        printBuffer.append('\t' + _('Number of CPUs') + ': %s' % self.host.numCpus)
+        printBuffer.append('\t' + _('CPU Speed') + ': %s' % self.host.cpuSpeed)
+        printBuffer.append('\t' + _('System Memory') + ': %s' % self.host.systemMemory)
+        printBuffer.append('\t' + _('System Swap') + ': %s' % self.host.systemSwap)
+        printBuffer.append('\t' + _('Vendor') + ': %s' % self.host.systemVendor)
+        printBuffer.append('\t' + _('System') + ': %s' % self.host.systemModel)
+        printBuffer.append('\t' + _('Form factor') + ': %s' % self.host.formfactor)
+        printBuffer.append('\t' + _('Kernel') + ': %s' % self.host.kernelVersion)
         printBuffer.append('')
-        printBuffer.append('\t\t Devices')
+        printBuffer.append('\t\t ' + _('Devices'))
         printBuffer.append('\t\t=================================')
         
-        for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
-            printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-            self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-            
-        return '\n'.join(printBuffer)
-
-    def hostIter(self):
-        '''Iterate over host information.'''
-        yield 'UUID', self.host.UUID
-        yield 'OS', self.host.os
-        yield 'Default run level', self.host.defaultRunlevel
-        yield 'Language', self.host.language
-        yield 'Platform', self.host.platform
-        yield 'BogoMIPS', self.host.bogomips
-        yield 'CPU Vendor', self.host.cpuVendor
-        yield 'CPU Model', self.host.cpuModel
-        yield 'Number of CPUs', self.host.numCpus
-        yield 'CPU Speed', self.host.cpuSpeed
-        yield 'System Memory', self.host.systemMemory
-        yield 'System Swap', self.host.systemSwap
-        yield 'Vendor', self.host.systemVendor
-        yield 'System', self.host.systemModel
-        yield 'Form factor', self.host.formfactor
-        yield 'Kernel', self.host.kernelVersion
+        #devices = []
         
-    def deviceIter(self):
-        '''Iterate over our devices.'''
         for device in self.devices:
             try:
                 Bus = self.devices[device].bus
@@ -387,8 +375,10 @@ class Hardware:
                 continue
             else:
                 if not ignoreDevice(self.devices[device]):
-                    yield VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description
-                
+                    printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+                    self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+        return '\n'.join(printBuffer)
+
 # From RHN Client Tools
 
 def classify_hal(node):
@@ -490,9 +480,9 @@ def read_cpuinfo():
 
     # Okay, the kernel likes to give us the information we need in the
     # standard "C" locale.
-    if locale:
-        # not really needed if you don't plan on using atof()
-        locale.setlocale(locale.LC_NUMERIC, "C")
+    #if locale:
+    #    # not really needed if you don't plan on using atof()
+    #    locale.setlocale(locale.LC_NUMERIC, "C")
 
     cpulist = open("/proc/cpuinfo", "r").read()
     uname = os.uname()[4].lower()
