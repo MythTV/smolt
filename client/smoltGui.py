@@ -1,6 +1,5 @@
 #!/usr/bin/python -tt
 # Author: Toshio Kuratomi
-# License: GPL
 
 # smolt - Fedora hardware profiler
 #
@@ -38,6 +37,7 @@ class SmoltGui(object):
     def _create_gtk_windows(self):
         accelerators = gtk.AccelGroup()
         self.mainWindow = gtk.Window()
+        self.mainWindow.set_property('title', 'smolt')
         self.mainWindow.connect('delete_event', self.quit_cb)
         self.mainWindow.connect('destroy', self.quit_cb)
         self.mainWindow.add_accel_group(accelerators)
