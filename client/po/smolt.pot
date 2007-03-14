@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-14 12:24+CDT\n"
+"POT-Creation-Date: 2007-03-14 14:22+CDT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: deleteProfile.py:28 sendProfile.py:26
+#: deleteProfile.py:28 sendProfile.py:21
 msgid "enable debug information"
 msgstr ""
 
-#: deleteProfile.py:33 sendProfile.py:31
+#: deleteProfile.py:33 sendProfile.py:26
 msgid "specify the URL of the server (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:38 sendProfile.py:36
+#: deleteProfile.py:38 sendProfile.py:31
 msgid "print information only, do not send"
 msgstr ""
 
-#: deleteProfile.py:43 sendProfile.py:51
+#: deleteProfile.py:43 sendProfile.py:46
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:48 sendProfile.py:56
+#: deleteProfile.py:48 sendProfile.py:51
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr ""
 
@@ -43,23 +43,23 @@ msgstr ""
 msgid "Profile removed, please verify at"
 msgstr ""
 
-#: sendProfile.py:41
+#: sendProfile.py:36
 msgid "don't prompt to send, just send"
 msgstr ""
 
-#: sendProfile.py:46
+#: sendProfile.py:41
 msgid "continue to send until success"
 msgstr ""
 
-#: sendProfile.py:79
+#: sendProfile.py:74
 msgid "Retry Enabled - Retrying"
 msgstr ""
 
-#: sendProfile.py:83
+#: sendProfile.py:78
 msgid "Could not send - Exiting"
 msgstr ""
 
-#: sendProfile.py:87
+#: sendProfile.py:82
 msgid "To view your profile visit: %s"
 msgstr ""
 
