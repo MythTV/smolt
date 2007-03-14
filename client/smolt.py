@@ -216,12 +216,18 @@ def ignoreDevice(device):
         return 1
     return 0
 
+class ServerError(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
+
 def serverMessage(page):
     for line in page.split("\n"):
         if 'ServerMessage:' in line:
             print 'Server Message: "%s"' % line.split('ServerMessage: ')[1]
             if 'Critical' in line:
-                sys.exit(3)
+                raise ServerError, 'Could not contact server: %s ' % line.split('ServerMessage: ')[1]
 
 
 def error(message):
@@ -231,20 +237,33 @@ def debug(message):
     if DEBUG:
         print message
 
+class SystemBusError(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
 
+class UUIDError(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
 
 class Hardware:
     devices = {}
     myDevices = []
     def __init__(self):
-        systemBus = dbus.SystemBus()
+    try:
+            systemBus = dbus.SystemBus()
+        except:
+            raise SystemBusError, "Could not bind to dbus"
         mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
         try:
             all_dev_lst = mgr.GetAllDevices()
         except:
             print "Error: Could not connect to hal, is it running?"
             print "     Hint - service haldaemon start"
-            sys.exit(5)
+            (5)
 
         for udi in all_dev_lst:
             dev = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', udi, 'org.freedesktop.Hal.Device')
@@ -825,5 +844,5 @@ def getUUID():
                 sys.stderr.write('Unable to save UUID, continuing...\n')
         except IOError:
             sys.stderr.write('Unable to determine UUID of system!\n')
-            sys.exit(1)
+            raise UUIDError, 'Could not determine UUID of system!\n'
     return UUID

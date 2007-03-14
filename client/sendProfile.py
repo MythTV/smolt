@@ -87,7 +87,12 @@ elif opts.checkin:
     sys.exit(6)
 
 # read the profile
-profile = smolt.Hardware()
+try:
+    profile = smolt.Hardware()
+except smolt.SystemBusError, e:
+    error('Error: %s' % e)
+    error('\tHint: Try "service haldaemon start"')
+    sys.exit(8)
 print profile.getProfile()
 
 if not opts.autoSend:
