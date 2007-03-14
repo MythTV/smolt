@@ -6,6 +6,7 @@ The client for smolt could use some work.
     * Fix the sending mechanism (currently one send per host and per device)
     * Gui (abadger1999 has proof of concept)
     * Error checking (seriously) 
+    * Proper timeout
     * Remove redhat-lsb requirement
     * smoltRemoveProfile
     * smoltDiff

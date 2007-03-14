@@ -86,6 +86,7 @@ class Root(controllers.RootController):
         from Crypto.Cipher import XOR
         import urllib
         import time, datetime
+        from mx import DateTime
 
         if not (smoltProtocol == smoltProtocol):
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
@@ -124,6 +125,7 @@ class Root(controllers.RootController):
             hostSQL.system = system.strip()
             hostSQL.kernelVersion = kernelVersion.strip()
             hostSQL.formfactor = formfactor.strip()
+            hostSQL.LastModified = DateTime.now()
 
         except SQLObjectNotFound:
             try:
@@ -145,7 +147,8 @@ class Root(controllers.RootController):
                         vendor = vendor.strip(),
                         system = system.strip(),
                         kernelVersion = kernelVersion.strip(),
-                        formfactor = formfactor.strip())
+                        formfactor = formfactor.strip(),
+                        LastModified = DateTime.now())
 
         return dict(hostObject=hostSQL, devices=[])
 

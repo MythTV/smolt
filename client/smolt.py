@@ -219,7 +219,13 @@ class Hardware:
     def __init__(self):
         systemBus = dbus.SystemBus()
         mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
-        all_dev_lst = mgr.GetAllDevices()
+        try:
+            all_dev_lst = mgr.GetAllDevices()
+        except:
+            print "Error: Could not connect to hal, is it running?"
+            print "     Hint - service haldaemon start"
+            sys.exit(5)
+
         for udi in all_dev_lst:
             dev = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', udi, 'org.freedesktop.Hal.Device')
             props = dev.GetAllProperties()

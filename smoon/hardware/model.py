@@ -44,3 +44,5 @@ class Host(SQLObject):
     formfactor = StringCol(title="Formfactor")
     defaultRunlevel = IntCol(title="Default Runlevel")
     hostLink = MultipleJoin('HostLinks', joinColumn='host_link_id')
+    lastModified = DateTimeCol(title="Last Modified")
+
