@@ -22,6 +22,7 @@ import sys
 from optparse import OptionParser
 import time
 from urlparse import urljoin
+import os
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -67,10 +68,23 @@ parser.add_option('-t', '--timeout',
                   type = 'float',
                   default = smolt.timeout,
                   help = _('specify HTTP timeout in seconds (default %default seconds)'))
+parser.add_option('-c', '--checkin',
+                  dest = 'checkin',
+                  default = False,
+                  action = 'store_true',
+                  help = _('Automated Checkin'))
 
 (opts, args) = parser.parse_args()
 
 smolt.DEBUG = opts.DEBUG
+
+if opts.checkin and os.path.exists('/var/lock/subsys/smolt'):
+    # Smolt is set to run
+    opts.autoSend = True
+elif opts.checkin:
+    # Tried to check in but checkins are disabled
+    print _('Smolt set to checkin but checkins are disabled (hint: service smolt start)')
+    sys.exit(6)
 
 # read the profile
 profile = smolt.Hardware()

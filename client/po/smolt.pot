@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-14 15:04+CDT\n"
+"POT-Creation-Date: 2007-03-14 16:42+CDT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: deleteProfile.py:45 sendProfile.py:39
+#: deleteProfile.py:45 sendProfile.py:40
 msgid "enable debug information"
 msgstr ""
 
-#: deleteProfile.py:50 sendProfile.py:44
+#: deleteProfile.py:50 sendProfile.py:45
 msgid "specify the URL of the server (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:55 sendProfile.py:49
+#: deleteProfile.py:55 sendProfile.py:50
 msgid "print information only, do not send"
 msgstr ""
 
-#: deleteProfile.py:60 sendProfile.py:64
+#: deleteProfile.py:60 sendProfile.py:65
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:65 sendProfile.py:69
+#: deleteProfile.py:65 sendProfile.py:70
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr ""
 
@@ -43,23 +43,31 @@ msgstr ""
 msgid "Profile removed, please verify at"
 msgstr ""
 
-#: sendProfile.py:54
+#: sendProfile.py:55
 msgid "don't prompt to send, just send"
 msgstr ""
 
-#: sendProfile.py:59
+#: sendProfile.py:60
 msgid "continue to send until success"
 msgstr ""
 
-#: sendProfile.py:92
+#: sendProfile.py:75
+msgid "Automated Checkin"
+msgstr ""
+
+#: sendProfile.py:86
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+
+#: sendProfile.py:106
 msgid "Retry Enabled - Retrying"
 msgstr ""
 
-#: sendProfile.py:96
+#: sendProfile.py:110
 msgid "Could not send - Exiting"
 msgstr ""
 
-#: sendProfile.py:100
+#: sendProfile.py:114
 msgid "To view your profile visit: %s"
 msgstr ""
 

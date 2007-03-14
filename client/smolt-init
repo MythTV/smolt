@@ -1,0 +1,69 @@
+#!/bin/bash
+#
+# yum           This shell script enables automated checkins with Smolt
+#
+# Author:       Seth Vidal <skvidal@phy.duke.edu>
+#               Mike McGrath <mmcgrath@redhat.com>
+#
+# chkconfig:	- 90 01
+#
+# description:  Enable monthly update of Smolt
+# processname:  smolt
+#
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+lockfile=/var/lock/subsys/smolt
+
+RETVAL=0
+
+start() {
+	echo -n $"Enabling monthly Smolt checkin: "
+	touch "$lockfile" && success || failure
+	RETVAL=$?
+	echo
+}
+
+stop() {
+	echo -n $"Disabling monthly Smolt update: "
+	/bin/rm "$lockfile" 2> /dev/null && success || failure
+	RETVAL=$?
+	echo
+}
+
+restart() {
+	stop
+	start
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop) 
+	stop
+	;;
+  restart|force-reload)
+	restart
+	;;
+  reload)
+	;;
+  condrestart)
+	[ -f "$lockfile" ] && restart
+	;;
+  status)
+	if [ -f $lockfile ]; then
+		echo $"Monthly smolt check-in is enabled."
+		RETVAL=0
+	else
+		echo $"Monthly smolt check-in is disabled."
+		RETVAL=3
+	fi
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart|reload|force-reload|condrestart}"
+	exit 1
+esac
+
+exit $RETVAL
