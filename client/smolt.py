@@ -355,22 +355,22 @@ class Hardware:
 
     def hostIter(self):
         '''Iterate over host information.'''
-        yield 'UUID', self.host.UUID
-        yield 'OS', self.host.os
-        yield 'Default run level', self.host.defaultRunlevel
-        yield 'Language', self.host.language
-        yield 'Platform', self.host.platform
-        yield 'BogoMIPS', self.host.bogomips
-        yield 'CPU Vendor', self.host.cpuVendor
-        yield 'CPU Model', self.host.cpuModel
-        yield 'Number of CPUs', self.host.numCpus
-        yield 'CPU Speed', self.host.cpuSpeed
-        yield 'System Memory', self.host.systemMemory
-        yield 'System Swap', self.host.systemSwap
-        yield 'Vendor', self.host.systemVendor
-        yield 'System', self.host.systemModel
-        yield 'Form factor', self.host.formfactor
-        yield 'Kernel', self.host.kernelVersion
+        yield _('UUID'), self.host.UUID
+        yield _('OS'), self.host.os
+        yield _('Default run level'), self.host.defaultRunlevel
+        yield _('Language'), self.host.language
+        yield _('Platform'), self.host.platform
+        yield _('BogoMIPS'), self.host.bogomips
+        yield _('CPU Vendor'), self.host.cpuVendor
+        yield _('CPU Model'), self.host.cpuModel
+        yield _('Number of CPUs'), self.host.numCpus
+        yield _('CPU Speed'), self.host.cpuSpeed
+        yield _('System Memory'), self.host.systemMemory
+        yield _('System Swap'), self.host.systemSwap
+        yield _('Vendor'), self.host.systemVendor
+        yield _('System'), self.host.systemModel
+        yield _('Form factor'), self.host.formfactor
+        yield _('Kernel'), self.host.kernelVersion
         
     def deviceIter(self):
         '''Iterate over our devices.'''
