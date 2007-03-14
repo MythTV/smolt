@@ -13,6 +13,8 @@
 # Find out what we're not getting
 #
 
+from i18n import _
+
 import dbus
 import software
 import os

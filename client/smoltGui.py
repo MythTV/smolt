@@ -2,12 +2,6 @@
 # Author: Toshio Kuratomi
 # License: GPL
 
-import locale
-locale.setlocale(locale.LC_ALL, '')
-
-import gettext
-gettext.install('smolt', '/usr/share/locale', unicode=1)
-
 import sys
 import subprocess
 import gtk
@@ -15,6 +9,7 @@ from urlparse import urljoin
 
 sys.path.append('/usr/share/smolt/client')
 
+from i18n import _
 import smolt
 
 class SmoltGui(object):

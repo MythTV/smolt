@@ -1,11 +1,5 @@
 #!/usr/bin/python
 
-import locale
-locale.setlocale(locale.LC_ALL, '')
-
-import gettext
-gettext.install('smolt', '/usr/share/locale', unicode=1)
-
 import sys
 from optparse import OptionParser
 import time
@@ -13,6 +7,7 @@ from urlparse import urljoin
 
 sys.path.append('/usr/share/smolt/client')
 
+from i18n import _
 import smolt
 from smolt import debug
 from smolt import error

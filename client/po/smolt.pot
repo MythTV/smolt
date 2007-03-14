@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-14 11:41+CDT\n"
+"POT-Creation-Date: 2007-03-14 12:24+CDT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,31 +15,31 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: deleteProfile.py:32 sendProfile.py:26
+#: deleteProfile.py:28 sendProfile.py:26
 msgid "enable debug information"
 msgstr ""
 
-#: deleteProfile.py:37 sendProfile.py:31
+#: deleteProfile.py:33 sendProfile.py:31
 msgid "specify the URL of the server (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:42 sendProfile.py:36
+#: deleteProfile.py:38 sendProfile.py:36
 msgid "print information only, do not send"
 msgstr ""
 
-#: deleteProfile.py:47 sendProfile.py:51
+#: deleteProfile.py:43 sendProfile.py:51
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:52 sendProfile.py:56
+#: deleteProfile.py:48 sendProfile.py:56
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr ""
 
-#: deleteProfile.py:70
+#: deleteProfile.py:66
 msgid "Error contacting Server:"
 msgstr ""
 
-#: deleteProfile.py:78
+#: deleteProfile.py:74
 msgid "Profile removed, please verify at"
 msgstr ""
 
@@ -63,119 +63,119 @@ msgstr ""
 msgid "To view your profile visit: %s"
 msgstr ""
 
-#: smolt.py:293 smolt.py:316 smolt.py:333
+#: smolt.py:295 smolt.py:318 smolt.py:335
 msgid "Error contacting Server: %s"
 msgstr ""
 
-#: smolt.py:304
+#: smolt.py:306
 msgid "Communication with server failed"
 msgstr ""
 
-#: smolt.py:347
+#: smolt.py:349
 msgid "Devices"
 msgstr ""
 
-#: smolt.py:358
+#: smolt.py:360
 msgid "UUID"
 msgstr ""
 
-#: smolt.py:359
+#: smolt.py:361
 msgid "OS"
 msgstr ""
 
-#: smolt.py:360
+#: smolt.py:362
 msgid "Default run level"
 msgstr ""
 
-#: smolt.py:361
+#: smolt.py:363
 msgid "Language"
 msgstr ""
 
-#: smolt.py:362
+#: smolt.py:364
 msgid "Platform"
 msgstr ""
 
-#: smolt.py:363
+#: smolt.py:365
 msgid "BogoMIPS"
 msgstr ""
 
-#: smolt.py:364
+#: smolt.py:366
 msgid "CPU Vendor"
 msgstr ""
 
-#: smolt.py:365
+#: smolt.py:367
 msgid "CPU Model"
 msgstr ""
 
-#: smolt.py:366
+#: smolt.py:368
 msgid "Number of CPUs"
 msgstr ""
 
-#: smolt.py:367
+#: smolt.py:369
 msgid "CPU Speed"
 msgstr ""
 
-#: smolt.py:368
+#: smolt.py:370
 msgid "System Memory"
 msgstr ""
 
-#: smolt.py:369
+#: smolt.py:371
 msgid "System Swap"
 msgstr ""
 
-#: smolt.py:370
+#: smolt.py:372
 msgid "Vendor"
 msgstr ""
 
-#: smolt.py:371
+#: smolt.py:373
 msgid "System"
 msgstr ""
 
-#: smolt.py:372
+#: smolt.py:374
 msgid "Form factor"
 msgstr ""
 
-#: smolt.py:373
+#: smolt.py:375
 msgid "Kernel"
 msgstr ""
 
-#: smoltGui.py:37
+#: smoltGui.py:32
 msgid "This is the hardware information smolt will send to the server."
 msgstr ""
 
-#: smoltGui.py:58
+#: smoltGui.py:53
 msgid "Label"
 msgstr ""
 
-#: smoltGui.py:64
+#: smoltGui.py:59
 msgid "Data"
 msgstr ""
 
-#: smoltGui.py:81
+#: smoltGui.py:76
 msgid "Device ID"
 msgstr ""
 
-#: smoltGui.py:88
+#: smoltGui.py:83
 msgid "Bus"
 msgstr ""
 
-#: smoltGui.py:95
+#: smoltGui.py:90
 msgid "Driver"
 msgstr ""
 
-#: smoltGui.py:102
+#: smoltGui.py:97
 msgid "Type"
 msgstr ""
 
-#: smoltGui.py:109
+#: smoltGui.py:104
 msgid "Description"
 msgstr ""
 
-#: smoltGui.py:148
+#: smoltGui.py:143
 msgid "An error occurred while sending the data to the server."
 msgstr ""
 
-#: smoltGui.py:155
+#: smoltGui.py:150
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
