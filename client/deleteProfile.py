@@ -1,18 +1,14 @@
 #!/usr/bin/python
 
 import sys
-import getopt
 import urlgrabber.grabber
+from optparse import OptionParser
 
 sys.path.append('/usr/share/smolt/client')
 
 import smolt
-
-DEBUG = 0
-printOnly = 0
-smoonURL = 'http://smolt.fedoraproject.org/'
-
-grabber = urlgrabber.grabber.URLGrabber()
+from smolt import error
+from smolt import debug
 
 def serverMessage(page):
     for line in page.split("\n"):
@@ -21,44 +17,47 @@ def serverMessage(page):
             if 'Critical' in line:
                 sys.exit(3)
 
+parser = OptionParser(version = smolt.smoltProtocol)
 
-def error(message):
-    print >> sys.stderr, message
+parser.add_option('-d', '--debug',
+                  dest = 'DEBUG',
+                  default = False,
+                  action = 'store_true',
+                  help = 'enable debug information')
+parser.add_option('-s', '--server',
+                  dest = 'smoonURL',
+                  default = smolt.smoonURL,
+                  metavar = 'smoonURL',
+                  help = 'specify the URL of the server (default "%default")')
+parser.add_option('-p', '--printOnly',
+                  dest = 'printOnly',
+                  default = False,
+                  action = 'store_true',
+                  help = 'print information only, do not send')
+parser.add_option('-u', '--useragent',
+                  dest = 'user_agent',
+                  default = smolt.user_agent,
+                  metavar = 'USERAGENT',
+                  help = 'specify HTTP user agent (default "%default")')
+parser.add_option('-t', '--timeout',
+                  dest = 'timeout',
+                  type = 'float',
+                  default = smolt.timeout,
+                  help = 'specify HTTP timeout in seconds (default %default seconds)')
 
-def debug(message):
-    if DEBUG == 1:
-        print message
+(opts, args) = parser.parse_args()
+
+smolt.DEBUG = opts.DEBUG
+
 # read the profile
 profile = smolt.Hardware()
 
-def help():
-    print "Usage:"
-    print "     -h,--help           Display this help menu"
-    print "     -d,--debug          Enable debug information"
-    print "     -p,--printOnly      Print Information only, do not send"
-    print "     -s,--server=        serverUrl (http://yourSmoonServer/"
-    sys.exit(2)
-
-try:
-    opts, args = getopt.getopt(sys.argv[1:], 'phds:', ['help', 'debug', 'printOnly', 'server='])
-except getopt.GetoptError:
-    help()
-    sys.exit(2)
-
-for opt, arg in opts:
-    if opt in ('-h', '--help'):
-        help()
-    if opt in ('-d', '--debug'):
-        DEBUG = 1
-    if opt in ('-s', '--server'):
-        smoonURL = arg
-    if opt in('-p', '--printOnly'):
-        printOnly = 1
+grabber = urlgrabber.grabber.URLGrabber(user_agent=opts.user_agent, timeout=opts.timeout)
 
 delHostString = 'UUID=%s' % profile.host.UUID
 
 try:
-    o=grabber.urlopen('%s/delete' % smoonURL, data=delHostString, http_headers=(
+    o=grabber.urlopen('%s/delete' % opts.smoonURL, data=delHostString, http_headers=(
                     ('Content-length', '%i' % len(delHostString)),
                     ('Content-type', 'application/x-www-form-urlencoded')))
 except urlgrabber.grabber.URLGrabError, e:
@@ -68,5 +67,5 @@ else:
     serverMessage(o.read())
     o.close()
 
-print 'Profile Removed, please verify at %s/show?%s' % (smoonURL, delHostString)
+print 'Profile Removed, please verify at %s/show?%s' % (opts.smoonURL, delHostString)
 
