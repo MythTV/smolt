@@ -2,6 +2,12 @@
 # Author: Toshio Kuratomi
 # License: GPL
 
+import locale
+locale.setlocale(locale.LC_ALL, '')
+
+import gettext
+gettext.install('smolt', '/usr/share/locale', unicode=1)
+
 import sys
 import subprocess
 import gtk
@@ -28,7 +34,7 @@ class SmoltGui(object):
         layout.show()
         self.mainWindow.add(layout)
 
-        header = gtk.Label('This is the hardware information smolt will send to the server.')
+        header = gtk.Label(_('This is the hardware information smolt will send to the server.'))
         header.show()
         layout.pack_start(header, expand=False)
 
@@ -73,14 +79,14 @@ class SmoltGui(object):
                     gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
                     gtk.MESSAGE_WARNING,
                     gtk.BUTTONS_OK,
-                    message_format='An error occurred while sending the data to the server.')
+                    message_format=_('An error occurred while sending the data to the server.'))
         else:
             url = urljoin(smolt.smoonURL, '/show?UUID=%s' % self.profile.host.UUID)
             finishMessage = gtk.MessageDialog(self.mainWindow,
                     gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
                     gtk.MESSAGE_INFO,
                     gtk.BUTTONS_OK,
-                    message_format='The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in /etc/sysconfig/hw-uuid' % self.profile.host.UUID)
+                    message_format=_('The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in /etc/sysconfig/hw-uuid') % self.profile.host.UUID)
         finishMessage.show()
         finishMessage.run()
         self.quit_cb(None)
