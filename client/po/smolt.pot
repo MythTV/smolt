@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-14 20:14+CDT\n"
+"POT-Creation-Date: 2007-03-14 22:25+CDT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: deleteProfile.py:35 smolt.py:228
+#: deleteProfile.py:35 smolt.py:221
 msgid "Server Message: \"%s\""
 msgstr ""
 
@@ -95,139 +95,159 @@ msgstr ""
 msgid "To view your profile visit: %s"
 msgstr ""
 
-#: smolt.py:230
+#: smolt.py:223
 msgid "Could not contact server: %s"
 msgstr ""
 
-#: smolt.py:262
+#: smolt.py:255
 msgid "Could not bind to dbus"
 msgstr ""
 
-#: smolt.py:268
+#: smolt.py:261
 msgid "Could not connect to hal, is it running?"
 msgstr ""
 
-#: smolt.py:268
+#: smolt.py:261
 msgid "Run \"service haldaemon start\" as root"
 msgstr ""
 
-#: smolt.py:334 smolt.py:357 smolt.py:374
+#: smolt.py:327 smolt.py:350 smolt.py:367
 msgid "Error contacting Server: %s"
 msgstr ""
 
-#: smolt.py:345
+#: smolt.py:338
 msgid "Communication with server failed"
 msgstr ""
 
-#: smolt.py:388
+#: smolt.py:381
 msgid "Devices"
 msgstr ""
 
-#: smolt.py:399
+#: smolt.py:392
 msgid "UUID"
 msgstr ""
 
-#: smolt.py:400
+#: smolt.py:393
 msgid "OS"
 msgstr ""
 
-#: smolt.py:401
+#: smolt.py:394
 msgid "Default run level"
 msgstr ""
 
-#: smolt.py:402
+#: smolt.py:395
 msgid "Language"
 msgstr ""
 
-#: smolt.py:403
+#: smolt.py:396
 msgid "Platform"
 msgstr ""
 
-#: smolt.py:404
+#: smolt.py:397
 msgid "BogoMIPS"
 msgstr ""
 
-#: smolt.py:405
+#: smolt.py:398
 msgid "CPU Vendor"
 msgstr ""
 
-#: smolt.py:406
+#: smolt.py:399
 msgid "CPU Model"
 msgstr ""
 
-#: smolt.py:407
+#: smolt.py:400
 msgid "Number of CPUs"
 msgstr ""
 
-#: smolt.py:408
+#: smolt.py:401
 msgid "CPU Speed"
 msgstr ""
 
-#: smolt.py:409
+#: smolt.py:402
 msgid "System Memory"
 msgstr ""
 
-#: smolt.py:410
+#: smolt.py:403
 msgid "System Swap"
 msgstr ""
 
-#: smolt.py:411
+#: smolt.py:404
 msgid "Vendor"
 msgstr ""
 
-#: smolt.py:412
+#: smolt.py:405
 msgid "System"
 msgstr ""
 
-#: smolt.py:413
+#: smolt.py:406
 msgid "Form factor"
 msgstr ""
 
-#: smolt.py:414
+#: smolt.py:407
 msgid "Kernel"
 msgstr ""
 
-#: smoltGui.py:42
-msgid "Send your profile"
+#: smoltGui.py:62
+msgid "Quit the program without sending your hardware profile to the server"
 msgstr ""
 
-#: smoltGui.py:69
-msgid "This is the hardware information smolt will send to the server."
+#: smoltGui.py:62
+msgid "_Quit"
 msgstr ""
 
-#: smoltGui.py:90
+#: smoltGui.py:63
+msgid "Send your hardware profile to the server."
+msgstr ""
+
+#: smoltGui.py:63
+msgid "_Send"
+msgstr ""
+
+#: smoltGui.py:64
+msgid "Show _Privacy Policy"
+msgstr ""
+
+#: smoltGui.py:64
+msgid "Show the Smolt privacy policy."
+msgstr ""
+
+#: smoltGui.py:65
+msgid "_About"
+msgstr ""
+
+#: smoltGui.py:114
 msgid "Label"
 msgstr ""
 
-#: smoltGui.py:96
+#: smoltGui.py:120
 msgid "Data"
 msgstr ""
 
-#: smoltGui.py:113
+#: smoltGui.py:141
 msgid "Device ID"
 msgstr ""
 
-#: smoltGui.py:120
+#: smoltGui.py:148
 msgid "Bus"
 msgstr ""
 
-#: smoltGui.py:127
+#: smoltGui.py:155
 msgid "Driver"
 msgstr ""
 
-#: smoltGui.py:134
+#: smoltGui.py:162
 msgid "Type"
 msgstr ""
 
-#: smoltGui.py:141
+#: smoltGui.py:169
 msgid "Description"
 msgstr ""
 
-#: smoltGui.py:164
+#: smoltGui.py:192
 msgid "An error occurred while sending the data to the server."
 msgstr ""
 
-#: smoltGui.py:171
+#: smoltGui.py:199
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
