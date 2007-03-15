@@ -19,7 +19,6 @@
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 ######################################################
-# GPL
 # This class is a basic wrapper for the dbus bindings
 # 
 # I have completely destroyed this file, it needs some cleanup

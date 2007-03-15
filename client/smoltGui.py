@@ -30,7 +30,7 @@ from i18n import _
 import smolt
 
 class SmoltGui(object):
-    ui = "<ui><menubar><menu action="File"><menuitem action="Quit"/></menu></menubar><toolbar><toolitem action="Quit"/><separator/><toolitem action="Send"/></toolbar></ui>"
+    ui = '<ui><menubar><menu action="File"><menuitem action="Send"/><separator/><menuitem action="Quit"/></menu></menubar><toolbar><toolitem action="Quit"/><separator/><toolitem action="Send"/></toolbar></ui>'
     
     def __init__(self, args):
         self.profile = smolt.Hardware()
@@ -38,8 +38,8 @@ class SmoltGui(object):
 
     def _create_gtk_windows(self):
         actiongroup = gtk.ActionGroup('actiongroup')
-        actiongroup.add_actions([('Quit', gtk.STOCK_QUIT, '_Quit', None, 'Quit the program!', self.quit_cb),
-                                 ('Send', gtk.STOCK_GO_FORWARD, '_Send', None, _('Send your profile'), self.send_cb),
+        actiongroup.add_actions([('Quit', gtk.STOCK_QUIT, '_Quit', None, _('Quit the program without sending your hardware profile to the server', self.quit_cb),
+                                 ('Send', gtk.STOCK_GO_FORWARD, '_Send', '<control>s', _('Send your hardware profile to the server'), self.send_cb),
                                  ('File', None, '_File')])
                                 
         uim = gtk.UIManager()
@@ -48,7 +48,7 @@ class SmoltGui(object):
         accelerators = uim.get_accel_group()
         
         self.mainWindow = gtk.Window()
-        self.mainWindow.set_title('smolt')
+        self.mainWindow.set_title('Smolt')
         self.mainWindow.connect('delete_event', self.quit_cb)
         self.mainWindow.connect('destroy', self.quit_cb)
         self.mainWindow.add_accel_group(accelerators)
