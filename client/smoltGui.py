@@ -30,7 +30,28 @@ from i18n import _
 import smolt
 
 class SmoltGui(object):
-    ui = '<ui><menubar><menu action="File"><menuitem action="Send"/><separator/><menuitem action="Quit"/></menu></menubar><toolbar><toolitem action="Quit"/><separator/><toolitem action="Send"/></toolbar></ui>'
+    ui = '''<ui>
+  <menubar>
+    <menu action="File">
+      <menuitem action="Send"/>
+      <separator/>
+      <menuitem action="Quit"/>
+    </menu>
+    <menu action="Help">
+      <menuitem action="Privacy"/>
+      <separator/>
+      <menuitem action="About"/>
+    </menu>
+  </menubar>
+  <toolbar>
+    <toolitem action="Quit"/>
+    <separator/>
+    <toolitem action="Send"/>
+    <separator/>
+    <toolitem action="Privacy"/>
+  </toolbar>
+</ui>
+'''
     
     def __init__(self, args):
         self.profile = smolt.Hardware()
@@ -38,10 +59,13 @@ class SmoltGui(object):
 
     def _create_gtk_windows(self):
         actiongroup = gtk.ActionGroup('actiongroup')
-        actiongroup.add_actions([('Quit', gtk.STOCK_QUIT, '_Quit', None, _('Quit the program without sending your hardware profile to the server', self.quit_cb),
-                                 ('Send', gtk.STOCK_GO_FORWARD, '_Send', '<control>s', _('Send your hardware profile to the server'), self.send_cb),
-                                 ('File', None, '_File')])
-                                
+        actiongroup.add_actions([('Quit', gtk.STOCK_QUIT, _('_Quit'), None, _('Quit the program without sending your hardware profile to the server'), self.quit_cb),
+                                 ('Send', gtk.STOCK_GO_FORWARD, _('_Send'), '<control>s', _('Send your hardware profile to the server.'), self.send_cb),
+                                 ('Privacy', gtk.STOCK_INFO, _('Show _Privacy Policy'), None, _('Show the Smolt privacy policy.'), self.privacy_cb),
+                                 ('About', gtk.STOCK_ABOUT, _('_About'), None, None, self.about_cb),
+                                 ('File', None, '_File'),
+                                 ('Help', None, '_Help')])
+        
         uim = gtk.UIManager()
         uim.insert_action_group(actiongroup, 0)
         uim.add_ui_from_string(self.ui)
@@ -52,31 +76,31 @@ class SmoltGui(object):
         self.mainWindow.connect('delete_event', self.quit_cb)
         self.mainWindow.connect('destroy', self.quit_cb)
         self.mainWindow.add_accel_group(accelerators)
-        self.mainWindow.set_default_size(700, 400)
-
+        self.mainWindow.set_default_size(700, 600)
+        
         layout = gtk.VBox()
         layout.show()
         self.mainWindow.add(layout)
-
+        
         menubar = uim.get_widget('ui/menubar')
         menubar.show()
         layout.pack_start(menubar, expand=False)
-
+        
         toolbar = uim.get_widget('ui/toolbar')
         toolbar.show()
         layout.pack_start(toolbar, expand=False)
         
-        header = gtk.Label(_('This is the hardware information smolt will send to the server.'))
-        header.show()
-        layout.pack_start(header, expand=False)
+        #header = gtk.Label(_('This is the hardware information Smolt will send to the server.'))
+        #header.show()
+        #layout.pack_start(header, expand=False)
 
-        tablescroll = gtk.ScrolledWindow()
-        tablescroll.show()
-        layout.pack_start(tablescroll, expand=True)
+        vpaned = gtk.VPaned()
+        vpaned.show()
+        layout.pack_start(vpaned, expand = True)
         
-        tablevbox = gtk.VBox()
-        tablevbox.show()
-        tablescroll.add_with_viewport(tablevbox)
+        hosttablescroll = gtk.ScrolledWindow()
+        hosttablescroll.show()
+        vpaned.pack1(hosttablescroll, resize = True, shrink = True)
         
         hostlist = gtk.ListStore(str, str)
 
@@ -99,8 +123,12 @@ class SmoltGui(object):
         hostdatacolumn.pack_start(hostdatacell, True)
         hostdatacolumn.add_attribute(hostdatacell, 'text', 1)
         
-        tablevbox.pack_start(hostview, expand=True)
+        hosttablescroll.add(hostview)
 
+        devicetablescroll = gtk.ScrolledWindow()
+        devicetablescroll.show()
+        vpaned.pack2(devicetablescroll, resize = True, shrink = True)
+        
         devicelist = gtk.ListStore(str, str, str, str, str)
 
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.profile.deviceIter():
@@ -145,7 +173,7 @@ class SmoltGui(object):
         devicecolumn5.add_attribute(devicecell5, 'text', 4)
         devicecolumn5.set_sort_column_id(4)
 
-        tablevbox.pack_start(deviceview, expand=True)
+        devicetablescroll.add(deviceview)
 
     def quit_cb(self, *extra):
         '''Quit the program.'''
@@ -173,6 +201,12 @@ class SmoltGui(object):
         finishMessage.run()
         self.quit_cb(None)
 
+    def privacy_cb(self, *extra):
+        pass
+
+    def about_cb(self, *extra):
+        pass
+    
     def run(self):
         self.mainWindow.show()
         gtk.main()
