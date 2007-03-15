@@ -72,7 +72,7 @@ parser.add_option('-c', '--checkin',
                   dest = 'checkin',
                   default = False,
                   action = 'store_true',
-                  help = _('Automated Checkin'))
+                  help = _('this is an automated checkin, will only run if the "smolt" service has been started'))
 
 (opts, args) = parser.parse_args()
 
@@ -90,18 +90,20 @@ elif opts.checkin:
 try:
     profile = smolt.Hardware()
 except smolt.SystemBusError, e:
-    error('Error: %s' % e)
-    error('\tHint: Try "service haldaemon start"')
+    error(_('Error:') + ' ' + e.message)
+    if e.hint is not None:
+        error('\t' + _('Hint:') + ' ' + e.hint)
     sys.exit(8)
+    
 print profile.getProfile()
 
 if not opts.autoSend:
     if opts.printOnly:
         sys.exit(0)
     else:
-        send = raw_input("\nSend this information to the Smolt server? (y/n) ")
-        if send.lower() != 'y':
-            error('Exiting...')
+        send = raw_input('\n' + _('Send this information to the Smolt server? (y/n)') + ' ')
+        if send[:1].lower() != _('y'):
+            error(_('Exiting...'))
             sys.exit(4)
     
 if opts.retry:

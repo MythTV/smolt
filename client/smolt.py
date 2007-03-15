@@ -225,9 +225,9 @@ class ServerError(Exception):
 def serverMessage(page):
     for line in page.split("\n"):
         if 'ServerMessage:' in line:
-            print 'Server Message: "%s"' % line.split('ServerMessage: ')[1]
+            print _('Server Message: "%s"') % line.split('ServerMessage: ')[1]
             if 'Critical' in line:
-                raise ServerError, 'Could not contact server: %s ' % line.split('ServerMessage: ')[1]
+                raise ServerError, _('Could not contact server: %s') % line.split('ServerMessage: ')[1]
 
 
 def error(message):
@@ -238,32 +238,34 @@ def debug(message):
         print message
 
 class SystemBusError(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
+    def __init__(self, message, hint = None):
+        self.message = message
+        self.hint = hint
 
+    def __str__(self):
+        return str(self.message)
+    
 class UUIDError(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
+    def __init__(self, message):
+        self.message = message
 
+    def __str__(self):
+        return str(self.message)
+    
 class Hardware:
     devices = {}
     myDevices = []
     def __init__(self):
-    try:
+        try:
             systemBus = dbus.SystemBus()
         except:
-            raise SystemBusError, "Could not bind to dbus"
+            raise SystemBusError, _('Could not bind to dbus')
+        
         mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
         try:
             all_dev_lst = mgr.GetAllDevices()
         except:
-            print "Error: Could not connect to hal, is it running?"
-            print "     Hint - service haldaemon start"
-            (5)
+            raise SystemBusError, _('Could not connect to hal, is it running?'), _('Run "service haldaemon start" as root')
 
         for udi in all_dev_lst:
             dev = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', udi, 'org.freedesktop.Hal.Device')

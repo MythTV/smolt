@@ -30,19 +30,7 @@ from i18n import _
 import smolt
 
 class SmoltGui(object):
-    ui = '''<ui>
-  <menubar>
-    <menu action="File">
-      <menuitem action="Quit"/>
-    </menu>
-  </menubar>
-  <toolbar>
-    <toolitem action="Quit"/>
-    <separator/>
-    <toolitem action="Send"/>
-  </toolbar>
-</ui>
-'''
+    ui = "<ui><menubar><menu action="File"><menuitem action="Quit"/></menu></menubar><toolbar><toolitem action="Quit"/><separator/><toolitem action="Send"/></toolbar></ui>"
     
     def __init__(self, args):
         self.profile = smolt.Hardware()

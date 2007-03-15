@@ -32,7 +32,7 @@ from smolt import debug
 def serverMessage(page):
     for line in page.split("\n"):
         if 'ServerMessage:' in line:
-            error('Server Message: "%s"' % line.split('ServerMessage: ')[1])
+            error(_('Server Message: "%s"') % line.split('ServerMessage: ')[1])
             if 'Critical' in line:
                 sys.exit(3)
 

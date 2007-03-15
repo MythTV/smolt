@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-14 16:42+CDT\n"
+"POT-Creation-Date: 2007-03-14 20:14+CDT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,6 +14,10 @@ msgstr ""
 "Content-Transfer-Encoding: ENCODING\n"
 "Generated-By: pygettext.py 1.5\n"
 
+
+#: deleteProfile.py:35 smolt.py:228
+msgid "Server Message: \"%s\""
+msgstr ""
 
 #: deleteProfile.py:45 sendProfile.py:40
 msgid "enable debug information"
@@ -52,138 +56,178 @@ msgid "continue to send until success"
 msgstr ""
 
 #: sendProfile.py:75
-msgid "Automated Checkin"
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr ""
 
 #: sendProfile.py:86
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr ""
 
+#: sendProfile.py:93
+msgid "Error:"
+msgstr ""
+
+#: sendProfile.py:95
+msgid "Hint:"
+msgstr ""
+
+#: sendProfile.py:104
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr ""
+
+#: sendProfile.py:105
+msgid "y"
+msgstr ""
+
 #: sendProfile.py:106
+msgid "Exiting..."
+msgstr ""
+
+#: sendProfile.py:113
 msgid "Retry Enabled - Retrying"
 msgstr ""
 
-#: sendProfile.py:110
+#: sendProfile.py:117
 msgid "Could not send - Exiting"
 msgstr ""
 
-#: sendProfile.py:114
+#: sendProfile.py:121
 msgid "To view your profile visit: %s"
 msgstr ""
 
-#: smolt.py:313 smolt.py:336 smolt.py:353
+#: smolt.py:230
+msgid "Could not contact server: %s"
+msgstr ""
+
+#: smolt.py:262
+msgid "Could not bind to dbus"
+msgstr ""
+
+#: smolt.py:268
+msgid "Could not connect to hal, is it running?"
+msgstr ""
+
+#: smolt.py:268
+msgid "Run \"service haldaemon start\" as root"
+msgstr ""
+
+#: smolt.py:334 smolt.py:357 smolt.py:374
 msgid "Error contacting Server: %s"
 msgstr ""
 
-#: smolt.py:324
+#: smolt.py:345
 msgid "Communication with server failed"
 msgstr ""
 
-#: smolt.py:367
+#: smolt.py:388
 msgid "Devices"
 msgstr ""
 
-#: smolt.py:378
+#: smolt.py:399
 msgid "UUID"
 msgstr ""
 
-#: smolt.py:379
+#: smolt.py:400
 msgid "OS"
 msgstr ""
 
-#: smolt.py:380
+#: smolt.py:401
 msgid "Default run level"
 msgstr ""
 
-#: smolt.py:381
+#: smolt.py:402
 msgid "Language"
 msgstr ""
 
-#: smolt.py:382
+#: smolt.py:403
 msgid "Platform"
 msgstr ""
 
-#: smolt.py:383
+#: smolt.py:404
 msgid "BogoMIPS"
 msgstr ""
 
-#: smolt.py:384
+#: smolt.py:405
 msgid "CPU Vendor"
 msgstr ""
 
-#: smolt.py:385
+#: smolt.py:406
 msgid "CPU Model"
 msgstr ""
 
-#: smolt.py:386
+#: smolt.py:407
 msgid "Number of CPUs"
 msgstr ""
 
-#: smolt.py:387
+#: smolt.py:408
 msgid "CPU Speed"
 msgstr ""
 
-#: smolt.py:388
+#: smolt.py:409
 msgid "System Memory"
 msgstr ""
 
-#: smolt.py:389
+#: smolt.py:410
 msgid "System Swap"
 msgstr ""
 
-#: smolt.py:390
+#: smolt.py:411
 msgid "Vendor"
 msgstr ""
 
-#: smolt.py:391
+#: smolt.py:412
 msgid "System"
 msgstr ""
 
-#: smolt.py:392
+#: smolt.py:413
 msgid "Form factor"
 msgstr ""
 
-#: smolt.py:393
+#: smolt.py:414
 msgid "Kernel"
 msgstr ""
 
-#: smoltGui.py:50
+#: smoltGui.py:42
+msgid "Send your profile"
+msgstr ""
+
+#: smoltGui.py:69
 msgid "This is the hardware information smolt will send to the server."
 msgstr ""
 
-#: smoltGui.py:71
+#: smoltGui.py:90
 msgid "Label"
 msgstr ""
 
-#: smoltGui.py:77
+#: smoltGui.py:96
 msgid "Data"
 msgstr ""
 
-#: smoltGui.py:94
+#: smoltGui.py:113
 msgid "Device ID"
 msgstr ""
 
-#: smoltGui.py:101
+#: smoltGui.py:120
 msgid "Bus"
 msgstr ""
 
-#: smoltGui.py:108
+#: smoltGui.py:127
 msgid "Driver"
 msgstr ""
 
-#: smoltGui.py:115
+#: smoltGui.py:134
 msgid "Type"
 msgstr ""
 
-#: smoltGui.py:122
+#: smoltGui.py:141
 msgid "Description"
 msgstr ""
 
-#: smoltGui.py:161
+#: smoltGui.py:164
 msgid "An error occurred while sending the data to the server."
 msgstr ""
 
-#: smoltGui.py:168
+#: smoltGui.py:171
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
