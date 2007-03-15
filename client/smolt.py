@@ -47,12 +47,6 @@ user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
 DEBUG = False
 
-try:
-    import locale
-except ImportError:
-    locale = None
-
-
 PCI_BASE_CLASS_STORAGE =        1
 PCI_CLASS_STORAGE_SCSI =        0
 PCI_CLASS_STORAGE_IDE =         1
@@ -529,12 +523,6 @@ def read_cpuinfo():
 
     if not os.access("/proc/cpuinfo", os.R_OK):
         return {}
-
-    # Okay, the kernel likes to give us the information we need in the
-    # standard "C" locale.
-    #if locale:
-    #    # not really needed if you don't plan on using atof()
-    #    locale.setlocale(locale.LC_NUMERIC, "C")
 
     cpulist = open("/proc/cpuinfo", "r").read()
     uname = os.uname()[4].lower()
