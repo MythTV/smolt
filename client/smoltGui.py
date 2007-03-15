@@ -57,6 +57,7 @@ class SmoltGui(object):
     def __init__(self, args):
         self.mainWindow = None
         self.aboutDialog = None
+        self.privacyPolicy = None
         
         self.profile = smolt.Hardware()
         self._create_gtk_windows()
@@ -206,7 +207,39 @@ class SmoltGui(object):
         self.quit_cb(None)
 
     def privacy_cb(self, *extra):
-        pass
+        if self.privacyPolicy is None:
+            privacy_text = file('../doc/PrivacyPolicy', 'r').read().strip()
+            self.privacyPolicy = gtk.Dialog(_('Smolt Privacy Policy'),
+                                            self.mainWindow,
+                                            gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
+                                            (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE))
+            self.privacyPolicy.connect('response', self.privacy_response_cb)
+            self.privacyPolicy.connect('close', self.privacy_close_cb)
+            self.privacyPolicy.connect('delete_event', self.privacy_close_cb)
+            
+            textscroll = gtk.ScrolledWindow()
+            textscroll.set_border_width(6)
+            textscroll.set_size_request(540, 475)
+            textscroll.show()
+            self.privacyPolicy.vbox.pack_start(textscroll, expand = True)
+            
+            textview = gtk.TextView()
+            textview.set_editable(False)
+            textview.set_cursor_visible(False)
+            textview.get_buffer().set_text(privacy_text)
+            textview.show()
+            textscroll.add(textview)
+
+        self.privacyPolicy.show()
+
+    def privacy_response_cb(self, dialog, response, *args):
+        if response < 0:
+            dialog.hide()
+            dialog.emit_stop_by_name('response')
+            
+    def privacy_close_cb(self, widget, *args):
+        self.aboutDialog.hide()
+        return True
 
     def about_cb(self, *extra):
         if self.aboutDialog is None:
