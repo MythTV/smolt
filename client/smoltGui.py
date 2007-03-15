@@ -1,4 +1,5 @@
 #!/usr/bin/python -tt
+# -*- coding: UTF-8 -*-
 # Author: Toshio Kuratomi
 
 # smolt - Fedora hardware profiler
@@ -54,6 +55,9 @@ class SmoltGui(object):
 '''
     
     def __init__(self, args):
+        self.mainWindow = None
+        self.aboutDialog = None
+        
         self.profile = smolt.Hardware()
         self._create_gtk_windows()
 
@@ -205,13 +209,49 @@ class SmoltGui(object):
         pass
 
     def about_cb(self, *extra):
-        pass
-    
+        if self.aboutDialog is None:
+            self.aboutDialog = gtk.AboutDialog()
+            self.aboutDialog.set_transient_for(self.mainWindow)
+            self.aboutDialog.set_name('Smolt')
+            self.aboutDialog.set_version(smolt.smoltProtocol)
+            self.aboutDialog.set_website('https://hosted.fedoraproject.org/projects/smolt')
+            self.aboutDialog.set_authors(['Mike McGrath <mmcgrath@redhat.com>',
+                                          'Jeffrey C. Ollie <jeff@ocjtech.us>',
+                                          'Dennis Gilmore <dennis@ausil.us>',
+                                          'Toshio Kuratomi <a.badger@gmail.com>'])
+            self.aboutDialog.set_comments('Fedora hardware profiler.')
+            self.aboutDialog.set_copyright('Copyright © 2007 Mike McGrath')
+            self.aboutDialog.set_wrap_license(True)
+            self.aboutDialog.set_license('This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.')
+            logo = gtk.gdk.pixbuf_new_from_file('smolt-about.png')
+            self.aboutDialog.set_logo(logo)
+            self.aboutDialog.connect('response', self.about_response_cb)
+            self.aboutDialog.connect('close', self.about_close_cb)
+            self.aboutDialog.connect('delete_event', self.about_close_cb)
+        self.aboutDialog.show()
+
+    def about_response_cb(self, dialog, response, *args):
+        if response < 0:
+            dialog.hide()
+            dialog.emit_stop_by_name('response')
+            
+    def about_close_cb(self, widget, *args):
+        self.aboutDialog.hide()
+        return True
+        
     def run(self):
         self.mainWindow.show()
         gtk.main()
 
+def url_hook(dialog, link, data):
+    print 'url', link
+
+def email_hook(dialog, link, data):
+    print 'email', link
+
 if __name__ == '__main__':
+    gtk.about_dialog_set_url_hook(url_hook, None)
+    gtk.about_dialog_set_email_hook(email_hook, None)
     app = SmoltGui(sys.argv)
     app.run()
     sys.exit(0)
