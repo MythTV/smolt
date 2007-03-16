@@ -29,6 +29,7 @@ sys.path.append('/usr/share/smolt/client')
 
 from i18n import _
 import smolt
+import gui
 
 class SmoltGui(object):
     ui = '''<ui>
@@ -103,83 +104,12 @@ class SmoltGui(object):
         vpaned.show()
         layout.pack_start(vpaned, expand = True)
         
-        hosttablescroll = gtk.ScrolledWindow()
-        hosttablescroll.show()
-        vpaned.pack1(hosttablescroll, resize = True, shrink = True)
+        self.host_table = gui.HostTable(self.profile)
+        vpaned.pack1(self.host_table.get(), resize = True, shrink = True)
         
-        hostlist = gtk.ListStore(str, str)
-
-        for label, data in self.profile.hostIter():
-            hostlist.append([label, data])
-
-        hostview = gtk.TreeView(hostlist)
-        hostview.set_property('rules-hint', True)
-        hostview.show()
+        self.device_table = gui.DeviceTable(self.profile)
+        vpaned.pack2(self.device_table.get(), resize = True, shrink = True)
         
-        hostlabelcolumn = gtk.TreeViewColumn(_('Label'))
-        hostview.append_column(hostlabelcolumn)
-        hostlabelcell = gtk.CellRendererText()
-        hostlabelcolumn.pack_start(hostlabelcell, True)
-        hostlabelcolumn.add_attribute(hostlabelcell, 'text', 0)
-
-        hostdatacolumn = gtk.TreeViewColumn(_('Data'))
-        hostview.append_column(hostdatacolumn)
-        hostdatacell = gtk.CellRendererText()
-        hostdatacolumn.pack_start(hostdatacell, True)
-        hostdatacolumn.add_attribute(hostdatacell, 'text', 1)
-        
-        hosttablescroll.add(hostview)
-
-        devicetablescroll = gtk.ScrolledWindow()
-        devicetablescroll.show()
-        vpaned.pack2(devicetablescroll, resize = True, shrink = True)
-        
-        devicelist = gtk.ListStore(str, str, str, str, str)
-
-        for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.profile.deviceIter():
-            devicelist.append(['%s:%s:%s:%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID), Bus, Driver, Type, Description])
-
-        deviceview = gtk.TreeView(devicelist)
-        deviceview.set_property('rules-hint', True)
-        deviceview.show()
-
-        devicecolumn1 = gtk.TreeViewColumn(_('Device ID'))
-        deviceview.append_column(devicecolumn1)
-        devicecell1 = gtk.CellRendererText()
-        devicecolumn1.pack_start(devicecell1, True)
-        devicecolumn1.add_attribute(devicecell1, 'text', 0)
-        devicecolumn1.set_sort_column_id(0)
-
-        devicecolumn2 = gtk.TreeViewColumn(_('Bus'))
-        deviceview.append_column(devicecolumn2)
-        devicecell2 = gtk.CellRendererText()
-        devicecolumn2.pack_start(devicecell2, True)
-        devicecolumn2.add_attribute(devicecell2, 'text', 1)
-        devicecolumn2.set_sort_column_id(1)
-
-        devicecolumn3 = gtk.TreeViewColumn(_('Driver'))
-        deviceview.append_column(devicecolumn3)
-        devicecell3 = gtk.CellRendererText()
-        devicecolumn3.pack_start(devicecell3, True)
-        devicecolumn3.add_attribute(devicecell3, 'text', 2)
-        devicecolumn3.set_sort_column_id(2)
-
-        devicecolumn4 = gtk.TreeViewColumn(_('Type'))
-        deviceview.append_column(devicecolumn4)
-        devicecell4 = gtk.CellRendererText()
-        devicecolumn4.pack_start(devicecell4, True)
-        devicecolumn4.add_attribute(devicecell4, 'text', 3)
-        devicecolumn4.set_sort_column_id(3)
-
-        devicecolumn5 = gtk.TreeViewColumn(_('Description'))
-        deviceview.append_column(devicecolumn5)
-        devicecell5 = gtk.CellRendererText()
-        devicecolumn5.pack_start(devicecell5, True)
-        devicecolumn5.add_attribute(devicecell5, 'text', 4)
-        devicecolumn5.set_sort_column_id(4)
-
-        devicetablescroll.add(deviceview)
-
     def quit_cb(self, *extra):
         '''Quit the program.'''
         gtk.main_quit()

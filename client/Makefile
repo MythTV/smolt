@@ -1,6 +1,6 @@
 PO_FILES=$(wildcard po/*/LC_MESSAGES/smolt.po)
 MO_FILES=$(patsubst %.po,%.mo,$(PO_FILES))
-PY_FILES=deleteProfile.py haldump.py __init__.py sendProfile.py smoltGui.py smolt.py software.py smoltFirstBoot.py
+PY_FILES=deleteProfile.py haldump.py __init__.py sendProfile.py smoltGui.py smolt.py software.py smoltFirstBoot.py gui.py
 
 all: po/smolt.pot $(MO_FILES)
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-16 09:15+CDT\n"
+"POT-Creation-Date: 2007-03-16 15:42+CDT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,23 +19,23 @@ msgstr ""
 msgid "Server Message: \"%s\""
 msgstr ""
 
-#: deleteProfile.py:45 sendProfile.py:40
+#: deleteProfile.py:45 sendProfile.py:41
 msgid "enable debug information"
 msgstr ""
 
-#: deleteProfile.py:50 sendProfile.py:45
+#: deleteProfile.py:50 sendProfile.py:46
 msgid "specify the URL of the server (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:55 sendProfile.py:50
+#: deleteProfile.py:55 sendProfile.py:51
 msgid "print information only, do not send"
 msgstr ""
 
-#: deleteProfile.py:60 sendProfile.py:65
+#: deleteProfile.py:60 sendProfile.py:66
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:65 sendProfile.py:70
+#: deleteProfile.py:65 sendProfile.py:71
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr ""
 
@@ -47,51 +47,79 @@ msgstr ""
 msgid "Profile removed, please verify at"
 msgstr ""
 
-#: sendProfile.py:55
+#: gui.py:56
+msgid "Label"
+msgstr ""
+
+#: gui.py:62
+msgid "Data"
+msgstr ""
+
+#: gui.py:93
+msgid "Device ID"
+msgstr ""
+
+#: gui.py:100
+msgid "Bus"
+msgstr ""
+
+#: gui.py:107
+msgid "Driver"
+msgstr ""
+
+#: gui.py:114
+msgid "Type"
+msgstr ""
+
+#: gui.py:121
+msgid "Description"
+msgstr ""
+
+#: sendProfile.py:56
 msgid "don't prompt to send, just send"
 msgstr ""
 
-#: sendProfile.py:60
+#: sendProfile.py:61
 msgid "continue to send until success"
 msgstr ""
 
-#: sendProfile.py:75
+#: sendProfile.py:76
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr ""
 
-#: sendProfile.py:86
+#: sendProfile.py:90
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr ""
 
-#: sendProfile.py:93
+#: sendProfile.py:97
 msgid "Error:"
 msgstr ""
 
-#: sendProfile.py:95
+#: sendProfile.py:99
 msgid "Hint:"
 msgstr ""
 
-#: sendProfile.py:104
+#: sendProfile.py:108
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr ""
 
-#: sendProfile.py:105
+#: sendProfile.py:109
 msgid "y"
 msgstr ""
 
-#: sendProfile.py:106
+#: sendProfile.py:110
 msgid "Exiting..."
 msgstr ""
 
-#: sendProfile.py:113
+#: sendProfile.py:117
 msgid "Retry Enabled - Retrying"
 msgstr ""
 
-#: sendProfile.py:117
+#: sendProfile.py:121
 msgid "Could not send - Exiting"
 msgstr ""
 
-#: sendProfile.py:121
+#: sendProfile.py:125
 msgid "To view your profile visit: %s"
 msgstr ""
 
@@ -215,74 +243,46 @@ msgstr ""
 msgid "_No, do not send."
 msgstr ""
 
-#: smoltGui.py:67
+#: smoltGui.py:68
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr ""
 
-#: smoltGui.py:67
+#: smoltGui.py:68
 msgid "_Quit"
 msgstr ""
 
-#: smoltGui.py:68
+#: smoltGui.py:69
 msgid "Send your hardware profile to the server."
 msgstr ""
 
-#: smoltGui.py:68
+#: smoltGui.py:69
 msgid "_Send"
 msgstr ""
 
-#: smoltGui.py:69
+#: smoltGui.py:70
 msgid "Show _Privacy Policy"
 msgstr ""
 
-#: smoltGui.py:69
+#: smoltGui.py:70
 msgid "Show the Smolt privacy policy."
 msgstr ""
 
-#: smoltGui.py:70
+#: smoltGui.py:71
 msgid "_About"
 msgstr ""
 
-#: smoltGui.py:119
-msgid "Label"
-msgstr ""
-
-#: smoltGui.py:125
-msgid "Data"
-msgstr ""
-
-#: smoltGui.py:146
-msgid "Device ID"
-msgstr ""
-
-#: smoltGui.py:153
-msgid "Bus"
-msgstr ""
-
-#: smoltGui.py:160
-msgid "Driver"
-msgstr ""
-
-#: smoltGui.py:167
-msgid "Type"
-msgstr ""
-
-#: smoltGui.py:174
-msgid "Description"
-msgstr ""
-
-#: smoltGui.py:197
+#: smoltGui.py:127
 msgid "An error occurred while sending the data to the server."
 msgstr ""
 
-#: smoltGui.py:204
+#: smoltGui.py:134
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in /etc/sysconfig/hw-uuid"
 msgstr ""
 
-#: smoltGui.py:212
+#: smoltGui.py:142
 msgid "Smolt Privacy Policy"
 msgstr ""
 
