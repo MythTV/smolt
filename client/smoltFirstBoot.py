@@ -51,7 +51,7 @@ class childWindow:
                 "Project.  Submitting your profile is a great way to give back "
                 "to the community as this information is used to help focus our"
                 " efforts on popular hardware and platforms.  Submissions are "
-                "anonymous."))
+                "anonymous.  Sending your profile will enable a monthly update."))
 
         label.set_line_wrap(True)
         label.set_alignment(0.0, 0.5)
