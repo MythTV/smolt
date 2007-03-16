@@ -288,3 +288,4 @@ if __name__ == '__main__':
     app = SmoltGui(sys.argv)
     app.run()
     sys.exit(0)
+

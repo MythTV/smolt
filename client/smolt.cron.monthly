@@ -1,3 +1,5 @@
 # Runs the smolt checkin client
-
-20 1 1 * * root /usr/bin/smoltSendProfile -c > /dev/null
+# Please note that calling with -c will cause smolt to pause a random amount of
+# time between 0 and 3 days before actually sending, this is to prevent ddos on
+# the server
+20 1 1 * * root /usr/bin/smoltSendProfile -c > /dev/null 2>&1
