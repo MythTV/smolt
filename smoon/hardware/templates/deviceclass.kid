@@ -21,10 +21,10 @@
         <div class="tabbertab"><h2>Vendors</h2>
             <table id='stats' width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='vendor in vendors'>
-                    <td>${pciVendors.vendor(vendor[0], alt='Unknown ID: %s' %vendor[0])}</td>
+                    <th>${pciVendors.vendor(vendor[0], alt='Unknown ID: %s' %vendor[0])}</th>
                     <td>${vendor[1]}</td>
                     <td nowrap="true"><strong>${'%.1f' % (float(vendor[1]) / totalHosts * 100) } %</strong></td>
-                    <td nowrap="true"><img py:for='i in range(1, int( float(vendor[1]) / totalHosts * 100 ))' src='/static/images/tile.png' /></td>
+                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(vendor[1]) / totalHosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
                 </tr>
             </table>
         </div>
@@ -41,7 +41,8 @@
                     <td align="center">${pciVendors.subdevice(type[3], type[4], type[5], type[6])}</td>
                     <td align="center">${type[7]}</td>
                     <td nowrap="true"><strong>${'%.1f' % (float(type[8]) / totalHosts * 100) } %</strong></td>
-                    <td nowrap="true"><img py:for='i in range(1, int( float(type[8]) / totalHosts * 100 ))' src='/static/images/tile.png' /></td>
+                    <!--<td nowrap="true"><img py:for='i in range(1, int( float(type[8]) / totalHosts * 100 ))' src='/static/images/tile.png' /></td>-->
+                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(type[8]) / totalHosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
                 </tr>
             </table>
         </div>

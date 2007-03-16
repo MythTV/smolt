@@ -85,8 +85,8 @@ class deviceMap:
                 continue
         fo.close()
         # This introduces a bug, will fix later.
-        vendors[0] = myVendor()
-        vendors[0].name = 'N/A'
+#        vendors[0] = myVendor()
+#        vendors[0].name = 'N/A'
         return vendors
 
     def vendor(self, vend, subvend=None, alt='N/A', bus='pci'):
@@ -105,7 +105,6 @@ class deviceMap:
                 return alt
 
     def device(self, vend, dev, subvend=None, subdevice=None, alt='N/A', bus='pci'):
-#        return self.vendors[vend].devices[dev].name
         try:
             vend = int(vend)
         except:
@@ -122,7 +121,6 @@ class deviceMap:
             subdevice = int(subdevice)
         except:
             pass
-#        return self.vendors[vend].devices
         try:
             return self.vendors[bus][vend].devices[dev].name
         except:

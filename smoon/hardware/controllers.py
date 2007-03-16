@@ -258,32 +258,20 @@ class Root(controllers.RootController):
         stats = {}
         tabs = Tabber()
         stats['totalHosts'] = Host.select().count()
+        totalHosts = stats['totalHosts']
         stats['archs'] = Host._connection.queryAll("Select platform, count(platform) as cnt from host group by platform order by cnt desc")
-        stats['archstot'] = stats['totalHosts']
 
         stats['OS'] = Host._connection.queryAll("Select o_s, count(o_s) as cnt from host group by o_s order by cnt desc")
-        stats['OStot'] = stats['totalHosts']
         #Host._connection.queryAll("Select count(o_s) from host")[0][0]
 
         stats['runlevel'] = Host._connection.queryAll("Select default_runlevel, count(default_runlevel) as cnt from host group by default_runlevel order by cnt desc")
-        stats['runleveltot'] = stats['totalHosts']
-        #Host._connection.queryAll("Select count(default_runlevel) from host")[0][0]
-
-#        stats['devices'] = Host._connection.queryAll("select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 20;")
-#        stats['devices20sum'] = Host._connection.queryAll("select count(*) as cnt from host_links, Device where host_links.Device_id=Device.id order by cnt desc limit 20;")[0][0]
-#        stats['devicestot'] = Host._connection.queryAll("Select count(*) from host_links")[0][0]
 
         stats['numCPUs'] = Host._connection.queryAll("Select num_cp_us, count(num_cp_us) as cnt from host group by num_cp_us order by cnt desc")
-        stats['numCPUstot'] = stats['totalHosts']
-        #int(Host._connection.queryAll('Select count(num_cp_us) from host;')[0][0])
 
         stats['vendors'] = Host._connection.queryAll("Select vendor, count(vendor) as cnt from host where vendor != 'Unknown' and vendor != '' group by vendor order by cnt desc limit 100;")
         stats['systems'] = Host._connection.queryAll("Select system, count(system) as cnt from host where system != 'Unknown' and system != '' group by system order by cnt desc limit 100;")
 
         stats['cpuVendor'] = Host._connection.queryAll("Select cpu_vendor, count(cpu_vendor) as cnt from host group by cpu_vendor order by cnt desc limit 100;")
-
-        stats['cpuVendortot'] = stats['totalHosts']
-        #int(Host._connection.queryAll('Select count(cpu_vendor) from host;')[0][0])
 
         stats['kernelVersion'] = Host._connection.queryAll("Select kernel_version, count(kernel_version) as cnt from host group by kernel_version order by cnt desc;")
 
@@ -323,4 +311,4 @@ class Root(controllers.RootController):
 
         stats['cpusTot'] = int(Host._connection.queryAll('select sum(num_cp_us) as cnt from host;')[0][0])
 
-        return dict(Host=Host, Device=Device, HostLinks=HostLinks, Stat=stats, tabs=tabs)
+        return dict(Host=Host, Device=Device, HostLinks=HostLinks, Stat=stats, tabs=tabs, totalHosts=totalHosts)
