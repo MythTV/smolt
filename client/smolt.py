@@ -60,6 +60,7 @@ PCI_CLASS_NETWORK_TOKEN_RING =  1
 PCI_CLASS_NETWORK_FDDI =        2
 PCI_CLASS_NETWORK_ATM =         3
 PCI_CLASS_NETWORK_OTHER =       80
+PCI_CLASS_NETWORK_WIRELESS =    128
 
 PCI_BASE_CLASS_DISPLAY =        3
 PCI_CLASS_DISPLAY_VGA =         0
@@ -430,6 +431,11 @@ def classify_hal(node):
     # NETWORK
     if node.has_key('net.interface'):
         return 'NETWORK'
+
+    if node.has_key('pci.device_class'):
+        if node['pci.device_class'] == PCI_BASE_CLASS_NETWORK:
+            return 'NETWORK'
+
     
     if node.has_key('info.product') and node.has_key('info.category'):
         if node['info.category'] == 'input':
