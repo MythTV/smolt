@@ -23,6 +23,7 @@ from optparse import OptionParser
 import time
 from urlparse import urljoin
 import os
+import random
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -80,6 +81,9 @@ smolt.DEBUG = opts.DEBUG
 
 if opts.checkin and os.path.exists('/var/lock/subsys/smolt'):
     # Smolt is set to run
+    # Wait a random amount of time between 0 and 3 days to send
+    random.seed(file('/etc/sysconfig/hw-uuid').read().strip())
+    time.sleep(random.randint(1, 259200))
     opts.autoSend = True
 elif opts.checkin:
     # Tried to check in but checkins are disabled
@@ -111,7 +115,7 @@ if opts.retry:
         if not profile.send(user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
             sys.exit(0)
         error(_('Retry Enabled - Retrying'))
-        time.sleep(5)
+        time.sleep(30)
 else:
     if profile.send(user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
         print _('Could not send - Exiting')
