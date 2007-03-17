@@ -138,7 +138,10 @@ class SmoltGui(object):
 
     def privacy_cb(self, *extra):
         if self.privacyPolicy is None:
-            privacy_text = file('../doc/PrivacyPolicy', 'r').read().strip()
+            if os.path.exists('../doc/PrivacyPolicy'):
+                privacy_text = file('../doc/PrivacyPolicy', 'r').read().strip()
+            else:
+                privacy_text = file('/usr/share/smolt/doc/PrivacyPolicy').read().strip()
             self.privacyPolicy = gtk.Dialog(_('Smolt Privacy Policy'),
                                             self.mainWindow,
                                             gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
@@ -186,7 +189,10 @@ class SmoltGui(object):
             self.aboutDialog.set_copyright('Copyright © 2007 Mike McGrath')
             self.aboutDialog.set_wrap_license(True)
             self.aboutDialog.set_license('This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.')
-            logo = gtk.gdk.pixbuf_new_from_file('smolt-about.png')
+            if os.path.exists('smolt-about.png'):
+                logo = gtk.gdk.pixbuf_new_from_file('smolt-about.png')
+            else:
+                logo = gtk.gdk.pixbuf_new_from_file('/usr/share/smolt/client/smolt-about.png')
             self.aboutDialog.set_logo(logo)
             self.aboutDialog.connect('response', self.about_response_cb)
             self.aboutDialog.connect('close', self.about_close_cb)
