@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-16 15:42+CDT\n"
+"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,15 +231,15 @@ msgstr ""
 msgid "D_o not send profile"
 msgstr ""
 
-#: smoltFirstBoot.py:87
+#: smoltFirstBoot.py:88
 msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
 msgstr ""
 
-#: smoltFirstBoot.py:95
+#: smoltFirstBoot.py:96
 msgid "_Reconsider sending"
 msgstr ""
 
-#: smoltFirstBoot.py:96
+#: smoltFirstBoot.py:97
 msgid "_No, do not send."
 msgstr ""
 
@@ -282,7 +282,7 @@ msgid ""
 "stored in /etc/sysconfig/hw-uuid"
 msgstr ""
 
-#: smoltGui.py:142
+#: smoltGui.py:145
 msgid "Smolt Privacy Policy"
 msgstr ""
 
