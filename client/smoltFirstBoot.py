@@ -80,6 +80,7 @@ class childWindow:
     def apply(self, notebook):
         if self.okButton.get_active() == True:
             # You'd think I know better than this.
+            result = os.system('/sbin/chkconfig smolt on')
             result = os.system('/usr/bin/smoltSendProfile -r -a &')
             return 0
         else:
