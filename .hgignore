@@ -1,6 +1,7 @@
 syntax: glob
 
 *~
+*.mo
 *.pyc
 *.pyo
 build
