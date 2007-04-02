@@ -41,7 +41,7 @@ from urlparse import urljoin
 from urllib import urlencode
 
 smoonURL = 'http://smolt.fedoraproject.org/'
-smoltProtocol = '.91'
+smoltProtocol = '0.96'
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
 DEBUG = False
@@ -202,12 +202,11 @@ class Host:
             self.selinux_enabled = False
         if self.selinux_enabled:
             try:
-                data = os.popen('LANG=C /usr/sbin/getenforce').read()
-                self.selinux_enforcing = data.strip().lower() == 'enabled'
+                self.selinux_enforce = os.popen('LANG=C /usr/sbin/getenforce').read().strip()
             except:
-                self.selinux_enforcing = False
+                self.selinux_enforce = 'Disabled'
         else:
-            self.selinux_enforcing = False
+            self.selinux_enforce = 'Disabled'
 
 def ignoreDevice(device):
     ignore = 1
@@ -281,24 +280,24 @@ class Hardware:
             if udi == '/org/freedesktop/Hal/devices/computer':
                 self.host = Host(props)
         self.hostSendString = urlencode({
-                            'UUID' :             self.host.UUID,
-                            'OS' :               self.host.os,
-                            'defaultRunlevel':   self.host.defaultRunlevel,
-                            'language' :         self.host.language,
-                            'platform' :         self.host.platform,
-                            'bogomips' :         self.host.bogomips,
-                            'CPUVendor' :        self.host.cpuVendor,
-                            'CPUModel' :         self.host.cpuModel,
-                            'numCPUs':           self.host.numCpus,
-                            'CPUSpeed' :         self.host.cpuSpeed,
-                            'systemMemory' :     self.host.systemMemory,
-                            'systemSwap' :       self.host.systemSwap,
-                            'vendor' :           self.host.systemVendor,
-                            'system' :           self.host.systemModel,
-                            'kernelVersion' :    self.host.kernelVersion,
-                            'formfactor' :       self.host.formfactor,
-                            'selinux_enabled':   self.host.selinux_enabled,
-                            'selinux_enforcing': self.host.selinux_enforcing
+                            'UUID' :           self.host.UUID,
+                            'OS' :             self.host.os,
+                            'defaultRunlevel': self.host.defaultRunlevel,
+                            'language' :       self.host.language,
+                            'platform' :       self.host.platform,
+                            'bogomips' :       self.host.bogomips,
+                            'CPUVendor' :      self.host.cpuVendor,
+                            'CPUModel' :       self.host.cpuModel,
+                            'numCPUs':         self.host.numCpus,
+                            'CPUSpeed' :       self.host.cpuSpeed,
+                            'systemMemory' :   self.host.systemMemory,
+                            'systemSwap' :     self.host.systemSwap,
+                            'vendor' :         self.host.systemVendor,
+                            'system' :         self.host.systemModel,
+                            'kernelVersion' :  self.host.kernelVersion,
+                            'formfactor' :     self.host.formfactor,
+                            'selinux_enabled': self.host.selinux_enabled,
+                            'selinux_enforce': self.host.selinux_enforce
                             })
 
     def dbus_get_interface(self, bus, service, object, interface):
@@ -421,8 +420,8 @@ class Hardware:
         yield _('System'), self.host.systemModel
         yield _('Form factor'), self.host.formfactor
         yield _('Kernel'), self.host.kernelVersion
-        yield _('SELinux enabled'), self.host.selinux_enabled
-        yield _('SELinux enforcing'), self.host.selinux_enforcing
+        yield _('SELinux Enabled'), self.host.selinux_enabled
+        yield _('SELinux Enforce'), self.host.selinux_enforce
         
     def deviceIter(self):
         '''Iterate over our devices.'''

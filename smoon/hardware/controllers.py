@@ -14,7 +14,7 @@ import sys
 
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
-smoltProtocol = '.91'
+smoltProtocol = '0.96'
 
 
 class Root(controllers.RootController):
@@ -82,7 +82,7 @@ class Root(controllers.RootController):
 
     @expose(template="hardware.templates.show")
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
-    def add(self, UUID, OS, platform, bogomips, systemMemory, systemSwap, CPUVendor, CPUModel, numCPUs, CPUSpeed, language, defaultRunlevel, vendor, system, token, lsbRelease='Depricated', formfactor='Unknown', kernelVersion='', smoltProtocol=None):
+    def add(self, UUID, OS, platform, bogomips, systemMemory, systemSwap, CPUVendor, CPUModel, numCPUs, CPUSpeed, language, defaultRunlevel, vendor, system, token, lsbRelease='Depricated', formfactor='Unknown', kernelVersion='', selinux_enabled='False', selinux_enforce='Disabled', smoltProtocol=None):
         from Crypto.Cipher import XOR
         import urllib
         import time, datetime
@@ -125,6 +125,8 @@ class Root(controllers.RootController):
             hostSQL.system = system.strip()
             hostSQL.kernelVersion = kernelVersion.strip()
             hostSQL.formfactor = formfactor.strip()
+            hostSQL.selinux_enabled = bool(selinux_enabled)
+            hostSQL.selinux_enforce = selinux_enforce.strip()
             hostSQL.LastModified = DateTime.now()
 
         except SQLObjectNotFound:
@@ -148,6 +150,8 @@ class Root(controllers.RootController):
                         system = system.strip(),
                         kernelVersion = kernelVersion.strip(),
                         formfactor = formfactor.strip(),
+                        selinux_enabled = bool(selinux_enabled),
+                        selinux_enforce = selinux_enforce.strip(),
                         LastModified = DateTime.now())
 
         return dict(hostObject=hostSQL, devices=[])

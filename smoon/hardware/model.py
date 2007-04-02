@@ -43,6 +43,8 @@ class Host(SQLObject):
     kernelVersion = StringCol(title="Kernel")
     formfactor = StringCol(title="Formfactor")
     defaultRunlevel = IntCol(title="Default Runlevel")
+    selinux_enabled = BoolCol(title="SELinux Enabled")
+    selinux_enforce = StringCol(title="SELinux Enforce")
     hostLink = MultipleJoin('HostLinks', joinColumn='host_link_id')
     lastModified = DateTimeCol(title="Last Modified")
 

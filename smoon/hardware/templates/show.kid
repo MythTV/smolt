@@ -22,6 +22,8 @@
             <tr><th>System Model:</th><td>${hostObject.system}</td></tr>
             <tr><th>Kernel</th><td>${hostObject.kernelVersion}</td></tr>
             <tr><th>Formfactor</th><td>${hostObject.formfactor}</td></tr>
+            <tr><th>SELinux Enabled</th><td>${hostObject.selinux_enabled}</td></tr>
+            <tr><th>SELinux Enforce</th><td>${hostObject.selinux_enforce}</td></tr>
             <tr><th>Last Modified</th><td>${hostObject.lastModified}</td></tr>
         </table> 
         <h3>Devices</h3>

@@ -20,6 +20,8 @@
         <tr><td>defaultRunlevel</td><td>${host.defaultRunlevel}</td></tr>
         <tr><td>vendor</td><td>${host.vendor}</td></tr>
         <tr><td>system</td><td>${host.system}</td></tr>
+        <tr><td>selinux_enabled</td><td>${host.selinux_enabled}</td></tr>
+        <tr><td>selinux_enforce</td><td>${host.selinux_enforce}</td></tr>
         </table>
             <table>
                 <tr><th>Bus</th><th>Class</th><th>Driver</th><th>Description</th></tr>
