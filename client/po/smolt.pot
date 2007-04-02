@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"POT-Creation-Date: 2007-04-02 09:47+CDT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -243,46 +243,50 @@ msgstr ""
 msgid "_No, do not send."
 msgstr ""
 
-#: smoltGui.py:68
+#: smoltGui.py:69
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr ""
 
-#: smoltGui.py:68
+#: smoltGui.py:69
 msgid "_Quit"
 msgstr ""
 
-#: smoltGui.py:69
+#: smoltGui.py:70
 msgid "Send your hardware profile to the server."
 msgstr ""
 
-#: smoltGui.py:69
+#: smoltGui.py:70
 msgid "_Send"
 msgstr ""
 
-#: smoltGui.py:70
+#: smoltGui.py:71
 msgid "Show _Privacy Policy"
 msgstr ""
 
-#: smoltGui.py:70
+#: smoltGui.py:71
 msgid "Show the Smolt privacy policy."
 msgstr ""
 
-#: smoltGui.py:71
+#: smoltGui.py:72
 msgid "_About"
 msgstr ""
 
-#: smoltGui.py:127
+#: smoltGui.py:128
 msgid "An error occurred while sending the data to the server."
 msgstr ""
 
-#: smoltGui.py:134
+#: smoltGui.py:135
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in /etc/sysconfig/hw-uuid"
 msgstr ""
 
-#: smoltGui.py:145
+#: smoltGui.py:146
 msgid "Smolt Privacy Policy"
+msgstr ""
+
+#: smoltGui.py:189
+msgid "translator-credits"
 msgstr ""
 

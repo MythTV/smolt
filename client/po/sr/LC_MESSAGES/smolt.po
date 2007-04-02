@@ -6,15 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
-"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"POT-Creation-Date: 2007-04-02 09:47+CDT\n"
 "PO-Revision-Date: 2007-03-31 19:38-0000\n"
 "Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
 "Language-Team: Serbian (sr) <fedora@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: deleteProfile.py:35 smolt.py:222
 msgid "Server Message: \"%s\""
@@ -38,8 +37,7 @@ msgstr "наведите HTTP корисничког агента (подраз�
 
 #: deleteProfile.py:65 sendProfile.py:71
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr ""
-"наведите време HTTP чекања у секундама (подразумевано %default секунди)"
+msgstr "наведите време HTTP чекања у секундама (подразумевано %default секунди)"
 
 #: deleteProfile.py:83
 msgid "Error contacting Server:"
@@ -86,18 +84,12 @@ msgid "continue to send until success"
 msgstr "настави да шаљеш док не успеш"
 
 #: sendProfile.py:76
-msgid ""
-"this is an automated checkin, will only run if the \"smolt\" service has "
-"been started"
-msgstr ""
-"ово је самостално пријављивање, радиће само ако је покренут „smolt“ сервис"
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgstr "ово је самостално пријављивање, радиће само ако је покренут „smolt“ сервис"
 
 #: sendProfile.py:90
-msgid ""
-"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr ""
-"Smolt је подешен за пријављивање али је пријављивање искључено (савет: "
-"service smolt start)"
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr "Smolt је подешен за пријављивање али је пријављивање искључено (савет: service smolt start)"
 
 #: sendProfile.py:97
 msgid "Error:"
@@ -228,18 +220,8 @@ msgid "Hardware Profile"
 msgstr "Хардверски профил"
 
 #: smoltFirstBoot.py:50
-msgid ""
-"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
-"profile is a great way to give back to the community as this information is "
-"used to help focus our efforts on popular hardware and platforms.  "
-"Submissions are anonymous.  Sending your profile will enable a monthly "
-"update."
-msgstr ""
-"Smolt је програм за сакупљање хардверских профила за Fedora пројекат.  "
-"Подношење профила је сјајан начин да пружите нешто назад заједници јер се "
-"ове информације користе да помогну у фокусирању нашег напора на популаран "
-"хардвер и платформе.  Подношење је анонимно.  Слање Вашег профила ће "
-"уљкучити месечно ажурирање."
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr "Smolt је програм за сакупљање хардверских профила за Fedora пројекат.  Подношење профила је сјајан начин да пружите нешто назад заједници јер се ове информације користе да помогну у фокусирању нашег напора на популаран хардвер и платформе.  Подношење је анонимно.  Слање Вашег профила ће уљкучити месечно ажурирање."
 
 #: smoltFirstBoot.py:69
 msgid "_Send Profile"
@@ -250,14 +232,8 @@ msgid "D_o not send profile"
 msgstr "Н_емој послати профил"
 
 #: smoltFirstBoot.py:88
-msgid ""
-"Are you sure you wouldn't like to send the profile?  Submitting your profile "
-"is a valuable source of information for our development and can help "
-"troubleshoot issues that may come up with your hardware."
-msgstr ""
-"Сигурно не желите да пошаљете цвој профил?  Подношење профила је вредан "
-"извор информација за наш развој и може помоћи у решавању проблема које се "
-"могу појавити са Вашим хардвером."
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr "Сигурно не желите да пошаљете цвој профил?  Подношење профила је вредан извор информација за наш развој и може помоћи у решавању проблема које се могу појавити са Вашим хардвером."
 
 #: smoltFirstBoot.py:96
 msgid "_Reconsider sending"
@@ -267,50 +243,52 @@ msgstr "_Размислите о слању"
 msgid "_No, do not send."
 msgstr "_Не, немој послати."
 
-#: smoltGui.py:68
+#: smoltGui.py:69
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Изађи из програма без слања хардверског профила серверу"
 
-#: smoltGui.py:68
+#: smoltGui.py:69
 msgid "_Quit"
 msgstr "_Изађи"
 
-#: smoltGui.py:69
+#: smoltGui.py:70
 msgid "Send your hardware profile to the server."
 msgstr "Пошаљите свој хардверски провил серверу."
 
-#: smoltGui.py:69
+#: smoltGui.py:70
 msgid "_Send"
 msgstr "_Пошаљи"
 
-#: smoltGui.py:70
+#: smoltGui.py:71
 msgid "Show _Privacy Policy"
 msgstr "Прикажи полису приватности"
 
-#: smoltGui.py:70
+#: smoltGui.py:71
 msgid "Show the Smolt privacy policy."
 msgstr "Прикажи Smolt-ову полису приватности."
 
-#: smoltGui.py:71
+#: smoltGui.py:72
 msgid "_About"
 msgstr "_О програму"
 
-#: smoltGui.py:127
+#: smoltGui.py:128
 msgid "An error occurred while sending the data to the server."
 msgstr "Дошло је до грешке при слању података на сервер."
 
-#: smoltGui.py:134
+#: smoltGui.py:135
 msgid ""
-"The data was successfully sent.  If you need to refer to your hardware "
-"profile for a bug report your UUID is \n"
+"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in /etc/sysconfig/hw-uuid"
 msgstr ""
-"Подаци су успешно посалти.  Ако је потребно да се позовете на свој "
-"хардверски профил за извештај о грешци, Ваш UUID\n"
+"Подаци су успешно посалти.  Ако је потребно да се позовете на свој хардверски профил за извештај о грешци, Ваш UUID\n"
 "%s\n"
 "је похрањен у /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:145
+#: smoltGui.py:146
 msgid "Smolt Privacy Policy"
 msgstr "Smolt-ова полиса приватности"
+
+#: smoltGui.py:189
+msgid "translator-credits"
+msgstr ""

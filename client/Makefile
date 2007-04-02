@@ -8,7 +8,7 @@ po/smolt.pot: $(PY_FILES)
 	pygettext.py -d smolt -o po/smolt.pot $^
 
 %.po: po/smolt.pot
-	msgmerge --update $@ $^
+	msgmerge --no-wrap --update $@ $^
 
 %.mo: %.po
 	msgfmt.py -o $@ $<
