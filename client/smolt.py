@@ -195,6 +195,19 @@ class Host:
             self.formfactor = hostInfo['system.formfactor']
         except:
             self.formfactor = 'Unknown'
+        try:
+            retcode = os.system('/usr/sbin/selinuxenabled')
+            self.selinux_enabled =  os.WIFEXITED(recode) and os.WEXITCODE(retcode) == 0
+        except:
+            self.selinux_enabled = False
+        if self.selinux_enabled:
+            try:
+                data = os.popen('LANG=C /usr/sbin/getenforce').read()
+                self.selinux_enforcing = data.strip().lower() == 'enabled'
+            except:
+                self.selinux_enforcing = False
+        else:
+            self.selinux_enforcing = False
 
 def ignoreDevice(device):
     ignore = 1
@@ -268,22 +281,24 @@ class Hardware:
             if udi == '/org/freedesktop/Hal/devices/computer':
                 self.host = Host(props)
         self.hostSendString = urlencode({
-                            'UUID' :            self.host.UUID,
-                            'OS' :              self.host.os,
-                            'defaultRunlevel':  self.host.defaultRunlevel,
-                            'language' :        self.host.language,
-                            'platform' :        self.host.platform,
-                            'bogomips' :        self.host.bogomips,
-                            'CPUVendor' :       self.host.cpuVendor,
-                            'CPUModel' :        self.host.cpuModel,
-                            'numCPUs':          self.host.numCpus,
-                            'CPUSpeed' :        self.host.cpuSpeed,
-                            'systemMemory' :    self.host.systemMemory,
-                            'systemSwap' :      self.host.systemSwap,
-                            'vendor' :          self.host.systemVendor,
-                            'system' :          self.host.systemModel,
-                            'kernelVersion' :   self.host.kernelVersion,
-                            'formfactor' :      self.host.formfactor
+                            'UUID' :             self.host.UUID,
+                            'OS' :               self.host.os,
+                            'defaultRunlevel':   self.host.defaultRunlevel,
+                            'language' :         self.host.language,
+                            'platform' :         self.host.platform,
+                            'bogomips' :         self.host.bogomips,
+                            'CPUVendor' :        self.host.cpuVendor,
+                            'CPUModel' :         self.host.cpuModel,
+                            'numCPUs':           self.host.numCpus,
+                            'CPUSpeed' :         self.host.cpuSpeed,
+                            'systemMemory' :     self.host.systemMemory,
+                            'systemSwap' :       self.host.systemSwap,
+                            'vendor' :           self.host.systemVendor,
+                            'system' :           self.host.systemModel,
+                            'kernelVersion' :    self.host.kernelVersion,
+                            'formfactor' :       self.host.formfactor,
+                            'selinux_enabled':   self.host.selinux_enabled,
+                            'selinux_enforcing': self.host.selinux_enforcing
                             })
 
     def dbus_get_interface(self, bus, service, object, interface):
@@ -406,6 +421,8 @@ class Hardware:
         yield _('System'), self.host.systemModel
         yield _('Form factor'), self.host.formfactor
         yield _('Kernel'), self.host.kernelVersion
+        yield _('SELinux enabled'), self.host.selinux_enabled
+        yield _('SELinux enforcing'), self.host.selinux_enforcing
         
     def deviceIter(self):
         '''Iterate over our devices.'''
