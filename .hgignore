@@ -2,6 +2,8 @@ syntax: glob
 
 *~
 *.mo
+*.po.orig
+*.pot.orig
 *.pyc
 *.pyo
 build
