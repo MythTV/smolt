@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
-"POT-Creation-Date: 2007-04-02 09:47+CDT\n"
-"PO-Revision-Date: 2007-04-01 17:58+0800\n"
+"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"PO-Revision-Date: 2007-04-08 20:21+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <translation-team-ms@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -14,30 +14,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: deleteProfile.py:35 smolt.py:222
+#: deleteProfile.py:35
+#: smolt.py:222
 #, fuzzy
 msgid "Server Message: \"%s\""
 msgstr "Mesej Init"
 
-#: deleteProfile.py:45 sendProfile.py:41
+#: deleteProfile.py:45
+#: sendProfile.py:41
 #, fuzzy
 msgid "enable debug information"
 msgstr "Membaca maklumat pakej..."
 
-#: deleteProfile.py:50 sendProfile.py:46
+#: deleteProfile.py:50
+#: sendProfile.py:46
 #, fuzzy
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "pelayan admin kerberos default"
 
-#: deleteProfile.py:55 sendProfile.py:51
+#: deleteProfile.py:55
+#: sendProfile.py:51
 msgid "print information only, do not send"
 msgstr ""
 
-#: deleteProfile.py:60 sendProfile.py:66
+#: deleteProfile.py:60
+#: sendProfile.py:66
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:65 sendProfile.py:71
+#: deleteProfile.py:65
+#: sendProfile.py:71
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr ""
 
@@ -149,7 +155,9 @@ msgstr ""
 msgid "Run \"service haldaemon start\" as root"
 msgstr ""
 
-#: smolt.py:328 smolt.py:351 smolt.py:368
+#: smolt.py:328
+#: smolt.py:351
+#: smolt.py:368
 #, fuzzy
 msgid "Error contacting Server: %s"
 msgstr "Ralat Dalaman Pelayan"
@@ -235,7 +243,8 @@ msgstr "Bentuk asas:"
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+#: smoltFirstBoot.py:24
+#: smoltFirstBoot.py:34
 #, fuzzy
 msgid "Hardware Profile"
 msgstr "Profil Perkakasan"
@@ -268,52 +277,46 @@ msgstr "Menghantar stat..."
 msgid "_No, do not send."
 msgstr "Jangan hantar soaljawab ini"
 
-#: smoltGui.py:69
+#: smoltGui.py:68
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr ""
 
-#: smoltGui.py:69
+#: smoltGui.py:68
 msgid "_Quit"
 msgstr "_Keluar"
 
-#: smoltGui.py:70
+#: smoltGui.py:69
 msgid "Send your hardware profile to the server."
 msgstr ""
 
-#: smoltGui.py:70
-#, fuzzy
+#: smoltGui.py:69
 msgid "_Send"
-msgstr "Hantar"
+msgstr "_Hantar"
 
-#: smoltGui.py:71
-#, fuzzy
+#: smoltGui.py:70
 msgid "Show _Privacy Policy"
-msgstr "Tentutetap Polisi SELinux"
+msgstr "_Papar Polisi Persendirian"
 
-#: smoltGui.py:71
+#: smoltGui.py:70
 msgid "Show the Smolt privacy policy."
 msgstr ""
 
-#: smoltGui.py:72
+#: smoltGui.py:71
 msgid "_About"
 msgstr "_Perihal"
 
-#: smoltGui.py:128
+#: smoltGui.py:127
 msgid "An error occurred while sending the data to the server."
 msgstr ""
 
-#: smoltGui.py:135
+#: smoltGui.py:134
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in /etc/sysconfig/hw-uuid"
 msgstr ""
 
-#: smoltGui.py:146
-#, fuzzy
+#: smoltGui.py:145
 msgid "Smolt Privacy Policy"
-msgstr "Tentutetap Polisi SELinux"
+msgstr "Polisi Persendirian Smolt"
 
-#: smoltGui.py:189
-msgid "translator-credits"
-msgstr ""

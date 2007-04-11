@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
-"POT-Creation-Date: 2007-04-02 09:47+CDT\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: 2007-03-31 13:27-0300\n"
 "Last-Translator: Domingo Becker <beckerde@hotmail.com>\n"
 "Language-Team: Spanish <domingobecker@gmail.com>\n"
@@ -10,27 +10,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Spanish\n"
 
-#: deleteProfile.py:35 smolt.py:222
+#: deleteProfile.py:35
+#: smolt.py:222
 msgid "Server Message: \"%s\""
 msgstr "Mensaje del Servidor: \"%s\""
 
-#: deleteProfile.py:45 sendProfile.py:41
+#: deleteProfile.py:45
+#: sendProfile.py:41
 msgid "enable debug information"
 msgstr "habilitar información de depuración"
 
-#: deleteProfile.py:50 sendProfile.py:46
+#: deleteProfile.py:50
+#: sendProfile.py:46
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "especificar la URL del servidor (por defecto \"%default\")"
 
-#: deleteProfile.py:55 sendProfile.py:51
+#: deleteProfile.py:55
+#: sendProfile.py:51
 msgid "print information only, do not send"
 msgstr "solamente imprimir la información, no enviar"
 
-#: deleteProfile.py:60 sendProfile.py:66
+#: deleteProfile.py:60
+#: sendProfile.py:66
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "especificar el agente de usuario HTTP (por defecto \"%default\")"
 
-#: deleteProfile.py:65 sendProfile.py:71
+#: deleteProfile.py:65
+#: sendProfile.py:71
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "especificar el tiempo límite de HTTP en segundos (por defecto %default segundos)"
 
@@ -134,7 +140,9 @@ msgstr "No se pudo conectar con hal, ¿se está ejecutando?"
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Ejecute \"service haldaemon start\" como root"
 
-#: smolt.py:328 smolt.py:351 smolt.py:368
+#: smolt.py:328
+#: smolt.py:351
+#: smolt.py:368
 msgid "Error contacting Server: %s"
 msgstr "Error al contactar al Servidor: %s"
 
@@ -210,7 +218,8 @@ msgstr "Factor de forma"
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+#: smoltFirstBoot.py:24
+#: smoltFirstBoot.py:34
 msgid "Hardware Profile"
 msgstr "Perfil de Hardware"
 
@@ -238,39 +247,39 @@ msgstr "_Reconsiderar el envío"
 msgid "_No, do not send."
 msgstr "_No, no enviar."
 
-#: smoltGui.py:69
+#: smoltGui.py:68
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "¿Salir del programa sin enviar su perfil de hardware al servidor"
 
-#: smoltGui.py:69
+#: smoltGui.py:68
 msgid "_Quit"
 msgstr "_Salir"
 
-#: smoltGui.py:70
+#: smoltGui.py:69
 msgid "Send your hardware profile to the server."
 msgstr "Enviar su perfil de hardware al servidor."
 
-#: smoltGui.py:70
+#: smoltGui.py:69
 msgid "_Send"
 msgstr "_Enviar"
 
-#: smoltGui.py:71
+#: smoltGui.py:70
 msgid "Show _Privacy Policy"
 msgstr "Mostrar la Política de _Privacidad"
 
-#: smoltGui.py:71
+#: smoltGui.py:70
 msgid "Show the Smolt privacy policy."
 msgstr "Mostrar la política de privacidad de Smolt."
 
-#: smoltGui.py:72
+#: smoltGui.py:71
 msgid "_About"
 msgstr "_Acerca de"
 
-#: smoltGui.py:128
+#: smoltGui.py:127
 msgid "An error occurred while sending the data to the server."
 msgstr "Un error ocurrió mientras se enviaba los datos al servidor."
 
-#: smoltGui.py:135
+#: smoltGui.py:134
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
@@ -280,10 +289,7 @@ msgstr ""
 "%s\n"
 "almacenado en /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:146
+#: smoltGui.py:145
 msgid "Smolt Privacy Policy"
 msgstr "Política de Privacidad de Smolt"
 
-#: smoltGui.py:189
-msgid "translator-credits"
-msgstr ""

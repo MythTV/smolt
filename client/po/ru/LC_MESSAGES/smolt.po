@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
-"POT-Creation-Date: 2007-04-02 09:47+CDT\n"
+"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
 "PO-Revision-Date: 2007-04-01 02:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,27 +16,33 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: deleteProfile.py:35 smolt.py:222
+#: deleteProfile.py:35
+#: smolt.py:222
 msgid "Server Message: \"%s\""
 msgstr "Сообщение от сервера: \"%s\""
 
-#: deleteProfile.py:45 sendProfile.py:41
+#: deleteProfile.py:45
+#: sendProfile.py:41
 msgid "enable debug information"
 msgstr "использовать отладочную информацию"
 
-#: deleteProfile.py:50 sendProfile.py:46
+#: deleteProfile.py:50
+#: sendProfile.py:46
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "указать URL сервера (по умолчанию \"%default\")"
 
-#: deleteProfile.py:55 sendProfile.py:51
+#: deleteProfile.py:55
+#: sendProfile.py:51
 msgid "print information only, do not send"
 msgstr "только вывести, не отправлять"
 
-#: deleteProfile.py:60 sendProfile.py:66
+#: deleteProfile.py:60
+#: sendProfile.py:66
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "указать агент HTTP (по умолчанию \"%default\")"
 
-#: deleteProfile.py:65 sendProfile.py:71
+#: deleteProfile.py:65
+#: sendProfile.py:71
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "указать таймаут HTTP в секундах (по умолчанию %default секунд)"
 
@@ -140,7 +146,9 @@ msgstr "Невозможно подключиться к hal, он запуще�
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Запустить \"service haldaemon start\" от имени root"
 
-#: smolt.py:328 smolt.py:351 smolt.py:368
+#: smolt.py:328
+#: smolt.py:351
+#: smolt.py:368
 msgid "Error contacting Server: %s"
 msgstr "Ошибка подключения к серверу: %s"
 
@@ -216,7 +224,8 @@ msgstr "Форм-фактор"
 msgid "Kernel"
 msgstr "Ядро"
 
-#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+#: smoltFirstBoot.py:24
+#: smoltFirstBoot.py:34
 msgid "Hardware Profile"
 msgstr "Профиль оборудования"
 
@@ -244,39 +253,39 @@ msgstr "О_тменить отправку"
 msgid "_No, do not send."
 msgstr "_Нет, не отправлять."
 
-#: smoltGui.py:69
+#: smoltGui.py:68
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Выйти из программы, не отправляя профиль на сервер"
 
-#: smoltGui.py:69
+#: smoltGui.py:68
 msgid "_Quit"
 msgstr "_Выход"
 
-#: smoltGui.py:70
+#: smoltGui.py:69
 msgid "Send your hardware profile to the server."
 msgstr "Отправить профиль на сервер."
 
-#: smoltGui.py:70
+#: smoltGui.py:69
 msgid "_Send"
 msgstr "_Отправить"
 
-#: smoltGui.py:71
+#: smoltGui.py:70
 msgid "Show _Privacy Policy"
 msgstr "Показать _положение о персональных данных."
 
-#: smoltGui.py:71
+#: smoltGui.py:70
 msgid "Show the Smolt privacy policy."
 msgstr "Показать положение о персональных данных Smolt."
 
-#: smoltGui.py:72
+#: smoltGui.py:71
 msgid "_About"
 msgstr "О _программе"
 
-#: smoltGui.py:128
+#: smoltGui.py:127
 msgid "An error occurred while sending the data to the server."
 msgstr "Произошла ошибка при отправке данных на сервер."
 
-#: smoltGui.py:135
+#: smoltGui.py:134
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
@@ -286,10 +295,7 @@ msgstr ""
 "%s,\n"
 "он сохранен в /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:146
+#: smoltGui.py:145
 msgid "Smolt Privacy Policy"
 msgstr "Защита персональной информации в Smolt"
 
-#: smoltGui.py:189
-msgid "translator-credits"
-msgstr ""
