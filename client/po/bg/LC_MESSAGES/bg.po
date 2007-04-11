@@ -1,0 +1,291 @@
+# translation of smolt.pot to Bulgarian
+# Copyright (C) YEAR ORGANIZATION
+#
+# Doncho N. Gunchev <gunchev@gmail.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: smolt\n"
+"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"PO-Revision-Date: 2007-03-31 18:18+0300\n"
+"Last-Translator: Doncho N. Gunchev <gunchev@gmail.com>\n"
+"Language-Team: Bulgarian <dict@fsa-bg.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: deleteProfile.py:35 smolt.py:222
+msgid "Server Message: \"%s\""
+msgstr "Съобщение от сървъра: \"%s\""
+
+#: deleteProfile.py:45 sendProfile.py:41
+msgid "enable debug information"
+msgstr "включена е информацията за дебъгване"
+
+#: deleteProfile.py:50 sendProfile.py:46
+msgid "specify the URL of the server (default \"%default\")"
+msgstr "указване URL на сървъра (по подразбиране \"%default\")"
+
+#: deleteProfile.py:55 sendProfile.py:51
+msgid "print information only, do not send"
+msgstr "извеждане на информацията, без изпращане"
+
+#: deleteProfile.py:60 sendProfile.py:66
+msgid "specify HTTP user agent (default \"%default\")"
+msgstr "указване на HTTP потребителски агент (по подразбиране \"%default\")"
+
+#: deleteProfile.py:65 sendProfile.py:71
+msgid "specify HTTP timeout in seconds (default %default seconds)"
+msgstr "указване на максимално време за HTTP отговор (по подразбиране е %default секунди)"
+
+#: deleteProfile.py:83
+msgid "Error contacting Server:"
+msgstr "Грешка при свързване със сървъра:"
+
+#: deleteProfile.py:91
+msgid "Profile removed, please verify at"
+msgstr "Профила бе премахнат, моля проверете на"
+
+#: gui.py:56
+msgid "Label"
+msgstr "Етикет"
+
+#: gui.py:62
+msgid "Data"
+msgstr "Данни"
+
+#: gui.py:93
+msgid "Device ID"
+msgstr "ID на устройство"
+
+#: gui.py:100
+msgid "Bus"
+msgstr "Шина"
+
+#: gui.py:107
+msgid "Driver"
+msgstr "Драйвер"
+
+#: gui.py:114
+msgid "Type"
+msgstr "Тип"
+
+#: gui.py:121
+msgid "Description"
+msgstr "Описание"
+
+#: sendProfile.py:56
+msgid "don't prompt to send, just send"
+msgstr "без запитване при изпращане, просто изпращане"
+
+#: sendProfile.py:61
+msgid "continue to send until success"
+msgstr "изпращане до успех"
+
+#: sendProfile.py:76
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgstr "това е автоматизирано обновяване, ще работи само ако услугата \"smolt\" е стартирана"
+
+#: sendProfile.py:90
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr "Smolt е настроен за обновяване на профила, но обновяването е изключено (подсказка: service smolt start)"
+
+#: sendProfile.py:97
+msgid "Error:"
+msgstr "Грешка:"
+
+#: sendProfile.py:99
+msgid "Hint:"
+msgstr "Подсказка:"
+
+#: sendProfile.py:108
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr "Изпращане на тези данни към Smolt сървъра? (д/н)"
+
+#: sendProfile.py:109
+msgid "y"
+msgstr "д"
+
+#: sendProfile.py:110
+msgid "Exiting..."
+msgstr "Спиране..."
+
+#: sendProfile.py:117
+msgid "Retry Enabled - Retrying"
+msgstr "Разрешени са повторните опити - повторен опит"
+
+#: sendProfile.py:121
+msgid "Could not send - Exiting"
+msgstr "Не може да се изпрати - изход"
+
+#: sendProfile.py:125
+msgid "To view your profile visit: %s"
+msgstr "За да разгледате своя профил посетете: %s"
+
+#: smolt.py:224
+msgid "Could not contact server: %s"
+msgstr "Не може да се осъществи връзка със сървъра: %s"
+
+#: smolt.py:256
+msgid "Could not bind to dbus"
+msgstr "Не може да се направи връзка с dbus"
+
+#: smolt.py:262
+msgid "Could not connect to hal, is it running?"
+msgstr "Не може да се направи връзка с hal, работи ли той?"
+
+#: smolt.py:262
+msgid "Run \"service haldaemon start\" as root"
+msgstr "Изпълнете \"service haldaemon start\" като root"
+
+#: smolt.py:328 smolt.py:351 smolt.py:368
+msgid "Error contacting Server: %s"
+msgstr "Грешка при свързване със сървъра: %s"
+
+#: smolt.py:339
+msgid "Communication with server failed"
+msgstr "Комуникацията със сървъра пропадна"
+
+#: smolt.py:382
+msgid "Devices"
+msgstr "Устройства"
+
+#: smolt.py:393
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:394
+msgid "OS"
+msgstr "ОС"
+
+#: smolt.py:395
+msgid "Default run level"
+msgstr "Подразбиращо се работно ниво"
+
+#: smolt.py:396
+msgid "Language"
+msgstr "Език"
+
+#: smolt.py:397
+msgid "Platform"
+msgstr "Платформа"
+
+#: smolt.py:398
+msgid "BogoMIPS"
+msgstr "BogoMIPS"
+
+#: smolt.py:399
+msgid "CPU Vendor"
+msgstr "Производител на ЦП"
+
+#: smolt.py:400
+msgid "CPU Model"
+msgstr "Модел ЦП"
+
+#: smolt.py:401
+msgid "Number of CPUs"
+msgstr "Брой ЦП"
+
+#: smolt.py:402
+msgid "CPU Speed"
+msgstr "Скорост на ЦП"
+
+#: smolt.py:403
+msgid "System Memory"
+msgstr "Системна памет"
+
+#: smolt.py:404
+msgid "System Swap"
+msgstr "Swap памет"
+
+#: smolt.py:405
+msgid "Vendor"
+msgstr "Производител"
+
+#: smolt.py:406
+msgid "System"
+msgstr "Система"
+
+#: smolt.py:407
+msgid "Form factor"
+msgstr "Клас"
+
+#: smolt.py:408
+msgid "Kernel"
+msgstr "Ядро"
+
+#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+msgid "Hardware Profile"
+msgstr "Хардуерен профил"
+
+#: smoltFirstBoot.py:50
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr "Smolt е програма за изграждане на хардуерни профили за проекта Fedora.  Изпращането на вашия профил е много добър начин да направите нещо за общността, тъй като тази информация се ползва за фокусиране на усилията на разработчиците към популярния хардуер и платформи.  Информацията се изпраща анонимно.  Изпращането на профила ще разреши месечно обновяване (на тази информация)."
+
+#: smoltFirstBoot.py:69
+msgid "_Send Profile"
+msgstr "_Изпращане на профила"
+
+#: smoltFirstBoot.py:70
+msgid "D_o not send profile"
+msgstr "_Без изпращане"
+
+#: smoltFirstBoot.py:88
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr "Сигурни ли сте, че не искате да изпратите профила?  Изпратения от Вас профил е ценен източник на информация за разработчиците. Той може да помогне за отстраняване на проблеми, които може да има с вашия хардуер."
+
+#: smoltFirstBoot.py:96
+msgid "_Reconsider sending"
+msgstr "_Обмисляне на изпращането"
+
+#: smoltFirstBoot.py:97
+msgid "_No, do not send."
+msgstr "_Без изпращане."
+
+#: smoltGui.py:68
+msgid "Quit the program without sending your hardware profile to the server"
+msgstr "Изход от програмата без изпращане на хардуерния профил към сървъра"
+
+#: smoltGui.py:68
+msgid "_Quit"
+msgstr "_Изход"
+
+#: smoltGui.py:69
+msgid "Send your hardware profile to the server."
+msgstr "Изпращане на хардуерния Ви профил на сървъра."
+
+#: smoltGui.py:69
+msgid "_Send"
+msgstr "_Изпращане"
+
+#: smoltGui.py:70
+msgid "Show _Privacy Policy"
+msgstr "_Показване политиката за конфиденциалност"
+
+#: smoltGui.py:70
+msgid "Show the Smolt privacy policy."
+msgstr "Показване политиката за конфиденциалност на smolt."
+
+#: smoltGui.py:71
+msgid "_About"
+msgstr "_За програмата"
+
+#: smoltGui.py:127
+msgid "An error occurred while sending the data to the server."
+msgstr "Възникна грешка при изпращане на данните към сървъра."
+
+#: smoltGui.py:134
+msgid ""
+"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"%s\n"
+"stored in /etc/sysconfig/hw-uuid"
+msgstr ""
+"Данните бяха успешно изпратени.  Ако Ви дотрябва справка за вашия хардуерен профил за рапорт за грешка вашия UUID е \n"
+"%s\n"
+"записан в /etc/sysconfig/hw-uuid"
+
+#: smoltGui.py:145
+msgid "Smolt Privacy Policy"
+msgstr "Политика за конфиденциалност на Smolt"
+

@@ -1,0 +1,292 @@
+# translation of gu.po to Gujarati
+# Copyright (C) YEAR ORGANIZATION
+#
+# Ankit Patel <ankit@redhat.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: gu\n"
+"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"PO-Revision-Date: 2007-04-02 11:28+0530\n"
+"Last-Translator: Ankit Patel <ankit@redhat.com>\n"
+"Language-Team: Gujarati <fedora-trans-gu@redhat.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+
+#: deleteProfile.py:35 smolt.py:222
+msgid "Server Message: \"%s\""
+msgstr "સર્વર સંદેશો: \"%s\""
+
+#: deleteProfile.py:45 sendProfile.py:41
+msgid "enable debug information"
+msgstr "ડિબગ જાણકારી સક્રિય કરો"
+
+#: deleteProfile.py:50 sendProfile.py:46
+msgid "specify the URL of the server (default \"%default\")"
+msgstr "સર્વરની URL સ્પષ્ટ કરો (મૂળભૂત \"%default\")"
+
+#: deleteProfile.py:55 sendProfile.py:51
+msgid "print information only, do not send"
+msgstr "માત્ર જાણકારી જ છાપો, મોકલશો નહિં"
+
+#: deleteProfile.py:60 sendProfile.py:66
+msgid "specify HTTP user agent (default \"%default\")"
+msgstr "HTTP વપરાશકર્તા એજન્ટ સ્પષ્ટ કરો (મૂળભૂત \"%default\")"
+
+#: deleteProfile.py:65 sendProfile.py:71
+msgid "specify HTTP timeout in seconds (default %default seconds)"
+msgstr "HTTP સમયસમાપ્તિ ગાળો સેકન્ડોમાં સ્પષ્ટ કરો (મૂળભૂત %default સેકન્ડો)"
+
+#: deleteProfile.py:83
+msgid "Error contacting Server:"
+msgstr "સર્વરનો સંપર્ક કરવામાં ભૂલ:"
+
+#: deleteProfile.py:91
+msgid "Profile removed, please verify at"
+msgstr "રૂપરેખા દૂર કરાઈ, મહેરબાની કરી અંહિ ખાતરી કરો"
+
+#: gui.py:56
+msgid "Label"
+msgstr "લેબલ"
+
+#: gui.py:62
+msgid "Data"
+msgstr "માહિતી"
+
+#: gui.py:93
+msgid "Device ID"
+msgstr "ઉપકરણ ID"
+
+#: gui.py:100
+msgid "Bus"
+msgstr "બસ"
+
+#: gui.py:107
+msgid "Driver"
+msgstr "ડ્રાઈવર"
+
+#: gui.py:114
+msgid "Type"
+msgstr "પ્રકાર"
+
+#: gui.py:121
+msgid "Description"
+msgstr "વર્ણન"
+
+#: sendProfile.py:56
+msgid "don't prompt to send, just send"
+msgstr "મોકલવા માટે પૂછશો નહિં, માત્ર મોકલો"
+
+#: sendProfile.py:61
+msgid "continue to send until success"
+msgstr "જ્યાં સુધી સફળ નહિં થાય ત્યાં સુધી ચાલુ રાખો"
+
+#: sendProfile.py:76
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgstr "આ આપોઆપ ચકાસણી છે, માત્ર ત્યારે જ ચાલશે જો \"smolt\" સેવા શરૂ થઈ ગયેલ હોય"
+
+#: sendProfile.py:90
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr "Smolt ચકાસણી કરવા માટે સુયોજિત થઈ ગયેલ છે પરંતુઓ ચકાસણીઓ નિષ્ક્રિય કરવામાં આવેલ છે (ઈશારો: service smolt start)"
+
+#: sendProfile.py:97
+msgid "Error:"
+msgstr "ભૂલ:"
+
+#: sendProfile.py:99
+msgid "Hint:"
+msgstr "ઈશારો:"
+
+#: sendProfile.py:108
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr "શું આ જાણકારી Smolt સર્વરને મોકલવી છે? (y/n)"
+
+#: sendProfile.py:109
+msgid "y"
+msgstr "y"
+
+#: sendProfile.py:110
+msgid "Exiting..."
+msgstr "બહાર નીકળી રહ્યા છીએ..."
+
+#: sendProfile.py:117
+msgid "Retry Enabled - Retrying"
+msgstr "પુનઃપ્રયાસ સક્રિય કરેલ - પુનઃપ્રયાસ કરી રહ્યા છીએ"
+
+#: sendProfile.py:121
+msgid "Could not send - Exiting"
+msgstr "મોકલી શક્યા નહિં - બહાર નીકળી રહ્યા છીએ"
+
+#: sendProfile.py:125
+msgid "To view your profile visit: %s"
+msgstr "તમારી રૂપરેખા જોવા માટે આની મુલાકાત લો: %s"
+
+#: smolt.py:224
+msgid "Could not contact server: %s"
+msgstr "સર્વરનો સંપર્ક કરી શક્યા નહિં: %s"
+
+#: smolt.py:256
+msgid "Could not bind to dbus"
+msgstr "dbus સાથે બાંધી શક્યા નહિં"
+
+#: smolt.py:262
+msgid "Could not connect to hal, is it running?"
+msgstr "hal સાથે જોડાઈ શક્યા નહિં, શું તે ચાલી રહ્યું છે?"
+
+#: smolt.py:262
+msgid "Run \"service haldaemon start\" as root"
+msgstr "\"service haldaemon start\" ને રુટ તરીકે ચલાવો"
+
+#: smolt.py:328 smolt.py:351 smolt.py:368
+msgid "Error contacting Server: %s"
+msgstr "સર્વરનો સંપર્ક કરવામાં ભૂલ: %s"
+
+#: smolt.py:339
+msgid "Communication with server failed"
+msgstr "સર્વર સાથે સંપર્કવ્યવહાર નિષ્ફળ"
+
+#: smolt.py:382
+msgid "Devices"
+msgstr "ઉપકરણો"
+
+#: smolt.py:393
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:394
+msgid "OS"
+msgstr "OS"
+
+#: smolt.py:395
+msgid "Default run level"
+msgstr "મૂળભૂત રન લેવલ"
+
+#: smolt.py:396
+msgid "Language"
+msgstr "ભાષા"
+
+#: smolt.py:397
+msgid "Platform"
+msgstr "પ્લેટફોર્મ"
+
+#: smolt.py:398
+msgid "BogoMIPS"
+msgstr "BogoMIPS"
+
+#: smolt.py:399
+msgid "CPU Vendor"
+msgstr "CPU વિક્રેતા"
+
+#: smolt.py:400
+msgid "CPU Model"
+msgstr "CPU મોડેલ"
+
+#: smolt.py:401
+msgid "Number of CPUs"
+msgstr "CPU ની સંખ્યા"
+
+#: smolt.py:402
+msgid "CPU Speed"
+msgstr "CPU ઝડપ"
+
+#: smolt.py:403
+msgid "System Memory"
+msgstr "સિસ્ટમ મેમરી"
+
+#: smolt.py:404
+msgid "System Swap"
+msgstr "સિસ્ટમ સ્વેપ"
+
+#: smolt.py:405
+msgid "Vendor"
+msgstr "વિક્રેતા"
+
+#: smolt.py:406
+msgid "System"
+msgstr "સિસ્ટમ"
+
+#: smolt.py:407
+msgid "Form factor"
+msgstr "અવયવમાંથી"
+
+#: smolt.py:408
+msgid "Kernel"
+msgstr "કર્નલ"
+
+#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+msgid "Hardware Profile"
+msgstr "હાર્ડવેર રૂપરેખા"
+
+#: smoltFirstBoot.py:50
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr "Smolt એ ફેડોરા પ્રોજેક્ટ માટે હાર્ડવેર રૂપરેખાકારક છે.  તમારી રૂપરેખા જમા કરવાનું સમુદાયને ફરી પાછા આપવાનો શ્રેષ્ઠ માર્ગ છે કારણ કે આ જાણકારી આપણા પ્રયાસોને પ્રખ્યાત હાર્ડવેર અને પ્લેટફોર્મો પર ફોકસ કરવા માટે મદદ કરવા માટે વપરાય છે.  જમાવટો અનામિક છે.  તમારી રૂપરેખા મોકલવાનું માસિક સુધારો કરશે."
+
+#: smoltFirstBoot.py:69
+msgid "_Send Profile"
+msgstr "રૂપરેખા મોકલો (_S)"
+
+#: smoltFirstBoot.py:70
+msgid "D_o not send profile"
+msgstr "રૂપરેખા મોકલશો નહિં (_o)"
+
+#: smoltFirstBoot.py:88
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr "શું તમે ખરેખર રૂપરેખા મોકલવા ઈચ્છતા નથી?  તમારી રૂપરેખા જમા કરવાનું એ આપણા વિકાસ માટે મૂલ્યવાન સ્રોત છે અને તે મુદ્દાઓના મુશ્કેલીનિવારણ માટે મદદ કરી શકે છે કે જે તમારા હાર્ડવેર સાથે આવી શકશે."
+
+#: smoltFirstBoot.py:96
+msgid "_Reconsider sending"
+msgstr "મોકલવાનું ફરી ધ્યાનમાં લો (_R)"
+
+#: smoltFirstBoot.py:97
+msgid "_No, do not send."
+msgstr "ના, મોકલશો નહિં (_N)."
+
+#: smoltGui.py:68
+msgid "Quit the program without sending your hardware profile to the server"
+msgstr "તમારી હાર્ડવેર રૂપરેખા સર્વરને મોકલ્યા વિના કાર્યક્રમ બંધ કરો"
+
+#: smoltGui.py:68
+msgid "_Quit"
+msgstr "બંધ કરો (_Q)"
+
+#: smoltGui.py:69
+msgid "Send your hardware profile to the server."
+msgstr "તમારી હાર્ડવેર રૂપરેખા સર્વરને મોકલો."
+
+#: smoltGui.py:69
+msgid "_Send"
+msgstr "મોકલો (_S)"
+
+#: smoltGui.py:70
+msgid "Show _Privacy Policy"
+msgstr "ખાનગીપણાની પોલિસી બતાવો (_P)"
+
+#: smoltGui.py:70
+msgid "Show the Smolt privacy policy."
+msgstr "Smolt ખાનગીપણાની પોલિસી બતાવો."
+
+#: smoltGui.py:71
+msgid "_About"
+msgstr "વિશે (_A)"
+
+#: smoltGui.py:127
+msgid "An error occurred while sending the data to the server."
+msgstr "માહિતી સર્વરને મોકલતી વખતે ભૂલ ઉદ્ભવી."
+
+#: smoltGui.py:134
+msgid ""
+"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"%s\n"
+"stored in /etc/sysconfig/hw-uuid"
+msgstr ""
+"માહિતી સફળતાપૂર્વક મોકલાઈ હતી.  જો તમને તમારી હાર્ડવેર રૂપરેખાનો ભૂલના અહેવાલ માટે સંદર્ભ લેવાની જરૂર પડે તો તમારું UUID એ \n"
+"%s\n"
+"/etc/sysconfig/hw-uuid માં ક્રમમાં ગોઠવાયેલ છે"
+
+#: smoltGui.py:145
+msgid "Smolt Privacy Policy"
+msgstr "Smolt ખાનગીપણાની પોલિસી"
+

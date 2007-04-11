@@ -1,0 +1,297 @@
+# translation of or.po to Oriya
+# Copyright (C) YEAR ORGANIZATION
+#
+# Subhransu Behera <arya_subhransu@yahoo.co.in>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: or\n"
+"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"PO-Revision-Date: 2007-04-09 15:16+0530\n"
+"Last-Translator: Subhransu Behera <arya_subhransu@yahoo.co.in>\n"
+"Language-Team: Oriya <oriya-group@lists.sarovar.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+
+#: deleteProfile.py:35 smolt.py:222
+msgid "Server Message: \"%s\""
+msgstr "ସେବକ ସନ୍ଦେଶ: \"%s\""
+
+#: deleteProfile.py:45 sendProfile.py:41
+msgid "enable debug information"
+msgstr "ତୃଟିମୁକ୍ତ ସୂଚନା ପ୍ରଦାନ କରୁଥିବା ପ୍ରକ୍ରିୟାକୁ ସକ୍ରିୟ କରନ୍ତୁ"
+
+#: deleteProfile.py:50 sendProfile.py:46
+msgid "specify the URL of the server (default \"%default\")"
+msgstr "ସେବକର ୟୁ.ଆର.ଏଲ. (ପୂର୍ବନିର୍ଦ୍ଧାରିତ \"%default\") ଉଲ୍ଲେଖ କରନ୍ତୁ"
+
+#: deleteProfile.py:55 sendProfile.py:51
+msgid "print information only, do not send"
+msgstr "କେବଳ ସୂଚନା ମୂଦ୍ରଣ କରନ୍ତୁ, ପଠାନ୍ତୁ ନାହିଁ"
+
+#: deleteProfile.py:60 sendProfile.py:66
+msgid "specify HTTP user agent (default \"%default\")"
+msgstr "HTTP ଚାଳକ ପ୍ରତିନିଧୀ (ପୂର୍ବନିର୍ଦ୍ଧାରିତ \"%default\") ଉଲ୍ଲେଖ କରନ୍ତୁ"
+
+#: deleteProfile.py:65 sendProfile.py:71
+msgid "specify HTTP timeout in seconds (default %default seconds)"
+msgstr "HTTP ସମୟ ସମାପ୍ତିକୁ ସେକେଣ୍ଡରେ (ପୂର୍ବନିର୍ଦ୍ଧାରିତ %default ସେକେଣ୍ଡ) ଉଲ୍ଲେଖ କରନ୍ତୁ "
+
+#: deleteProfile.py:83
+msgid "Error contacting Server:"
+msgstr "ସେବକ ସହିତ ସମ୍ପର୍କ ସ୍ଥାପନ କରିବା ସମୟରେ ତୃଟି:"
+
+#: deleteProfile.py:91
+msgid "Profile removed, please verify at"
+msgstr "ରୂପରେଖକୁ ଅପସାରଣ କରାଯାଇଛି, ଏହାକୁ ଏଠାରେ ଯାଞ୍ଚ କରନ୍ତୁ"
+
+#: gui.py:56
+msgid "Label"
+msgstr "ସୂଚକ"
+
+#: gui.py:62
+msgid "Data"
+msgstr "ତଥ୍ଯ"
+
+#: gui.py:93
+msgid "Device ID"
+msgstr "ଉପକରଣ ପରିଚୟ"
+
+#: gui.py:100
+msgid "Bus"
+msgstr "ବସ"
+
+#: gui.py:107
+msgid "Driver"
+msgstr "ଚାଳକ"
+
+#: gui.py:114
+msgid "Type"
+msgstr "ପ୍ରକାର"
+
+#: gui.py:121
+msgid "Description"
+msgstr "ବର୍ଣ୍ଣନା"
+
+#: sendProfile.py:56
+msgid "don't prompt to send, just send"
+msgstr "ପଠାଇବାକୁ କୁହନ୍ତୁ ନାହିଁ, କେବଳ ପଠାନ୍ତୁ"
+
+#: sendProfile.py:61
+msgid "continue to send until success"
+msgstr "ସଫଳତା ନ ମିଳିବା ପର୍ଯ୍ଯନ୍ତ ପଠାଇ ଚାଲନ୍ତୁ"
+
+#: sendProfile.py:76
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgstr "ଏହା ଗୋଟିଏ ସ୍ବତଃ ନିରୀକ୍ଷଣ ପ୍ରକ୍ରିୟା ଅଟେ, \"smolt\" ସେବାକୁ ପ୍ରାରମ୍ଭ କରାଯାଇଥିଲେ କେବଳ ଏହା ଚାଲିବ"
+
+#: sendProfile.py:90
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr "ଯାଞ୍ଚ କରିବା ପାଇଁ smolt କୁ ବିନ୍ଯାସ କରାଯାଇଛି କିନ୍ତୁ ଏହି ପ୍ରକ୍ରିୟା ଗୁଡିକ ନିଷ୍କ୍ରିୟ ଅଟନ୍ତି (ସଙ୍କେତ: service smolt start)"
+
+#: sendProfile.py:97
+msgid "Error:"
+msgstr "ତୃଟି:"
+
+#: sendProfile.py:99
+msgid "Hint:"
+msgstr "ସଙ୍କେତ:"
+
+#: sendProfile.py:108
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr "Smolt ସେବକକୁ ଏହି ସୂଚନା ପଠାନ୍ତୁ? (y/n)"
+
+#: sendProfile.py:109
+msgid "y"
+msgstr "ହଁ"
+
+#: sendProfile.py:110
+msgid "Exiting..."
+msgstr "ପ୍ରସ୍ଥାନ କରୁଅଛି..."
+
+#: sendProfile.py:117
+msgid "Retry Enabled - Retrying"
+msgstr "ସକ୍ରିୟଣ ପ୍ରକ୍ରିୟାକୁ ପୁନଃପ୍ରଚେଷ୍ଟା କରନ୍ତୁ - ପୁନଃପ୍ରଚେଷ୍ଟା କରୁଅଛି"
+
+#: sendProfile.py:121
+msgid "Could not send - Exiting"
+msgstr "ପଠାଇ ପାରିଲା ନାହିଁ - ପ୍ରସ୍ଥାନ କରୁଅଛି"
+
+#: sendProfile.py:125
+msgid "To view your profile visit: %s"
+msgstr "ଆପଣଙ୍କ ରୂପରେଖକୁ ଦେଖିବା ପାଇଁ ଏଠାକୁ ଯାଆନ୍ତୁ: %s"
+
+#: smolt.py:224
+msgid "Could not contact server: %s"
+msgstr "ସେବକ ସହିତ ସମ୍ପର୍କ ସ୍ଥାପନ କରିପାରିଲା ନାହିଁ: %s"
+
+#: smolt.py:256
+msgid "Could not bind to dbus"
+msgstr "dbus ସହିତ bind କରିପାରିଲା ନାହିଁ"
+
+#: smolt.py:262
+msgid "Could not connect to hal, is it running?"
+msgstr "hal ସହିତ ସଂଯୋଗ କରିପାରିଲା ନାହିଁ, ଏହା ଚାଲୁଅଛି କି?"
+
+#: smolt.py:262
+msgid "Run \"service haldaemon start\" as root"
+msgstr "ରୁଟ ଚାଳକ ଭାବରେ \"service haldaemon start\" ଚଳାନ୍ତୁ"
+
+#: smolt.py:328 smolt.py:351 smolt.py:368
+msgid "Error contacting Server: %s"
+msgstr "ସେବକ ସହିତ ସମ୍ପର୍କ ସ୍ଥାପନ କରିବା ସମୟରେ ତୃଟି: %s"
+
+#: smolt.py:339
+msgid "Communication with server failed"
+msgstr "ସେବକ ସହିତ ବାର୍ତ୍ତା ବିନିମୟ କରିବା ବିଫଳ ହୋଇଗଲା"
+
+#: smolt.py:382
+msgid "Devices"
+msgstr "ଉପକରଣ"
+
+#: smolt.py:393
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:394
+msgid "OS"
+msgstr "ପ୍ରଚାଳନ ତନ୍ତ୍ର"
+
+#: smolt.py:395
+msgid "Default run level"
+msgstr "ପୂର୍ବନିର୍ଦ୍ଧାରିତ ଚାଳନ ସ୍ତର"
+
+#: smolt.py:396
+msgid "Language"
+msgstr "ଭାଷା"
+
+#: smolt.py:397
+msgid "Platform"
+msgstr "ପ୍ଲାଟଫର୍ମ"
+
+#: smolt.py:398
+msgid "BogoMIPS"
+msgstr "BogoMIPS"
+
+#: smolt.py:399
+msgid "CPU Vendor"
+msgstr "CPU ବିକ୍ରେତା"
+
+#: smolt.py:400
+msgid "CPU Model"
+msgstr "CPU ନମୁନା"
+
+#: smolt.py:401
+msgid "Number of CPUs"
+msgstr "CPU ସଂଖ୍ଯା"
+
+#: smolt.py:402
+msgid "CPU Speed"
+msgstr "CPU ବେଗ"
+
+#: smolt.py:403
+msgid "System Memory"
+msgstr "ତନ୍ତ୍ରର ସ୍ମୃତି"
+
+#: smolt.py:404
+msgid "System Swap"
+msgstr "ତନ୍ତ୍ର ସ୍ବାପ"
+
+#: smolt.py:405
+msgid "Vendor"
+msgstr "ବିକ୍ରେତା"
+
+#: smolt.py:406
+msgid "System"
+msgstr "ତନ୍ତ୍ର"
+
+#: smolt.py:407
+msgid "Form factor"
+msgstr "ଫର୍ମ ଉପାଦାନ"
+
+#: smolt.py:408
+msgid "Kernel"
+msgstr "କର୍ଣ୍ଣଲ"
+
+#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+msgid "Hardware Profile"
+msgstr "ହାର୍ଡୱେର ରୂପରେଖ"
+
+#: smoltFirstBoot.py:50
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr ""
+"Fedora ଯୋଜନା ପାଇଁ smolt ଗୋଟିଏ ହାର୍ଡୱେର ରୂପରେଖ ସ୍ରଷ୍ଟା।  ଆପଣଙ୍କ ରୂପରେଖକୁ ଦାଖଲ କରିବା ସାମୁଦାୟକ ବିକାଶ ପାଇଁ ଲାଭପ୍ରଦ ହେବ ଯେହେତୁ ଏହି ସୂଚନା "
+"ଲୋକପ୍ରିୟ ହାର୍ଡୱେର ଏବଂ ପ୍ଲାଟଫର୍ମ ମାନଙ୍କୁ ବିଶେଷତା ପ୍ରଦାନ କରିବାରେ ସହାୟକ ହୋଇଥାଏ।  ଦାଖଲ ଗୁଡିକ ଅଜ୍ଞାତ ଅଟନ୍ତି।  ଆପଣଙ୍କ ରୂପରେଖକୁ ପଠାଇବା ଦ୍ବାରା ଏହା "
+"ଗୋଟିଏ ମାସିକ ଅଦ୍ଯତନ ପ୍ରକ୍ରିୟାକୁ ସକ୍ରିୟ କରିବ।"
+
+#: smoltFirstBoot.py:69
+msgid "_Send Profile"
+msgstr "ରୂପରେଖ ପଠାନ୍ତୁ (_S)"
+
+#: smoltFirstBoot.py:70
+msgid "D_o not send profile"
+msgstr "ରୂପରେଖ ପଠାନ୍ତୁ ନାହିଁ (_o)"
+
+#: smoltFirstBoot.py:88
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr ""
+"ଆପଣ ନିଶ୍ଚିତ କି ଆପଣ ଆପଣଙ୍କ ରୂପରେଖକୁ ପଠାଇବା ପାଇଁ ଚାହୁଁ ନାହାଁନ୍ତି?  ଆପଣଙ୍କ ରୂପରେଖକୁ ଦାଖଲ କରିବା ଦ୍ବାରା ଏହା ଆମର ବିକାଶ ପାଇଁ ସୂଚନାର ଗୋଟିଏ ମୂଲ୍ଯବାନ "
+"ଉତ୍ସ ହୋଇପାରେ ଏବଂ ଆପଣଙ୍କ ହାର୍ଡୱେର ଦ୍ବାରା ହୋଇଥିବା ତୃଟି ନିବାରଣରେ ସାହାଯ୍ଯ କରିପାରିବ।"
+
+#: smoltFirstBoot.py:96
+msgid "_Reconsider sending"
+msgstr "ପଠାଇବା ପାଇଁ ପୁନର୍ବାର ବିଚାର କରନ୍ତୁ (_R)"
+
+#: smoltFirstBoot.py:97
+msgid "_No, do not send."
+msgstr "ନାଁ, ପଠାନ୍ତୁ ନାହିଁ (_N)।"
+
+#: smoltGui.py:68
+msgid "Quit the program without sending your hardware profile to the server"
+msgstr "ସେବକକୁ ଆପଣଙ୍କ ହାର୍ଡୱେର ରୂପରେଖ ନ ପଠାଇ ପ୍ରୋଗ୍ରାମକୁ ବନ୍ଦ କରନ୍ତୁ"
+
+#: smoltGui.py:68
+msgid "_Quit"
+msgstr "ବିଦାୟ ନିଅନ୍ତୁ (_Q)"
+
+#: smoltGui.py:69
+msgid "Send your hardware profile to the server."
+msgstr "ସେବକକୁ ଆପଣଙ୍କ ହାର୍ଡୱେର ରୂପରେଖ ପଠାନ୍ତୁ।"
+
+#: smoltGui.py:69
+msgid "_Send"
+msgstr "ପଠାନ୍ତୁ (_S)"
+
+#: smoltGui.py:70
+msgid "Show _Privacy Policy"
+msgstr "ଗୋପନୀୟତା ନୀତି ପ୍ରଦର୍ଶନ କରନ୍ତୁ (_P)"
+
+#: smoltGui.py:70
+msgid "Show the Smolt privacy policy."
+msgstr "Smolt ଗୋପନୀୟତା ନୀତି ପ୍ରଦର୍ଶନ କରନ୍ତୁ।"
+
+#: smoltGui.py:71
+msgid "_About"
+msgstr "ବିବରଣୀ (_A)"
+
+#: smoltGui.py:127
+msgid "An error occurred while sending the data to the server."
+msgstr "ସେବକକୁ ତଥ୍ଯ ପଠାଇବା ସମୟରେ ଗୋଟିଏ ତୃଟି ଘଟିଲା।"
+
+#: smoltGui.py:134
+msgid ""
+"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"%s\n"
+"stored in /etc/sysconfig/hw-uuid"
+msgstr ""
+"ତଥ୍ଯକୁ ସଫଳତାର ସହିତ ପଠାଗଲା।  ଯଦି ଆପଣ ଗୋଟିଏ ତୃଟି ବିବରଣୀ ପାଇଁ ଆପଣଙ୍କ ହାର୍ଡୱେର ରୂପରେଖକୁ ଦେଖିବା ପାଇଁ ଚାହୁଁଛନ୍ତି ତାହାହେଲେ \n"
+"ଆପଣଙ୍କ UUID ଟି ହେଲା %s\n"
+"ଏହାକୁ /etc/sysconfig/hw-uuid ରେ ରଖାଯାଇଛି"
+
+#: smoltGui.py:145
+msgid "Smolt Privacy Policy"
+msgstr "Smolt ଗୋପନୀୟତା ନୀତି"
+

@@ -1,0 +1,304 @@
+# translation of zh-CN.po to
+# Chinese translations for translate_rhel package
+# translate_rhel 软件包的简体中文翻译.
+# Copyright (C) 2007 ORGANIZATION
+#
+# Xi HUANG <xhuang@dhcp-93.brisbane.redhat.com>, 2007.
+# Xi HUANG <xhuang@redhat.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: zh-CN\n"
+"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"PO-Revision-Date: 2007-04-03 15:00+1000\n"
+"Last-Translator: Xi HUANG <xhuang@redhat.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=GB2312\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: deleteProfile.py:35 smolt.py:222
+msgid "Server Message: \"%s\""
+msgstr "服务器信息：\"%s\""
+
+#: deleteProfile.py:45 sendProfile.py:41
+msgid "enable debug information"
+msgstr "启用调试信息"
+
+#: deleteProfile.py:50 sendProfile.py:46
+msgid "specify the URL of the server (default \"%default\")"
+msgstr "指定服务器的 URL（缺省为 \"%default\"）"
+
+#: deleteProfile.py:55 sendProfile.py:51
+msgid "print information only, do not send"
+msgstr "只显示信息而不发送信息"
+
+#: deleteProfile.py:60 sendProfile.py:66
+msgid "specify HTTP user agent (default \"%default\")"
+msgstr "指定 HTTP 用户代理（缺省为 \"%default\"）"
+
+#: deleteProfile.py:65 sendProfile.py:71
+msgid "specify HTTP timeout in seconds (default %default seconds)"
+msgstr "指定 HTTP 的超时时间（缺省为 %default 秒）"
+
+#: deleteProfile.py:83
+msgid "Error contacting Server:"
+msgstr "连接服务器错误："
+
+#: deleteProfile.py:91
+msgid "Profile removed, please verify at"
+msgstr "配置文件被删除，请验证"
+
+#: gui.py:56
+msgid "Label"
+msgstr "标签"
+
+#: gui.py:62
+msgid "Data"
+msgstr "数据"
+
+#: gui.py:93
+msgid "Device ID"
+msgstr "Device ID"
+
+#: gui.py:100
+msgid "Bus"
+msgstr "总线"
+
+#: gui.py:107
+msgid "Driver"
+msgstr "驱动"
+
+#: gui.py:114
+msgid "Type"
+msgstr "类型"
+
+#: gui.py:121
+msgid "Description"
+msgstr "描述"
+
+#: sendProfile.py:56
+msgid "don't prompt to send, just send"
+msgstr "直接发送而不要提示发送"
+
+#: sendProfile.py:61
+msgid "continue to send until success"
+msgstr "继续发送直至成功发送"
+
+#: sendProfile.py:76
+msgid ""
+"this is an automated checkin, will only run if the \"smolt\" service has "
+"been started"
+msgstr "这是自动的 checkin，只有在 \"smolt\" 服务已经被启动时才会运行。"
+
+#: sendProfile.py:90
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr "设置 Smolt 为 checkin，但 checkin 被禁用（提示：service smolt start）"
+
+#: sendProfile.py:97
+msgid "Error:"
+msgstr "错误："
+
+#: sendProfile.py:99
+msgid "Hint:"
+msgstr "提示："
+
+#: sendProfile.py:108
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr "把这个信息发送到 Smolt 服务器吗？（y/n）"
+
+#: sendProfile.py:109
+msgid "y"
+msgstr "y"
+
+#: sendProfile.py:110
+msgid "Exiting..."
+msgstr "退出..."
+
+#: sendProfile.py:117
+msgid "Retry Enabled - Retrying"
+msgstr "启用重试 - 正在重试"
+
+#: sendProfile.py:121
+msgid "Could not send - Exiting"
+msgstr "不能发送 － 退出"
+
+#: sendProfile.py:125
+msgid "To view your profile visit: %s"
+msgstr "要查看你的配置文件，可以访问：%s"
+
+#: smolt.py:224
+msgid "Could not contact server: %s"
+msgstr "不能够连接服务器：%s"
+
+#: smolt.py:256
+msgid "Could not bind to dbus"
+msgstr "不能够绑定到 dbus"
+
+#: smolt.py:262
+msgid "Could not connect to hal, is it running?"
+msgstr "不能够连接到 hal，它是否正在运行？"
+
+#: smolt.py:262
+msgid "Run \"service haldaemon start\" as root"
+msgstr "以根用户身份运行 \"service haldaemon start\""
+
+#: smolt.py:328 smolt.py:351 smolt.py:368
+msgid "Error contacting Server: %s"
+msgstr "连接服务器错误：%s"
+
+#: smolt.py:339
+msgid "Communication with server failed"
+msgstr "与服务器通信失败"
+
+#: smolt.py:382
+msgid "Devices"
+msgstr "设备"
+
+#: smolt.py:393
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:394
+msgid "OS"
+msgstr "OS"
+
+#: smolt.py:395
+msgid "Default run level"
+msgstr "缺省的运行级别"
+
+#: smolt.py:396
+msgid "Language"
+msgstr "语言"
+
+#: smolt.py:397
+msgid "Platform"
+msgstr "平台"
+
+#: smolt.py:398
+msgid "BogoMIPS"
+msgstr "BogoMIPS"
+
+#: smolt.py:399
+msgid "CPU Vendor"
+msgstr "CPU 供应商"
+
+#: smolt.py:400
+msgid "CPU Model"
+msgstr "CPU 型号"
+
+#: smolt.py:401
+msgid "Number of CPUs"
+msgstr "CPU 数量"
+
+#: smolt.py:402
+msgid "CPU Speed"
+msgstr "CPU 速度"
+
+#: smolt.py:403
+msgid "System Memory"
+msgstr "系统内存"
+
+#: smolt.py:404
+msgid "System Swap"
+msgstr "系统交换空间"
+
+#: smolt.py:405
+msgid "Vendor"
+msgstr "供应商"
+
+#: smolt.py:406
+msgid "System"
+msgstr "系统"
+
+#: smolt.py:407
+msgid "Form factor"
+msgstr "Form factor"
+
+#: smolt.py:408
+msgid "Kernel"
+msgstr "内核"
+
+#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+msgid "Hardware Profile"
+msgstr "硬件配置"
+
+#: smoltFirstBoot.py:50
+msgid ""
+"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
+"profile is a great way to give back to the community as this information is "
+"used to help focus our efforts on popular hardware and platforms.  "
+"Submissions are anonymous.  Sending your profile will enable a monthly "
+"update."
+msgstr "Smolt 是 Fedora 项目的一个硬件配置工具。提交您的硬件配置是对社区的重要回馈，因为这些信息可以用来帮助我们确认流行的硬件和平台。提交是匿名的。发送您的配置将启用每月的更新。"
+
+#: smoltFirstBoot.py:69
+msgid "_Send Profile"
+msgstr "发送配置文件"
+
+#: smoltFirstBoot.py:70
+msgid "D_o not send profile"
+msgstr "不要发送配置文件"
+
+#: smoltFirstBoot.py:88
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr "你确定不发送配置文件吗？对于我们的开发来说，提交你的配置是很有价值的信息来源，这可以帮助我们解决您的硬件方面的问题。"
+
+#: smoltFirstBoot.py:96
+msgid "_Reconsider sending"
+msgstr "重新考虑发送"
+
+#: smoltFirstBoot.py:97
+msgid "_No, do not send."
+msgstr "不，不发送。"
+
+#: smoltGui.py:68
+msgid "Quit the program without sending your hardware profile to the server"
+msgstr "直接退出而不发送您的配置到服务器"
+
+#: smoltGui.py:68
+msgid "_Quit"
+msgstr "退出"
+
+#: smoltGui.py:69
+msgid "Send your hardware profile to the server."
+msgstr "把您的配置发送到服务器。"
+
+#: smoltGui.py:69
+msgid "_Send"
+msgstr "发送"
+
+#: smoltGui.py:70
+msgid "Show _Privacy Policy"
+msgstr "显示隐私策略"
+
+#: smoltGui.py:70
+msgid "Show the Smolt privacy policy."
+msgstr "显示 Smolt 隐私策略。"
+
+#: smoltGui.py:71
+msgid "_About"
+msgstr "关于"
+
+#: smoltGui.py:127
+msgid "An error occurred while sending the data to the server."
+msgstr "发送数据至服务器时出现错误。"
+
+#: smoltGui.py:134
+msgid ""
+"The data was successfully sent.  If you need to refer to your hardware "
+"profile for a bug report your UUID is \n"
+"%s\n"
+"stored in /etc/sysconfig/hw-uuid"
+msgstr ""
+"数据被成功地发送了。如果您需要为 bug 报告而引用您的硬件配置，存放在 /etc/sysconfig/hw-uuid 的 UUID 是\n"
+"%s\n。"
+
+#: smoltGui.py:145
+msgid "Smolt Privacy Policy"
+msgstr "Smolt 隐私策略"
+
