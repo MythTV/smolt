@@ -33,7 +33,7 @@ class childWindow:
 
         msg = (_("Hardware Profile"))
 
-        title_pix = functions.imageFromFile("workstation.png")
+        title_pix = functions.imageFromFile("smolt.png")
 
         internalVBox = gtk.VBox()
         internalVBox.set_border_width(10)
