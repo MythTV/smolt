@@ -82,7 +82,7 @@ smolt.DEBUG = opts.DEBUG
 if opts.checkin and os.path.exists('/var/lock/subsys/smolt'):
     # Smolt is set to run
     # Wait a random amount of time between 0 and 3 days to send
-    random.seed(file('/etc/sysconfig/hw-uuid').read().strip())
+    random.seed(file('/proc/sys/kernel/random/uuid').read().strip())
     time.sleep(random.randint(1, 259200))
     opts.autoSend = True
 elif opts.checkin:

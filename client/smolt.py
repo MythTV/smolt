@@ -838,10 +838,14 @@ def getUUID():
         try:
             UUID = file('/proc/sys/kernel/random/uuid').read().strip()
             try:
-                file('/etc/sysconfig/hw-uuid', 'w').write(self.UUID)
+                file('/etc/sysconfig/hw-uuid', 'w').write(UUID)
+                UUID = file('/etc/sysconfig/hw-uuid').read().strip()
             except:
-                sys.stderr.write('Unable to save UUID, continuing...\n')
+                raise UUIDError, 'Unable to save UUID, continuing...\n'
         except IOError:
             sys.stderr.write('Unable to determine UUID of system!\n')
             raise UUIDError, 'Could not determine UUID of system!\n'
-    return UUID
+    if UUID:
+        return UUID
+    else:
+        raise UUIDError, 'Could not determine UUID of system!\n'

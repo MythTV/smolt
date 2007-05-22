@@ -42,4 +42,7 @@ def read_os():
     try:
         return file('/etc/redhat-release').read().strip()
     except IOError:
-        return 'Unknown'
+        try:
+            return file('/etc/SuSE-release').read().split('\n')[0].strip()
+        except IOError:
+            return 'Unknown'
