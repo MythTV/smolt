@@ -125,7 +125,7 @@ class Root(controllers.RootController):
             hostSQL.system = system.strip()
             hostSQL.kernelVersion = kernelVersion.strip()
             hostSQL.formfactor = formfactor.strip()
-            hostSQL.LastModified = DateTime.now()
+            hostSQL.lastModified = DateTime.now()
 
         except SQLObjectNotFound:
             try:
@@ -148,7 +148,7 @@ class Root(controllers.RootController):
                         system = system.strip(),
                         kernelVersion = kernelVersion.strip(),
                         formfactor = formfactor.strip(),
-                        LastModified = DateTime.now())
+                        lastModified = DateTime.now())
 
         return dict(hostObject=hostSQL, devices=[])
 
