@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: latin-1 -*-
 
 # smolt - Fedora hardware profiler
 #
@@ -385,8 +386,10 @@ class Hardware:
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
             self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-            
-        return '\n'.join(printBuffer)
+
+        return '\n'.join(printBuffer)            
+#        return '\n'.join(printBuffer).encode('utf8')
+
 
     def hostIter(self):
         '''Iterate over host information.'''
@@ -419,6 +422,7 @@ class Hardware:
                 Driver = self.devices[device].driver
                 Type = self.devices[device].type
                 Description = self.devices[device].description
+                Description = Description.decode('latin1')
             except:
                 continue
             else:
