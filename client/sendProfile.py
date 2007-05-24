@@ -99,7 +99,9 @@ except smolt.SystemBusError, e:
         error('\t' + _('Hint:') + ' ' + e.hint)
     sys.exit(8)
     
-print profile.getProfile()
+#print profile.getProfile()
+for line in profile.getProfile():
+	print line
 
 if not opts.autoSend:
     if opts.printOnly:

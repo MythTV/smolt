@@ -386,9 +386,10 @@ class Hardware:
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
             self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+	    print '%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description)
 
-        return '\n'.join(printBuffer)            
-#        return '\n'.join(printBuffer).encode('utf8')
+#        return '\n'.join(printBuffer)            
+        return printBuffer
 
 
     def hostIter(self):
@@ -838,14 +839,10 @@ def getUUID():
         try:
             UUID = file('/proc/sys/kernel/random/uuid').read().strip()
             try:
-                file('/etc/sysconfig/hw-uuid', 'w').write(UUID)
-                UUID = file('/etc/sysconfig/hw-uuid').read().strip()
+                file('/etc/sysconfig/hw-uuid', 'w').write(self.UUID)
             except:
-                raise UUIDError, 'Unable to save UUID, continuing...\n'
+                sys.stderr.write('Unable to save UUID, continuing...\n')
         except IOError:
             sys.stderr.write('Unable to determine UUID of system!\n')
             raise UUIDError, 'Could not determine UUID of system!\n'
-    if UUID:
-        return UUID
-    else:
-        raise UUIDError, 'Could not determine UUID of system!\n'
+    return UUID
