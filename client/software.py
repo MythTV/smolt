@@ -42,7 +42,17 @@ def read_os():
     try:
         return file('/etc/redhat-release').read().strip()
     except IOError:
-        try:
-            return file('/etc/SuSE-release').read().split('\n')[0].strip()
-        except IOError:
-            return 'Unknown'
+        pass
+    try:
+        return file('/etc/SuSE-release').read().split('\n')[0].strip()
+    except IOError:
+        pass
+    try:
+        #this is a bit of a kludge, as /etc/debian-release is 
+        #somewhat incomplete in what it gives you
+        #I also figure this should work better in 
+        #ubuntu
+        return file('/etc/issue.net').read().strip()
+    except IOError:
+        pass
+    return 'Unknown'
