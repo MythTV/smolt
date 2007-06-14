@@ -19,6 +19,7 @@
 import os
 import commands
 import re
+import sys
 
 def read_lsb_release():
     if os.access('/usr/bin/lsb_release', os.X_OK):
@@ -35,7 +36,10 @@ def read_runlevel():
         if match:
             defaultRunlevel = match.group(1)
     except IOError:
-        sys.stderr.write('Unable to read /etc/inittab.')
+	try:
+		defaultRunlevel = commands.getstatusoutput('/sbin/runlevel')[1].split()[1].strip()
+	except:
+        	sys.stderr.write('Cannot Determine Runlevel')
     return defaultRunlevel.strip()
 
 def read_os():
