@@ -377,7 +377,14 @@ class Hardware:
         printBuffer = []
 
         for label, data in self.hostIter():
-            printBuffer.append('\t%s: %s' % (label, data))
+            print 
+            try:
+                printBuffer.append('\t%s: %s' % (label, data))
+            except UnicodeDecodeError:
+                try:
+                    printBuffer.append('\t%s: %s' % (unicode(label, 'utf-8'), data))
+                except UnicodeDecodeError:
+                    printBuffer.append('\t%r: %r' % (label, data))
             
         printBuffer.append('')
         printBuffer.append('\t\t ' + _('Devices'))
@@ -386,9 +393,6 @@ class Hardware:
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
             self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-	    print '%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description)
-
-#        return '\n'.join(printBuffer)            
         return printBuffer
 
 
