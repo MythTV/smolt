@@ -98,9 +98,9 @@ class Root(controllers.RootController):
         tokenUUID = tokenPlain[1]
         currentTime = int(time.mktime(datetime.datetime.now().timetuple()))
         if currentTime - tokenTime > 20:
-            raise ValueError("Critical: Invalid Token")
+            raise ValueError("Critical [20]: Invalid Token")
         if UUID.strip() != tokenUUID.strip():
-            raise ValueError("Critical: Invalid Token")
+            raise ValueError("Critical [s]: Invalid Token")
 
         UUID = UUID.strip()
         try:
@@ -261,7 +261,7 @@ class Root(controllers.RootController):
         totalHosts = stats['totalHosts']
         stats['archs'] = Host._connection.queryAll("Select platform, count(platform) as cnt from host group by platform order by cnt desc")
 
-        stats['OS'] = Host._connection.queryAll("Select o_s, count(o_s) as cnt from host group by o_s order by cnt desc")
+        stats['OS'] = Host._connection.queryAll("Select o_s, count(o_s) as cnt from host group by o_s order by cnt desc limit 10")
         #Host._connection.queryAll("Select count(o_s) from host")[0][0]
 
         stats['runlevel'] = Host._connection.queryAll("Select default_runlevel, count(default_runlevel) as cnt from host group by default_runlevel order by cnt desc")
@@ -277,7 +277,7 @@ class Root(controllers.RootController):
 
         stats['formfactor'] = Host._connection.queryAll("Select formfactor, count(formfactor) as cnt from host group by formfactor order by cnt desc;")
 
-        stats['language'] = Host._connection.queryAll("Select language, count(language) as cnt from host group by language order by cnt desc limit 15")
+        stats['language'] = Host._connection.queryAll("Select language, count(language) as cnt from host group by language order by cnt desc")
         stats['languagetot'] = stats['totalHosts']
         #int(Host._connection.queryAll('Select count(language) from host;')[0][0])
  
