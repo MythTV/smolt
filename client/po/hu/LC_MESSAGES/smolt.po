@@ -7,36 +7,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Smolt 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
 "PO-Revision-Date: 2007-04-02 22:02+0200\n"
 "Last-Translator:  Sulyok Péter <peti@sulyok.hu>\n"
 "Language-Team: Hungarian <fedora-trans-hu@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: deleteProfile.py:35 smolt.py:222
+#: deleteProfile.py:35 smolt.py:236
 msgid "Server Message: \"%s\""
 msgstr "Kiszolgáló üzenet: „%s”"
 
-#: deleteProfile.py:45 sendProfile.py:41
+#: deleteProfile.py:45 sendProfile.py:42
 msgid "enable debug information"
 msgstr "hibakereső tájékoztatás engedélyezése"
 
-#: deleteProfile.py:50 sendProfile.py:46
+#: deleteProfile.py:50 sendProfile.py:47
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "adja meg a kiszolgáló URL-jét (alapértelmezés „%default”)"
 
-#: deleteProfile.py:55 sendProfile.py:51
+#: deleteProfile.py:55 sendProfile.py:62
 msgid "print information only, do not send"
 msgstr "tájékoztatás nyomtatása csak, nincs küldés"
 
-#: deleteProfile.py:60 sendProfile.py:66
+#: deleteProfile.py:60 sendProfile.py:77
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "adja meg a HTTP használó ügyfelet (alapértelmezés „%default”)"
 
-#: deleteProfile.py:65 sendProfile.py:71
+#: deleteProfile.py:65 sendProfile.py:82
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "adja meg a HTTP időkorlátot másodpercben (alapértelmezés %default másodperc)"
 
@@ -48,173 +48,197 @@ msgstr "Hiba a kiszolgálóhoz csatlakozáskor"
 msgid "Profile removed, please verify at"
 msgstr "Profil törölve, kérem ellenőrizze "
 
-#: gui.py:56
+#: gui.py:58
 msgid "Label"
 msgstr "Címke"
 
-#: gui.py:62
+#: gui.py:64
 msgid "Data"
 msgstr "Adatok"
 
-#: gui.py:93
-msgid "Device ID"
-msgstr "Eszköz az"
+#: gui.py:95
+msgid "Rating this device"
+msgstr ""
 
-#: gui.py:100
+#: gui.py:102
 msgid "Bus"
 msgstr "Busz"
 
-#: gui.py:107
+#: gui.py:109
 msgid "Driver"
 msgstr "Vezérlő"
 
-#: gui.py:114
+#: gui.py:116
 msgid "Type"
 msgstr "Típus"
 
-#: gui.py:121
+#: gui.py:123
 msgid "Description"
 msgstr "Leírás"
 
-#: sendProfile.py:56
+#: sendProfile.py:52
+msgid "(optional) Fedora Account System registration"
+msgstr ""
+
+#: sendProfile.py:57
+msgid "password, will prompt if not specified"
+msgstr ""
+
+#: sendProfile.py:67
 msgid "don't prompt to send, just send"
 msgstr "ne jelezze a küldést, csak tegye"
 
-#: sendProfile.py:61
+#: sendProfile.py:72
 msgid "continue to send until success"
 msgstr "folytassa a küldést amíg nem sikerül"
 
-#: sendProfile.py:76
+#: sendProfile.py:87
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "ez egy önműködő ellenőrzés, csak akkor fut, ha a „smolt” szolgáltatást elindították"
 
-#: sendProfile.py:90
+#: sendProfile.py:101
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt beállítva bejelentkezésre, de bejelentkezés letiltva (tipp: service smolt start)"
 
-#: sendProfile.py:97
+#: sendProfile.py:108
 msgid "Error:"
 msgstr "Hiba:"
 
-#: sendProfile.py:99
+#: sendProfile.py:110
 msgid "Hint:"
 msgstr "Tipp:"
 
-#: sendProfile.py:108
+#: sendProfile.py:121
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr "Küldjük e tájékoztatást a Smolt kiszolgálóra? (i/n)"
 
-#: sendProfile.py:109
+#: sendProfile.py:122
 msgid "y"
 msgstr "i"
 
-#: sendProfile.py:110
+#: sendProfile.py:123
 msgid "Exiting..."
 msgstr "Kilépés…"
 
-#: sendProfile.py:117
+#: sendProfile.py:130
 msgid "Retry Enabled - Retrying"
 msgstr "Ismétlés engedélyezve – Ismétlés"
 
-#: sendProfile.py:121
+#: sendProfile.py:134
 msgid "Could not send - Exiting"
 msgstr "Nem sikerült küldeni – Kilépés"
 
-#: sendProfile.py:125
+#: sendProfile.py:139
+msgid "Password:"
+msgstr ""
+
+#: sendProfile.py:144
+msgid "Registration Failed, Try again"
+msgstr ""
+
+#: sendProfile.py:147
 msgid "To view your profile visit: %s"
 msgstr "A profil megtekintéséhez ld: %s"
 
-#: smolt.py:224
+#: smolt.py:238
 msgid "Could not contact server: %s"
 msgstr "Nem sikerült elérni %s kiszolgálót."
 
-#: smolt.py:256
+#: smolt.py:270
 msgid "Could not bind to dbus"
 msgstr "Nem sikerült kötni dbus-hoz"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Could not connect to hal, is it running?"
 msgstr "Nem sikerült halhoz kapcsolódni. Fut?"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Futtassa „service haldaemon start”-ot rootként"
 
-#: smolt.py:328 smolt.py:351 smolt.py:368
+#: smolt.py:332 smolt.py:367 smolt.py:390 smolt.py:407
 msgid "Error contacting Server: %s"
 msgstr "Hiba %s kiszolgálóhoz kapcsolódáskor"
 
-#: smolt.py:339
+#: smolt.py:378
 msgid "Communication with server failed"
 msgstr "Kommunikáció a kiszolgálóval sikertelen"
 
-#: smolt.py:382
+#: smolt.py:428
 msgid "Devices"
 msgstr "Eszközök"
 
-#: smolt.py:393
+#: smolt.py:439
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:394
+#: smolt.py:440
 msgid "OS"
 msgstr "OR"
 
-#: smolt.py:395
+#: smolt.py:441
 msgid "Default run level"
 msgstr "Alapértelmezett futási szint"
 
-#: smolt.py:396
+#: smolt.py:442
 msgid "Language"
 msgstr "Nyelv"
 
-#: smolt.py:397
+#: smolt.py:443
 msgid "Platform"
 msgstr "Platform"
 
-#: smolt.py:398
+#: smolt.py:444
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:399
+#: smolt.py:445
 msgid "CPU Vendor"
 msgstr "CPU szállító"
 
-#: smolt.py:400
+#: smolt.py:446
 msgid "CPU Model"
 msgstr "CPU modell"
 
-#: smolt.py:401
+#: smolt.py:447
 msgid "Number of CPUs"
 msgstr "CPU-k száma"
 
-#: smolt.py:402
+#: smolt.py:448
 msgid "CPU Speed"
 msgstr "CPU sebesség"
 
-#: smolt.py:403
+#: smolt.py:449
 msgid "System Memory"
 msgstr "Rendszer tár"
 
-#: smolt.py:404
+#: smolt.py:450
 msgid "System Swap"
 msgstr "Rendszer lapozó"
 
-#: smolt.py:405
+#: smolt.py:451
 msgid "Vendor"
 msgstr "Szállító"
 
-#: smolt.py:406
+#: smolt.py:452
 msgid "System"
 msgstr "Rendszer"
 
-#: smolt.py:407
+#: smolt.py:453
 msgid "Form factor"
 msgstr "Formátum"
 
-#: smolt.py:408
+#: smolt.py:454
 msgid "Kernel"
 msgstr "Rendszermag"
+
+#: smolt.py:455
+msgid "SELinux Enabled"
+msgstr ""
+
+#: smolt.py:456
+msgid "SELinux Enforce"
+msgstr ""
 
 #: smoltFirstBoot.py:24 smoltFirstBoot.py:34
 msgid "Hardware Profile"
@@ -244,48 +268,67 @@ msgstr "Küldés új_ragondolása"
 msgid "_No, do not send."
 msgstr "_Ne küldje!"
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Kilépés a programból hardverprofil kiszolgálóra küldése nélkül."
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "_Quit"
 msgstr "_Kilépés"
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "Send your hardware profile to the server."
 msgstr "A hardverprofil küldése a kiszolgálóra."
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "_Send"
 msgstr "Küldé_s"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show _Privacy Policy"
 msgstr "S_zemélyes adatok szabályzat megjelenítése"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show the Smolt privacy policy."
 msgstr "Smolt személyes adatok szabályzat megjelenítése"
 
-#: smoltGui.py:71
+#: smoltGui.py:73
 msgid "_About"
 msgstr "Né_vjegy"
 
-#: smoltGui.py:127
+#: smoltGui.py:74
+msgid "_File"
+msgstr ""
+
+#: smoltGui.py:75
+msgid "_Help"
+msgstr ""
+
+#: smoltGui.py:105
+msgid "Rate this system:"
+msgstr ""
+
+#: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr "Hiba történt az adatok kiszolgálóra küldésekor."
 
-#: smoltGui.py:134
+#: smoltGui.py:144
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in /etc/sysconfig/hw-uuid"
-msgstr "Az adatokat sikerült elküldeni. Ha utalni kell az ön hardverprofiljára egy hibabejelentéskor, az ön UUID-je:\n"
+msgstr ""
+"Az adatokat sikerült elküldeni. Ha utalni kell az ön hardverprofiljára egy hibabejelentéskor, az ön UUID-je:\n"
 "%s\n"
 "eltárolva /etc/sysconfig/hw-uuid fájlban"
 
-#: smoltGui.py:145
+#: smoltGui.py:155
 msgid "Smolt Privacy Policy"
 msgstr "Smolt személyi adatok szabályzat"
 
+#: smoltGui.py:198
+msgid "translator-credits"
+msgstr ""
+
+#~ msgid "Device ID"
+#~ msgstr "Eszköz az"

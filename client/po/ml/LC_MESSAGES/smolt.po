@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ml\n"
-"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
 "PO-Revision-Date: 2007-04-03 17:47+0530\n"
 "Last-Translator: Ani Peter <apeter@redhat.com>\n"
 "Language-Team: Malayalam <en@li.org>\n"
@@ -15,27 +15,27 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: deleteProfile.py:35 smolt.py:222
+#: deleteProfile.py:35 smolt.py:236
 msgid "Server Message: \"%s\""
 msgstr "സറ്‍വറ്‍ സന്ദേശം: \"%s\""
 
-#: deleteProfile.py:45 sendProfile.py:41
+#: deleteProfile.py:45 sendProfile.py:42
 msgid "enable debug information"
 msgstr "ഡീബഗ് ചെയ്ത വിവരങ്ങള്‍ സജ്ജമാക്കുക"
 
-#: deleteProfile.py:50 sendProfile.py:46
+#: deleteProfile.py:50 sendProfile.py:47
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "സറ്‍വറിന്‍റെ URL നല്‍കുക (ഡീഫോള്‍ട്ട് \"%default\")"
 
-#: deleteProfile.py:55 sendProfile.py:51
+#: deleteProfile.py:55 sendProfile.py:62
 msgid "print information only, do not send"
 msgstr "വിവരം പ്റിന്‍റ് മാത്റം ചെയ്യുക, അയയ്ക്കേണ്ടതില്ല"
 
-#: deleteProfile.py:60 sendProfile.py:66
+#: deleteProfile.py:60 sendProfile.py:77
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "HTTP യൂസറ്‍ ഏജന്‍റ് നല്‍കുക (ഡീഫോള്‍ട്ട് \"%default\")"
 
-#: deleteProfile.py:65 sendProfile.py:71
+#: deleteProfile.py:65 sendProfile.py:82
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr ""
 
@@ -47,172 +47,196 @@ msgstr "സറ്‍വറുമായി ബന്ധപ്പെടുന്�
 msgid "Profile removed, please verify at"
 msgstr ""
 
-#: gui.py:56
+#: gui.py:58
 msgid "Label"
 msgstr "ലേബല്‍"
 
-#: gui.py:62
+#: gui.py:64
 msgid "Data"
 msgstr "ഡേറ്റാ"
 
-#: gui.py:93
-msgid "Device ID"
-msgstr "ഡിവൈസ് ID"
+#: gui.py:95
+msgid "Rating this device"
+msgstr ""
 
-#: gui.py:100
+#: gui.py:102
 msgid "Bus"
 msgstr "ബസ്"
 
-#: gui.py:107
+#: gui.py:109
 msgid "Driver"
 msgstr "ഡ്റൈവറ്‍"
 
-#: gui.py:114
+#: gui.py:116
 msgid "Type"
 msgstr "ഏത് തരം"
 
-#: gui.py:121
+#: gui.py:123
 msgid "Description"
 msgstr "വിവരണം"
 
-#: sendProfile.py:56
+#: sendProfile.py:52
+msgid "(optional) Fedora Account System registration"
+msgstr ""
+
+#: sendProfile.py:57
+msgid "password, will prompt if not specified"
+msgstr ""
+
+#: sendProfile.py:67
 msgid "don't prompt to send, just send"
 msgstr ""
 
-#: sendProfile.py:61
+#: sendProfile.py:72
 msgid "continue to send until success"
 msgstr ""
 
-#: sendProfile.py:76
+#: sendProfile.py:87
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr ""
 
-#: sendProfile.py:90
+#: sendProfile.py:101
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr ""
 
-#: sendProfile.py:97
+#: sendProfile.py:108
 msgid "Error:"
 msgstr "പിഴവ്:"
 
-#: sendProfile.py:99
+#: sendProfile.py:110
 msgid "Hint:"
 msgstr "സൂചന:"
 
-#: sendProfile.py:108
+#: sendProfile.py:121
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr "Smolt സറ്‍വറിലേക്ക് ഈ വിവരം അയയ്ക്കണമോ? (y/n)"
 
-#: sendProfile.py:109
+#: sendProfile.py:122
 msgid "y"
 msgstr "y"
 
-#: sendProfile.py:110
+#: sendProfile.py:123
 msgid "Exiting..."
 msgstr "പുറത്തേക്ക് കടക്കുന്നു..."
 
-#: sendProfile.py:117
+#: sendProfile.py:130
 msgid "Retry Enabled - Retrying"
 msgstr ""
 
-#: sendProfile.py:121
+#: sendProfile.py:134
 msgid "Could not send - Exiting"
 msgstr ""
 
-#: sendProfile.py:125
+#: sendProfile.py:139
+msgid "Password:"
+msgstr ""
+
+#: sendProfile.py:144
+msgid "Registration Failed, Try again"
+msgstr ""
+
+#: sendProfile.py:147
 msgid "To view your profile visit: %s"
 msgstr ""
 
-#: smolt.py:224
+#: smolt.py:238
 msgid "Could not contact server: %s"
 msgstr ""
 
-#: smolt.py:256
+#: smolt.py:270
 msgid "Could not bind to dbus"
 msgstr ""
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Could not connect to hal, is it running?"
 msgstr ""
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Run \"service haldaemon start\" as root"
 msgstr ""
 
-#: smolt.py:328 smolt.py:351 smolt.py:368
+#: smolt.py:332 smolt.py:367 smolt.py:390 smolt.py:407
 msgid "Error contacting Server: %s"
 msgstr ""
 
-#: smolt.py:339
+#: smolt.py:378
 msgid "Communication with server failed"
 msgstr ""
 
-#: smolt.py:382
+#: smolt.py:428
 msgid "Devices"
 msgstr ""
 
-#: smolt.py:393
+#: smolt.py:439
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:394
+#: smolt.py:440
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:395
+#: smolt.py:441
 msgid "Default run level"
 msgstr ""
 
-#: smolt.py:396
+#: smolt.py:442
 msgid "Language"
 msgstr ""
 
-#: smolt.py:397
+#: smolt.py:443
 msgid "Platform"
 msgstr ""
 
-#: smolt.py:398
+#: smolt.py:444
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:399
+#: smolt.py:445
 msgid "CPU Vendor"
 msgstr ""
 
-#: smolt.py:400
+#: smolt.py:446
 msgid "CPU Model"
 msgstr ""
 
-#: smolt.py:401
+#: smolt.py:447
 msgid "Number of CPUs"
 msgstr ""
 
-#: smolt.py:402
+#: smolt.py:448
 msgid "CPU Speed"
 msgstr ""
 
-#: smolt.py:403
+#: smolt.py:449
 msgid "System Memory"
 msgstr ""
 
-#: smolt.py:404
+#: smolt.py:450
 msgid "System Swap"
 msgstr ""
 
-#: smolt.py:405
+#: smolt.py:451
 msgid "Vendor"
 msgstr ""
 
-#: smolt.py:406
+#: smolt.py:452
 msgid "System"
 msgstr ""
 
-#: smolt.py:407
+#: smolt.py:453
 msgid "Form factor"
 msgstr ""
 
-#: smolt.py:408
+#: smolt.py:454
 msgid "Kernel"
+msgstr ""
+
+#: smolt.py:455
+msgid "SELinux Enabled"
+msgstr ""
+
+#: smolt.py:456
+msgid "SELinux Enforce"
 msgstr ""
 
 #: smoltFirstBoot.py:24 smoltFirstBoot.py:34
@@ -243,46 +267,64 @@ msgstr ""
 msgid "_No, do not send."
 msgstr ""
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr ""
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "_Quit"
 msgstr ""
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "Send your hardware profile to the server."
 msgstr ""
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "_Send"
 msgstr ""
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show _Privacy Policy"
 msgstr ""
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show the Smolt privacy policy."
 msgstr ""
 
-#: smoltGui.py:71
+#: smoltGui.py:73
 msgid "_About"
 msgstr ""
 
-#: smoltGui.py:127
+#: smoltGui.py:74
+msgid "_File"
+msgstr ""
+
+#: smoltGui.py:75
+msgid "_Help"
+msgstr ""
+
+#: smoltGui.py:105
+msgid "Rate this system:"
+msgstr ""
+
+#: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr ""
 
-#: smoltGui.py:134
+#: smoltGui.py:144
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in /etc/sysconfig/hw-uuid"
 msgstr ""
 
-#: smoltGui.py:145
+#: smoltGui.py:155
 msgid "Smolt Privacy Policy"
 msgstr ""
 
+#: smoltGui.py:198
+msgid "translator-credits"
+msgstr ""
+
+#~ msgid "Device ID"
+#~ msgstr "ഡിവൈസ് ID"

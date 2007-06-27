@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
 "PO-Revision-Date: 2007-04-04 03:52+0100\n"
 "Last-Translator: Renato Pavicic <renato@translator-shop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,33 +14,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: deleteProfile.py:35
-#: smolt.py:222
+#: deleteProfile.py:35 smolt.py:236
 msgid "Server Message: \"%s\""
 msgstr "Poruka poslužitelja: \"%s\""
 
-#: deleteProfile.py:45
-#: sendProfile.py:41
+#: deleteProfile.py:45 sendProfile.py:42
 msgid "enable debug information"
 msgstr "Omogući podatke o otklanjanju nedostataka"
 
-#: deleteProfile.py:50
-#: sendProfile.py:46
+#: deleteProfile.py:50 sendProfile.py:47
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "Odredite URL poslužitelja (zadana vrijednost: \"%default\")"
 
-#: deleteProfile.py:55
-#: sendProfile.py:51
+#: deleteProfile.py:55 sendProfile.py:62
 msgid "print information only, do not send"
 msgstr "Ispisati podatke, bez slanja."
 
-#: deleteProfile.py:60
-#: sendProfile.py:66
+#: deleteProfile.py:60 sendProfile.py:77
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "Odredite HTTP korisnički agent (zadana vrijednost: \"%default\")"
 
-#: deleteProfile.py:65
-#: sendProfile.py:71
+#: deleteProfile.py:65 sendProfile.py:82
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "Odredite HTTP vrijeme isteka (zadana vrijednost: %default sek)"
 
@@ -52,178 +46,199 @@ msgstr "Pogreška tijekom kontaktiranja poslužitelja:"
 msgid "Profile removed, please verify at"
 msgstr "Profil je uklonjen. Provjerite pri"
 
-#: gui.py:56
+#: gui.py:58
 msgid "Label"
 msgstr "Oznaka"
 
-#: gui.py:62
+#: gui.py:64
 msgid "Data"
 msgstr "Podaci"
 
-#: gui.py:93
-msgid "Device ID"
-msgstr "ID uređaja"
+#: gui.py:95
+msgid "Rating this device"
+msgstr ""
 
-#: gui.py:100
+#: gui.py:102
 msgid "Bus"
 msgstr "Sabirnica"
 
-#: gui.py:107
+#: gui.py:109
 msgid "Driver"
 msgstr "Upravljački program"
 
-#: gui.py:114
+#: gui.py:116
 msgid "Type"
 msgstr "Vrsta"
 
-#: gui.py:121
+#: gui.py:123
 msgid "Description"
 msgstr "Opis"
 
-#: sendProfile.py:56
+#: sendProfile.py:52
+msgid "(optional) Fedora Account System registration"
+msgstr ""
+
+#: sendProfile.py:57
+msgid "password, will prompt if not specified"
+msgstr ""
+
+#: sendProfile.py:67
 msgid "don't prompt to send, just send"
 msgstr "Poslati podatke, bez obavijesti o slanju."
 
-#: sendProfile.py:61
+#: sendProfile.py:72
 msgid "continue to send until success"
 msgstr "Nastaviti sa slanjem dok ne uspije"
 
-#: sendProfile.py:76
+#: sendProfile.py:87
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "Ovo je automatizirana prijava. Izvodit će se samo ako je usluga \"smolt\" pokrenuta."
 
-#: sendProfile.py:90
+#: sendProfile.py:101
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt je podešen na prijavljivanje, ali prijavljivanja su onemogućena (savjet: pokrenite naredbu \"service smolt start\")"
 
-#: sendProfile.py:97
+#: sendProfile.py:108
 msgid "Error:"
 msgstr "Pogreška:"
 
-#: sendProfile.py:99
+#: sendProfile.py:110
 msgid "Hint:"
 msgstr "Savjet:"
 
-#: sendProfile.py:108
+#: sendProfile.py:121
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr "Poslati ove podatke Smolt poslužitelju? (d/n)"
 
-#: sendProfile.py:109
+#: sendProfile.py:122
 msgid "y"
 msgstr "d"
 
-#: sendProfile.py:110
+#: sendProfile.py:123
 msgid "Exiting..."
 msgstr "Izlazak..."
 
-#: sendProfile.py:117
+#: sendProfile.py:130
 msgid "Retry Enabled - Retrying"
 msgstr "Ponovni pokušaj je omogućen - Pokušava se ponovno"
 
-#: sendProfile.py:121
+#: sendProfile.py:134
 msgid "Could not send - Exiting"
 msgstr "Slanje nije moguće - Izlazak"
 
-#: sendProfile.py:125
+#: sendProfile.py:139
+msgid "Password:"
+msgstr ""
+
+#: sendProfile.py:144
+msgid "Registration Failed, Try again"
+msgstr ""
+
+#: sendProfile.py:147
 msgid "To view your profile visit: %s"
 msgstr "Da biste pregledali svoj profil posjetite adresu: %s"
 
-#: smolt.py:224
+#: smolt.py:238
 msgid "Could not contact server: %s"
 msgstr "Kontaktiranje poslužitelja nije uspjelo: %s"
 
-#: smolt.py:256
+#: smolt.py:270
 msgid "Could not bind to dbus"
 msgstr "Povezivanje s DBus nije uspjelo"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Could not connect to hal, is it running?"
 msgstr "Povezivanje s Hal nije uspjelo - je li pokrenut?"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Narednu \"service haldaemon start\" pokreni kao korijenski korisnik"
 
-#: smolt.py:328
-#: smolt.py:351
-#: smolt.py:368
+#: smolt.py:332 smolt.py:367 smolt.py:390 smolt.py:407
 msgid "Error contacting Server: %s"
 msgstr "Pogreška tijekom povezivanja s poslužiteljem: %s"
 
-#: smolt.py:339
+#: smolt.py:378
 msgid "Communication with server failed"
 msgstr "Komunikacija s poslužiteljem nije uspjela"
 
-#: smolt.py:382
+#: smolt.py:428
 msgid "Devices"
 msgstr "Uređaji"
 
-#: smolt.py:393
+#: smolt.py:439
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:394
+#: smolt.py:440
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:395
+#: smolt.py:441
 msgid "Default run level"
 msgstr "Zadana razina pokretanja"
 
-#: smolt.py:396
+#: smolt.py:442
 msgid "Language"
 msgstr "Jezik"
 
-#: smolt.py:397
+#: smolt.py:443
 msgid "Platform"
 msgstr "Platforma"
 
-#: smolt.py:398
+#: smolt.py:444
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:399
+#: smolt.py:445
 msgid "CPU Vendor"
 msgstr "CPU proizvođač"
 
-#: smolt.py:400
+#: smolt.py:446
 msgid "CPU Model"
 msgstr "CPU model"
 
-#: smolt.py:401
+#: smolt.py:447
 msgid "Number of CPUs"
 msgstr "Broj CPU-a"
 
-#: smolt.py:402
+#: smolt.py:448
 msgid "CPU Speed"
 msgstr "Brzina CPU"
 
-#: smolt.py:403
+#: smolt.py:449
 msgid "System Memory"
 msgstr "Memorija sustava"
 
-#: smolt.py:404
+#: smolt.py:450
 msgid "System Swap"
 msgstr "Razmjenska memorija"
 
-#: smolt.py:405
+#: smolt.py:451
 msgid "Vendor"
 msgstr "Proizvođač"
 
-#: smolt.py:406
+#: smolt.py:452
 msgid "System"
 msgstr "Sustav"
 
-#: smolt.py:407
+#: smolt.py:453
 msgid "Form factor"
 msgstr "Tvornički oblik "
 
-#: smolt.py:408
+#: smolt.py:454
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smoltFirstBoot.py:24
-#: smoltFirstBoot.py:34
+#: smolt.py:455
+msgid "SELinux Enabled"
+msgstr ""
+
+#: smolt.py:456
+msgid "SELinux Enforce"
+msgstr ""
+
+#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
 msgid "Hardware Profile"
 msgstr "Hardverski profil"
 
@@ -251,39 +266,51 @@ msgstr "_Razmotri slanje"
 msgid "_No, do not send."
 msgstr "Ne, _ipak ne šalji"
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Napusti program bez slanja vašeg profila hardvera prema poslužitelju"
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "_Quit"
 msgstr "_Završi"
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "Send your hardware profile to the server."
 msgstr "Pošalji profil hardvera prema poslužitelju"
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "_Send"
 msgstr "_Pošalji"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show _Privacy Policy"
 msgstr "_Prikaži pravila o privatnosti"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show the Smolt privacy policy."
 msgstr "Prikaži Smolt pravila o privatnosti."
 
-#: smoltGui.py:71
+#: smoltGui.py:73
 msgid "_About"
 msgstr "_O programu"
 
-#: smoltGui.py:127
+#: smoltGui.py:74
+msgid "_File"
+msgstr ""
+
+#: smoltGui.py:75
+msgid "_Help"
+msgstr ""
+
+#: smoltGui.py:105
+msgid "Rate this system:"
+msgstr ""
+
+#: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr "Tijekom slanja podataka prema poslužitelju došlo je do pogreške."
 
-#: smoltGui.py:134
+#: smoltGui.py:144
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
@@ -293,7 +320,13 @@ msgstr ""
 "%s,\n"
 "a pohranjen je u datoteci /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:145
+#: smoltGui.py:155
 msgid "Smolt Privacy Policy"
 msgstr "Smolt pravila o privatnosti"
 
+#: smoltGui.py:198
+msgid "translator-credits"
+msgstr ""
+
+#~ msgid "Device ID"
+#~ msgstr "ID uređaja"

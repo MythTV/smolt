@@ -1,41 +1,40 @@
 # translation of fr-wip.po to Francais
 # Header entry was created by KBabel!
 #
-#: deleteProfile.py:35 smolt.py:222
 # Thomas Canniot <thomas.canniot@laposte.net>, 2007.
 msgid ""
 msgstr ""
+"Project-Id-Version: fr\n"
+"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
+"PO-Revision-Date: 2007-04-08 12:13+0200\n"
+"Last-Translator: Thomas Canniot <thomas.canniot@laposte.net>\n"
+"Language-Team: Francais <fedora-trans-fr@redhat.com>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Mime-Version: 1.0\n"
-"Project-Id-Version: fr\n"
-"Language-Team: Francais <fedora-trans-fr@redhat.com>\n"
 "X-Generator: KBabel 1.11.4\n"
-"MIME-Version: 1.0\n"
-"Last-Translator: Thomas Canniot <thomas.canniot@laposte.net>\n"
-"PO-Revision-Date: 2007-04-08 12:13+0200\n"
 
-#: deleteProfile.py:35 smolt.py:222
+#: deleteProfile.py:35 smolt.py:236
 msgid "Server Message: \"%s\""
 msgstr "Message du serveur : « %s »"
 
-#: deleteProfile.py:45 sendProfile.py:41
+#: deleteProfile.py:45 sendProfile.py:42
 msgid "enable debug information"
 msgstr "activer les informations de débuggage"
 
-#: deleteProfile.py:50 sendProfile.py:46
+#: deleteProfile.py:50 sendProfile.py:47
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "renseigner l'URL du serveur (défaut « %default »)"
 
-#: deleteProfile.py:55 sendProfile.py:51
+#: deleteProfile.py:55 sendProfile.py:62
 msgid "print information only, do not send"
 msgstr "afficher seulement les informations, sans les envoyer"
 
-#: deleteProfile.py:60 sendProfile.py:66
+#: deleteProfile.py:60 sendProfile.py:77
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "renseigner l'agent utilisateur HTTP (défaut \"%default\")"
 
-#: deleteProfile.py:65 sendProfile.py:71
+#: deleteProfile.py:65 sendProfile.py:82
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "renseigner le délai en secondes pour HTTP (défaut %default secondes)"
 
@@ -47,187 +46,204 @@ msgstr "Erreur lors du contact avec le serveur :"
 msgid "Profile removed, please verify at"
 msgstr "Profile supprimé, merci de vérifier sur"
 
-#: gui.py:56
+#: gui.py:58
 msgid "Label"
 msgstr "Étiquette"
 
-#: gui.py:62
+#: gui.py:64
 msgid "Data"
 msgstr "Donnée"
 
-#: gui.py:93
-msgid "Device ID"
-msgstr "Identifiant du périphérique"
+#: gui.py:95
+msgid "Rating this device"
+msgstr ""
 
-#: gui.py:100
+#: gui.py:102
 msgid "Bus"
 msgstr "Bus"
 
-#: gui.py:107
+#: gui.py:109
 msgid "Driver"
 msgstr "Pilote"
 
-#: gui.py:114
+#: gui.py:116
 msgid "Type"
 msgstr "Type"
 
-#: gui.py:121
+#: gui.py:123
 msgid "Description"
 msgstr "Déscription"
 
-#: sendProfile.py:56
+#: sendProfile.py:52
+msgid "(optional) Fedora Account System registration"
+msgstr ""
+
+#: sendProfile.py:57
+msgid "password, will prompt if not specified"
+msgstr ""
+
+#: sendProfile.py:67
 msgid "don't prompt to send, just send"
 msgstr "envoyer sans le demander"
 
-#: sendProfile.py:61
+#: sendProfile.py:72
 msgid "continue to send until success"
 msgstr "envoyer jusqu'à ce que l'envoi réussisse"
 
-#: sendProfile.py:76
-msgid ""
-"this is an automated checkin, will only run if the \"smolt\" service has "
-"been started"
+#: sendProfile.py:87
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "ceci est une vérification automatique et sera lancée seulement si le service « smolt » a été démarré"
 
-#: sendProfile.py:90
+#: sendProfile.py:101
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt configuré pour lancer une vérification mais les vérifications sont désactivées (indice : service smolt start)"
 
-#: sendProfile.py:97
+#: sendProfile.py:108
 msgid "Error:"
 msgstr "Erreur :"
 
-#: sendProfile.py:99
+#: sendProfile.py:110
 msgid "Hint:"
 msgstr "Indice :"
 
-#: sendProfile.py:108
+#: sendProfile.py:121
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr "Envoyer les informations au serveur Smolt ? (y/n)"
 
-#: sendProfile.py:109
+#: sendProfile.py:122
 msgid "y"
 msgstr "y"
 
-#: sendProfile.py:110
+#: sendProfile.py:123
 msgid "Exiting..."
 msgstr "Fermeture..."
 
-#: sendProfile.py:117
+#: sendProfile.py:130
 msgid "Retry Enabled - Retrying"
 msgstr "Multiplicité des essais activée - Nouvel essai en cours"
 
-#: sendProfile.py:121
+#: sendProfile.py:134
 msgid "Could not send - Exiting"
 msgstr "Envoi impossible - Fermeture"
 
-#: sendProfile.py:125
+#: sendProfile.py:139
+msgid "Password:"
+msgstr ""
+
+#: sendProfile.py:144
+msgid "Registration Failed, Try again"
+msgstr ""
+
+#: sendProfile.py:147
 msgid "To view your profile visit: %s"
 msgstr "Pour consulter votre profile, visitez : %s"
 
-#: smolt.py:224
+#: smolt.py:238
 msgid "Could not contact server: %s"
 msgstr "Impossible de contacter le serveur : %s"
 
-#: smolt.py:256
+#: smolt.py:270
 msgid "Could not bind to dbus"
 msgstr "Impossible de contacter dbus"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Could not connect to hal, is it running?"
 msgstr "Impossible de se connecter à hal. Est-il lancé ?"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Exécutez « service haldaemon start » en superutilisateur"
 
-#: smolt.py:328 smolt.py:351 smolt.py:368
+#: smolt.py:332 smolt.py:367 smolt.py:390 smolt.py:407
 msgid "Error contacting Server: %s"
 msgstr "Impossible de contacter le serveur : %s"
 
-#: smolt.py:339
+#: smolt.py:378
 msgid "Communication with server failed"
 msgstr "La communication avec le serveur a échoué"
 
-#: smolt.py:382
+#: smolt.py:428
 msgid "Devices"
 msgstr "Périphériques"
 
-#: smolt.py:393
+#: smolt.py:439
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:394
+#: smolt.py:440
 msgid "OS"
 msgstr "SE"
 
-#: smolt.py:395
+#: smolt.py:441
 msgid "Default run level"
 msgstr "Run level par défaut"
 
-#: smolt.py:396
+#: smolt.py:442
 msgid "Language"
 msgstr "Langue"
 
-#: smolt.py:397
+#: smolt.py:443
 msgid "Platform"
 msgstr "Plateforme"
 
-#: smolt.py:398
+#: smolt.py:444
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:399
+#: smolt.py:445
 msgid "CPU Vendor"
 msgstr "Fabriquant du CPU"
 
-#: smolt.py:400
+#: smolt.py:446
 msgid "CPU Model"
 msgstr "Modèle de CPU"
 
-#: smolt.py:401
+#: smolt.py:447
 msgid "Number of CPUs"
 msgstr "Nombre de CPU"
 
-#: smolt.py:402
+#: smolt.py:448
 msgid "CPU Speed"
 msgstr "Vitesse du CPU"
 
-#: smolt.py:403
+#: smolt.py:449
 msgid "System Memory"
 msgstr "Mémoire du système"
 
-#: smolt.py:404
+#: smolt.py:450
 msgid "System Swap"
 msgstr "Swap du système"
 
-#: smolt.py:405
+#: smolt.py:451
 msgid "Vendor"
 msgstr "Fabriquant"
 
-#: smolt.py:406
+#: smolt.py:452
 msgid "System"
 msgstr "Système"
 
-#: smolt.py:407
+#: smolt.py:453
 msgid "Form factor"
 msgstr "Type d'ordinateur"
 
-#: smolt.py:408
+#: smolt.py:454
 msgid "Kernel"
 msgstr "Noyau "
+
+#: smolt.py:455
+msgid "SELinux Enabled"
+msgstr ""
+
+#: smolt.py:456
+msgid "SELinux Enforce"
+msgstr ""
 
 #: smoltFirstBoot.py:24 smoltFirstBoot.py:34
 msgid "Hardware Profile"
 msgstr "Profile matériel"
 
 #: smoltFirstBoot.py:50
-msgid ""
-"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
-"profile is a great way to give back to the community as this information is "
-"used to help focus our efforts on popular hardware and platforms.  "
-"Submissions are anonymous.  Sending your profile will enable a monthly "
-"update."
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
 msgstr "Smolt est un gestionnaire de profil matériel pour le Projet Fedora. Envoyer les informations de votre profil est un excellent moyen pour aider la communauté à concentrer ses efforts sur du matériel et des plateformes répandus. Les envois sont anonymes. Le premier envoi de votre profil activera une mise à jour mensuelle de celui-ci."
 
 #: smoltFirstBoot.py:69
@@ -239,10 +255,7 @@ msgid "D_o not send profile"
 msgstr "Ne pas env_oyer le profil"
 
 #: smoltFirstBoot.py:88
-msgid ""
-"Are you sure you wouldn't like to send the profile?  Submitting your profile "
-"is a valuable source of information for our development and can help "
-"troubleshoot issues that may come up with your hardware."
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
 msgstr "Êtes-vous sûr de souhaiter envoyer votre profil ? Cet envoi est une source d'informations importante pour le développement et l'amélioration des problèmes qui pourraient survenir avec votre matériel."
 
 #: smoltFirstBoot.py:96
@@ -253,42 +266,53 @@ msgstr "_Reconsidérer l'envoi"
 msgid "_No, do not send."
 msgstr "_Non, ne pas envoyer."
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Quitter le programme sans envoyer le profil matériel au serveur"
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "_Quit"
 msgstr "_Quitter"
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "Send your hardware profile to the server."
 msgstr "Envoi de votre profil matériel au serveur."
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "_Send"
 msgstr "_Envoyer"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show _Privacy Policy"
 msgstr "Afficher la _politique de protection de la vie privée"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show the Smolt privacy policy."
 msgstr "Afficher la _politique de Smolt sur la protection de la vie privée."
 
-#: smoltGui.py:71
+#: smoltGui.py:73
 msgid "_About"
 msgstr "_À propos"
 
-#: smoltGui.py:127
+#: smoltGui.py:74
+msgid "_File"
+msgstr ""
+
+#: smoltGui.py:75
+msgid "_Help"
+msgstr ""
+
+#: smoltGui.py:105
+msgid "Rate this system:"
+msgstr ""
+
+#: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr "Une erreur est survenue durant l'envoi des données au serveur."
 
-#: smoltGui.py:134
+#: smoltGui.py:144
 msgid ""
-"The data was successfully sent.  If you need to refer to your hardware "
-"profile for a bug report your UUID is \n"
+"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in /etc/sysconfig/hw-uuid"
 msgstr ""
@@ -296,7 +320,13 @@ msgstr ""
 "%s\n"
 "stocké dans /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:145
+#: smoltGui.py:155
 msgid "Smolt Privacy Policy"
 msgstr "Politique de Smolt sur la protection de la vie privée"
 
+#: smoltGui.py:198
+msgid "translator-credits"
+msgstr ""
+
+#~ msgid "Device ID"
+#~ msgstr "Identifiant du périphérique"

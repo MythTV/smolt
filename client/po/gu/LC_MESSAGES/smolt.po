@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gu\n"
-"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
 "PO-Revision-Date: 2007-04-02 11:28+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati <fedora-trans-gu@redhat.com>\n"
@@ -14,29 +14,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"Plural-Forms:  nplurals=2; plural=(n!=1);\n"
+"\n"
 
-#: deleteProfile.py:35 smolt.py:222
+#: deleteProfile.py:35 smolt.py:236
 msgid "Server Message: \"%s\""
 msgstr "સર્વર સંદેશો: \"%s\""
 
-#: deleteProfile.py:45 sendProfile.py:41
+#: deleteProfile.py:45 sendProfile.py:42
 msgid "enable debug information"
 msgstr "ડિબગ જાણકારી સક્રિય કરો"
 
-#: deleteProfile.py:50 sendProfile.py:46
+#: deleteProfile.py:50 sendProfile.py:47
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "સર્વરની URL સ્પષ્ટ કરો (મૂળભૂત \"%default\")"
 
-#: deleteProfile.py:55 sendProfile.py:51
+#: deleteProfile.py:55 sendProfile.py:62
 msgid "print information only, do not send"
 msgstr "માત્ર જાણકારી જ છાપો, મોકલશો નહિં"
 
-#: deleteProfile.py:60 sendProfile.py:66
+#: deleteProfile.py:60 sendProfile.py:77
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "HTTP વપરાશકર્તા એજન્ટ સ્પષ્ટ કરો (મૂળભૂત \"%default\")"
 
-#: deleteProfile.py:65 sendProfile.py:71
+#: deleteProfile.py:65 sendProfile.py:82
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "HTTP સમયસમાપ્તિ ગાળો સેકન્ડોમાં સ્પષ્ટ કરો (મૂળભૂત %default સેકન્ડો)"
 
@@ -48,173 +49,197 @@ msgstr "સર્વરનો સંપર્ક કરવામાં ભૂલ
 msgid "Profile removed, please verify at"
 msgstr "રૂપરેખા દૂર કરાઈ, મહેરબાની કરી અંહિ ખાતરી કરો"
 
-#: gui.py:56
+#: gui.py:58
 msgid "Label"
 msgstr "લેબલ"
 
-#: gui.py:62
+#: gui.py:64
 msgid "Data"
 msgstr "માહિતી"
 
-#: gui.py:93
-msgid "Device ID"
-msgstr "ઉપકરણ ID"
+#: gui.py:95
+msgid "Rating this device"
+msgstr ""
 
-#: gui.py:100
+#: gui.py:102
 msgid "Bus"
 msgstr "બસ"
 
-#: gui.py:107
+#: gui.py:109
 msgid "Driver"
 msgstr "ડ્રાઈવર"
 
-#: gui.py:114
+#: gui.py:116
 msgid "Type"
 msgstr "પ્રકાર"
 
-#: gui.py:121
+#: gui.py:123
 msgid "Description"
 msgstr "વર્ણન"
 
-#: sendProfile.py:56
+#: sendProfile.py:52
+msgid "(optional) Fedora Account System registration"
+msgstr ""
+
+#: sendProfile.py:57
+msgid "password, will prompt if not specified"
+msgstr ""
+
+#: sendProfile.py:67
 msgid "don't prompt to send, just send"
 msgstr "મોકલવા માટે પૂછશો નહિં, માત્ર મોકલો"
 
-#: sendProfile.py:61
+#: sendProfile.py:72
 msgid "continue to send until success"
 msgstr "જ્યાં સુધી સફળ નહિં થાય ત્યાં સુધી ચાલુ રાખો"
 
-#: sendProfile.py:76
+#: sendProfile.py:87
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "આ આપોઆપ ચકાસણી છે, માત્ર ત્યારે જ ચાલશે જો \"smolt\" સેવા શરૂ થઈ ગયેલ હોય"
 
-#: sendProfile.py:90
+#: sendProfile.py:101
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt ચકાસણી કરવા માટે સુયોજિત થઈ ગયેલ છે પરંતુઓ ચકાસણીઓ નિષ્ક્રિય કરવામાં આવેલ છે (ઈશારો: service smolt start)"
 
-#: sendProfile.py:97
+#: sendProfile.py:108
 msgid "Error:"
 msgstr "ભૂલ:"
 
-#: sendProfile.py:99
+#: sendProfile.py:110
 msgid "Hint:"
 msgstr "ઈશારો:"
 
-#: sendProfile.py:108
+#: sendProfile.py:121
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr "શું આ જાણકારી Smolt સર્વરને મોકલવી છે? (y/n)"
 
-#: sendProfile.py:109
+#: sendProfile.py:122
 msgid "y"
 msgstr "y"
 
-#: sendProfile.py:110
+#: sendProfile.py:123
 msgid "Exiting..."
 msgstr "બહાર નીકળી રહ્યા છીએ..."
 
-#: sendProfile.py:117
+#: sendProfile.py:130
 msgid "Retry Enabled - Retrying"
 msgstr "પુનઃપ્રયાસ સક્રિય કરેલ - પુનઃપ્રયાસ કરી રહ્યા છીએ"
 
-#: sendProfile.py:121
+#: sendProfile.py:134
 msgid "Could not send - Exiting"
 msgstr "મોકલી શક્યા નહિં - બહાર નીકળી રહ્યા છીએ"
 
-#: sendProfile.py:125
+#: sendProfile.py:139
+msgid "Password:"
+msgstr ""
+
+#: sendProfile.py:144
+msgid "Registration Failed, Try again"
+msgstr ""
+
+#: sendProfile.py:147
 msgid "To view your profile visit: %s"
 msgstr "તમારી રૂપરેખા જોવા માટે આની મુલાકાત લો: %s"
 
-#: smolt.py:224
+#: smolt.py:238
 msgid "Could not contact server: %s"
 msgstr "સર્વરનો સંપર્ક કરી શક્યા નહિં: %s"
 
-#: smolt.py:256
+#: smolt.py:270
 msgid "Could not bind to dbus"
 msgstr "dbus સાથે બાંધી શક્યા નહિં"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Could not connect to hal, is it running?"
 msgstr "hal સાથે જોડાઈ શક્યા નહિં, શું તે ચાલી રહ્યું છે?"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Run \"service haldaemon start\" as root"
 msgstr "\"service haldaemon start\" ને રુટ તરીકે ચલાવો"
 
-#: smolt.py:328 smolt.py:351 smolt.py:368
+#: smolt.py:332 smolt.py:367 smolt.py:390 smolt.py:407
 msgid "Error contacting Server: %s"
 msgstr "સર્વરનો સંપર્ક કરવામાં ભૂલ: %s"
 
-#: smolt.py:339
+#: smolt.py:378
 msgid "Communication with server failed"
 msgstr "સર્વર સાથે સંપર્કવ્યવહાર નિષ્ફળ"
 
-#: smolt.py:382
+#: smolt.py:428
 msgid "Devices"
 msgstr "ઉપકરણો"
 
-#: smolt.py:393
+#: smolt.py:439
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:394
+#: smolt.py:440
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:395
+#: smolt.py:441
 msgid "Default run level"
 msgstr "મૂળભૂત રન લેવલ"
 
-#: smolt.py:396
+#: smolt.py:442
 msgid "Language"
 msgstr "ભાષા"
 
-#: smolt.py:397
+#: smolt.py:443
 msgid "Platform"
 msgstr "પ્લેટફોર્મ"
 
-#: smolt.py:398
+#: smolt.py:444
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:399
+#: smolt.py:445
 msgid "CPU Vendor"
 msgstr "CPU વિક્રેતા"
 
-#: smolt.py:400
+#: smolt.py:446
 msgid "CPU Model"
 msgstr "CPU મોડેલ"
 
-#: smolt.py:401
+#: smolt.py:447
 msgid "Number of CPUs"
 msgstr "CPU ની સંખ્યા"
 
-#: smolt.py:402
+#: smolt.py:448
 msgid "CPU Speed"
 msgstr "CPU ઝડપ"
 
-#: smolt.py:403
+#: smolt.py:449
 msgid "System Memory"
 msgstr "સિસ્ટમ મેમરી"
 
-#: smolt.py:404
+#: smolt.py:450
 msgid "System Swap"
 msgstr "સિસ્ટમ સ્વેપ"
 
-#: smolt.py:405
+#: smolt.py:451
 msgid "Vendor"
 msgstr "વિક્રેતા"
 
-#: smolt.py:406
+#: smolt.py:452
 msgid "System"
 msgstr "સિસ્ટમ"
 
-#: smolt.py:407
+#: smolt.py:453
 msgid "Form factor"
 msgstr "અવયવમાંથી"
 
-#: smolt.py:408
+#: smolt.py:454
 msgid "Kernel"
 msgstr "કર્નલ"
+
+#: smolt.py:455
+msgid "SELinux Enabled"
+msgstr ""
+
+#: smolt.py:456
+msgid "SELinux Enforce"
+msgstr ""
 
 #: smoltFirstBoot.py:24 smoltFirstBoot.py:34
 msgid "Hardware Profile"
@@ -244,39 +269,51 @@ msgstr "મોકલવાનું ફરી ધ્યાનમાં લો (_
 msgid "_No, do not send."
 msgstr "ના, મોકલશો નહિં (_N)."
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "તમારી હાર્ડવેર રૂપરેખા સર્વરને મોકલ્યા વિના કાર્યક્રમ બંધ કરો"
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "_Quit"
 msgstr "બંધ કરો (_Q)"
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "Send your hardware profile to the server."
 msgstr "તમારી હાર્ડવેર રૂપરેખા સર્વરને મોકલો."
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "_Send"
 msgstr "મોકલો (_S)"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show _Privacy Policy"
 msgstr "ખાનગીપણાની પોલિસી બતાવો (_P)"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show the Smolt privacy policy."
 msgstr "Smolt ખાનગીપણાની પોલિસી બતાવો."
 
-#: smoltGui.py:71
+#: smoltGui.py:73
 msgid "_About"
 msgstr "વિશે (_A)"
 
-#: smoltGui.py:127
+#: smoltGui.py:74
+msgid "_File"
+msgstr ""
+
+#: smoltGui.py:75
+msgid "_Help"
+msgstr ""
+
+#: smoltGui.py:105
+msgid "Rate this system:"
+msgstr ""
+
+#: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr "માહિતી સર્વરને મોકલતી વખતે ભૂલ ઉદ્ભવી."
 
-#: smoltGui.py:134
+#: smoltGui.py:144
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
@@ -286,7 +323,13 @@ msgstr ""
 "%s\n"
 "/etc/sysconfig/hw-uuid માં ક્રમમાં ગોઠવાયેલ છે"
 
-#: smoltGui.py:145
+#: smoltGui.py:155
 msgid "Smolt Privacy Policy"
 msgstr "Smolt ખાનગીપણાની પોલિસી"
 
+#: smoltGui.py:198
+msgid "translator-credits"
+msgstr ""
+
+#~ msgid "Device ID"
+#~ msgstr "ઉપકરણ ID"

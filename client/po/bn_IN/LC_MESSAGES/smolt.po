@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
-"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
 "PO-Revision-Date: 2007-04-04 15:53+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
 "Language-Team: Bengali <en@li.org>\n"
@@ -15,27 +15,27 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: deleteProfile.py:35 smolt.py:222
+#: deleteProfile.py:35 smolt.py:236
 msgid "Server Message: \"%s\""
 msgstr "সার্ভারের বার্তা: \"%s\""
 
-#: deleteProfile.py:45 sendProfile.py:41
+#: deleteProfile.py:45 sendProfile.py:42
 msgid "enable debug information"
 msgstr "ডিবাগ সংক্রান্ত তথ্য সক্রিয় করা হবে"
 
-#: deleteProfile.py:50 sendProfile.py:46
+#: deleteProfile.py:50 sendProfile.py:47
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "সার্ভারের URL নির্ধারণ করুন (ডিফল্ট মান \"%default\")"
 
-#: deleteProfile.py:55 sendProfile.py:51
+#: deleteProfile.py:55 sendProfile.py:62
 msgid "print information only, do not send"
 msgstr "তথ্য শুধুমাত্র প্রদর্শন করা হবে, প্রেরিত হবে না"
 
-#: deleteProfile.py:60 sendProfile.py:66
+#: deleteProfile.py:60 sendProfile.py:77
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "HTTP ইউজার এজেন্ট নির্ধারণ করুন (ডিফল্ট \"%default\")"
 
-#: deleteProfile.py:65 sendProfile.py:71
+#: deleteProfile.py:65 sendProfile.py:82
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "সেকেন্ড অনুসারে HTTP-র সময়সীমা নির্ধারণ করুন (ডিফল্ট %default সেকেন্ড)"
 
@@ -47,173 +47,197 @@ msgstr "সার্ভারের সাথে সংযোগ করতে �
 msgid "Profile removed, please verify at"
 msgstr "প্রোফাইল মুছে ফেলা হয়েছে, পরীক্ষা করুন"
 
-#: gui.py:56
+#: gui.py:58
 msgid "Label"
 msgstr "লেবেল"
 
-#: gui.py:62
+#: gui.py:64
 msgid "Data"
 msgstr "তথ্য"
 
-#: gui.py:93
-msgid "Device ID"
-msgstr "ডিভাইস ID"
+#: gui.py:95
+msgid "Rating this device"
+msgstr ""
 
-#: gui.py:100
+#: gui.py:102
 msgid "Bus"
 msgstr "বাস"
 
-#: gui.py:107
+#: gui.py:109
 msgid "Driver"
 msgstr "ড্রাইভার"
 
-#: gui.py:114
+#: gui.py:116
 msgid "Type"
 msgstr "ধরন"
 
-#: gui.py:121
+#: gui.py:123
 msgid "Description"
 msgstr "বিবরণ"
 
-#: sendProfile.py:56
+#: sendProfile.py:52
+msgid "(optional) Fedora Account System registration"
+msgstr ""
+
+#: sendProfile.py:57
+msgid "password, will prompt if not specified"
+msgstr ""
+
+#: sendProfile.py:67
 msgid "don't prompt to send, just send"
 msgstr "প্রেরণের অনুরোধ না করে প্রেরণ করা হবে"
 
-#: sendProfile.py:61
+#: sendProfile.py:72
 msgid "continue to send until success"
 msgstr "সফল না হওয়া অবধি প্রেরিত হবে"
 
-#: sendProfile.py:76
+#: sendProfile.py:87
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "এটি স্বয়ংক্রিয় checkin পদ্ধতি এবং শুধুমাত্র \"smolt\" পরিসেবা আরম্ভ করা হলে এটি সঞ্চালিত হবে"
 
-#: sendProfile.py:90
+#: sendProfile.py:101
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt-র বৈশিষ্ট্যে checkin নির্ধারিত হলেও বর্তমানে checkin নিষ্ক্রিয় করা আছে (ইঙ্গিত: service smolt start)"
 
-#: sendProfile.py:97
+#: sendProfile.py:108
 msgid "Error:"
 msgstr "ত্রুটি:"
 
-#: sendProfile.py:99
+#: sendProfile.py:110
 msgid "Hint:"
 msgstr "ইঙ্গিত:"
 
-#: sendProfile.py:108
+#: sendProfile.py:121
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr "Smolt সার্ভারে এই তথ্য প্রেরিত হবে কি? (y/n)"
 
-#: sendProfile.py:109
+#: sendProfile.py:122
 msgid "y"
 msgstr "y"
 
-#: sendProfile.py:110
+#: sendProfile.py:123
 msgid "Exiting..."
 msgstr "প্রস্থান করা হচ্ছে..."
 
-#: sendProfile.py:117
+#: sendProfile.py:130
 msgid "Retry Enabled - Retrying"
 msgstr "পুনঃপ্রচেষ্টা সক্রিয় - পুনরায় প্রচেষ্টা করা হচ্ছে"
 
-#: sendProfile.py:121
+#: sendProfile.py:134
 msgid "Could not send - Exiting"
 msgstr "প্রেরণ করা যায়নি - প্রস্থান করা হচ্ছে"
 
-#: sendProfile.py:125
+#: sendProfile.py:139
+msgid "Password:"
+msgstr ""
+
+#: sendProfile.py:144
+msgid "Registration Failed, Try again"
+msgstr ""
+
+#: sendProfile.py:147
 msgid "To view your profile visit: %s"
 msgstr "আপনার প্রোফাইল দেখতে পরিদর্শন করুন: %s"
 
-#: smolt.py:224
+#: smolt.py:238
 msgid "Could not contact server: %s"
 msgstr "সার্ভারের সাথে সংযোগ স্থাপন করতে ব্যর্থ: %s"
 
-#: smolt.py:256
+#: smolt.py:270
 msgid "Could not bind to dbus"
 msgstr "dbus-র সাথে বাইন্ড করতে ব্যর্থ"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Could not connect to hal, is it running?"
 msgstr "hal-র সাথে সংযোগ করতে ব্যর্থ, এটি কি সক্রিয় আছে?"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Run \"service haldaemon start\" as root"
 msgstr "root পরিচয়ে \"service haldaemon start\" সঞ্চালন করুন"
 
-#: smolt.py:328 smolt.py:351 smolt.py:368
+#: smolt.py:332 smolt.py:367 smolt.py:390 smolt.py:407
 msgid "Error contacting Server: %s"
 msgstr "সার্ভারের সাথে যোগাযোগ করতে ব্যর্থ: %s"
 
-#: smolt.py:339
+#: smolt.py:378
 msgid "Communication with server failed"
 msgstr "সার্ভারের সাথে যোগাযোগ ব্যর্থ"
 
-#: smolt.py:382
+#: smolt.py:428
 msgid "Devices"
 msgstr "ডিভাইস"
 
-#: smolt.py:393
+#: smolt.py:439
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:394
+#: smolt.py:440
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:395
+#: smolt.py:441
 msgid "Default run level"
 msgstr "ডিফল্ট রান-লেভেল"
 
-#: smolt.py:396
+#: smolt.py:442
 msgid "Language"
 msgstr "ভাষা"
 
-#: smolt.py:397
+#: smolt.py:443
 msgid "Platform"
 msgstr "প্ল্যাটফর্ম"
 
-#: smolt.py:398
+#: smolt.py:444
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:399
+#: smolt.py:445
 msgid "CPU Vendor"
 msgstr "CPU নির্মাতা"
 
-#: smolt.py:400
+#: smolt.py:446
 msgid "CPU Model"
 msgstr "CPU-র মডেল"
 
-#: smolt.py:401
+#: smolt.py:447
 msgid "Number of CPUs"
 msgstr "CPU-র সংখ্যা"
 
-#: smolt.py:402
+#: smolt.py:448
 msgid "CPU Speed"
 msgstr "CPU-র গতি"
 
-#: smolt.py:403
+#: smolt.py:449
 msgid "System Memory"
 msgstr "সিস্টেম মেমরি"
 
-#: smolt.py:404
+#: smolt.py:450
 msgid "System Swap"
 msgstr "সিস্টেম Swap"
 
-#: smolt.py:405
+#: smolt.py:451
 msgid "Vendor"
 msgstr "নির্মাতা"
 
-#: smolt.py:406
+#: smolt.py:452
 msgid "System"
 msgstr "সিস্টেম"
 
-#: smolt.py:407
+#: smolt.py:453
 msgid "Form factor"
 msgstr "ফর্ম ফ্যাক্টর"
 
-#: smolt.py:408
+#: smolt.py:454
 msgid "Kernel"
 msgstr "কার্নেল"
+
+#: smolt.py:455
+msgid "SELinux Enabled"
+msgstr ""
+
+#: smolt.py:456
+msgid "SELinux Enforce"
+msgstr ""
 
 #: smoltFirstBoot.py:24 smoltFirstBoot.py:34
 msgid "Hardware Profile"
@@ -243,39 +267,51 @@ msgstr "পুনরায় প্রেরণ করার বিবেচনা
 msgid "_No, do not send."
 msgstr "না প্রেরিত হবে না। (_N)"
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "সার্ভারে হার্ডওয়্যার প্রোফাইল প্রেরণ না করে প্রোগ্রাম থেকে প্রস্থান করা হবে"
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "_Quit"
 msgstr "প্রস্থান (_Q)"
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "Send your hardware profile to the server."
 msgstr "সার্ভারে হার্ডওয়্যার প্রোফাইল প্রেরিত হবে।"
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "_Send"
 msgstr "প্রেরণ করুন (_S)"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show _Privacy Policy"
 msgstr "গোপনীয়তা সংক্রান্ত নিয়মনীতি প্রদর্শন (_P)"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show the Smolt privacy policy."
 msgstr "Smolt-র গোপনীয়তা সংক্রান্ত নিয়মনীতি প্রদর্শন।"
 
-#: smoltGui.py:71
+#: smoltGui.py:73
 msgid "_About"
 msgstr "পরিচিতি (_A)"
 
-#: smoltGui.py:127
+#: smoltGui.py:74
+msgid "_File"
+msgstr ""
+
+#: smoltGui.py:75
+msgid "_Help"
+msgstr ""
+
+#: smoltGui.py:105
+msgid "Rate this system:"
+msgstr ""
+
+#: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr "সার্ভারে তথ্য প্রেরণ করতে ত্রুটি।"
 
-#: smoltGui.py:134
+#: smoltGui.py:144
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
@@ -285,7 +321,13 @@ msgstr ""
 "%s\n"
 "এটি /etc/sysconfig/hw-uuid-এ সংরক্ষিত"
 
-#: smoltGui.py:145
+#: smoltGui.py:155
 msgid "Smolt Privacy Policy"
 msgstr "Smolt-র গোপনীয়তা সংক্রান্ত নিয়মনীতি "
 
+#: smoltGui.py:198
+msgid "translator-credits"
+msgstr ""
+
+#~ msgid "Device ID"
+#~ msgstr "ডিভাইস ID"

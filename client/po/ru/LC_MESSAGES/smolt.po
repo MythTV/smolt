@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
-"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
 "PO-Revision-Date: 2007-04-01 02:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,33 +16,27 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: deleteProfile.py:35
-#: smolt.py:222
+#: deleteProfile.py:35 smolt.py:236
 msgid "Server Message: \"%s\""
 msgstr "Сообщение от сервера: \"%s\""
 
-#: deleteProfile.py:45
-#: sendProfile.py:41
+#: deleteProfile.py:45 sendProfile.py:42
 msgid "enable debug information"
 msgstr "использовать отладочную информацию"
 
-#: deleteProfile.py:50
-#: sendProfile.py:46
+#: deleteProfile.py:50 sendProfile.py:47
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "указать URL сервера (по умолчанию \"%default\")"
 
-#: deleteProfile.py:55
-#: sendProfile.py:51
+#: deleteProfile.py:55 sendProfile.py:62
 msgid "print information only, do not send"
 msgstr "только вывести, не отправлять"
 
-#: deleteProfile.py:60
-#: sendProfile.py:66
+#: deleteProfile.py:60 sendProfile.py:77
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "указать агент HTTP (по умолчанию \"%default\")"
 
-#: deleteProfile.py:65
-#: sendProfile.py:71
+#: deleteProfile.py:65 sendProfile.py:82
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "указать таймаут HTTP в секундах (по умолчанию %default секунд)"
 
@@ -54,178 +48,199 @@ msgstr "Ошибка подключения к серверу:"
 msgid "Profile removed, please verify at"
 msgstr "Профиль удален, проверьте"
 
-#: gui.py:56
+#: gui.py:58
 msgid "Label"
 msgstr "Метка"
 
-#: gui.py:62
+#: gui.py:64
 msgid "Data"
 msgstr "Данные"
 
-#: gui.py:93
-msgid "Device ID"
-msgstr "ID устройства"
+#: gui.py:95
+msgid "Rating this device"
+msgstr ""
 
-#: gui.py:100
+#: gui.py:102
 msgid "Bus"
 msgstr "Шина"
 
-#: gui.py:107
+#: gui.py:109
 msgid "Driver"
 msgstr "Драйвер"
 
-#: gui.py:114
+#: gui.py:116
 msgid "Type"
 msgstr "Тип"
 
-#: gui.py:121
+#: gui.py:123
 msgid "Description"
 msgstr "Описание"
 
-#: sendProfile.py:56
+#: sendProfile.py:52
+msgid "(optional) Fedora Account System registration"
+msgstr ""
+
+#: sendProfile.py:57
+msgid "password, will prompt if not specified"
+msgstr ""
+
+#: sendProfile.py:67
 msgid "don't prompt to send, just send"
 msgstr "не спрашивать, отправлять сразу"
 
-#: sendProfile.py:61
+#: sendProfile.py:72
 msgid "continue to send until success"
 msgstr "отправлять, пока не получиться"
 
-#: sendProfile.py:76
+#: sendProfile.py:87
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "автоматический сбор данных, доступен только при запущенном сервисе \"smolt\""
 
-#: sendProfile.py:90
+#: sendProfile.py:101
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt настроен на сбор данных, но он отключен (подсказка: запустите сервис smolt)"
 
-#: sendProfile.py:97
+#: sendProfile.py:108
 msgid "Error:"
 msgstr "Ошибка:"
 
-#: sendProfile.py:99
+#: sendProfile.py:110
 msgid "Hint:"
 msgstr "Подсказка:"
 
-#: sendProfile.py:108
+#: sendProfile.py:121
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr "Отправить данные на сервер Smolt? (да/нет)"
 
-#: sendProfile.py:109
+#: sendProfile.py:122
 msgid "y"
 msgstr "д"
 
-#: sendProfile.py:110
+#: sendProfile.py:123
 msgid "Exiting..."
 msgstr "Выход..."
 
-#: sendProfile.py:117
+#: sendProfile.py:130
 msgid "Retry Enabled - Retrying"
 msgstr "Включены повторные попытки - повтор"
 
-#: sendProfile.py:121
+#: sendProfile.py:134
 msgid "Could not send - Exiting"
 msgstr "Невозможно отправить - выход"
 
-#: sendProfile.py:125
+#: sendProfile.py:139
+msgid "Password:"
+msgstr ""
+
+#: sendProfile.py:144
+msgid "Registration Failed, Try again"
+msgstr ""
+
+#: sendProfile.py:147
 msgid "To view your profile visit: %s"
 msgstr "Промотр профиля: %s"
 
-#: smolt.py:224
+#: smolt.py:238
 msgid "Could not contact server: %s"
 msgstr "Невозможно подключиться к серверу: %s"
 
-#: smolt.py:256
+#: smolt.py:270
 msgid "Could not bind to dbus"
 msgstr "Невозможно подключиться к dbus"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Could not connect to hal, is it running?"
 msgstr "Невозможно подключиться к hal, он запущен?"
 
-#: smolt.py:262
+#: smolt.py:276
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Запустить \"service haldaemon start\" от имени root"
 
-#: smolt.py:328
-#: smolt.py:351
-#: smolt.py:368
+#: smolt.py:332 smolt.py:367 smolt.py:390 smolt.py:407
 msgid "Error contacting Server: %s"
 msgstr "Ошибка подключения к серверу: %s"
 
-#: smolt.py:339
+#: smolt.py:378
 msgid "Communication with server failed"
 msgstr "Связь с сервером потеряна"
 
-#: smolt.py:382
+#: smolt.py:428
 msgid "Devices"
 msgstr "Устройства"
 
-#: smolt.py:393
+#: smolt.py:439
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:394
+#: smolt.py:440
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:395
+#: smolt.py:441
 msgid "Default run level"
 msgstr "Уровень запуска по умолчанию"
 
-#: smolt.py:396
+#: smolt.py:442
 msgid "Language"
 msgstr "Язык"
 
-#: smolt.py:397
+#: smolt.py:443
 msgid "Platform"
 msgstr "Платформа"
 
-#: smolt.py:398
+#: smolt.py:444
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:399
+#: smolt.py:445
 msgid "CPU Vendor"
 msgstr "Производитель CPU"
 
-#: smolt.py:400
+#: smolt.py:446
 msgid "CPU Model"
 msgstr "Модель CPU"
 
-#: smolt.py:401
+#: smolt.py:447
 msgid "Number of CPUs"
 msgstr "Количество процессоров"
 
-#: smolt.py:402
+#: smolt.py:448
 msgid "CPU Speed"
 msgstr "Скорость процессора"
 
-#: smolt.py:403
+#: smolt.py:449
 msgid "System Memory"
 msgstr "Системная память"
 
-#: smolt.py:404
+#: smolt.py:450
 msgid "System Swap"
 msgstr "Раздел подкачки"
 
-#: smolt.py:405
+#: smolt.py:451
 msgid "Vendor"
 msgstr "Производитель"
 
-#: smolt.py:406
+#: smolt.py:452
 msgid "System"
 msgstr "Система"
 
-#: smolt.py:407
+#: smolt.py:453
 msgid "Form factor"
 msgstr "Форм-фактор"
 
-#: smolt.py:408
+#: smolt.py:454
 msgid "Kernel"
 msgstr "Ядро"
 
-#: smoltFirstBoot.py:24
-#: smoltFirstBoot.py:34
+#: smolt.py:455
+msgid "SELinux Enabled"
+msgstr ""
+
+#: smolt.py:456
+msgid "SELinux Enforce"
+msgstr ""
+
+#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
 msgid "Hardware Profile"
 msgstr "Профиль оборудования"
 
@@ -253,39 +268,51 @@ msgstr "О_тменить отправку"
 msgid "_No, do not send."
 msgstr "_Нет, не отправлять."
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Выйти из программы, не отправляя профиль на сервер"
 
-#: smoltGui.py:68
+#: smoltGui.py:70
 msgid "_Quit"
 msgstr "_Выход"
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "Send your hardware profile to the server."
 msgstr "Отправить профиль на сервер."
 
-#: smoltGui.py:69
+#: smoltGui.py:71
 msgid "_Send"
 msgstr "_Отправить"
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show _Privacy Policy"
 msgstr "Показать _положение о персональных данных."
 
-#: smoltGui.py:70
+#: smoltGui.py:72
 msgid "Show the Smolt privacy policy."
 msgstr "Показать положение о персональных данных Smolt."
 
-#: smoltGui.py:71
+#: smoltGui.py:73
 msgid "_About"
 msgstr "О _программе"
 
-#: smoltGui.py:127
+#: smoltGui.py:74
+msgid "_File"
+msgstr ""
+
+#: smoltGui.py:75
+msgid "_Help"
+msgstr ""
+
+#: smoltGui.py:105
+msgid "Rate this system:"
+msgstr ""
+
+#: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr "Произошла ошибка при отправке данных на сервер."
 
-#: smoltGui.py:134
+#: smoltGui.py:144
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
@@ -295,7 +322,13 @@ msgstr ""
 "%s,\n"
 "он сохранен в /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:145
+#: smoltGui.py:155
 msgid "Smolt Privacy Policy"
 msgstr "Защита персональной информации в Smolt"
 
+#: smoltGui.py:198
+msgid "translator-credits"
+msgstr ""
+
+#~ msgid "Device ID"
+#~ msgstr "ID устройства"
