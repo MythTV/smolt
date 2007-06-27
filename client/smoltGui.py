@@ -71,8 +71,8 @@ class SmoltGui(object):
                                  ('Send', gtk.STOCK_GO_FORWARD, _('_Send'), '<control>s', _('Send your hardware profile to the server.'), self.send_cb),
                                  ('Privacy', gtk.STOCK_INFO, _('Show _Privacy Policy'), None, _('Show the Smolt privacy policy.'), self.privacy_cb),
                                  ('About', gtk.STOCK_ABOUT, _('_About'), None, None, self.about_cb),
-                                 ('File', None, '_File'),
-                                 ('Help', None, '_Help')])
+                                 ('File', None, _('_File')),
+                                 ('Help', None, _('_Help'))])
         
         uim = gtk.UIManager()
         uim.insert_action_group(actiongroup, 0)
