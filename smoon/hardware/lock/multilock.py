@@ -1,8 +1,8 @@
 #! /usr/bin/python
-from __future__ import with_statement
+#from __future__ import with_statement
 
 from threading import Lock, Event
-from contextlib import contextmanager
+#from contextlib import contextmanager
 
 
 class ReverseSemaphore(object):
@@ -14,21 +14,22 @@ class ReverseSemaphore(object):
         pass
         
     def acquire(self):
-        with self.lock:
-            self.counter += 1
-            self.event.clear()
-            pass
+        self.lock.acquire()
+        self.counter += 1
+        self.event.clear()
+        self.lock.release()
         pass
     
     def release(self):
-        with self.lock:
-            self.counter -= 1
-            if self.counter == 0:
-                self.event.set()
-            if self.counter < 0:
-                self.counter = 0
-                pass
+        self.lock.acquire()
+        self.counter -= 1
+        if self.counter == 0:
+            self.event.set()
             pass
+        if self.counter < 0:
+            self.counter = 0
+            pass
+        self.lock.release()
         pass
     
     def wait(self):
@@ -44,26 +45,26 @@ class MultiLock(object):
         self.write_event.set()
         pass
     
-    @contextmanager
-    def read_transaction(self):
-        self.read_acquire()
-        try:
-            yield
-        finally:
-            self.read_release()
-            pass
-        pass
-    
-    @contextmanager
-    def write_transaction(self):
-        self.write_acquire()
-        try:
-            yield
-        finally:
-            self.write_release()
-            pass
-        pass
-    
+#    @contextmanager
+#    def read_transaction(self):
+#        self.read_acquire()
+#        try:
+#            yield
+#        finally:
+#            self.read_release()
+#            pass
+#        pass
+#
+#    @contextmanager
+#    def write_transaction(self):
+#        self.write_acquire()
+#        try:
+#            yield
+#        finally:
+#            self.write_release()
+#            pass
+#        pass
+        
     def read_acquire(self):
         self.write_event.wait()
         self.read_lock.acquire()

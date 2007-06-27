@@ -268,21 +268,22 @@ class Root(controllers.RootController):
         return dict(Host=Host, Device=Device, HostLinks=HostLinks, devices=devices, tabs=tabs)
     
     def read_devices(self):
-        with self.devices_lock.read_transaction():
-            return self._devices_cache
-        pass
+        self.devices_lock.read_acquire()
+        _return = self._devices_cache.copy()
+        self.devices_lock.read_release()
+        return _return
     
     def write_devices(self):
-        with self.devices_lock.write_transaction():
-            devices = {}
-            devices['total'] = HostLinks.select('1=1').count()
-            devices['count'] = Device.select('1=1').count()
-            devices['totalHosts'] = Host.select('1=1').count()
-            devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
-            devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
-            #devices['classes'] = Host._connection.queryAll('select device.class, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by device.class order by cnt desc;')
-            devices['classes'] = Host._connection.queryAll('select distinct(class) from device')
-            self._devices_cache = devices
+        self.devices_lock.write_acquire()
+        devices = {}
+        devices['total'] = HostLinks.select('1=1').count()
+        devices['count'] = Device.select('1=1').count()
+        devices['totalHosts'] = Host.select('1=1').count()
+        devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
+        devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
+        devices['classes'] = Host._connection.queryAll('select distinct(class) from device')
+        self._devices_cache = devices
+        self.devices_lock.write_release()
         pass
 
     @expose(template="hardware.templates.stats")
