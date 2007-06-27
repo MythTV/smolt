@@ -34,6 +34,7 @@ class ReverseSemaphore(object):
         return self.event.wait()
     pass
 
+
 class MultiLock(object):
     def __init__(self):
         self.write_lock = Lock()
@@ -42,15 +43,34 @@ class MultiLock(object):
         self.write_event.set()
         pass
     
+    @contextmanager
     def read_transaction(self):
+        self.read_acquire()
+        try:
+            yield
+        finally:
+            self.read_release()
+            pass
+        pass
+    
+    @contextmanager
+    def write_transaction(self):
+        self.write_acquire()
+        try:
+            yield
+        finally:
+            self.write_release()
+            pass
         pass
     
     def read_acquire(self):
+        self.write_event.wait()
         self.read_lock.acquire()
         pass
     
     def read_release(self):
         self.read_lock.release()
+        pass
     
     def write_acquire(self):
         self.write_lock.acquire() 
@@ -61,4 +81,5 @@ class MultiLock(object):
     def write_release(self):
         self.write_event.set()
         self.write_lock.release()
+        pass
     pass
