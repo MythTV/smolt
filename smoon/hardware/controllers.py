@@ -1,3 +1,5 @@
+from __future__ import with_statement
+
 from turbogears import controllers, expose
 import sqlobject
 from hardware import model
@@ -11,6 +13,9 @@ from turbogears import exception_handler
 from turbogears.widgets import Tabber, JumpMenu
 from hwdata import deviceMap
 import sys
+from turbogears import scheduler
+
+from lock.multilock import MultiLock
 
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
@@ -18,6 +23,15 @@ smoltProtocol = '.91'
 
 
 class Root(controllers.RootController):
+    def __init__(self):
+        controllers.RootController.__init__(self)
+        self.devices_lock = MultiLock()
+        self.write_devices()
+        scheduler.add_interval_task(action=self.write_devices, interval=300, \
+                                    args=None, kw=None, initialdelay=300, \
+                                    processmethod=scheduler.method.threaded, \
+                                    taskname="devices_cache")
+        
     @expose(template="hardware.templates.welcome")
     def index(self):
         import time
@@ -242,16 +256,34 @@ class Root(controllers.RootController):
 
     @expose(template="hardware.templates.devices")
     def devices(self):
-        devices = {}
+        devices = self.read_devices()
         tabs = Tabber()
-        devices['total'] = HostLinks.select('1=1').count()
-        devices['count'] = Device.select('1=1').count()
-        devices['totalHosts'] = Host.select('1=1').count()
-        devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
-        devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
-        #devices['classes'] = Host._connection.queryAll('select device.class, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by device.class order by cnt desc;')
-        devices['classes'] = Host._connection.queryAll('select distinct(class) from device')
+#        devices['total'] = HostLinks.select('1=1').count()
+#        devices['count'] = Device.select('1=1').count()
+#        devices['totalHosts'] = Host.select('1=1').count()
+#        devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
+#        devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
+#        devices['classes'] = Host._connection.queryAll('select device.class, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by device.class order by cnt desc;')
+#        devices['classes'] = Host._connection.queryAll('select distinct(class) from device')
         return dict(Host=Host, Device=Device, HostLinks=HostLinks, devices=devices, tabs=tabs)
+    
+    def read_devices(self):
+        with self.devices_lock.read_transaction():
+            return self._devices_cache
+        pass
+    
+    def write_devices(self):
+        with self.devices_lock.write_transaction():
+            devices = {}
+            devices['total'] = HostLinks.select('1=1').count()
+            devices['count'] = Device.select('1=1').count()
+            devices['totalHosts'] = Host.select('1=1').count()
+            devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
+            devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
+            #devices['classes'] = Host._connection.queryAll('select device.class, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by device.class order by cnt desc;')
+            devices['classes'] = Host._connection.queryAll('select distinct(class) from device')
+            self._devices_cache = devices
+        pass
 
     @expose(template="hardware.templates.stats")
     def stats(self):

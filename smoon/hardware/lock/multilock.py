@@ -2,6 +2,7 @@
 from __future__ import with_statement
 
 from threading import Lock, Event
+from contextlib import contextmanager
 
 
 class ReverseSemaphore(object):
