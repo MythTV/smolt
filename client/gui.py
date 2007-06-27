@@ -29,6 +29,8 @@ sys.path.append('/usr/share/smolt/client')
 from i18n import _
 import smolt
 
+from starhscale import StarHScaleCellRender
+
 class HostTable:
 
     '''This builds a GTK+ table that contains the host data from the
@@ -83,18 +85,18 @@ class DeviceTable:
             devicelist = gtk.ListStore(str, str, str, str, str)
 
             for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.profile.deviceIter():
-                devicelist.append(['%s:%s:%s:%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID), Bus, Driver, Type, Description])
+                devicelist.append([5, Bus, Driver, Type, Description])
 
             deviceview = gtk.TreeView(devicelist)
             deviceview.set_property('rules-hint', True)
             deviceview.show()
             self.device_table.add(deviceview)
 
-            devicecolumn1 = gtk.TreeViewColumn(_('Device ID'))
+            devicecolumn1 = gtk.TreeViewColumn(_('Rating this device'))
             deviceview.append_column(devicecolumn1)
-            devicecell1 = gtk.CellRendererText()
+            devicecell1 = StarHScaleCellRender()
             devicecolumn1.pack_start(devicecell1, True)
-            devicecolumn1.add_attribute(devicecell1, 'text', 0)
+            devicecolumn1.add_attribute(devicecell1, 'value', 0)
             devicecolumn1.set_sort_column_id(0)
 
             devicecolumn2 = gtk.TreeViewColumn(_('Bus'))

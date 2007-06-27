@@ -268,6 +268,10 @@ class StarHScale(gtk.Widget):
 		self.window.move_resize(*self.allocation)
 		
 		# load the star xpm
+		print "loading bitmaps"
+		print "self.style: %s" % self.style
+		print "self.style.bg: %s" % self.style.bg
+		print "gtk.STATE_NORMAL: %s" % gtk.STATE_NORMAL
 		self.star_pixmap, mask = gtk.gdk.pixmap_create_from_xpm_d(
 			self.window
 			, self.style.bg[gtk.STATE_NORMAL]
@@ -413,7 +417,253 @@ class StarHScale(gtk.Widget):
 		
 		return self.max_stars
 
+class StarHScaleCellRender(gtk.GenericCellRenderer):
+	"""A horizontal Scale Widget that attempts to mimic the star
+	rating scheme used in iTunes"""
+	
+	def __init__(self, max_stars=5, stars=0):
+		"""Initialization, max_stars is the total number
+		of stars that may be visible, and stars is the current
+		number of stars to draw"""
+		
+		#Initialize the Widget
+		#gtk.Widget.__init__(self)
+		gtk.GenericCellRenderer.__init__(self)
+		
+		self.max_stars = max_stars
+		self.stars = stars
+		
+		# Init the list to blank
+		self.sizes = []		
+		for count in range(0,self.max_stars):
+			self.sizes.append((count * PIXMAP_SIZE) + BORDER_WIDTH)
+		
+	def do_realize(self):
+		"""Called when the widget should create all of its 
+		windowing resources.  We will create our gtk.gdk.Window
+		and load our star pixmap."""
+		
+		# First set an internal flag showing that we're realized
+		self.set_flags(self.flags() | gtk.REALIZED)
+		
+		# Create a new gdk.Window which we can draw on.
+		# Also say that we want to receive exposure events 
+		# and button click and button press events
+			
+		self.window = gtk.gdk.Window(
+			parent=self.get_parent_window(),
+			width=self.allocation.width,
+			height=self.allocation.height,
+			window_type=gdk.WINDOW_CHILD,
+			wclass=gdk.INPUT_OUTPUT,
+			event_mask=self.get_events() | gtk.gdk.EXPOSURE_MASK
+				| gtk.gdk.BUTTON1_MOTION_MASK | gtk.gdk.BUTTON_PRESS_MASK
+				| gtk.gdk.POINTER_MOTION_MASK
+				| gtk.gdk.POINTER_MOTION_HINT_MASK)
+				
+		# Associate the gdk.Window with ourselves, Gtk+ needs a reference
+		# between the widget and the gdk window
+		self.window.set_user_data(self)
+		
+		# Attach the style to the gdk.Window, a style contains colors and
+		# GC contextes used for drawing
+		self.style.attach(self.window)
+		
+		# The default color of the background should be what
+		# the style (theme engine) tells us.
+		self.style.set_background(self.window, gtk.STATE_NORMAL)
+		self.window.move_resize(*self.allocation)
+		
+		# load the star xpm
+		self.star_pixmap, mask = gtk.gdk.pixmap_create_from_xpm_d(
+			self.window
+			, self.style.bg[gtk.STATE_NORMAL]
+			, STAR_PIXMAP)
+
+		self.bg_pixmap, mask = gtk.gdk.pixmap_create_from_xpm_d(
+			self.window
+			, self.style.bg[gtk.STATE_NORMAL]
+			, BG_PIXMAP)
+			
+		# self.style is a gtk.Style object, self.style.fg_gc is
+		# an array or graphic contexts used for drawing the forground
+		# colours	
+		self.gc = self.style.fg_gc[gtk.STATE_NORMAL]
+		
+		self.connect("motion_notify_event", self.motion_notify_event)
+		
+	def do_unrealize(self):
+		# The do_unrealized method is responsible for freeing the GDK resources
+		# De-associate the window we created in do_realize with ourselves
+		self.window.destroy()
+		
+	def do_size_request(self, requisition):
+		"""From Widget.py: The do_size_request method Gtk+ is calling
+		 on a widget to ask it the widget how large it wishes to be. 
+		 It's not guaranteed that gtk+ will actually give this size 
+		 to the widget.  So we will send gtk+ the size needed for
+		 the maximum amount of stars"""
+		
+		requisition.height = PIXMAP_SIZE
+		requisition.width = (PIXMAP_SIZE * self.max_stars) + (BORDER_WIDTH * 2)
+	
+	
+	def do_size_allocate(self, allocation):
+		"""The do_size_allocate is called by when the actual 
+		size is known and the widget is told how much space 
+		could actually be allocated Save the allocated space
+		self.allocation = allocation. The following code is
+		identical to the widget.py example"""
+	
+		if self.flags() & gtk.REALIZED:
+			self.window.move_resize(*allocation)
+		
+	def do_expose_event(self, event):
+		"""This is where the widget must draw itself."""
+		
+		#Draw the correct number of stars.  Each time you draw another star
+		#move over by 22 pixels. which is the size of the star.
+		for count in range(0,self.max_stars):
+			if count < self.stars:
+				self.window.draw_drawable(self.gc, self.star_pixmap, 0, 0
+							  , self.sizes[count] 
+							  , 0,-1, -1)
+			else:
+				self.window.draw_drawable(self.gc, self.bg_pixmap, 0, 0
+							  , self.sizes[count] 
+							  , 0,-1, -1)	
+				
+	def motion_notify_event(self, widget, event):
+		# if this is a hint, then let's get all the necessary 
+		# information, if not it's all we need.
+		if event.is_hint:
+			x, y, state = event.window.get_pointer()
+		else:
+			x = event.x
+			y = event.y
+			state = event.state
+		
+		if (state & gtk.gdk.BUTTON1_MASK):
+			# loop through the sizes and see if the
+			# number of stars should change
+			self.check_for_new_stars(event.x)	
+			
+	def do_button_press_event(self, event):
+		"""The button press event virtual method"""
+		
+		# make sure it was the first button
+		if event.button == 1:
+			#check for new stars
+			self.check_for_new_stars(event.x)			
+		return True
+		
+	def check_for_new_stars(self, xPos):
+		"""This function will determine how many stars
+		will be show based on an x coordinate. If the
+		number of stars changes the widget will be invalidated
+		and the new number drawn"""
+		
+		# loop through the sizes and see if the
+		# number of stars should change
+		new_stars = 0
+		for size in self.sizes:
+			if (xPos < size):
+				# we've reached the star number
+				break
+			new_stars = new_stars + 1
+			
+		# set the new value
+		self.set_value(new_stars)
+			
+	def set_value(self, value):
+		"""Sets the current number of stars that will be 
+		drawn.  If the number is different then the current
+		number the widget will be redrawn"""
+		
+		if (value >= 0):
+			if (self.stars != value):
+				self.stars = value
+				#check for the maximum
+				if (self.stars > self.max_stars):
+					self.stars = self.max_stars
+				
+				# redraw the widget
+				self.queue_resize()
+				self.window.move_resize(*self.allocation)
+			
+	def get_value(self):
+		"""Get the current number of stars displayed"""
+		
+		return self.stars
+		
+	def set_max_value(self, max_value):
+		"""set the maximum number of stars"""
+		
+		if (self.max_stars != max_value):
+			"""Save the old max incase it is less than the
+			current number of stars, in which case we will
+			have to redraw"""
+			
+			if (max_value > 0):
+				self.max_stars = max_value
+				#reinit the sizes list (should really be a separate function)
+				self.sizes = []		
+				for count in range(0,self.max_stars):
+					self.sizes.append((count * PIXMAP_SIZE) + BORDER_WIDTH)
+				"""do we have to change the current number of
+				stars?"""			
+				if (self.stars > self.max_stars):
+					self.set_value(self.max_stars)
+	
+	def get_max_value(self):
+		"""Get the maximum number of stars that can be shown"""
+		
+		return self.max_stars
+	
+	def on_render(self, window, widget, background_area, cell_area, expose_area, flags):
+		print "window: %s" % window
+		print widget
+		print_rect("background_area", background_area)
+		print_rect("cell_area", cell_area)
+		print_rect("expose_area", expose_area)
+		print flags
+		widget.style.set_background(window, gtk.STATE_NORMAL)
+		star_pixmap, mask = gtk.gdk.pixmap_create_from_xpm_d(
+			window, \
+			widget.style.bg[gtk.STATE_NORMAL], \
+			STAR_PIXMAP)
+		
+		bg_pixmap, mask = gtk.gdk.pixmap_create_from_xpm_d(
+			window, \
+			widget.style.bg[gtk.STATE_NORMAL], \
+			BG_PIXMAP)
+		
+		gc = widget.style.fg_gc[gtk.STATE_NORMAL]
+		
+		for count in range(0, self.max_stars):
+			if count < self.stars:
+				window.draw_drawable(gc, star_pixmap, 0, 0 , \
+									 self.sizes[count], 0,-1, -1)
+			else:
+				window.draw_drawable(gc, bg_pixmap, 0, 0, \
+										  self.sizes[count], 0,-1, -1)	
+
+
+	def on_get_size(self, widget, cell_area):
+		print "widget: %s" % widget
+		print "cell area: %s" % cell_area
+		height = PIXMAP_SIZE
+		width = (PIXMAP_SIZE * self.max_stars) + (BORDER_WIDTH * 2)
+		print height, width
+		return (0, 0, width, height)
+
+		
+def print_rect(name, rect):
+	print "%s: %s %s %s %s %s" % (name, rect, rect.x, rect.y, rect.width, rect.height)
+	
+
 gobject.type_register(StarHScale)
+gobject.type_register(StarHScaleCellRender)
 			
 if __name__ == "__main__":
 	# register the class as a Gtk widget
