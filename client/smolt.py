@@ -197,6 +197,7 @@ class Host:
         except:
             self.formfactor = 'Unknown'
 
+
 def ignoreDevice(device):
     ignore = 1
     if device.bus == 'Unknown':
@@ -299,6 +300,29 @@ class Hardware:
             svc = bus.get_service(service)
             iface = svc.get_object(object, interface)
         return iface
+
+    def register(self, userName, password, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
+
+        auth = urlencode({
+                'user_name' :        userName,
+                'password' :        password,
+                'login' :           'Login',
+                'UUID':             self.host.UUID})
+
+        try:
+            o=grabber.urlopen('%s/link' % smoonURL, data=auth, http_headers=(
+                            ('Content-length', '%i' % len(auth)),
+                            ('Content-type', 'application/x-www-form-urlencoded')))
+        except urlgrabber.grabber.URLGrabError, e:
+            error(_('Error contacting Server: %s') % e)
+            return 1
+        else:
+            serverMessage(o.read())
+            o.close()
+        return 0
+
+        
 
 
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):

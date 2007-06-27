@@ -1,11 +1,13 @@
-from turbogears import controllers, expose
+from turbogears import controllers, expose, identity
 import sqlobject
 from hardware import model
 # import logging
 # log = logging.getLogger("hardware.controllers")
+from cherrypy import request, response
 from hardware.model import Host
 from hardware.model import Device
 from hardware.model import HostLinks
+from hardware.model import FasLink
 from sqlobject import SQLObjectNotFound
 from turbogears import exception_handler
 from turbogears.widgets import Tabber, JumpMenu
@@ -23,6 +25,34 @@ class Root(controllers.RootController):
         import time
         # log.debug("Happy TurboGears Controller Responding For Duty")
         return dict(now=time.ctime())
+
+
+    @expose(template="hardware.templates.login")
+    def login(self, forward_url=None, previous_url=None, *args, **kw):
+
+        if not identity.current.anonymous \
+            and identity.was_login_attempted() \
+            and not identity.get_identity_errors():
+            raise redirect(forward_url)
+
+        forward_url=None
+        previous_url= request.path
+
+        if identity.was_login_attempted():
+            msg=_("The credentials you supplied were not correct or "
+                   "did not grant access to this resource.")
+        elif identity.get_identity_errors():
+            msg=_("You must provide your credentials before accessing "
+                   "this resource.")
+        else:
+            msg=_("Please log in.")
+            forward_url= request.headers.get("Referer", "/")
+
+        response.status=403
+        return dict(message=msg, previous_url=previous_url, logging_in=True,
+                    original_parameters=request.params,
+                    forward_url=forward_url)
+
 
     @expose(template="hardware.templates.error")
     def errorClient(self, tg_exceptions=None):
@@ -79,6 +109,32 @@ class Root(controllers.RootController):
         # I hate obfuscation.  Its all I've got
         token = crypt.encrypt(str)
         return dict(token=urllib.quote(token))
+
+    @expose(template="hardware.templates.myHosts")
+    @identity.require(identity.not_anonymous())
+    def myHosts(self):
+        try:
+            linkSQL = FasLink.select("user_name='%s'" % identity.current.user_name)
+        except SQLObjectNotFound:
+            linkSQL = []
+        return dict(linkSQL=linkSQL)
+
+    @expose(template="hardware.templates.link")
+    @identity.require(identity.not_anonymous())
+    def link(self, UUID):
+        try:
+            hostSQL = Host.byUUID(UUID)
+        except:
+            raise ValueError("Critical: Your UUID did not exist.")
+
+        try:
+            linkSQL = FasLink.byUUID(UUID)
+            #Exists, do nothing.
+        except SQLObjectNotFound:
+            linkSQL = FasLink(UUID = UUID,
+                            userName = identity.current.user_name)
+        
+        return dict()
 
     @expose(template="hardware.templates.show")
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
