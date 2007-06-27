@@ -19,6 +19,7 @@
 import os
 import commands
 import re
+import sys
 
 def read_lsb_release():
     if os.access('/usr/bin/lsb_release', os.X_OK):
@@ -35,11 +36,27 @@ def read_runlevel():
         if match:
             defaultRunlevel = match.group(1)
     except IOError:
-        sys.stderr.write('Unable to read /etc/inittab.')
+	try:
+		defaultRunlevel = commands.getstatusoutput('/sbin/runlevel')[1].split()[1].strip()
+	except:
+        	sys.stderr.write('Cannot Determine Runlevel')
     return defaultRunlevel.strip()
 
 def read_os():
     try:
         return file('/etc/redhat-release').read().strip()
     except IOError:
-        return 'Unknown'
+        pass
+    try:
+        return file('/etc/SuSE-release').read().split('\n')[0].strip()
+    except IOError:
+        pass
+    try:
+        #this is a bit of a kludge, as /etc/debian-release is 
+        #somewhat incomplete in what it gives you
+        #I also figure this should work better in 
+        #ubuntu
+        return file('/etc/issue.net').read().strip()
+    except IOError:
+        pass
+    return 'Unknown'

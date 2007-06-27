@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: latin-1 -*-
 
 # smolt - Fedora hardware profiler
 #
@@ -208,6 +209,7 @@ class Host:
         else:
             self.selinux_enforce = 'Disabled'
 
+
 def ignoreDevice(device):
     ignore = 1
     if device.bus == 'Unknown':
@@ -313,6 +315,29 @@ class Hardware:
             iface = svc.get_object(object, interface)
         return iface
 
+    def register(self, userName, password, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
+
+        auth = urlencode({
+                'user_name' :        userName,
+                'password' :        password,
+                'login' :           'Login',
+                'UUID':             self.host.UUID})
+
+        try:
+            o=grabber.urlopen('%s/link' % smoonURL, data=auth, http_headers=(
+                            ('Content-length', '%i' % len(auth)),
+                            ('Content-type', 'application/x-www-form-urlencoded')))
+        except urlgrabber.grabber.URLGrabError, e:
+            error(_('Error contacting Server: %s') % e)
+            return 1
+        else:
+            serverMessage(o.read())
+            o.close()
+        return 0
+
+        
+
 
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
@@ -390,7 +415,14 @@ class Hardware:
         printBuffer = []
 
         for label, data in self.hostIter():
-            printBuffer.append('\t%s: %s' % (label, data))
+            print 
+            try:
+                printBuffer.append('\t%s: %s' % (label, data))
+            except UnicodeDecodeError:
+                try:
+                    printBuffer.append('\t%s: %s' % (unicode(label, 'utf-8'), data))
+                except UnicodeDecodeError:
+                    printBuffer.append('\t%r: %r' % (label, data))
             
         printBuffer.append('')
         printBuffer.append('\t\t ' + _('Devices'))
@@ -399,8 +431,8 @@ class Hardware:
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
             self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-            
-        return '\n'.join(printBuffer)
+        return printBuffer
+
 
     def hostIter(self):
         '''Iterate over host information.'''
@@ -435,6 +467,7 @@ class Hardware:
                 Driver = self.devices[device].driver
                 Type = self.devices[device].type
                 Description = self.devices[device].description
+                Description = Description.decode('latin1')
             except:
                 continue
             else:

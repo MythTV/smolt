@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
-"POT-Creation-Date: 2007-04-02 09:47+CDT\n"
+"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
 "PO-Revision-Date: 2007-03-31 18:18+0300\n"
 "Last-Translator: Doncho N. Gunchev <gunchev@gmail.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -243,39 +243,39 @@ msgstr "_Обмисляне на изпращането"
 msgid "_No, do not send."
 msgstr "_Без изпращане."
 
-#: smoltGui.py:69
+#: smoltGui.py:68
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Изход от програмата без изпращане на хардуерния профил към сървъра"
 
-#: smoltGui.py:69
+#: smoltGui.py:68
 msgid "_Quit"
 msgstr "_Изход"
 
-#: smoltGui.py:70
+#: smoltGui.py:69
 msgid "Send your hardware profile to the server."
 msgstr "Изпращане на хардуерния Ви профил на сървъра."
 
-#: smoltGui.py:70
+#: smoltGui.py:69
 msgid "_Send"
 msgstr "_Изпращане"
 
-#: smoltGui.py:71
+#: smoltGui.py:70
 msgid "Show _Privacy Policy"
 msgstr "_Показване политиката за конфиденциалност"
 
-#: smoltGui.py:71
+#: smoltGui.py:70
 msgid "Show the Smolt privacy policy."
 msgstr "Показване политиката за конфиденциалност на smolt."
 
-#: smoltGui.py:72
+#: smoltGui.py:71
 msgid "_About"
 msgstr "_За програмата"
 
-#: smoltGui.py:128
+#: smoltGui.py:127
 msgid "An error occurred while sending the data to the server."
 msgstr "Възникна грешка при изпращане на данните към сървъра."
 
-#: smoltGui.py:135
+#: smoltGui.py:134
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
@@ -285,10 +285,7 @@ msgstr ""
 "%s\n"
 "записан в /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:146
+#: smoltGui.py:145
 msgid "Smolt Privacy Policy"
 msgstr "Политика за конфиденциалност на Smolt"
 
-#: smoltGui.py:189
-msgid "translator-credits"
-msgstr ""

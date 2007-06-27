@@ -20,6 +20,7 @@ class Device(SQLObject):
     VendorId = IntCol()
     SubsysVendorId = IntCol()
     SubsysDeviceId = IntCol()
+
 class HostLinks(SQLObject):
     hostLink = ForeignKey('Host')
 #    hostUUID = UnicodeCol(title="Host",length=36,alternateID=True)
@@ -48,3 +49,6 @@ class Host(SQLObject):
     hostLink = MultipleJoin('HostLinks', joinColumn='host_link_id')
     lastModified = DateTimeCol(title="Last Modified")
 
+class FasLink(SQLObject):
+    UUID = UnicodeCol(title="UUID",alternateID=True,unique=True,notNone=True,length=36)
+    userName = StringCol(alternateID=True)

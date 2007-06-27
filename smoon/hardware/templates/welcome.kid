@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h1> Smolt is still in BETA! </h1>
+<h1> Smolt </h1>
 
 Most people probably want to go to <a href='/stats'>/stats</a> or <a href='/devices'>/devices</a>
 
@@ -17,6 +17,9 @@ Most people probably want to go to <a href='/stats'>/stats</a> or <a href='/devi
     </form>
 <h2>Growth</h2>
     <img src="/cacti/smoltArch.png"/>
+
+<h2>More info</h2>
+    Usage and other general answers can be found at <a href='https://hosted.fedoraproject.org/projects/smolt'>https://hosted.fedoraproject.org/projects/smolt</a>
 
 </body>
 </html>

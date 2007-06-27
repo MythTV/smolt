@@ -1,0 +1,291 @@
+# Translation of Smolt to Hungarian.
+# Copyright © 2007 Red Hat, Inc.
+# Sulyok Peti <peti@sulyok.hu>, 2007.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Smolt 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"PO-Revision-Date: 2007-04-02 22:02+0200\n"
+"Last-Translator:  Sulyok Péter <peti@sulyok.hu>\n"
+"Language-Team: Hungarian <fedora-trans-hu@redhat.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;"
+
+#: deleteProfile.py:35 smolt.py:222
+msgid "Server Message: \"%s\""
+msgstr "Kiszolgáló üzenet: „%s”"
+
+#: deleteProfile.py:45 sendProfile.py:41
+msgid "enable debug information"
+msgstr "hibakereső tájékoztatás engedélyezése"
+
+#: deleteProfile.py:50 sendProfile.py:46
+msgid "specify the URL of the server (default \"%default\")"
+msgstr "adja meg a kiszolgáló URL-jét (alapértelmezés „%default”)"
+
+#: deleteProfile.py:55 sendProfile.py:51
+msgid "print information only, do not send"
+msgstr "tájékoztatás nyomtatása csak, nincs küldés"
+
+#: deleteProfile.py:60 sendProfile.py:66
+msgid "specify HTTP user agent (default \"%default\")"
+msgstr "adja meg a HTTP használó ügyfelet (alapértelmezés „%default”)"
+
+#: deleteProfile.py:65 sendProfile.py:71
+msgid "specify HTTP timeout in seconds (default %default seconds)"
+msgstr "adja meg a HTTP időkorlátot másodpercben (alapértelmezés %default másodperc)"
+
+#: deleteProfile.py:83
+msgid "Error contacting Server:"
+msgstr "Hiba a kiszolgálóhoz csatlakozáskor"
+
+#: deleteProfile.py:91
+msgid "Profile removed, please verify at"
+msgstr "Profil törölve, kérem ellenőrizze "
+
+#: gui.py:56
+msgid "Label"
+msgstr "Címke"
+
+#: gui.py:62
+msgid "Data"
+msgstr "Adatok"
+
+#: gui.py:93
+msgid "Device ID"
+msgstr "Eszköz az"
+
+#: gui.py:100
+msgid "Bus"
+msgstr "Busz"
+
+#: gui.py:107
+msgid "Driver"
+msgstr "Vezérlő"
+
+#: gui.py:114
+msgid "Type"
+msgstr "Típus"
+
+#: gui.py:121
+msgid "Description"
+msgstr "Leírás"
+
+#: sendProfile.py:56
+msgid "don't prompt to send, just send"
+msgstr "ne jelezze a küldést, csak tegye"
+
+#: sendProfile.py:61
+msgid "continue to send until success"
+msgstr "folytassa a küldést amíg nem sikerül"
+
+#: sendProfile.py:76
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgstr "ez egy önműködő ellenőrzés, csak akkor fut, ha a „smolt” szolgáltatást elindították"
+
+#: sendProfile.py:90
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr "Smolt beállítva bejelentkezésre, de bejelentkezés letiltva (tipp: service smolt start)"
+
+#: sendProfile.py:97
+msgid "Error:"
+msgstr "Hiba:"
+
+#: sendProfile.py:99
+msgid "Hint:"
+msgstr "Tipp:"
+
+#: sendProfile.py:108
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr "Küldjük e tájékoztatást a Smolt kiszolgálóra? (i/n)"
+
+#: sendProfile.py:109
+msgid "y"
+msgstr "i"
+
+#: sendProfile.py:110
+msgid "Exiting..."
+msgstr "Kilépés…"
+
+#: sendProfile.py:117
+msgid "Retry Enabled - Retrying"
+msgstr "Ismétlés engedélyezve – Ismétlés"
+
+#: sendProfile.py:121
+msgid "Could not send - Exiting"
+msgstr "Nem sikerült küldeni – Kilépés"
+
+#: sendProfile.py:125
+msgid "To view your profile visit: %s"
+msgstr "A profil megtekintéséhez ld: %s"
+
+#: smolt.py:224
+msgid "Could not contact server: %s"
+msgstr "Nem sikerült elérni %s kiszolgálót."
+
+#: smolt.py:256
+msgid "Could not bind to dbus"
+msgstr "Nem sikerült kötni dbus-hoz"
+
+#: smolt.py:262
+msgid "Could not connect to hal, is it running?"
+msgstr "Nem sikerült halhoz kapcsolódni. Fut?"
+
+#: smolt.py:262
+msgid "Run \"service haldaemon start\" as root"
+msgstr "Futtassa „service haldaemon start”-ot rootként"
+
+#: smolt.py:328 smolt.py:351 smolt.py:368
+msgid "Error contacting Server: %s"
+msgstr "Hiba %s kiszolgálóhoz kapcsolódáskor"
+
+#: smolt.py:339
+msgid "Communication with server failed"
+msgstr "Kommunikáció a kiszolgálóval sikertelen"
+
+#: smolt.py:382
+msgid "Devices"
+msgstr "Eszközök"
+
+#: smolt.py:393
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:394
+msgid "OS"
+msgstr "OR"
+
+#: smolt.py:395
+msgid "Default run level"
+msgstr "Alapértelmezett futási szint"
+
+#: smolt.py:396
+msgid "Language"
+msgstr "Nyelv"
+
+#: smolt.py:397
+msgid "Platform"
+msgstr "Platform"
+
+#: smolt.py:398
+msgid "BogoMIPS"
+msgstr "BogoMIPS"
+
+#: smolt.py:399
+msgid "CPU Vendor"
+msgstr "CPU szállító"
+
+#: smolt.py:400
+msgid "CPU Model"
+msgstr "CPU modell"
+
+#: smolt.py:401
+msgid "Number of CPUs"
+msgstr "CPU-k száma"
+
+#: smolt.py:402
+msgid "CPU Speed"
+msgstr "CPU sebesség"
+
+#: smolt.py:403
+msgid "System Memory"
+msgstr "Rendszer tár"
+
+#: smolt.py:404
+msgid "System Swap"
+msgstr "Rendszer lapozó"
+
+#: smolt.py:405
+msgid "Vendor"
+msgstr "Szállító"
+
+#: smolt.py:406
+msgid "System"
+msgstr "Rendszer"
+
+#: smolt.py:407
+msgid "Form factor"
+msgstr "Formátum"
+
+#: smolt.py:408
+msgid "Kernel"
+msgstr "Rendszermag"
+
+#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+msgid "Hardware Profile"
+msgstr "Hardver profil"
+
+#: smoltFirstBoot.py:50
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr "Smolt a a Fedora Terv hardver profilozója. Az ön profiljának beküldése egy nagyszerű módja annak, hogy visszaadjanak a közösségnek, hiszen e tájékoztatást használják, hogy a népszerű hardverekre és platformokra összpontosíthassák az erőfeszítéseket. A beküldés névtelen. A profil beküldésével havi frissítés lehetséges."
+
+#: smoltFirstBoot.py:69
+msgid "_Send Profile"
+msgstr "Profil _küldése"
+
+#: smoltFirstBoot.py:70
+msgid "D_o not send profile"
+msgstr "N_e küldjön profilt"
+
+#: smoltFirstBoot.py:88
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr "Biztosan nem szeretne profilt küldeni? A profil beküldése mint tájékozódás, a fejlesztéseink értékes forrása, és segít bajok megoldásában, amik felmerülhetnek az ön hardverével."
+
+#: smoltFirstBoot.py:96
+msgid "_Reconsider sending"
+msgstr "Küldés új_ragondolása"
+
+#: smoltFirstBoot.py:97
+msgid "_No, do not send."
+msgstr "_Ne küldje!"
+
+#: smoltGui.py:68
+msgid "Quit the program without sending your hardware profile to the server"
+msgstr "Kilépés a programból hardverprofil kiszolgálóra küldése nélkül."
+
+#: smoltGui.py:68
+msgid "_Quit"
+msgstr "_Kilépés"
+
+#: smoltGui.py:69
+msgid "Send your hardware profile to the server."
+msgstr "A hardverprofil küldése a kiszolgálóra."
+
+#: smoltGui.py:69
+msgid "_Send"
+msgstr "Küldé_s"
+
+#: smoltGui.py:70
+msgid "Show _Privacy Policy"
+msgstr "S_zemélyes adatok szabályzat megjelenítése"
+
+#: smoltGui.py:70
+msgid "Show the Smolt privacy policy."
+msgstr "Smolt személyes adatok szabályzat megjelenítése"
+
+#: smoltGui.py:71
+msgid "_About"
+msgstr "Né_vjegy"
+
+#: smoltGui.py:127
+msgid "An error occurred while sending the data to the server."
+msgstr "Hiba történt az adatok kiszolgálóra küldésekor."
+
+#: smoltGui.py:134
+msgid ""
+"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"%s\n"
+"stored in /etc/sysconfig/hw-uuid"
+msgstr "Az adatokat sikerült elküldeni. Ha utalni kell az ön hardverprofiljára egy hibabejelentéskor, az ön UUID-je:\n"
+"%s\n"
+"eltárolva /etc/sysconfig/hw-uuid fájlban"
+
+#: smoltGui.py:145
+msgid "Smolt Privacy Policy"
+msgstr "Smolt személyi adatok szabályzat"
+

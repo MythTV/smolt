@@ -24,6 +24,7 @@ import time
 from urlparse import urljoin
 import os
 import random
+import getpass
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -44,6 +45,16 @@ parser.add_option('-s', '--server',
                   default = smolt.smoonURL,
                   metavar = 'smoonURL',
                   help = _('specify the URL of the server (default "%default")'))
+parser.add_option('--username',
+                  dest = 'userName',
+                  default = None,
+                  metavar = 'userName',
+                  help = _('(optional) Fedora Account System registration'))
+parser.add_option('--password',
+                  dest = 'password',
+                  default = None,
+                  metavar = 'password',
+                  help = _('password, will prompt if not specified'))
 parser.add_option('-p', '--printOnly',
                   dest = 'printOnly',
                   default = False,
@@ -82,7 +93,7 @@ smolt.DEBUG = opts.DEBUG
 if opts.checkin and os.path.exists('/var/lock/subsys/smolt'):
     # Smolt is set to run
     # Wait a random amount of time between 0 and 3 days to send
-    random.seed(file('/etc/sysconfig/hw-uuid').read().strip())
+    random.seed(file('/proc/sys/kernel/random/uuid').read().strip())
     time.sleep(random.randint(1, 259200))
     opts.autoSend = True
 elif opts.checkin:
@@ -99,7 +110,9 @@ except smolt.SystemBusError, e:
         error('\t' + _('Hint:') + ' ' + e.hint)
     sys.exit(8)
     
-print profile.getProfile()
+#print profile.getProfile()
+for line in profile.getProfile():
+	print line
 
 if not opts.autoSend:
     if opts.printOnly:
@@ -120,6 +133,15 @@ else:
     if profile.send(user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
         print _('Could not send - Exiting')
         sys.exit(1)
+
+if opts.userName: 
+    if not opts.password:
+        password = getpass.getpass('\n' + _('Password:') + ' ')
+    else:
+        password = opts.password
+
+    if profile.register(userName=opts.userName, password=password, user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
+        print _('Registration Failed, Try again')
 
 url = urljoin(opts.smoonURL, '/show?UUID=%s' % profile.host.UUID)
 print _('To view your profile visit: %s') % url

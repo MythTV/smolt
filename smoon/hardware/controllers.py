@@ -1,16 +1,22 @@
 from turbogears import controllers, expose
+from turbogears import controllers, expose, identity
 import sqlobject
 from hardware import model
 # import logging
 # log = logging.getLogger("hardware.controllers")
+from cherrypy import request, response
 from hardware.model import Host
 from hardware.model import Device
 from hardware.model import HostLinks
+from hardware.model import FasLink
 from sqlobject import SQLObjectNotFound
 from turbogears import exception_handler
 from turbogears.widgets import Tabber, JumpMenu
 from hwdata import deviceMap
 import sys
+from turbogears import scheduler
+
+from lock.multilock import MultiLock
 
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
@@ -18,11 +24,48 @@ smoltProtocol = '0.96'
 
 
 class Root(controllers.RootController):
+    def __init__(self):
+        controllers.RootController.__init__(self)
+        self.devices_lock = MultiLock()
+        self.write_devices()
+        scheduler.add_interval_task(action=self.write_devices, interval=300, \
+                                    args=None, kw=None, initialdelay=300, \
+                                    processmethod=scheduler.method.threaded, \
+                                    taskname="devices_cache")
+        
     @expose(template="hardware.templates.welcome")
     def index(self):
         import time
         # log.debug("Happy TurboGears Controller Responding For Duty")
         return dict(now=time.ctime())
+
+
+    @expose(template="hardware.templates.login")
+    def login(self, forward_url=None, previous_url=None, *args, **kw):
+
+        if not identity.current.anonymous \
+            and identity.was_login_attempted() \
+            and not identity.get_identity_errors():
+            raise redirect(forward_url)
+
+        forward_url=None
+        previous_url= request.path
+
+        if identity.was_login_attempted():
+            msg=_("The credentials you supplied were not correct or "
+                   "did not grant access to this resource.")
+        elif identity.get_identity_errors():
+            msg=_("You must provide your credentials before accessing "
+                   "this resource.")
+        else:
+            msg=_("Please log in.")
+            forward_url= request.headers.get("Referer", "/")
+
+        response.status=403
+        return dict(message=msg, previous_url=previous_url, logging_in=True,
+                    original_parameters=request.params,
+                    forward_url=forward_url)
+
 
     @expose(template="hardware.templates.error")
     def errorClient(self, tg_exceptions=None):
@@ -80,6 +123,32 @@ class Root(controllers.RootController):
         token = crypt.encrypt(str)
         return dict(token=urllib.quote(token))
 
+    @expose(template="hardware.templates.myHosts")
+    @identity.require(identity.not_anonymous())
+    def myHosts(self):
+        try:
+            linkSQL = FasLink.select("user_name='%s'" % identity.current.user_name)
+        except SQLObjectNotFound:
+            linkSQL = []
+        return dict(linkSQL=linkSQL)
+
+    @expose(template="hardware.templates.link")
+    @identity.require(identity.not_anonymous())
+    def link(self, UUID):
+        try:
+            hostSQL = Host.byUUID(UUID)
+        except:
+            raise ValueError("Critical: Your UUID did not exist.")
+
+        try:
+            linkSQL = FasLink.byUUID(UUID)
+            #Exists, do nothing.
+        except SQLObjectNotFound:
+            linkSQL = FasLink(UUID = UUID,
+                            userName = identity.current.user_name)
+        
+        return dict()
+
     @expose(template="hardware.templates.show")
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
     def add(self, UUID, OS, platform, bogomips, systemMemory, systemSwap, CPUVendor, CPUModel, numCPUs, CPUSpeed, language, defaultRunlevel, vendor, system, token, lsbRelease='Depricated', formfactor='Unknown', kernelVersion='', selinux_enabled='False', selinux_enforce='Disabled', smoltProtocol=None):
@@ -98,9 +167,9 @@ class Root(controllers.RootController):
         tokenUUID = tokenPlain[1]
         currentTime = int(time.mktime(datetime.datetime.now().timetuple()))
         if currentTime - tokenTime > 20:
-            raise ValueError("Critical: Invalid Token")
+            raise ValueError("Critical [20]: Invalid Token")
         if UUID.strip() != tokenUUID.strip():
-            raise ValueError("Critical: Invalid Token")
+            raise ValueError("Critical [s]: Invalid Token")
 
         UUID = UUID.strip()
         try:
@@ -246,16 +315,35 @@ class Root(controllers.RootController):
 
     @expose(template="hardware.templates.devices")
     def devices(self):
-        devices = {}
+        devices = self.read_devices()
         tabs = Tabber()
+#        devices['total'] = HostLinks.select('1=1').count()
+#        devices['count'] = Device.select('1=1').count()
+#        devices['totalHosts'] = Host.select('1=1').count()
+#        devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
+#        devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
+#        devices['classes'] = Host._connection.queryAll('select device.class, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by device.class order by cnt desc;')
+#        devices['classes'] = Host._connection.queryAll('select distinct(class) from device')
+        return dict(Host=Host, Device=Device, HostLinks=HostLinks, devices=devices, tabs=tabs)
+    
+    def read_devices(self):
+        self.devices_lock.read_acquire()
+        _return = self._devices_cache.copy()
+        self.devices_lock.read_release()
+        return _return
+    
+    def write_devices(self):
+        self.devices_lock.write_acquire()
+        devices = {}
         devices['total'] = HostLinks.select('1=1').count()
         devices['count'] = Device.select('1=1').count()
         devices['totalHosts'] = Host.select('1=1').count()
         devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
         devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
-        #devices['classes'] = Host._connection.queryAll('select device.class, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by device.class order by cnt desc;')
         devices['classes'] = Host._connection.queryAll('select distinct(class) from device')
-        return dict(Host=Host, Device=Device, HostLinks=HostLinks, devices=devices, tabs=tabs)
+        self._devices_cache = devices
+        self.devices_lock.write_release()
+        pass
 
     @expose(template="hardware.templates.stats")
     def stats(self):

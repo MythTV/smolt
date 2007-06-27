@@ -6,36 +6,42 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
-"POT-Creation-Date: 2007-04-02 09:47+CDT\n"
-"PO-Revision-Date: 2007-03-31 19:38-0000\n"
-"Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
+"POT-Creation-Date: 2007-03-19 21:22+CDT\n"
+"PO-Revision-Date: 2007-04-02 11:49-0500\n"
+"Last-Translator: Igor Miletic <grejigl-gnomeprevod@yahoo.ca>\n"
 "Language-Team: Serbian (sr) <fedora@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: deleteProfile.py:35 smolt.py:222
+#: deleteProfile.py:35
+#: smolt.py:222
 msgid "Server Message: \"%s\""
 msgstr "Порука сервера: „%s“"
 
-#: deleteProfile.py:45 sendProfile.py:41
+#: deleteProfile.py:45
+#: sendProfile.py:41
 msgid "enable debug information"
 msgstr "укључи податке за исправку грешака"
 
-#: deleteProfile.py:50 sendProfile.py:46
+#: deleteProfile.py:50
+#: sendProfile.py:46
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "наведите УРЛ сервера (подразумевано „%default“)"
 
-#: deleteProfile.py:55 sendProfile.py:51
+#: deleteProfile.py:55
+#: sendProfile.py:51
 msgid "print information only, do not send"
 msgstr "само испиши податке, немој слати"
 
-#: deleteProfile.py:60 sendProfile.py:66
+#: deleteProfile.py:60
+#: sendProfile.py:66
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "наведите HTTP корисничког агента (подразумевано „%default“)"
 
-#: deleteProfile.py:65 sendProfile.py:71
+#: deleteProfile.py:65
+#: sendProfile.py:71
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "наведите време HTTP чекања у секундама (подразумевано %default секунди)"
 
@@ -101,11 +107,11 @@ msgstr "Савет:"
 
 #: sendProfile.py:108
 msgid "Send this information to the Smolt server? (y/n)"
-msgstr "Послати ове податке Smolt серверу? (д/н)"
+msgstr "Послати ове податке Smolt серверу? (d/n)"
 
 #: sendProfile.py:109
 msgid "y"
-msgstr "д"
+msgstr "d"
 
 #: sendProfile.py:110
 msgid "Exiting..."
@@ -139,7 +145,9 @@ msgstr "Не могу да се повежем са hal-ом, да ли је п�
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Покрените „service haldaemon start“ као root"
 
-#: smolt.py:328 smolt.py:351 smolt.py:368
+#: smolt.py:328
+#: smolt.py:351
+#: smolt.py:368
 msgid "Error contacting Server: %s"
 msgstr "Грешка при контактирању сервера: %s"
 
@@ -215,7 +223,8 @@ msgstr "Физички облик"
 msgid "Kernel"
 msgstr "Језгро"
 
-#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+#: smoltFirstBoot.py:24
+#: smoltFirstBoot.py:34
 msgid "Hardware Profile"
 msgstr "Хардверски профил"
 
@@ -243,39 +252,39 @@ msgstr "_Размислите о слању"
 msgid "_No, do not send."
 msgstr "_Не, немој послати."
 
-#: smoltGui.py:69
+#: smoltGui.py:68
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Изађи из програма без слања хардверског профила серверу"
 
-#: smoltGui.py:69
+#: smoltGui.py:68
 msgid "_Quit"
 msgstr "_Изађи"
 
-#: smoltGui.py:70
+#: smoltGui.py:69
 msgid "Send your hardware profile to the server."
 msgstr "Пошаљите свој хардверски провил серверу."
 
-#: smoltGui.py:70
+#: smoltGui.py:69
 msgid "_Send"
 msgstr "_Пошаљи"
 
-#: smoltGui.py:71
+#: smoltGui.py:70
 msgid "Show _Privacy Policy"
 msgstr "Прикажи полису приватности"
 
-#: smoltGui.py:71
+#: smoltGui.py:70
 msgid "Show the Smolt privacy policy."
 msgstr "Прикажи Smolt-ову полису приватности."
 
-#: smoltGui.py:72
+#: smoltGui.py:71
 msgid "_About"
 msgstr "_О програму"
 
-#: smoltGui.py:128
+#: smoltGui.py:127
 msgid "An error occurred while sending the data to the server."
 msgstr "Дошло је до грешке при слању података на сервер."
 
-#: smoltGui.py:135
+#: smoltGui.py:134
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
@@ -285,10 +294,7 @@ msgstr ""
 "%s\n"
 "је похрањен у /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:146
+#: smoltGui.py:145
 msgid "Smolt Privacy Policy"
 msgstr "Smolt-ова полиса приватности"
 
-#: smoltGui.py:189
-msgid "translator-credits"
-msgstr ""
