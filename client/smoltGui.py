@@ -31,6 +31,7 @@ sys.path.append('/usr/share/smolt/client')
 from i18n import _
 import smolt
 import gui
+import starhscale
 
 class SmoltGui(object):
     ui = '''<ui>
@@ -97,10 +98,18 @@ class SmoltGui(object):
         toolbar.show()
         layout.pack_start(toolbar, expand=False)
         
-        #header = gtk.Label(_('This is the hardware information Smolt will send to the server.'))
-        #header.show()
-        #layout.pack_start(header, expand=False)
+        ratings_hbox = gtk.HBox()
+        ratings_hbox.show()
+        layout.pack_start(ratings_hbox, expand=False)
 
+        ratings_label = gtk.Label(_('Rate this system:'))
+        ratings_label.show()
+        ratings_hbox.pack_start(ratings_label, expand=False)
+
+        ratings = starhscale.StarHScale(5,0)
+        ratings.show()
+        ratings_hbox.pack_start(ratings, expand=False)
+        
         vpaned = gtk.VPaned()
         vpaned.show()
         layout.pack_start(vpaned, expand = True)

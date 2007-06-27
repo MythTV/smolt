@@ -24,6 +24,7 @@ import time
 from urlparse import urljoin
 import os
 import random
+import getpass
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -44,6 +45,16 @@ parser.add_option('-s', '--server',
                   default = smolt.smoonURL,
                   metavar = 'smoonURL',
                   help = _('specify the URL of the server (default "%default")'))
+parser.add_option('--username',
+                  dest = 'userName',
+                  default = None,
+                  metavar = 'userName',
+                  help = _('(optional) Fedora Account System registration'))
+parser.add_option('--password',
+                  dest = 'password',
+                  default = None,
+                  metavar = 'password',
+                  help = _('password, will prompt if not specified'))
 parser.add_option('-p', '--printOnly',
                   dest = 'printOnly',
                   default = False,
@@ -122,6 +133,15 @@ else:
     if profile.send(user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
         print _('Could not send - Exiting')
         sys.exit(1)
+
+if opts.userName: 
+    if not opts.password:
+        password = getpass.getpass('\n' + _('Password:') + ' ')
+    else:
+        password = opts.password
+
+    if profile.register(userName=opts.userName, password=password, user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
+        print _('Registration Failed, Try again')
 
 url = urljoin(opts.smoonURL, '/show?UUID=%s' % profile.host.UUID)
 print _('To view your profile visit: %s') % url
