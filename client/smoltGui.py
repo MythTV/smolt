@@ -1,4 +1,4 @@
-#!/usr/bin/python -tt
+#!/usr/bin/python 
 # -*- coding: UTF-8 -*-
 # Author: Toshio Kuratomi
 

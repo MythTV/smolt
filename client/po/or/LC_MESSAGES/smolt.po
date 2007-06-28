@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: or\n"
-"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
+"POT-Creation-Date: 2007-06-28 12:22+EDT\n"
 "PO-Revision-Date: 2007-04-09 15:16+0530\n"
 "Last-Translator: Subhransu Behera <arya_subhransu@yahoo.co.in>\n"
 "Language-Team: Oriya <oriya-group@lists.sarovar.org>\n"
@@ -58,7 +58,7 @@ msgid "Data"
 msgstr "ତଥ୍ଯ"
 
 #: gui.py:95
-msgid "Rating this device"
+msgid "Rate this device"
 msgstr ""
 
 #: gui.py:102

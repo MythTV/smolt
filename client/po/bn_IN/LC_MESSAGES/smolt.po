@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
-"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
+"POT-Creation-Date: 2007-06-28 12:22+EDT\n"
 "PO-Revision-Date: 2007-04-04 15:53+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
 "Language-Team: Bengali <en@li.org>\n"
@@ -56,7 +56,7 @@ msgid "Data"
 msgstr "তথ্য"
 
 #: gui.py:95
-msgid "Rating this device"
+msgid "Rate this device"
 msgstr ""
 
 #: gui.py:102

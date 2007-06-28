@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
-"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
-"PO-Revision-Date: 2007-06-27 18:03-0500\n"
+"POT-Creation-Date: 2007-06-28 12:22+EDT\n"
+"PO-Revision-Date: 2007-06-28 12:25-0500\n"
 "Last-Translator: Yaakov Nemoy <loupgaroublond@gmail.com>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -63,8 +63,8 @@ msgid "Data"
 msgstr "Gegevens"
 
 #: gui.py:95
-msgid "Rating this device"
-msgstr ""
+msgid "Rate this device"
+msgstr "Verhoud dit apparat"
 
 #: gui.py:102
 msgid "Bus"
@@ -140,7 +140,7 @@ msgstr "Wachtwoord:"
 
 #: sendProfile.py:144
 msgid "Registration Failed, Try again"
-msgstr ""
+msgstr "Aanmelding is mislukt. Opnieuw proberen?"
 
 #: sendProfile.py:147
 msgid "To view your profile visit: %s"
@@ -243,7 +243,7 @@ msgstr "Kernel"
 
 #: smolt.py:455
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux aangezet"
 
 #: smolt.py:456
 msgid "SELinux Enforce"
@@ -316,7 +316,7 @@ msgstr "_Hulp"
 
 #: smoltGui.py:105
 msgid "Rate this system:"
-msgstr ""
+msgstr "Verhoud dit systeem:"
 
 #: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
@@ -338,7 +338,7 @@ msgstr "Smolt privacybeleid"
 
 #: smoltGui.py:198
 msgid "translator-credits"
-msgstr ""
+msgstr "Ondersteuningkrediet"
 
 #~ msgid "Device ID"
 #~ msgstr "Apparaat-ID"

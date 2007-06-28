@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
+"POT-Creation-Date: 2007-06-28 12:22+EDT\n"
 "PO-Revision-Date: 2007-03-31 15:43-0300\n"
 "Last-Translator: Igor Pires Soares <igor@projetofedora.org>\n"
 "Language-Team: Brazilian Portuguese <fedora-trans-pt_br@redhat.com>\n"
@@ -56,7 +56,7 @@ msgid "Data"
 msgstr "Dados"
 
 #: gui.py:95
-msgid "Rating this device"
+msgid "Rate this device"
 msgstr ""
 
 #: gui.py:102

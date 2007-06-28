@@ -92,7 +92,7 @@ class DeviceTable:
             deviceview.show()
             self.device_table.add(deviceview)
 
-            devicecolumn1 = gtk.TreeViewColumn(_('Rating this device'))
+            devicecolumn1 = gtk.TreeViewColumn(_('Rate this device'))
             deviceview.append_column(devicecolumn1)
             devicecell1 = StarHScaleCellRender()
             devicecolumn1.pack_start(devicecell1, True)

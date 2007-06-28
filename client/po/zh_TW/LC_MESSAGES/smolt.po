@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
+"POT-Creation-Date: 2007-06-28 12:22+EDT\n"
 "PO-Revision-Date: 2007-04-02 22:28+1000\n"
 "Last-Translator: Chester Cheng <ccheng@redhat.com>\n"
 "Language-Team: Chinese\n"
@@ -56,7 +56,7 @@ msgid "Data"
 msgstr ""
 
 #: gui.py:95
-msgid "Rating this device"
+msgid "Rate this device"
 msgstr ""
 
 #: gui.py:102

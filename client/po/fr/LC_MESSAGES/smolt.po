@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2007-06-27 18:02+EDT\n"
+"POT-Creation-Date: 2007-06-28 12:22+EDT\n"
 "PO-Revision-Date: 2007-04-08 12:13+0200\n"
 "Last-Translator: Thomas Canniot <thomas.canniot@laposte.net>\n"
 "Language-Team: Francais <fedora-trans-fr@redhat.com>\n"
@@ -55,7 +55,7 @@ msgid "Data"
 msgstr "Donnée"
 
 #: gui.py:95
-msgid "Rating this device"
+msgid "Rate this device"
 msgstr ""
 
 #: gui.py:102
