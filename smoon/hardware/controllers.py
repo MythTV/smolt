@@ -29,10 +29,16 @@ class Root(controllers.RootController):
     def __init__(self):
         controllers.RootController.__init__(self)
         self.devices_lock = MultiLock()
-        scheduler.add_interval_task(action=self.write_devices, interval=60, \
-                                    args=None, kw=None, initialdelay=60, \
+        self.stats_lock = MultiLock()
+        scheduler.add_interval_task(action=self.write_devices, interval=1800, \
+                                    args=None, kw=None, initialdelay=15, \
                                     processmethod=scheduler.method.threaded, \
                                     taskname="devices_cache")
+        scheduler.add_interval_task(action=self.write_stats, interval=300, \
+                                    args=None, kw=None, initialdelay=5, \
+                                    processmethod=scheduler.method.threaded, \
+                                    taskname="stats_cache")
+
         
     @expose(template="hardware.templates.welcome")
     def index(self):
@@ -317,7 +323,7 @@ class Root(controllers.RootController):
     @expose(template="hardware.templates.notLoaded")
     def unavailable(self, tg_exceptions=None):
         return dict()
-    
+
     @expose(template="hardware.templates.devices")
 #    @exception_handler(not_ready_handler, rules="isinstance(tg_exceptions,smoonexceptions.NotCachedException")
 # This seems to be borked, but it is the correct way to do things.  I will
@@ -328,13 +334,6 @@ class Root(controllers.RootController):
         except:
             raise redirect("unavailable")
         tabs = Tabber()
-#        devices['total'] = HostLinks.select('1=1').count()
-#        devices['count'] = Device.select('1=1').count()
-#        devices['totalHosts'] = Host.select('1=1').count()
-#        devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
-#        devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
-#        devices['classes'] = Host._connection.queryAll('select device.class, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by device.class order by cnt desc;')
-#        devices['classes'] = Host._connection.queryAll('select distinct(class) from device')
         return dict(Host=Host, Device=Device, HostLinks=HostLinks, devices=devices, tabs=tabs)
     
     def read_devices(self):
@@ -362,10 +361,22 @@ class Root(controllers.RootController):
         self.devices_lock.write_release()
         pass
 
-    @expose(template="hardware.templates.stats")
-    def stats(self):
+    def read_stats(self):
+        self.stats_lock.read_acquire()
+        try:
+            print self._stats_cache
+            _return = self._stats_cache.copy()
+        except AttributeError:
+            self.stats_lock.read_release()
+            raise NotCachedException
+        else:
+            self.stats_lock.read_release()
+        return _return
+
+
+    def write_stats(self):
+        self.stats_lock.write_acquire()
         stats = {}
-        tabs = Tabber()
         stats['totalHosts'] = Host.select().count()
         totalHosts = stats['totalHosts']
         stats['archs'] = Host._connection.queryAll("Select platform, count(platform) as cnt from host group by platform order by cnt desc")
@@ -420,4 +431,18 @@ class Root(controllers.RootController):
 
         stats['cpusTot'] = int(Host._connection.queryAll('select sum(num_cp_us) as cnt from host;')[0][0])
 
-        return dict(Host=Host, Device=Device, HostLinks=HostLinks, Stat=stats, tabs=tabs, totalHosts=totalHosts)
+        self._stats_cache = stats
+        self.stats_lock.write_release()
+        pass
+
+
+
+    @expose(template="hardware.templates.stats")
+    def stats(self):
+        try:
+            stats = self.read_stats()
+        except:
+            raise redirect("unavailable")
+        tabs = Tabber()
+        return dict(Host=Host, Device=Device, HostLinks=HostLinks, Stat=stats, tabs=tabs, totalHosts=stats['totalHosts'])
+
