@@ -15,6 +15,8 @@ from turbogears.widgets import Tabber, JumpMenu
 from hwdata import deviceMap
 import sys
 from turbogears import scheduler
+from smoonexceptions import NotCachedException
+from turbogears import redirect
 
 from lock.multilock import MultiLock
 
@@ -27,9 +29,8 @@ class Root(controllers.RootController):
     def __init__(self):
         controllers.RootController.__init__(self)
         self.devices_lock = MultiLock()
-        self.write_devices()
-        scheduler.add_interval_task(action=self.write_devices, interval=300, \
-                                    args=None, kw=None, initialdelay=300, \
+        scheduler.add_interval_task(action=self.write_devices, interval=60, \
+                                    args=None, kw=None, initialdelay=60, \
                                     processmethod=scheduler.method.threaded, \
                                     taskname="devices_cache")
         
@@ -313,9 +314,19 @@ class Root(controllers.RootController):
         vendors = Host._connection.queryAll('select device.vendor_id, count(device.vendor_id) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by device.vendor_id order by cnt desc;' % type)
         return dict(types=types, type=type, totalHosts=totalHosts, count=count, pciVendors=pciVendors, vendors=vendors, tabs=tabs)
 
+    @expose(template="hardware.templates.notLoaded")
+    def unavailable(self, tg_exceptions=None):
+        return dict()
+    
     @expose(template="hardware.templates.devices")
+#    @exception_handler(not_ready_handler, rules="isinstance(tg_exceptions,smoonexceptions.NotCachedException")
+# This seems to be borked, but it is the correct way to do things.  I will
+# now demonstrate a better, but incorrect way.  Moof.
     def devices(self):
-        devices = self.read_devices()
+        try:
+            devices = self.read_devices()
+        except:
+            raise redirect("unavailable")
         tabs = Tabber()
 #        devices['total'] = HostLinks.select('1=1').count()
 #        devices['count'] = Device.select('1=1').count()
@@ -328,8 +339,14 @@ class Root(controllers.RootController):
     
     def read_devices(self):
         self.devices_lock.read_acquire()
-        _return = self._devices_cache.copy()
-        self.devices_lock.read_release()
+        try:
+            print self._devices_cache
+            _return = self._devices_cache.copy()
+        except AttributeError:
+            self.devices_lock.read_release()
+            raise NotCachedException
+        else:
+            self.devices_lock.read_release()
         return _return
     
     def write_devices(self):
