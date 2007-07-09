@@ -381,8 +381,7 @@ class Root(controllers.RootController):
         totalHosts = stats['totalHosts']
         stats['archs'] = Host._connection.queryAll("Select platform, count(platform) as cnt from host group by platform order by cnt desc")
 
-        stats['OS'] = Host._connection.queryAll("Select o_s, count(o_s) as cnt from host group by o_s order by cnt desc")
-        #Host._connection.queryAll("Select count(o_s) from host")[0][0]
+        stats['OS'] = Host._connection.queryAll("Select o_s, count(o_s) as cnt from host group by o_s order by cnt desc limit 15")
 
         stats['runlevel'] = Host._connection.queryAll("Select default_runlevel, count(default_runlevel) as cnt from host group by default_runlevel order by cnt desc")
 
@@ -393,13 +392,12 @@ class Root(controllers.RootController):
 
         stats['cpuVendor'] = Host._connection.queryAll("Select cpu_vendor, count(cpu_vendor) as cnt from host group by cpu_vendor order by cnt desc limit 100;")
 
-        stats['kernelVersion'] = Host._connection.queryAll("Select kernel_version, count(kernel_version) as cnt from host group by kernel_version order by cnt desc;")
+        stats['kernelVersion'] = Host._connection.queryAll("Select kernel_version, count(kernel_version) as cnt from host group by kernel_version order by cnt desc limit 20;")
 
         stats['formfactor'] = Host._connection.queryAll("Select formfactor, count(formfactor) as cnt from host group by formfactor order by cnt desc;")
 
-        stats['language'] = Host._connection.queryAll("Select language, count(language) as cnt from host group by language order by cnt desc limit 15")
+        stats['language'] = Host._connection.queryAll("Select language, count(language) as cnt from host group by language order by cnt desc")
         stats['languagetot'] = stats['totalHosts']
-        #int(Host._connection.queryAll('Select count(language) from host;')[0][0])
  
         stats['sysMem'] = []
         stats['sysMem'].append(Host._connection.queryAll('select "< 512" as range, count(system_memory) as cnt from host where system_memory <= 512')[0])
