@@ -17,6 +17,8 @@ import sys
 from turbogears import scheduler
 from smoonexceptions import NotCachedException
 from turbogears import redirect
+from turbogears import widgets
+from turbogears import flash
 
 from lock.multilock import MultiLock
 
@@ -24,7 +26,33 @@ from lock.multilock import MultiLock
 CRYPTPASS = 'PleaseChangeMe11'
 smoltProtocol = '0.96'
 
+class SingleSelectField(widgets.SingleSelectField):
+    """This class is a workaround for TG which does not properly process
+    the field_id param on the SingleSelectField widget.
+    """
+    def update_params(self, d):
+        """For some reason, field_id, and name are both proper parameters
+        in the kid template for this widget, however, they are not allowed
+        to be configured at display time, only at widget creation time.
+        understanding that widgets should be as stateless as possible, this
+        allows you to declare new values at display time
+        """
+        if "field_id" in d:
+            field_id = d["field_id"]
+        else:
+            field_id = ""
+        super(SingleSelectField, self).update_params(d)
+        if not field_id == "":
+            d["field_id"] = field_id
+            d['name'] = field_id
+    
+    params = ["field_id"]
 
+rating = SingleSelectField(options = [(0, "Please Pick One"),
+                                      (1, "This breaks stuff"),
+                                      (2, "This doesn't work"),
+                                      (3, "This sorta works"),
+                                      (4, "This works great! ^_^")])
 class Root(controllers.RootController):
     def __init__(self):
         controllers.RootController.__init__(self)
@@ -89,20 +117,23 @@ class Root(controllers.RootController):
     @expose(template="hardware.templates.show")
     @exception_handler(errorWeb,rules="isinstance(tg_exceptions,ValueError)")
     def show(self, UUID=''):
-            try:
-                UUID = u'%s' % UUID.strip()
-                UUID = UUID.encode('utf8')
-            except:
-                raise ValueError("Critical: Unicode Issue - Tell Mike!")
-            try:
-                hostObject = Host.byUUID(UUID)
-            except:
-                raise ValueError("Critical: UUID Not Found - %s" % UUID)
-            devices = []
-            for dev in hostObject.hostLink:
-                devices.append(Device.select('id=%s' % dev.deviceID)[0])
-            ven = deviceMap('pci')
-            return dict(hostObject=hostObject, devices=devices, ven=ven)
+        try:
+            UUID = u'%s' % UUID.strip()
+            UUID = UUID.encode('utf8')
+        except:
+            raise ValueError("Critical: Unicode Issue - Tell Mike!")
+        try:
+            hostObject = Host.byUUID(UUID)
+        except:
+            raise ValueError("Critical: UUID Not Found - %s" % UUID)
+        devices = {}
+        for dev in hostObject.hostLink:
+            #This is to prevent duplicate devices showing up, in the future,
+            #There will be no dups in the database
+            devices[dev.deviceID] = (Device.select('id=%s' % dev.deviceID)[0], dev.rating)
+        ven = deviceMap('pci')
+        return dict(hostObject=hostObject, devices=devices, ven=ven, \
+                    rating=rating)
 
     @expose(template="hardware.templates.delete")
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
@@ -431,9 +462,6 @@ class Root(controllers.RootController):
 
         self._stats_cache = stats
         self.stats_lock.write_release()
-        pass
-
-
 
     @expose(template="hardware.templates.stats")
     def stats(self):
@@ -443,4 +471,24 @@ class Root(controllers.RootController):
             raise redirect("unavailable")
         tabs = Tabber()
         return dict(Host=Host, Device=Device, HostLinks=HostLinks, Stat=stats, tabs=tabs, totalHosts=stats['totalHosts'])
+    
+    @expose()
+    def submit_ratings(self, uuid, **kw):
+        
+        host = Host.byUUID(uuid)
+        host.rating = int(kw["host_rating"])
+        
+        devices = host.hostLink
+        for (device_key, rating) in kw.items():
+            if device_key.startswith("device_"):
+               device_ref = device_key[7:]
+               device_db_ref = int(device_ref)
+               for device in devices:
+                   if device.deviceID == device_db_ref:
+                       device.rating = int(rating)
+                       print "rating device %s" % device.deviceID
+        flash("Ratings Saved!")
+        redirect("show?UUID=%s" % uuid)
+            
+            
 

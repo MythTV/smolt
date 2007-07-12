@@ -26,6 +26,7 @@ class HostLinks(SQLObject):
 #    hostUUID = UnicodeCol(title="Host",length=36,alternateID=True)
     deviceID = IntCol(title="Device Link")
 #    deviceID = MultipleJoin('Device', joinColumn='id')
+    rating = IntCol(title="Rating", default=0)
 
 class Host(SQLObject):
     UUID = UnicodeCol(title="UUID",alternateID=True,unique=True,notNone=True,length=36)
@@ -48,7 +49,8 @@ class Host(SQLObject):
     selinux_enforce = StringCol(title="SELinux Enforce")
     hostLink = MultipleJoin('HostLinks', joinColumn='host_link_id')
     lastModified = DateTimeCol(title="Last Modified")
+    rating = IntCol(title="Overall Rating", default=0)
 
 class FasLink(SQLObject):
     UUID = UnicodeCol(title="UUID",alternateID=True,unique=True,notNone=True,length=36)
-    userName = StringCol(alternateID=True)
+    userName = StringCol(alternateID=True, length=255)

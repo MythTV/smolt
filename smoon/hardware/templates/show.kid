@@ -6,8 +6,12 @@
 <title>Show Box</title>
 </head>
 <body>
+	<form action="submit_ratings?uuid=${hostObject.UUID}" method="post">
         <h3>${hostObject.UUID}</h3>
+		<p class='moof'><button type='submit'>Submit your ratings</button></p>
+		<p>Rating: ${hostObject.rating}</p>
         <table id="show">
+        	<tr><th>Rating:</th><td>${rating(value=hostObject.rating, field_id="host_rating")}</td></tr>
             <tr><th>UUID:</th><td>${hostObject.UUID}</td></tr>
             <tr><th>OS:</th><td>${hostObject.OS}</td></tr>
             <tr><th>platform:</th><td>${hostObject.platform}</td></tr>
@@ -29,9 +33,11 @@
         <h3>Devices</h3>
         <table id='show'>
             <tr>
-                <th align='right'>Driver</th><th>Class</th><th>Bus</th><th>Vendor</th><th>Device</th><th>SubVendor</th><th>SubDevice</th>
+                <th>Rating</th><th align='right'>Driver</th><th>Class</th><th>Bus</th><th>Vendor</th><th>Device</th><th>SubVendor</th><th>SubDevice</th>
             </tr>
-            <tr py:for='device in devices'>
+            <tr py:for='device_node in devices.values()'>
+            	<?python device = device_node[0] ?>
+            	<td align='left'>${rating(value=device_node[1], field_id="device_%s" % device.id)}</td>
                 <td align='right'>${device.Driver}</td>
                 <td align='center'>${device.Class}</td>
                 <td align='center'>${device.Bus}</td>
@@ -42,5 +48,6 @@
                 <!--<td align='left'>${device.Description}</td>-->
             </tr>
         </table>
+	</form>
 </body>
 </html>

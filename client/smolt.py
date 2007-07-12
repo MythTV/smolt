@@ -885,8 +885,8 @@ def getUUID():
             try:
                 file('/etc/sysconfig/hw-uuid', 'w').write(self.UUID)
             except:
-                sys.stderr.write('Unable to save UUID, continuing...\n')
+                sys.stderr.write(_('Unable to save UUID, continuing...\n'))
         except IOError:
-            sys.stderr.write('Unable to determine UUID of system!\n')
+            sys.stderr.write(_('Unable to determine UUID of system!\n'))
             raise UUIDError, 'Could not determine UUID of system!\n'
     return UUID

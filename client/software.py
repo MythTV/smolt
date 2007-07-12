@@ -39,7 +39,7 @@ def read_runlevel():
 	try:
 		defaultRunlevel = commands.getstatusoutput('/sbin/runlevel')[1].split()[1].strip()
 	except:
-        	sys.stderr.write('Cannot Determine Runlevel')
+        	sys.stderr.write(_('Cannot Determine Runlevel'))
     return defaultRunlevel.strip()
 
 def read_os():

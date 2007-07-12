@@ -170,3 +170,15 @@ span.code {
     text-align: right;
     padding-right: 13px;
 }
+.moof{
+	float: right;
+}
+div.flash {
+  margin: 0 auto 0.5em auto;
+  padding: 15px 10px 15px 55px;
+  background: #cec URL('../images/ok.png') left center no-repeat;
+  border: 1px solid #9c9;
+  width: 450px;
+  font-size: 120%;
+  font-weight: bolder;
+}
