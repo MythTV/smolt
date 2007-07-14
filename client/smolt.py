@@ -48,8 +48,6 @@ if hasattr(config, "SMOON_URL"):
 else:
     smoonURL = 'http://smolt.fedoraproject.org/'
 
-print smoonURL
-
 smoltProtocol = '0.96'
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
