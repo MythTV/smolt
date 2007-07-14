@@ -141,7 +141,8 @@ class SmoltGui(object):
                     gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
                     gtk.MESSAGE_INFO,
                     gtk.BUTTONS_OK,
-                    message_format=_('The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in /etc/sysconfig/hw-uuid') % self.profile.host.UUID)
+                    message_format=_('The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in %s') \
+                                     % (self.profile.host.UUID, smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")))
         finishMessage.show()
         finishMessage.run()
         self.quit_cb(None)

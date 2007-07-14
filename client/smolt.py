@@ -43,11 +43,13 @@ from urllib import urlencode
 
 import config
 
-if hasattr(config, "SMOON_URL"):
-    smoonURL = config.SMOON_URL
-else:
-    smoonURL = 'http://smolt.fedoraproject.org/'
+def get_config_attr(attr, default):
+    if hasattr(config, attr):
+        return getattr(config, attr)
+    else:
+        return default
 
+smoonURL = get_config_attr("SMOON_URL", "http://smolt.fedoraproject.org/")
 smoltProtocol = '0.96'
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
@@ -883,13 +885,14 @@ def read_memory_2_6():
     return memdict
 
 def getUUID():
+    hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
     try:
-        UUID = file('/etc/sysconfig/hw-uuid').read().strip()
+        UUID = file(hw_uuid_file).read().strip()
     except IOError:
         try:
             UUID = file('/proc/sys/kernel/random/uuid').read().strip()
             try:
-                file('/etc/sysconfig/hw-uuid', 'w').write(self.UUID)
+                file(hw_uuid_file, 'w').write(self.UUID)
             except:
                 sys.stderr.write(_('Unable to save UUID, continuing...\n'))
         except IOError:
