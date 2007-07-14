@@ -1,4 +1,3 @@
-from turbogears import controllers, expose
 from turbogears import controllers, expose, identity
 import sqlobject
 from hardware import model
