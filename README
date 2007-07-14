@@ -19,6 +19,19 @@ Client
 The client portion uses the RHN client to create a hardware object that then
 gets sent to the server.
 
+Configuration:
+Note to Smolt Devs: I'm not sure where to put this info, so i'm putting it here
+Note to Package Maintainers: the file client/config.py should really be a symlink. Included is a sample config.py.  To use it in a distro, please copy it to /etc/smolt.cfg.sample or even just /etc/smolt.cfg .  It is this author's preference to have the actual config file be /etc/smolt.cfg .  Furthermore, right now Smolt expects there to be a client/config.py for this to all work, so above all, make sure there is a symlink to wherever you *do* place the config.  If this presents a problem for your distro, please email us :).
+
+Configuration (REDUX):
+To configure smolt, it currently looks in one place, /etc/smolt.cfg or /path/to/client/config.py.  Yes it really counts as one place.  It is a standard python file, with constants declared directly in the file.  Please see the sample config provided for... well... a sample.  It currently recognizes only one option.
+
+Options:
+
+SMOON_URL: a str (that is a string) that is a url to your local smoon server.  (Default: 
+http://smolt.fedoraproject.org/)
+
+
 Usage:
      -h,--help           Display this help menu
      -d,--debug          Enable debug information

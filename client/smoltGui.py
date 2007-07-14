@@ -128,7 +128,7 @@ class SmoltGui(object):
         '''Send the profile to the smolt server'''
         # A little hacky.  Perhaps this should be a method in the library
         #retcode = subprocess.call('/usr/bin/smoltSendProfile -a')
-        retcode = self.profile.send()
+        retcode = self.profile.send(smoonURL=smolt.smoonURL)
         if retcode:
             finishMessage = gtk.MessageDialog(self.mainWindow,
                     gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,

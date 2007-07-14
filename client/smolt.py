@@ -41,7 +41,15 @@ import sys
 from urlparse import urljoin
 from urllib import urlencode
 
-smoonURL = 'http://smolt.fedoraproject.org/'
+import config
+
+if hasattr(config, "SMOON_URL"):
+    smoonURL = config.SMOON_URL
+else:
+    smoonURL = 'http://smolt.fedoraproject.org/'
+
+print smoonURL
+
 smoltProtocol = '0.96'
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
