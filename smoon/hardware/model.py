@@ -1,56 +1,87 @@
-from sqlobject import *
 from datetime import datetime
-from turbogears.database import PackageHub
-from turbogears.identity.soprovider import TG_User, TG_Group, TG_Permission
+from sqlalchemy import *
+from turbogears.database import metadata, session
+from sqlalchemy.ext.assignmapper import assign_mapper
+from turbogears import identity
 
-hub = PackageHub("hardware")
-__connection__ = hub
+def assign(*args, **kw):
+    """Map tables to objects with knowledge about the session context."""
+    return assign_mapper(session.context, *args, **kw)
 
-''' Now storing device ID.  This was added because description can change 
-    over time.  Unfortunately not everything has a device ID.  This is nasty
-    but since we are storing both we can figure out what to do later'''
 
-class Device(SQLObject):
-    Description = UnicodeCol(title="Device",alternateID=True,length=128)
-    Bus = StringCol(title="Bus")
-    Driver = StringCol(title="Module / Driver")
-    Class = StringCol()
-    DateAdded = DateTimeCol(title="Date Added")
-    DeviceId = StringCol(title='Device ID', length=16)  #Format: Vendor:Device
-    VendorId = IntCol()
-    SubsysVendorId = IntCol()
-    SubsysDeviceId = IntCol()
+computer_logical_devices = Table('device', metadata, 
+                                 Column("id", INT, autoincrement=True,
+                                        nullable=False, primary_key=True),
+                                 Column("description", VARCHAR(128),
+                                        nullable=False),
+                                 Column("bus", TEXT),
+                                 Column("driver", TEXT),
+                                 Column("class", TEXT),
+                                 Column("date_added", DATETIME),
+                                 Column("device_id", VARCHAR(16)),
+                                 Column("vendor_id", INT),
+                                 Column("subsys_device_id", INT),
+                                 Column("subsys_vendor_id", INT))
 
-class HostLinks(SQLObject):
-    hostLink = ForeignKey('Host')
-#    hostUUID = UnicodeCol(title="Host",length=36,alternateID=True)
-    deviceID = IntCol(title="Device Link")
-#    deviceID = MultipleJoin('Device', joinColumn='id')
-    rating = IntCol(title="Rating", default=0)
+host_links = Table('host_links', metadata, 
+                   Column("id", INT, autoincrement=True, nullable=False, primary_key=True),
+                   Column('host_link_id', INT, ForeignKey("host.id"),
+                          nullable=False),
+                   Column("device_id", INT, ForeignKey("device.device_id")),
+                   Column("rating", INT))
 
-class Host(SQLObject):
-    UUID = UnicodeCol(title="UUID",alternateID=True,unique=True,notNone=True,length=36)
-    OS = StringCol()
-    platform = StringCol()
-    bogomips = FloatCol()
-    systemMemory = IntCol(title="System Memory")
-    systemSwap = IntCol(title="System Swap Memory")
-    vendor = StringCol(title="Machine Vendor")
-    system = StringCol(title="Machine Model")
-    CPUVendor = StringCol(title="CPU Vendor")
-    CPUModel = StringCol(title="CPU Model")
-    numCPUs = IntCol(title="Number of CPUs")
-    CPUSpeed = FloatCol(title="CPU Speed")
-    language = StringCol(title="Language")
-    kernelVersion = StringCol(title="Kernel")
-    formfactor = StringCol(title="Formfactor")
-    defaultRunlevel = IntCol(title="Default Runlevel")
-    selinux_enabled = BoolCol(title="SELinux Enabled")
-    selinux_enforce = StringCol(title="SELinux Enforce")
-    hostLink = MultipleJoin('HostLinks', joinColumn='host_link_id')
-    lastModified = DateTimeCol(title="Last Modified")
-    rating = IntCol(title="Overall Rating", default=0)
+hosts = Table('host', metadata,
+              Column("id", INT, autoincrement=True, nullable=False, primary_key=True),
+              Column('u_u_id', VARCHAR(36), nullable=False, unique=True),
+              Column('o_s', TEXT),
+              Column('platform', TEXT),
+              Column('bogomips', DECIMAL),
+              Column('system_memory', INT),
+              Column('system_swap', INT),
+              Column('vendor', TEXT),
+              Column('system', TEXT),
+              Column('cpu_vendor', TEXT),
+              Column('cpu_model', TEXT),
+              Column('num_cp_us', INT),
+              Column('cpu_speed', DECIMAL),
+              Column('language', TEXT),
+              Column('default_runlevel', INT),
+              Column('kernel_version', TEXT),
+              Column('formfactor', TEXT),
+              Column('last_modified', DATETIME, default=0, nullable=False),
+              Column('rating', INT, nullable=False, default=0),
+              Column('selinux_enabled', BOOLEAN, nullable=False),
+              Column('selinux_enforce', TEXT))
 
-class FasLink(SQLObject):
-    UUID = UnicodeCol(title="UUID",alternateID=True,unique=True,notNone=True,length=36)
-    userName = StringCol(alternateID=True, length=255)
+fas_links = Table('fas_link', metadata,
+                  Column("id", INT, autoincrement=True, nullable=False,
+                         primary_key=True),
+                  Column('u_u_id', VARCHAR(36), ForeignKey("host.u_u_id"),
+                         nullable=False),
+                  Column("user_name", VARCHAR(255), nullable=False))
+
+
+class Host(object):
+    pass
+
+class ComputerLogicalDevice(object):
+    pass
+
+class HostLinks(object):
+    pass
+
+class FasLink(object):
+    pass
+
+assign(Host, hosts, properties = {
+                      'uuid' : hosts.c.u_u_id,
+                      'os': hosts.c.o_s,
+                      'num_cpus': hosts.c.num_cp_us,
+                      'devices': relation(HostLinks),
+                      'fas_account': relation(FasLink, uselist=False)})
+assign(ComputerLogicalDevice, computer_logical_devices)
+assign(HostLinks, host_links, properties = {
+                                'host': relation(Host, uselist=False),
+                                'device': relation(ComputerLogicalDevice,
+                                                   uselist=False)})
+assign(FasLink, fas_links, properties = {'hosts': relation(Host)})
