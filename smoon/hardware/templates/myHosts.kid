@@ -7,9 +7,9 @@
 <body>
 
 <table>
-    <tr><th>${linkSQL[0].userName}</th></tr>
-    <tr py:for="host in linkSQL">
-        <td><a href='show?UUID=${host.UUID}'>${host.UUID}</a></td>
+    <tr><th>${linkSQL.user_name}</th></tr>
+    <tr py:for="host in linkSQL.hosts">
+        <td><a href='show?UUID=${host.uuid}'>${host.uuid}</a></td>
     </tr>
 </table>
 </body>

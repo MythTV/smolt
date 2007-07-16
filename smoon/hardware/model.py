@@ -16,7 +16,9 @@ computer_logical_devices = Table('device', metadata,
                                         nullable=False),
                                  Column("bus", TEXT),
                                  Column("driver", TEXT),
-                                 Column("class", TEXT),
+                                 Column("class", TEXT,
+                                        ForeignKey("classes.klass"),
+                                        key="klass"),
                                  Column("date_added", DATETIME),
                                  Column("device_id", VARCHAR(16)),
                                  Column("vendor_id", INT),
@@ -27,7 +29,7 @@ host_links = Table('host_links', metadata,
                    Column("id", INT, autoincrement=True, nullable=False, primary_key=True),
                    Column('host_link_id', INT, ForeignKey("host.id"),
                           nullable=False),
-                   Column("device_id", INT, ForeignKey("device.device_id")),
+                   Column("device_id", INT, ForeignKey("device.id")),
                    Column("rating", INT))
 
 hosts = Table('host', metadata,
@@ -60,6 +62,17 @@ fas_links = Table('fas_link', metadata,
                          nullable=False),
                   Column("user_name", VARCHAR(255), nullable=False))
 
+hardware_classes = Table('classes', metadata,
+                         Column("class", VARCHAR(24), nullable=False, primary_key=True, key="klass"),
+                         Column("description", TEXT, key="class_description"))
+
+computer_devices = join(computer_logical_devices,
+                        hardware_classes,
+                        computer_logical_devices.c.klass == 
+                            hardware_classes.c.klass)
+
+#hardware_classes = select([computer_logical_devices.c.klass], distinct=True).alias("hardware_classes")
+
 
 class Host(object):
     pass
@@ -67,21 +80,39 @@ class Host(object):
 class ComputerLogicalDevice(object):
     pass
 
-class HostLinks(object):
+class HostLink(object):
     pass
 
 class FasLink(object):
+    def __init__(self, uuid, user_name):
+        self.uuid = uuid
+        self.user_name = user_name
+        
+class HardwareClass(object):
     pass
+        
 
 assign(Host, hosts, properties = {
                       'uuid' : hosts.c.u_u_id,
                       'os': hosts.c.o_s,
                       'num_cpus': hosts.c.num_cp_us,
-                      'devices': relation(HostLinks),
+                      'devices': relation(HostLink,
+                                          cascade="all, delete-orphan"),
                       'fas_account': relation(FasLink, uselist=False)})
-assign(ComputerLogicalDevice, computer_logical_devices)
-assign(HostLinks, host_links, properties = {
+
+assign(ComputerLogicalDevice,
+       computer_devices,
+       properties = {"host_links":
+                         relation(HostLink, cascade="all, delete-orphan")})
+
+assign(HostLink, host_links, properties = {
                                 'host': relation(Host, uselist=False),
                                 'device': relation(ComputerLogicalDevice,
                                                    uselist=False)})
-assign(FasLink, fas_links, properties = {'hosts': relation(Host)})
+
+assign(FasLink, fas_links, properties = {'hosts': relation(Host),
+                                         'uuid': fas_links.c.u_u_id})
+
+assign(HardwareClass,
+       hardware_classes,
+       properties = {'devices': relation(ComputerLogicalDevice)})

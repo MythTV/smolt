@@ -1,14 +1,9 @@
 from turbogears import controllers, expose, identity
-import sqlobject
 from hardware import model
 # import logging
 # log = logging.getLogger("hardware.controllers")
 from cherrypy import request, response
-from hardware.model import Host
-from hardware.model import Device
-from hardware.model import HostLinks
-from hardware.model import FasLink
-from sqlobject import SQLObjectNotFound
+from hardware.model import *
 from turbogears import exception_handler
 from turbogears.widgets import Tabber, JumpMenu
 from hwdata import deviceMap
@@ -18,12 +13,13 @@ from smoonexceptions import NotCachedException
 from turbogears import redirect
 from turbogears import widgets
 from turbogears import flash
+from sqlalchemy import *
 
 from lock.multilock import MultiLock
 
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
-smoltProtocol = '0.96'
+currentSmoltProtocol = '0.96'
 
 class SingleSelectField(widgets.SingleSelectField):
     """This class is a workaround for TG which does not properly process
@@ -57,14 +53,14 @@ class Root(controllers.RootController):
         controllers.RootController.__init__(self)
         self.devices_lock = MultiLock()
         self.stats_lock = MultiLock()
-        scheduler.add_interval_task(action=self.write_devices, interval=1800, \
-                                    args=None, kw=None, initialdelay=15, \
-                                    processmethod=scheduler.method.threaded, \
-                                    taskname="devices_cache")
-        scheduler.add_interval_task(action=self.write_stats, interval=300, \
-                                    args=None, kw=None, initialdelay=5, \
-                                    processmethod=scheduler.method.threaded, \
-                                    taskname="stats_cache")
+#        scheduler.add_interval_task(action=self.write_devices, interval=1800, \
+#                                    args=None, kw=None, initialdelay=15, \
+#                                    processmethod=scheduler.method.threaded, \
+#                                    taskname="devices_cache")
+#        scheduler.add_interval_task(action=self.write_stats, interval=300, \
+#                                    args=None, kw=None, initialdelay=5, \
+#                                    processmethod=scheduler.method.threaded, \
+#                                    taskname="stats_cache")
 
         
     @expose(template="hardware.templates.welcome")
@@ -122,14 +118,15 @@ class Root(controllers.RootController):
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
-            hostObject = Host.byUUID(UUID)
+            #hostObject = Host.byUUID(UUID)
+            hostObject = Host.query().selectone_by(uuid=UUID)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % UUID)
         devices = {}
-        for dev in hostObject.hostLink:
+        for dev in hostObject.devices:
             #This is to prevent duplicate devices showing up, in the future,
             #There will be no dups in the database
-            devices[dev.deviceID] = (Device.select('id=%s' % dev.deviceID)[0], dev.rating)
+            devices[dev.device_id] = (dev.device, dev.rating)
         ven = deviceMap('pci')
         return dict(hostObject=hostObject, devices=devices, ven=ven, \
                     rating=rating)
@@ -138,12 +135,14 @@ class Root(controllers.RootController):
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, UUID=''):
         try:
-            host = Host.byUUID(UUID)
+            host = Host.query().selectone_by(uuid=UUID)
         except:
             raise ValueError("Critical: UUID does not exist %s " % UUID)
         try:
-            Host._connection.queryAll("delete from host_links where host_link_id='%s';" % host.id)
-            Host._connection.queryAll("delete from host where id='%s';" % host.id)
+#            Host._connection.queryAll("delete from host_links where host_link_id='%s';" % host.id)
+#            Host._connection.queryAll("delete from host where id='%s';" % host.id)
+            host.delete()
+            host.flush()
         except:
             raise ValueError("Critical: Could not delete UUID - Please contact the smolt development team")
         raise ValueError('Success: UUID Removed')
@@ -164,7 +163,8 @@ class Root(controllers.RootController):
     @identity.require(identity.not_anonymous())
     def myHosts(self):
         try:
-            linkSQL = FasLink.select("user_name='%s'" % identity.current.user_name)
+            #linkSQL = FasLink.select("user_name='%s'" % identity.current.user_name)
+            linkSQL = FasLink.query().selectone_by(user_name=identity.current.user_name)
         except SQLObjectNotFound:
             linkSQL = []
         return dict(linkSQL=linkSQL)
@@ -173,17 +173,21 @@ class Root(controllers.RootController):
     @identity.require(identity.not_anonymous())
     def link(self, UUID):
         try:
-            hostSQL = Host.byUUID(UUID)
-        except:
+            #hostSQL = Host.byUUID(UUID)
+            hostSQL = Host.query().selectone_by(uuid=UUID)
+        except InvalidRequestError:
             raise ValueError("Critical: Your UUID did not exist.")
-
-        try:
-            linkSQL = FasLink.byUUID(UUID)
-            #Exists, do nothing.
-        except SQLObjectNotFound:
-            linkSQL = FasLink(UUID = UUID,
-                            userName = identity.current.user_name)
         
+        if hostSQL.fas_account == None:
+            linkSQL = FasLink(uuid=UUID, user_name=identity.current.user_name)
+            linkSQL.save_or_update()
+            linkSQL.flush()
+#        try:
+#            linkSQL = FasLink.byUUID(UUID)
+#            #Exists, do nothing.
+#        except SQLObjectNotFound:
+#            linkSQL = FasLink(UUID = UUID,
+#                            userName = identity.current.user_name)
         return dict()
 
     @expose(template="hardware.templates.show")
@@ -194,8 +198,10 @@ class Root(controllers.RootController):
         import time, datetime
         from mx import DateTime
 
-        if not (smoltProtocol == smoltProtocol):
+        if smoltProtocol < currentSmoltProtocol:
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
+        if smoltProtocol > currentSmoltProtocol:
+            raise ValueError("Woah there marty mcfly, you got to go back to 1955!")
 
         token = urllib.unquote(token)
         crypt = XOR.new(CRYPTPASS)
@@ -210,55 +216,62 @@ class Root(controllers.RootController):
 
         UUID = UUID.strip()
         try:
-            hostSQL = Host.byUUID(UUID)
-            Host._connection.queryAll("delete from host_links where host_link_id='%s'" % hostSQL.id)
+            #hostSQL = Host.byUUID(UUID)
+            hostSQL = Host.query().selectone_by(uuid=UUID)
+        except InvalidRequestError:
+            hostSQL = Host()
+            hostSQL.uuid = UUID
+            #Host._connection.queryAll("delete from host_links where host_link_id='%s'" % hostSQL.id)
 
-            hostSQL.OS = OS.strip()
-            hostSQL.platform = platform.strip()
-            try:
-                hostSQL.bogomips = float(bogomips)
-            except:
-                hostSQL.bogomips = 0
-            hostSQL.systemMemory = int(systemMemory)
-            hostSQL.systemSwap = int(systemSwap)
-            hostSQL.CPUVendor = CPUVendor.strip()
-            hostSQL.CPUModel = CPUModel.strip()
-            hostSQL.numCPUs = int(numCPUs)
-            hostSQL.CPUSpeed = float(CPUSpeed)
-            hostSQL.language = language.strip()
-            hostSQL.defaultRunlevel = int(defaultRunlevel)
-            hostSQL.vendor = vendor.strip()
-            hostSQL.system = system.strip()
-            hostSQL.kernelVersion = kernelVersion.strip()
-            hostSQL.formfactor = formfactor.strip()
-            hostSQL.selinux_enabled = bool(selinux_enabled)
-            hostSQL.selinux_enforce = selinux_enforce.strip()
-            hostSQL.LastModified = DateTime.now()
-
-        except SQLObjectNotFound:
-            try:
-                bogomips = float(bogomips)
-            except:
-                bogomips = 0
-            hostSQL = Host(UUID = UUID,
-                        OS = OS.strip(),
-                        platform = platform.strip(),
-                        bogomips = float(bogomips),
-                        systemMemory = int(systemMemory),
-                        systemSwap = int(systemSwap),
-                        CPUVendor = CPUVendor.strip(),
-                        CPUModel = CPUModel.strip(),
-                        numCPUs = int(numCPUs),
-                        CPUSpeed = float(CPUSpeed),
-                        language = language.strip(),
-                        defaultRunlevel = int(defaultRunlevel),
-                        vendor = vendor.strip(),
-                        system = system.strip(),
-                        kernelVersion = kernelVersion.strip(),
-                        formfactor = formfactor.strip(),
-                        selinux_enabled = bool(selinux_enabled),
-                        selinux_enforce = selinux_enforce.strip(),
-                        LastModified = DateTime.now())
+        hostSQL.os = OS.strip()
+        hostSQL.platform = platform.strip()
+        try:
+            hostSQL.bogomips = float(bogomips)
+        except:
+            hostSQL.bogomips = 0
+        hostSQL.system_memory = int(systemMemory)
+        hostSQL.system_swap = int(systemSwap)
+        hostSQL.cpu_vendor = CPUVendor.strip()
+        hostSQL.cpu_model = CPUModel.strip()
+        hostSQL.num_cpus = int(numCPUs)
+        hostSQL.cpu_speed = float(CPUSpeed)
+        hostSQL.language = language.strip()
+        hostSQL.default_runlevel = int(defaultRunlevel)
+        hostSQL.vendor = vendor.strip()
+        hostSQL.system = system.strip()
+        hostSQL.kernel_version = kernelVersion.strip()
+        hostSQL.formfactor = formfactor.strip()
+        hostSQL.selinux_enabled = bool(selinux_enabled)
+        hostSQL.selinux_enforce = selinux_enforce.strip()
+        hostSQL.last_modified = DateTime.now()
+        
+        hostSQL.save_or_update()
+        hostSQL.flush()
+#
+#        except SQLObjectNotFound:
+#            try:
+#                bogomips = float(bogomips)
+#            except:
+#                bogomips = 0
+#            hostSQL = Host(UUID = UUID,
+#                        OS = OS.strip(),
+#                        platform = platform.strip(),
+#                        bogomips = float(bogomips),
+#                        systemMemory = int(systemMemory),
+#                        systemSwap = int(systemSwap),
+#                        CPUVendor = CPUVendor.strip(),
+#                        CPUModel = CPUModel.strip(),
+#                        numCPUs = int(numCPUs),
+#                        CPUSpeed = float(CPUSpeed),
+#                        language = language.strip(),
+#                        defaultRunlevel = int(defaultRunlevel),
+#                        vendor = vendor.strip(),
+#                        system = system.strip(),
+#                        kernelVersion = kernelVersion.strip(),
+#                        formfactor = formfactor.strip(),
+#                        selinux_enabled = bool(selinux_enabled),
+#                        selinux_enforce = selinux_enforce.strip(),
+#                        LastModified = DateTime.now())
 
         return dict(hostObject=hostSQL, devices=[])
 
@@ -268,8 +281,9 @@ class Root(controllers.RootController):
         import time
         from mx import DateTime
         try:
-            host = Host.byUUID(UUID)
-        except SQLObjectNotFound:
+            #host = Host.byUUID(UUID)
+            host = Host.query().selectone_by(uuid=UUID)
+        except InvalidRequestError:
             raise ValueError("Critical: UUID not found - %s" % UUID)
         # Read in device id's from the device bulk script
         for device in Devices.split('\n'):
@@ -310,43 +324,86 @@ class Root(controllers.RootController):
                 Description = '%s:%s:%s:%s' % (VendorId, DeviceId, SubsysDeviceId, SubsysVendorId)
             
             try:
-                deviceSQL = Device.byDescription(Description)
-            except SQLObjectNotFound:
+                #deviceSQL = Device.byDescription(Description)
+                deviceSQL = ComputerLogicalDevice.query().selectone_by(description=Description)
+            except exceptions.InvalidRequestError:
                 try:
-                    deviceSQL = Device(Description = Description,
-                        Bus = Bus,
-                        Driver = Driver,
-                        Class = Class,
-                        DeviceId = DeviceId,
-                        VendorId = VendorId,
-                        SubsysVendorId = SubsysVendorId,
-                        SubsysDeviceId = SubsysDeviceId,
-                        DateAdded = DateTime.now())
+                    deviceSQL = ComputerLogicalDevice()
+                    deviceSQL.bus = Bus
+                    deviceSQL.driver = Driver
+                    deviceSQL.klass = Class
+                    deviceSQL.device_id = DeviceId
+                    deviceSQL.vendor_id = VendorId
+                    deviceSQL.subsys_vendor_id = SubsysVendorId
+                    deviceSQL.subsys_device_id = SubsysDeviceId
+                    deviceSQL.date_added = DateTime.now()
+#                    deviceSQL = Device(Description = Description,
+#                        Bus = Bus,
+#                        Driver = Driver,
+#                        Class = Class,
+#                        DeviceId = DeviceId,
+#                        VendorId = VendorId,
+#                        SubsysVendorId = SubsysVendorId,
+#                        SubsysDeviceId = SubsysDeviceId,
+#                        DateAdded = DateTime.now())
                 except AttributeError, e:
                     raise ValueError("Critical: Device add Failed - %s" % e)
             except AttributeError, e:
                 raise ValueError("Critical: Device add Failed - %s" % e)
             try:
 #                deviceSQL.DeviceId = DeviceId
-                link = HostLinks(deviceID=deviceSQL.id, hostLink=host.id)
+                #link = HostLinks(deviceID=deviceSQL.id, hostLink=host.id)
+                link = HostLink()
+                link.host = host
+                link.device = deviceSQL
+                link.save()
+                
+                
+                
             except:
                raise ValueError("Critical: Could not add device: %s" % Description)
+            deviceSQL.save_or_update()
+            deviceSQL.flush()
+            link.flush()
         return dict(deviceObject=deviceSQL)
     
     @expose(template="hardware.templates.deviceclass")
     def byClass(self, type='VIDEO'):
         type = type.encode('utf8')
         typetest = (type,)
-        classes = Host._connection.queryAll('select distinct(class) from device;')
+        #classes = Host._connection.queryAll('select distinct(class) from device;')
+        classes = HardwareClass.select()
         pciVendors = deviceMap('pci')
         tabs = Tabber()
         if typetest not in classes:
             return('%s' % classes)
         # We only want hosts that detected hardware (IE, hal was working properly)
-        totalHosts = long(Host._connection.queryAll('select count(distinct(host_link_id)) from host_links;')[0][0])
+        #totalHosts = long(Host._connection.queryAll('select count(distinct(host_link_id)) from host_links;')[0][0])
+        totalHosts = select([host_links.c.host_link_id], distinct=True).alias("m").count().execute().fetchone()[0]
+
         #types = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by host_links.device_id order by cnt desc limit 100;' % type)
-        count = Host._connection.queryAll('select count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s";' % type)[0][0]
-        types = Host._connection.queryAll('select device.description, device.bus, device.driver, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id, device.date_added, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by host_links.device_id order by cnt desc limit 100' % type)
+        count = select([host_links.c.host_link_id], and_(host_links.c.device_id == computer_logical_devices.c.id, computer_logical_devices.c.klass == type), distinct=True).alias("m").count().execute().fetchone()[0]
+#        count = Host._connection.queryAll('select count(distinct(\
+#                                           host_links.host_link_id)) as cnt\
+#                                           from host_links, device where\
+#                                           host_links.device_id=device.id\
+#                                           and device.class="%s";' % type)[0][0]
+        device = computer_logical_devices
+        types = select([device.c.description, device.c.bus, device.c.driver,
+                        device.c.vendor_id, device.c.device_id,
+                        device.c.subsys_vendor_id, 
+                        device.c.subsys_device_id, device.date_added,
+                        func.count])
+        types = Host\
+                ._connection\
+                .queryAll('select device.description, device.bus, \
+                        device.driver, device.vendor_id, device.device_id, \
+                        device.subsys_vendor_id, device.subsys_device_id, \
+                        device.date_added, count(distinct(host_links.host_link_id)) \
+                        as cnt from host_links, device where \
+                        host_links.device_id=device.id and device.class="%s" \
+                        group by host_links.device_id order by cnt desc \
+                        limit 100' % type)
         vendors = Host._connection.queryAll('select device.vendor_id, count(device.vendor_id) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by device.vendor_id order by cnt desc;' % type)
         return dict(types=types, type=type, totalHosts=totalHosts, count=count, pciVendors=pciVendors, vendors=vendors, tabs=tabs)
 
