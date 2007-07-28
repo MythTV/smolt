@@ -14,12 +14,19 @@ from turbogears import redirect
 from turbogears import widgets
 from turbogears import flash
 from sqlalchemy import *
+from sqlalchemy.exceptions import InvalidRequestError
+from Crypto.Cipher import XOR
+import urllib
+import time, datetime
+from mx import DateTime
+import simplejson
+
 
 from lock.multilock import MultiLock
 
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
-currentSmoltProtocol = '0.96'
+currentSmoltProtocol = '0.97'
 
 class SingleSelectField(widgets.SingleSelectField):
     """This class is a workaround for TG which does not properly process
@@ -189,30 +196,47 @@ class Root(controllers.RootController):
 #            linkSQL = FasLink(UUID = UUID,
 #                            userName = identity.current.user_name)
         return dict()
+    def check_token(self, token, uuid):
+        print "token before decode is %s" % token
+        token = urllib.unquote(token)
+        print "token after decode is %s" % token
+        crypt = XOR.new(CRYPTPASS)
+        print crypt
+        tokenPlain = crypt.decrypt(token).split('\n')
+        print tokenPlain
+        tokenTime = int(tokenPlain[0])
+        print tokenTime
+        tokenUUID = tokenPlain[1]
+        print tokenUUID
+        print uuid
+        currentTime = int(time.mktime(datetime.datetime.now().timetuple()))
+        print currentTime
+        if currentTime - tokenTime > 20:
+            raise ValueError("Critical [20]: Invalid Token")
+        if uuid.strip() != tokenUUID.strip():
+            raise ValueError("Critical [s]: Invalid Token")
 
     @expose(template="hardware.templates.show")
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
     def add(self, UUID, OS, platform, bogomips, systemMemory, systemSwap, CPUVendor, CPUModel, numCPUs, CPUSpeed, language, defaultRunlevel, vendor, system, token, lsbRelease='Depricated', formfactor='Unknown', kernelVersion='', selinux_enabled='False', selinux_enforce='Disabled', smoltProtocol=None):
-        from Crypto.Cipher import XOR
-        import urllib
-        import time, datetime
-        from mx import DateTime
 
         if smoltProtocol < currentSmoltProtocol:
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
         if smoltProtocol > currentSmoltProtocol:
             raise ValueError("Woah there marty mcfly, you got to go back to 1955!")
+        
+        self.check_token(token, UUID)
 
-        token = urllib.unquote(token)
-        crypt = XOR.new(CRYPTPASS)
-        tokenPlain = crypt.decrypt(token).split('\n')
-        tokenTime = int(tokenPlain[0])
-        tokenUUID = tokenPlain[1]
-        currentTime = int(time.mktime(datetime.datetime.now().timetuple()))
-        if currentTime - tokenTime > 20:
-            raise ValueError("Critical [20]: Invalid Token")
-        if UUID.strip() != tokenUUID.strip():
-            raise ValueError("Critical [s]: Invalid Token")
+#        token = urllib.unquote(token)
+#        crypt = XOR.new(CRYPTPASS)
+#        tokenPlain = crypt.decrypt(token).split('\n')
+#        tokenTime = int(tokenPlain[0])
+#        tokenUUID = tokenPlain[1]
+#        currentTime = int(time.mktime(datetime.datetime.now().timetuple()))
+#        if currentTime - tokenTime > 20:
+#            raise ValueError("Critical [20]: Invalid Token")
+#        if UUID.strip() != tokenUUID.strip():
+#            raise ValueError("Critical [s]: Invalid Token")
 
         UUID = UUID.strip()
         try:
@@ -367,6 +391,81 @@ class Root(controllers.RootController):
             link.flush()
         return dict(deviceObject=deviceSQL)
     
+    @expose()
+    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
+    def add_json(self, uuid, host, token, smolt_protocol):
+        if smolt_protocol < currentSmoltProtocol:
+            raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
+        if smolt_protocol > currentSmoltProtocol:
+            raise ValueError("Woah there marty mcfly, you got to go back to 1955!")
+
+        self.check_token(token, uuid)
+
+        print "in add_json"
+        print uuid
+        host_dict = simplejson.loads(host)
+        for key,value in host_dict.iteritems():
+            print key, value
+        print smolt_protocol
+        
+        try:
+            host_sql = Host.selectone_by(uuid=uuid)
+            host_sql.delete()
+            host_sql.flush()
+            host_sql = Host()
+        except InvalidRequestError:
+            host_sql = Host()
+        host_sql.uuid = host_dict["uuid"]
+        host_sql.os = host_dict['os']
+        host_sql.default_runlevel = host_dict['default_runlevel']
+        host_sql.language = host_dict['language']
+        host_sql.platform = host_dict['platform']
+        host_sql.bogomips = host_dict['bogomips']
+        host_sql.cpu_vendor = host_dict['cpu_vendor']
+        host_sql.cpu_model = host_dict['cpu_model']
+        host_sql.cpu_speed = host_dict['cpu_speed']
+        host_sql.num_cpus = host_dict['num_cpus']
+        host_sql.system_memory = host_dict['system_memory']
+        host_sql.system_swap = host_dict['system_swap']
+        host_sql.vendor = host_dict['vendor']
+        host_sql.system = host_dict['system']
+        host_sql.kernel_version = host_dict['kernel_version']
+        host_sql.formfactor = host_dict['formfactor']
+        host_sql.selinux_enabled = host_dict['selinux_enabled']
+        host_sql.selinux_enforce = host_dict['selinux_enforce']
+                
+        for device in host_dict['devices']:
+            print "doing device: %s" % device
+            try:
+                device_sql = ComputerLogicalDevice.selectone_by(description=device['description'])
+                print "found device: %s" % device_sql.description
+            except InvalidRequestError:
+                device_sql = ComputerLogicalDevice()
+                device_sql.device_id = device['device_id']
+                device_sql.subsys_vendor_id = device['subsys_vendor_id']
+                device_sql.subsys_device_id = device['subsys_device_id']
+                device_sql.bus = device['bus']
+                device_sql.driver = device['driver']
+                device_sql.type = device['type']
+                device_sql.description = device['description']
+                device_sql.date_added = DateTime.now()  
+                device_sql.save_or_update()
+                device_sql.flush()
+
+            
+            host_link = HostLink()
+            host_link.host = host_sql
+            host_link.device = device_sql
+            host_link.save_or_update()
+            host_link.flush()
+            
+        host_sql.save_or_update()
+        host_sql.flush()
+        host_sql.refresh()
+
+        
+        return dict()
+    
     @expose(template="hardware.templates.deviceclass")
     def byClass(self, type='VIDEO'):
         type = type.encode('utf8')
@@ -388,23 +487,21 @@ class Root(controllers.RootController):
 #                                           from host_links, device where\
 #                                           host_links.device_id=device.id\
 #                                           and device.class="%s";' % type)[0][0]
+        
+        types = HardwareByClass.query().order_by(desc(HardwareByClass.c.cnt)).limit(100).select_by(klass=type)
+#        types = Host\
+#                ._connection\
+#                .queryAll('select device.description, device.bus, \
+#                        device.driver, device.vendor_id, device.device_id, \
+#                        device.subsys_vendor_id, device.subsys_device_id, \
+#                        device.date_added, count(distinct(host_links.host_link_id)) \
+#                        as cnt from host_links, device where \
+#                        host_links.device_id=device.id and device.class="%s" \
+#                        group by host_links.device_id order by cnt desc \
+#                        limit 100' % type)
         device = computer_logical_devices
-        types = select([device.c.description, device.c.bus, device.c.driver,
-                        device.c.vendor_id, device.c.device_id,
-                        device.c.subsys_vendor_id, 
-                        device.c.subsys_device_id, device.date_added,
-                        func.count])
-        types = Host\
-                ._connection\
-                .queryAll('select device.description, device.bus, \
-                        device.driver, device.vendor_id, device.device_id, \
-                        device.subsys_vendor_id, device.subsys_device_id, \
-                        device.date_added, count(distinct(host_links.host_link_id)) \
-                        as cnt from host_links, device where \
-                        host_links.device_id=device.id and device.class="%s" \
-                        group by host_links.device_id order by cnt desc \
-                        limit 100' % type)
-        vendors = Host._connection.queryAll('select device.vendor_id, count(device.vendor_id) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by device.vendor_id order by cnt desc;' % type)
+        vendors = select([device.c.vendor_id, func.count(device.c.vendor_id)], and_(host_links.c.device_id==device.c.id, device.c.klass==type), order_by=[desc('cnt')])
+        #vendors = Host._connection.queryAll('select device.vendor_id, count(device.vendor_id) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by device.vendor_id order by cnt desc;' % type)
         return dict(types=types, type=type, totalHosts=totalHosts, count=count, pciVendors=pciVendors, vendors=vendors, tabs=tabs)
 
     @expose(template="hardware.templates.notLoaded")
@@ -438,12 +535,12 @@ class Root(controllers.RootController):
     def write_devices(self):
         self.devices_lock.write_acquire()
         devices = {}
-        devices['total'] = HostLinks.select('1=1').count()
-        devices['count'] = Device.select('1=1').count()
-        devices['totalHosts'] = Host.select('1=1').count()
+        devices['total'] = HostLink.query().count()
+        devices['count'] = ComputerLogicalDevice.query().count()
+        devices['totalHosts'] = Host.query().count()
         devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
         devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
-        devices['classes'] = Host._connection.queryAll('select distinct(class) from device')
+        devices['classes'] = HardwareClass.query().execute()
         self._devices_cache = devices
         self.devices_lock.write_release()
         pass
@@ -451,7 +548,6 @@ class Root(controllers.RootController):
     def read_stats(self):
         self.stats_lock.read_acquire()
         try:
-            print self._stats_cache
             _return = self._stats_cache.copy()
         except AttributeError:
             self.stats_lock.read_release()
@@ -464,69 +560,99 @@ class Root(controllers.RootController):
     def write_stats(self):
         self.stats_lock.write_acquire()
         stats = {}
-        stats['totalHosts'] = Host.select().count()
+        stats['totalHosts'] = Host.query().count()
         totalHosts = stats['totalHosts']
-        stats['archs'] = Host._connection.queryAll("Select platform, count(platform) as cnt from host group by platform order by cnt desc")
+        #stats['archs'] = Host._connection.queryAll("Select platform, count(platform) as cnt from host group by platform order by cnt desc")
+        stats['archs'] = Arch.query().select()
 
-        stats['OS'] = Host._connection.queryAll("Select o_s, count(o_s) as cnt from host group by o_s order by cnt desc limit 15")
+        #stats['OS'] = Host._connection.queryAll("Select o_s, count(o_s) as cnt from host group by o_s order by cnt desc limit 15")
+        stats['OS'] = OS.query().select(limit=15)
 
-        stats['runlevel'] = Host._connection.queryAll("Select default_runlevel, count(default_runlevel) as cnt from host group by default_runlevel order by cnt desc")
+        #stats['runlevel'] = Host._connection.queryAll("Select default_runlevel, count(default_runlevel) as cnt from host group by default_runlevel order by cnt desc")
+        stats['runlevel'] = Runlevel.query().select()
 
-        stats['numCPUs'] = Host._connection.queryAll("Select num_cp_us, count(num_cp_us) as cnt from host group by num_cp_us order by cnt desc")
+        #stats['numCPUs'] = Host._connection.queryAll("Select num_cp_us, count(num_cp_us) as cnt from host group by num_cp_us order by cnt desc")
+        stats['numCPUs'] = NumCPUs.query().select()
 
-        stats['vendors'] = Host._connection.queryAll("Select vendor, count(vendor) as cnt from host where vendor != 'Unknown' and vendor != '' group by vendor order by cnt desc limit 100;")
-        stats['systems'] = Host._connection.queryAll("Select system, count(system) as cnt from host where system != 'Unknown' and system != '' group by system order by cnt desc limit 100;")
+        #stats['vendors'] = Host._connection.queryAll("Select vendor, count(vendor) as cnt from host where vendor != 'Unknown' and vendor != '' group by vendor order by cnt desc limit 100;")
+        stats['vendors'] = Vendor.query().select(limit=100)
+        #stats['systems'] = Host._connection.queryAll("Select system, count(system) as cnt from host where system != 'Unknown' and system != '' group by system order by cnt desc limit 100;")
+        stats['systems'] = System.query().select(limit=100)
 
-        stats['cpuVendor'] = Host._connection.queryAll("Select cpu_vendor, count(cpu_vendor) as cnt from host group by cpu_vendor order by cnt desc limit 100;")
+        #stats['cpuVendor'] = Host._connection.queryAll("Select cpu_vendor, count(cpu_vendor) as cnt from host group by cpu_vendor order by cnt desc limit 100;")
+        stats['cpuVendor'] = CPUVendor.query().select(limit=100)
 
-        stats['kernelVersion'] = Host._connection.queryAll("Select kernel_version, count(kernel_version) as cnt from host group by kernel_version order by cnt desc limit 20;")
+        #stats['kernelVersion'] = Host._connection.queryAll("Select kernel_version, count(kernel_version) as cnt from host group by kernel_version order by cnt desc limit 20;")
+        stats['kernelVersion'] = KernelVersion.query().select(limit=20)
 
-        stats['formfactor'] = Host._connection.queryAll("Select formfactor, count(formfactor) as cnt from host group by formfactor order by cnt desc;")
+        #stats['formfactor'] = Host._connection.queryAll("Select formfactor, count(formfactor) as cnt from host group by formfactor order by cnt desc;")
+        stats['formfactor'] = FormFactor.query().select()
 
-        stats['language'] = Host._connection.queryAll("Select language, count(language) as cnt from host group by language order by cnt desc")
+        #stats['language'] = Host._connection.queryAll("Select language, count(language) as cnt from host group by language order by cnt desc")
+        stats['language'] = Language.query().select()
         stats['languagetot'] = stats['totalHosts']
  
         stats['sysMem'] = []
-        stats['sysMem'].append(Host._connection.queryAll('select "< 512" as range, count(system_memory) as cnt from host where system_memory <= 512')[0])
-        stats['sysMem'].append(Host._connection.queryAll('select "513 - 1024" as range, count(system_memory) as cnt from host where system_memory > 512 and system_memory <= 1024')[0])
-        stats['sysMem'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(system_memory) as cnt from host where system_memory > 1025 and system_memory <= 2048')[0])
-        stats['sysMem'].append(Host._connection.queryAll('select "> 2048" as range, count(system_memory) as cnt from host where system_memory > 2048')[0])
+        stats['sysMem'].append(("less than 512mb", Host.query().filter(Host.c.system_memory<512).count()))
+        stats['sysMem'].append(("between 512mb and 1023mb", Host.query().filter(and_(Host.c.system_memory>=512, Host.c.system_memory<1024)).count()))
+        stats['sysMem'].append(("between 1024mb and 2047mb", Host.query().filter(and_(Host.c.system_memory>=1024, Host.c.system_memory<2048)).count()))
+        stats['sysMem'].append(("more than 2048mb", Host.query().filter(Host.c.system_memory>=2048).count()))
+#        stats['sysMem'].append(Host._connection.queryAll('select "< 512" as range, count(system_memory) as cnt from host where system_memory <= 512')[0])
+#        stats['sysMem'].append(Host._connection.queryAll('select "513 - 1024" as range, count(system_memory) as cnt from host where system_memory > 512 and system_memory <= 1024')[0])
+#        stats['sysMem'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(system_memory) as cnt from host where system_memory > 1025 and system_memory <= 2048')[0])
+#        stats['sysMem'].append(Host._connection.queryAll('select "> 2048" as range, count(system_memory) as cnt from host where system_memory > 2048')[0])
 
         stats['swapMem'] = []
-        stats['swapMem'].append(Host._connection.queryAll('select "< 512" as range, count(system_swap) as cnt from host where system_swap <= 512')[0])
-        stats['swapMem'].append(Host._connection.queryAll('select "513 - 1024" as range, count(system_swap) as cnt from host where system_swap > 512 and system_swap <= 1024')[0])
-        stats['swapMem'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(system_swap) as cnt from host where system_swap > 1025 and system_swap <= 2048')[0])
-        stats['swapMem'].append(Host._connection.queryAll('select "> 2048" as range, count(system_swap) as cnt from host where system_swap > 2048')[0])
+        stats['swapMem'].append(("less than 512mb", Host.query().filter(Host.c.system_swap<512).count()))
+        stats['swapMem'].append(("between 512mb and 1027mb", Host.query().filter(and_(Host.c.system_swap>=512, Host.c.system_swap<1024)).count()))
+        stats['swapMem'].append(("between 1024mb and 2047mb", Host.query().filter(and_(Host.c.system_swap>=1024, Host.c.system_swap<2048)).count()))
+        stats['swapMem'].append(("more than 2048mb", Host.query().filter(Host.c.system_swap>=2048).count()))
+#        stats['swapMem'].append(Host._connection.queryAll('select "< 512" as range, count(system_swap) as cnt from host where system_swap <= 512')[0])
+#        stats['swapMem'].append(Host._connection.queryAll('select "513 - 1024" as range, count(system_swap) as cnt from host where system_swap > 512 and system_swap <= 1024')[0])
+#        stats['swapMem'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(system_swap) as cnt from host where system_swap > 1025 and system_swap <= 2048')[0])
+#        stats['swapMem'].append(Host._connection.queryAll('select "> 2048" as range, count(system_swap) as cnt from host where system_swap > 2048')[0])
 
         stats['cpuSpeed'] = []
-        stats['cpuSpeed'].append(Host._connection.queryAll('select "=< 512" as range, count(cpu_speed) as cnt from host where cpu_speed <= 512')[0])
-        stats['cpuSpeed'].append(Host._connection.queryAll('select "513 - 1024" as range, count(cpu_speed) as cnt from host where cpu_speed > 512 and cpu_speed <= 1024')[0])
-        stats['cpuSpeed'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(cpu_speed) as cnt from host where cpu_speed > 1025 and cpu_speed <= 2048')[0])
-        stats['cpuSpeed'].append(Host._connection.queryAll('select "> 2048" as range, count(cpu_speed) as cnt from host where cpu_speed > 2048')[0])
- 
+        stats['cpuSpeed'].append(("less than 512mhz", Host.query().filter(Host.c.cpu_speed<512).count()))
+        stats['cpuSpeed'].append(("between 512mhz and 1023mhz", Host.query().filter(and_(Host.c.cpu_speed>=512, Host.c.cpu_speed<1024)).count()))
+        stats['cpuSpeed'].append(("between 1024mhz and 2047mhz", Host.query().filter(and_(Host.c.cpu_speed>=1024, Host.c.cpu_speed<2048)).count()))
+        stats['cpuSpeed'].append(("more than 2048mhz", Host.query().filter(Host.c.cpu_speed>=2048).count()))
+#        stats['cpuSpeed'].append(Host._connection.queryAll('select "=< 512" as range, count(cpu_speed) as cnt from host where cpu_speed <= 512')[0])
+#        stats['cpuSpeed'].append(Host._connection.queryAll('select "513 - 1024" as range, count(cpu_speed) as cnt from host where cpu_speed > 512 and cpu_speed <= 1024')[0])
+#        stats['cpuSpeed'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(cpu_speed) as cnt from host where cpu_speed > 1025 and cpu_speed <= 2048')[0])
+#        stats['cpuSpeed'].append(Host._connection.queryAll('select "> 2048" as range, count(cpu_speed) as cnt from host where cpu_speed > 2048')[0])
+
         stats['bogomips'] = []
-        stats['bogomips'].append(Host._connection.queryAll('select "=< 512" as range, count(bogomips) as cnt from host where bogomips <= 512')[0])
-        stats['bogomips'].append(Host._connection.queryAll('select "513 - 1024" as range, count(bogomips) as cnt from host where bogomips > 512 and bogomips <= 1024')[0])
-        stats['bogomips'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(bogomips) as cnt from host where bogomips > 1025 and bogomips <= 2048')[0])
-        stats['bogomips'].append(Host._connection.queryAll('select "2049 - 4000" as range, count(bogomips) as cnt from host where bogomips > 2048 and bogomips <= 4000')[0])
-        stats['bogomips'].append(Host._connection.queryAll('select "> 4001" as range, count(bogomips) as cnt from host where bogomips > 4001')[0])
+        stats['bogomips'].append(("less than 512", Host.query().filter(Host.c.bogomips<512).count()))
+        stats['bogomips'].append(("between 512 and 1023", Host.query().filter(and_(Host.c.bogomips>=512, Host.c.bogomips<1024)).count()))
+        stats['bogomips'].append(("between 1024 and 2047", Host.query().filter(and_(Host.c.bogomips>=1024, Host.c.bogomips<2048)).count()))
+        stats['bogomips'].append(("between 2048 and 4000", Host.query().filter(and_(Host.c.bogomips>=2048, Host.c.bogomips<4000)).count()))
+        stats['bogomips'].append(("more than 4000", Host.query().filter(Host.c.system_memory>=4000).count()))
+#        stats['bogomips'].append(Host._connection.queryAll('select "=< 512" as range, count(bogomips) as cnt from host where bogomips <= 512')[0])
+#        stats['bogomips'].append(Host._connection.queryAll('select "513 - 1024" as range, count(bogomips) as cnt from host where bogomips > 512 and bogomips <= 1024')[0])
+#        stats['bogomips'].append(Host._connection.queryAll('select "1025 - 2048" as range, count(bogomips) as cnt from host where bogomips > 1025 and bogomips <= 2048')[0])
+#        stats['bogomips'].append(Host._connection.queryAll('select "2049 - 4000" as range, count(bogomips) as cnt from host where bogomips > 2048 and bogomips <= 4000')[0])
+#        stats['bogomips'].append(Host._connection.queryAll('select "> 4001" as range, count(bogomips) as cnt from host where bogomips > 4001')[0])
 
-        stats['bogomipsTot'] = float(Host._connection.queryAll('select sum((bogomips * num_cp_us)) as cnt from host where bogomips > 0;')[0][0])
-        stats['cpuSpeedTot'] = float(Host._connection.queryAll('select sum((cpu_speed * num_cp_us)) as cnt from host where cpu_speed > 0;')[0][0])
+        #stats['bogomipsTot'] = float(Host._connection.queryAll('select sum((bogomips * num_cp_us)) as cnt from host where bogomips > 0;')[0][0])
+        stats['bogomipsTot'] = Host.query().filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
+        #stats['cpuSpeedTot'] = float(Host._connection.queryAll('select sum((cpu_speed * num_cp_us)) as cnt from host where cpu_speed > 0;')[0][0])
+        stats['cpuSpeedTot'] = Host.query().filter(Host.c.cpu_speed > 0).sum(Host.c.cpu_speed * Host.c.num_cpus)
 
-        stats['cpusTot'] = int(Host._connection.queryAll('select sum(num_cp_us) as cnt from host;')[0][0])
+        stats['cpusTot'] = Host.query().sum(Host.c.num_cpus)
 
         self._stats_cache = stats
         self.stats_lock.write_release()
 
     @expose(template="hardware.templates.stats")
     def stats(self):
+        print "in stats"
         try:
             stats = self.read_stats()
         except:
             raise redirect("unavailable")
         tabs = Tabber()
-        return dict(Host=Host, Device=Device, HostLinks=HostLinks, Stat=stats, tabs=tabs, totalHosts=stats['totalHosts'])
+        return dict(Host=Host, Device=ComputerLogicalDevice, HostLinks=HostLink, Stat=stats, tabs=tabs, totalHosts=stats['totalHosts'])
     
     @expose()
     def submit_ratings(self, uuid, **kw):

@@ -40,6 +40,8 @@ import urlgrabber.grabber
 import sys
 from urlparse import urljoin
 from urllib import urlencode
+import urllib
+import simplejson
 
 import config
 
@@ -50,7 +52,7 @@ def get_config_attr(attr, default=""):
         return default
 
 smoonURL = get_config_attr("SMOON_URL", "http://smolt.fedoraproject.org/")
-smoltProtocol = '0.96'
+smoltProtocol = '0.97'
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
 DEBUG = False
@@ -217,7 +219,6 @@ class Host:
         else:
             self.selinux_enforce = 'Disabled'
 
-
 def ignoreDevice(device):
     ignore = 1
     if device.bus == 'Unknown':
@@ -309,6 +310,26 @@ class Hardware:
                             'selinux_enabled': self.host.selinux_enabled,
                             'selinux_enforce': self.host.selinux_enforce
                             })
+        self.host_send_dict = {
+                            'uuid' :           self.host.UUID,
+                            'os' :             self.host.os,
+                            'default_runlevel': self.host.defaultRunlevel,
+                            'language' :       self.host.language,
+                            'platform' :       self.host.platform,
+                            'bogomips' :       self.host.bogomips,
+                            'cpu_vendor' :      self.host.cpuVendor,
+                            'cpu_model' :       self.host.cpuModel,
+                            'num_cpus':         self.host.numCpus,
+                            'cpu_speed' :       self.host.cpuSpeed,
+                            'system_memory' :   self.host.systemMemory,
+                            'system_swap' :     self.host.systemSwap,
+                            'vendor' :         self.host.systemVendor,
+                            'system' :         self.host.systemModel,
+                            'kernel_version' :  self.host.kernelVersion,
+                            'formfactor' :     self.host.formfactor,
+                            'selinux_enabled': self.host.selinux_enabled,
+                            'selinux_enforce': self.host.selinux_enforce
+                            }
 
     def dbus_get_interface(self, bus, service, object, interface):
         iface = None
@@ -345,13 +366,12 @@ class Hardware:
         return 0
 
         
-
-
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         
         sendHostStr = self.hostSendString
-        self.myDevices = []
+        send_host_dict = self.host_send_dict
+        self.myDevices = my_devices = []
         for device in self.devices:
             try:
                 Bus = self.devices[device].bus
@@ -366,11 +386,24 @@ class Hardware:
                 continue
             else:
                 if not ignoreDevice(self.devices[device]):
-                    self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+#                    self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % 
+#                                          (VendorID, DeviceID, SubsysVendorID, 
+#                                           SubsysDeviceID, Bus, Driver, Type, 
+#                                           Description))
+                    my_devices.append({"vendor_id": VendorID,
+                                       "device_id": DeviceID,
+                                       "subsys_vendor_id": SubsysVendorID,
+                                       "subsys_device_id": SubsysDeviceID,
+                                       "bus": Bus,
+                                       "driver": Driver,
+                                       "type": Type,
+                                       "description": Description})
         
+        send_host_dict['devices'] = my_devices
+        send_host_dict['smolt_protocol'] = smoltProtocol
         debug('smoon server URL: %s' % smoonURL)
         try:
-            token = grabber.urlopen('%s/token?UUID=%s' % (smoonURL, self.host.UUID))
+            token = grabber.urlopen('%stoken?UUID=%s' % (smoonURL, self.host.UUID))
         except urlgrabber.grabber.URLGrabError, e:
             error(_('Error contacting Server: %s') % e)
             return 1
@@ -386,14 +419,20 @@ class Hardware:
             error(_('Communication with server failed'))
             return 1
         
-        sendHostStr = sendHostStr + '&token=%s&smoltProtocol=%s' % (tok, smoltProtocol)
-        debug('sendHostStr: %s' % self.hostSendString)
+        print "token is %s" % tok
+        send_host_str = ('uuid=%s&host=' + \
+                         simplejson.dumps(send_host_dict) + \
+                         '&token=%s&smolt_protocol=%s') % (self.host.UUID, tok, smoltProtocol)
+        
+        print send_host_str
+        debug('sendHostStr: %s' % simplejson.dumps(send_host_dict))
         debug('Sending Host')
         
         try:
-            o=grabber.urlopen('%s/add' % smoonURL, data=sendHostStr, http_headers=(
-                            ('Content-length', '%i' % len(sendHostStr)),
+            o=grabber.urlopen('%sadd_json' % smoonURL, data=send_host_str, http_headers=(
+                            ('Content-length', '%i' % len(send_host_str)),
                             ('Content-type', 'application/x-www-form-urlencoded')))
+            print dir(o)
         except urlgrabber.grabber.URLGrabError, e:
             error(_('Error contacting Server: %s') % e)
             return 1
@@ -401,23 +440,23 @@ class Hardware:
             serverMessage(o.read())
             o.close()
         
-        deviceStr = ''
-        for dev in self.myDevices:
-            deviceStr = deviceStr + dev + '\n'
-        sendDevicesStr = urlencode({'Devices' : deviceStr, 'UUID' : self.host.UUID})
-        #debug(sendDevicesStr)
-        
-        try:
-            o=grabber.urlopen('%s/addDevices' % smoonURL, data=sendDevicesStr, http_headers=(
-                            ('Content-length', '%i' % len(sendDevicesStr)),
-                            ('Content-type', 'application/x-www-form-urlencoded')))
-        except urlgrabber.grabber.URLGrabError, e:
-            error(_('Error contacting Server: %s') % e)
-            return 1
-        else:
-            serverMessage(o.read())
-            o.close()
-        return 0
+#        deviceStr = ''
+#        for dev in self.myDevices:
+#            deviceStr = deviceStr + dev + '\n'
+#        sendDevicesStr = urlencode({'Devices' : deviceStr, 'UUID' : self.host.UUID})
+#        #debug(sendDevicesStr)
+#        
+#        try:
+#            o=grabber.urlopen('%s/addDevices' % smoonURL, data=sendDevicesStr, http_headers=(
+#                            ('Content-length', '%i' % len(sendDevicesStr)),
+#                            ('Content-type', 'application/x-www-form-urlencoded')))
+#        except urlgrabber.grabber.URLGrabError, e:
+#            error(_('Error contacting Server: %s') % e)
+#            return 1
+#        else:
+#            serverMessage(o.read())
+#            o.close()
+#        return 0
         
     def getProfile(self):
         printBuffer = []
@@ -892,8 +931,8 @@ def getUUID():
         try:
             UUID = file('/proc/sys/kernel/random/uuid').read().strip()
             try:
-                file(hw_uuid_file, 'w').write(self.UUID)
-            except:
+                file(hw_uuid_file, 'w').write(UUID)
+            except Exception, e:
                 sys.stderr.write(_('Unable to save UUID, continuing...\n'))
         except IOError:
             sys.stderr.write(_('Unable to determine UUID of system!\n'))
