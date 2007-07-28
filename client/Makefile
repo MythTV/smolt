@@ -5,10 +5,10 @@ PY_FILES=deleteProfile.py haldump.py __init__.py sendProfile.py smoltGui.py smol
 all: po/smolt.pot $(MO_FILES)
 
 po/smolt.pot: $(PY_FILES)
-	pygettext.py -d smolt -o po/smolt.pot $^
+	xgettext -d smolt -o po/smolt.pot $^
 
 %.po: po/smolt.pot
 	msgmerge --no-wrap --update $@ $^
 
 %.mo: %.po
-	msgfmt.py -o $@ $<
+	msgfmt -o $@ $<

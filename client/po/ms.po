@@ -5,17 +5,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
-"POT-Creation-Date: 2007-06-28 12:22+EDT\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-07-28 15:34-0400\n"
 "PO-Revision-Date: 2007-04-08 20:21+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <translation-team-ms@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: deleteProfile.py:35 smolt.py:236
-#, fuzzy
+#: deleteProfile.py:35 smolt.py:245
+#, fuzzy, python-format
 msgid "Server Message: \"%s\""
 msgstr "Mesej Init"
 
@@ -25,7 +26,7 @@ msgid "enable debug information"
 msgstr "Membaca maklumat pakej..."
 
 #: deleteProfile.py:50 sendProfile.py:47
-#, fuzzy
+#, fuzzy, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "pelayan admin kerberos default"
 
@@ -34,10 +35,12 @@ msgid "print information only, do not send"
 msgstr ""
 
 #: deleteProfile.py:60 sendProfile.py:77
+#, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr ""
 
 #: deleteProfile.py:65 sendProfile.py:82
+#, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr ""
 
@@ -49,34 +52,6 @@ msgstr "Ralat Dalaman Pelayan"
 #: deleteProfile.py:91
 msgid "Profile removed, please verify at"
 msgstr ""
-
-#: gui.py:58
-msgid "Label"
-msgstr "Label"
-
-#: gui.py:64
-msgid "Data"
-msgstr "Data"
-
-#: gui.py:95
-msgid "Rate this device"
-msgstr ""
-
-#: gui.py:102
-msgid "Bus"
-msgstr ""
-
-#: gui.py:109
-msgid "Driver"
-msgstr "Jurupacu"
-
-#: gui.py:116
-msgid "Type"
-msgstr "Jenis"
-
-#: gui.py:123
-msgid "Description"
-msgstr "Huraian"
 
 #: sendProfile.py:52
 msgid "(optional) Fedora Account System registration"
@@ -143,119 +118,210 @@ msgid "Registration Failed, Try again"
 msgstr ""
 
 #: sendProfile.py:147
+#, python-format
 msgid "To view your profile visit: %s"
 msgstr ""
 
-#: smolt.py:238
+#: smoltGui.py:70
+msgid "_Quit"
+msgstr "_Keluar"
+
+#: smoltGui.py:70
+msgid "Quit the program without sending your hardware profile to the server"
+msgstr ""
+
+#: smoltGui.py:71
+msgid "_Send"
+msgstr "_Hantar"
+
+#: smoltGui.py:71
+msgid "Send your hardware profile to the server."
+msgstr ""
+
+#: smoltGui.py:72
+msgid "Show _Privacy Policy"
+msgstr "_Papar Polisi Persendirian"
+
+#: smoltGui.py:72
+msgid "Show the Smolt privacy policy."
+msgstr ""
+
+#: smoltGui.py:73
+msgid "_About"
+msgstr "_Perihal"
+
+#: smoltGui.py:74
+msgid "_File"
+msgstr ""
+
+#: smoltGui.py:75
+msgid "_Help"
+msgstr ""
+
+#: smoltGui.py:105
+msgid "Rate this system:"
+msgstr ""
+
+#: smoltGui.py:137
+msgid "An error occurred while sending the data to the server."
+msgstr ""
+
+#: smoltGui.py:144
+#, python-format
+msgid ""
+"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"%s\n"
+"stored in %s"
+msgstr ""
+
+#: smoltGui.py:156
+msgid "Smolt Privacy Policy"
+msgstr "Polisi Persendirian Smolt"
+
+#: smoltGui.py:199
+msgid "translator-credits"
+msgstr ""
+
+#: smoltGui.py:200
 #, fuzzy
+msgid "Fedora hardware profiler."
+msgstr "Profil Perkakasan"
+
+#: smoltGui.py:201
+msgid "Copyright © 2007 Mike McGrath"
+msgstr ""
+
+#: smoltGui.py:203
+msgid ""
+"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+msgstr ""
+
+#: smolt.py:247
+#, fuzzy, python-format
 msgid "Could not contact server: %s"
 msgstr "tidak dapat mengikat ke pelayan LDAP"
 
-#: smolt.py:270
+#: smolt.py:279
 #, fuzzy
 msgid "Could not bind to dbus"
 msgstr "tidak dapat mengikat ke pelayan LDAP"
 
-#: smolt.py:276
+#: smolt.py:285
 msgid "Could not connect to hal, is it running?"
 msgstr ""
 
-#: smolt.py:276
+#: smolt.py:285
 msgid "Run \"service haldaemon start\" as root"
 msgstr ""
 
-#: smolt.py:332 smolt.py:367 smolt.py:390 smolt.py:407
-#, fuzzy
+#: smolt.py:361 smolt.py:408 smolt.py:437
+#, fuzzy, python-format
 msgid "Error contacting Server: %s"
 msgstr "Ralat Dalaman Pelayan"
 
-#: smolt.py:378
+#: smolt.py:419
 #, fuzzy
 msgid "Communication with server failed"
 msgstr "Terdapat ralat komunikasi dengan pelayan: %s"
 
-#: smolt.py:428
+#: smolt.py:475
 msgid "Devices"
 msgstr "Peranti"
 
-#: smolt.py:439
+#: smolt.py:486
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:440
+#: smolt.py:487
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:441
+#: smolt.py:488
 #, fuzzy
 msgid "Default run level"
 msgstr "tidak dapat menentukan run level sekarang\n"
 
-#: smolt.py:442
+#: smolt.py:489
 msgid "Language"
 msgstr "Bahasa"
 
-#: smolt.py:443
+#: smolt.py:490
 msgid "Platform"
 msgstr "Platform"
 
-#: smolt.py:444
+#: smolt.py:491
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:445
+#: smolt.py:492
 #, fuzzy
 msgid "CPU Vendor"
 msgstr "Model CPU:"
 
-#: smolt.py:446
+#: smolt.py:493
 #, fuzzy
 msgid "CPU Model"
 msgstr "Model CPU:"
 
-#: smolt.py:447
+#: smolt.py:494
 #, fuzzy
 msgid "Number of CPUs"
 msgstr "Numbor peranti"
 
-#: smolt.py:448
+#: smolt.py:495
 #, fuzzy
 msgid "CPU Speed"
 msgstr "Kelajuan CPU:"
 
-#: smolt.py:449
+#: smolt.py:496
 #, fuzzy
 msgid "System Memory"
 msgstr "Memori Rendah"
 
-#: smolt.py:450
+#: smolt.py:497
 #, fuzzy
 msgid "System Swap"
 msgstr "Tambah Swap"
 
-#: smolt.py:451
+#: smolt.py:498
 msgid "Vendor"
 msgstr "Pengeluar"
 
-#: smolt.py:452
+#: smolt.py:499
 msgid "System"
 msgstr "Sistem"
 
-#: smolt.py:453
+#: smolt.py:500
 #, fuzzy
 msgid "Form factor"
 msgstr "Bentuk asas:"
 
-#: smolt.py:454
+#: smolt.py:501
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smolt.py:455
+#: smolt.py:502
 msgid "SELinux Enabled"
 msgstr ""
 
-#: smolt.py:456
+#: smolt.py:503
 msgid "SELinux Enforce"
+msgstr ""
+
+#: smolt.py:936
+msgid "Unable to save UUID, continuing...\n"
+msgstr ""
+
+#: smolt.py:938
+msgid "Unable to determine UUID of system!\n"
+msgstr ""
+
+#: software.py:43
+msgid "Cannot Determine Runlevel"
 msgstr ""
 
 #: smoltFirstBoot.py:24 smoltFirstBoot.py:34
@@ -291,64 +357,33 @@ msgstr "Menghantar stat..."
 msgid "_No, do not send."
 msgstr "Jangan hantar soaljawab ini"
 
-#: smoltGui.py:70
-msgid "Quit the program without sending your hardware profile to the server"
+#: gui.py:58
+msgid "Label"
+msgstr "Label"
+
+#: gui.py:64
+msgid "Data"
+msgstr "Data"
+
+#: gui.py:95
+msgid "Rate this device"
 msgstr ""
 
-#: smoltGui.py:70
-msgid "_Quit"
-msgstr "_Keluar"
-
-#: smoltGui.py:71
-msgid "Send your hardware profile to the server."
+#: gui.py:102
+msgid "Bus"
 msgstr ""
 
-#: smoltGui.py:71
-msgid "_Send"
-msgstr "_Hantar"
+#: gui.py:109
+msgid "Driver"
+msgstr "Jurupacu"
 
-#: smoltGui.py:72
-msgid "Show _Privacy Policy"
-msgstr "_Papar Polisi Persendirian"
+#: gui.py:116
+msgid "Type"
+msgstr "Jenis"
 
-#: smoltGui.py:72
-msgid "Show the Smolt privacy policy."
-msgstr ""
-
-#: smoltGui.py:73
-msgid "_About"
-msgstr "_Perihal"
-
-#: smoltGui.py:74
-msgid "_File"
-msgstr ""
-
-#: smoltGui.py:75
-msgid "_Help"
-msgstr ""
-
-#: smoltGui.py:105
-msgid "Rate this system:"
-msgstr ""
-
-#: smoltGui.py:137
-msgid "An error occurred while sending the data to the server."
-msgstr ""
-
-#: smoltGui.py:144
-msgid ""
-"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
-"%s\n"
-"stored in /etc/sysconfig/hw-uuid"
-msgstr ""
-
-#: smoltGui.py:155
-msgid "Smolt Privacy Policy"
-msgstr "Polisi Persendirian Smolt"
-
-#: smoltGui.py:198
-msgid "translator-credits"
-msgstr ""
+#: gui.py:123
+msgid "Description"
+msgstr "Huraian"
 
 #, fuzzy
 #~ msgid "Device ID"
