@@ -3,6 +3,7 @@ from sqlalchemy import *
 from turbogears.database import metadata, session
 from sqlalchemy.ext.assignmapper import assign_mapper
 from turbogears import identity
+from mx import DateTime
 
 def assign(obj, table, *args, **kw):
     """Map tables to objects with knowledge about the session context."""
@@ -115,7 +116,10 @@ languages = Table("LANGUAGE", metadata,
                       Column('cnt', INT))
 
 class Host(object):
-    pass
+    def __init__(self, selinux_enabled=False, rating=0, last_modified=DateTime.now()):
+        self.selinux_enabled = selinux_enabled
+        self.rating = rating
+        self.last_modified = last_modified
 
 class ComputerLogicalDevice(object):
     pass

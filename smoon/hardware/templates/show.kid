@@ -2,14 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://purl.org/kid/ns#"
     py:extends="'master.kid'">
 <head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" py:replace="''"/>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" py:replace="''"/>
 <title>Show Box</title>
 </head>
 <body>
 	<form action="submit_ratings?uuid=${hostObject.uuid}" method="post">
         <h3>${hostObject.uuid}</h3>
 		<p class='moof'><button type='submit'>Submit your ratings</button></p>
-		<p>Rating: ${hostObject.rating}</p>
         <table id="show">
         	<tr><th>Rating:</th><td>${rating(value=hostObject.rating, field_id="host_rating")}</td></tr>
             <tr><th>UUID:</th><td>${hostObject.uuid}</td></tr>

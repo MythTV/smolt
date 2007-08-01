@@ -403,7 +403,7 @@ class Hardware:
         send_host_dict['smolt_protocol'] = smoltProtocol
         debug('smoon server URL: %s' % smoonURL)
         try:
-            token = grabber.urlopen('%stoken?UUID=%s' % (smoonURL, self.host.UUID))
+            token = grabber.urlopen(urljoin(smoonURL + "/", '/token?UUID=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
             error(_('Error contacting Server: %s') % e)
             return 1
@@ -429,7 +429,8 @@ class Hardware:
         debug('Sending Host')
         
         try:
-            o=grabber.urlopen('%sadd_json' % smoonURL, data=send_host_str, http_headers=(
+            o = grabber.urlopen(urljoin(smoonURL + "/", "/add_json", False), data=send_host_str,
+                                http_headers=(
                             ('Content-length', '%i' % len(send_host_str)),
                             ('Content-type', 'application/x-www-form-urlencoded')))
             print dir(o)

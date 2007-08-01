@@ -135,8 +135,7 @@ class Root(controllers.RootController):
             #There will be no dups in the database
             devices[dev.device_id] = (dev.device, dev.rating)
         ven = deviceMap('pci')
-        return dict(hostObject=hostObject, devices=devices, ven=ven, \
-                    rating=rating)
+        return dict(hostObject=hostObject, devices=devices, ven=ven, rating=rating)
 
     @expose(template="hardware.templates.delete")
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
@@ -172,7 +171,7 @@ class Root(controllers.RootController):
         try:
             #linkSQL = FasLink.select("user_name='%s'" % identity.current.user_name)
             linkSQL = FasLink.query().selectone_by(user_name=identity.current.user_name)
-        except SQLObjectNotFound:
+        except InvalidRequestError:
             linkSQL = []
         return dict(linkSQL=linkSQL)
 
@@ -180,7 +179,6 @@ class Root(controllers.RootController):
     @identity.require(identity.not_anonymous())
     def link(self, UUID):
         try:
-            #hostSQL = Host.byUUID(UUID)
             hostSQL = Host.query().selectone_by(uuid=UUID)
         except InvalidRequestError:
             raise ValueError("Critical: Your UUID did not exist.")
@@ -189,54 +187,39 @@ class Root(controllers.RootController):
             linkSQL = FasLink(uuid=UUID, user_name=identity.current.user_name)
             linkSQL.save_or_update()
             linkSQL.flush()
-#        try:
-#            linkSQL = FasLink.byUUID(UUID)
-#            #Exists, do nothing.
-#        except SQLObjectNotFound:
-#            linkSQL = FasLink(UUID = UUID,
-#                            userName = identity.current.user_name)
         return dict()
+    
     def check_token(self, token, uuid):
-        print "token before decode is %s" % token
         token = urllib.unquote(token)
-        print "token after decode is %s" % token
         crypt = XOR.new(CRYPTPASS)
-        print crypt
         tokenPlain = crypt.decrypt(token).split('\n')
-        print tokenPlain
         tokenTime = int(tokenPlain[0])
-        print tokenTime
         tokenUUID = tokenPlain[1]
-        print tokenUUID
-        print uuid
         currentTime = int(time.mktime(datetime.datetime.now().timetuple()))
-        print currentTime
         if currentTime - tokenTime > 20:
             raise ValueError("Critical [20]: Invalid Token")
         if uuid.strip() != tokenUUID.strip():
             raise ValueError("Critical [s]: Invalid Token")
 
-    @expose(template="hardware.templates.show")
+    @expose()
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
     def add(self, UUID, OS, platform, bogomips, systemMemory, systemSwap, CPUVendor, CPUModel, numCPUs, CPUSpeed, language, defaultRunlevel, vendor, system, token, lsbRelease='Depricated', formfactor='Unknown', kernelVersion='', selinux_enabled='False', selinux_enforce='Disabled', smoltProtocol=None):
-
-        if smoltProtocol < currentSmoltProtocol:
+        """Adds a host sans devices to the database
+        
+        This method is DEPRECATED like there is no tomorrow.  For Marty McFly
+        this may be true.
+        
+        the paramaters are pretty self explanatory so usage is left as
+        an excuse to the reader who appreciates old broken things.
+        
+        It will probably remain through a few releases for older clients.
+        """
+        if smoltProtocol < "0.96":
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
-        if smoltProtocol > currentSmoltProtocol:
+        if smoltProtocol > "0.96":
             raise ValueError("Woah there marty mcfly, you got to go back to 1955!")
         
         self.check_token(token, UUID)
-
-#        token = urllib.unquote(token)
-#        crypt = XOR.new(CRYPTPASS)
-#        tokenPlain = crypt.decrypt(token).split('\n')
-#        tokenTime = int(tokenPlain[0])
-#        tokenUUID = tokenPlain[1]
-#        currentTime = int(time.mktime(datetime.datetime.now().timetuple()))
-#        if currentTime - tokenTime > 20:
-#            raise ValueError("Critical [20]: Invalid Token")
-#        if UUID.strip() != tokenUUID.strip():
-#            raise ValueError("Critical [s]: Invalid Token")
 
         UUID = UUID.strip()
         try:
@@ -296,10 +279,9 @@ class Root(controllers.RootController):
 #                        selinux_enabled = bool(selinux_enabled),
 #                        selinux_enforce = selinux_enforce.strip(),
 #                        LastModified = DateTime.now())
+        return dict()
 
-        return dict(hostObject=hostSQL, devices=[])
-
-    @expose(template="hardware.templates.device")
+    @expose()
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
     def addDevices(self, UUID, Devices):
         import time
@@ -381,15 +363,12 @@ class Root(controllers.RootController):
                 link.host = host
                 link.device = deviceSQL
                 link.save()
-                
-                
-                
             except:
                raise ValueError("Critical: Could not add device: %s" % Description)
             deviceSQL.save_or_update()
             deviceSQL.flush()
             link.flush()
-        return dict(deviceObject=deviceSQL)
+        return dict()
     
     @expose()
     @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
@@ -401,12 +380,7 @@ class Root(controllers.RootController):
 
         self.check_token(token, uuid)
 
-        print "in add_json"
-        print uuid
         host_dict = simplejson.loads(host)
-        for key,value in host_dict.iteritems():
-            print key, value
-        print smolt_protocol
         
         try:
             host_sql = Host.selectone_by(uuid=uuid)
@@ -435,10 +409,8 @@ class Root(controllers.RootController):
         host_sql.selinux_enforce = host_dict['selinux_enforce']
                 
         for device in host_dict['devices']:
-            print "doing device: %s" % device
             try:
                 device_sql = ComputerLogicalDevice.selectone_by(description=device['description'])
-                print "found device: %s" % device_sql.description
             except InvalidRequestError:
                 device_sql = ComputerLogicalDevice()
                 device_sql.device_id = device['device_id']
@@ -523,7 +495,6 @@ class Root(controllers.RootController):
     def read_devices(self):
         self.devices_lock.read_acquire()
         try:
-            print self._devices_cache
             _return = self._devices_cache.copy()
         except AttributeError:
             self.devices_lock.read_release()
@@ -646,7 +617,6 @@ class Root(controllers.RootController):
 
     @expose(template="hardware.templates.stats")
     def stats(self):
-        print "in stats"
         try:
             stats = self.read_stats()
         except:
@@ -668,7 +638,6 @@ class Root(controllers.RootController):
                for device in devices:
                    if device.deviceID == device_db_ref:
                        device.rating = int(rating)
-                       print "rating device %s" % device.deviceID
         flash("Ratings Saved!")
         redirect("show?UUID=%s" % uuid)
             
