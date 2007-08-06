@@ -1,7 +1,5 @@
 from turbogears import controllers, expose, identity
 from hardware import model
-# import logging
-# log = logging.getLogger("hardware.controllers")
 from cherrypy import request, response
 from hardware.model import *
 from turbogears import exception_handler
@@ -20,6 +18,8 @@ import urllib
 import time, datetime
 from mx import DateTime
 import simplejson
+import urllib
+import time, datetime
 
 
 from lock.multilock import MultiLock
@@ -153,17 +153,23 @@ class Root(controllers.RootController):
             raise ValueError("Critical: Could not delete UUID - Please contact the smolt development team")
         raise ValueError('Success: UUID Removed')
 
-    @expose(template="hardware.templates.token")
+    @expose(template="hardware.templates.token", allow_json=True)
     def token(self, UUID):
-        from Crypto.Cipher import XOR
-        import urllib
-        import time, datetime
-
         crypt = XOR.new(CRYPTPASS)
         str = "%s\n%s " % ( int(time.mktime(datetime.datetime.now().timetuple())), UUID)
         # I hate obfuscation.  Its all I've got
         token = crypt.encrypt(str)
-        return dict(token=urllib.quote(token))
+        return dict(token=urllib.quote(token),
+                    prefered_protocol=".91")
+
+    @expose("json")
+    def token_json(self, UUID):
+        crypt = XOR.new(CRYPTPASS)
+        str = "%s\n%s " % ( int(time.mktime(datetime.datetime.now().timetuple())), UUID)
+        # I hate obfuscation.  Its all I've got
+        token = crypt.encrypt(str)
+        return dict(token=urllib.quote(token),
+                    prefered_protocol=currentSmoltProtocol)
 
     @expose(template="hardware.templates.myHosts")
     @identity.require(identity.not_anonymous())

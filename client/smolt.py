@@ -53,6 +53,7 @@ def get_config_attr(attr, default=""):
 
 smoonURL = get_config_attr("SMOON_URL", "http://smolt.fedoraproject.org/")
 smoltProtocol = '0.97'
+supported_protocols = ['0.97', '.91']
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
 DEBUG = False
@@ -271,7 +272,6 @@ class UUIDError(Exception):
     
 class Hardware:
     devices = {}
-    myDevices = []
     def __init__(self):
         try:
             systemBus = dbus.SystemBus()
@@ -290,46 +290,6 @@ class Hardware:
             self.devices[udi] = Device(props)
             if udi == '/org/freedesktop/Hal/devices/computer':
                 self.host = Host(props)
-        self.hostSendString = urlencode({
-                            'UUID' :           self.host.UUID,
-                            'OS' :             self.host.os,
-                            'defaultRunlevel': self.host.defaultRunlevel,
-                            'language' :       self.host.language,
-                            'platform' :       self.host.platform,
-                            'bogomips' :       self.host.bogomips,
-                            'CPUVendor' :      self.host.cpuVendor,
-                            'CPUModel' :       self.host.cpuModel,
-                            'numCPUs':         self.host.numCpus,
-                            'CPUSpeed' :       self.host.cpuSpeed,
-                            'systemMemory' :   self.host.systemMemory,
-                            'systemSwap' :     self.host.systemSwap,
-                            'vendor' :         self.host.systemVendor,
-                            'system' :         self.host.systemModel,
-                            'kernelVersion' :  self.host.kernelVersion,
-                            'formfactor' :     self.host.formfactor,
-                            'selinux_enabled': self.host.selinux_enabled,
-                            'selinux_enforce': self.host.selinux_enforce
-                            })
-        self.host_send_dict = {
-                            'uuid' :           self.host.UUID,
-                            'os' :             self.host.os,
-                            'default_runlevel': self.host.defaultRunlevel,
-                            'language' :       self.host.language,
-                            'platform' :       self.host.platform,
-                            'bogomips' :       self.host.bogomips,
-                            'cpu_vendor' :      self.host.cpuVendor,
-                            'cpu_model' :       self.host.cpuModel,
-                            'num_cpus':         self.host.numCpus,
-                            'cpu_speed' :       self.host.cpuSpeed,
-                            'system_memory' :   self.host.systemMemory,
-                            'system_swap' :     self.host.systemSwap,
-                            'vendor' :         self.host.systemVendor,
-                            'system' :         self.host.systemModel,
-                            'kernel_version' :  self.host.kernelVersion,
-                            'formfactor' :     self.host.formfactor,
-                            'selinux_enabled': self.host.selinux_enabled,
-                            'selinux_enforce': self.host.selinux_enforce
-                            }
 
     def dbus_get_interface(self, bus, service, object, interface):
         iface = None
@@ -365,13 +325,8 @@ class Hardware:
             o.close()
         return 0
 
-        
-    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
-        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
-        
-        sendHostStr = self.hostSendString
-        send_host_dict = self.host_send_dict
-        self.myDevices = my_devices = []
+    def get_sendable_devices(self, protocol_version=smoltProtocol):
+        my_devices = []
         for device in self.devices:
             try:
                 Bus = self.devices[device].bus
@@ -386,32 +341,93 @@ class Hardware:
                 continue
             else:
                 if not ignoreDevice(self.devices[device]):
-#                    self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % 
-#                                          (VendorID, DeviceID, SubsysVendorID, 
-#                                           SubsysDeviceID, Bus, Driver, Type, 
-#                                           Description))
-                    my_devices.append({"vendor_id": VendorID,
-                                       "device_id": DeviceID,
-                                       "subsys_vendor_id": SubsysVendorID,
-                                       "subsys_device_id": SubsysDeviceID,
-                                       "bus": Bus,
-                                       "driver": Driver,
-                                       "type": Type,
-                                       "description": Description})
+                    if protocol_version == ".91":
+                        my_devices.append('%s|%s|%s|%s|%s|%s|%s|%s' % 
+                                              (VendorID, DeviceID, SubsysVendorID, 
+                                               SubsysDeviceID, Bus, Driver, Type, 
+                                               Description))
+                    if protocol_version == '0.97':
+                        my_devices.append({"vendor_id": VendorID,
+                                           "device_id": DeviceID,
+                                           "subsys_vendor_id": SubsysVendorID,
+                                           "subsys_device_id": SubsysDeviceID,
+                                           "bus": Bus,
+                                           "driver": Driver,
+                                           "type": Type,
+                                           "description": Description})
         
-        send_host_dict['devices'] = my_devices
-        send_host_dict['smolt_protocol'] = smoltProtocol
-        debug('smoon server URL: %s' % smoonURL)
+        return my_devices
+
+    def get_sendable_host(self, protocol_version=smoltProtocol):
+        if protocol_version == '.91':
+            return urlencode({
+                            'UUID' :           self.host.UUID,
+                            'OS' :             self.host.os,
+                            'defaultRunlevel': self.host.defaultRunlevel,
+                            'language' :       self.host.language,
+                            'platform' :       self.host.platform,
+                            'bogomips' :       self.host.bogomips,
+                            'CPUVendor' :      self.host.cpuVendor,
+                            'CPUModel' :       self.host.cpuModel,
+                            'numCPUs':         self.host.numCpus,
+                            'CPUSpeed' :       self.host.cpuSpeed,
+                            'systemMemory' :   self.host.systemMemory,
+                            'systemSwap' :     self.host.systemSwap,
+                            'vendor' :         self.host.systemVendor,
+                            'system' :         self.host.systemModel,
+                            'kernelVersion' :  self.host.kernelVersion,
+                            'formfactor' :     self.host.formfactor,
+                            })
+        if protocol_version == '0.97':
+            return {'uuid' :           self.host.UUID,
+                    'os' :             self.host.os,
+                    'default_runlevel': self.host.defaultRunlevel,
+                    'language' :       self.host.language,
+                    'platform' :       self.host.platform,
+                    'bogomips' :       self.host.bogomips,
+                    'cpu_vendor' :      self.host.cpuVendor,
+                    'cpu_model' :       self.host.cpuModel,
+                    'num_cpus':         self.host.numCpus,
+                    'cpu_speed' :       self.host.cpuSpeed,
+                    'system_memory' :   self.host.systemMemory,
+                    'system_swap' :     self.host.systemSwap,
+                    'vendor' :         self.host.systemVendor,
+                    'system' :         self.host.systemModel,
+                    'kernel_version' :  self.host.kernelVersion,
+                    'formfactor' :     self.host.formfactor,
+                    'selinux_enabled': self.host.selinux_enabled,
+                    'selinux_enforce': self.host.selinux_enforce}
+        
+    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
+        #first find out the server desired protocol
         try:
-            token = grabber.urlopen(urljoin(smoonURL + "/", '/token?UUID=%s' % self.host.UUID, False))
+            token = grabber.urlopen(urljoin(smoonURL + "/", '/token_json?UUID=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
-            error(_('Error contacting Server: %s') % e)
-            return 1
-        else:
-            for line in token.read().split('\n'):
+            try:
+                token = grabber.urlopen(urljoin(smoonURL + "/", '/token?UUID=%s' % self.host.UUID, False))
+            except urlgrabber.grabber.URLGrabError, e:
+                error(_('Error contacting Server: %s') % e)
+                return 1
+        tok_str = token.read()
+        try:
+            
+            tok_obj = simplejson.loads(tok_str)
+            if tok_obj['prefered_protocol'] in supported_protocols:
+                prefered_protocol = tok_obj['prefered_protocol']
+            else: 
+                error(_('Wrong version, server incapable of handling your client'))
+                return 1
+            tok = tok_obj['token']
+        except ValueError, e:
+            for line in tok_str.split('\n'):
                 if 'tok' in line:
                     tok = line.split(': ')[1]
             token.close()
+            #we're assuming since it does no json
+            #we can guess it's the last stable
+            #release
+            prefered_protocol = '.91'
         
         try:
             tok = tok
@@ -419,21 +435,34 @@ class Hardware:
             error(_('Communication with server failed'))
             return 1
         
-        print "token is %s" % tok
-        send_host_str = ('uuid=%s&host=' + \
-                         simplejson.dumps(send_host_dict) + \
-                         '&token=%s&smolt_protocol=%s') % (self.host.UUID, tok, smoltProtocol)
+        send_host_obj = self.get_sendable_host(prefered_protocol)
+        my_devices = self.get_sendable_devices(prefered_protocol)
         
-        print send_host_str
-        debug('sendHostStr: %s' % simplejson.dumps(send_host_dict))
+        if prefered_protocol == "0.97":
+            send_host_obj['devices'] = my_devices
+            send_host_obj['smolt_protocol'] = prefered_protocol
+        debug('smoon server URL: %s' % smoonURL)
+        
+        if prefered_protocol == ".91":
+            send_host_str = send_host_obj + '&token=%s&smoltProtocol=%s' % (tok, smoltProtocol)
+        if prefered_protocol == '0.97':
+            send_host_str = ('uuid=%s&host=' + \
+                             simplejson.dumps(send_host_obj) + \
+                             '&token=%s&smolt_protocol=%s') % (self.host.UUID, tok, smoltProtocol)
+        
+        debug('sendHostStr: %s' % simplejson.dumps(send_host_obj))
         debug('Sending Host')
         
         try:
-            o = grabber.urlopen(urljoin(smoonURL + "/", "/add_json", False), data=send_host_str,
-                                http_headers=(
-                            ('Content-length', '%i' % len(send_host_str)),
-                            ('Content-type', 'application/x-www-form-urlencoded')))
-            print dir(o)
+            if prefered_protocol == '.91':
+                o=grabber.urlopen(urljoin(smoonURL + '/', '/add', False), data=send_host_str, http_headers=(
+                                ('Content-length', '%i' % len(send_host_str)),
+                                ('Content-type', 'application/x-www-form-urlencoded')))
+            if prefered_protocol == '0.97':
+                o = grabber.urlopen(urljoin(smoonURL + "/", "/add_json", False), data=send_host_str,
+                                    http_headers=(
+                                ('Content-length', '%i' % len(send_host_str)),
+                                ('Content-type', 'application/x-www-form-urlencoded')))
         except urlgrabber.grabber.URLGrabError, e:
             error(_('Error contacting Server: %s') % e)
             return 1
@@ -441,29 +470,29 @@ class Hardware:
             serverMessage(o.read())
             o.close()
         
-#        deviceStr = ''
-#        for dev in self.myDevices:
-#            deviceStr = deviceStr + dev + '\n'
-#        sendDevicesStr = urlencode({'Devices' : deviceStr, 'UUID' : self.host.UUID})
-#        #debug(sendDevicesStr)
-#        
-#        try:
-#            o=grabber.urlopen('%s/addDevices' % smoonURL, data=sendDevicesStr, http_headers=(
-#                            ('Content-length', '%i' % len(sendDevicesStr)),
-#                            ('Content-type', 'application/x-www-form-urlencoded')))
-#        except urlgrabber.grabber.URLGrabError, e:
-#            error(_('Error contacting Server: %s') % e)
-#            return 1
-#        else:
-#            serverMessage(o.read())
-#            o.close()
-#        return 0
+        if prefered_protocol == '.91':
+            device_str = ''
+            for dev in my_devices:
+                device_str = device_str + dev + '\n'
+            send_devices_str = urlencode({'Devices' : device_str, 'UUID' : self.host.UUID})
+            
+            try:
+                o=grabber.urlopen(urljoin(smoonURL + '/', '/addDevices', False), data=send_devices_str, http_headers=(
+                                ('Content-length', '%i' % len(send_devices_str)),
+                                ('Content-type', 'application/x-www-form-urlencoded')))
+            except urlgrabber.grabber.URLGrabError, e:
+                error(_('Error contacting Server: %s') % e)
+                return 1
+            else:
+                serverMessage(o.read())
+                o.close()
+        
+        return 0
         
     def getProfile(self):
         printBuffer = []
 
         for label, data in self.hostIter():
-            print 
             try:
                 printBuffer.append('\t%s: %s' % (label, data))
             except UnicodeDecodeError:
@@ -478,7 +507,7 @@ class Hardware:
         
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-            self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+#            self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
         return printBuffer
 
 
