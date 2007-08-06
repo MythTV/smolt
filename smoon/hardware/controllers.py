@@ -60,14 +60,14 @@ class Root(controllers.RootController):
         controllers.RootController.__init__(self)
         self.devices_lock = MultiLock()
         self.stats_lock = MultiLock()
-#        scheduler.add_interval_task(action=self.write_devices, interval=1800, \
-#                                    args=None, kw=None, initialdelay=15, \
-#                                    processmethod=scheduler.method.threaded, \
-#                                    taskname="devices_cache")
-#        scheduler.add_interval_task(action=self.write_stats, interval=300, \
-#                                    args=None, kw=None, initialdelay=5, \
-#                                    processmethod=scheduler.method.threaded, \
-#                                    taskname="stats_cache")
+        scheduler.add_interval_task(action=self.write_devices, interval=1800, \
+                                    args=None, kw=None, initialdelay=15, \
+                                    processmethod=scheduler.method.threaded, \
+                                    taskname="devices_cache")
+        scheduler.add_interval_task(action=self.write_stats, interval=300, \
+                                    args=None, kw=None, initialdelay=5, \
+                                    processmethod=scheduler.method.threaded, \
+                                    taskname="stats_cache")
 
         
     @expose(template="hardware.templates.welcome")
@@ -444,41 +444,22 @@ class Root(controllers.RootController):
         
         return dict()
     
-    @expose(template="hardware.templates.deviceclass")
+    @expose(template="hardware.templates.deviceclass", allow_json=True)
     def byClass(self, type='VIDEO'):
         type = type.encode('utf8')
-        typetest = (type,)
         #classes = Host._connection.queryAll('select distinct(class) from device;')
-        classes = HardwareClass.select()
+        try:
+            klass = HardwareClass.query().selectone_by(klass=type)
+        except InvalidRequestError:
+            return (None, )
         pciVendors = deviceMap('pci')
         tabs = Tabber()
-        if typetest not in classes:
-            return('%s' % classes)
         # We only want hosts that detected hardware (IE, hal was working properly)
-        #totalHosts = long(Host._connection.queryAll('select count(distinct(host_link_id)) from host_links;')[0][0])
         totalHosts = select([host_links.c.host_link_id], distinct=True).alias("m").count().execute().fetchone()[0]
-
-        #types = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by host_links.device_id order by cnt desc limit 100;' % type)
         count = select([host_links.c.host_link_id], and_(host_links.c.device_id == computer_logical_devices.c.id, computer_logical_devices.c.klass == type), distinct=True).alias("m").count().execute().fetchone()[0]
-#        count = Host._connection.queryAll('select count(distinct(\
-#                                           host_links.host_link_id)) as cnt\
-#                                           from host_links, device where\
-#                                           host_links.device_id=device.id\
-#                                           and device.class="%s";' % type)[0][0]
-        
-        types = HardwareByClass.query().order_by(desc(HardwareByClass.c.cnt)).limit(100).select_by(klass=type)
-#        types = Host\
-#                ._connection\
-#                .queryAll('select device.description, device.bus, \
-#                        device.driver, device.vendor_id, device.device_id, \
-#                        device.subsys_vendor_id, device.subsys_device_id, \
-#                        device.date_added, count(distinct(host_links.host_link_id)) \
-#                        as cnt from host_links, device where \
-#                        host_links.device_id=device.id and device.class="%s" \
-#                        group by host_links.device_id order by cnt desc \
-#                        limit 100' % type)
-        device = computer_logical_devices
-        vendors = select([device.c.vendor_id, func.count(device.c.vendor_id)], and_(host_links.c.device_id==device.c.id, device.c.klass==type), order_by=[desc('cnt')])
+        types = HardwareByClass.query().order_by(desc(HardwareByClass.c.count)).limit(100).select_by(klass=type)
+        #vendors = select([device.c.vendor_id, func.count(device.c.vendor_id).alias('cnt')], and_(host_links.c.device_id==device.c.id, device.c.klass==type), order_by=[desc('cnt')])
+        vendors = VendorCount.query().select()
         #vendors = Host._connection.queryAll('select device.vendor_id, count(device.vendor_id) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by device.vendor_id order by cnt desc;' % type)
         return dict(types=types, type=type, totalHosts=totalHosts, count=count, pciVendors=pciVendors, vendors=vendors, tabs=tabs)
 
@@ -496,7 +477,7 @@ class Root(controllers.RootController):
         except:
             raise redirect("unavailable")
         tabs = Tabber()
-        return dict(Host=Host, Device=Device, HostLinks=HostLinks, devices=devices, tabs=tabs)
+        return dict(devices=devices, tabs=tabs)
     
     def read_devices(self):
         self.devices_lock.read_acquire()
@@ -510,14 +491,16 @@ class Root(controllers.RootController):
         return _return
     
     def write_devices(self):
-        self.devices_lock.write_acquire()
         devices = {}
         devices['total'] = HostLink.query().count()
         devices['count'] = ComputerLogicalDevice.query().count()
         devices['totalHosts'] = Host.query().count()
-        devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
-        devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
-        devices['classes'] = HardwareClass.query().execute()
+        #devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
+        devices['totalList'] = TotalList.query().select(limit=100)
+        #devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
+        devices['uniqueList'] = UniqueList.query().select(limit=100)
+        devices['classes'] = HardwareClass.query().select()
+        self.devices_lock.write_acquire()
         self._devices_cache = devices
         self.devices_lock.write_release()
         pass

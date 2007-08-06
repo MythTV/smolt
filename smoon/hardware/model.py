@@ -81,7 +81,7 @@ hardware_by_class = Table("CLASS", metadata,
                           Column("subsys_vendor_id", INT),
                           Column("subsys_device_id", INT),
                           Column("date_added", DATETIME),
-                          Column("cnt", INT),
+                          Column("cnt", INT, key='count'),
                           Column("class", TEXT, key="klass"))
 
 archs = Table("ARCH", metadata,
@@ -114,6 +114,18 @@ formfactors = Table("FORMFACTOR", metadata,
 languages = Table("LANGUAGE", metadata,
                       Column('language', TEXT, primary_key=True),
                       Column('cnt', INT))
+
+totallist = Table("TOTALLIST", metadata,
+                  Column('description', TEXT, primary_key=True),
+                  Column('cnt', INT, key="count"))
+
+uniquelist = Table("UNIQUELIST", metadata,
+                   Column('description', TEXT, primary_key=True),
+                   Column('cnt', INT, key='count'))
+
+vendor_count = Table("VENDOR_COUNT", metadata,
+                     Column('vendor_id', INT, primary_key=True),
+                     Column('cnt', INT, key='count'))
 
 class Host(object):
     def __init__(self, selinux_enabled=False, rating=0, last_modified=DateTime.now()):
@@ -160,6 +172,13 @@ class FormFactor(object):
 class Language(object):
     pass
 class Foo(object):
+    """Bar"""
+    pass
+class TotalList(object):
+    pass
+class UniqueList(object):
+    pass
+class VendorCount(object):
     pass
 
 assign(Foo, hosts,
@@ -206,5 +225,7 @@ assign(CPUVendor, cpu_vendors, order_by=desc(cpu_vendors.c.cnt))
 assign(KernelVersion, kernel_versions, order_by=desc(kernel_versions.c.cnt))
 assign(FormFactor, formfactors, order_by=desc(formfactors.c.cnt))
 assign(Language, languages, order_by=desc(languages.c.cnt))
-
+assign(TotalList, totallist)
+assign(UniqueList, uniquelist)
+assign(VendorCount, vendor_count)
 

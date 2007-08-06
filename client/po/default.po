@@ -1,0 +1,368 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Smolt\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2007-07-28 15:35-0500\n"
+"Last-Translator: Yaakov Nemoy <loupgaroublond@gmail.com>\n"
+"Language-Team: moo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: deleteProfile.py:35
+#: smolt.py:245
+#, python-format
+msgid "Server Message: \"%s\""
+msgstr ""
+
+#: deleteProfile.py:45
+#: sendProfile.py:42
+msgid "enable debug information"
+msgstr ""
+
+#: deleteProfile.py:50
+#: sendProfile.py:47
+#, python-format
+msgid "specify the URL of the server (default \"%default\")"
+msgstr ""
+
+#: deleteProfile.py:55
+#: sendProfile.py:62
+msgid "print information only, do not send"
+msgstr ""
+
+#: deleteProfile.py:60
+#: sendProfile.py:77
+#, python-format
+msgid "specify HTTP user agent (default \"%default\")"
+msgstr ""
+
+#: deleteProfile.py:65
+#: sendProfile.py:82
+#, python-format
+msgid "specify HTTP timeout in seconds (default %default seconds)"
+msgstr ""
+
+#: deleteProfile.py:83
+msgid "Error contacting Server:"
+msgstr ""
+
+#: deleteProfile.py:91
+msgid "Profile removed, please verify at"
+msgstr ""
+
+#: sendProfile.py:52
+msgid "(optional) Fedora Account System registration"
+msgstr ""
+
+#: sendProfile.py:57
+msgid "password, will prompt if not specified"
+msgstr ""
+
+#: sendProfile.py:67
+msgid "don't prompt to send, just send"
+msgstr ""
+
+#: sendProfile.py:72
+msgid "continue to send until success"
+msgstr ""
+
+#: sendProfile.py:87
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgstr ""
+
+#: sendProfile.py:101
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+
+#: sendProfile.py:108
+msgid "Error:"
+msgstr ""
+
+#: sendProfile.py:110
+msgid "Hint:"
+msgstr ""
+
+#: sendProfile.py:121
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr ""
+
+#: sendProfile.py:122
+msgid "y"
+msgstr ""
+
+#: sendProfile.py:123
+msgid "Exiting..."
+msgstr ""
+
+#: sendProfile.py:130
+msgid "Retry Enabled - Retrying"
+msgstr ""
+
+#: sendProfile.py:134
+msgid "Could not send - Exiting"
+msgstr ""
+
+#: sendProfile.py:139
+msgid "Password:"
+msgstr ""
+
+#: sendProfile.py:144
+msgid "Registration Failed, Try again"
+msgstr ""
+
+#: sendProfile.py:147
+#, python-format
+msgid "To view your profile visit: %s"
+msgstr ""
+
+#: smoltGui.py:70
+msgid "_Quit"
+msgstr ""
+
+#: smoltGui.py:70
+msgid "Quit the program without sending your hardware profile to the server"
+msgstr ""
+
+#: smoltGui.py:71
+msgid "_Send"
+msgstr ""
+
+#: smoltGui.py:71
+msgid "Send your hardware profile to the server."
+msgstr ""
+
+#: smoltGui.py:72
+msgid "Show _Privacy Policy"
+msgstr ""
+
+#: smoltGui.py:72
+msgid "Show the Smolt privacy policy."
+msgstr ""
+
+#: smoltGui.py:73
+msgid "_About"
+msgstr ""
+
+#: smoltGui.py:74
+msgid "_File"
+msgstr ""
+
+#: smoltGui.py:75
+msgid "_Help"
+msgstr ""
+
+#: smoltGui.py:105
+msgid "Rate this system:"
+msgstr ""
+
+#: smoltGui.py:137
+msgid "An error occurred while sending the data to the server."
+msgstr ""
+
+#: smoltGui.py:144
+#, python-format
+msgid ""
+"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"%s\n"
+"stored in %s"
+msgstr ""
+
+#: smoltGui.py:156
+msgid "Smolt Privacy Policy"
+msgstr ""
+
+#: smoltGui.py:199
+msgid "translator-credits"
+msgstr ""
+
+#: smoltGui.py:200
+msgid "Fedora hardware profiler."
+msgstr ""
+
+#: smoltGui.py:201
+msgid "Copyright © 2007 Mike McGrath"
+msgstr ""
+
+#: smoltGui.py:203
+msgid ""
+"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+msgstr ""
+
+#: smolt.py:247
+#, python-format
+msgid "Could not contact server: %s"
+msgstr ""
+
+#: smolt.py:279
+msgid "Could not bind to dbus"
+msgstr ""
+
+#: smolt.py:285
+msgid "Could not connect to hal, is it running?"
+msgstr ""
+
+#: smolt.py:285
+msgid "Run \"service haldaemon start\" as root"
+msgstr ""
+
+#: smolt.py:361
+#: smolt.py:408
+#: smolt.py:437
+#, python-format
+msgid "Error contacting Server: %s"
+msgstr ""
+
+#: smolt.py:419
+msgid "Communication with server failed"
+msgstr ""
+
+#: smolt.py:475
+msgid "Devices"
+msgstr ""
+
+#: smolt.py:486
+msgid "UUID"
+msgstr ""
+
+#: smolt.py:487
+msgid "OS"
+msgstr ""
+
+#: smolt.py:488
+msgid "Default run level"
+msgstr ""
+
+#: smolt.py:489
+msgid "Language"
+msgstr ""
+
+#: smolt.py:490
+msgid "Platform"
+msgstr ""
+
+#: smolt.py:491
+msgid "BogoMIPS"
+msgstr ""
+
+#: smolt.py:492
+msgid "CPU Vendor"
+msgstr ""
+
+#: smolt.py:493
+msgid "CPU Model"
+msgstr ""
+
+#: smolt.py:494
+msgid "Number of CPUs"
+msgstr ""
+
+#: smolt.py:495
+msgid "CPU Speed"
+msgstr ""
+
+#: smolt.py:496
+msgid "System Memory"
+msgstr ""
+
+#: smolt.py:497
+msgid "System Swap"
+msgstr ""
+
+#: smolt.py:498
+msgid "Vendor"
+msgstr ""
+
+#: smolt.py:499
+msgid "System"
+msgstr ""
+
+#: smolt.py:500
+msgid "Form factor"
+msgstr ""
+
+#: smolt.py:501
+msgid "Kernel"
+msgstr ""
+
+#: smolt.py:502
+msgid "SELinux Enabled"
+msgstr ""
+
+#: smolt.py:503
+msgid "SELinux Enforce"
+msgstr ""
+
+#: smolt.py:936
+msgid "Unable to save UUID, continuing...\n"
+msgstr ""
+
+#: smolt.py:938
+msgid "Unable to determine UUID of system!\n"
+msgstr ""
+
+#: software.py:43
+msgid "Cannot Determine Runlevel"
+msgstr ""
+
+#: smoltFirstBoot.py:24
+#: smoltFirstBoot.py:34
+msgid "Hardware Profile"
+msgstr ""
+
+#: smoltFirstBoot.py:50
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr ""
+
+#: smoltFirstBoot.py:69
+msgid "_Send Profile"
+msgstr ""
+
+#: smoltFirstBoot.py:70
+msgid "D_o not send profile"
+msgstr ""
+
+#: smoltFirstBoot.py:88
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr ""
+
+#: smoltFirstBoot.py:96
+msgid "_Reconsider sending"
+msgstr ""
+
+#: smoltFirstBoot.py:97
+msgid "_No, do not send."
+msgstr ""
+
+#: gui.py:58
+msgid "Label"
+msgstr ""
+
+#: gui.py:64
+msgid "Data"
+msgstr ""
+
+#: gui.py:95
+msgid "Rate this device"
+msgstr ""
+
+#: gui.py:102
+msgid "Bus"
+msgstr ""
+
+#: gui.py:109
+msgid "Driver"
+msgstr ""
+
+#: gui.py:116
+msgid "Type"
+msgstr ""
+
+#: gui.py:123
+msgid "Description"
+msgstr ""
+

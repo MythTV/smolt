@@ -21,10 +21,10 @@
         <div class="tabbertab"><h2>Vendors</h2>
             <table id='stats' width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='vendor in vendors'>
-                    <th>${pciVendors.vendor(vendor[0], alt='Unknown ID: %s' %vendor[0])}</th>
-                    <td>${vendor[1]}</td>
-                    <td nowrap="true"><strong>${'%.1f' % (float(vendor[1]) / totalHosts * 100) } %</strong></td>
-                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(vendor[1]) / totalHosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+                    <th>${pciVendors.vendor(vendor.vendor_id, alt='Unknown ID: %s' %vendor.vendor_id)}</th>
+                    <td>${vendor.count}</td>
+                    <td nowrap="true"><strong>${'%.1f' % (float(vendor.count) / totalHosts * 100) } %</strong></td>
+                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(vendor.count) / totalHosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
                 </tr>
             </table>
         </div>
@@ -32,17 +32,17 @@
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr><th>Device</th><td>bus</td><td>Driver</td><td>Vendor</td><td>Sub Vendor</td><td>Sub Device</td><td>Date Added</td><td>% tot hosts</td><td></td></tr>
                 <tr py:for='type in types'>
-                    <th align="right">${pciVendors.device(type[3], type[4], alt=type[1])}</th>
-                    <td align="center">${type[1]}</td>
-                    <td align="center">${type[2]}</td>
-                    <td align="center">${pciVendors.vendor(type[3])}</td>
-        <!--            <td align="center">${pciVendors.device(type[3], type[4], alt=type[7])}</td>-->
-                    <td align="center">${pciVendors.vendor(type[5])}</td>
-                    <td align="center">${pciVendors.subdevice(type[3], type[4], type[5], type[6])}</td>
-                    <td align="center">${type[7]}</td>
-                    <td nowrap="true"><strong>${'%.1f' % (float(type[8]) / totalHosts * 100) } %</strong></td>
+                    <th align="right">${pciVendors.device(type.vendor_id, type.device_id, alt=type.description)}</th>
+                    <td align="center">${type.bus}</td>
+                    <td align="center">${type.driver}</td>
+                    <td align="center">${pciVendors.vendor(type.vendor_id)}</td>
+        <!--            <td align="center">${pciVendors.device(type.vendor_id, type.device_id, alt=type.date_added)}</td>-->
+                    <td align="center">${pciVendors.vendor(type.subsys_vendor_id)}</td>
+                    <td align="center">${pciVendors.subdevice(type.vendor_id, type.device_id, type.subsys_vendor_id, type.subsys_device_id)}</td>
+                    <td align="center">${type.date_added}</td>
+                    <td nowrap="true"><strong>${'%.1f' % (float(type.count) / totalHosts * 100) } %</strong></td>
                     <!--<td nowrap="true"><img py:for='i in range(1, int( float(type[8]) / totalHosts * 100 ))' src='/static/images/tile.png' /></td>-->
-                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(type[8]) / totalHosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(type.count) / totalHosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
                 </tr>
             </table>
         </div>
