@@ -20,7 +20,7 @@ class deviceMap:
         self.vendors['usb'] = self.deviceMap('usb')
 
     def deviceMap(self, bus='pci'):
-        fn = "/usr/share/misc/%s.ids" % bus
+        fn = "%s.ids" % bus
         fo = open(fn, 'r')
         vendors = {}
         curvendor = None
