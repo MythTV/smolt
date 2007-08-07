@@ -1,27 +1,25 @@
-from turbogears import controllers, expose, identity
-from hardware import model
-from cherrypy import request, response
-from hardware.model import *
-from turbogears import exception_handler
-from turbogears.widgets import Tabber, JumpMenu
-from hwdata import deviceMap
+import urllib
+import time
+import datetime
 import sys
+
+from Crypto.Cipher import XOR
+from cherrypy import request, response
+from mx import DateTime
+import simplejson
+from sqlalchemy import *
+from sqlalchemy.exceptions import InvalidRequestError
+from turbogears import controllers, expose, identity
+from turbogears import exception_handler
 from turbogears import scheduler
-from smoonexceptions import NotCachedException
 from turbogears import redirect
 from turbogears import widgets
 from turbogears import flash
-from sqlalchemy import *
-from sqlalchemy.exceptions import InvalidRequestError
-from Crypto.Cipher import XOR
-import urllib
-import time, datetime
-from mx import DateTime
-import simplejson
-import urllib
-import time, datetime
+from turbogears.widgets import Tabber, JumpMenu
 
-
+from hardware.model import *
+from hwdata import DeviceMap
+from smoonexceptions import NotCachedException
 from lock.multilock import MultiLock
 
 # This is such a bad idea, yet here it is.
@@ -105,39 +103,39 @@ class Root(controllers.RootController):
 
 
     @expose(template="hardware.templates.error")
-    def errorClient(self, tg_exceptions=None):
+    def error_client(self, tg_exceptions=None):
         ''' Exception handler, Sends messages back to the client'''
         message = 'ServerMessage: %s' % tg_exceptions
         return dict(handling_value=True,exception=message)
 
     @expose(template="hardware.templates.error")
-    def errorWeb(self, tg_exceptions=None):
+    def error_web(self, tg_exceptions=None):
         ''' Exception handler, Sends messages back to the client'''
         message = 'Error: %s' % tg_exceptions
         return dict(handling_value=True,exception=message)
 
     @expose(template="hardware.templates.show")
-    @exception_handler(errorWeb,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show(self, UUID=''):
         try:
-            UUID = u'%s' % UUID.strip()
-            UUID = UUID.encode('utf8')
+            uuid = u'%s' % UUID.strip()
+            uuid = uuid.encode('utf8')
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
-            hostObject = Host.query().selectone_by(uuid=UUID)
+            host_object = Host.query().selectone_by(uuid=UUID)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % UUID)
         devices = {}
-        for dev in hostObject.devices:
+        for dev in host_object.devices:
             #This is to prevent duplicate devices showing up, in the future,
             #There will be no dups in the database
             devices[dev.device_id] = (dev.device, dev.rating)
-        ven = deviceMap('pci')
-        return dict(hostObject=hostObject, devices=devices, ven=ven, rating=rating)
+        ven = DeviceMap('pci')
+        return dict(host_object=host_object, devices=devices, ven=ven, rating=rating)
 
     @expose(template="hardware.templates.delete")
-    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, UUID=''):
         try:
             host = Host.query().selectone_by(uuid=UUID)
@@ -160,7 +158,7 @@ class Root(controllers.RootController):
                     prefered_protocol=".91")
 
     @expose("json")
-    def token_json(self, UUID):
+    def token_json(self, uuid):
         crypt = XOR.new(CRYPTPASS)
         str = "%s\n%s " % ( int(time.mktime(datetime.datetime.now().timetuple())), UUID)
         # I hate obfuscation.  Its all I've got
@@ -168,44 +166,43 @@ class Root(controllers.RootController):
         return dict(token=urllib.quote(token),
                     prefered_protocol=currentSmoltProtocol)
 
-    @expose(template="hardware.templates.myHosts")
+    @expose(template="hardware.templates.my_hosts")
     @identity.require(identity.not_anonymous())
-    def myHosts(self):
+    def my_hosts(self):
         try:
-            #linkSQL = FasLink.select("user_name='%s'" % identity.current.user_name)
-            linkSQL = FasLink.query().selectone_by(user_name=identity.current.user_name)
+            link_sql = FasLink.query().selectone_by(user_name=identity.current.user_name)
         except InvalidRequestError:
-            linkSQL = []
-        return dict(linkSQL=linkSQL)
+            link_sql = []
+        return dict(link_sql=link_sql)
 
     @expose(template="hardware.templates.link")
     @identity.require(identity.not_anonymous())
     def link(self, UUID):
         try:
-            hostSQL = Host.query().selectone_by(uuid=UUID)
+            host_sql = Host.query().selectone_by(uuid=UUID)
         except InvalidRequestError:
             raise ValueError("Critical: Your UUID did not exist.")
         
-        if hostSQL.fas_account == None:
-            linkSQL = FasLink(uuid=UUID, user_name=identity.current.user_name)
-            linkSQL.save_or_update()
-            linkSQL.flush()
+        if host_sql.fas_account == None:
+            link_sql = FasLink(uuid=UUID, user_name=identity.current.user_name)
+            link_sql.save_or_update()
+            link_sql.flush()
         return dict()
     
     def check_token(self, token, uuid):
         token = urllib.unquote(token)
         crypt = XOR.new(CRYPTPASS)
-        tokenPlain = crypt.decrypt(token).split('\n')
-        tokenTime = int(tokenPlain[0])
-        tokenUUID = tokenPlain[1]
-        currentTime = int(time.mktime(datetime.datetime.now().timetuple()))
-        if currentTime - tokenTime > 20:
+        token_plain = crypt.decrypt(token).split('\n')
+        token_time = int(token_plain[0])
+        token_uuid = token_plain[1]
+        current_time = int(time.mktime(datetime.datetime.now().timetuple()))
+        if current_time - token_time > 20:
             raise ValueError("Critical [20]: Invalid Token")
-        if uuid.strip() != tokenUUID.strip():
+        if uuid.strip() != token_uuid.strip():
             raise ValueError("Critical [s]: Invalid Token")
 
     @expose()
-    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error_client,rules="isinstance(tg_exceptions,ValueError)")
     def add(self, UUID, OS, platform, bogomips, systemMemory, systemSwap, CPUVendor, CPUModel, numCPUs, CPUSpeed, language, defaultRunlevel, vendor, system, token, lsbRelease='Depricated', formfactor='Unknown', kernelVersion='', selinux_enabled='False', selinux_enforce='Disabled', smoltProtocol=None):
         """Adds a host sans devices to the database
         
@@ -224,41 +221,41 @@ class Root(controllers.RootController):
         
         self.check_token(token, UUID)
 
-        UUID = UUID.strip()
+        uuid = UUID.strip()
         try:
-            hostSQL = Host.query().selectone_by(uuid=UUID)
+            host_sql = Host.query().selectone_by(uuid=uuid)
         except InvalidRequestError:
-            hostSQL = Host()
-            hostSQL.uuid = UUID
+            host_sql = Host()
+            host_sql.uuid = uuid
 
-        hostSQL.os = OS.strip()
-        hostSQL.platform = platform.strip()
+        host_sql.os = OS.strip()
+        host_sql.platform = platform.strip()
         try:
-            hostSQL.bogomips = float(bogomips)
+            host_sql.bogomips = float(bogomips)
         except:
-            hostSQL.bogomips = 0
-        hostSQL.system_memory = int(systemMemory)
-        hostSQL.system_swap = int(systemSwap)
-        hostSQL.cpu_vendor = CPUVendor.strip()
-        hostSQL.cpu_model = CPUModel.strip()
-        hostSQL.num_cpus = int(numCPUs)
-        hostSQL.cpu_speed = float(CPUSpeed)
-        hostSQL.language = language.strip()
-        hostSQL.default_runlevel = int(defaultRunlevel)
-        hostSQL.vendor = vendor.strip()
-        hostSQL.system = system.strip()
-        hostSQL.kernel_version = kernelVersion.strip()
-        hostSQL.formfactor = formfactor.strip()
-        hostSQL.selinux_enabled = bool(selinux_enabled)
-        hostSQL.selinux_enforce = selinux_enforce.strip()
-        hostSQL.last_modified = DateTime.now()
+            host_sql.bogomips = 0
+        host_sql.system_memory = int(systemMemory)
+        host_sql.system_swap = int(systemSwap)
+        host_sql.cpu_vendor = CPUVendor.strip()
+        host_sql.cpu_model = CPUModel.strip()
+        host_sql.num_cpus = int(numCPUs)
+        host_sql.cpu_speed = float(CPUSpeed)
+        host_sql.language = language.strip()
+        host_sql.default_runlevel = int(defaultRunlevel)
+        host_sql.vendor = vendor.strip()
+        host_sql.system = system.strip()
+        host_sql.kernel_version = kernelVersion.strip()
+        host_sql.formfactor = formfactor.strip()
+        host_sql.selinux_enabled = bool(selinux_enabled)
+        host_sql.selinux_enforce = selinux_enforce.strip()
+        host_sql.last_modified = DateTime.now()
         
-        hostSQL.save_or_update()
-        hostSQL.flush()
+        host_sql.save_or_update()
+        host_sql.flush()
         return dict()
 
     @expose()
-    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error_client, rules="isinstance(tg_exceptions,ValueError)")
     def addDevices(self, UUID, Devices):
         import time
         from mx import DateTime
@@ -271,51 +268,51 @@ class Root(controllers.RootController):
             if not device:
                 continue
             try:
-                (VendorId, 
-                DeviceId,
-                SubsysVendorId,
-                SubsysDeviceId,
-                Bus,
-                Driver,
-                Class,
-                Description) = device.split('|')
+                (vendor_id, 
+                device_id,
+                subsys_vendor_id,
+                subsys_device_id,
+                bus,
+                driver,
+                cls,
+                description) = device.split('|')
             except:
                 raise ValueError("Critical: Device Read Failed - %s" % device)
 
             # Create Device
             try:
-                DeviceId = int(DeviceId)
+                device_id = int(device_id)
             except ValueError:
-                DeviceId = None
+                device_id = None
             try:
-                VendorId = int(VendorId)
+                vendor_id = int(vendor_id)
             except ValueError:
-                VendorId = None
+                vendor_id = None
             try:
-                SubsysDeviceId = int(SubsysDeviceId)
+                subsys_device_id = int(subsys_device_id)
             except ValueError:
-                SubsysDeviceId = None
+                subsys_device_id = None
             try:
-                SubsysVendorId = int(SubsysVendorId)
+                subsys_vendor_id = int(subsys_vendor_id)
             except ValueError:
-                SubsysVendorId = None
+                subsys_vendor_id = None
             
-            if DeviceId and VendorId:
-                Description = '%s:%s:%s:%s' % (VendorId, DeviceId, SubsysDeviceId, SubsysVendorId)
+            if device_id and vendor_id:
+                description = '%s:%s:%s:%s' % (vendor_id, device_id, subsys_device_id, subsys_vendor_id)
             
             try:
-                deviceSQL = ComputerLogicalDevice.query().selectone_by(description=Description)
-            except exceptions.InvalidRequestError:
+                device_sql = ComputerLogicalDevice.query().selectone_by(description=description)
+            except InvalidRequestError:
                 try:
-                    deviceSQL = ComputerLogicalDevice()
-                    deviceSQL.bus = Bus
-                    deviceSQL.driver = Driver
-                    deviceSQL.klass = Class
-                    deviceSQL.device_id = DeviceId
-                    deviceSQL.vendor_id = VendorId
-                    deviceSQL.subsys_vendor_id = SubsysVendorId
-                    deviceSQL.subsys_device_id = SubsysDeviceId
-                    deviceSQL.date_added = DateTime.now()
+                    device_sql = ComputerLogicalDevice()
+                    device_sql.bus = bus
+                    device_sql.driver = driver
+                    device_sql.cls = cls
+                    device_sql.device_id = device_id
+                    device_sql.vendor_id = vendor_id
+                    device_sql.subsys_vendor_id = subsys_vendor_id
+                    device_sql.subsys_device_id = subsys_device_id
+                    device_sql.date_added = DateTime.now()
                 except AttributeError, e:
                     raise ValueError("Critical: Device add Failed - %s" % e)
             except AttributeError, e:
@@ -323,17 +320,17 @@ class Root(controllers.RootController):
             try:
                 link = HostLink()
                 link.host = host
-                link.device = deviceSQL
+                link.device = device_sql
                 link.save()
             except:
-               raise ValueError("Critical: Could not add device: %s" % Description)
-            deviceSQL.save_or_update()
-            deviceSQL.flush()
+               raise ValueError("Critical: Could not add device: %s" % description)
+            device_sql.save_or_update()
+            device_sql.flush()
             link.flush()
         return dict()
     
     @expose()
-    @exception_handler(errorClient,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
         if smolt_protocol < currentSmoltProtocol:
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
@@ -401,24 +398,24 @@ class Root(controllers.RootController):
         return dict()
     
     @expose(template="hardware.templates.deviceclass", allow_json=True)
-    def byClass(self, type='VIDEO'):
+    def by_class(self, type='VIDEO'):
         type = type.encode('utf8')
         #classes = Host._connection.queryAll('select distinct(class) from device;')
         try:
-            klass = HardwareClass.query().selectone_by(klass=type)
+            cls = HardwareClass.query().selectone_by(cls=type)
         except InvalidRequestError:
             return (None, )
-        pciVendors = deviceMap('pci')
+        pci_vendors = DeviceMap('pci')
         tabs = Tabber()
         # We only want hosts that detected hardware (IE, hal was working properly)
-        totalHosts = select([host_links.c.host_link_id], distinct=True).alias("m").count().execute().fetchone()[0]
-        count = select([host_links.c.host_link_id], and_(host_links.c.device_id == computer_logical_devices.c.id, computer_logical_devices.c.klass == type), distinct=True).alias("m").count().execute().fetchone()[0]
-        types = HardwareByClass.query().order_by(desc(HardwareByClass.c.count)).limit(100).select_by(klass=type)
+        total_hosts = select([host_links.c.host_link_id], distinct=True).alias("m").count().execute().fetchone()[0]
+        count = select([host_links.c.host_link_id], and_(host_links.c.device_id == computer_logical_devices.c.id, computer_logical_devices.c.cls == type), distinct=True).alias("m").count().execute().fetchone()[0]
+        types = HardwareByClass.query().order_by(desc(HardwareByClass.c.count)).limit(100).select_by(cls=type)
         device = computer_logical_devices
-        vendors = select([func.count(device.c.vendor_id).label('cnt'), device.c.vendor_id], device.c.klass==type, order_by=[desc('cnt')], group_by=device.c.vendor_id).execute().fetchall()
-        return dict(types=types, type=type, totalHosts=totalHosts, count=count, pciVendors=pciVendors, vendors=vendors, tabs=tabs)
+        vendors = select([func.count(device.c.vendor_id).label('cnt'), device.c.vendor_id], device.c.cls==type, order_by=[desc('cnt')], group_by=device.c.vendor_id).execute().fetchall()
+        return dict(types=types, type=type, total_hosts=total_hosts, count=count, pci_vendors=pci_vendors, vendors=vendors, tabs=tabs)
 
-    @expose(template="hardware.templates.notLoaded")
+    @expose(template="hardware.templates.not_loaded")
     def unavailable(self, tg_exceptions=None):
         return dict()
 
@@ -449,7 +446,7 @@ class Root(controllers.RootController):
         devices = {}
         devices['total'] = HostLink.query().count()
         devices['count'] = ComputerLogicalDevice.query().count()
-        devices['totalHosts'] = Host.query().count()
+        devices['total_hosts'] = Host.query().count()
         devices['totalList'] = TotalList.query().select(limit=100)
         devices['uniqueList'] = UniqueList.query().select(limit=100)
         devices['classes'] = HardwareClass.query().select()
@@ -473,37 +470,37 @@ class Root(controllers.RootController):
     def write_stats(self):
         self.stats_lock.write_acquire()
         stats = {}
-        stats['totalHosts'] = Host.query().count()
-        totalHosts = stats['totalHosts']
+        stats['total_hosts'] = Host.query().count()
+        total_hosts = stats['total_hosts']
         stats['archs'] = Arch.query().select()
-        stats['OS'] = OS.query().select(limit=15)
+        stats['os'] = OS.query().select(limit=15)
         stats['runlevel'] = Runlevel.query().select()
-        stats['numCPUs'] = NumCPUs.query().select()
+        stats['num_cpus'] = NumCPUs.query().select()
         stats['vendors'] = Vendor.query().select(limit=100)
         stats['systems'] = System.query().select(limit=100)
-        stats['cpuVendor'] = CPUVendor.query().select(limit=100)
-        stats['kernelVersion'] = KernelVersion.query().select(limit=20)
+        stats['cpu_vendor'] = CPUVendor.query().select(limit=100)
+        stats['kernel_version'] = KernelVersion.query().select(limit=20)
         stats['formfactor'] = FormFactor.query().select()
         stats['language'] = Language.query().select()
-        stats['languagetot'] = stats['totalHosts']
+        stats['languagetot'] = stats['total_hosts']
  
-        stats['sysMem'] = []
-        stats['sysMem'].append(("less than 512mb", Host.query().filter(Host.c.system_memory<512).count()))
-        stats['sysMem'].append(("between 512mb and 1023mb", Host.query().filter(and_(Host.c.system_memory>=512, Host.c.system_memory<1024)).count()))
-        stats['sysMem'].append(("between 1024mb and 2047mb", Host.query().filter(and_(Host.c.system_memory>=1024, Host.c.system_memory<2048)).count()))
-        stats['sysMem'].append(("more than 2048mb", Host.query().filter(Host.c.system_memory>=2048).count()))
+        stats['sys_mem'] = []
+        stats['sys_mem'].append(("less than 512mb", Host.query().filter(Host.c.system_memory<512).count()))
+        stats['sys_mem'].append(("between 512mb and 1023mb", Host.query().filter(and_(Host.c.system_memory>=512, Host.c.system_memory<1024)).count()))
+        stats['sys_mem'].append(("between 1024mb and 2047mb", Host.query().filter(and_(Host.c.system_memory>=1024, Host.c.system_memory<2048)).count()))
+        stats['sys_mem'].append(("more than 2048mb", Host.query().filter(Host.c.system_memory>=2048).count()))
 
-        stats['swapMem'] = []
-        stats['swapMem'].append(("less than 512mb", Host.query().filter(Host.c.system_swap<512).count()))
-        stats['swapMem'].append(("between 512mb and 1027mb", Host.query().filter(and_(Host.c.system_swap>=512, Host.c.system_swap<1024)).count()))
-        stats['swapMem'].append(("between 1024mb and 2047mb", Host.query().filter(and_(Host.c.system_swap>=1024, Host.c.system_swap<2048)).count()))
-        stats['swapMem'].append(("more than 2048mb", Host.query().filter(Host.c.system_swap>=2048).count()))
+        stats['swap_mem'] = []
+        stats['swap_mem'].append(("less than 512mb", Host.query().filter(Host.c.system_swap<512).count()))
+        stats['swap_mem'].append(("between 512mb and 1027mb", Host.query().filter(and_(Host.c.system_swap>=512, Host.c.system_swap<1024)).count()))
+        stats['swap_mem'].append(("between 1024mb and 2047mb", Host.query().filter(and_(Host.c.system_swap>=1024, Host.c.system_swap<2048)).count()))
+        stats['swap_mem'].append(("more than 2048mb", Host.query().filter(Host.c.system_swap>=2048).count()))
 
-        stats['cpuSpeed'] = []
-        stats['cpuSpeed'].append(("less than 512mhz", Host.query().filter(Host.c.cpu_speed<512).count()))
-        stats['cpuSpeed'].append(("between 512mhz and 1023mhz", Host.query().filter(and_(Host.c.cpu_speed>=512, Host.c.cpu_speed<1024)).count()))
-        stats['cpuSpeed'].append(("between 1024mhz and 2047mhz", Host.query().filter(and_(Host.c.cpu_speed>=1024, Host.c.cpu_speed<2048)).count()))
-        stats['cpuSpeed'].append(("more than 2048mhz", Host.query().filter(Host.c.cpu_speed>=2048).count()))
+        stats['cpu_speed'] = []
+        stats['cpu_speed'].append(("less than 512mhz", Host.query().filter(Host.c.cpu_speed<512).count()))
+        stats['cpu_speed'].append(("between 512mhz and 1023mhz", Host.query().filter(and_(Host.c.cpu_speed>=512, Host.c.cpu_speed<1024)).count()))
+        stats['cpu_speed'].append(("between 1024mhz and 2047mhz", Host.query().filter(and_(Host.c.cpu_speed>=1024, Host.c.cpu_speed<2048)).count()))
+        stats['cpu_speed'].append(("more than 2048mhz", Host.query().filter(Host.c.cpu_speed>=2048).count()))
 
         stats['bogomips'] = []
         stats['bogomips'].append(("less than 512", Host.query().filter(Host.c.bogomips<512).count()))
@@ -512,9 +509,10 @@ class Root(controllers.RootController):
         stats['bogomips'].append(("between 2048 and 4000", Host.query().filter(and_(Host.c.bogomips>=2048, Host.c.bogomips<4000)).count()))
         stats['bogomips'].append(("more than 4000", Host.query().filter(Host.c.system_memory>=4000).count()))
 
-        stats['bogomipsTot'] = Host.query().filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
-        stats['cpuSpeedTot'] = Host.query().filter(Host.c.cpu_speed > 0).sum(Host.c.cpu_speed * Host.c.num_cpus)
-        stats['cpusTot'] = Host.query().sum(Host.c.num_cpus)
+        stats['bogomips_total'] = Host.query().filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
+        stats['cpu_speed_total'] = Host.query().filter(Host.c.cpu_speed > 0).sum(Host.c.cpu_speed * Host.c.num_cpus)
+        stats['cpus_total'] = Host.query().sum(Host.c.num_cpus)
+        stats['registered_devices'] = ComputerLogicalDevice.query().count()
 
         self._stats_cache = stats
         self.stats_lock.write_release()
@@ -526,22 +524,27 @@ class Root(controllers.RootController):
         except:
             raise redirect("unavailable")
         tabs = Tabber()
-        return dict(Host=Host, Device=ComputerLogicalDevice, HostLinks=HostLink, Stat=stats, tabs=tabs, totalHosts=stats['totalHosts'])
+        return dict(stat=stats, tabs=tabs, total_hosts=stats['total_hosts'])
     
     @expose()
     def submit_ratings(self, uuid, **kw):
         
-        host = Host.byUUID(uuid)
+        try:
+            host = Host.query().selectone_by(uuid=uuid)
+        except InvalidRequestError:
+            redirect("error_client")
         host.rating = int(kw["host_rating"])
         
-        devices = host.hostLink
+        
         for (device_key, rating) in kw.items():
             if device_key.startswith("device_"):
                device_ref = device_key[7:]
                device_db_ref = int(device_ref)
-               for device in devices:
-                   if device.deviceID == device_db_ref:
+               for device in host.devices:
+                   if device.device_id == device_db_ref:
                        device.rating = int(rating)
+        host.save_or_update()
+        host.flush()
         flash("Ratings Saved!")
         redirect("show?UUID=%s" % uuid)
             

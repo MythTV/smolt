@@ -6,28 +6,28 @@
 <title>Show Box</title>
 </head>
 <body>
-	<form action="submit_ratings?uuid=${hostObject.uuid}" method="post">
-        <h3>${hostObject.uuid}</h3>
+	<form action="submit_ratings?uuid=${host_object.uuid}" method="post">
+        <h3>${host_object.uuid}</h3>
 		<p class='moof'><button type='submit'>Submit your ratings</button></p>
         <table id="show">
-        	<tr><th>Rating:</th><td>${rating(value=hostObject.rating, field_id="host_rating")}</td></tr>
-            <tr><th>UUID:</th><td>${hostObject.uuid}</td></tr>
-            <tr><th>OS:</th><td>${hostObject.os}</td></tr>
-            <tr><th>platform:</th><td>${hostObject.platform}</td></tr>
-            <tr><th>bogomips:</th><td>${hostObject.bogomips}</td></tr>
-            <tr><th>CPU Speed:</th><td>${hostObject.cpu_speed}</td></tr>
-            <tr><th>systemMemory:</th><td>${hostObject.system_memory}</td></tr>
-            <tr><th>CPUVendor:</th><td>${hostObject.cpu_vendor}</td></tr>
-            <tr><th>numCPUs:</th><td>${hostObject.num_cpus}</td></tr>
-            <tr><th>language:</th><td>${hostObject.language}</td></tr>
-            <tr><th>defaultRunlevel:</th><td>${hostObject.default_runlevel}</td></tr>
-            <tr><th>System Vendor:</th><td>${hostObject.vendor}</td></tr>
-            <tr><th>System Model:</th><td>${hostObject.system}</td></tr>
-            <tr><th>Kernel</th><td>${hostObject.kernel_version}</td></tr>
-            <tr><th>Formfactor</th><td>${hostObject.formfactor}</td></tr>
-            <tr><th>SELinux Enabled</th><td>${hostObject.selinux_enabled}</td></tr>
-            <tr><th>SELinux Enforce</th><td>${hostObject.selinux_enforce}</td></tr>
-            <tr><th>Last Modified</th><td>${hostObject.last_modified}</td></tr>
+        	<tr><th>Rating:</th><td>${rating(value=host_object.rating, field_id="host_rating")}</td></tr>
+            <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
+            <tr><th>Operating System:</th><td>${host_object.os}</td></tr>
+            <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
+            <tr><th>Bogomips:</th><td>${host_object.bogomips}</td></tr>
+            <tr><th>CPU Speed:</th><td>${host_object.cpu_speed}</td></tr>
+            <tr><th>System Memory:</th><td>${host_object.system_memory}</td></tr>
+            <tr><th>CPUVendor:</th><td>${host_object.cpu_vendor}</td></tr>
+            <tr><th>Number of CPUs:</th><td>${host_object.num_cpus}</td></tr>
+            <tr><th>Language:</th><td>${host_object.language}</td></tr>
+            <tr><th>Default Runlevel:</th><td>${host_object.default_runlevel}</td></tr>
+            <tr><th>System Vendor:</th><td>${host_object.vendor}</td></tr>
+            <tr><th>System Model:</th><td>${host_object.system}</td></tr>
+            <tr><th>Kernel</th><td>${host_object.kernel_version}</td></tr>
+            <tr><th>Formfactor</th><td>${host_object.formfactor}</td></tr>
+            <tr><th>SELinux Enabled</th><td>${host_object.selinux_enabled}</td></tr>
+            <tr><th>SELinux Enforce</th><td>${host_object.selinux_enforce}</td></tr>
+            <tr><th>Last Modified</th><td>${host_object.last_modified}</td></tr>
         </table> 
         <h3>Devices</h3>
         <table id='show'>
@@ -38,7 +38,7 @@
             	<?python device = device_node[0] ?>
             	<td align='left'>${rating(value=device_node[1], field_id="device_%s" % device.id)}</td>
                 <td align='right'>${device.driver}</td>
-                <td align='center'>${device.klass}</td>
+                <td align='center'>${device.cls}</td>
                 <td align='center'>${device.bus}</td>
                 <td align='center'>${ven.vendor(device.vendor_id, bus=device.bus)}</td>
                 <td align='center'>${ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus)}</td>

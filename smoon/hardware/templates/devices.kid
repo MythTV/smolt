@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://purl.org/kid/ns#" py:extends="'master.kid'">
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" py:replace="''"/>
-<title> Stats </title>
+<title> Devices </title>
 </head>
 <body>
     <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
@@ -31,15 +31,15 @@
                 <tr py:for='dev in devices["uniqueList"]'>
                     <th align="right">${dev.description}</th>
                     <td align="center">${dev.count}</td>
-                    <td nowrap="true"><strong>${'%.1f' % (float(dev.count) / devices["totalHosts"] * 100) } %</strong></td>
-                    <td nowrap="true"><img py:for='i in range(1, int( float(dev.count) / devices["totalHosts"] * 100 ))' src='/static/images/tile.png' /></td>
+                    <td nowrap="true"><strong>${'%.1f' % (float(dev.count) / devices["total_hosts"] * 100) } %</strong></td>
+                    <td nowrap="true"><img py:for='i in range(1, int( float(dev.count) / devices["total_hosts"] * 100 ))' src='/static/images/tile.png' /></td>
                 </tr>
             </table>
         </div>
        <div class="tabbertab"><h2>Classes</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='dev in devices["classes"]'>
-                    <th align="right"><a href='/byClass?type=${dev.klass}'>${dev.klass}</a></th>
+                    <th align="right"><a href='/by_class?type=${dev.cls}'>${dev.cls}</a></th>
  <!--                   <td align="center">${dev[1]}</td>
                     <td nowrap="true"><strong>${'%.1f' % (float(dev[1]) / devices["count"] * 100) } %</strong></td>
                     <td nowrap="true"><img py:for='i in range(1, int( float(dev[1]) / devices["count"] * 100 ))' src='/static/images/tile.png' /></td>-->

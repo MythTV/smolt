@@ -12,14 +12,14 @@ class myDevice(object):
         self.subvendors = {}
         self.vendor = ""
 
-class deviceMap:
+class DeviceMap:
     vendors = {}
 
     def __init__(self, bus='pci'):
-        self.vendors['pci'] = self.deviceMap('pci')
-        self.vendors['usb'] = self.deviceMap('usb')
+        self.vendors['pci'] = self.device_map('pci')
+        self.vendors['usb'] = self.device_map('usb')
 
-    def deviceMap(self, bus='pci'):
+    def device_map(self, bus='pci'):
         fn = "hardware/%s.ids" % bus
         fo = open(fn, 'r')
         vendors = {}

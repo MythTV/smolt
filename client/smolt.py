@@ -154,17 +154,6 @@ class Device:
         except KeyError:
             self.driver = 'Unknown'
         self.type = classify_hal(props)
-        self.deviceSendString = urlencode({
-                            'UUID' :            self.UUID,
-                            'Bus' :             self.bus,
-                            'Driver' :          self.driver,
-                            'Class' :           self.type,
-                            'VendorID' :        self.vendorid,
-                            'DeviceID' :        self.deviceid,
-                            'VendorSubsysID' :  self.subsysvendorid,
-                            'DeviceSubsysID' :  self.subsysdeviceid,
-                            'Description' :     self.description
-                            })
 
 class Host:
     def __init__(self, hostInfo):
@@ -402,7 +391,7 @@ class Hardware:
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         #first find out the server desired protocol
         try:
-            token = grabber.urlopen(urljoin(smoonURL + "/", '/token_json?UUID=%s' % self.host.UUID, False))
+            token = grabber.urlopen(urljoin(smoonURL + "/", '/token_json?uuid=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
             try:
                 token = grabber.urlopen(urljoin(smoonURL + "/", '/token?UUID=%s' % self.host.UUID, False))
@@ -444,18 +433,22 @@ class Hardware:
         debug('smoon server URL: %s' % smoonURL)
         
         if prefered_protocol == ".91":
-            send_host_str = send_host_obj + '&token=%s&smoltProtocol=%s' % (tok, smoltProtocol)
+            send_host_str = send_host_obj + \
+                            '&token=%s&smoltProtocol=%s' % \
+                            (tok, smoltProtocol)
         if prefered_protocol == '0.97':
             send_host_str = ('uuid=%s&host=' + \
                              simplejson.dumps(send_host_obj) + \
-                             '&token=%s&smolt_protocol=%s') % (self.host.UUID, tok, smoltProtocol)
+                             '&token=%s&smolt_protocol=%s') % \
+                             (self.host.UUID, tok, smoltProtocol)
         
         debug('sendHostStr: %s' % simplejson.dumps(send_host_obj))
         debug('Sending Host')
         
         try:
             if prefered_protocol == '.91':
-                o=grabber.urlopen(urljoin(smoonURL + '/', '/add', False), data=send_host_str, http_headers=(
+                o=grabber.urlopen(urljoin(smoonURL + '/', '/add', False),\
+                                  data=send_host_str, http_headers=(
                                 ('Content-length', '%i' % len(send_host_str)),
                                 ('Content-type', 'application/x-www-form-urlencoded')))
             if prefered_protocol == '0.97':

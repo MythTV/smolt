@@ -1,8 +1,9 @@
 from datetime import datetime
+
 from sqlalchemy import *
-from turbogears.database import metadata, session
 from sqlalchemy.ext.assignmapper import assign_mapper
 from turbogears import identity
+from turbogears.database import metadata, session
 from mx import DateTime
 
 def assign(obj, table, *args, **kw):
@@ -18,8 +19,8 @@ computer_logical_devices = Table('device', metadata,
                                  Column("bus", TEXT),
                                  Column("driver", TEXT),
                                  Column("class", TEXT,
-                                        ForeignKey("classes.klass"),
-                                        key="klass"),
+                                        ForeignKey("classes.cls"),
+                                        key="cls"),
                                  Column("date_added", DATETIME),
                                  Column("device_id", VARCHAR(16)),
                                  Column("vendor_id", INT),
@@ -64,13 +65,13 @@ fas_links = Table('fas_link', metadata,
                   Column("user_name", VARCHAR(255), nullable=False))
 
 hardware_classes = Table('classes', metadata,
-                         Column("class", VARCHAR(24), nullable=False, primary_key=True, key="klass"),
+                         Column("class", VARCHAR(24), nullable=False, primary_key=True, key="cls"),
                          Column("description", TEXT, key="class_description"))
 
 computer_devices = join(computer_logical_devices,
                         hardware_classes,
-                        computer_logical_devices.c.klass == 
-                            hardware_classes.c.klass)
+                        computer_logical_devices.c.cls == 
+                            hardware_classes.c.cls)
 
 hardware_by_class = Table("CLASS", metadata,
                           Column('device_id', VARCHAR(16), primary_key=True),
@@ -82,7 +83,7 @@ hardware_by_class = Table("CLASS", metadata,
                           Column("subsys_device_id", INT),
                           Column("date_added", DATETIME),
                           Column("cnt", INT, key='count'),
-                          Column("class", TEXT, key="klass"))
+                          Column("class", TEXT, key="cls"))
 
 archs = Table("ARCH", metadata,
                   Column("platform", TEXT, primary_key=True),
@@ -219,6 +220,6 @@ assign(CPUVendor, cpu_vendors, order_by=desc(cpu_vendors.c.cnt))
 assign(KernelVersion, kernel_versions, order_by=desc(kernel_versions.c.cnt))
 assign(FormFactor, formfactors, order_by=desc(formfactors.c.cnt))
 assign(Language, languages, order_by=desc(languages.c.cnt))
-assign(TotalList, totallist)
-assign(UniqueList, uniquelist)
+assign(TotalList, totallist, order_by=desc(totallist.c.count))
+assign(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
 
