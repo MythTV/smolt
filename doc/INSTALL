@@ -1,2 +1,15 @@
 To submit your profile just run "/usr/bin/smoltSendProfile".
 
+To set up the server, please use the files in /database
+
+First set up your user access control for the DB correctly.
+As a super user, create a database, 'smoon' for example.
+First run sql_create.sql inside your mysql database
+This is good enough for the stable version.
+Should you want to run the unstable version, you must then
+run sql_changs.sql as well.  This will bring your database
+up to date.
+If you were given a sample dataset, please run this before you run
+sql_changs.sql. sql_changes.sql will provide sane defaults for the
+data that does not have them.
+
