@@ -21,10 +21,10 @@
         <div class="tabbertab"><h2>Vendors</h2>
             <table id='stats' width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='vendor in vendors'>
-                    <th>${pciVendors.vendor(vendor.vendor_id, alt='Unknown ID: %s' %vendor.vendor_id)}</th>
-                    <td>${vendor.count}</td>
-                    <td nowrap="true"><strong>${'%.1f' % (float(vendor.count) / totalHosts * 100) } %</strong></td>
-                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(vendor.count) / totalHosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+                    <th>${pciVendors.vendor(vendor[1], alt='Unknown ID: %s' %vendor[1])}</th>
+                    <td>${vendor[0]}</td>
+                    <td nowrap="true"><strong>${'%.1f' % (float(vendor[0]) / totalHosts * 100) } %</strong></td>
+                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(vendor[0]) / totalHosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
                 </tr>
             </table>
         </div>

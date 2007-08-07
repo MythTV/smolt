@@ -142,7 +142,7 @@
                 </tr>
             </table>
         </div>
-        <div class="tabbertab"><h2>kernel</h2>
+        <div class="tabbertab"><h2>Kernel</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='kernelVersion in Stat["kernelVersion"]'>
                     <th align="right">${kernelVersion.kernel_version}</th>
@@ -152,7 +152,7 @@
                 </tr>
             </table>
         </div>
-        <div class="tabbertab"><h2>type</h2>
+        <div class="tabbertab"><h2>Form Factor</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='formfactor in Stat["formfactor"]'>
                     <th align="right">${formfactor.formfactor}</th>

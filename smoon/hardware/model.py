@@ -123,10 +123,6 @@ uniquelist = Table("UNIQUELIST", metadata,
                    Column('description', TEXT, primary_key=True),
                    Column('cnt', INT, key='count'))
 
-vendor_count = Table("VENDOR_COUNT", metadata,
-                     Column('vendor_id', INT, primary_key=True),
-                     Column('cnt', INT, key='count'))
-
 class Host(object):
     def __init__(self, selinux_enabled=False, rating=0, last_modified=DateTime.now()):
         self.selinux_enabled = selinux_enabled
@@ -178,8 +174,6 @@ class TotalList(object):
     pass
 class UniqueList(object):
     pass
-class VendorCount(object):
-    pass
 
 assign(Foo, hosts,
        properties = {'clds': relation(ComputerLogicalDevice, secondary=host_links)})
@@ -227,5 +221,4 @@ assign(FormFactor, formfactors, order_by=desc(formfactors.c.cnt))
 assign(Language, languages, order_by=desc(languages.c.cnt))
 assign(TotalList, totallist)
 assign(UniqueList, uniquelist)
-assign(VendorCount, vendor_count)
 

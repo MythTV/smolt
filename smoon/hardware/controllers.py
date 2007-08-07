@@ -125,7 +125,6 @@ class Root(controllers.RootController):
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
-            #hostObject = Host.byUUID(UUID)
             hostObject = Host.query().selectone_by(uuid=UUID)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % UUID)
@@ -145,8 +144,6 @@ class Root(controllers.RootController):
         except:
             raise ValueError("Critical: UUID does not exist %s " % UUID)
         try:
-#            Host._connection.queryAll("delete from host_links where host_link_id='%s';" % host.id)
-#            Host._connection.queryAll("delete from host where id='%s';" % host.id)
             host.delete()
             host.flush()
         except:
@@ -229,12 +226,10 @@ class Root(controllers.RootController):
 
         UUID = UUID.strip()
         try:
-            #hostSQL = Host.byUUID(UUID)
             hostSQL = Host.query().selectone_by(uuid=UUID)
         except InvalidRequestError:
             hostSQL = Host()
             hostSQL.uuid = UUID
-            #Host._connection.queryAll("delete from host_links where host_link_id='%s'" % hostSQL.id)
 
         hostSQL.os = OS.strip()
         hostSQL.platform = platform.strip()
@@ -260,31 +255,6 @@ class Root(controllers.RootController):
         
         hostSQL.save_or_update()
         hostSQL.flush()
-#
-#        except SQLObjectNotFound:
-#            try:
-#                bogomips = float(bogomips)
-#            except:
-#                bogomips = 0
-#            hostSQL = Host(UUID = UUID,
-#                        OS = OS.strip(),
-#                        platform = platform.strip(),
-#                        bogomips = float(bogomips),
-#                        systemMemory = int(systemMemory),
-#                        systemSwap = int(systemSwap),
-#                        CPUVendor = CPUVendor.strip(),
-#                        CPUModel = CPUModel.strip(),
-#                        numCPUs = int(numCPUs),
-#                        CPUSpeed = float(CPUSpeed),
-#                        language = language.strip(),
-#                        defaultRunlevel = int(defaultRunlevel),
-#                        vendor = vendor.strip(),
-#                        system = system.strip(),
-#                        kernelVersion = kernelVersion.strip(),
-#                        formfactor = formfactor.strip(),
-#                        selinux_enabled = bool(selinux_enabled),
-#                        selinux_enforce = selinux_enforce.strip(),
-#                        LastModified = DateTime.now())
         return dict()
 
     @expose()
@@ -293,7 +263,6 @@ class Root(controllers.RootController):
         import time
         from mx import DateTime
         try:
-            #host = Host.byUUID(UUID)
             host = Host.query().selectone_by(uuid=UUID)
         except InvalidRequestError:
             raise ValueError("Critical: UUID not found - %s" % UUID)
@@ -310,7 +279,6 @@ class Root(controllers.RootController):
                 Driver,
                 Class,
                 Description) = device.split('|')
-#                DeviceId = '%s:%s' % (DeviceId.strip(), VendorId.strip())
             except:
                 raise ValueError("Critical: Device Read Failed - %s" % device)
 
@@ -336,7 +304,6 @@ class Root(controllers.RootController):
                 Description = '%s:%s:%s:%s' % (VendorId, DeviceId, SubsysDeviceId, SubsysVendorId)
             
             try:
-                #deviceSQL = Device.byDescription(Description)
                 deviceSQL = ComputerLogicalDevice.query().selectone_by(description=Description)
             except exceptions.InvalidRequestError:
                 try:
@@ -349,22 +316,11 @@ class Root(controllers.RootController):
                     deviceSQL.subsys_vendor_id = SubsysVendorId
                     deviceSQL.subsys_device_id = SubsysDeviceId
                     deviceSQL.date_added = DateTime.now()
-#                    deviceSQL = Device(Description = Description,
-#                        Bus = Bus,
-#                        Driver = Driver,
-#                        Class = Class,
-#                        DeviceId = DeviceId,
-#                        VendorId = VendorId,
-#                        SubsysVendorId = SubsysVendorId,
-#                        SubsysDeviceId = SubsysDeviceId,
-#                        DateAdded = DateTime.now())
                 except AttributeError, e:
                     raise ValueError("Critical: Device add Failed - %s" % e)
             except AttributeError, e:
                 raise ValueError("Critical: Device add Failed - %s" % e)
             try:
-#                deviceSQL.DeviceId = DeviceId
-                #link = HostLinks(deviceID=deviceSQL.id, hostLink=host.id)
                 link = HostLink()
                 link.host = host
                 link.device = deviceSQL
@@ -458,9 +414,8 @@ class Root(controllers.RootController):
         totalHosts = select([host_links.c.host_link_id], distinct=True).alias("m").count().execute().fetchone()[0]
         count = select([host_links.c.host_link_id], and_(host_links.c.device_id == computer_logical_devices.c.id, computer_logical_devices.c.klass == type), distinct=True).alias("m").count().execute().fetchone()[0]
         types = HardwareByClass.query().order_by(desc(HardwareByClass.c.count)).limit(100).select_by(klass=type)
-        #vendors = select([device.c.vendor_id, func.count(device.c.vendor_id).alias('cnt')], and_(host_links.c.device_id==device.c.id, device.c.klass==type), order_by=[desc('cnt')])
-        vendors = VendorCount.query().select()
-        #vendors = Host._connection.queryAll('select device.vendor_id, count(device.vendor_id) as cnt from host_links, device where host_links.device_id=device.id and device.class="%s" group by device.vendor_id order by cnt desc;' % type)
+        device = computer_logical_devices
+        vendors = select([func.count(device.c.vendor_id).label('cnt'), device.c.vendor_id], device.c.klass==type, order_by=[desc('cnt')], group_by=device.c.vendor_id).execute().fetchall()
         return dict(types=types, type=type, totalHosts=totalHosts, count=count, pciVendors=pciVendors, vendors=vendors, tabs=tabs)
 
     @expose(template="hardware.templates.notLoaded")
@@ -495,9 +450,7 @@ class Root(controllers.RootController):
         devices['total'] = HostLink.query().count()
         devices['count'] = ComputerLogicalDevice.query().count()
         devices['totalHosts'] = Host.query().count()
-        #devices['totalList'] = Host._connection.queryAll('select device.description, count(host_links.device_id) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100;')
         devices['totalList'] = TotalList.query().select(limit=100)
-        #devices['uniqueList'] = Host._connection.queryAll('select device.description, count(distinct(host_links.host_link_id)) as cnt from host_links, device where host_links.device_id=device.id group by host_links.device_id order by cnt desc limit 100')
         devices['uniqueList'] = UniqueList.query().select(limit=100)
         devices['classes'] = HardwareClass.query().select()
         self.devices_lock.write_acquire()
