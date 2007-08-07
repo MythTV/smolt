@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-28 15:34-0400\n"
+"POT-Creation-Date: 2007-08-07 15:34-0400\n"
 "PO-Revision-Date: 2007-04-08 20:21+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <translation-team-ms@lists.sourceforge.net>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: deleteProfile.py:35 smolt.py:245
+#: deleteProfile.py:35 smolt.py:246
 #, fuzzy, python-format
 msgid "Server Message: \"%s\""
 msgstr "Mesej Init"
@@ -200,14 +200,14 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 msgstr ""
 
-#: smolt.py:247
+#: smolt.py:248
 #, fuzzy, python-format
 msgid "Could not contact server: %s"
 msgstr "tidak dapat mengikat ke pelayan LDAP"
 
 #: smolt.py:279
 #, fuzzy
-msgid "Could not bind to dbus"
+msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "tidak dapat mengikat ke pelayan LDAP"
 
 #: smolt.py:285
@@ -218,105 +218,109 @@ msgstr ""
 msgid "Run \"service haldaemon start\" as root"
 msgstr ""
 
-#: smolt.py:361 smolt.py:408 smolt.py:437
+#: smolt.py:321 smolt.py:410 smolt.py:467 smolt.py:484
 #, fuzzy, python-format
 msgid "Error contacting Server: %s"
 msgstr "Ralat Dalaman Pelayan"
 
 #: smolt.py:419
+msgid "Wrong version, server incapable of handling your client"
+msgstr ""
+
+#: smolt.py:435
 #, fuzzy
 msgid "Communication with server failed"
 msgstr "Terdapat ralat komunikasi dengan pelayan: %s"
 
-#: smolt.py:475
+#: smolt.py:505
 msgid "Devices"
 msgstr "Peranti"
 
-#: smolt.py:486
+#: smolt.py:516
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:487
+#: smolt.py:517
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:488
+#: smolt.py:518
 #, fuzzy
 msgid "Default run level"
 msgstr "tidak dapat menentukan run level sekarang\n"
 
-#: smolt.py:489
+#: smolt.py:519
 msgid "Language"
 msgstr "Bahasa"
 
-#: smolt.py:490
+#: smolt.py:520
 msgid "Platform"
 msgstr "Platform"
 
-#: smolt.py:491
+#: smolt.py:521
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:492
+#: smolt.py:522
 #, fuzzy
 msgid "CPU Vendor"
 msgstr "Model CPU:"
 
-#: smolt.py:493
+#: smolt.py:523
 #, fuzzy
 msgid "CPU Model"
 msgstr "Model CPU:"
 
-#: smolt.py:494
+#: smolt.py:524
 #, fuzzy
 msgid "Number of CPUs"
 msgstr "Numbor peranti"
 
-#: smolt.py:495
+#: smolt.py:525
 #, fuzzy
 msgid "CPU Speed"
 msgstr "Kelajuan CPU:"
 
-#: smolt.py:496
+#: smolt.py:526
 #, fuzzy
 msgid "System Memory"
 msgstr "Memori Rendah"
 
-#: smolt.py:497
+#: smolt.py:527
 #, fuzzy
 msgid "System Swap"
 msgstr "Tambah Swap"
 
-#: smolt.py:498
+#: smolt.py:528
 msgid "Vendor"
 msgstr "Pengeluar"
 
-#: smolt.py:499
+#: smolt.py:529
 msgid "System"
 msgstr "Sistem"
 
-#: smolt.py:500
+#: smolt.py:530
 #, fuzzy
 msgid "Form factor"
 msgstr "Bentuk asas:"
 
-#: smolt.py:501
+#: smolt.py:531
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smolt.py:502
+#: smolt.py:532
 msgid "SELinux Enabled"
 msgstr ""
 
-#: smolt.py:503
+#: smolt.py:533
 msgid "SELinux Enforce"
 msgstr ""
 
-#: smolt.py:936
+#: smolt.py:966
 msgid "Unable to save UUID, continuing...\n"
 msgstr ""
 
-#: smolt.py:938
+#: smolt.py:968
 msgid "Unable to determine UUID of system!\n"
 msgstr ""
 

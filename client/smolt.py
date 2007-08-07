@@ -276,7 +276,7 @@ class Hardware:
         try:
             systemBus = dbus.SystemBus()
         except:
-            raise SystemBusError, _('Could not bind to dbus')
+            raise SystemBusError, _('Could not bind to dbus.  Is dbus running?')
         
         mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
         try:

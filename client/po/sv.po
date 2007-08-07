@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-28 15:34-0400\n"
+"POT-Creation-Date: 2007-08-07 15:34-0400\n"
 "PO-Revision-Date: 2007-04-04 10:25-0400\n"
 "Last-Translator: Magnus Larsson <fedoratrans@gmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 
-#: deleteProfile.py:35 smolt.py:245
+#: deleteProfile.py:35 smolt.py:246
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Servermeddelande: \"%s\""
@@ -194,13 +194,13 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 msgstr ""
 
-#: smolt.py:247
+#: smolt.py:248
 #, python-format
 msgid "Could not contact server: %s"
 msgstr ""
 
 #: smolt.py:279
-msgid "Could not bind to dbus"
+msgid "Could not bind to dbus.  Is dbus running?"
 msgstr ""
 
 #: smolt.py:285
@@ -211,96 +211,100 @@ msgstr ""
 msgid "Run \"service haldaemon start\" as root"
 msgstr ""
 
-#: smolt.py:361 smolt.py:408 smolt.py:437
+#: smolt.py:321 smolt.py:410 smolt.py:467 smolt.py:484
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr ""
 
 #: smolt.py:419
+msgid "Wrong version, server incapable of handling your client"
+msgstr ""
+
+#: smolt.py:435
 msgid "Communication with server failed"
 msgstr ""
 
-#: smolt.py:475
+#: smolt.py:505
 msgid "Devices"
 msgstr "Enheter"
 
-#: smolt.py:486
+#: smolt.py:516
 msgid "UUID"
 msgstr ""
 
-#: smolt.py:487
+#: smolt.py:517
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:488
+#: smolt.py:518
 msgid "Default run level"
 msgstr "Standardkörnivå"
 
-#: smolt.py:489
+#: smolt.py:519
 msgid "Language"
 msgstr "Språk"
 
-#: smolt.py:490
+#: smolt.py:520
 msgid "Platform"
 msgstr "Plattform"
 
-#: smolt.py:491
+#: smolt.py:521
 msgid "BogoMIPS"
 msgstr ""
 
-#: smolt.py:492
+#: smolt.py:522
 msgid "CPU Vendor"
 msgstr "CPU-leverantör"
 
-#: smolt.py:493
+#: smolt.py:523
 msgid "CPU Model"
 msgstr ""
 
-#: smolt.py:494
+#: smolt.py:524
 msgid "Number of CPUs"
 msgstr ""
 
-#: smolt.py:495
+#: smolt.py:525
 msgid "CPU Speed"
 msgstr ""
 
-#: smolt.py:496
+#: smolt.py:526
 msgid "System Memory"
 msgstr "Systemminne"
 
-#: smolt.py:497
+#: smolt.py:527
 msgid "System Swap"
 msgstr ""
 
-#: smolt.py:498
+#: smolt.py:528
 msgid "Vendor"
 msgstr ""
 
-#: smolt.py:499
+#: smolt.py:529
 msgid "System"
 msgstr "System"
 
-#: smolt.py:500
+#: smolt.py:530
 msgid "Form factor"
 msgstr ""
 
-#: smolt.py:501
+#: smolt.py:531
 msgid "Kernel"
 msgstr "Kärna"
 
-#: smolt.py:502
+#: smolt.py:532
 msgid "SELinux Enabled"
 msgstr ""
 
-#: smolt.py:503
+#: smolt.py:533
 msgid "SELinux Enforce"
 msgstr ""
 
-#: smolt.py:936
+#: smolt.py:966
 msgid "Unable to save UUID, continuing...\n"
 msgstr ""
 
-#: smolt.py:938
+#: smolt.py:968
 msgid "Unable to determine UUID of system!\n"
 msgstr ""
 

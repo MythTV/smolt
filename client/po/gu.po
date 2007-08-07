@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-28 15:34-0400\n"
+"POT-Creation-Date: 2007-08-07 15:34-0400\n"
 "PO-Revision-Date: 2007-04-02 11:28+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati <fedora-trans-gu@redhat.com>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms:  nplurals=2; plural=(n!=1);\n"
 "\n"
 
-#: deleteProfile.py:35 smolt.py:245
+#: deleteProfile.py:35 smolt.py:246
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "સર્વર સંદેશો: \"%s\""
@@ -200,13 +200,14 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 msgstr ""
 
-#: smolt.py:247
+#: smolt.py:248
 #, python-format
 msgid "Could not contact server: %s"
 msgstr "સર્વરનો સંપર્ક કરી શક્યા નહિં: %s"
 
 #: smolt.py:279
-msgid "Could not bind to dbus"
+#, fuzzy
+msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "dbus સાથે બાંધી શક્યા નહિં"
 
 #: smolt.py:285
@@ -217,96 +218,100 @@ msgstr "hal સાથે જોડાઈ શક્યા નહિં, શું
 msgid "Run \"service haldaemon start\" as root"
 msgstr "\"service haldaemon start\" ને રુટ તરીકે ચલાવો"
 
-#: smolt.py:361 smolt.py:408 smolt.py:437
+#: smolt.py:321 smolt.py:410 smolt.py:467 smolt.py:484
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "સર્વરનો સંપર્ક કરવામાં ભૂલ: %s"
 
 #: smolt.py:419
+msgid "Wrong version, server incapable of handling your client"
+msgstr ""
+
+#: smolt.py:435
 msgid "Communication with server failed"
 msgstr "સર્વર સાથે સંપર્કવ્યવહાર નિષ્ફળ"
 
-#: smolt.py:475
+#: smolt.py:505
 msgid "Devices"
 msgstr "ઉપકરણો"
 
-#: smolt.py:486
+#: smolt.py:516
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:487
+#: smolt.py:517
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:488
+#: smolt.py:518
 msgid "Default run level"
 msgstr "મૂળભૂત રન લેવલ"
 
-#: smolt.py:489
+#: smolt.py:519
 msgid "Language"
 msgstr "ભાષા"
 
-#: smolt.py:490
+#: smolt.py:520
 msgid "Platform"
 msgstr "પ્લેટફોર્મ"
 
-#: smolt.py:491
+#: smolt.py:521
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:492
+#: smolt.py:522
 msgid "CPU Vendor"
 msgstr "CPU વિક્રેતા"
 
-#: smolt.py:493
+#: smolt.py:523
 msgid "CPU Model"
 msgstr "CPU મોડેલ"
 
-#: smolt.py:494
+#: smolt.py:524
 msgid "Number of CPUs"
 msgstr "CPU ની સંખ્યા"
 
-#: smolt.py:495
+#: smolt.py:525
 msgid "CPU Speed"
 msgstr "CPU ઝડપ"
 
-#: smolt.py:496
+#: smolt.py:526
 msgid "System Memory"
 msgstr "સિસ્ટમ મેમરી"
 
-#: smolt.py:497
+#: smolt.py:527
 msgid "System Swap"
 msgstr "સિસ્ટમ સ્વેપ"
 
-#: smolt.py:498
+#: smolt.py:528
 msgid "Vendor"
 msgstr "વિક્રેતા"
 
-#: smolt.py:499
+#: smolt.py:529
 msgid "System"
 msgstr "સિસ્ટમ"
 
-#: smolt.py:500
+#: smolt.py:530
 msgid "Form factor"
 msgstr "અવયવમાંથી"
 
-#: smolt.py:501
+#: smolt.py:531
 msgid "Kernel"
 msgstr "કર્નલ"
 
-#: smolt.py:502
+#: smolt.py:532
 msgid "SELinux Enabled"
 msgstr ""
 
-#: smolt.py:503
+#: smolt.py:533
 msgid "SELinux Enforce"
 msgstr ""
 
-#: smolt.py:936
+#: smolt.py:966
 msgid "Unable to save UUID, continuing...\n"
 msgstr ""
 
-#: smolt.py:938
+#: smolt.py:968
 msgid "Unable to determine UUID of system!\n"
 msgstr ""
 
