@@ -34,3 +34,5 @@ ALTER TABLE `classes`
  ADD COLUMN `description` TEXT  DEFAULT NULL AFTER `class`,
  ADD PRIMARY KEY (`class`);
 
+ALTER TABLE `host_links` ADD COLUMN `rating` INT  NOT NULL DEFAULT 0 AFTER `device_id`;
+

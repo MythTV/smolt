@@ -217,9 +217,9 @@ class Root(controllers.RootController):
         
         It will probably remain through a few releases for older clients.
         """
-        if smoltProtocol < "0.96":
+        if smoltProtocol < ".91":
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
-        if smoltProtocol > "0.96":
+        if smoltProtocol > ".91":
             raise ValueError("Woah there marty mcfly, you got to go back to 1955!")
         
         self.check_token(token, UUID)
