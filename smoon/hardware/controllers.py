@@ -151,7 +151,7 @@ class Root(controllers.RootController):
     @expose(template="hardware.templates.token", allow_json=True)
     def token(self, UUID):
         crypt = XOR.new(CRYPTPASS)
-        str = "%s\n%s " % ( int(time.mktime(datetime.datetime.now().timetuple())), UUID)
+        str = "%s\n%s " % ( int(time.mktime(datetime.now().timetuple())), UUID)
         # I hate obfuscation.  Its all I've got
         token = crypt.encrypt(str)
         return dict(token=urllib.quote(token),
@@ -160,7 +160,7 @@ class Root(controllers.RootController):
     @expose("json")
     def token_json(self, uuid):
         crypt = XOR.new(CRYPTPASS)
-        str = "%s\n%s " % ( int(time.mktime(datetime.datetime.now().timetuple())), UUID)
+        str = "%s\n%s " % ( int(time.mktime(datetime.now().timetuple())), uuid)
         # I hate obfuscation.  Its all I've got
         token = crypt.encrypt(str)
         return dict(token=urllib.quote(token),
@@ -195,7 +195,7 @@ class Root(controllers.RootController):
         token_plain = crypt.decrypt(token).split('\n')
         token_time = int(token_plain[0])
         token_uuid = token_plain[1]
-        current_time = int(time.mktime(datetime.datetime.now().timetuple()))
+        current_time = int(time.mktime(datetime.now().timetuple()))
         if current_time - token_time > 20:
             raise ValueError("Critical [20]: Invalid Token")
         if uuid.strip() != token_uuid.strip():
