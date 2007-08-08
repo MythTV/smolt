@@ -31,7 +31,7 @@ sys.path.append('/usr/share/smolt/client')
 from i18n import _
 import smolt
 import gui
-import starhscale
+import privacypolicy
 
 class SmoltGui(object):
     ui = '''<ui>
@@ -98,17 +98,17 @@ class SmoltGui(object):
         toolbar.show()
         layout.pack_start(toolbar, expand=False)
         
-        ratings_hbox = gtk.HBox()
-        ratings_hbox.show()
-        layout.pack_start(ratings_hbox, expand=False)
-
-        ratings_label = gtk.Label(_('Rate this system:'))
-        ratings_label.show()
-        ratings_hbox.pack_start(ratings_label, expand=False)
-
-        ratings = starhscale.StarHScale(5,0)
-        ratings.show()
-        ratings_hbox.pack_start(ratings, expand=False)
+#        ratings_hbox = gtk.HBox()
+#        ratings_hbox.show()
+#        layout.pack_start(ratings_hbox, expand=False)
+#
+#        ratings_label = gtk.Label(_('Rate this system:'))
+#        ratings_label.show()
+#        ratings_hbox.pack_start(ratings_label, expand=False)
+#
+#        ratings = starhscale.StarHScale(5,0)
+#        ratings.show()
+#        ratings_hbox.pack_start(ratings, expand=False)
         
         vpaned = gtk.VPaned()
         vpaned.show()
@@ -149,10 +149,11 @@ class SmoltGui(object):
 
     def privacy_cb(self, *extra):
         if self.privacyPolicy is None:
-            if os.path.exists('../doc/PrivacyPolicy'):
-                privacy_text = file('../doc/PrivacyPolicy', 'r').read().strip()
-            else:
-                privacy_text = file('/usr/share/smolt/doc/PrivacyPolicy').read().strip()
+            privacy_text = privacypolicy.PRIVACY_POLICY
+#            if os.path.exists('../doc/PrivacyPolicy'):
+#                privacy_text = file('../doc/PrivacyPolicy', 'r').read().strip()
+#            else:
+#                privacy_text = file('/usr/share/smolt/doc/PrivacyPolicy').read().strip()
             self.privacyPolicy = gtk.Dialog(_('Smolt Privacy Policy'),
                                             self.mainWindow,
                                             gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,

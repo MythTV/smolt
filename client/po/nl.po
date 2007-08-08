@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-07 15:34-0400\n"
+"POT-Creation-Date: 2007-08-08 12:42-0400\n"
 "PO-Revision-Date: 2007-06-28 12:25-0500\n"
 "Last-Translator: Yaakov Nemoy <loupgaroublond@gmail.com>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: deleteProfile.py:35 smolt.py:246
+#: deleteProfile.py:35 smolt.py:235
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Server-melding: \"%s\""
@@ -199,118 +199,118 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 msgstr ""
 
-#: smolt.py:248
+#: smolt.py:237
 #, python-format
 msgid "Could not contact server: %s"
 msgstr "Kon geen contact maken met server: %s"
 
-#: smolt.py:279
+#: smolt.py:268
 #, fuzzy
 msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "Kon niet met dbus verbinden"
 
-#: smolt.py:285
+#: smolt.py:274
 msgid "Could not connect to hal, is it running?"
 msgstr "Kon geen contact maken met hal, draait het wel?"
 
-#: smolt.py:285
+#: smolt.py:274
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Voer \"service haldaemon start\" uit als root"
 
-#: smolt.py:321 smolt.py:410 smolt.py:467 smolt.py:484
+#: smolt.py:310 smolt.py:400 smolt.py:461 smolt.py:478
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Fout bij het contact opnemen met de server: %s"
 
-#: smolt.py:419
+#: smolt.py:409
 msgid "Wrong version, server incapable of handling your client"
 msgstr ""
 
-#: smolt.py:435
+#: smolt.py:425
 msgid "Communication with server failed"
 msgstr "Communicatie met de server is mislukt"
 
-#: smolt.py:505
+#: smolt.py:499
 msgid "Devices"
 msgstr "Apparaten"
 
-#: smolt.py:516
+#: smolt.py:510
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:517
+#: smolt.py:511
 msgid "OS"
 msgstr "Besturingssysteem"
 
-#: smolt.py:518
+#: smolt.py:512
 msgid "Default run level"
 msgstr "Standaard runlevel"
 
-#: smolt.py:519
+#: smolt.py:513
 msgid "Language"
 msgstr "Taal"
 
-#: smolt.py:520
+#: smolt.py:514
 msgid "Platform"
 msgstr "Platform"
 
-#: smolt.py:521
+#: smolt.py:515
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:522
+#: smolt.py:516
 msgid "CPU Vendor"
 msgstr "Processorfabrikant"
 
-#: smolt.py:523
+#: smolt.py:517
 msgid "CPU Model"
 msgstr "Processormodel"
 
-#: smolt.py:524
+#: smolt.py:518
 msgid "Number of CPUs"
 msgstr "Aantal processoren"
 
-#: smolt.py:525
+#: smolt.py:519
 msgid "CPU Speed"
 msgstr "Processorsnelheid"
 
-#: smolt.py:526
+#: smolt.py:520
 msgid "System Memory"
 msgstr "Systeemgeheugen"
 
-#: smolt.py:527
+#: smolt.py:521
 msgid "System Swap"
 msgstr "Systeemwisselbestand"
 
-#: smolt.py:528
+#: smolt.py:522
 msgid "Vendor"
 msgstr "Fabrikant"
 
-#: smolt.py:529
+#: smolt.py:523
 msgid "System"
 msgstr "Systeem"
 
-#: smolt.py:530
+#: smolt.py:524
 msgid "Form factor"
 msgstr "Form factor"
 
-#: smolt.py:531
+#: smolt.py:525
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smolt.py:532
+#: smolt.py:526
 msgid "SELinux Enabled"
 msgstr "SELinux aangezet"
 
-#: smolt.py:533
+#: smolt.py:527
 msgid "SELinux Enforce"
 msgstr ""
 
-#: smolt.py:966
+#: smolt.py:960
 msgid "Unable to save UUID, continuing...\n"
 msgstr ""
 
-#: smolt.py:968
+#: smolt.py:962
 msgid "Unable to determine UUID of system!\n"
 msgstr ""
 
@@ -373,6 +373,36 @@ msgstr "Soort"
 #: gui.py:123
 msgid "Description"
 msgstr "Omschrijving"
+
+#: privacypolicy.py:3
+msgid ""
+"Smolt will only send hardware and basic operating system information to the\n"
+"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"machine is the UUID.  As long as the submitter does not give out this UUID\n"
+"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"their profile from the database they need only run\n"
+"\n"
+"    smoltDeleteProfile\n"
+"\n"
+"The information sent to the smolt database server should be considered public\n"
+"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
+"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"we will be using smolt as leverage to gain better support for open source\n"
+"drivers and better support in general.\n"
+"\n"
+"IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
+"server first.  This is the only place IP addresses are being logged and they\n"
+"are kept on that server for a period of 4 weeks at which time log rotation\n"
+"removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
+"the smolt database.  These logs are private and will not be available to the\n"
+"general public.\n"
+"\n"
+"Users unhappy with this policy should simply not use smolt.  Users with\n"
+"questions about this policy should contact the Fedora Infrastructure Team at\n"
+"admin [at] fedoraproject.org  Also remember that users can delete their\n"
+"profiles at any time using \"smoltDeleteProfile\"\n"
+msgstr ""
 
 #~ msgid "Device ID"
 #~ msgstr "Apparaat-ID"
