@@ -394,6 +394,7 @@ class Hardware:
             token = grabber.urlopen(urljoin(smoonURL + "/", '/token_json?uuid=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
             try:
+                print e
                 token = grabber.urlopen(urljoin(smoonURL + "/", '/token?UUID=%s' % self.host.UUID, False))
             except urlgrabber.grabber.URLGrabError, e:
                 error(_('Error contacting Server: %s') % e)
