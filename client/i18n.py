@@ -18,6 +18,7 @@
 
 import locale
 locale.setlocale(locale.LC_ALL, '')
+print locale.LC_ALL
 
 import os
 
@@ -29,6 +30,6 @@ if os.path.isdir('po'):
     t = gettext.translation('smolt', 'po', fallback = True)
     
 else:
-    t = gettext.translation('smolt', fallback = True)
+    t = gettext.translation('smolt', '/usr/share/locale', fallback = True)
 
 _ = t.gettext

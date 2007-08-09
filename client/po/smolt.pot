@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 12:42-0400\n"
+"POT-Creation-Date: 2007-08-08 15:27-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,10 +156,6 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
-#: smoltGui.py:105
-msgid "Rate this system:"
-msgstr ""
-
 #: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr ""
@@ -173,23 +169,23 @@ msgid ""
 "stored in %s"
 msgstr ""
 
-#: smoltGui.py:156
+#: smoltGui.py:157
 msgid "Smolt Privacy Policy"
 msgstr ""
 
-#: smoltGui.py:199
+#: smoltGui.py:200
 msgid "translator-credits"
 msgstr ""
 
-#: smoltGui.py:200
+#: smoltGui.py:201
 msgid "Fedora hardware profiler."
 msgstr ""
 
-#: smoltGui.py:201
+#: smoltGui.py:202
 msgid "Copyright © 2007 Mike McGrath"
 msgstr ""
 
-#: smoltGui.py:203
+#: smoltGui.py:204
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -360,31 +356,27 @@ msgstr ""
 msgid "_No, do not send."
 msgstr ""
 
-#: gui.py:58
+#: gui.py:56
 msgid "Label"
 msgstr ""
 
-#: gui.py:64
+#: gui.py:62
 msgid "Data"
 msgstr ""
 
-#: gui.py:95
-msgid "Rate this device"
-msgstr ""
-
-#: gui.py:102
+#: gui.py:100
 msgid "Bus"
 msgstr ""
 
-#: gui.py:109
+#: gui.py:107
 msgid "Driver"
 msgstr ""
 
-#: gui.py:116
+#: gui.py:114
 msgid "Type"
 msgstr ""
 
-#: gui.py:123
+#: gui.py:121
 msgid "Description"
 msgstr ""
 

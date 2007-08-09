@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: or\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 12:42-0400\n"
+"POT-Creation-Date: 2007-08-08 15:27-0400\n"
 "PO-Revision-Date: 2007-04-09 15:16+0530\n"
 "Last-Translator: Subhransu Behera <arya_subhransu@yahoo.co.in>\n"
 "Language-Team: Oriya <oriya-group@lists.sarovar.org>\n"
@@ -155,10 +155,6 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
-#: smoltGui.py:105
-msgid "Rate this system:"
-msgstr ""
-
 #: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr "ସେବକକୁ ତଥ୍ଯ ପଠାଇବା ସମୟରେ ଗୋଟିଏ ତୃଟି ଘଟିଲା।"
@@ -174,24 +170,24 @@ msgstr ""
 "ଆପଣଙ୍କ UUID ଟି ହେଲା %s\n"
 "ଏହାକୁ /etc/sysconfig/hw-uuid ରେ ରଖାଯାଇଛି"
 
-#: smoltGui.py:156
+#: smoltGui.py:157
 msgid "Smolt Privacy Policy"
 msgstr "Smolt ଗୋପନୀୟତା ନୀତି"
 
-#: smoltGui.py:199
+#: smoltGui.py:200
 msgid "translator-credits"
 msgstr ""
 
-#: smoltGui.py:200
+#: smoltGui.py:201
 #, fuzzy
 msgid "Fedora hardware profiler."
 msgstr "ସେବକକୁ ଆପଣଙ୍କ ହାର୍ଡୱେର ରୂପରେଖ ପଠାନ୍ତୁ।"
 
-#: smoltGui.py:201
+#: smoltGui.py:202
 msgid "Copyright © 2007 Mike McGrath"
 msgstr ""
 
-#: smoltGui.py:203
+#: smoltGui.py:204
 msgid ""
 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
@@ -347,31 +343,27 @@ msgstr "ପଠାଇବା ପାଇଁ ପୁନର୍ବାର ବିଚାର
 msgid "_No, do not send."
 msgstr "ନାଁ, ପଠାନ୍ତୁ ନାହିଁ (_N)।"
 
-#: gui.py:58
+#: gui.py:56
 msgid "Label"
 msgstr "ସୂଚକ"
 
-#: gui.py:64
+#: gui.py:62
 msgid "Data"
 msgstr "ତଥ୍ଯ"
 
-#: gui.py:95
-msgid "Rate this device"
-msgstr ""
-
-#: gui.py:102
+#: gui.py:100
 msgid "Bus"
 msgstr "ବସ"
 
-#: gui.py:109
+#: gui.py:107
 msgid "Driver"
 msgstr "ଚାଳକ"
 
-#: gui.py:116
+#: gui.py:114
 msgid "Type"
 msgstr "ପ୍ରକାର"
 
-#: gui.py:123
+#: gui.py:121
 msgid "Description"
 msgstr "ବର୍ଣ୍ଣନା"
 

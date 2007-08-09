@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 12:42-0400\n"
+"POT-Creation-Date: 2007-08-08 15:27-0400\n"
 "PO-Revision-Date: 2007-04-04 03:52+0100\n"
 "Last-Translator: Renato Pavicic <renato@translator-shop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,10 +152,6 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
-#: smoltGui.py:105
-msgid "Rate this system:"
-msgstr ""
-
 #: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr "Tijekom slanja podataka prema poslužitelju došlo je do pogreške."
@@ -171,24 +167,24 @@ msgstr ""
 "%s,\n"
 "a pohranjen je u datoteci /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:156
+#: smoltGui.py:157
 msgid "Smolt Privacy Policy"
 msgstr "Smolt pravila o privatnosti"
 
-#: smoltGui.py:199
+#: smoltGui.py:200
 msgid "translator-credits"
 msgstr ""
 
-#: smoltGui.py:200
+#: smoltGui.py:201
 #, fuzzy
 msgid "Fedora hardware profiler."
 msgstr "Pošalji profil hardvera prema poslužitelju"
 
-#: smoltGui.py:201
+#: smoltGui.py:202
 msgid "Copyright © 2007 Mike McGrath"
 msgstr ""
 
-#: smoltGui.py:203
+#: smoltGui.py:204
 msgid ""
 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
@@ -344,31 +340,27 @@ msgstr "_Razmotri slanje"
 msgid "_No, do not send."
 msgstr "Ne, _ipak ne šalji"
 
-#: gui.py:58
+#: gui.py:56
 msgid "Label"
 msgstr "Oznaka"
 
-#: gui.py:64
+#: gui.py:62
 msgid "Data"
 msgstr "Podaci"
 
-#: gui.py:95
-msgid "Rate this device"
-msgstr ""
-
-#: gui.py:102
+#: gui.py:100
 msgid "Bus"
 msgstr "Sabirnica"
 
-#: gui.py:109
+#: gui.py:107
 msgid "Driver"
 msgstr "Upravljački program"
 
-#: gui.py:116
+#: gui.py:114
 msgid "Type"
 msgstr "Vrsta"
 
-#: gui.py:123
+#: gui.py:121
 msgid "Description"
 msgstr "Opis"
 

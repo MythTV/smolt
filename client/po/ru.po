@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 12:42-0400\n"
+"POT-Creation-Date: 2007-08-08 15:27-0400\n"
 "PO-Revision-Date: 2007-04-01 02:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -154,10 +154,6 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
-#: smoltGui.py:105
-msgid "Rate this system:"
-msgstr ""
-
 #: smoltGui.py:137
 msgid "An error occurred while sending the data to the server."
 msgstr "Произошла ошибка при отправке данных на сервер."
@@ -173,24 +169,24 @@ msgstr ""
 "%s,\n"
 "он сохранен в /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:156
+#: smoltGui.py:157
 msgid "Smolt Privacy Policy"
 msgstr "Защита персональной информации в Smolt"
 
-#: smoltGui.py:199
+#: smoltGui.py:200
 msgid "translator-credits"
 msgstr ""
 
-#: smoltGui.py:200
+#: smoltGui.py:201
 #, fuzzy
 msgid "Fedora hardware profiler."
 msgstr "Отправить профиль на сервер."
 
-#: smoltGui.py:201
+#: smoltGui.py:202
 msgid "Copyright © 2007 Mike McGrath"
 msgstr ""
 
-#: smoltGui.py:203
+#: smoltGui.py:204
 msgid ""
 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
@@ -346,31 +342,27 @@ msgstr "О_тменить отправку"
 msgid "_No, do not send."
 msgstr "_Нет, не отправлять."
 
-#: gui.py:58
+#: gui.py:56
 msgid "Label"
 msgstr "Метка"
 
-#: gui.py:64
+#: gui.py:62
 msgid "Data"
 msgstr "Данные"
 
-#: gui.py:95
-msgid "Rate this device"
-msgstr ""
-
-#: gui.py:102
+#: gui.py:100
 msgid "Bus"
 msgstr "Шина"
 
-#: gui.py:109
+#: gui.py:107
 msgid "Driver"
 msgstr "Драйвер"
 
-#: gui.py:116
+#: gui.py:114
 msgid "Type"
 msgstr "Тип"
 
-#: gui.py:123
+#: gui.py:121
 msgid "Description"
 msgstr "Описание"
 
