@@ -25,6 +25,7 @@ import sys
 import subprocess
 import gtk
 from urlparse import urljoin
+import webbrowser
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -39,6 +40,8 @@ class SmoltGui(object):
     <menu action="File">
       <menuitem action="Send"/>
       <separator/>
+      <menuitem action="MySmolt" />
+      <separator />
       <menuitem action="Quit"/>
     </menu>
     <menu action="Help">
@@ -53,6 +56,7 @@ class SmoltGui(object):
     <toolitem action="Send"/>
     <separator/>
     <toolitem action="Privacy"/>
+    <toolitem action="MySmolt" />
   </toolbar>
 </ui>
 '''
@@ -72,7 +76,8 @@ class SmoltGui(object):
                                  ('Privacy', gtk.STOCK_INFO, _('Show _Privacy Policy'), None, _('Show the Smolt privacy policy.'), self.privacy_cb),
                                  ('About', gtk.STOCK_ABOUT, _('_About'), None, None, self.about_cb),
                                  ('File', None, _('_File')),
-                                 ('Help', None, _('_Help'))])
+                                 ('Help', None, _('_Help')),
+                                 ('MySmolt', gtk.STOCK_HOME, _('_My Smolt Page'), None, _('Take me to my smolt profile page'), self.mysmolt_cb)])
         
         uim = gtk.UIManager()
         uim.insert_action_group(actiongroup, 0)
@@ -120,6 +125,9 @@ class SmoltGui(object):
         self.device_table = gui.DeviceTable(self.profile)
         vpaned.pack2(self.device_table.get(), resize = True, shrink = True)
         
+    def mysmolt_cb(self, *extra):
+        webbrowser.open(urljoin(smolt.smoonURL, '/show?UUID=%s' % self.profile.host.UUID))
+    
     def quit_cb(self, *extra):
         '''Quit the program.'''
         gtk.main_quit()
@@ -142,9 +150,10 @@ class SmoltGui(object):
                     gtk.MESSAGE_INFO,
                     gtk.BUTTONS_OK,
                     message_format=_('The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in %s') \
-                                     % (self.profile.host.UUID, smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")))
+                                     % (urljoin(smolt.smoonURL, '/show?UUID=%s' % self.profile.host.UUID), smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")))
         finishMessage.show()
         finishMessage.run()
+        webbrowser.open(urljoin(smolt.smoonURL, '/show?UUID=%s' % self.profile.host.UUID))
         self.quit_cb(None)
 
     def privacy_cb(self, *extra):
