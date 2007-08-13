@@ -18,7 +18,7 @@
 
 import locale
 locale.setlocale(locale.LC_ALL, '')
-print locale.LC_ALL
+#print locale.LC_ALL
 
 import os
 
