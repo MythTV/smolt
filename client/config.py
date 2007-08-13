@@ -9,12 +9,12 @@ SMOON_URL = "http://smolt.fedoraproject.org/"
 
 
 #For Redhat
-#try:
-#    OS = file('/etc/redhat-release').read().strip()
-#except IOError:
-#    OS = "Shadowman!"
-#
-#HW_UUID = "/etc/sysconfig/hw-uuid"
+try:
+    OS = file('/etc/redhat-release').read().strip()
+except IOError:
+    OS = "Shadowman!"
+
+HW_UUID = "/etc/sysconfig/hw-uuid"
 
 ##For SuSE
 #try:
@@ -24,14 +24,14 @@ SMOON_URL = "http://smolt.fedoraproject.org/"
 #
 #
 #For Debian
-try:
+#try:
     #this is a bit of a kludge, as /etc/debian-release is 
     #somewhat incomplete in what it gives you
     #I also figure this should work better in 
     #ubuntu
-    OS = file('/etc/issue.net').read().strip()
-except IOError:
-    OS = "The swirl, it's Spinning!"
+#    OS = file('/etc/issue.net').read().strip()
+#except IOError:
+#    OS = "The swirl, it's Spinning!"
 
 
 ##For Frugalware
@@ -79,4 +79,4 @@ except IOError:
 
 
 #For non RH Distros
-HW_UUID = "/etc/smolt/hw-uuid"
+#HW_UUID = "/etc/smolt/hw-uuid"
