@@ -391,12 +391,9 @@ class Hardware:
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         #first find out the server desired protocol
         try:
-            print "token_json"
             token = grabber.urlopen(urljoin(smoonURL + "/", '/token_json?uuid=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
             try:
-                print e
-                print "token"
                 token = grabber.urlopen(urljoin(smoonURL + "/", '/token?UUID=%s' % self.host.UUID, False))
             except urlgrabber.grabber.URLGrabError, e:
                 error(_('Error contacting Server: %s') % e)
