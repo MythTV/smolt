@@ -4,10 +4,13 @@
 # choice for testing, because you can use an in-memory database
 # which is very fast.
 
+import turbogears
 from turbogears import testutil, database
 # from hardware.model import YourDataClass, User
 
 # database.set_db_uri("sqlite:///:memory:")
+#    turbogears.update_config(modulename='hardware.config.log')
+turbogears.update_config(configfile='../test.cfg', modulename='hardware.config')
 
 # class TestUser(testutil.DBTest):
 #     def get_model(self):
