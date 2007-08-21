@@ -6,20 +6,18 @@
 
 import turbogears
 from turbogears import testutil, database
-# from hardware.model import YourDataClass, User
+from hardware.model import *
+from hardware import model
 
-# database.set_db_uri("sqlite:///:memory:")
-#    turbogears.update_config(modulename='hardware.config.log')
 turbogears.update_config(configfile='../test.cfg', modulename='hardware.config')
 
-# class TestUser(testutil.DBTest):
-#     def get_model(self):
-#         return User
-#     def test_creation(self):
-#         "Object creation should set the name"
-#         obj = User(user_name = "creosote",
-#                       email_address = "spam@python.not",
-#                       display_name = "Mr Creosote",
-#                       password = "Wafer-thin Mint")
-#         assert obj.display_name == "Mr Creosote"
+
+def test_add():
+
+    host = Host.query().selectone_by(uuid="fish")
+    print host.uuid
+
+    assert host.uuid != 'fish'
+    host.delete()
+    host.flush()
 
