@@ -27,7 +27,7 @@ CREATE TABLE `fas_link` (
   PRIMARY KEY (`id`)
 );
 
-create table classes select distinct class from device; select * from classes;
+create table classes select distinct class from device; 
 
 ALTER TABLE `classes`
  MODIFY COLUMN `class` VARCHAR(40) NOT NULL,
