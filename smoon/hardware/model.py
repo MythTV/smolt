@@ -3,8 +3,10 @@ from datetime import datetime
 from sqlalchemy import *
 from sqlalchemy.ext.assignmapper import assign_mapper
 from turbogears import identity
-from turbogears.database import metadata, session
+from turbogears.database import metadata, session, _engine
 from mx import DateTime
+
+from sahelper import ctx
 
 def assign(obj, table, *args, **kw):
     """Map tables to objects with knowledge about the session context."""
@@ -18,7 +20,7 @@ computer_logical_devices = Table('device', metadata,
                                         nullable=False),
                                  Column("bus", TEXT),
                                  Column("driver", TEXT),
-                                 Column("class", TEXT,
+                                 Column("class", VARCHAR(24),
                                         ForeignKey("classes.cls"),
                                         key="cls"),
                                  Column("date_added", DATETIME),
@@ -67,11 +69,6 @@ fas_links = Table('fas_link', metadata,
 hardware_classes = Table('classes', metadata,
                          Column("class", VARCHAR(24), nullable=False, primary_key=True, key="cls"),
                          Column("description", TEXT, key="class_description"))
-
-computer_devices = join(computer_logical_devices,
-                        hardware_classes,
-                        computer_logical_devices.c.cls == 
-                            hardware_classes.c.cls)
 
 hardware_by_class = Table("CLASS", metadata,
                           Column('device_id', VARCHAR(16), primary_key=True),
@@ -176,50 +173,53 @@ class TotalList(object):
 class UniqueList(object):
     pass
 
-assign(Foo, hosts,
+mapper(Foo, hosts,
        properties = {'clds': relation(ComputerLogicalDevice, secondary=host_links)})
 
-assign(Host, hosts,
+mapper(Host, hosts,
        properties = {
           'uuid' : hosts.c.u_u_id,
           'os': hosts.c.o_s,
           'num_cpus': hosts.c.num_cp_us,
           '_devices': relation(HostLink,
-                               cascade="all, delete-orphan",
+                               cascade="all,delete-orphan",
                                backref=backref('host'),
                                lazy=None),
-          'devices': relation(HostLink, cascade='all, delete-orphan'),
+          'devices': relation(HostLink, cascade='all,delete-orphan'),
           'fas_account': relation(FasLink, uselist=False)})
 
-assign(ComputerLogicalDevice,
-       computer_devices,
+mapper(ComputerLogicalDevice,
+       computer_logical_devices,
        properties = {"_host_links": relation(HostLink,
-                                            cascade="all, delete-orphan",
+                                            cascade="all,delete-orphan",
                                             backref=backref('device'),
                                             lazy=None),
                      "host_links": relation(HostLink,
-                                            cascade="all, delete-orphan")})
+                                            cascade="all,delete-orphan")})
 
-assign(HostLink, host_links)
+mapper(HostLink, host_links)
 
-assign(FasLink, fas_links, properties = {'hosts': relation(Host),
+mapper(FasLink, fas_links, properties = {'hosts': relation(Host),
                                          'uuid': fas_links.c.u_u_id})
 
-assign(HardwareClass,
+mapper(HardwareClass,
        hardware_classes,
-       properties = {'devices': relation(ComputerLogicalDevice)})
+       properties = {'devices': relation(ComputerLogicalDevice,
+                                         cascade="all,delete-orphan",
+                                         backref=backref('hardware_class'),
+                                         lazy=None)})
 
-assign(HardwareByClass, hardware_by_class)
-assign(OS, oses, order_by=desc(oses.c.cnt))
-assign(Arch, archs, order_by=desc(archs.c.cnt))
-assign(Runlevel, runlevels, order_by=desc(runlevels.c.cnt))
-assign(NumCPUs, num_cpus, order_by=desc(num_cpus.c.cnt))
-assign(Vendor, vendors, order_by=desc(vendors.c.cnt))
-assign(System, systems, order_by=desc(systems.c.cnt))
-assign(CPUVendor, cpu_vendors, order_by=desc(cpu_vendors.c.cnt))
-assign(KernelVersion, kernel_versions, order_by=desc(kernel_versions.c.cnt))
-assign(FormFactor, formfactors, order_by=desc(formfactors.c.cnt))
-assign(Language, languages, order_by=desc(languages.c.cnt))
-assign(TotalList, totallist, order_by=desc(totallist.c.count))
-assign(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
+mapper(HardwareByClass, hardware_by_class)
+mapper(OS, oses, order_by=desc(oses.c.cnt))
+mapper(Arch, archs, order_by=desc(archs.c.cnt))
+mapper(Runlevel, runlevels, order_by=desc(runlevels.c.cnt))
+mapper(NumCPUs, num_cpus, order_by=desc(num_cpus.c.cnt))
+mapper(Vendor, vendors, order_by=desc(vendors.c.cnt))
+mapper(System, systems, order_by=desc(systems.c.cnt))
+mapper(CPUVendor, cpu_vendors, order_by=desc(cpu_vendors.c.cnt))
+mapper(KernelVersion, kernel_versions, order_by=desc(kernel_versions.c.cnt))
+mapper(FormFactor, formfactors, order_by=desc(formfactors.c.cnt))
+mapper(Language, languages, order_by=desc(languages.c.cnt))
+mapper(TotalList, totallist, order_by=desc(totallist.c.count))
+mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
 

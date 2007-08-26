@@ -12,12 +12,12 @@ from hardware import model
 turbogears.update_config(configfile='../test.cfg', modulename='hardware.config')
 
 
-def test_add():
-
-    host = Host.query().selectone_by(uuid="fish")
-    print host.uuid
-
-    assert host.uuid != 'fish'
-    host.delete()
-    host.flush()
+#def test_add():
+#
+#    host = Host.query().selectone_by(uuid="fish")
+#    print host.uuid
+#
+#    assert host.uuid != 'fish'
+#    host.delete()
+#    host.flush()
 

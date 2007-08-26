@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: or\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 15:27-0400\n"
+"POT-Creation-Date: 2007-08-22 12:09-0400\n"
 "PO-Revision-Date: 2007-04-09 15:16+0530\n"
 "Last-Translator: Subhransu Behera <arya_subhransu@yahoo.co.in>\n"
 "Language-Team: Oriya <oriya-group@lists.sarovar.org>\n"
@@ -119,47 +119,55 @@ msgstr ""
 msgid "To view your profile visit: %s"
 msgstr "ଆପଣଙ୍କ ରୂପରେଖକୁ ଦେଖିବା ପାଇଁ ଏଠାକୁ ଯାଆନ୍ତୁ: %s"
 
-#: smoltGui.py:70
+#: smoltGui.py:74
 msgid "_Quit"
 msgstr "ବିଦାୟ ନିଅନ୍ତୁ (_Q)"
 
-#: smoltGui.py:70
+#: smoltGui.py:74
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "ସେବକକୁ ଆପଣଙ୍କ ହାର୍ଡୱେର ରୂପରେଖ ନ ପଠାଇ ପ୍ରୋଗ୍ରାମକୁ ବନ୍ଦ କରନ୍ତୁ"
 
-#: smoltGui.py:71
+#: smoltGui.py:75
 msgid "_Send"
 msgstr "ପଠାନ୍ତୁ (_S)"
 
-#: smoltGui.py:71
+#: smoltGui.py:75
 msgid "Send your hardware profile to the server."
 msgstr "ସେବକକୁ ଆପଣଙ୍କ ହାର୍ଡୱେର ରୂପରେଖ ପଠାନ୍ତୁ।"
 
-#: smoltGui.py:72
+#: smoltGui.py:76
 msgid "Show _Privacy Policy"
 msgstr "ଗୋପନୀୟତା ନୀତି ପ୍ରଦର୍ଶନ କରନ୍ତୁ (_P)"
 
-#: smoltGui.py:72
+#: smoltGui.py:76
 msgid "Show the Smolt privacy policy."
 msgstr "Smolt ଗୋପନୀୟତା ନୀତି ପ୍ରଦର୍ଶନ କରନ୍ତୁ।"
 
-#: smoltGui.py:73
+#: smoltGui.py:77
 msgid "_About"
 msgstr "ବିବରଣୀ (_A)"
 
-#: smoltGui.py:74
+#: smoltGui.py:78
 msgid "_File"
 msgstr ""
 
-#: smoltGui.py:75
+#: smoltGui.py:79
 msgid "_Help"
 msgstr ""
 
-#: smoltGui.py:137
+#: smoltGui.py:80
+msgid "_My Smolt Page"
+msgstr ""
+
+#: smoltGui.py:80
+msgid "Take me to my smolt profile page"
+msgstr ""
+
+#: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
 msgstr "ସେବକକୁ ତଥ୍ଯ ପଠାଇବା ସମୟରେ ଗୋଟିଏ ତୃଟି ଘଟିଲା।"
 
-#: smoltGui.py:144
+#: smoltGui.py:152
 #, fuzzy, python-format
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
@@ -170,24 +178,24 @@ msgstr ""
 "ଆପଣଙ୍କ UUID ଟି ହେଲା %s\n"
 "ଏହାକୁ /etc/sysconfig/hw-uuid ରେ ରଖାଯାଇଛି"
 
-#: smoltGui.py:157
+#: smoltGui.py:166
 msgid "Smolt Privacy Policy"
 msgstr "Smolt ଗୋପନୀୟତା ନୀତି"
 
-#: smoltGui.py:200
+#: smoltGui.py:209
 msgid "translator-credits"
 msgstr ""
 
-#: smoltGui.py:201
+#: smoltGui.py:210
 #, fuzzy
 msgid "Fedora hardware profiler."
 msgstr "ସେବକକୁ ଆପଣଙ୍କ ହାର୍ଡୱେର ରୂପରେଖ ପଠାନ୍ତୁ।"
 
-#: smoltGui.py:202
+#: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
 msgstr ""
 
-#: smoltGui.py:204
+#: smoltGui.py:213
 msgid ""
 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
@@ -214,100 +222,100 @@ msgstr "hal ସହିତ ସଂଯୋଗ କରିପାରିଲା ନାହ�
 msgid "Run \"service haldaemon start\" as root"
 msgstr "ରୁଟ ଚାଳକ ଭାବରେ \"service haldaemon start\" ଚଳାନ୍ତୁ"
 
-#: smolt.py:310 smolt.py:400 smolt.py:461 smolt.py:478
+#: smolt.py:310 smolt.py:399 smolt.py:460 smolt.py:477
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "ସେବକ ସହିତ ସମ୍ପର୍କ ସ୍ଥାପନ କରିବା ସମୟରେ ତୃଟି: %s"
 
-#: smolt.py:409
+#: smolt.py:408
 msgid "Wrong version, server incapable of handling your client"
 msgstr ""
 
-#: smolt.py:425
+#: smolt.py:424
 msgid "Communication with server failed"
 msgstr "ସେବକ ସହିତ ବାର୍ତ୍ତା ବିନିମୟ କରିବା ବିଫଳ ହୋଇଗଲା"
 
-#: smolt.py:499
+#: smolt.py:498
 msgid "Devices"
 msgstr "ଉପକରଣ"
 
-#: smolt.py:510
+#: smolt.py:509
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:511
+#: smolt.py:510
 msgid "OS"
 msgstr "ପ୍ରଚାଳନ ତନ୍ତ୍ର"
 
-#: smolt.py:512
+#: smolt.py:511
 msgid "Default run level"
 msgstr "ପୂର୍ବନିର୍ଦ୍ଧାରିତ ଚାଳନ ସ୍ତର"
 
-#: smolt.py:513
+#: smolt.py:512
 msgid "Language"
 msgstr "ଭାଷା"
 
-#: smolt.py:514
+#: smolt.py:513
 msgid "Platform"
 msgstr "ପ୍ଲାଟଫର୍ମ"
 
-#: smolt.py:515
+#: smolt.py:514
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:516
+#: smolt.py:515
 msgid "CPU Vendor"
 msgstr "CPU ବିକ୍ରେତା"
 
-#: smolt.py:517
+#: smolt.py:516
 msgid "CPU Model"
 msgstr "CPU ନମୁନା"
 
-#: smolt.py:518
+#: smolt.py:517
 msgid "Number of CPUs"
 msgstr "CPU ସଂଖ୍ଯା"
 
-#: smolt.py:519
+#: smolt.py:518
 msgid "CPU Speed"
 msgstr "CPU ବେଗ"
 
-#: smolt.py:520
+#: smolt.py:519
 msgid "System Memory"
 msgstr "ତନ୍ତ୍ରର ସ୍ମୃତି"
 
-#: smolt.py:521
+#: smolt.py:520
 msgid "System Swap"
 msgstr "ତନ୍ତ୍ର ସ୍ବାପ"
 
-#: smolt.py:522
+#: smolt.py:521
 msgid "Vendor"
 msgstr "ବିକ୍ରେତା"
 
-#: smolt.py:523
+#: smolt.py:522
 msgid "System"
 msgstr "ତନ୍ତ୍ର"
 
-#: smolt.py:524
+#: smolt.py:523
 msgid "Form factor"
 msgstr "ଫର୍ମ ଉପାଦାନ"
 
-#: smolt.py:525
+#: smolt.py:524
 msgid "Kernel"
 msgstr "କର୍ଣ୍ଣଲ"
 
-#: smolt.py:526
+#: smolt.py:525
 msgid "SELinux Enabled"
 msgstr ""
 
-#: smolt.py:527
+#: smolt.py:526
 msgid "SELinux Enforce"
 msgstr ""
 
-#: smolt.py:960
+#: smolt.py:959
 msgid "Unable to save UUID, continuing...\n"
 msgstr ""
 
-#: smolt.py:962
+#: smolt.py:961
 msgid "Unable to determine UUID of system!\n"
 msgstr ""
 

@@ -24,7 +24,7 @@ from lock.multilock import MultiLock
 
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
-currentSmoltProtocol = '0.97'
+currentSmoltProtocol = '0.97' 
 
 class SingleSelectField(widgets.SingleSelectField):
     """This class is a workaround for TG which does not properly process
@@ -123,7 +123,7 @@ class Root(controllers.RootController):
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
-            host_object = Host.query().selectone_by(uuid=UUID)
+            host_object = Query(Host).selectone_by(uuid=UUID)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % UUID)
         devices = {}
@@ -138,7 +138,7 @@ class Root(controllers.RootController):
     @exception_handler(error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, UUID=''):
         try:
-            host = Host.query().selectone_by(uuid=UUID)
+            host = Query(Host).selectone_by(uuid=UUID)
         except:
             raise ValueError("Critical: UUID does not exist %s " % UUID)
         try:
@@ -170,7 +170,7 @@ class Root(controllers.RootController):
     @identity.require(identity.not_anonymous())
     def my_hosts(self):
         try:
-            link_sql = FasLink.query().selectone_by(user_name=identity.current.user_name)
+            link_sql = Query(FasLink).selectone_by(user_name=identity.current.user_name)
         except InvalidRequestError:
             link_sql = []
         return dict(link_sql=link_sql)
@@ -179,13 +179,12 @@ class Root(controllers.RootController):
     @identity.require(identity.not_anonymous())
     def link(self, UUID):
         try:
-            host_sql = Host.query().selectone_by(uuid=UUID)
+            host_sql = Query(Host).selectone_by(uuid=UUID)
         except InvalidRequestError:
             raise ValueError("Critical: Your UUID did not exist.")
         
         if host_sql.fas_account == None:
             link_sql = FasLink(uuid=UUID, user_name=identity.current.user_name)
-            link_sql.save_or_update()
             link_sql.flush()
         return dict()
     
@@ -203,7 +202,11 @@ class Root(controllers.RootController):
 
     @expose()
     @exception_handler(error_client,rules="isinstance(tg_exceptions,ValueError)")
-    def add(self, UUID, OS, platform, bogomips, systemMemory, systemSwap, CPUVendor, CPUModel, numCPUs, CPUSpeed, language, defaultRunlevel, vendor, system, token, lsbRelease='Depricated', formfactor='Unknown', kernelVersion='', selinux_enabled='False', selinux_enforce='Disabled', smoltProtocol=None):
+    def add(self, UUID, OS, platform, bogomips, systemMemory, \
+            systemSwap, CPUVendor, CPUModel, numCPUs, CPUSpeed, language, \
+            defaultRunlevel, vendor, system, token, lsbRelease='Deprecated', \
+            formfactor='Unknown', kernelVersion='', selinux_enabled='False', \
+            selinux_enforce='Disabled', smoltProtocol=None):
         """Adds a host sans devices to the database
         
         This method is DEPRECATED like there is no tomorrow.  For Marty McFly
@@ -223,7 +226,7 @@ class Root(controllers.RootController):
 
         uuid = UUID.strip()
         try:
-            host_sql = Host.query().selectone_by(uuid=uuid)
+            host_sql = Query(Host).selectone_by(uuid=uuid)
         except InvalidRequestError:
             host_sql = Host()
             host_sql.uuid = uuid
@@ -250,8 +253,7 @@ class Root(controllers.RootController):
         host_sql.selinux_enforce = selinux_enforce.strip()
         host_sql.last_modified = DateTime.now()
         
-        host_sql.save_or_update()
-        host_sql.flush()
+        ctx.current.flush()
         return dict()
 
     @expose()
@@ -260,7 +262,7 @@ class Root(controllers.RootController):
         import time
         from mx import DateTime
         try:
-            host = Host.query().selectone_by(uuid=UUID)
+            host = Query(Host).selectone_by(uuid=UUID)
         except InvalidRequestError:
             raise ValueError("Critical: UUID not found - %s" % UUID)
         # Read in device id's from the device bulk script
@@ -281,10 +283,6 @@ class Root(controllers.RootController):
 
             # Create Device
             try:
-                device_id = int(device_id)
-            except ValueError:
-                device_id = None
-            try:
                 vendor_id = int(vendor_id)
             except ValueError:
                 vendor_id = None
@@ -297,22 +295,33 @@ class Root(controllers.RootController):
             except ValueError:
                 subsys_vendor_id = None
             
-            if device_id and vendor_id:
-                description = '%s:%s:%s:%s' % (vendor_id, device_id, subsys_device_id, subsys_vendor_id)
-            
+#            if device_id and vendor_id:
+#                description = '%s:%s:%s:%s' % (vendor_id, device_id, subsys_device_id, subsys_vendor_id)
             try:
-                device_sql = ComputerLogicalDevice.query().selectone_by(description=description)
+                device_sql = Query(ComputerLogicalDevice).selectone_by(description=description)
             except InvalidRequestError:
                 try:
                     device_sql = ComputerLogicalDevice()
                     device_sql.bus = bus
                     device_sql.driver = driver
-                    device_sql.cls = cls
                     device_sql.device_id = device_id
                     device_sql.vendor_id = vendor_id
                     device_sql.subsys_vendor_id = subsys_vendor_id
                     device_sql.subsys_device_id = subsys_device_id
                     device_sql.date_added = DateTime.now()
+                    device_sql.description = description
+                    
+                    try: 
+                        class_sql = Query(HardwareClass).selectone_by(cls=cls)
+                        device_sql.hardware_class = class_sql
+                    except InvalidRequestError:
+                        class_sql = HardwareClass()
+                        class_sql.cls = cls
+                        class_sql.description = "Fill me in!"
+                        device_sql.hardware_class = class_sql
+                        ctx.current.flush()
+                    
+                    ctx.current.flush()
                 except AttributeError, e:
                     raise ValueError("Critical: Device add Failed - %s" % e)
             except AttributeError, e:
@@ -321,12 +330,12 @@ class Root(controllers.RootController):
                 link = HostLink()
                 link.host = host
                 link.device = device_sql
-                link.save()
             except:
                raise ValueError("Critical: Could not add device: %s" % description)
-            device_sql.save_or_update()
-            device_sql.flush()
-            link.flush()
+            print "closing up shop"
+            print "flushing link"
+            print "flushing device"
+            ctx.current.flush()
         return dict()
     
     @expose()

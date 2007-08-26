@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Smolt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 15:27-0400\n"
+"POT-Creation-Date: 2007-08-22 12:09-0400\n"
 "PO-Revision-Date: 2007-04-02 18:28+0200\n"
 "Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
@@ -120,47 +120,55 @@ msgstr ""
 msgid "To view your profile visit: %s"
 msgstr "Nähdäksesi profiilin mene osoitteeseen: %s"
 
-#: smoltGui.py:70
+#: smoltGui.py:74
 msgid "_Quit"
 msgstr "_Lopeta"
 
-#: smoltGui.py:70
+#: smoltGui.py:74
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Lopeta ohjelma lähettämättä laitteistoprofiilia palvelimelle"
 
-#: smoltGui.py:71
+#: smoltGui.py:75
 msgid "_Send"
 msgstr "_Lähetä"
 
-#: smoltGui.py:71
+#: smoltGui.py:75
 msgid "Send your hardware profile to the server."
 msgstr "Lähetä laitteistoprofiili palvelimelle."
 
-#: smoltGui.py:72
+#: smoltGui.py:76
 msgid "Show _Privacy Policy"
 msgstr "Näytä _yksityisyyskäytäntö"
 
-#: smoltGui.py:72
+#: smoltGui.py:76
 msgid "Show the Smolt privacy policy."
 msgstr "Näytä Smoltin yksityisyyskäytäntö"
 
-#: smoltGui.py:73
+#: smoltGui.py:77
 msgid "_About"
 msgstr "_Tietoja"
 
-#: smoltGui.py:74
+#: smoltGui.py:78
 msgid "_File"
 msgstr ""
 
-#: smoltGui.py:75
+#: smoltGui.py:79
 msgid "_Help"
 msgstr ""
 
-#: smoltGui.py:137
+#: smoltGui.py:80
+msgid "_My Smolt Page"
+msgstr ""
+
+#: smoltGui.py:80
+msgid "Take me to my smolt profile page"
+msgstr ""
+
+#: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
 msgstr "Dataa palvelimelle lähetettäessä tapahtui virhe."
 
-#: smoltGui.py:144
+#: smoltGui.py:152
 #, fuzzy, python-format
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
@@ -171,24 +179,24 @@ msgstr ""
 "%s\n"
 "Se on tallennettu tiedostoon /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:157
+#: smoltGui.py:166
 msgid "Smolt Privacy Policy"
 msgstr "Smoltin yksityisyyskäytäntö"
 
-#: smoltGui.py:200
+#: smoltGui.py:209
 msgid "translator-credits"
 msgstr ""
 
-#: smoltGui.py:201
+#: smoltGui.py:210
 #, fuzzy
 msgid "Fedora hardware profiler."
 msgstr "Lähetä laitteistoprofiili palvelimelle."
 
-#: smoltGui.py:202
+#: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
 msgstr ""
 
-#: smoltGui.py:204
+#: smoltGui.py:213
 msgid ""
 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
@@ -215,100 +223,100 @@ msgstr "Ei voitu yhdistää HALiin, onko se käynnissä?"
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Suorita ”service haldaemon start” root-käyttäjänä"
 
-#: smolt.py:310 smolt.py:400 smolt.py:461 smolt.py:478
+#: smolt.py:310 smolt.py:399 smolt.py:460 smolt.py:477
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Virhe yhdistettäessä palvelimeen: %s"
 
-#: smolt.py:409
+#: smolt.py:408
 msgid "Wrong version, server incapable of handling your client"
 msgstr ""
 
-#: smolt.py:425
+#: smolt.py:424
 msgid "Communication with server failed"
 msgstr "Palvelinyhteys epäonnistui"
 
-#: smolt.py:499
+#: smolt.py:498
 msgid "Devices"
 msgstr "Laitteet"
 
-#: smolt.py:510
+#: smolt.py:509
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:511
+#: smolt.py:510
 msgid "OS"
 msgstr "Käyttöjärjestelmä"
 
-#: smolt.py:512
+#: smolt.py:511
 msgid "Default run level"
 msgstr "Oletusajotaso"
 
-#: smolt.py:513
+#: smolt.py:512
 msgid "Language"
 msgstr "Kieli"
 
-#: smolt.py:514
+#: smolt.py:513
 msgid "Platform"
 msgstr "Alusta"
 
-#: smolt.py:515
+#: smolt.py:514
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:516
+#: smolt.py:515
 msgid "CPU Vendor"
 msgstr "Suorittimen valmistaja"
 
-#: smolt.py:517
+#: smolt.py:516
 msgid "CPU Model"
 msgstr "Suorittimen malli"
 
-#: smolt.py:518
+#: smolt.py:517
 msgid "Number of CPUs"
 msgstr "Suorittimien määrä"
 
-#: smolt.py:519
+#: smolt.py:518
 msgid "CPU Speed"
 msgstr "Suorittimen nopeus"
 
-#: smolt.py:520
+#: smolt.py:519
 msgid "System Memory"
 msgstr "Järjestelmän muisti"
 
-#: smolt.py:521
+#: smolt.py:520
 msgid "System Swap"
 msgstr "Järjestelmän sivutustila"
 
-#: smolt.py:522
+#: smolt.py:521
 msgid "Vendor"
 msgstr "Valmistaja"
 
-#: smolt.py:523
+#: smolt.py:522
 msgid "System"
 msgstr "Järjestelmä"
 
-#: smolt.py:524
+#: smolt.py:523
 msgid "Form factor"
 msgstr "Kotelon tyyppi"
 
-#: smolt.py:525
+#: smolt.py:524
 msgid "Kernel"
 msgstr "Ydin"
 
-#: smolt.py:526
+#: smolt.py:525
 msgid "SELinux Enabled"
 msgstr ""
 
-#: smolt.py:527
+#: smolt.py:526
 msgid "SELinux Enforce"
 msgstr ""
 
-#: smolt.py:960
+#: smolt.py:959
 msgid "Unable to save UUID, continuing...\n"
 msgstr ""
 
-#: smolt.py:962
+#: smolt.py:961
 msgid "Unable to determine UUID of system!\n"
 msgstr ""
 
