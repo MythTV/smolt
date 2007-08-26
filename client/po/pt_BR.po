@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 15:27-0400\n"
+"POT-Creation-Date: 2007-08-22 12:09-0400\n"
 "PO-Revision-Date: 2007-03-31 15:43-0300\n"
 "Last-Translator: Igor Pires Soares <igor@projetofedora.org>\n"
 "Language-Team: Brazilian Portuguese <fedora-trans-pt_br@redhat.com>\n"
@@ -116,47 +116,55 @@ msgstr ""
 msgid "To view your profile visit: %s"
 msgstr "Para ver o seu perfil visite: %s"
 
-#: smoltGui.py:70
+#: smoltGui.py:74
 msgid "_Quit"
 msgstr "En_cerrar"
 
-#: smoltGui.py:70
+#: smoltGui.py:74
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Encerrar o programa sem enviar o seu perfil de hardware para o servidor"
 
-#: smoltGui.py:71
+#: smoltGui.py:75
 msgid "_Send"
 msgstr "_Enviar"
 
-#: smoltGui.py:71
+#: smoltGui.py:75
 msgid "Send your hardware profile to the server."
 msgstr "Enviar o seu perfil de hardware para o servidor."
 
-#: smoltGui.py:72
+#: smoltGui.py:76
 msgid "Show _Privacy Policy"
 msgstr "Mostrar _Política de Privacidade"
 
-#: smoltGui.py:72
+#: smoltGui.py:76
 msgid "Show the Smolt privacy policy."
 msgstr "Mostrar a política de privacidade do Smolt."
 
-#: smoltGui.py:73
+#: smoltGui.py:77
 msgid "_About"
 msgstr "_Sobre"
 
-#: smoltGui.py:74
+#: smoltGui.py:78
 msgid "_File"
 msgstr ""
 
-#: smoltGui.py:75
+#: smoltGui.py:79
 msgid "_Help"
 msgstr ""
 
-#: smoltGui.py:137
+#: smoltGui.py:80
+msgid "_My Smolt Page"
+msgstr ""
+
+#: smoltGui.py:80
+msgid "Take me to my smolt profile page"
+msgstr ""
+
+#: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
 msgstr "Ocorreu um erro ao enviar os dados para o servidor."
 
-#: smoltGui.py:144
+#: smoltGui.py:152
 #, fuzzy, python-format
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
@@ -167,24 +175,24 @@ msgstr ""
 "%s\n"
 "gravado em /etc/sysconfig/hw-uuid"
 
-#: smoltGui.py:157
+#: smoltGui.py:166
 msgid "Smolt Privacy Policy"
 msgstr "Política de Privacidade do Smolt"
 
-#: smoltGui.py:200
+#: smoltGui.py:209
 msgid "translator-credits"
 msgstr ""
 
-#: smoltGui.py:201
+#: smoltGui.py:210
 #, fuzzy
 msgid "Fedora hardware profiler."
 msgstr "Enviar o seu perfil de hardware para o servidor."
 
-#: smoltGui.py:202
+#: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
 msgstr ""
 
-#: smoltGui.py:204
+#: smoltGui.py:213
 msgid ""
 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
@@ -211,100 +219,100 @@ msgstr "Não foi possível conectar ao hal, ele está rodando?"
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Execute \"service haldaemon start\" como root"
 
-#: smolt.py:310 smolt.py:400 smolt.py:461 smolt.py:478
+#: smolt.py:310 smolt.py:399 smolt.py:460 smolt.py:477
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Erro ao contatar o servidor: %s"
 
-#: smolt.py:409
+#: smolt.py:408
 msgid "Wrong version, server incapable of handling your client"
 msgstr ""
 
-#: smolt.py:425
+#: smolt.py:424
 msgid "Communication with server failed"
 msgstr "A comunicação com o servidor falhou"
 
-#: smolt.py:499
+#: smolt.py:498
 msgid "Devices"
 msgstr "Dispositivos"
 
-#: smolt.py:510
+#: smolt.py:509
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:511
+#: smolt.py:510
 msgid "OS"
 msgstr "SO"
 
-#: smolt.py:512
+#: smolt.py:511
 msgid "Default run level"
 msgstr "Nível de execução padrão"
 
-#: smolt.py:513
+#: smolt.py:512
 msgid "Language"
 msgstr "Idioma"
 
-#: smolt.py:514
+#: smolt.py:513
 msgid "Platform"
 msgstr "Plataforma"
 
-#: smolt.py:515
+#: smolt.py:514
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:516
+#: smolt.py:515
 msgid "CPU Vendor"
 msgstr "Fabricante da CPU"
 
-#: smolt.py:517
+#: smolt.py:516
 msgid "CPU Model"
 msgstr "Modelo da CPU"
 
-#: smolt.py:518
+#: smolt.py:517
 msgid "Number of CPUs"
 msgstr "Número de CPUs"
 
-#: smolt.py:519
+#: smolt.py:518
 msgid "CPU Speed"
 msgstr "Velocidade da CPU"
 
-#: smolt.py:520
+#: smolt.py:519
 msgid "System Memory"
 msgstr "Memória do Sistema"
 
-#: smolt.py:521
+#: smolt.py:520
 msgid "System Swap"
 msgstr "Swap do Sistema"
 
-#: smolt.py:522
+#: smolt.py:521
 msgid "Vendor"
 msgstr "Fabricante"
 
-#: smolt.py:523
+#: smolt.py:522
 msgid "System"
 msgstr "Sistema"
 
-#: smolt.py:524
+#: smolt.py:523
 msgid "Form factor"
 msgstr "Fator de uso"
 
-#: smolt.py:525
+#: smolt.py:524
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smolt.py:526
+#: smolt.py:525
 msgid "SELinux Enabled"
 msgstr ""
 
-#: smolt.py:527
+#: smolt.py:526
 msgid "SELinux Enforce"
 msgstr ""
 
-#: smolt.py:960
+#: smolt.py:959
 msgid "Unable to save UUID, continuing...\n"
 msgstr ""
 
-#: smolt.py:962
+#: smolt.py:961
 msgid "Unable to determine UUID of system!\n"
 msgstr ""
 

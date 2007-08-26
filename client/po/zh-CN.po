@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zh-CN\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 15:27-0400\n"
+"POT-Creation-Date: 2007-08-22 12:09-0400\n"
 "PO-Revision-Date: 2007-04-03 15:00+1000\n"
 "Last-Translator: Xi HUANG <xhuang@redhat.com>\n"
 "Language-Team:  <en@li.org>\n"
@@ -120,47 +120,55 @@ msgstr ""
 msgid "To view your profile visit: %s"
 msgstr "要查看你的配置文件，可以访问：%s"
 
-#: smoltGui.py:70
+#: smoltGui.py:74
 msgid "_Quit"
 msgstr "退出"
 
-#: smoltGui.py:70
+#: smoltGui.py:74
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "直接退出而不发送您的配置到服务器"
 
-#: smoltGui.py:71
+#: smoltGui.py:75
 msgid "_Send"
 msgstr "发送"
 
-#: smoltGui.py:71
+#: smoltGui.py:75
 msgid "Send your hardware profile to the server."
 msgstr "把您的配置发送到服务器。"
 
-#: smoltGui.py:72
+#: smoltGui.py:76
 msgid "Show _Privacy Policy"
 msgstr "显示隐私策略"
 
-#: smoltGui.py:72
+#: smoltGui.py:76
 msgid "Show the Smolt privacy policy."
 msgstr "显示 Smolt 隐私策略。"
 
-#: smoltGui.py:73
+#: smoltGui.py:77
 msgid "_About"
 msgstr "关于"
 
-#: smoltGui.py:74
+#: smoltGui.py:78
 msgid "_File"
 msgstr ""
 
-#: smoltGui.py:75
+#: smoltGui.py:79
 msgid "_Help"
 msgstr ""
 
-#: smoltGui.py:137
+#: smoltGui.py:80
+msgid "_My Smolt Page"
+msgstr ""
+
+#: smoltGui.py:80
+msgid "Take me to my smolt profile page"
+msgstr ""
+
+#: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
 msgstr "发送数据至服务器时出现错误。"
 
-#: smoltGui.py:144
+#: smoltGui.py:152
 #, fuzzy, python-format
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
@@ -171,24 +179,24 @@ msgstr ""
 "%s\n"
 "。"
 
-#: smoltGui.py:157
+#: smoltGui.py:166
 msgid "Smolt Privacy Policy"
 msgstr "Smolt 隐私策略"
 
-#: smoltGui.py:200
+#: smoltGui.py:209
 msgid "translator-credits"
 msgstr ""
 
-#: smoltGui.py:201
+#: smoltGui.py:210
 #, fuzzy
 msgid "Fedora hardware profiler."
 msgstr "把您的配置发送到服务器。"
 
-#: smoltGui.py:202
+#: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
 msgstr ""
 
-#: smoltGui.py:204
+#: smoltGui.py:213
 msgid ""
 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
@@ -215,100 +223,100 @@ msgstr "不能够连接到 hal，它是否正在运行？"
 msgid "Run \"service haldaemon start\" as root"
 msgstr "以根用户身份运行 \"service haldaemon start\""
 
-#: smolt.py:310 smolt.py:400 smolt.py:461 smolt.py:478
+#: smolt.py:310 smolt.py:399 smolt.py:460 smolt.py:477
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "连接服务器错误：%s"
 
-#: smolt.py:409
+#: smolt.py:408
 msgid "Wrong version, server incapable of handling your client"
 msgstr ""
 
-#: smolt.py:425
+#: smolt.py:424
 msgid "Communication with server failed"
 msgstr "与服务器通信失败"
 
-#: smolt.py:499
+#: smolt.py:498
 msgid "Devices"
 msgstr "设备"
 
-#: smolt.py:510
+#: smolt.py:509
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:511
+#: smolt.py:510
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:512
+#: smolt.py:511
 msgid "Default run level"
 msgstr "缺省的运行级别"
 
-#: smolt.py:513
+#: smolt.py:512
 msgid "Language"
 msgstr "语言"
 
-#: smolt.py:514
+#: smolt.py:513
 msgid "Platform"
 msgstr "平台"
 
-#: smolt.py:515
+#: smolt.py:514
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:516
+#: smolt.py:515
 msgid "CPU Vendor"
 msgstr "CPU 供应商"
 
-#: smolt.py:517
+#: smolt.py:516
 msgid "CPU Model"
 msgstr "CPU 型号"
 
-#: smolt.py:518
+#: smolt.py:517
 msgid "Number of CPUs"
 msgstr "CPU 数量"
 
-#: smolt.py:519
+#: smolt.py:518
 msgid "CPU Speed"
 msgstr "CPU 速度"
 
-#: smolt.py:520
+#: smolt.py:519
 msgid "System Memory"
 msgstr "系统内存"
 
-#: smolt.py:521
+#: smolt.py:520
 msgid "System Swap"
 msgstr "系统交换空间"
 
-#: smolt.py:522
+#: smolt.py:521
 msgid "Vendor"
 msgstr "供应商"
 
-#: smolt.py:523
+#: smolt.py:522
 msgid "System"
 msgstr "系统"
 
-#: smolt.py:524
+#: smolt.py:523
 msgid "Form factor"
 msgstr "Form factor"
 
-#: smolt.py:525
+#: smolt.py:524
 msgid "Kernel"
 msgstr "内核"
 
-#: smolt.py:526
+#: smolt.py:525
 msgid "SELinux Enabled"
 msgstr ""
 
-#: smolt.py:527
+#: smolt.py:526
 msgid "SELinux Enforce"
 msgstr ""
 
-#: smolt.py:960
+#: smolt.py:959
 msgid "Unable to save UUID, continuing...\n"
 msgstr ""
 
-#: smolt.py:962
+#: smolt.py:961
 msgid "Unable to determine UUID of system!\n"
 msgstr ""
 

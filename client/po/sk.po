@@ -1,23 +1,21 @@
 # Slovak translation for Smolt. 
 # Copyright (C) 2007 Marek Mahut <mmahut fedoraproject.org>, Michal Ingeli <michal.ingeli@hladat.sk>  for Fedora Project
-
 msgid ""
 msgstr ""
 "Project-Id-Version: Smolt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-08 15:27-0400\n"
+"POT-Creation-Date: 2007-08-22 12:09-0400\n"
 "PO-Revision-Date: 2007-08-19 13:31+0200\n"
 "Last-Translator: Marek Mahut <mmahut@fedoraproject.org>\n"
 "Language-Team: Fedora Slovak translation team <fedora-trans-sk@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: deleteProfile.py:35 smolt.py:235
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Správa servera: \"%s\""
-""
 
 #: deleteProfile.py:45 sendProfile.py:42
 msgid "enable debug information"
@@ -54,8 +52,8 @@ msgstr "Profil bol odstránený. Prosím, presvedčte sa o tom na"
 msgid "(optional) Fedora Account System registration"
 msgstr "(voliteľné) Registrácia do Fedora Account System"
 
-#: sendProfile.py:57
 # review
+#: sendProfile.py:57
 msgid "password, will prompt if not specified"
 msgstr "heslo bude požadované ak nebolo zadané"
 
@@ -66,14 +64,14 @@ msgstr "odoslať bez potvrdenia"
 #: sendProfile.py:72
 msgid "continue to send until success"
 msgstr "skúšaj až kým nepošleš"
-# msgstr "pokračovať v odosielani, kým neprebehne úspešne"
 
+# msgstr "pokračovať v odosielani, kým neprebehne úspešne"
 #: sendProfile.py:87
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "toto je automatická kontrola; bude bežať, iba ak bola služba \"smolt\" spustená"
 
+# XXX
 #: sendProfile.py:101
-#XXX
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt bol spustený pre kontrolu zmien ale kontrola zmien je vypnutá (skúste: server smolt start)"
 
@@ -118,47 +116,55 @@ msgstr "Registrácia zlyhala, skúste znovu"
 msgid "To view your profile visit: %s"
 msgstr "Pre náhľad vašeho profilu navštívte: %s"
 
-#: smoltGui.py:70
+#: smoltGui.py:74
 msgid "_Quit"
 msgstr "_Ukončiť"
 
-#: smoltGui.py:70
+#: smoltGui.py:74
 msgid "Quit the program without sending your hardware profile to the server"
 msgstr "Ukončiť program bez odoslania vášho profilu serveru"
 
-#: smoltGui.py:71
+#: smoltGui.py:75
 msgid "_Send"
 msgstr "_Odoslať"
 
-#: smoltGui.py:71
+#: smoltGui.py:75
 msgid "Send your hardware profile to the server."
 msgstr "Odoslať váš hardvérový profil serveru."
 
-#: smoltGui.py:72
+#: smoltGui.py:76
 msgid "Show _Privacy Policy"
 msgstr "Ukáž _politiku súkromia."
 
-#: smoltGui.py:72
+#: smoltGui.py:76
 msgid "Show the Smolt privacy policy."
 msgstr "Ukáž politiku súkromia Smolt-u."
 
-#: smoltGui.py:73
+#: smoltGui.py:77
 msgid "_About"
 msgstr "_O Smolt-e"
 
-#: smoltGui.py:74
+#: smoltGui.py:78
 msgid "_File"
 msgstr "_Súbor"
 
-#: smoltGui.py:75
+#: smoltGui.py:79
 msgid "_Help"
 msgstr "_Pomoc"
 
-#: smoltGui.py:137
+#: smoltGui.py:80
+msgid "_My Smolt Page"
+msgstr ""
+
+#: smoltGui.py:80
+msgid "Take me to my smolt profile page"
+msgstr ""
+
+#: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
 msgstr "Nastala chyba pri odosielaní údajov serveru."
 
-#: smoltGui.py:144
+#: smoltGui.py:152
 #, python-format
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
@@ -169,23 +175,23 @@ msgstr ""
 "%s\n"
 "uložené v %s"
 
-#: smoltGui.py:157
+#: smoltGui.py:166
 msgid "Smolt Privacy Policy"
 msgstr "Politika súkromia Smolt-u"
 
-#: smoltGui.py:200
+#: smoltGui.py:209
 msgid "translator-credits"
 msgstr "Poďakovanie prekladateľom"
 
-#: smoltGui.py:201
+#: smoltGui.py:210
 msgid "Fedora hardware profiler."
 msgstr "Fedora hardware profiler."
 
-#: smoltGui.py:202
+#: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
 msgstr "Copyright © 2007 Mike McGrath"
 
-#: smoltGui.py:204
+#: smoltGui.py:213
 msgid ""
 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
@@ -216,101 +222,101 @@ msgstr "Nepodarilo sa naviazať spojenie s HAL-om. Je HAL spustený?"
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Spustite \"server haldaemon start\" ako root."
 
-#: smolt.py:310 smolt.py:400 smolt.py:461 smolt.py:478
+#: smolt.py:310 smolt.py:399 smolt.py:460 smolt.py:477
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Chyba pri nadväzovaní spojenia so serverom: %s"
 
-#: smolt.py:409
+#: smolt.py:408
 msgid "Wrong version, server incapable of handling your client"
 msgstr "Nesprávna verzia klienta, server je nemôže spolupracovať s vašim klientom."
 
-#: smolt.py:425
+#: smolt.py:424
 msgid "Communication with server failed"
 msgstr "Komunikácia so serverom nebola úspešná"
 
-#: smolt.py:499
+#: smolt.py:498
 msgid "Devices"
 msgstr "Zariadenie"
 
-#: smolt.py:510
+#: smolt.py:509
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:511
+#: smolt.py:510
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:512
+#: smolt.py:511
 msgid "Default run level"
 msgstr "Štandardná úroveň behu"
 
-#: smolt.py:513
+#: smolt.py:512
 msgid "Language"
 msgstr "Jazyk"
 
-#: smolt.py:514
+#: smolt.py:513
 msgid "Platform"
 msgstr "Platforma"
 
-#: smolt.py:515
+#: smolt.py:514
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:516
+#: smolt.py:515
 msgid "CPU Vendor"
 msgstr "Predajca procesoru"
 
-#: smolt.py:517
+#: smolt.py:516
 msgid "CPU Model"
 msgstr "Model procesoru"
 
-#: smolt.py:518
+#: smolt.py:517
 msgid "Number of CPUs"
 msgstr "Počet procesorov"
 
-#: smolt.py:519
+#: smolt.py:518
 msgid "CPU Speed"
 msgstr "Rýchlosť CPU"
 
-#: smolt.py:520
+#: smolt.py:519
 msgid "System Memory"
 msgstr "Systémová pamäť"
 
-#: smolt.py:521
+#: smolt.py:520
 msgid "System Swap"
 msgstr "Pamäť Swap"
 
-#: smolt.py:522
+#: smolt.py:521
 msgid "Vendor"
 msgstr "Predajca"
 
-#: smolt.py:523
+#: smolt.py:522
 msgid "System"
 msgstr "Systém"
 
-#: smolt.py:524
+#: smolt.py:523
 msgid "Form factor"
 msgstr "Form factor"
 
-#: smolt.py:525
+#: smolt.py:524
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smolt.py:526
+#: smolt.py:525
 msgid "SELinux Enabled"
 msgstr "SELinux zapnutý"
 
-#: smolt.py:527
-#XXX
+# XXX
+#: smolt.py:526
 msgid "SELinux Enforce"
 msgstr "SELinux vynútený"
 
-#: smolt.py:960
+#: smolt.py:959
 msgid "Unable to save UUID, continuing...\n"
 msgstr "Nebolo možné uložiť UUID, pokračujem...\n"
 
-#: smolt.py:962
+#: smolt.py:961
 msgid "Unable to determine UUID of system!\n"
 msgstr "Nebolo možné zistiť UUID systému!\n"
 
@@ -322,8 +328,8 @@ msgstr "Nepodarilo sa zistiť úroveň behu"
 msgid "Hardware Profile"
 msgstr "Hardvérový profil"
 
+# XXX
 #: smoltFirstBoot.py:50
-#XXX
 msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
 msgstr "Smolt je nástroj pre zber hardvérových profilov projektu Fedora.  Zaslenie Vášho profilu je významná odozva pre komunitu, ktorá pomáha zamerať naše úsilie na populárne zariadenia a platformy.  Zaslanie profilu je anonymné.  Zaslaním sa zapnú automatické mesačné aktualizácie."
 
@@ -399,7 +405,8 @@ msgid ""
 "questions about this policy should contact the Fedora Infrastructure Team at\n"
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
-msgstr "Smolt zašle iba informácie o Vašom hardvéri a operačnom systéme\n"
+msgstr ""
+"Smolt zašle iba informácie o Vašom hardvéri a operačnom systéme\n"
 "Fedora Smolt serveru (smoon).  Jediná informácia, ktorá spája Váš systém\n"
 "s informáciami v databáze, je UUID.  Váš profil zostáva ulne anonymný,\n"
 "kým neposkytnete toto UUID tretej strane.  Ak by Ste kedykoľvek chceli\n"
@@ -422,4 +429,3 @@ msgstr "Smolt zašle iba informácie o Vašom hardvéri a operačnom systéme\n"
 "Otázky obľadom tejto politiky môžete klásť Fedora Infrastrucutre team na\n"
 "emailovej adrese admin@fedoraproject.org. Nezabudnite, že váš hardvérový\n"
 "profil môžete kedykoľvek zmazať pomocou príkazu \"smoltDeleteProfile\"\n"
-
