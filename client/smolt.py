@@ -197,7 +197,11 @@ class Host:
         except:
             self.formfactor = 'Unknown'
         try:
-            retcode = os.system('/usr/sbin/selinuxenabled')
+            if os.path.exists('/usr/sbin/selinuxenabled'):
+               retcode = os.system('/usr/sbin/selinuxenabled') 
+            else:
+               retcode = 32512
+	       #using 32512 because that is what was returned by my system
             self.selinux_enabled =  os.WIFEXITED(recode) and os.WEXITCODE(retcode) == 0
         except:
             self.selinux_enabled = False
@@ -267,8 +271,8 @@ class Hardware:
         except:
             raise SystemBusError, _('Could not bind to dbus.  Is dbus running?')
         
-        mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
         try:
+            mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
             all_dev_lst = mgr.GetAllDevices()
         except:
             raise SystemBusError, _('Could not connect to hal, is it running?'), _('Run "service haldaemon start" as root')
