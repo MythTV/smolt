@@ -142,8 +142,8 @@ class Root(controllers.RootController):
         except:
             raise ValueError("Critical: UUID does not exist %s " % UUID)
         try:
-            host.delete()
-            host.flush()
+            ctx.current.delete(host)
+            ctx.current.flush()
         except:
             raise ValueError("Critical: Could not delete UUID - Please contact the smolt development team")
         raise ValueError('Success: UUID Removed')
@@ -185,7 +185,7 @@ class Root(controllers.RootController):
         
         if host_sql.fas_account == None:
             link_sql = FasLink(uuid=UUID, user_name=identity.current.user_name)
-            link_sql.flush()
+            ctx.current.flush()
         return dict()
     
     def check_token(self, token, uuid):
@@ -413,7 +413,7 @@ class Root(controllers.RootController):
         type = type.encode('utf8')
         #classes = Host._connection.queryAll('select distinct(class) from device;')
         try:
-            cls = HardwareClass.query().selectone_by(cls=type)
+            cls = Query(HardwareClass).selectone_by(cls=type)
         except InvalidRequestError:
             return (None, )
         pci_vendors = DeviceMap('pci')
@@ -421,7 +421,7 @@ class Root(controllers.RootController):
         # We only want hosts that detected hardware (IE, hal was working properly)
         total_hosts = select([host_links.c.host_link_id], distinct=True).alias("m").count().execute().fetchone()[0]
         count = select([host_links.c.host_link_id], and_(host_links.c.device_id == computer_logical_devices.c.id, computer_logical_devices.c.cls == type), distinct=True).alias("m").count().execute().fetchone()[0]
-        types = HardwareByClass.query().order_by(desc(HardwareByClass.c.count)).limit(100).select_by(cls=type)
+        types = Query(HardwareByClass).order_by(desc(HardwareByClass.c.count)).limit(100).select_by(cls=type)
         device = computer_logical_devices
         vendors = select([func.count(device.c.vendor_id).label('cnt'), device.c.vendor_id], device.c.cls==type, order_by=[desc('cnt')], group_by=device.c.vendor_id).execute().fetchall()
         return dict(types=types, type=type, total_hosts=total_hosts, count=count, pci_vendors=pci_vendors, vendors=vendors, tabs=tabs)
@@ -455,12 +455,12 @@ class Root(controllers.RootController):
     
     def write_devices(self):
         devices = {}
-        devices['total'] = HostLink.query().count()
-        devices['count'] = ComputerLogicalDevice.query().count()
-        devices['total_hosts'] = Host.query().count()
-        devices['totalList'] = TotalList.query().select(limit=100)
-        devices['uniqueList'] = UniqueList.query().select(limit=100)
-        devices['classes'] = HardwareClass.query().select()
+        devices['total'] = Query(HostLink).count()
+        devices['count'] = Query(ComputerLogicalDevice).count()
+        devices['total_hosts'] = Query(Host).count()
+        devices['totalList'] = Query(TotalList).select(limit=100)
+        devices['uniqueList'] = Query(UniqueList).select(limit=100)
+        devices['classes'] = Query(HardwareClass).select()
         self.devices_lock.write_acquire()
         self._devices_cache = devices
         self.devices_lock.write_release()
@@ -481,49 +481,49 @@ class Root(controllers.RootController):
     def write_stats(self):
         self.stats_lock.write_acquire()
         stats = {}
-        stats['total_hosts'] = Host.query().count()
+        stats['total_hosts'] = Query(Host).count()
         total_hosts = stats['total_hosts']
-        stats['archs'] = Arch.query().select()
-        stats['os'] = OS.query().select(limit=15)
-        stats['runlevel'] = Runlevel.query().select()
-        stats['num_cpus'] = NumCPUs.query().select()
-        stats['vendors'] = Vendor.query().select(limit=100)
-        stats['systems'] = System.query().select(limit=100)
-        stats['cpu_vendor'] = CPUVendor.query().select(limit=100)
-        stats['kernel_version'] = KernelVersion.query().select(limit=20)
-        stats['formfactor'] = FormFactor.query().select()
-        stats['language'] = Language.query().select()
+        stats['archs'] = Query(Arch).select()
+        stats['os'] = Query(OS).select(limit=15)
+        stats['runlevel'] = Query(Runlevel).select()
+        stats['num_cpus'] = Query(NumCPUs).select()
+        stats['vendors'] = Query(Vendor).select(limit=100)
+        stats['systems'] = Query(System).select(limit=100)
+        stats['cpu_vendor'] = Query(CPUVendor).select(limit=100)
+        stats['kernel_version'] = Query(KernelVersion).select(limit=20)
+        stats['formfactor'] = Query(FormFactor).select()
+        stats['language'] = Query(Language).select()
         stats['languagetot'] = stats['total_hosts']
  
         stats['sys_mem'] = []
-        stats['sys_mem'].append(("less than 512mb", Host.query().filter(Host.c.system_memory<512).count()))
-        stats['sys_mem'].append(("between 512mb and 1023mb", Host.query().filter(and_(Host.c.system_memory>=512, Host.c.system_memory<1024)).count()))
-        stats['sys_mem'].append(("between 1024mb and 2047mb", Host.query().filter(and_(Host.c.system_memory>=1024, Host.c.system_memory<2048)).count()))
-        stats['sys_mem'].append(("more than 2048mb", Host.query().filter(Host.c.system_memory>=2048).count()))
+        stats['sys_mem'].append(("less than 512mb", Query(Host).filter(Host.c.system_memory<512).count()))
+        stats['sys_mem'].append(("between 512mb and 1023mb", Query(Host).filter(and_(Host.c.system_memory>=512, Host.c.system_memory<1024)).count()))
+        stats['sys_mem'].append(("between 1024mb and 2047mb", Query(Host).filter(and_(Host.c.system_memory>=1024, Host.c.system_memory<2048)).count()))
+        stats['sys_mem'].append(("more than 2048mb", Query(Host).filter(Host.c.system_memory>=2048).count()))
 
         stats['swap_mem'] = []
-        stats['swap_mem'].append(("less than 512mb", Host.query().filter(Host.c.system_swap<512).count()))
-        stats['swap_mem'].append(("between 512mb and 1027mb", Host.query().filter(and_(Host.c.system_swap>=512, Host.c.system_swap<1024)).count()))
-        stats['swap_mem'].append(("between 1024mb and 2047mb", Host.query().filter(and_(Host.c.system_swap>=1024, Host.c.system_swap<2048)).count()))
-        stats['swap_mem'].append(("more than 2048mb", Host.query().filter(Host.c.system_swap>=2048).count()))
+        stats['swap_mem'].append(("less than 512mb", Query(Host).filter(Host.c.system_swap<512).count()))
+        stats['swap_mem'].append(("between 512mb and 1027mb", Query(Host).filter(and_(Host.c.system_swap>=512, Host.c.system_swap<1024)).count()))
+        stats['swap_mem'].append(("between 1024mb and 2047mb", Query(Host).filter(and_(Host.c.system_swap>=1024, Host.c.system_swap<2048)).count()))
+        stats['swap_mem'].append(("more than 2048mb", Query(Host).filter(Host.c.system_swap>=2048).count()))
 
         stats['cpu_speed'] = []
-        stats['cpu_speed'].append(("less than 512mhz", Host.query().filter(Host.c.cpu_speed<512).count()))
-        stats['cpu_speed'].append(("between 512mhz and 1023mhz", Host.query().filter(and_(Host.c.cpu_speed>=512, Host.c.cpu_speed<1024)).count()))
-        stats['cpu_speed'].append(("between 1024mhz and 2047mhz", Host.query().filter(and_(Host.c.cpu_speed>=1024, Host.c.cpu_speed<2048)).count()))
-        stats['cpu_speed'].append(("more than 2048mhz", Host.query().filter(Host.c.cpu_speed>=2048).count()))
+        stats['cpu_speed'].append(("less than 512mhz", Query(Host).filter(Host.c.cpu_speed<512).count()))
+        stats['cpu_speed'].append(("between 512mhz and 1023mhz", Query(Host).filter(and_(Host.c.cpu_speed>=512, Host.c.cpu_speed<1024)).count()))
+        stats['cpu_speed'].append(("between 1024mhz and 2047mhz", Query(Host).filter(and_(Host.c.cpu_speed>=1024, Host.c.cpu_speed<2048)).count()))
+        stats['cpu_speed'].append(("more than 2048mhz", Query(Host).filter(Host.c.cpu_speed>=2048).count()))
 
         stats['bogomips'] = []
-        stats['bogomips'].append(("less than 512", Host.query().filter(Host.c.bogomips<512).count()))
-        stats['bogomips'].append(("between 512 and 1023", Host.query().filter(and_(Host.c.bogomips>=512, Host.c.bogomips<1024)).count()))
-        stats['bogomips'].append(("between 1024 and 2047", Host.query().filter(and_(Host.c.bogomips>=1024, Host.c.bogomips<2048)).count()))
-        stats['bogomips'].append(("between 2048 and 4000", Host.query().filter(and_(Host.c.bogomips>=2048, Host.c.bogomips<4000)).count()))
-        stats['bogomips'].append(("more than 4000", Host.query().filter(Host.c.system_memory>=4000).count()))
+        stats['bogomips'].append(("less than 512", Query(Host).filter(Host.c.bogomips<512).count()))
+        stats['bogomips'].append(("between 512 and 1023", Query(Host).filter(and_(Host.c.bogomips>=512, Host.c.bogomips<1024)).count()))
+        stats['bogomips'].append(("between 1024 and 2047", Query(Host).filter(and_(Host.c.bogomips>=1024, Host.c.bogomips<2048)).count()))
+        stats['bogomips'].append(("between 2048 and 4000", Query(Host).filter(and_(Host.c.bogomips>=2048, Host.c.bogomips<4000)).count()))
+        stats['bogomips'].append(("more than 4000", Query(Host).filter(Host.c.system_memory>=4000).count()))
 
-        stats['bogomips_total'] = Host.query().filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
-        stats['cpu_speed_total'] = Host.query().filter(Host.c.cpu_speed > 0).sum(Host.c.cpu_speed * Host.c.num_cpus)
-        stats['cpus_total'] = Host.query().sum(Host.c.num_cpus)
-        stats['registered_devices'] = ComputerLogicalDevice.query().count()
+        stats['bogomips_total'] = Query(Host).filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
+        stats['cpu_speed_total'] = Query(Host).filter(Host.c.cpu_speed > 0).sum(Host.c.cpu_speed * Host.c.num_cpus)
+        stats['cpus_total'] = Query(Host).sum(Host.c.num_cpus)
+        stats['registered_devices'] = Query(ComputerLogicalDevice).count()
 
         self._stats_cache = stats
         self.stats_lock.write_release()
@@ -541,7 +541,7 @@ class Root(controllers.RootController):
     def submit_ratings(self, uuid, **kw):
         
         try:
-            host = Host.query().selectone_by(uuid=uuid)
+            host = Query(Host).selectone_by(uuid=uuid)
         except InvalidRequestError:
             redirect("error_client")
         host.rating = int(kw["host_rating"])
@@ -554,8 +554,7 @@ class Root(controllers.RootController):
                for device in host.devices:
                    if device.device_id == device_db_ref:
                        device.rating = int(rating)
-        host.save_or_update()
-        host.flush()
+        ctx.current.flush()
         flash("Ratings Saved!")
         redirect("show?UUID=%s" % uuid)
             
