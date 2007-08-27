@@ -332,9 +332,6 @@ class Root(controllers.RootController):
                 link.device = device_sql
             except:
                raise ValueError("Critical: Could not add device: %s" % description)
-            print "closing up shop"
-            print "flushing link"
-            print "flushing device"
             ctx.current.flush()
         return dict()
     
@@ -345,15 +342,15 @@ class Root(controllers.RootController):
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
         if smolt_protocol > currentSmoltProtocol:
             raise ValueError("Woah there marty mcfly, you got to go back to 1955!")
-
+        
         self.check_token(token, uuid)
 
         host_dict = simplejson.loads(host)
         
         try:
-            host_sql = Host.selectone_by(uuid=uuid)
-            host_sql.delete()
-            host_sql.flush()
+            host_sql = Query(Host).selectone_by(uuid=uuid)
+            ctx.current.delete(host_sql)
+            ctx.current.flush()
             host_sql = Host()
         except InvalidRequestError:
             host_sql = Host()
@@ -378,31 +375,36 @@ class Root(controllers.RootController):
                 
         for device in host_dict['devices']:
             try:
-                device_sql = ComputerLogicalDevice.selectone_by(description=device['description'])
+                device_sql = Query(ComputerLogicalDevice)\
+                    .selectone_by(description=device['description'])
             except InvalidRequestError:
                 device_sql = ComputerLogicalDevice()
                 device_sql.device_id = device['device_id']
                 device_sql.subsys_vendor_id = device['subsys_vendor_id']
                 device_sql.subsys_device_id = device['subsys_device_id']
+                device_sql.vendor_id = device['vendor_id']
                 device_sql.bus = device['bus']
                 device_sql.driver = device['driver']
-                device_sql.type = device['type']
+                device_sql.cls = device['type']
                 device_sql.description = device['description']
                 device_sql.date_added = DateTime.now()  
-                device_sql.save_or_update()
-                device_sql.flush()
 
-            
+                try: 
+                    class_sql = Query(HardwareClass).selectone_by(cls=device['type'])
+                    device_sql.hardware_class = class_sql
+                except InvalidRequestError:
+                    class_sql = HardwareClass()
+                    class_sql.cls = device['type']
+                    class_sql.description = "Fill me in!"
+                    device_sql.hardware_class = class_sql
+                
+                ctx.current.flush()
+               
             host_link = HostLink()
             host_link.host = host_sql
             host_link.device = device_sql
-            host_link.save_or_update()
-            host_link.flush()
             
-        host_sql.save_or_update()
-        host_sql.flush()
-        host_sql.refresh()
-
+        ctx.current.flush()
         
         return dict()
     
