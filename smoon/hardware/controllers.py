@@ -295,6 +295,10 @@ class Root(controllers.RootController):
             except ValueError:
                 subsys_vendor_id = None
             
+            #special case in the DB
+            if cls is None:
+                cls = "NONE"
+            
 #            if device_id and vendor_id:
 #                description = '%s:%s:%s:%s' % (vendor_id, device_id, subsys_device_id, subsys_vendor_id)
             try:
@@ -378,6 +382,9 @@ class Root(controllers.RootController):
                 device_sql = Query(ComputerLogicalDevice)\
                     .selectone_by(description=device['description'])
             except InvalidRequestError:
+                cls = device['type']
+                if cls is None:
+                    cls = "NONE"
                 device_sql = ComputerLogicalDevice()
                 device_sql.device_id = device['device_id']
                 device_sql.subsys_vendor_id = device['subsys_vendor_id']
@@ -385,18 +392,20 @@ class Root(controllers.RootController):
                 device_sql.vendor_id = device['vendor_id']
                 device_sql.bus = device['bus']
                 device_sql.driver = device['driver']
-                device_sql.cls = device['type']
+                device_sql.cls = cls
                 device_sql.description = device['description']
                 device_sql.date_added = DateTime.now()  
 
                 try: 
-                    class_sql = Query(HardwareClass).selectone_by(cls=device['type'])
+                    class_sql = Query(HardwareClass).selectone_by(cls=cls)
                     device_sql.hardware_class = class_sql
                 except InvalidRequestError:
                     class_sql = HardwareClass()
-                    class_sql.cls = device['type']
-                    class_sql.description = "Fill me in!"
+                    class_sql.cls = cls
+                    class_sql.class_description = "Fill me in!"
                     device_sql.hardware_class = class_sql
+                    ctx.current.flush()
+                    
                 
                 ctx.current.flush()
                

@@ -14,17 +14,6 @@ turbogears.update_config(configfile='../test.cfg', modulename='hardware.config')
 cherrypy.root = Root()
 root = cherrypy.root
 
-def test_method():
-    "the index method should return a string called now"
-    import types
-    result = testutil.call(cherrypy.root.index)
-    assert type(result["now"]) == types.StringType
-
-def test_indextitle():
-    "The mainpage should have the right title"
-    testutil.createRequest("/")
-    assert "Smolt" in cherrypy.response.body[0]
-
 def test_add_old():
     "testing to make sure an add via the 0.91 protocol completes"
     UUID = "sheep!"
@@ -106,6 +95,7 @@ def test_add_old():
                                           driver,
                                           cls,
                                           description)
+    device = "%s\n%s" % (device, device)
     addDevice_result = testutil.call(root.addDevices, UUID=UUID, Devices=device)
     
     test_device = Query(ComputerLogicalDevice).selectone_by(description=description)
@@ -124,8 +114,8 @@ def test_add_old():
     assert test_host_link.device_id == test_device.id
     assert test_host_link.host_link_id == test_host.id
     
-    ctx.current.delete(test_host)
-    ctx.current.delete(test_device)
+#    ctx.current.delete(test_host)
+#    ctx.current.delete(test_device)
     ctx.current.flush()
 
 def test_add_new():

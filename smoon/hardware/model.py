@@ -140,7 +140,14 @@ class FasLink(object):
         self.user_name = user_name
 
 class HardwareClass(object):
+    def _set_cls(self, cls):
+        if cls is None:
+            cls = "NONE"
+        self._cls = cls
+    def _get_cls(self):
+        return self._cls
     pass
+    cls = property(_get_cls, _set_cls)
 
 class HardwareByClass(object):
     pass
@@ -207,7 +214,9 @@ mapper(HardwareClass,
        properties = {'devices': relation(ComputerLogicalDevice,
                                          cascade="all,delete-orphan",
                                          backref=backref('hardware_class'),
-                                         lazy=None)})
+                                         lazy=None),
+                     '_cls': hardware_classes.c.cls,
+                     'cls': synonym('_cls')})
 
 mapper(HardwareByClass, hardware_by_class)
 mapper(OS, oses, order_by=desc(oses.c.cnt))
