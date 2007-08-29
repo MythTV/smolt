@@ -6,6 +6,9 @@
 <title>Show Box</title>
 </head>
 <body>
+	<div class='share' id='share' name='share'>
+		<a href='share?sid=${host_object.id}'>Share my computer!</a>
+	</div>
 	<form action="submit_ratings?uuid=${host_object.uuid}" method="post">
         <h3>${host_object.uuid}</h3>
 		<p class='moof'><button type='submit'>Submit your ratings</button></p>

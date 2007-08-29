@@ -236,7 +236,3 @@ def test_add_new():
     print test_device.description
     ctx.current.delete(test_device)
     ctx.current.flush()
-
-    
-    
-    

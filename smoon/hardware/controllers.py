@@ -53,6 +53,13 @@ rating = SingleSelectField(options = [(0, "Please Pick One"),
                                       (2, "This doesn't work"),
                                       (3, "This sorta works"),
                                       (4, "This works great! ^_^")])
+rating_options = {0: "Not Rated",
+                  1: "This breaks stuff",
+                  2: "This doesn't work",
+                  3: "This sorta works :-/",
+                  4: "This works great! ^_^",
+                  5: "Mike is awesome"}
+
 class Root(controllers.RootController):
     def __init__(self):
         controllers.RootController.__init__(self)
@@ -133,6 +140,22 @@ class Root(controllers.RootController):
             devices[dev.device_id] = (dev.device, dev.rating)
         ven = DeviceMap('pci')
         return dict(host_object=host_object, devices=devices, ven=ven, rating=rating)
+
+    @expose(template="hardware.templates.share")
+    @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
+    def share(self, sid=''):
+        try:
+            host_object = Query(Host).get(sid)
+        except:
+            raise ValueError("Critical: share ID Not Found - %s" % sid)
+        devices = {}
+        for dev in host_object.devices:
+            #This is to prevent duplicate devices showing up, in the future,
+            #There will be no dups in the database
+            devices[dev.device_id] = (dev.device, dev.rating)
+        ven = DeviceMap('pci')
+        return dict(host_object=host_object, devices=devices, \
+                    ven=ven, rating_options=rating_options)
 
     @expose(template="hardware.templates.delete")
     @exception_handler(error_client,rules="isinstance(tg_exceptions,ValueError)")
