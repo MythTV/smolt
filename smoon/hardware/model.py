@@ -3,14 +3,9 @@ from datetime import datetime
 from sqlalchemy import *
 from sqlalchemy.ext.assignmapper import assign_mapper
 from turbogears import identity
-from turbogears.database import metadata, session, _engine
 from mx import DateTime
 
-from sahelper import ctx
-
-def assign(obj, table, *args, **kw):
-    """Map tables to objects with knowledge about the session context."""
-    return assign_mapper(session.context, obj, table, *args, **kw)
+from sahelper import ctx, metadata
 
 
 computer_logical_devices = Table('device', metadata, 

@@ -4,17 +4,19 @@
 #through in switching over.
 #When Smoon transitions to 0.4, this will not be necessary
 import sqlalchemy
+from sqlalchemy import MetaData
 from sqlalchemy.ext import activemapper, sessioncontext
 from sqlalchemy.ext.sessioncontext import SessionContext
 from sqlalchemy.orm.mapper import global_extensions
 from turbogears import config
-from turbogears.database import metadata
 
 _engine = None
+metadata = sqlalchemy.MetaData()
 
 def get_engine():
     "Retreives the engine based on the current configuration"
     global _engine
+    global metadata
     if not _engine:
         alch_args = dict()
         for k, v in config.config.configMap["global"].items():

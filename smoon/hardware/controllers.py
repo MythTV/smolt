@@ -60,11 +60,61 @@ rating_options = {0: "Not Rated",
                   4: "This works great! ^_^",
                   5: "Mike is awesome"}
 
+class ByClass(object):
+    def __init__(self):
+        self.rw_lock = MultiLock()
+        self.data = {}
+        scheduler.add_interval_task(action=self.fetch_data, interval=900, \
+                                    args=None, kw=None, initialdelay=15, \
+                                    processmethod=scheduler.method.threaded, \
+                                    taskname="byclass_cache")
+       
+    def fetch_data(self):
+        classes = Query(HardwareClass).select()
+        for cls in classes:
+            type = cls.cls
+            # We only want hosts that detected hardware (IE, hal was working properly)
+            total_hosts = select([host_links.c.host_link_id], distinct=True)\
+                            .alias("m").count()\
+                            .execute().fetchone()[0]
+            count = select([host_links.c.host_link_id], \
+                           and_(host_links.c.device_id == computer_logical_devices.c.id, \
+                                computer_logical_devices.c.cls == type), \
+                           distinct=True).alias("m")\
+                     .count().execute().fetchone()[0]
+            types = Query(HardwareByClass)\
+                        .order_by(desc(HardwareByClass.c.count))\
+                        .limit(100).select_by(cls=type)
+            device = computer_logical_devices
+            vendors = select([func.count(device.c.vendor_id).label('cnt'), \
+                              device.c.vendor_id], \
+                             device.c.cls==type, order_by=[desc('cnt')], \
+                             group_by=device.c.vendor_id)\
+                        .execute().fetchall()
+            self.rw_lock.write_acquire()
+            self.data[type] = (total_hosts, count, types, vendors)
+            self.rw_lock.write_release()
+    
+    def get_data(self, cls):
+        try:
+            self.rw_lock.read_acquire()
+            _return = self.data[cls]
+            self.rw_lock.read_release()
+        except Exception, e:
+            self.rw_lock.read_release()
+            raise e
+        return _return
+    
+    def __getitem__(self, key):
+        return self.get_data(key)
+
+    pass
 class Root(controllers.RootController):
     def __init__(self):
         controllers.RootController.__init__(self)
         self.devices_lock = MultiLock()
         self.stats_lock = MultiLock()
+        self.byclass_cache = ByClass()
         scheduler.add_interval_task(action=self.write_devices, interval=1800, \
                                     args=None, kw=None, initialdelay=15, \
                                     processmethod=scheduler.method.threaded, \
@@ -444,18 +494,18 @@ class Root(controllers.RootController):
     def by_class(self, type='VIDEO'):
         type = type.encode('utf8')
         #classes = Host._connection.queryAll('select distinct(class) from device;')
-        try:
-            cls = Query(HardwareClass).selectone_by(cls=type)
-        except InvalidRequestError:
-            return (None, )
         pci_vendors = DeviceMap('pci')
         tabs = Tabber()
         # We only want hosts that detected hardware (IE, hal was working properly)
-        total_hosts = select([host_links.c.host_link_id], distinct=True).alias("m").count().execute().fetchone()[0]
-        count = select([host_links.c.host_link_id], and_(host_links.c.device_id == computer_logical_devices.c.id, computer_logical_devices.c.cls == type), distinct=True).alias("m").count().execute().fetchone()[0]
-        types = Query(HardwareByClass).order_by(desc(HardwareByClass.c.count)).limit(100).select_by(cls=type)
-        device = computer_logical_devices
-        vendors = select([func.count(device.c.vendor_id).label('cnt'), device.c.vendor_id], device.c.cls==type, order_by=[desc('cnt')], group_by=device.c.vendor_id).execute().fetchall()
+#        total_hosts = select([host_links.c.host_link_id], distinct=True).alias("m").count().execute().fetchone()[0]
+#        count = select([host_links.c.host_link_id], and_(host_links.c.device_id == computer_logical_devices.c.id, computer_logical_devices.c.cls == type), distinct=True).alias("m").count().execute().fetchone()[0]
+#        types = Query(HardwareByClass).order_by(desc(HardwareByClass.c.count)).limit(100).select_by(cls=type)
+#        device = computer_logical_devices
+#        vendors = select([func.count(device.c.vendor_id).label('cnt'), device.c.vendor_id], device.c.cls==type, order_by=[desc('cnt')], group_by=device.c.vendor_id).execute().fetchall()
+        try:
+            (total_hosts, count, types, vendors) = self.byclass_cache[type]
+        except KeyError:
+            raise redirect('unavailable')
         return dict(types=types, type=type, total_hosts=total_hosts, count=count, pci_vendors=pci_vendors, vendors=vendors, tabs=tabs)
 
     @expose(template="hardware.templates.not_loaded")
