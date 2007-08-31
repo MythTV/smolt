@@ -375,7 +375,11 @@ class Root(controllers.RootController):
 #            if device_id and vendor_id:
 #                description = '%s:%s:%s:%s' % (vendor_id, device_id, subsys_device_id, subsys_vendor_id)
             try:
-                device_sql = Query(ComputerLogicalDevice).selectone_by(description=description)
+                device_sql = Query(ComputerLogicalDevice)\
+                                .selectone_by(device_id=device_id,
+                                              vendor_id=vendor_id,
+                                              subsys_vendor_id=subsys_vendor_id,
+                                              subsys_device_id=subsys_device_id)
             except InvalidRequestError:
                 try:
                     device_sql = ComputerLogicalDevice()
@@ -453,7 +457,10 @@ class Root(controllers.RootController):
         for device in host_dict['devices']:
             try:
                 device_sql = Query(ComputerLogicalDevice)\
-                    .selectone_by(description=device['description'])
+                    .selectone_by(device_id=device['device_id'],
+                                  vendor_id=device['vendor_id'],
+                                  subsys_vendor_id=device['subsys_vendor_id'],
+                                  subsys_device_id=device['subsys_device_id'])
             except InvalidRequestError:
                 cls = device['type']
                 if cls is None:
