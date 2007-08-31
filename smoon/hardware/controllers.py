@@ -379,7 +379,8 @@ class Root(controllers.RootController):
                                 .selectone_by(device_id=device_id,
                                               vendor_id=vendor_id,
                                               subsys_vendor_id=subsys_vendor_id,
-                                              subsys_device_id=subsys_device_id)
+                                              subsys_device_id=subsys_device_id,
+                                              description=description)
             except InvalidRequestError:
                 try:
                     device_sql = ComputerLogicalDevice()
