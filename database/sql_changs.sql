@@ -36,3 +36,7 @@ ALTER TABLE `classes`
 
 ALTER TABLE `host_links` ADD COLUMN `rating` INT  NOT NULL DEFAULT 0 AFTER `device_id`;
 
+ALTER TABLE `smoon`.`device` DROP INDEX `description`,
+ ADD UNIQUE INDEX `description` USING BTREE(`description`, `device_id`, `vendor_id`, `subsys_device_id`, `subsys_vendor_id`);
+
+

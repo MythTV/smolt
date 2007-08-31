@@ -455,26 +455,44 @@ class Root(controllers.RootController):
         host_sql.selinux_enforce = host_dict['selinux_enforce']
                 
         for device in host_dict['devices']:
+            description = device['description']
+            device_id = device['device_id']
+            if device_id is None:
+                print "device_id"
+                device_id = 0
+            vendor_id = device['vendor_id']
+            if vendor_id is None:
+                print "vendor_id"
+                vendor_id = 0
+            subsys_vendor_id = device['subsys_vendor_id']
+            if subsys_vendor_id is None:
+                print "subsys_vendor_id"
+                subsys_vendor_id = 0
+            subsys_device_id = device['subsys_device_id']
+            if subsys_device_id is None:
+                print "subsys_device_id"
+                subsys_device_id = 0
             try:
                 device_sql = Query(ComputerLogicalDevice)\
-                    .selectone_by(device_id=device['device_id'],
-                                  vendor_id=device['vendor_id'],
-                                  subsys_vendor_id=device['subsys_vendor_id'],
-                                  subsys_device_id=device['subsys_device_id'])
+                    .selectone_by(device_id=device_id,
+                                  vendor_id=vendor_id,
+                                  subsys_vendor_id=subsys_vendor_id,
+                                  subsys_device_id=subsys_device_id,
+                                  description=description)
             except InvalidRequestError:
                 cls = device['type']
                 if cls is None:
                     cls = "NONE"
                 device_sql = ComputerLogicalDevice()
-                device_sql.device_id = device['device_id']
-                device_sql.subsys_vendor_id = device['subsys_vendor_id']
-                device_sql.subsys_device_id = device['subsys_device_id']
-                device_sql.vendor_id = device['vendor_id']
+                device_sql.device_id = device_id
+                device_sql.subsys_vendor_id = subsys_vendor_id
+                device_sql.subsys_device_id = subsys_device_id
+                device_sql.vendor_id = vendor_id
                 device_sql.bus = device['bus']
                 device_sql.driver = device['driver']
                 device_sql.cls = cls
                 device_sql.description = device['description']
-                device_sql.date_added = DateTime.now()  
+                device_sql.date_added = DateTime.now() 
 
                 try: 
                     class_sql = Query(HardwareClass).selectone_by(cls=cls)
