@@ -431,9 +431,6 @@ class Root(controllers.RootController):
         
         try:
             host_sql = Query(Host).selectone_by(uuid=uuid)
-            ctx.current.delete(host_sql)
-            ctx.current.flush()
-            host_sql = Host()
         except InvalidRequestError:
             host_sql = Host()
         host_sql.uuid = host_dict["uuid"]
@@ -455,6 +452,9 @@ class Root(controllers.RootController):
         host_sql.selinux_enabled = host_dict['selinux_enabled']
         host_sql.selinux_enforce = host_dict['selinux_enforce']
                 
+        orig_devices = [device.device_id for device 
+                                         in host_sql.devices]
+        
         for device in host_dict['devices']:
             description = device['description']
             device_id = device['device_id']
@@ -480,15 +480,21 @@ class Root(controllers.RootController):
                                   subsys_vendor_id=subsys_vendor_id,
                                   subsys_device_id=subsys_device_id,
                                   description=description)
+                if device_sql.id in orig_devices:
+                    orig_devices.remove(device_sql.id)
+                else:
+                    host_link_sql = HostLink()
+                    host_link_sql.host = host_sql
+                    host_link_sql.device = device_sql
             except InvalidRequestError:
                 cls = device['type']
                 if cls is None:
                     cls = "NONE"
                 device_sql = ComputerLogicalDevice()
                 device_sql.device_id = device_id
+                device_sql.vendor_id = vendor_id
                 device_sql.subsys_vendor_id = subsys_vendor_id
                 device_sql.subsys_device_id = subsys_device_id
-                device_sql.vendor_id = vendor_id
                 device_sql.bus = device['bus']
                 device_sql.driver = device['driver']
                 device_sql.cls = cls
@@ -505,13 +511,17 @@ class Root(controllers.RootController):
                     device_sql.hardware_class = class_sql
                     ctx.current.flush()
                     
-                
                 ctx.current.flush()
                
-            host_link = HostLink()
-            host_link.host = host_sql
-            host_link.device = device_sql
+                host_link = HostLink()
+                host_link.host = host_sql
+                host_link.device = device_sql
             
+        for device_sql_id in orig_devices:
+            bad_host_link = Query(HostLink)\
+                .select_by(device_id=device_sql_id,
+                           host_link_id=host_sql.id)[0]
+            ctx.current.delete(bad_host_link)
         ctx.current.flush()
         
         return dict()
