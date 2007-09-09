@@ -451,27 +451,25 @@ class Root(controllers.RootController):
         host_sql.formfactor = host_dict['formfactor']
         host_sql.selinux_enabled = host_dict['selinux_enabled']
         host_sql.selinux_enforce = host_dict['selinux_enforce']
+        
                 
         orig_devices = [device.device_id for device 
                                          in host_sql.devices]
+        
         
         for device in host_dict['devices']:
             description = device['description']
             device_id = device['device_id']
             if device_id is None:
-                print "device_id"
                 device_id = 0
             vendor_id = device['vendor_id']
             if vendor_id is None:
-                print "vendor_id"
                 vendor_id = 0
             subsys_vendor_id = device['subsys_vendor_id']
             if subsys_vendor_id is None:
-                print "subsys_vendor_id"
                 subsys_vendor_id = 0
             subsys_device_id = device['subsys_device_id']
             if subsys_device_id is None:
-                print "subsys_device_id"
                 subsys_device_id = 0
             try:
                 device_sql = Query(ComputerLogicalDevice)\
@@ -486,6 +484,7 @@ class Root(controllers.RootController):
                     host_link_sql = HostLink()
                     host_link_sql.host = host_sql
                     host_link_sql.device = device_sql
+                    hl = host_link_sql
             except InvalidRequestError:
                 cls = device['type']
                 if cls is None:
@@ -500,7 +499,9 @@ class Root(controllers.RootController):
                 device_sql.cls = cls
                 device_sql.description = device['description']
                 device_sql.date_added = DateTime.now() 
-
+                
+                d = device_sql
+                
                 try: 
                     class_sql = Query(HardwareClass).selectone_by(cls=cls)
                     device_sql.hardware_class = class_sql

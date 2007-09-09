@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW `ARCH` AS Select platform, count(platform) as cnt from smoon.host group by platform order by cnt desc;
+CREATE OR REPLACE VIEW `ARCH` AS Select platform, count(platform) as cnt from host group by platform order by cnt desc;
 CREATE OR REPLACE VIEW `OS` AS Select o_s, count(o_s) as cnt from host group by o_s order by cnt desc;
 CREATE OR REPLACE VIEW `RUNLEVEL` AS  select `host`.`default_runlevel` AS `default_runlevel`,count(`host`.`default_runlevel`) AS `cnt` from `host` group by `host`.`default_runlevel` order by count(`host`.`default_runlevel`) desc;
 CREATE OR REPLACE VIEW `NUM_CPUS` AS SELECT  num_cp_us, count(num_cp_us) as cnt from host group by num_cp_us order by cnt desc;
@@ -36,7 +36,7 @@ ALTER TABLE `classes`
 
 ALTER TABLE `host_links` ADD COLUMN `rating` INT  NOT NULL DEFAULT 0 AFTER `device_id`;
 
-ALTER TABLE `smoon`.`device` DROP INDEX `description`,
+ALTER TABLE `device` DROP INDEX `description`,
  ADD UNIQUE INDEX `description` USING BTREE(`description`, `device_id`, `vendor_id`, `subsys_device_id`, `subsys_vendor_id`);
 
 
