@@ -676,6 +676,4 @@ class Root(controllers.RootController):
         ctx.current.flush()
         flash("Ratings Saved!")
         redirect("show?UUID=%s" % uuid)
-            
-            
 

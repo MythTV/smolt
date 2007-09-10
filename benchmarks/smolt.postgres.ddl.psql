@@ -1,0 +1,210 @@
+--
+-- Generated from mysql2pgsql.perl
+-- http://gborg.postgresql.org/project/mysql2psql/
+-- (c) 2001 - 2007 Jose M. Duarte, Joseph Speigle
+--
+
+-- warnings are printed for drop tables if they do not exist
+-- please see http://archives.postgresql.org/pgsql-novice/2004-10/msg00158.php
+
+-- ##############################################################
+-- MySQL dump 10.12
+--
+-- Host: localhost    Database: bench2
+-- ------------------------------------------------------
+-- Server version	5.1.19-beta-Debian_1-log
+
+
+--
+-- Table structure for table classes
+--
+
+DROP TABLE "classes" CASCADE\g
+CREATE TABLE  "classes" (
+   "class"   varchar(40) NOT NULL, 
+   "description"   text, 
+   primary key ("class")
+);
+
+--
+-- Table structure for table device
+--
+
+DROP TABLE "device" CASCADE\g
+DROP SEQUENCE "device_id_seq" CASCADE ;
+
+CREATE SEQUENCE "device_id_seq" ;
+
+CREATE TABLE  "device" (
+   "id" integer DEFAULT nextval('"device_id_seq"') NOT NULL,
+   "description"   varchar(128) NOT NULL DEFAULT '', 
+   "bus"   text, 
+   "driver"   text, 
+   "class"   varchar(40) DEFAULT NULL, 
+   "date_added"   timestamp without time zone DEFAULT NULL, 
+   "device_id"   varchar(16) DEFAULT NULL, 
+   "vendor_id"   int DEFAULT NULL, 
+   "subsys_device_id"   int DEFAULT NULL, 
+   "subsys_vendor_id"   int DEFAULT NULL, 
+   primary key ("id"),
+ unique ("description", "device_id", "vendor_id", "subsys_device_id", "subsys_vendor_id")
+)  ;
+CREATE INDEX "device_class_idx" ON "device"("class");
+ALTER TABLE "device" ADD FOREIGN KEY ("class") REFERENCES "classes" ("class");
+
+--
+-- Table structure for table fas_link
+--
+
+DROP TABLE "fas_link" CASCADE\g
+DROP SEQUENCE "fas_link_id_seq" CASCADE ;
+
+CREATE SEQUENCE "fas_link_id_seq" ;
+
+CREATE TABLE  "fas_link" (
+   "id" integer DEFAULT nextval('"fas_link_id_seq"') NOT NULL,
+   "u_u_id"   varchar(36) NOT NULL, 
+   "user_name"   varchar(255) NOT NULL, 
+   primary key ("id")
+)  ;
+
+--
+-- Table structure for table host
+--
+
+DROP TABLE "host" CASCADE\g
+DROP SEQUENCE "host_id_seq" CASCADE ;
+
+CREATE SEQUENCE "host_id_seq" ;
+
+CREATE TABLE  "host" (
+   "id" integer DEFAULT nextval('"host_id_seq"') NOT NULL,
+   "u_u_id"   varchar(36) NOT NULL DEFAULT '', 
+   "o_s"   text, 
+   "platform"   text, 
+   "bogomips" double precision DEFAULT NULL, 
+   "system_memory"   int DEFAULT NULL, 
+   "system_swap"   int DEFAULT NULL, 
+   "vendor"   text, 
+   "system"   text, 
+   "cpu_vendor"   text, 
+   "cpu_model"   text, 
+   "num_cp_us"   int DEFAULT NULL, 
+   "cpu_speed" double precision DEFAULT NULL, 
+   "language"   text, 
+   "default_runlevel"   int DEFAULT NULL, 
+   "kernel_version"   text, 
+   "formfactor"   text, 
+   "last_modified"   timestamp without time zone NOT NULL default '1970-01-01 00:00:00', 
+   "rating"   int NOT NULL DEFAULT '0', 
+   "selinux_enabled"    boolean NOT NULL DEFAULT '0', 
+   "selinux_enforce"   text, 
+   primary key ("id"),
+ unique ("u_u_id") 
+)   ;
+
+--
+-- Table structure for table host_links
+--
+
+DROP TABLE "host_links" CASCADE\g
+DROP SEQUENCE "host_links_id_seq" CASCADE ;
+
+CREATE SEQUENCE "host_links_id_seq" ;
+
+CREATE TABLE  "host_links" (
+   "id" integer DEFAULT nextval('"host_links_id_seq"') NOT NULL,
+   "host_link_id"   int DEFAULT NULL, 
+   "device_id"   int DEFAULT NULL, 
+   "rating"   int NOT NULL DEFAULT '0', 
+   primary key ("id")
+)   ;
+
+CREATE INDEX "host_links_host_link_id_idx" ON "host_links"  ("host_link_id");
+CREATE INDEX "host_links_device_id_idx" ON "host_links" ("device_id");
+ALTER TABLE "host_links" ADD FOREIGN KEY ("device_id") REFERENCES "device" ("id");
+ALTER TABLE "host_links" ADD FOREIGN KEY ("host_link_id") REFERENCES "host" ("id");
+
+CREATE OR REPLACE VIEW "ARCH" AS
+    select host.platform AS platform, count(host.platform) AS cnt 
+    from host 
+    group by host.platform 
+    order by count(host.platform) desc ;
+CREATE OR REPLACE VIEW "CLASS" AS 
+    select
+        device.description AS description,
+        device.bus AS bus,
+        device.driver AS driver,
+        device.vendor_id AS vendor_id,
+        device.device_id AS device_id,
+        device.subsys_vendor_id AS subsys_vendor_id,
+        device.subsys_device_id AS subsys_device_id,
+        device.date_added AS date_added,
+        device.class AS class,
+        count(distinct host_links.host_link_id) AS cnt 
+    from host_links, device
+    where (host_links.device_id = device.id)
+    group by host_links.device_id, description, bus, driver, vendor_id, device.device_id, subsys_vendor_id, subsys_device_id, date_added, class
+    order by count(distinct host_links.host_link_id) desc ;
+CREATE OR REPLACE VIEW "CPU_VENDOR" AS
+    select host.cpu_vendor AS cpu_vendor,count(host.cpu_vendor) AS cnt 
+    from host 
+    group by host.cpu_vendor 
+    order by count(host.cpu_vendor) desc ;
+CREATE OR REPLACE VIEW "FORMFACTOR" AS 
+    select host.formfactor AS formfactor,count(host.formfactor) AS cnt 
+    from host 
+    group by host.formfactor 
+    order by count(host.formfactor) desc ;
+CREATE OR REPLACE VIEW "KERNEL_VERSION" AS 
+    select host.kernel_version AS kernel_version,count(host.kernel_version) AS cnt 
+    from host 
+    group by host.kernel_version 
+    order by count(host.kernel_version) desc ;
+CREATE OR REPLACE VIEW "LANGUAGE" AS 
+    select host.language AS language,count(host.language) AS cnt 
+    from host 
+    group by host.language 
+    order by count(host.language) desc ;
+CREATE OR REPLACE VIEW "NUM_CPUS" AS 
+    select host.num_cp_us AS num_cp_us,count(host.num_cp_us) AS cnt 
+    from host 
+    group by host.num_cp_us 
+    order by count(host.num_cp_us) desc ;
+CREATE OR REPLACE VIEW "OS" AS 
+    select host.o_s AS o_s,count(host.o_s) AS cnt 
+    from host 
+    group by host.o_s 
+    order by count(host.o_s) desc ;
+CREATE OR REPLACE VIEW "RUNLEVEL" AS 
+    select host.default_runlevel AS default_runlevel,count(host.default_runlevel) AS cnt 
+    from host
+    group by host.default_runlevel 
+    order by count(host.default_runlevel) desc ;
+CREATE OR REPLACE VIEW "SYSTEM" AS 
+    select host.system AS system,count(host.system) AS cnt 
+    from host 
+    where ((host.system <>  'Unknown') and (host.system <>  ''))
+    group by host.system 
+    order by count(host.system) desc ;
+CREATE OR REPLACE VIEW "TOTALLIST" AS 
+    select 
+        device.description AS description,
+        count(host_links.device_id) AS cnt 
+    from host_links, device 
+    where (host_links.device_id = device.id) 
+    group by host_links.device_id, description
+    order by count(host_links.device_id) desc ;
+CREATE OR REPLACE VIEW "UNIQUELIST" AS 
+    select 
+        device.description AS description,
+        count(distinct host_links.host_link_id) AS cnt 
+    from host_links, device
+    where (host_links.device_id = device.id) 
+    group by host_links.device_id, description
+    order by count(distinct host_links.host_link_id) desc ;
+CREATE OR REPLACE VIEW "VENDOR" AS select host.vendor AS vendor,count(host.vendor) AS cnt 
+    from host 
+    where ((host.vendor <> 'Unknown') and (host.vendor <> '')) 
+    group by host.vendor order by count(host.vendor) desc ;
+
