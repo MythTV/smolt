@@ -1,0 +1,3 @@
+
+Hi there. I'm a small text file used to check Fedora's Transifex installation.
+Feel free to revert my addition/modifications.
