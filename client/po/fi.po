@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-22 12:09-0400\n"
-"PO-Revision-Date: 2007-04-02 18:28+0200\n"
+"PO-Revision-Date: 2007-09-11 23:11+0200\n"
 "Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
 "MIME-Version: 1.0\n"
@@ -55,11 +55,11 @@ msgstr "Profiili poistettu, varmista osoitteessa"
 
 #: sendProfile.py:52
 msgid "(optional) Fedora Account System registration"
-msgstr ""
+msgstr "(valinnainen) Fedora Account System -rekisteröityminen"
 
 #: sendProfile.py:57
 msgid "password, will prompt if not specified"
-msgstr ""
+msgstr "salasana, huomauttaa jos sitä ei ole määritetty"
 
 #: sendProfile.py:67
 msgid "don't prompt to send, just send"
@@ -71,13 +71,19 @@ msgstr "jatka lähettämistä kunnes onnistuu"
 
 # Onko checkin päivitys?
 #: sendProfile.py:87
-msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr "tämä automaattinen päivitys ajetaan vain jos ”smolt”-palvelu on käynnistetty"
+msgid ""
+"this is an automated checkin, will only run if the \"smolt\" service has "
+"been started"
+msgstr ""
+"tämä automaattinen päivitys ajetaan vain jos ”smolt”-palvelu on käynnistetty"
 
 # Onko checkin päivitys?
 #: sendProfile.py:101
-msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "Smolt asetettu päivittämään automaattisesti, mutta päivitykset ovat poissa käytöstä (vinkki: service smolt start)"
+msgid ""
+"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+"Smolt asetettu päivittämään automaattisesti, mutta päivitykset ovat poissa "
+"käytöstä (vinkki: service smolt start)"
 
 #: sendProfile.py:108
 msgid "Error:"
@@ -109,11 +115,11 @@ msgstr "Ei voitu lähettää - lopetetaan"
 
 #: sendProfile.py:139
 msgid "Password:"
-msgstr ""
+msgstr "Salasana:"
 
 #: sendProfile.py:144
 msgid "Registration Failed, Try again"
-msgstr ""
+msgstr "Rekisteröinti epäonnistui, yritä uudelleen"
 
 #: sendProfile.py:147
 #, python-format
@@ -150,34 +156,36 @@ msgstr "_Tietoja"
 
 #: smoltGui.py:78
 msgid "_File"
-msgstr ""
+msgstr "_Tiedosto"
 
 #: smoltGui.py:79
 msgid "_Help"
-msgstr ""
+msgstr "O_hje"
 
 #: smoltGui.py:80
 msgid "_My Smolt Page"
-msgstr ""
+msgstr "_Smolt-profiilisivu"
 
 #: smoltGui.py:80
 msgid "Take me to my smolt profile page"
-msgstr ""
+msgstr "Siirry smolt-profiilisivulle"
 
 #: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
 msgstr "Dataa palvelimelle lähetettäessä tapahtui virhe."
 
 #: smoltGui.py:152
-#, fuzzy, python-format
+#, python-format
 msgid ""
-"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"The data was successfully sent.  If you need to refer to your hardware "
+"profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
-"Datan lähetys onnistui.  Jos tarvitset laitteistoprofiilia vikailmoituksessa, UUID:si on\n"
+"Datan lähetys onnistui.  Jos tarvitset laitteistoprofiilia "
+"vikailmoituksessa, UUID:si on\n"
 "%s\n"
-"Se on tallennettu tiedostoon /etc/sysconfig/hw-uuid"
+"Se on tallennettu tiedostoon %s"
 
 #: smoltGui.py:166
 msgid "Smolt Privacy Policy"
@@ -185,24 +193,31 @@ msgstr "Smoltin yksityisyyskäytäntö"
 
 #: smoltGui.py:209
 msgid "translator-credits"
-msgstr ""
+msgstr "Ville-Pekka Vainio, 2007"
 
 #: smoltGui.py:210
-#, fuzzy
 msgid "Fedora hardware profiler."
-msgstr "Lähetä laitteistoprofiili palvelimelle."
+msgstr "Fedoran laitteistoprofiloija"
 
 #: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
-msgstr ""
+msgstr "Tekijänoikeus © 2007 Mike McGrath"
 
 #: smoltGui.py:213
 msgid ""
-"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
 "\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
+"Ave, Cambridge, MA 02139, USA."
 msgstr ""
 
 #: smolt.py:237
@@ -211,9 +226,8 @@ msgid "Could not contact server: %s"
 msgstr "Ei voitu yhdistää palvelimeen: %s"
 
 #: smolt.py:268
-#, fuzzy
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr "Ei voitu liittyä dbusiin"
+msgstr "Ei voitu yhdistää dbusiin. Onko dbus käynnissä?"
 
 #: smolt.py:274
 msgid "Could not connect to hal, is it running?"
@@ -230,7 +244,7 @@ msgstr "Virhe yhdistettäessä palvelimeen: %s"
 
 #: smolt.py:408
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
+msgstr "Väärä versio, palvelin ei ymmärrä asiakasohjelmaa"
 
 #: smolt.py:424
 msgid "Communication with server failed"
@@ -306,31 +320,42 @@ msgstr "Ydin"
 
 #: smolt.py:525
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux käytössä"
 
 #: smolt.py:526
+#, fuzzy
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux-dokumentaatio"
 
 #: smolt.py:959
 msgid "Unable to save UUID, continuing...\n"
-msgstr ""
+msgstr "UUID:n tallennus epäonnistui, jatketaan...\n"
 
 #: smolt.py:961
 msgid "Unable to determine UUID of system!\n"
-msgstr ""
+msgstr "Järjestelmän UUID:tä ei voida selvittää!\n"
 
 #: software.py:43
 msgid "Cannot Determine Runlevel"
-msgstr ""
+msgstr "Ajotasoa ei voida selvittää"
 
 #: smoltFirstBoot.py:24 smoltFirstBoot.py:34
 msgid "Hardware Profile"
 msgstr "Laitteistoprofiili"
 
 #: smoltFirstBoot.py:50
-msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt on Fedora-projektin laitteistoprofiloija.  Profiilin lähettäminen on hyvä tapa tehdä yhteisölle vastapalvelus, koska nämä tiedot auttavat meitä keskittämään työtämme suosittuihin laitteistoihin ja alustoihin.  Tietojen lähetys on anonyymiä.  Profiilin lähetys ottaa käyttöön kuukausittaisen päivityksen."
+msgid ""
+"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
+"profile is a great way to give back to the community as this information is "
+"used to help focus our efforts on popular hardware and platforms.  "
+"Submissions are anonymous.  Sending your profile will enable a monthly "
+"update."
+msgstr ""
+"Smolt on Fedora-projektin laitteistoprofiloija.  Profiilin lähettäminen on "
+"hyvä tapa tehdä yhteisölle vastapalvelus, koska nämä tiedot auttavat meitä "
+"keskittämään työtämme suosittuihin laitteistoihin ja alustoihin.  Tietojen "
+"lähetys on anonyymiä.  Profiilin lähetys ottaa käyttöön kuukausittaisen "
+"päivityksen."
 
 #: smoltFirstBoot.py:69
 msgid "_Send Profile"
@@ -341,8 +366,14 @@ msgid "D_o not send profile"
 msgstr "_Älä lähetä profiilia"
 
 #: smoltFirstBoot.py:88
-msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "Etkö varmasti halua lähettää profiilia?  Profiilit ovat arvokkaita tietolähteitä kehitykselle ja voivat auttaa mahdollisten laitteisto-ongelmien selvittämisessä."
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr ""
+"Etkö varmasti halua lähettää profiilia?  Profiilit ovat arvokkaita "
+"tietolähteitä kehitykselle ja voivat auttaa mahdollisten laitteisto-"
+"ongelmien selvittämisessä."
 
 #: smoltFirstBoot.py:96
 msgid "_Reconsider sending"
@@ -379,29 +410,37 @@ msgstr "Kuvaus"
 #: privacypolicy.py:3
 msgid ""
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a "
+"submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"the submission is anonymous.  If at any point in time a user wants to "
+"delete\n"
 "their profile from the database they need only run\n"
 "\n"
 "    smoltDeleteProfile\n"
 "\n"
-"The information sent to the smolt database server should be considered public\n"
-"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"The information sent to the smolt database server should be considered "
+"public\n"
+"in that anyone can view the statistics, data and share machine profiles.  "
+"In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"attention.  As such, not only will this information be shared with 3rd "
+"parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.\n"
 "\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and they\n"
+"server first.  This is the only place IP addresses are being logged and "
+"they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
-"the smolt database.  These logs are private and will not be available to the\n"
+"the smolt database.  These logs are private and will not be available to "
+"the\n"
 "general public.\n"
 "\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team at\n"
+"questions about this policy should contact the Fedora Infrastructure Team "
+"at\n"
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
