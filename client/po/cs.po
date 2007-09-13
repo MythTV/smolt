@@ -1,19 +1,21 @@
+# translation of cs.po to Czech
+#
+#
 # Yaakov Nemoy <loupgaroublond@gmail.com>, 2007.
-# 
-# 
+# Adam Přibyl <pribyl@lowlevel.cz>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: Smolt\n"
+"Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-22 12:09-0400\n"
-"PO-Revision-Date: 2007-05-18 18:20-0400\n"
-"Last-Translator: Adam Pribyl <pribyl@lowlevel.cz>\n"
-"Language-Team: cs <Project-Id-Version: gtranslator VERSION\n"
+"PO-Revision-Date: 2007-09-13 19:29+0200\n"
+"Last-Translator: Adam Přibyl <pribyl@lowlevel.cz>\n"
+"Language-Team: Czech <fedora-cs-list@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;"
-">\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;>\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: deleteProfile.py:35 smolt.py:235
 #, python-format
@@ -31,57 +33,57 @@ msgstr "zadejte URL adresu serveru (výchozí: \"%default\")"
 
 #: deleteProfile.py:55 sendProfile.py:62
 msgid "print information only, do not send"
-msgstr ""
+msgstr "informaci pouze vypiš, neodesílej"
 
 #: deleteProfile.py:60 sendProfile.py:77
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
-msgstr ""
+msgstr "zadejte HTTP user agenta (výchozí: \"%default\") "
 
 #: deleteProfile.py:65 sendProfile.py:82
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr ""
+msgstr "časový limit odpovědi HTTP v sekundách (výchozí %default sekund)"
 
 #: deleteProfile.py:83
 msgid "Error contacting Server:"
-msgstr ""
+msgstr "Chyba navazování spojení se Serverem:"
 
 #: deleteProfile.py:91
 msgid "Profile removed, please verify at"
-msgstr ""
+msgstr "Profil byl odebrán, prosím zkontrolujte na"
 
 #: sendProfile.py:52
 msgid "(optional) Fedora Account System registration"
-msgstr ""
+msgstr "(nepovinné) Registrace do Fedora Account Systému"
 
 #: sendProfile.py:57
 msgid "password, will prompt if not specified"
-msgstr ""
+msgstr "heslo, bude vyžádáno pokud není zadáno"
 
 #: sendProfile.py:67
 msgid "don't prompt to send, just send"
-msgstr ""
+msgstr "neptej se zda odeslat, rovnou pošli"
 
 #: sendProfile.py:72
 msgid "continue to send until success"
-msgstr ""
+msgstr "pokračuj v odesílání dokud není úspěšné"
 
 #: sendProfile.py:87
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr ""
+msgstr "automatiké odesílání údajů, bude fungovat pouze pokud byla zapnuta služba \"smolt\""
 
 #: sendProfile.py:101
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr ""
+msgstr "Odesílání údajů smolt povoleno ale služba neběží (nápověda: service smolt start)"
 
 #: sendProfile.py:108
 msgid "Error:"
-msgstr ""
+msgstr "Chyba:"
 
 #: sendProfile.py:110
 msgid "Hint:"
-msgstr ""
+msgstr "Tip:"
 
 #: sendProfile.py:121
 msgid "Send this information to the Smolt server? (y/n)"
