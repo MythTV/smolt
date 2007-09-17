@@ -9,112 +9,130 @@ from sahelper import ctx, metadata
 
 
 computer_logical_devices = Table('device', metadata, 
-                                 Column("id", INT, autoincrement=True,
+                                 Column("id", Integer, autoincrement=True,
                                         nullable=False, primary_key=True),
-                                 Column("description", VARCHAR(128),
+                                 Column("description", String(128),
                                         nullable=False),
-                                 Column("bus", TEXT),
-                                 Column("driver", TEXT),
-                                 Column("class", VARCHAR(24),
+                                 Column("bus", String),
+                                 Column("driver", String),
+                                 Column("class", String(24),
                                         ForeignKey("classes.cls"),
                                         key="cls"),
-                                 Column("date_added", DATETIME),
-                                 Column("device_id", VARCHAR(16)),
-                                 Column("vendor_id", INT),
-                                 Column("subsys_device_id", INT),
-                                 Column("subsys_vendor_id", INT))
+                                 Column("date_added", DateTime),
+                                 Column("device_id", String(16)),
+                                 Column("vendor_id", Integer),
+                                 Column("subsys_device_id", Integer),
+                                 Column("subsys_vendor_id", Integer))
+
+human_logical_device = Table('subsystem', metadata,
+                             Column('name', String(20),
+                                    nullable=False, primary_key=True),
+                             Column('description', String))
+
+hld_cld_links = Table('hld_cld_link', metadata,
+                      Column('id', Integer, autoincrement=True,
+                             nullable=False, primary_key=True),
+                      Column('hld', String(30), ForeignKey('subsystem.name')),
+                      Column('cld', Integer, ForeignKey('device.id')))
+
+hld_host_links = Table('hld_host_link', metadata,
+                       Column('id', Integer, autoincrement=True,
+                              nullable=False, primary_key=True),
+                       Column('hld', String(30), ForeignKey('subsystem.name')),
+                       Column('host_id', Integer, ForeignKey('host.id')),
+                       Column('rating', Integer))
 
 host_links = Table('host_links', metadata, 
-                   Column("id", INT, autoincrement=True, nullable=False, primary_key=True),
-                   Column('host_link_id', INT, ForeignKey("host.id"),
+                   Column("id", Integer, autoincrement=True, nullable=False, primary_key=True),
+                   Column('host_link_id', Integer, ForeignKey("host.id"),
                           nullable=False),
-                   Column("device_id", INT, ForeignKey("device.id")),
-                   Column("rating", INT))
+                   Column("device_id", Integer, ForeignKey("device.id")),
+                   Column("rating", Boolean))
 
 hosts = Table('host', metadata,
-              Column("id", INT, autoincrement=True, nullable=False, primary_key=True),
-              Column('u_u_id', VARCHAR(36), nullable=False, unique=True),
-              Column('o_s', TEXT),
-              Column('platform', TEXT),
-              Column('bogomips', DECIMAL),
-              Column('system_memory', INT),
-              Column('system_swap', INT),
-              Column('vendor', TEXT),
-              Column('system', TEXT),
-              Column('cpu_vendor', TEXT),
-              Column('cpu_model', TEXT),
-              Column('num_cp_us', INT),
-              Column('cpu_speed', DECIMAL),
-              Column('language', TEXT),
-              Column('default_runlevel', INT),
-              Column('kernel_version', TEXT),
-              Column('formfactor', TEXT),
-              Column('last_modified', DATETIME, default=0, nullable=False),
-              Column('rating', INT, nullable=False, default=0),
-              Column('selinux_enabled', BOOLEAN, nullable=False),
-              Column('selinux_enforce', TEXT))
+              Column("id", Integer, autoincrement=True, nullable=False, primary_key=True),
+              Column('u_u_id', String(36), nullable=False, unique=True),
+              Column('o_s', String),
+              Column('platform', String),
+              Column('bogomips', Numeric),
+              Column('system_memory', Integer),
+              Column('system_swap', Integer),
+              Column('vendor', String),
+              Column('system', String),
+              Column('cpu_vendor', String),
+              Column('cpu_model', String),
+              Column('num_cp_us', Integer),
+              Column('cpu_speed', Numeric),
+              Column('language', String),
+              Column('default_runlevel', Integer),
+              Column('kernel_version', String),
+              Column('formfactor', String),
+              Column('last_modified', DateTime, default=0, nullable=False),
+              Column('rating', Integer, nullable=False, default=0),
+              Column('selinux_enabled', Boolean, nullable=False),
+              Column('selinux_enforce', String))
 
 fas_links = Table('fas_link', metadata,
-                  Column("id", INT, autoincrement=True, nullable=False,
+                  Column("id", Integer, autoincrement=True, nullable=False,
                          primary_key=True),
-                  Column('u_u_id', VARCHAR(36), ForeignKey("host.u_u_id"),
+                  Column('u_u_id', String(36), ForeignKey("host.u_u_id"),
                          nullable=False),
-                  Column("user_name", VARCHAR(255), nullable=False))
+                  Column("user_name", String(255), nullable=False))
 
 hardware_classes = Table('classes', metadata,
-                         Column("class", VARCHAR(24), nullable=False, primary_key=True, key="cls"),
-                         Column("description", TEXT, key="class_description"))
+                         Column("class", String(24), nullable=False, primary_key=True, key="cls"),
+                         Column("description", String, key="class_description"))
 
 hardware_by_class = Table("CLASS", metadata,
-                          Column('device_id', VARCHAR(16), primary_key=True),
-                          Column('description', VARCHAR(128)),
-                          Column('bus', TEXT),
-                          Column("driver", TEXT),
-                          Column("vendor_id", INT),
-                          Column("subsys_vendor_id", INT),
-                          Column("subsys_device_id", INT),
-                          Column("date_added", DATETIME),
-                          Column("cnt", INT, key='count'),
-                          Column("class", TEXT, key="cls"))
+                          Column('device_id', String(16), primary_key=True),
+                          Column('description', String(128)),
+                          Column('bus', String),
+                          Column("driver", String),
+                          Column("vendor_id", Integer),
+                          Column("subsys_vendor_id", Integer),
+                          Column("subsys_device_id", Integer),
+                          Column("date_added", DateTime),
+                          Column("cnt", Integer, key='count'),
+                          Column("class", String, key="cls"))
 
 archs = Table("ARCH", metadata,
-                  Column("platform", TEXT, primary_key=True),
-                  Column("cnt", INT))
+                  Column("platform", String, primary_key=True),
+                  Column("cnt", Integer))
 oses = Table("OS", metadata,
-                  Column("o_s", TEXT, primary_key=True, key="os"),
-                  Column("cnt", INT))
+                  Column("o_s", String, primary_key=True, key="os"),
+                  Column("cnt", Integer))
 runlevels = Table("RUNLEVEL", metadata,
-                      Column("default_runlevel", INT, primary_key=True, key="runlevel"),
-                      Column("cnt", INT))
+                      Column("default_runlevel", Integer, primary_key=True, key="runlevel"),
+                      Column("cnt", Integer))
 num_cpus = Table("NUM_CPUS", metadata,
-                     Column("num_cp_us", INT, primary_key=True, key="num_cpus"),
-                     Column("cnt", INT))
+                     Column("num_cp_us", Integer, primary_key=True, key="num_cpus"),
+                     Column("cnt", Integer))
 vendors = Table("VENDOR", metadata,
-                    Column("vendor", TEXT, primary_key=True),
-                    Column("cnt", INT))
+                    Column("vendor", String, primary_key=True),
+                    Column("cnt", Integer))
 systems = Table("SYSTEM", metadata,
-                    Column("system", TEXT, primary_key=True),
-                    Column("cnt", INT))
+                    Column("system", String, primary_key=True),
+                    Column("cnt", Integer))
 cpu_vendors = Table("CPU_VENDOR", metadata,
-                    Column("cpu_vendor", TEXT, primary_key=True),
-                    Column("cnt", INT))
+                    Column("cpu_vendor", String, primary_key=True),
+                    Column("cnt", Integer))
 kernel_versions = Table("KERNEL_VERSION", metadata,
-                            Column("kernel_version", TEXT, primary_key=True),
-                            Column("cnt", INT))
+                            Column("kernel_version", String, primary_key=True),
+                            Column("cnt", Integer))
 formfactors = Table("FORMFACTOR", metadata,
-                         Column("formfactor", TEXT, primary_key=True),
-                         Column("cnt", INT))
+                         Column("formfactor", String, primary_key=True),
+                         Column("cnt", Integer))
 languages = Table("LANGUAGE", metadata,
-                      Column('language', TEXT, primary_key=True),
-                      Column('cnt', INT))
+                      Column('language', String, primary_key=True),
+                      Column('cnt', Integer))
 
 totallist = Table("TOTALLIST", metadata,
-                  Column('description', TEXT, primary_key=True),
-                  Column('cnt', INT, key="count"))
+                  Column('description', String, primary_key=True),
+                  Column('cnt', Integer, key="count"))
 
 uniquelist = Table("UNIQUELIST", metadata,
-                   Column('description', TEXT, primary_key=True),
-                   Column('cnt', INT, key='count'))
+                   Column('description', String, primary_key=True),
+                   Column('cnt', Integer, key='count'))
 
 class Host(object):
     def __init__(self, selinux_enabled=False, rating=0, last_modified=DateTime.now()):

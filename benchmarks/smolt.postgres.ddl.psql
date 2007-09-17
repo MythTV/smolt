@@ -97,7 +97,7 @@ CREATE TABLE  "host" (
    "formfactor"   text, 
    "last_modified"   timestamp without time zone NOT NULL default '1970-01-01 00:00:00', 
    "rating"   int NOT NULL DEFAULT '0', 
-   "selinux_enabled"    boolean NOT NULL DEFAULT '0', 
+   "selinux_enabled"    int DEFAULT '0', 
    "selinux_enforce"   text, 
    primary key ("id"),
  unique ("u_u_id") 
