@@ -40,3 +40,33 @@ ALTER TABLE device DROP INDEX description,
  ADD UNIQUE INDEX description USING BTREE(description, device_id, vendor_id, subsys_device_id, subsys_vendor_id);
 
 ALTER TABLE host_links ADD COLUMN rating BOOLEAN  NOT NULL DEFAULT 0 AFTER device_id;
+
+CREATE TABLE subsystem (
+  name VARCHAR(20)  NOT NULL,
+  description TEXT  NOT NULL,
+  PRIMARY KEY (name)
+)
+ENGINE = MyISAM;
+
+CREATE TABLE hld_cld_link (
+  id INTEGER  NOT NULL AUTO_INCREMENT,
+  hld VARCHAR(30)   NOT NULL,
+  cld INTEGER  NOT NULL,
+  PRIMARY KEY (id),
+  INDEX cld(cld),
+  INDEX hld(hld)
+)
+ENGINE = MyISAM;
+
+CREATE TABLE hld_host_link (
+  id INTEGER  NOT NULL AUTO_INCREMENT,
+  hld VARCHAR(30)  NOT NULL,
+  host_id INTEGER  NOT NULL,
+  rating INTEGER  NOT NULL,
+  PRIMARY KEY (id),
+  INDEX hld(hld),
+  INDEX host_id(host_id)
+)
+ENGINE = MyISAM;
+
+
