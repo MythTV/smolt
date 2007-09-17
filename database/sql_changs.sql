@@ -27,6 +27,8 @@ CREATE TABLE `fas_link` (
   PRIMARY KEY (`id`)
 );
 
+update device set class = 'NONE' where class = 'None';
+
 create table classes select distinct class from device; 
 
 ALTER TABLE `classes`
