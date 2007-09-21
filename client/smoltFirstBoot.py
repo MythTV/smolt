@@ -14,10 +14,17 @@ import commands
 ## I18N
 ## 
 import gettext
-gettext.bindtextdomain ("firstboot", "/usr/share/locale")
-gettext.textdomain ("firstboot")
-_=gettext.gettext
+import locale
+locale.setlocale(locale.LC_ALL, '')
+if os.path.isdir('po'):
+    t = gettext.translation('smolt', 'po', fallback = True)
+else:
+    t = gettext.translation('smolt', '/usr/share/locale', fallback = True)
+#gettext.bindtextdomain ("smolt", "/usr/share/locale")
+#gettext.textdomain ("smolt")
+#_=gettext.gettext
 
+_ = t.gettext
 class childWindow:
     #You must specify a runPriority for the order in which you wish your module to run
     runPriority = 107
