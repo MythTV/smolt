@@ -2,14 +2,15 @@
 # Copyright (C) YEAR ORGANIZATION
 #
 # Kiyoto Hashida <khashida@redhat.com>, 2007.
+# Noriko Mizumoto <noriko@redhat.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-22 12:09-0400\n"
-"PO-Revision-Date: 2007-07-04 10:15+1000\n"
-"Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
-"Language-Team: Japanese <jp@li.org>\n"
+"PO-Revision-Date: 2007-09-25 12:53+1000\n"
+"Last-Translator: Noriko Mizumoto <noriko@redhat.com>\n"
+"Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -54,11 +55,11 @@ msgstr "プロフィールの削除を再確認して下さい。"
 
 #: sendProfile.py:52
 msgid "(optional) Fedora Account System registration"
-msgstr ""
+msgstr "(オプション) Fedora Account System の登録"
 
 #: sendProfile.py:57
 msgid "password, will prompt if not specified"
-msgstr ""
+msgstr "指定されていないとパスワードが求められます"
 
 #: sendProfile.py:67
 msgid "don't prompt to send, just send"
@@ -77,8 +78,7 @@ msgstr ""
 "す。"
 
 #: sendProfile.py:101
-msgid ""
-"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr ""
 "Smolt にはチェックインの設定がありますが、チェックインは無効になっています"
 "（ヒント: service smolt start）"
@@ -113,11 +113,11 @@ msgstr "送信できませんでした - 終了中"
 
 #: sendProfile.py:139
 msgid "Password:"
-msgstr ""
+msgstr "パスワード:"
 
 #: sendProfile.py:144
 msgid "Registration Failed, Try again"
-msgstr ""
+msgstr "登録に失敗しました、 やり直してください"
 
 #: sendProfile.py:147
 #, python-format
@@ -154,36 +154,36 @@ msgstr "関連事項(_A)"
 
 #: smoltGui.py:78
 msgid "_File"
-msgstr ""
+msgstr "ファイル(_F)"
 
 #: smoltGui.py:79
 msgid "_Help"
-msgstr ""
+msgstr "ヘルプ(_H)"
 
 #: smoltGui.py:80
 msgid "_My Smolt Page"
-msgstr ""
+msgstr "ユーザーの Smolt ページ(_M)"
 
 #: smoltGui.py:80
 msgid "Take me to my smolt profile page"
-msgstr ""
+msgstr "ユーザーの smolt プロフィールページに移動する"
 
 #: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
 msgstr "データをサーバーに送信する時点でエラーが発生しました。"
 
 #: smoltGui.py:152
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware "
 "profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
-"データは正しく送信されました。バグ報告の為にハードウェアプロフィールを照合す"
-"る必要がある場合、UUID は\n"
+"データは正しく送信されました。バグ報告の目的でハードウェアプロフィールを照合す"
+"る必要がある場合、UUID は次の通りです。\n"
 "%s\n"
-"/etc/sysconfig/hw-uuid に収納されています。"
+"%s に収納されています。"
 
 #: smoltGui.py:166
 msgid "Smolt Privacy Policy"
@@ -194,13 +194,12 @@ msgid "translator-credits"
 msgstr "翻訳者クレジット"
 
 #: smoltGui.py:210
-#, fuzzy
 msgid "Fedora hardware profiler."
-msgstr "ハードウェアプロフィールをサーバーに送信する"
+msgstr "Fedora ハードウェアプロファイラーです。"
 
 #: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
-msgstr ""
+msgstr "Copyright © 2007 Mike McGrath"
 
 #: smoltGui.py:213
 msgid ""
@@ -218,6 +217,12 @@ msgid ""
 "this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
 "Ave, Cambridge, MA 02139, USA."
 msgstr ""
+"本プログラムはフリーソフトウェアです。 Free Software Foundation により発行される GNU General Public License の契約書、 バージョン 2 またはそれ以降に基づき本プログラムの再配布や変更が可能です。\n"
+"\n"
+"本プログラムは、 役に立つであろうという善意の下に配布されています。 ただし、なんらの保証がなされるものではなく、 市販性ないしは特定目的との適合性の暗示の保証をすることなく配布されます。 詳しくは GNU General Public License をご覧ください。\n"
+"\n"
+"本プログラムとともに GNU General Public License のコピーをお受取りになっているはずです。 お受取りになっていない場合は、 Free Software Foundation, Inc., 675 Mass "
+"Ave, Cambridge, MA 02139, USA 宛て書面にてお問い合わせください。"
 
 #: smolt.py:237
 #, python-format
@@ -225,9 +230,8 @@ msgid "Could not contact server: %s"
 msgstr "サーバーに接続できません: %s"
 
 #: smolt.py:268
-#, fuzzy
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr "dbus にバインドできません"
+msgstr "dbus にバインドできませんでした。 dbus は実行していますか?"
 
 #: smolt.py:274
 msgid "Could not connect to hal, is it running?"
@@ -244,7 +248,7 @@ msgstr "サーバー接続中にエラー: %s"
 
 #: smolt.py:408
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
+msgstr "バージョンが異なります、 サーバーはご使用のクライアントを処理することができません。"
 
 #: smolt.py:424
 msgid "Communication with server failed"
@@ -320,23 +324,23 @@ msgstr "カーネル"
 
 #: smolt.py:525
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux Enabled"
 
 #: smolt.py:526
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux Enforce"
 
 #: smolt.py:959
 msgid "Unable to save UUID, continuing...\n"
-msgstr ""
+msgstr "UUID を保存できません、 続行しています...\n"
 
 #: smolt.py:961
 msgid "Unable to determine UUID of system!\n"
-msgstr ""
+msgstr "システムの UUID を確認できません!\n"
 
 #: software.py:43
 msgid "Cannot Determine Runlevel"
-msgstr ""
+msgstr "ランレベルを確認できません"
 
 #: smoltFirstBoot.py:24 smoltFirstBoot.py:34
 msgid "Hardware Profile"
@@ -442,6 +446,11 @@ msgid ""
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
+"Smolt はハードウェア情報および基本のオペレーティングシステム情報しか Fedora smolt \n"
+"サーバー (smoon) に送信しません。 データベースと送信者のマシンとのつながりは UUID \n"
+"だけです。 送信者がこの UUID を送信しない限り、 この送信は anonymous です。 \n"
+"ユーザーがデータベースからプロフィールを削除したい場合は、 その時点で次を実行する\n"
+"だけです。\n"
+"\n"
+"    smoltDeleteProfile\n"
 
-#~ msgid "Device ID"
-#~ msgstr "デバイス ID"
