@@ -27,9 +27,9 @@ import gettext
 if os.path.isdir('po'):
     # if there is a local directory called 'po' use it so we can test
     # without installing
-    t = gettext.translation('smolt', 'po', fallback = True)
-    
+    #t = gettext.translation('smolt', 'po', fallback = True)
+    t = gettext.translation('smolt', '/usr/share/locale/', fallback = True)
 else:
-    t = gettext.translation('smolt', '/usr/share/locale', fallback = True)
+    t = gettext.translation('smolt', '/usr/share/locale/', fallback = True)
 
 _ = t.gettext
