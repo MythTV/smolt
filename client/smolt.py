@@ -196,22 +196,24 @@ class Host:
             self.formfactor = hostInfo['system.formfactor']
         except:
             self.formfactor = 'Unknown'
+
         try:
-            if os.path.exists('/usr/sbin/selinuxenabled'):
-               retcode = os.system('/usr/sbin/selinuxenabled') 
-            else:
-               retcode = 32512
-	       #using 32512 because that is what was returned by my system
-            self.selinux_enabled =  os.WIFEXITED(recode) and os.WEXITCODE(retcode) == 0
-        except:
-            self.selinux_enabled = False
-        if self.selinux_enabled:
+            import selinux
             try:
-                self.selinux_enforce = os.popen('LANG=C /usr/sbin/getenforce').read().strip()
+                if selinux.is_selinux_enabled() == 1:
+                    self.selinux_enabled = True
+                else:
+                    self.selinux_enabled = False
             except:
-                self.selinux_enforce = 'Disabled'
-        else:
-            self.selinux_enforce = 'Disabled'
+                self.selinux_enabled = False
+            try:
+                self.selinux_enforce = selinux.selinux_getpolicytype()[1]
+            except:
+                self.selinux_enforce = "Unknown"
+        except ImportError:
+            self.selinux_enabled = "Not installed"
+            self.selinux_enforce = "Not Installed"
+    
 
 def ignoreDevice(device):
     ignore = 1
