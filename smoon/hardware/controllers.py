@@ -702,7 +702,7 @@ class Root(controllers.RootController):
             if sep == -1:
                 host_id = int(id[4:])
                 host = Query(Host).selectone_by(id=host_id)
-                host.rating = int(rating)+1
+                host.rating = int(rating)
                 ctx.current.flush()
                 return dict()
                 
@@ -713,6 +713,6 @@ class Root(controllers.RootController):
                 device_id = int(id[6:])
                 for device in host.devices:
                     if device.device_id == device_id:
-                        device.rating = int(rating)+1
-                        ctx.current.flush()
+                        device.rating = int(rating)
+                ctx.current.flush()
         return dict()

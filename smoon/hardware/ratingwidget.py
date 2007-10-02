@@ -13,35 +13,29 @@ var NUMBER_OF_STARS = ${num};
 
 function displayHover(ratingId, star)
 {
-    for (var i = 0; i <= star; i++)
-    {
-        var starI = document.getElementById('star_'+ratingId+'_'+i)
-        starI.setAttribute('src', '/static/images/stars/rating_over.gif');
-    }
+   var starI = document.getElementById('star_'+ratingId+'_'+star)
+   starI.setAttribute('src', '/static/images/stars/rating_over.gif');
 }
 
 function displayNormal(ratingId, star)
 {
-    for (var i = 0; i <= star; i++)
-    {
-        var status = document.getElementById('star_'+ratingId+'_'+i).className;
-        var starI = document.getElementById('star_'+ratingId+'_'+i);
-        starI.setAttribute('src', '/static/images/stars/rating_'+status+'.gif');
-    }
+   var status = document.getElementById('star_'+ratingId+'_'+star).className;
+   var starI = document.getElementById('star_'+ratingId+'_'+star);
+   starI.setAttribute('src', '/static/images/stars/rating_'+status+'.gif');
 }
 
 function submitRating(widgetId, starNbr)
 {
     $.get("${href}",
-       { 'ratingID': widgetId, 'value': starNbr},
+       { 'ratingID': widgetId, 'value': parseInt(starNbr)+1},
        function(data){
        //alert(data);
        }
      );
-     for (var i = 0; i <= NUMBER_OF_STARS; i++)
+     for (var i = 0; i < NUMBER_OF_STARS; i++)
      {
        var star = document.getElementById('star_'+widgetId+'_'+i)
-       if (i <= starNbr) {
+       if (i == starNbr) {
          star.setAttribute('src', '/static/images/stars/rating_on.gif');
          star.className = 'on';
        } else {
@@ -49,7 +43,6 @@ function submitRating(widgetId, starNbr)
          star.className = 'off';
        }
      }
-     displayHover(widgetId, starNbr);
 }
 
 $(document).ready(function() {
@@ -68,11 +61,10 @@ $(document).ready(function() {
         for (var j = 0; j < NUMBER_OF_STARS; j++)
         {
             var star = document.createElement('img');
-            if (rating >= 1)
+            if (rating == (j+1))
             {
                 star.setAttribute('src', '/static/images/stars/rating_on.gif');
                 star.className = 'on';
-                rating-=1;
             }
             else
             {
