@@ -4,16 +4,16 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" py:replace="''"/>
 <title>Show Box</title>
+${ratingwidget.display(update="rating", href="/rate_object", num="5")}
 </head>
 <body>
+  <div id="timediv"></div>
 	<div class='share' id='share' name='share'>
 		<a href='share?sid=${host_object.id}'>Share my computer!</a>
 	</div>
-	<form action="submit_ratings?uuid=${host_object.uuid}" method="post">
         <h3>${host_object.uuid}</h3>
-		<p class='moof'><button type='submit'>Submit your ratings</button></p>
         <table id="show">
-        	<tr><th>Rating:</th><td>${rating(value=host_object.rating, field_id="host_rating")}</td></tr>
+        	<tr><th>Rating:</th><td><div class="rating" id="Host${host_object.id}">${host_object.rating}</div></td></tr>
             <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
             <tr><th>Operating System:</th><td>${host_object.os}</td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
@@ -39,7 +39,7 @@
             </tr>
             <tr py:for='device_node in devices.values()'>
             	<?python device = device_node[0] ?>
-            	<td align='left'>${rating(value=device_node[1], field_id="device_%s" % device.id)}</td>
+            	<td align='left'><div class="rating" id="Host${host_object.id}_Device${device.id}">${device_node[1]}</div></td>
                 <td align='right'>${device.driver}</td>
                 <td align='center'>${device.cls}</td>
                 <td align='center'>${device.bus}</td>
@@ -50,6 +50,5 @@
                 <!--<td align='left'>${device.Description}</td>-->
             </tr>
         </table>
-	</form>
 </body>
 </html>

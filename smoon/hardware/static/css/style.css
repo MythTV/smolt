@@ -191,3 +191,7 @@ div.flash {
   font-size: 120%;
   font-weight: bolder;
 }
+
+.rating {
+white-space:nowrap;
+}

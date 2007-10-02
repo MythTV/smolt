@@ -16,11 +16,15 @@ from turbogears import redirect
 from turbogears import widgets
 from turbogears import flash
 from turbogears.widgets import Tabber, JumpMenu
+from ratingwidget import RatingWidget
 
 from hardware.model import *
 from hwdata import DeviceMap
 from smoonexceptions import NotCachedException
 from lock.multilock import MultiLock
+
+import logging
+log = logging.getLogger("smoon")
 
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
@@ -109,6 +113,7 @@ class ByClass(object):
         return self.get_data(key)
 
     pass
+
 class Root(controllers.RootController):
     def __init__(self):
         controllers.RootController.__init__(self)
@@ -189,7 +194,16 @@ class Root(controllers.RootController):
             #There will be no dups in the database
             devices[dev.device_id] = (dev.device, dev.rating)
         ven = DeviceMap('pci')
-        return dict(host_object=host_object, devices=devices, ven=ven, rating=rating)
+        return dict(host_object=host_object,
+                    devices=devices, ven=ven,
+                    rating=rating,
+                    ratingwidget=RatingWidget(),
+                    )
+
+    @expose()
+    def time(self):
+        import time
+        return time.ctime()
 
     @expose(template="hardware.templates.share")
     @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
@@ -677,3 +691,28 @@ class Root(controllers.RootController):
         flash("Ratings Saved!")
         redirect("show?UUID=%s" % uuid)
 
+    @expose()
+    def rate_object(self, *args, **kwargs):
+        log.info('args = %s' % str(args))
+        log.info('kwargs = %s' % str(kwargs))
+        id = kwargs.get("ratingID")
+        rating = kwargs.get("value")
+        if id.startswith("Host"):
+            sep = id.find("_")
+            if sep == -1:
+                host_id = int(id[4:])
+                host = Query(Host).selectone_by(id=host_id)
+                host.rating = int(rating)+1
+                ctx.current.flush()
+                return dict()
+                
+            host_id = int(id[4:sep])
+            host = Query(Host).selectone_by(id=host_id)
+            id = id[sep+1:]
+            if id.startswith("Device"):
+                device_id = int(id[6:])
+                for device in host.devices:
+                    if device.device_id == device_id:
+                        device.rating = int(rating)+1
+                        ctx.current.flush()
+        return dict()
