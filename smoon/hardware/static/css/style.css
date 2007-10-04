@@ -44,6 +44,13 @@ a.link, a, a.active {
   padding: 10px;
 }
 
+#legend {
+	float: right;
+	font-size: 70%;
+	border: 1px solid #ccc;
+	padding: 1em;	  
+}
+
 #sidebar {
   border: 1px solid #aaa;
   background-color: #eee;

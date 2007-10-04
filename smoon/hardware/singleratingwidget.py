@@ -1,7 +1,7 @@
 from turbogears.widgets import Widget
 from jquery.widgets import jquery
 
-class RatingWidget(Widget):
+class SingleRatingWidget(Widget):
     """
     this widget has no call back.
     """
@@ -13,43 +13,38 @@ var NUMBER_OF_STARS = ${num};
 
 function displayHover(ratingId, star)
 {
-    for (var i = 0; i <= star; i++)
-    {
-        var starI = document.getElementById('star_'+ratingId+'_'+i)
-        starI.setAttribute('src', '/static/images/stars/rating_over.gif');
-    }
+   var starI = document.getElementById('star_'+ratingId+'_'+star)
+   starI.setAttribute('src', '/static/images/rating/r'+(parseInt(star)+1)+'.gif');
 }
 
 function displayNormal(ratingId, star)
 {
-    for (var i = 0; i <= star; i++)
-    {
-        var status = document.getElementById('star_'+ratingId+'_'+i).className;
-        var starI = document.getElementById('star_'+ratingId+'_'+i);
-        starI.setAttribute('src', '/static/images/stars/rating_'+status+'.gif');
-    }
+   var status = document.getElementById('star_'+ratingId+'_'+star).className;
+   var starI = document.getElementById('star_'+ratingId+'_'+star);
+   if (status == 'off') {
+     starI.setAttribute('src', '/static/images/rating/ro'+(parseInt(star)+1)+'.gif');
+   }
 }
 
 function submitRating(widgetId, starNbr)
 {
     $.get("${href}",
-       { 'ratingID': widgetId, 'value': starNbr},
+       { 'ratingID': widgetId, 'value': parseInt(starNbr)+1},
        function(data){
        //alert(data);
        }
      );
-     for (var i = 0; i <= NUMBER_OF_STARS; i++)
+     for (var i = 0; i < NUMBER_OF_STARS; i++)
      {
        var star = document.getElementById('star_'+widgetId+'_'+i)
-       if (i <= starNbr) {
-         star.setAttribute('src', '/static/images/stars/rating_on.gif');
+       if (i == starNbr) {
+         star.setAttribute('src', '/static/images/rating/r'+(i+1)+'.gif');
          star.className = 'on';
        } else {
-         star.setAttribute('src', '/static/images/stars/rating_off.gif');
+         star.setAttribute('src', '/static/images/rating/ro'+(i+1)+'.gif');
          star.className = 'off';
        }
      }
-     displayHover(widgetId, starNbr);
 }
 
 $(document).ready(function() {
@@ -68,22 +63,21 @@ $(document).ready(function() {
         for (var j = 0; j < NUMBER_OF_STARS; j++)
         {
             var star = document.createElement('img');
-            if (rating >= 1)
+            if (rating == (j+1))
             {
-                star.setAttribute('src', '/static/images/stars/rating_on.gif');
+                star.setAttribute('src', '/static/images/rating/r'+(j+1)+'.gif');
                 star.className = 'on';
-                rating-=1;
             }
             else
             {
-                star.setAttribute('src', '/static/images/stars/rating_off.gif');
+                star.setAttribute('src', '/static/images/rating/ro'+(j+1)+'.gif');
                 star.className = 'off';
             }
             var widgetId = ratings[i].getAttribute('id');
             star.setAttribute('id', 'star_'+widgetId+'_'+j);
-            star.onmouseover = new Function("over_"+widgetId+"_"+j, "displayHover('"+widgetId+"', '"+j+"');");
-            star.onmouseout = new Function("out_"+widgetId+"_"+j, "displayNormal('"+widgetId+"', '"+j+"');");
-            star.onclick = new Function("click_"+widgetId+"_"+j, "submitRating('"+widgetId+"', '"+j+"');");
+            star.onmouseover = new Function("env", "displayHover('"+widgetId+"', '"+j+"');");
+            star.onmouseout = new Function("env", "displayNormal('"+widgetId+"', '"+j+"');");
+            star.onclick = new Function("env", "submitRating('"+widgetId+"', '"+j+"');");
             ratings[i].appendChild(star);
         } 
     }

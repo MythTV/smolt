@@ -16,7 +16,7 @@ from turbogears import redirect
 from turbogears import widgets
 from turbogears import flash
 from turbogears.widgets import Tabber, JumpMenu
-from ratingwidget import RatingWidget
+from singleratingwidget import SingleRatingWidget
 
 from hardware.model import *
 from hwdata import DeviceMap
@@ -51,18 +51,6 @@ class SingleSelectField(widgets.SingleSelectField):
             d['name'] = field_id
     
     params = ["field_id"]
-
-rating = SingleSelectField(options = [(0, "Please Pick One"),
-                                      (1, "This breaks stuff"),
-                                      (2, "This doesn't work"),
-                                      (3, "This sorta works"),
-                                      (4, "This works great! ^_^")])
-rating_options = {0: "Not Rated",
-                  1: "This breaks stuff",
-                  2: "This doesn't work",
-                  3: "This sorta works :-/",
-                  4: "This works great! ^_^",
-                  5: "Mike is awesome"}
 
 class ByClass(object):
     def __init__(self):
@@ -186,18 +174,19 @@ class Root(controllers.RootController):
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
             host_object = Query(Host).selectone_by(uuid=UUID)
+            ctx.current.refresh(host_object)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % UUID)
         devices = {}
         for dev in host_object.devices:
+            ctx.current.refresh(dev)
             #This is to prevent duplicate devices showing up, in the future,
             #There will be no dups in the database
             devices[dev.device_id] = (dev.device, dev.rating)
         ven = DeviceMap('pci')
         return dict(host_object=host_object,
                     devices=devices, ven=ven,
-                    rating=rating,
-                    ratingwidget=RatingWidget(),
+                    ratingwidget=SingleRatingWidget(),
                     )
 
     @expose()
@@ -671,43 +660,22 @@ class Root(controllers.RootController):
         return dict(stat=stats, tabs=tabs, total_hosts=stats['total_hosts'])
     
     @expose()
-    def submit_ratings(self, uuid, **kw):
-        
-        try:
-            host = Query(Host).selectone_by(uuid=uuid)
-        except InvalidRequestError:
-            redirect("error_client")
-        host.rating = int(kw["host_rating"])
-        
-        
-        for (device_key, rating) in kw.items():
-            if device_key.startswith("device_"):
-               device_ref = device_key[7:]
-               device_db_ref = int(device_ref)
-               for device in host.devices:
-                   if device.device_id == device_db_ref:
-                       device.rating = int(rating)
-        ctx.current.flush()
-        flash("Ratings Saved!")
-        redirect("show?UUID=%s" % uuid)
-
-    @expose()
     def rate_object(self, *args, **kwargs):
-        log.info('args = %s' % str(args))
-        log.info('kwargs = %s' % str(kwargs))
+        #log.info('args = %s' % str(args))
+        #log.info('kwargs = %s' % str(kwargs))
         id = kwargs.get("ratingID")
         rating = kwargs.get("value")
         if id.startswith("Host"):
             sep = id.find("_")
             if sep == -1:
-                host_id = int(id[4:])
-                host = Query(Host).selectone_by(id=host_id)
+                host_id = id[4:]
+                host = Query(Host).selectone_by(uuid=host_id)
                 host.rating = int(rating)
                 ctx.current.flush()
                 return dict()
                 
-            host_id = int(id[4:sep])
-            host = Query(Host).selectone_by(id=host_id)
+            host_id = id[4:sep]
+            host = Query(Host).selectone_by(uuid=host_id)
             id = id[sep+1:]
             if id.startswith("Device"):
                 device_id = int(id[6:])

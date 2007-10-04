@@ -7,13 +7,19 @@
 ${ratingwidget.display(update="rating", href="/rate_object", num="5")}
 </head>
 <body>
-  <div id="timediv"></div>
 	<div class='share' id='share' name='share'>
 		<a href='share?sid=${host_object.id}'>Share my computer!</a>
 	</div>
         <h3>${host_object.uuid}</h3>
+<div id="legend">
+<img src="/static/images/rating/r1.gif"/> Breaks System<br/>
+<img src="/static/images/rating/r2.gif"/> Doesn't Work<br/>
+<img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>
+<img src="/static/images/rating/r4.gif"/> Works, but required aditional configuration<br/>
+<img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
+</div>
         <table id="show">
-        	<tr><th>Rating:</th><td><div class="rating" id="Host${host_object.id}">${host_object.rating}</div></td></tr>
+        	<tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
             <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
             <tr><th>Operating System:</th><td>${host_object.os}</td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
@@ -39,7 +45,7 @@ ${ratingwidget.display(update="rating", href="/rate_object", num="5")}
             </tr>
             <tr py:for='device_node in devices.values()'>
             	<?python device = device_node[0] ?>
-            	<td align='left'><div class="rating" id="Host${host_object.id}_Device${device.id}">${device_node[1]}</div></td>
+            	<td align='left'><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
                 <td align='right'>${device.driver}</td>
                 <td align='center'>${device.cls}</td>
                 <td align='center'>${device.bus}</td>
