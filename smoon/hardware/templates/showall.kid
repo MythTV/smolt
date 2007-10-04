@@ -18,8 +18,8 @@ ${ratingwidget.display(update="rating",
 <body>
 
 <span py:def="wikilink(name, bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)">
-<a py:if="bus and vendor_id and device_id" href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">${name}</a>
-<span py:if="not (bus and vendor_id and device_id)" py:replace="name"></span>
+<a py:if="vendor_id and device_id" href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">${name}</a>
+<span py:if="not (vendor_id and device_id)" py:replace="name"></span>
 </span>
 
 	<div class='share' id='share' name='share'>

@@ -55,7 +55,7 @@ ${ratingwidget.display(update="rating",
 device_list = devices.values()
 device_list.sort(key=lambda x: x[0].cls)
 	    ?>
-            <tr py:for='device_node in device_list' py:if="device_node[0].bus and device_node[0].vendor_id and device_node[0].device_id">
+            <tr py:for='device_node in device_list' py:if="device_node[0].vendor_id and device_node[0].device_id">
             	<?python device = device_node[0] 
 		device_name = "%s %s (%s %s)" % ( ven.vendor(device.vendor_id, bus=device.bus),
 			 ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus),
