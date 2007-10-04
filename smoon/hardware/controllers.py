@@ -53,6 +53,18 @@ class SingleSelectField(widgets.SingleSelectField):
     
     params = ["field_id"]
 
+rating = SingleSelectField(options = [(0, "Please Pick One"),
+                                      (1, "This breaks stuff"),
+                                      (2, "This doesn't work"),
+                                      (3, "This sorta works"),
+                                      (4, "This works great! ^_^")])
+rating_options = {0: "Not Rated",
+                  1: "This breaks stuff",
+                  2: "This doesn't work",
+                  3: "This sorta works :-/",
+                  4: "This works great! ^_^",
+                  5: "Mike is awesome"}
+
 class ByClass(object):
     def __init__(self):
         self.rw_lock = MultiLock()
