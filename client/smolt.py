@@ -178,20 +178,21 @@ class Host:
             self.platform = hostInfo['system.kernel.machine']
         except KeyError:
             self.platform = 'Unknown'
-        try:
-            self.systemVendor = hostInfo['system.vendor']
-        except:
-            try:
-                self.systemVendor = cpuInfo['vendor']
-            except:
-                self.systemVendor = 'Unknown'
-        try:
-            self.systemModel = hostInfo['system.product']
-        except:
-            try:
-                self.systemModel = cpuInfo['system']
-            except:
-                self.systemModel = 'Unknown'
+
+        self.systemVendor = hostInfo.get('system.vendor')
+        if not self.systemVendor:
+            self.systemVendor = hostInfo.get('system.hardware.vendor')
+        if not self.systemVendor:
+            self.systemVendor = 'Unknown'
+
+        self.systemModel = hostInfo.get('system.product')
+        if not self.systemModel:
+            self.systemModel = hostInfo.get('system.hardware.product')
+            if hostInfo.get('system.hardware.version'):
+                self.systemModel += ' ' + hostInfo.get('system.hardware.version')
+        if not self.systemModel:
+            self.systemModel = 'Unknown'
+            
         try:
             self.formfactor = hostInfo['system.formfactor']
         except:
