@@ -198,7 +198,7 @@ class Root(controllers.RootController):
         ven = DeviceMap('pci')
         return dict(host_object=host_object,
                     devices=devices, ven=ven,
-                    ratingwidget=RatingWidget(),
+                    ratingwidget=SingleRatingWidget(),
                     )
 
     @expose()
