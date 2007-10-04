@@ -1,4 +1,4 @@
-from turbogears.widgets import Widget
+from turbogears.widgets import Widget, mochikit
 
 class RatingWidget(Widget):
     """
