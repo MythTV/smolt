@@ -32,6 +32,7 @@ ${ratingwidget.display(update="rating",
 	    <img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>
 	    <img src="/static/images/rating/r4.gif"/> Works, but required aditional configuration<br/>
 	    <img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
+	    <p><a href="show?UUID=${host_object.uuid}">Show basic Information</a></p>
 	</div>
         <table id="show">
        	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
@@ -58,7 +59,11 @@ ${ratingwidget.display(update="rating",
             <tr>
                 <th>Rating</th><th align='right'>Driver</th><th>Class</th><th>Bus</th><th>Vendor</th><th>Device</th><th>SubVendor</th><th>SubDevice</th><th>Wiki</th>
             </tr>
-            <tr py:for='device_node in devices.values()'>
+	    <?python 
+device_list = devices.values()
+device_list.sort(key=lambda x: x[0].cls)
+	    ?>
+            <tr py:for='device_node in device_list'>
             	<?python device = device_node[0] ?>
             	<td align='left'><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
                 <td align='right'>${device.driver}</td>
