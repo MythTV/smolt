@@ -18,13 +18,12 @@ ${ratingwidget.display(update="rating",
 <body>
 
 <span py:def="wikilink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)">
-<a href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">[Wiki]</a>&nbsp;
+<a py:if="bus and vendor_id and device_id" href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">[Wiki]</a>&nbsp;
 </span>
-<!--
+
 	<div class='share' id='share' name='share'>
 		<a href='share?sid=${host_object.id}'>Share my computer!</a>
 	</div>
--->
         <h3>${host_object.uuid}</h3>
 
 	<div id="legend">
@@ -33,17 +32,25 @@ ${ratingwidget.display(update="rating",
 	    <img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>
 	    <img src="/static/images/rating/r4.gif"/> Works, but required aditional configuration<br/>
 	    <img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
-	    <p><a href="show_all?UUID=${host_object.uuid}">Show all Information</a></p>
 	</div>
         <table id="show">
        	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
             <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
             <tr><th>Operating System:</th><td>${host_object.os}</td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
+            <tr><th>Bogomips:</th><td>${host_object.bogomips}</td></tr>
+            <tr><th>CPU Speed:</th><td>${host_object.cpu_speed}</td></tr>
+            <tr><th>System Memory:</th><td>${host_object.system_memory}</td></tr>
+            <tr><th>CPUVendor:</th><td>${host_object.cpu_vendor}</td></tr>
+            <tr><th>Number of CPUs:</th><td>${host_object.num_cpus}</td></tr>
+            <tr><th>Language:</th><td>${host_object.language}</td></tr>
+            <tr><th>Default Runlevel:</th><td>${host_object.default_runlevel}</td></tr>
             <tr><th>System Vendor:</th><td>${host_object.vendor}</td></tr>
             <tr><th>System Model:</th><td>${host_object.system}</td></tr>
             <tr><th>Kernel</th><td>${host_object.kernel_version}</td></tr>
             <tr><th>Formfactor</th><td>${host_object.formfactor}</td></tr>
+            <tr><th>SELinux Enabled</th><td>${host_object.selinux_enabled}</td></tr>
+            <tr><th>SELinux Enforce</th><td>${host_object.selinux_enforce}</td></tr>
             <tr><th>Last Modified</th><td>${host_object.last_modified}</td></tr>
         </table> 
         <h3>Devices</h3>
@@ -51,7 +58,7 @@ ${ratingwidget.display(update="rating",
             <tr>
                 <th>Rating</th><th align='right'>Driver</th><th>Class</th><th>Bus</th><th>Vendor</th><th>Device</th><th>SubVendor</th><th>SubDevice</th><th>Wiki</th>
             </tr>
-            <tr py:for='device_node in devices.values()' py:if="device_node[0].bus and device_node[0].vendor_id and device_node[0].device_id">
+            <tr py:for='device_node in devices.values()'>
             	<?python device = device_node[0] ?>
             	<td align='left'><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
                 <td align='right'>${device.driver}</td>

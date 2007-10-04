@@ -186,6 +186,14 @@ class Root(controllers.RootController):
     @expose(template="hardware.templates.show")
     @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show(self, UUID=''):
+        return self.getShow(UUID=UUID)
+        
+    @expose(template="hardware.templates.showall")
+    @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
+    def show_all(self, UUID=''):
+        return self.getShow(UUID=UUID)
+
+    def getShow(self, UUID=''):
         try:
             uuid = u'%s' % UUID.strip()
             uuid = uuid.encode('utf8')
