@@ -1,95 +1,65 @@
-from turbogears.widgets import Widget, mochikit
+from turbogears.widgets import Widget, mochikit, Resource, JSLink
+from turbogears import startup
+
+class RatingLink(JSLink):
+    def __init__(self, *args, **kw):
+        super(RatingLink, self).__init__(None, *args, **kw)
+
+    def update_params(self, d):
+        super(RatingLink, self).update_params(d)
+        d["link"] = "/%sstatic/%s" % (startup.webpath,
+                                      self.name)
+        
 
 class RatingWidget(Widget):
     """
     this widget has no call back.
     """
     name = "RatingWidget"
-    javascript = [mochikit]
+    javascript=[mochikit, RatingLink(name = "rating.js") ]
     template = """
         <script type="text/javascript"><![CDATA[
-var NUMBER_OF_STARS = ${num};
-
-function displayHover(ratingId, star)
-{
-    for (var i = 0; i <= star; i++)
-    {
-        var starI = document.getElementById('star_'+ratingId+'_'+i)
-        starI.setAttribute('src', '/static/images/stars/rating_over.gif');
-    }
-}
-
-function displayNormal(ratingId, star)
-{
-    for (var i = 0; i <= star; i++)
-    {
-        var status = document.getElementById('star_'+ratingId+'_'+i).className;
-        var starI = document.getElementById('star_'+ratingId+'_'+i);
-        starI.setAttribute('src', '/static/images/stars/rating_'+status+'.gif');
-    }
-}
-
-function submitRating(widgetId, starNbr)
-{
-    doSimpleXMLHttpRequest("${href}",
-       { 'ratingID': widgetId, 'value': parseInt(starNbr)+1});
-     for (var i = 0; i <= NUMBER_OF_STARS; i++)
-     {
-       var star = document.getElementById('star_'+widgetId+'_'+i)
-       if (i <= starNbr) {
-         star.setAttribute('src', '/static/images/stars/rating_on.gif');
-         star.className = 'on';
-       } else {
-         star.setAttribute('src', '/static/images/stars/rating_off.gif');
-         star.className = 'off';
-       }
-     }
-     displayHover(widgetId, starNbr);
-}
-
-connect(window, "onload", function() {
-    var ratings = document.getElementsByTagName('div');
-    for (var i = 0; i < ratings.length; i++)
-    {
-        if (ratings[i].className != '${update}')
-            continue;
-            
-        var rating = ratings[i].firstChild.nodeValue;
-        ratings[i].removeChild(ratings[i].firstChild);
-        if (rating > NUMBER_OF_STARS)
-            rating = NUMBER_OF_STARS;
-        if (rating < 0)
-            rating = 0;
-        for (var j = 0; j < NUMBER_OF_STARS; j++)
-        {
-            var star = document.createElement('img');
-            if (rating >= 1)
-            {
-                star.setAttribute('src', '/static/images/stars/rating_on.gif');
-                star.className = 'on';
-                rating-=1;
-            }
-            else
-            {
-                star.setAttribute('src', '/static/images/stars/rating_off.gif');
-                star.className = 'off';
-            }
-            var widgetId = ratings[i].getAttribute('id');
-            star.setAttribute('id', 'star_'+widgetId+'_'+j);
-            star.onmouseover = new Function("env", "displayHover('"+widgetId+"', '"+j+"');");
-            star.onmouseout = new Function("env", "displayNormal('"+widgetId+"', '"+j+"');");
-            star.onclick = new Function("env", "submitRating('"+widgetId+"', '"+j+"');");
-            ratings[i].appendChild(star);
-        } 
-    }
-});
-
+connect(window, "onload", new Function("env", "rating_init('${href}', ${num}, '${update}', '${img_on}', '${img_off}','${img_over}')"));
 //]]>
         </script>
     """
-    params = ["update", "href", "num"]
+    params = ["update", "href", "num",
+              "img_on",
+              "img_off",
+              "img_over",
+              ]
     params_doc = {
         "update":"div class name to be replaced",
         "href":"remote method href",
         "num" : "number of rating levels",
+        "img_on" : "url of the image in 'on' state",
+        "img_off" : "url of the image in 'off' state",
+        "img_over" : "url of the image in 'over' state",
+        }
+
+from turbogears.widgets import Widget, mochikit
+
+class SingleRatingWidget(RatingWidget):
+    """
+    this widget has no call back.
+    """
+    name = "SingleRatingWidget"
+    template = """
+        <script type="text/javascript"><![CDATA[
+connect(window, "onload", new Function("env", "single_rating_init('${href}', ${num}, '${update}', '${imgon_pre}', '${imgoff_pre}', '${img_post}')"));
+//]]>
+        </script>
+    """
+
+    params = ["update", "href", "num",
+              "img_pre",
+              "img_post",
+              ]
+    params_doc = {
+        "update":"div class name to be replaced",
+        "href":"remote method href",
+        "num" : "number of rating levels",
+        "imgon_pre" : "url of the image in the form '%s%d%s' % ($imgoff_pre, $i, $img_post)",
+        "imgoff_pre" : "url of the image in the form '%s%d%s' % ($imgon_pre, $i, $img_post)",
+        "img_post" : "url of the image in the form '%s%d%s' % ($img_pre, $i, $img_post)",
         }

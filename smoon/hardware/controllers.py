@@ -16,8 +16,7 @@ from turbogears import redirect
 from turbogears import widgets
 from turbogears import flash
 from turbogears.widgets import Tabber, JumpMenu
-from singleratingwidget import SingleRatingWidget
-from ratingwidget import RatingWidget
+from ratingwidget import SingleRatingWidget, RatingWidget
 
 from hardware.model import *
 from hwdata import DeviceMap
@@ -199,7 +198,7 @@ class Root(controllers.RootController):
         ven = DeviceMap('pci')
         return dict(host_object=host_object,
                     devices=devices, ven=ven,
-                    ratingwidget=SingleRatingWidget(),
+                    ratingwidget=RatingWidget(),
                     )
 
     @expose()

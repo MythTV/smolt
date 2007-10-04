@@ -4,7 +4,16 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" py:replace="''"/>
 <title>Show Box</title>
-${ratingwidget.display(update="rating", href="/rate_object", num="5")}
+${ratingwidget.display(update="rating", 
+                       href="/rate_object", 
+                       num="5",
+                       img_on="/static/images/stars/rating_on.gif",
+                       img_off="/static/images/stars/rating_off.gif",
+                       img_over="/static/images/stars/rating_over.gif",
+                       imgon_pre="/static/images/rating/r",
+                       imgoff_pre="/static/images/rating/ro",
+                       img_post=".gif",
+)}
 </head>
 <body>
 	<div class='share' id='share' name='share'>
