@@ -1,12 +1,11 @@
-from turbogears.widgets import Widget
-from jquery.widgets import jquery
+from turbogears.widgets import Widget, mochikit
 
 class SingleRatingWidget(Widget):
     """
     this widget has no call back.
     """
-    name = "jquery_rating"
-    javascript = [jquery]
+    name = "SingleRatingWidget"
+    javascript = [mochikit]
     template = """
         <script type="text/javascript"><!--
 var NUMBER_OF_STARS = ${num};
@@ -28,12 +27,8 @@ function displayNormal(ratingId, star)
 
 function submitRating(widgetId, starNbr)
 {
-    $.get("${href}",
-       { 'ratingID': widgetId, 'value': parseInt(starNbr)+1},
-       function(data){
-       //alert(data);
-       }
-     );
+    doSimpleXMLHttpRequest("${href}",
+       { 'ratingID': widgetId, 'value': parseInt(starNbr)+1});
      for (var i = 0; i < NUMBER_OF_STARS; i++)
      {
        var star = document.getElementById('star_'+widgetId+'_'+i)
@@ -47,7 +42,7 @@ function submitRating(widgetId, starNbr)
      }
 }
 
-$(document).ready(function() {
+connect(window, "onload", function() {
     var ratings = document.getElementsByTagName('div');
     for (var i = 0; i < ratings.length; i++)
     {
