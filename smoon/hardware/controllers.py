@@ -17,6 +17,7 @@ from turbogears import widgets
 from turbogears import flash
 from turbogears.widgets import Tabber, JumpMenu
 from singleratingwidget import SingleRatingWidget
+from ratingwidget import RatingWidget
 
 from hardware.model import *
 from hwdata import DeviceMap

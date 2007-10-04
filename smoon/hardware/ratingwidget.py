@@ -76,9 +76,9 @@ connect(window, "onload", function() {
             }
             var widgetId = ratings[i].getAttribute('id');
             star.setAttribute('id', 'star_'+widgetId+'_'+j);
-            star.onmouseover = new Function("over_"+widgetId+"_"+j, "displayHover('"+widgetId+"', '"+j+"');");
-            star.onmouseout = new Function("out_"+widgetId+"_"+j, "displayNormal('"+widgetId+"', '"+j+"');");
-            star.onclick = new Function("click_"+widgetId+"_"+j, "submitRating('"+widgetId+"', '"+j+"');");
+            star.onmouseover = new Function("env", "displayHover('"+widgetId+"', '"+j+"');");
+            star.onmouseout = new Function("env", "displayNormal('"+widgetId+"', '"+j+"');");
+            star.onclick = new Function("env", "submitRating('"+widgetId+"', '"+j+"');");
             ratings[i].appendChild(star);
         } 
     }
