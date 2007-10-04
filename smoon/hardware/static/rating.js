@@ -23,7 +23,7 @@ function rating_submitRating(href, widgetId, starNbr, maxnum, img_on, img_off)
 {
     doSimpleXMLHttpRequest(href,
 			   { 'ratingID': widgetId, 'value': parseInt(starNbr)+1});
-    for (var i = 0; i <= maxnum; i++) {
+    for (var i = 0; i < maxnum; i++) {
 	var star = document.getElementById('star_'+widgetId+'_'+i);
 	if (i <= starNbr) {
 	    star.setAttribute('src', img_on);
@@ -72,7 +72,7 @@ function rating_init(href, maxnum, classname, img_on, img_off, img_over) {
 function single_rating_displayHover(ratingId, star, imgon_pre, img_post)
 {
     var starI = document.getElementById('star_'+ratingId+'_'+star)
-	starI.setAttribute('src', imgon_pre+(parseInt(star)+1)+img_pre);
+	starI.setAttribute('src', imgon_pre+(parseInt(star)+1)+img_post);
 }
 
 function single_rating_displayNormal(ratingId, star, imgoff_pre, img_post)
@@ -88,7 +88,7 @@ function single_rating_submitRating(href, widgetId, starNbr, maxnum, imgon_pre, 
 {
     doSimpleXMLHttpRequest(href,
 			   { 'ratingID': widgetId, 'value': parseInt(starNbr)+1});
-    for (var i = 0; i < NUMBER_OF_STARS; i++)
+    for (var i = 0; i < maxnum; i++)
 	{
 	    var star = document.getElementById('star_'+widgetId+'_'+i)
 		if (i == starNbr) {
@@ -125,7 +125,7 @@ function single_rating_init(href, maxnum, classname, imgon_pre, imgoff_pre, img_
 	    }
 	    var widgetId = ratings[i].getAttribute('id');
 	    star.setAttribute('id', 'star_'+widgetId+'_'+j);
-	    star.onmouseover = new Function("env", "single_rating_displayHoyer('"+widgetId+"',"+j+",'"+imgon_pre+"','"+img_post+"');");
+	    star.onmouseover = new Function("env", "single_rating_displayHover('"+widgetId+"',"+j+",'"+imgon_pre+"','"+img_post+"');");
 	    star.onmouseout = new Function("env", "single_rating_displayNormal('"+widgetId+"',"+j+",'"+imgoff_pre+"','"+img_post+"');");
 	    star.onclick = new Function("env", "single_rating_submitRating('"+href+"','"+widgetId+"',"+j+","+maxnum+",'"+imgon_pre+"','"+imgoff_pre+"','"+img_post+"');");
 	    ratings[i].appendChild(star);
