@@ -56,11 +56,21 @@ device_list = devices.values()
 device_list.sort(key=lambda x: x[0].cls)
 	    ?>
             <tr py:for='device_node in device_list' py:if="device_node[0].vendor_id and device_node[0].device_id">
-            	<?python device = device_node[0] 
-		device_name = "%s %s (%s %s)" % ( ven.vendor(device.vendor_id, bus=device.bus),
-			 ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus),
-			 ven.vendor(device.subsys_device_id),
-			 ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id))
+            	<?python 
+device = device_node[0] 
+device_name = ""
+vname = ven.vendor(device.vendor_id, bus=device.bus)
+if vname and vname != "N/A":
+   device_name += vname
+dname = ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus)
+if dname and dname != "N/A":
+   device_name += " " + dname
+svname = ven.vendor(device.subsys_device_id)
+if svname and svname != "N/A":
+   device_name += " " + svname
+sdname = ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)
+if sdname and sdname != "N/A":
+   device_name += " " + sdname
 ?>
             	<td><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
 		<td><span py:replace="wikilink(device_name, device.bus, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)">Wiki</span></td>
