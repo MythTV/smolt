@@ -31,11 +31,11 @@ CRYPTPASS = 'PleaseChangeMe11'
 currentSmoltProtocol = '0.97' 
 
 def getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id):
-    return '/wiki/%s:%s:%s:%s:%s' % ((bus or "GEN").upper(),
-                                     hex(int(vendor_id or 0))[2:],
-                                     hex(int(device_id or 0))[2:],
-                                     hex(int(subsys_vendor_id or 0))[2:],
-                                     hex(int(subsys_vendor_id or 0))[2:])
+    return '/wiki/%s:%04x:%04x:%04x:%04x' % (bus,
+                                             int(vendor_id or 0),
+                                             int(device_id or 0),
+                                             int(subsys_vendor_id or 0),
+                                             int(subsys_vendor_id or 0))
 
 class SingleSelectField(widgets.SingleSelectField):
     """This class is a workaround for TG which does not properly process
