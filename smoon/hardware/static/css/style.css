@@ -155,7 +155,7 @@ span.code {
     background: #EEEEEE;    
 }
 
-#show th{
+#system_show th{
     text-align: right;
     font-weight: bold;
     color: #072B61;
@@ -163,7 +163,20 @@ span.code {
     background: #DDDDDD;
 }
 
-#show td{
+#system_show td{
+    padding: 5px;    
+    background: #EEEEEE;    
+}
+
+#device_show th{
+    text-align: center;
+    font-weight: bold;
+    color: #072B61;
+    padding: 5px 5px 5px 5px;    
+    background: #DDDDDD;
+}
+
+#device_show td{
     padding: 5px;    
     background: #EEEEEE;    
 }

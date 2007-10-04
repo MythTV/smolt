@@ -17,8 +17,8 @@ ${ratingwidget.display(update="rating",
 </head>
 <body>
 
-<span py:def="wikilink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)">
-<a href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">[Wiki]</a>&nbsp;
+<span py:def="wikilink(name, bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)">
+<a href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">${name}</a>&nbsp;
 </span>
 <!--
 	<div class='share' id='share' name='share'>
@@ -35,7 +35,7 @@ ${ratingwidget.display(update="rating",
 	    <img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
 	    <p><a href="show_all?UUID=${host_object.uuid}">Show all Information</a></p>
 	</div>
-        <table id="show">
+        <table id="system_show">
        	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
             <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
             <tr><th>Operating System:</th><td>${host_object.os}</td></tr>
@@ -47,21 +47,24 @@ ${ratingwidget.display(update="rating",
             <tr><th>Last Modified</th><td>${host_object.last_modified}</td></tr>
         </table> 
         <h3>Devices</h3>
-        <table id='show'>
+        <table id="device_show">
             <tr>
-                <th>Rating</th><th align='right'>Driver</th><th>Class</th><th>Bus</th><th>Vendor</th><th>Device</th><th>SubVendor</th><th>SubDevice</th><th>Wiki</th>
+                <th>Rating</th><th>Device</th><th>Class</th>
             </tr>
-            <tr py:for='device_node in devices.values()' py:if="device_node[0].bus and device_node[0].vendor_id and device_node[0].device_id">
-            	<?python device = device_node[0] ?>
-            	<td align='left'><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
-                <td align='right'>${device.driver}</td>
+	    <?python 
+device_list = devices.values()
+device_list.sort(key=lambda x: x[0].cls)
+	    ?>
+            <tr py:for='device_node in device_list' py:if="device_node[0].bus and device_node[0].vendor_id and device_node[0].device_id">
+            	<?python device = device_node[0] 
+		device_name = "%s %s (%s %s)" % ( ven.vendor(device.vendor_id, bus=device.bus),
+			 ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus),
+			 ven.vendor(device.subsys_device_id),
+			 ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id))
+?>
+            	<td><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
+		<td><span py:replace="wikilink(device_name, device.bus, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)">Wiki</span></td>
                 <td align='center'>${device.cls}</td>
-                <td align='center'>${device.bus}</td>
-                <td align='center'>${ven.vendor(device.vendor_id, bus=device.bus)}</td>
-                <td align='center'>${ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus)}</td>
-                <td align='center'>${ven.vendor(device.subsys_device_id)}</td>
-                <td align='center'>${ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)}</td>
-		<td align='center'><span py:replace="wikilink(device.bus, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)">Wiki</span></td>
                 <!--<td align='left'>${device.Description}</td>-->
             </tr>
         </table>
