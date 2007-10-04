@@ -16,19 +16,25 @@ ${ratingwidget.display(update="rating",
 )}
 </head>
 <body>
+
+<span py:def="wikilink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)">
+<a py:if="bus and vendor_id and device_id" href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">[Wiki]</a>&nbsp;
+</span>
+
 	<div class='share' id='share' name='share'>
 		<a href='share?sid=${host_object.id}'>Share my computer!</a>
 	</div>
         <h3>${host_object.uuid}</h3>
-<div id="legend">
-<img src="/static/images/rating/r1.gif"/> Breaks System<br/>
-<img src="/static/images/rating/r2.gif"/> Doesn't Work<br/>
-<img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>
-<img src="/static/images/rating/r4.gif"/> Works, but required aditional configuration<br/>
-<img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
-</div>
+
+	<div id="legend">
+	    <img src="/static/images/rating/r1.gif"/> Breaks System<br/>
+	    <img src="/static/images/rating/r2.gif"/> Doesn't Work<br/>
+	    <img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>
+	    <img src="/static/images/rating/r4.gif"/> Works, but required aditional configuration<br/>
+	    <img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
+	</div>
         <table id="show">
-        	<tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
+       	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
             <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
             <tr><th>Operating System:</th><td>${host_object.os}</td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
@@ -50,7 +56,7 @@ ${ratingwidget.display(update="rating",
         <h3>Devices</h3>
         <table id='show'>
             <tr>
-                <th>Rating</th><th align='right'>Driver</th><th>Class</th><th>Bus</th><th>Vendor</th><th>Device</th><th>SubVendor</th><th>SubDevice</th>
+                <th>Rating</th><th align='right'>Driver</th><th>Class</th><th>Bus</th><th>Vendor</th><th>Device</th><th>SubVendor</th><th>SubDevice</th><th>Wiki</th>
             </tr>
             <tr py:for='device_node in devices.values()'>
             	<?python device = device_node[0] ?>
@@ -61,7 +67,8 @@ ${ratingwidget.display(update="rating",
                 <td align='center'>${ven.vendor(device.vendor_id, bus=device.bus)}</td>
                 <td align='center'>${ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus)}</td>
                 <td align='center'>${ven.vendor(device.subsys_device_id)}</td>
-                <td align='center'>${ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_vendor_id)}</td>
+                <td align='center'>${ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)}</td>
+		<td align='center'><span py:replace="wikilink(device.bus, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)">Wiki</span></td>
                 <!--<td align='left'>${device.Description}</td>-->
             </tr>
         </table>

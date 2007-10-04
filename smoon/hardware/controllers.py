@@ -30,6 +30,13 @@ log = logging.getLogger("smoon")
 CRYPTPASS = 'PleaseChangeMe11'
 currentSmoltProtocol = '0.97' 
 
+def getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id):
+    return '/wiki/%s:%s:%s:%s:%s' % (bus,
+                                     vendor_id,
+                                     device_id,
+                                     subsys_vendor_id,
+                                     subsys_vendor_id)
+
 class SingleSelectField(widgets.SingleSelectField):
     """This class is a workaround for TG which does not properly process
     the field_id param on the SingleSelectField widget.
@@ -199,6 +206,7 @@ class Root(controllers.RootController):
         return dict(host_object=host_object,
                     devices=devices, ven=ven,
                     ratingwidget=SingleRatingWidget(),
+                    getWikiLink = getWikiLink,
                     )
 
     @expose()
