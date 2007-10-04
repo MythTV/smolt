@@ -7,7 +7,7 @@ class RatingWidget(Widget):
     name = "RatingWidget"
     javascript = [mochikit]
     template = """
-        <script type="text/javascript"><!--
+        <script type="text/javascript"><![CDATA[
 var NUMBER_OF_STARS = ${num};
 
 function displayHover(ratingId, star)
@@ -84,7 +84,7 @@ connect(window, "onload", function() {
     }
 });
 
-//-->
+//]]>
         </script>
     """
     params = ["update", "href", "num"]

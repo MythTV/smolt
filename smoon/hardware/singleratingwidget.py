@@ -7,7 +7,7 @@ class SingleRatingWidget(Widget):
     name = "SingleRatingWidget"
     javascript = [mochikit]
     template = """
-        <script type="text/javascript"><!--
+        <script type="text/javascript"><![CDATA[
 var NUMBER_OF_STARS = ${num};
 
 function displayHover(ratingId, star)
@@ -74,11 +74,11 @@ connect(window, "onload", function() {
             star.onmouseout = new Function("env", "displayNormal('"+widgetId+"', '"+j+"');");
             star.onclick = new Function("env", "submitRating('"+widgetId+"', '"+j+"');");
             ratings[i].appendChild(star);
-        } 
+        }
     }
 });
 
-//-->
+//]]>
         </script>
     """
     params = ["update", "href", "num"]
