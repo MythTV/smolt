@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-22 12:09-0400\n"
-"PO-Revision-Date: 2007-09-11 09:51-0300\n"
-"Last-Translator: Diego Búrigo Zacarão <diegobz@gmail.com>\n"
+"PO-Revision-Date: 2007-10-05 16:40-0300\n"
+"Last-Translator: Igor Pires Soares <igor@projetofedora.org>\n"
 "Language-Team: Brazilian Portuguese <fedora-docs-br@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,30 +18,36 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: deleteProfile.py:35 smolt.py:235
+#: deleteProfile.py:35
+#: smolt.py:235
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Mensagem do Servidor: \"%s\""
 
-#: deleteProfile.py:45 sendProfile.py:42
+#: deleteProfile.py:45
+#: sendProfile.py:42
 msgid "enable debug information"
 msgstr "habilitar informações de depuração"
 
-#: deleteProfile.py:50 sendProfile.py:47
+#: deleteProfile.py:50
+#: sendProfile.py:47
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "especificar a URL do servidor (padrão \"%default\")"
 
-#: deleteProfile.py:55 sendProfile.py:62
+#: deleteProfile.py:55
+#: sendProfile.py:62
 msgid "print information only, do not send"
 msgstr "apenas imprimir informações, não enviá-las"
 
-#: deleteProfile.py:60 sendProfile.py:77
+#: deleteProfile.py:60
+#: sendProfile.py:77
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "especificar agente de usuário HTTP (padrão \"%default\")"
 
-#: deleteProfile.py:65 sendProfile.py:82
+#: deleteProfile.py:65
+#: sendProfile.py:82
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "especificar tempo de espera HTTP em segundos (padrão %default segundos)"
@@ -157,7 +163,7 @@ msgstr "A_juda"
 
 #: smoltGui.py:80
 msgid "_My Smolt Page"
-msgstr "_Minha Página Smolt"
+msgstr "_Minha Página do Smolt"
 
 #: smoltGui.py:80
 msgid "Take me to my smolt profile page"
@@ -227,7 +233,10 @@ msgstr "Não foi possível conectar ao hal, ele está rodando?"
 msgid "Run \"service haldaemon start\" as root"
 msgstr "Execute \"service haldaemon start\" como root"
 
-#: smolt.py:310 smolt.py:399 smolt.py:460 smolt.py:477
+#: smolt.py:310
+#: smolt.py:399
+#: smolt.py:460
+#: smolt.py:477
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Erro ao contatar o servidor: %s"
@@ -314,7 +323,7 @@ msgstr "SELinux habilitado"
 
 #: smolt.py:526
 msgid "SELinux Enforce"
-msgstr "SELinux forçado"
+msgstr "SELinux Reforçado"
 
 #: smolt.py:959
 msgid "Unable to save UUID, continuing...\n"
@@ -328,13 +337,14 @@ msgstr "Incapaz de determinar UUID do sistema!\n"
 msgid "Cannot Determine Runlevel"
 msgstr "Inpossível Determinar Nível de Execusão (RunLevel)"
 
-#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+#: smoltFirstBoot.py:24
+#: smoltFirstBoot.py:34
 msgid "Hardware Profile"
 msgstr "Perfil de Hardware"
 
 #: smoltFirstBoot.py:50
 msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "O Smolt é um detector de perfis de hardware para o Projeto Fedora. Enviar o seu perfil é uma ótima maneira de um retorno à comunidade, uma vez que estas informações serão utilizadas para nos ajudar a focar esforços em hardwares e plataformas mais populares. O envio é anônimo. O encaminhamento do seu perfil habilitará uma atualização mensal."
+msgstr "O Smolt é um detector de perfis de hardware para o Projeto Fedora. Enviar o seu perfil é uma ótima maneira de dar um retorno à comunidade, uma vez que estas informações serão utilizadas para nos ajudar a focar esforços em hardwares e plataformas mais populares. O envio é anônimo. O encaminhamento do seu perfil habilitará uma atualização mensal."
 
 #: smoltFirstBoot.py:69
 msgid "_Send Profile"
@@ -410,8 +420,7 @@ msgid ""
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
 "Smolt irá somente enviar informações básicas do sistema operacional e hardware\n"
-"para o servidor smolt do Fedora (smoon). O único vínculo da base de dados "
-"com as máquinas emitentes é o UUID. Contanto que o emitente não forneça este UUID\n"
+"para o servidor smolt do Fedora (smoon). O único vínculo da base de dados com as máquinas emitentes é o UUID. Contanto que o emitente não forneça este UUID\n"
 "a submissão é anônima. Se a qualquer momento o usuário quiser excluir\n"
 "seu perfil da base de dados, ele somente precisa rodar\n"
 "\n"
@@ -420,14 +429,18 @@ msgstr ""
 "A informação enviada para a base de dados do servidor deve ser considerada publica\n"
 "onde qualquer um possa ver as estatísticas, dados e compartilhar perfis de máquinas .\n"
 "De qualquer maneira o smolt é projetado para obter fabricantes de hardware e manter atenção\n"
-"em outras partes de terceiros. Contudo, estas informações não serão compartilhadas somente \n com terceiros, nós estaremos usando o smolt como uma força para alavancar e obter um \n melhor suporte para drivers de código aberto e em geral.\n"
+"em outras partes de terceiros. Contudo, estas informações não serão compartilhadas somente \n"
+" com terceiros, nós estaremos usando o smolt como uma força para alavancar e obter um \n"
+" melhor suporte para drivers de código aberto e em geral.\n"
 "\n"
-"Log de IP: Na instalação do smolt do Fedora todo o trafego passa através de um servidor\n proxy antes. Este é o único local onde o endereços IPs são registrados e eles permanecem\n"
+"Log de IP: Na instalação do smolt do Fedora todo o trafego passa através de um servidor\n"
+" proxy antes. Este é o único local onde o endereços IPs são registrados e eles permanecem\n"
 "no servidor por um período de 4 semanas, que nesse caso é o tempo de rotação para remoção\n"
 "desses logs. O Projeto Fedora não agrega endereços IP na base de dados do smolt. Estes logs\n"
 "são privados e não serão disponibilizados para o publico em geral.\n"
 "\n"
-"Usuários não felizes com esta política devem simplesmente não usar o smolt. Usuários com\n dúvidas sobre está política devem contatar o Time de Infra-estrutura do Fedora em\n "
-"admin [at] fedoraproject.org. Lembre-se também que usuários podem excluir seus perfis\n"
+"Usuários não felizes com esta política devem simplesmente não usar o smolt. Usuários com\n"
+" dúvidas sobre está política devem contatar o Time de Infra-estrutura do Fedora em\n"
+" admin [at] fedoraproject.org. Lembre-se também que usuários podem excluir seus perfis\n"
 "a qualquer momento usando \"smoltDeleteProfile\" \n"
 
