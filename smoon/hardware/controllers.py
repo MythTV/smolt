@@ -16,15 +16,26 @@ from turbogears import redirect
 from turbogears import widgets
 from turbogears import flash
 from turbogears.widgets import Tabber, JumpMenu
+from ratingwidget import SingleRatingWidget, RatingWidget
 
 from hardware.model import *
 from hwdata import DeviceMap
 from smoonexceptions import NotCachedException
 from lock.multilock import MultiLock
 
+import logging
+log = logging.getLogger("smoon")
+
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
 currentSmoltProtocol = '0.97' 
+
+def getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id):
+    return '/wiki/%s/%04x/%04x/%04x/%04x' % (bus,
+                                             int(vendor_id or 0),
+                                             int(device_id or 0),
+                                             int(subsys_vendor_id or 0),
+                                             int(subsys_vendor_id or 0))
 
 class SingleSelectField(widgets.SingleSelectField):
     """This class is a workaround for TG which does not properly process
@@ -109,6 +120,7 @@ class ByClass(object):
         return self.get_data(key)
 
     pass
+
 class Root(controllers.RootController):
     def __init__(self):
         controllers.RootController.__init__(self)
@@ -174,6 +186,14 @@ class Root(controllers.RootController):
     @expose(template="hardware.templates.show")
     @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show(self, UUID=''):
+        return self.getShow(UUID=UUID)
+        
+    @expose(template="hardware.templates.showall")
+    @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
+    def show_all(self, UUID=''):
+        return self.getShow(UUID=UUID)
+
+    def getShow(self, UUID=''):
         try:
             uuid = u'%s' % UUID.strip()
             uuid = uuid.encode('utf8')
@@ -181,15 +201,26 @@ class Root(controllers.RootController):
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
             host_object = Query(Host).selectone_by(uuid=UUID)
+            ctx.current.refresh(host_object)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % UUID)
         devices = {}
         for dev in host_object.devices:
+            ctx.current.refresh(dev)
             #This is to prevent duplicate devices showing up, in the future,
             #There will be no dups in the database
             devices[dev.device_id] = (dev.device, dev.rating)
         ven = DeviceMap('pci')
-        return dict(host_object=host_object, devices=devices, ven=ven, rating=rating)
+        return dict(host_object=host_object,
+                    devices=devices, ven=ven,
+                    ratingwidget=SingleRatingWidget(),
+                    getWikiLink = getWikiLink,
+                    )
+
+    @expose()
+    def time(self):
+        import time
+        return time.ctime()
 
     @expose(template="hardware.templates.share")
     @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
@@ -657,23 +688,27 @@ class Root(controllers.RootController):
         return dict(stat=stats, tabs=tabs, total_hosts=stats['total_hosts'])
     
     @expose()
-    def submit_ratings(self, uuid, **kw):
-        
-        try:
-            host = Query(Host).selectone_by(uuid=uuid)
-        except InvalidRequestError:
-            redirect("error_client")
-        host.rating = int(kw["host_rating"])
-        
-        
-        for (device_key, rating) in kw.items():
-            if device_key.startswith("device_"):
-               device_ref = device_key[7:]
-               device_db_ref = int(device_ref)
-               for device in host.devices:
-                   if device.device_id == device_db_ref:
-                       device.rating = int(rating)
-        ctx.current.flush()
-        flash("Ratings Saved!")
-        redirect("show?UUID=%s" % uuid)
-
+    def rate_object(self, *args, **kwargs):
+        #log.info('args = %s' % str(args))
+        #log.info('kwargs = %s' % str(kwargs))
+        id = kwargs.get("ratingID")
+        rating = kwargs.get("value")
+        if id.startswith("Host"):
+            sep = id.find("_")
+            if sep == -1:
+                host_id = id[4:]
+                host = Query(Host).selectone_by(uuid=host_id)
+                host.rating = int(rating)
+                ctx.current.flush()
+                return dict()
+                
+            host_id = id[4:sep]
+            host = Query(Host).selectone_by(uuid=host_id)
+            id = id[sep+1:]
+            if id.startswith("Device"):
+                device_id = int(id[6:])
+                for device in host.devices:
+                    if device.device_id == device_id:
+                        device.rating = int(rating)
+                ctx.current.flush()
+        return dict()

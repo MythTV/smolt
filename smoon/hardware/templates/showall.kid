@@ -18,7 +18,8 @@ ${ratingwidget.display(update="rating",
 <body>
 
 <span py:def="wikilink(name, bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)">
-<a href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">${name}</a>&nbsp;
+<a py:if="vendor_id and device_id" href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">${name}</a>
+<span py:if="not (vendor_id and device_id)" py:replace="name"></span>
 </span>
 <!--
 	<div class='share' id='share' name='share'>
@@ -33,48 +34,47 @@ ${ratingwidget.display(update="rating",
 	    <img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>
 	    <img src="/static/images/rating/r4.gif"/> Works, but required aditional configuration<br/>
 	    <img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
-	    <p><a href="show_all?UUID=${host_object.uuid}">Show all Information</a></p>
+	    <p><a href="show?UUID=${host_object.uuid}">Show basic Information</a></p>
 	</div>
         <table id="system_show">
        	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
             <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
             <tr><th>Operating System:</th><td>${host_object.os}</td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
+            <tr><th>Bogomips:</th><td>${host_object.bogomips}</td></tr>
+            <tr><th>CPU Speed:</th><td>${host_object.cpu_speed}</td></tr>
+            <tr><th>System Memory:</th><td>${host_object.system_memory}</td></tr>
+            <tr><th>CPUVendor:</th><td>${host_object.cpu_vendor}</td></tr>
+            <tr><th>Number of CPUs:</th><td>${host_object.num_cpus}</td></tr>
+            <tr><th>Language:</th><td>${host_object.language}</td></tr>
+            <tr><th>Default Runlevel:</th><td>${host_object.default_runlevel}</td></tr>
             <tr><th>System Vendor:</th><td>${host_object.vendor}</td></tr>
             <tr><th>System Model:</th><td>${host_object.system}</td></tr>
             <tr><th>Kernel</th><td>${host_object.kernel_version}</td></tr>
             <tr><th>Formfactor</th><td>${host_object.formfactor}</td></tr>
+            <tr><th>SELinux Enabled</th><td>${host_object.selinux_enabled}</td></tr>
+            <tr><th>SELinux Enforce</th><td>${host_object.selinux_enforce}</td></tr>
             <tr><th>Last Modified</th><td>${host_object.last_modified}</td></tr>
         </table> 
         <h3>Devices</h3>
         <table id="device_show">
             <tr>
-                <th>Rating</th><th>Device</th><th>Class</th>
+                <th>Rating</th><th>Vendor</th><th>Device</th><th>SubVendor</th><th>SubDevice</th><th>Driver</th><th>Class</th><th>Bus</th>
             </tr>
 	    <?python 
 device_list = devices.values()
 device_list.sort(key=lambda x: x[0].cls)
 	    ?>
-            <tr py:for='device_node in device_list' py:if="device_node[0].vendor_id and device_node[0].device_id">
-            	<?python 
-device = device_node[0] 
-device_name = ""
-vname = ven.vendor(device.vendor_id, bus=device.bus)
-if vname and vname != "N/A":
-   device_name += vname
-dname = ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus)
-if dname and dname != "N/A":
-   device_name += " " + dname
-svname = ven.vendor(device.subsys_device_id)
-if svname and svname != "N/A":
-   device_name += " " + svname
-sdname = ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)
-if sdname and sdname != "N/A":
-   device_name += " " + sdname
-?>
-            	<td><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
-		<td><span py:replace="wikilink(device_name, device.bus, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)">Wiki</span></td>
+            <tr py:for='device_node in device_list'>
+            	<?python device = device_node[0] ?>
+            	<td align='left'><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
+                <td align='center'>${ven.vendor(device.vendor_id, bus=device.bus)}</td>
+		<td align='center'><span py:replace="wikilink(ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus), device.bus, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)">Devicename</span></td>
+                <td align='center'>${ven.vendor(device.subsys_device_id)}</td>
+                <td align='center'>${ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)}</td>
+                <td align='center'>${device.driver}</td>
                 <td align='center'>${device.cls}</td>
+                <td align='center'>${device.bus}</td>
                 <!--<td align='left'>${device.Description}</td>-->
             </tr>
         </table>

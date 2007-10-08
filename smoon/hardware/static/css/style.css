@@ -44,6 +44,13 @@ a.link, a, a.active {
   padding: 10px;
 }
 
+#legend {
+	float: right;
+	font-size: 70%;
+	border: 1px solid #ccc;
+	padding: 1em;	  
+}
+
 #sidebar {
   border: 1px solid #aaa;
   background-color: #eee;
@@ -148,7 +155,7 @@ span.code {
     background: #EEEEEE;    
 }
 
-#show th{
+#system_show th{
     text-align: right;
     font-weight: bold;
     color: #072B61;
@@ -156,7 +163,20 @@ span.code {
     background: #DDDDDD;
 }
 
-#show td{
+#system_show td{
+    padding: 5px;    
+    background: #EEEEEE;    
+}
+
+#device_show th{
+    text-align: center;
+    font-weight: bold;
+    color: #072B61;
+    padding: 5px 5px 5px 5px;    
+    background: #DDDDDD;
+}
+
+#device_show td{
     padding: 5px;    
     background: #EEEEEE;    
 }
@@ -190,4 +210,8 @@ div.flash {
   width: 450px;
   font-size: 120%;
   font-weight: bolder;
+}
+
+.rating {
+white-space:nowrap;
 }

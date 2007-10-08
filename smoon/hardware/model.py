@@ -11,50 +11,32 @@ from sahelper import ctx, metadata
 computer_logical_devices = Table('device', metadata, 
                                  Column("id", INT, autoincrement=True,
                                         nullable=False, primary_key=True),
-                                 Column("description", TEXT(128),
+                                 Column("description", VARCHAR(128),
                                         nullable=False),
                                  Column("bus", TEXT),
                                  Column("driver", TEXT),
-                                 Column("class", TEXT(24),
+                                 Column("class", VARCHAR(24),
                                         ForeignKey("classes.cls"),
                                         key="cls"),
                                  Column("date_added", DATETIME),
-                                 Column("device_id", TEXT(16)),
+                                 Column("device_id", VARCHAR(16)),
                                  Column("vendor_id", INT),
                                  Column("subsys_device_id", INT),
                                  Column("subsys_vendor_id", INT))
-
-human_logical_device = Table('subsystem', metadata,
-                             Column('name', VARCHAR(20),
-                                    nullable=False, primary_key=True),
-                             Column('description', TEXT))
-
-hld_cld_links = Table('hld_cld_link', metadata,
-                      Column('id', INT, autoincrement=True,
-                             nullable=False, primary_key=True),
-                      Column('hld', TEXT(30), ForeignKey('subsystem.name')),
-                      Column('cld', INT, ForeignKey('device.id')))
-
-hld_host_links = Table('hld_host_link', metadata,
-                       Column('id', INT, autoincrement=True,
-                              nullable=False, primary_key=True),
-                       Column('hld', VARCHAR(20), ForeignKey('subsystem.name')),
-                       Column('host_id', INT, ForeignKey('host.id')),
-                       Column('rating', INT))
 
 host_links = Table('host_links', metadata, 
                    Column("id", INT, autoincrement=True, nullable=False, primary_key=True),
                    Column('host_link_id', INT, ForeignKey("host.id"),
                           nullable=False),
                    Column("device_id", INT, ForeignKey("device.id")),
-                   Column("rating", BOOLEAN))
+                   Column("rating", INT))
 
 hosts = Table('host', metadata,
               Column("id", INT, autoincrement=True, nullable=False, primary_key=True),
-              Column('u_u_id', TEXT(36), nullable=False, unique=True),
+              Column('u_u_id', VARCHAR(36), nullable=False, unique=True),
               Column('o_s', TEXT),
               Column('platform', TEXT),
-              Column('bogomips', Numeric),
+              Column('bogomips', DECIMAL),
               Column('system_memory', INT),
               Column('system_swap', INT),
               Column('vendor', TEXT),
@@ -62,7 +44,7 @@ hosts = Table('host', metadata,
               Column('cpu_vendor', TEXT),
               Column('cpu_model', TEXT),
               Column('num_cp_us', INT),
-              Column('cpu_speed', Numeric),
+              Column('cpu_speed', DECIMAL),
               Column('language', TEXT),
               Column('default_runlevel', INT),
               Column('kernel_version', TEXT),
@@ -75,17 +57,17 @@ hosts = Table('host', metadata,
 fas_links = Table('fas_link', metadata,
                   Column("id", INT, autoincrement=True, nullable=False,
                          primary_key=True),
-                  Column('u_u_id', TEXT(36), ForeignKey("host.u_u_id"),
+                  Column('u_u_id', VARCHAR(36), ForeignKey("host.u_u_id"),
                          nullable=False),
-                  Column("user_name", TEXT(255), nullable=False))
+                  Column("user_name", VARCHAR(255), nullable=False))
 
 hardware_classes = Table('classes', metadata,
                          Column("class", VARCHAR(24), nullable=False, primary_key=True, key="cls"),
                          Column("description", TEXT, key="class_description"))
 
 hardware_by_class = Table("CLASS", metadata,
-                          Column('device_id', TEXT(16), primary_key=True),
-                          Column('description', TEXT(128)),
+                          Column('device_id', VARCHAR(16), primary_key=True),
+                          Column('description', VARCHAR(128)),
                           Column('bus', TEXT),
                           Column("driver", TEXT),
                           Column("vendor_id", INT),
@@ -143,11 +125,8 @@ class Host(object):
 class ComputerLogicalDevice(object):
     pass
 
-class HumanLogicalDevice(object):
-    pass
-
 class HostLink(object):
-    def __init__(self, rating=False):
+    def __init__(self, rating=0):
         self.rating = rating
 
 class FasLink(object):
@@ -209,9 +188,6 @@ mapper(Host, hosts,
                                backref=backref('host'),
                                lazy=None),
           'devices': relation(HostLink, cascade='all,delete-orphan'),
-          'human_logical_devices': relation(HumanLogicalDevice,
-                                            secondary="hld_host_links",
-                                            backref='hosts'),
           'fas_account': relation(FasLink, uselist=False)})
 
 mapper(ComputerLogicalDevice,
@@ -229,16 +205,13 @@ mapper(FasLink, fas_links, properties = {'hosts': relation(Host),
                                          'uuid': fas_links.c.u_u_id})
 
 mapper(HardwareClass,
-       hardware_classes,    
+       hardware_classes,
        properties = {'devices': relation(ComputerLogicalDevice,
                                          cascade="all,delete-orphan",
                                          backref=backref('hardware_class'),
                                          lazy=None),
                      '_cls': hardware_classes.c.cls,
                      'cls': synonym('_cls')})
-
-mapper(HumanLogicalDevice,
-       human_logical_device)
 
 mapper(HardwareByClass, hardware_by_class)
 mapper(OS, oses, order_by=desc(oses.c.cnt))
