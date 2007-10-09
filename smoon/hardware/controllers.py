@@ -131,7 +131,7 @@ class Root(controllers.RootController):
                                     args=None, kw=None, initialdelay=15, \
                                     processmethod=scheduler.method.threaded, \
                                     taskname="devices_cache")
-        scheduler.add_interval_task(action=self.write_stats, interval=300, \
+        scheduler.add_interval_task(action=self.write_stats, interval=1200, \
                                     args=None, kw=None, initialdelay=5, \
                                     processmethod=scheduler.method.threaded, \
                                     taskname="stats_cache")
