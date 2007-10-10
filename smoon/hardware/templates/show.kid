@@ -36,7 +36,7 @@ ${ratingwidget.display(update="rating",
 	    <p><a href="show_all?UUID=${host_object.uuid}">Show all Information</a></p>
 	</div>
         <table id="system_show">
-       	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
+       	    <tr><th>Overall Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
             <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
             <tr><th>Operating System:</th><td>${host_object.os}</td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
