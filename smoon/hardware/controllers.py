@@ -75,8 +75,8 @@ class ByClass(object):
     def __init__(self):
         self.rw_lock = MultiLock()
         self.data = {}
-        scheduler.add_interval_task(action=self.fetch_data, interval=900, \
-                                    args=None, kw=None, initialdelay=15, \
+        scheduler.add_interval_task(action=self.fetch_data, interval=21600, \
+                                    args=None, kw=None, initialdelay=60, \
                                     processmethod=scheduler.method.threaded, \
                                     taskname="byclass_cache")
        
@@ -127,11 +127,11 @@ class Root(controllers.RootController):
         self.devices_lock = MultiLock()
         self.stats_lock = MultiLock()
         self.byclass_cache = ByClass()
-        scheduler.add_interval_task(action=self.write_devices, interval=1800, \
-                                    args=None, kw=None, initialdelay=15, \
+        scheduler.add_interval_task(action=self.write_devices, interval=21600, \
+                                    args=None, kw=None, initialdelay=30, \
                                     processmethod=scheduler.method.threaded, \
                                     taskname="devices_cache")
-        scheduler.add_interval_task(action=self.write_stats, interval=1200, \
+        scheduler.add_interval_task(action=self.write_stats, interval=10800, \
                                     args=None, kw=None, initialdelay=5, \
                                     processmethod=scheduler.method.threaded, \
                                     taskname="stats_cache")
