@@ -646,7 +646,8 @@ class Root(controllers.RootController):
         stats['languagetot'] = stats['total_hosts']
  
         stats['sys_mem'] = []
-        stats['sys_mem'].append(("less than 512mb", Query(Host).filter(Host.c.system_memory<512).count()))
+        stats['sys_mem'].append(("less than 256mb", Query(Host).filter(Host.c.system_memory<256).count()))
+        stats['sys_mem'].append(("between 256mb and 512mb", Query(Host).filter(and_(Host.c.system_memory>=256, Host.c.system_memory<512)).count()))
         stats['sys_mem'].append(("between 512mb and 1023mb", Query(Host).filter(and_(Host.c.system_memory>=512, Host.c.system_memory<1024)).count()))
         stats['sys_mem'].append(("between 1024mb and 2047mb", Query(Host).filter(and_(Host.c.system_memory>=1024, Host.c.system_memory<2048)).count()))
         stats['sys_mem'].append(("more than 2048mb", Query(Host).filter(Host.c.system_memory>=2048).count()))
