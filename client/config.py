@@ -1,7 +1,7 @@
 
 import os
 
-SMOON_URL = "http://smolt.fedoraproject.org/"
+SMOON_URL = "http://www.smolts.org/"
 
 
 #Only a fool would edit what lays beyond here
