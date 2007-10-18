@@ -17,9 +17,9 @@ ${ratingwidget.display(update="rating",
 </head>
 <body>
 
-<span py:def="wikilink(name, bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)">
-<a py:if="vendor_id and device_id" href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">${name}</a>
-<span py:if="not (vendor_id and device_id)" py:replace="name"></span>
+<span py:def="wikilink(name, device)">
+<a py:if="device.vendor_id and device.device_id" href="${getDeviceWikiLink(device)}">${name}</a>
+<span py:if="not (device.vendor_id and device.device_id)" py:replace="name"></span>
 </span>
 <!--
 	<div class='share' id='share' name='share'>
@@ -49,7 +49,7 @@ ${ratingwidget.display(update="rating",
             <tr><th>Language:</th><td>${host_object.language}</td></tr>
             <tr><th>Default Runlevel:</th><td>${host_object.default_runlevel}</td></tr>
             <tr><th>System Vendor:</th><td>${host_object.vendor}</td></tr>
-            <tr><th>System Model:</th><td>${host_object.system}</td></tr>
+            <tr><th>System Model:</th><td><a href="${host_link}">${host_object.system}</a></td></tr>
             <tr><th>Kernel</th><td>${host_object.kernel_version}</td></tr>
             <tr><th>Formfactor</th><td>${host_object.formfactor}</td></tr>
             <tr><th>SELinux Enabled</th><td>${host_object.selinux_enabled}</td></tr>
@@ -61,15 +61,11 @@ ${ratingwidget.display(update="rating",
             <tr>
                 <th>Rating</th><th>Vendor</th><th>Device</th><th>SubVendor</th><th>SubDevice</th><th>Driver</th><th>Class</th><th>Bus</th>
             </tr>
-	    <?python 
-device_list = devices.values()
-device_list.sort(key=lambda x: x[0].cls)
-	    ?>
-            <tr py:for='device_node in device_list'>
+            <tr py:for='device_node in devices'>
             	<?python device = device_node[0] ?>
             	<td align='left'><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
                 <td align='center'>${ven.vendor(device.vendor_id, bus=device.bus)}</td>
-		<td align='center'><span py:replace="wikilink(ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus), device.bus, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)">Devicename</span></td>
+		<td align='center'><span py:replace="wikilink(ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus), device)">Devicename</span></td>
                 <td align='center'>${ven.vendor(device.subsys_device_id)}</td>
                 <td align='center'>${ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)}</td>
                 <td align='center'>${device.driver}</td>

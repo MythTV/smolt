@@ -16,10 +16,6 @@ ${ratingwidget.display(update="rating",
 )}
 </head>
 <body>
-
-<span py:def="wikilink(name, bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)">
-<a href="${getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id)}">${name}</a>&nbsp;
-</span>
 <!--
 	<div class='share' id='share' name='share'>
 		<a href='share?sid=${host_object.id}'>Share my computer!</a>
@@ -41,7 +37,7 @@ ${ratingwidget.display(update="rating",
             <tr><th>Operating System:</th><td>${host_object.os}</td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
             <tr><th>System Vendor:</th><td>${host_object.vendor}</td></tr>
-            <tr><th>System Model:</th><td>${host_object.system}</td></tr>
+            <tr><th>System Model:</th><td><a href="${host_link}">${host_object.system}</a></td></tr>
             <tr><th>Kernel</th><td>${host_object.kernel_version}</td></tr>
             <tr><th>Formfactor</th><td>${host_object.formfactor}</td></tr>
             <tr><th>Last Modified</th><td>${host_object.last_modified}</td></tr>
@@ -51,31 +47,10 @@ ${ratingwidget.display(update="rating",
             <tr>
                 <th>Rating</th><th>Device</th><th>Class</th>
             </tr>
-	    <?python 
-device_list = devices.values()
-device_list.sort(key=lambda x: x[0].cls)
-	    ?>
-            <tr py:for='device_node in device_list' py:if="device_node[0].vendor_id and device_node[0].device_id">
-            	<?python 
-device = device_node[0] 
-device_name = ""
-vname = ven.vendor(device.vendor_id, bus=device.bus)
-if vname and vname != "N/A":
-   device_name += vname
-dname = ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus)
-if dname and dname != "N/A":
-   device_name += " " + dname
-svname = ven.vendor(device.subsys_device_id)
-if svname and svname != "N/A":
-   device_name += " " + svname
-sdname = ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)
-if sdname and sdname != "N/A":
-   device_name += " " + sdname
-?>
-            	<td><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
-		<td><span py:replace="wikilink(device_name, device.bus, device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)">Wiki</span></td>
-                <td align='center'>${device.cls}</td>
-                <!--<td align='left'>${device.Description}</td>-->
+            <tr py:for='device in devices'>
+            	<td><div class="rating" id="Host${host_object.uuid}_Device${device.get('id')}">${device.get('rating')}</div></td>
+		<td><a href="device.get('link')">${device.get('name')}</a></td>
+                <td align='center'>${device.get('cls')}</td>
             </tr>
         </table>
 </body>

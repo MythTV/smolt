@@ -30,12 +30,15 @@ log = logging.getLogger("smoon")
 CRYPTPASS = 'PleaseChangeMe11'
 currentSmoltProtocol = '0.97' 
 
-def getWikiLink(bus, vendor_id, device_id, subsys_vendor_id, subsys_device_id):
-    return '/wiki/%s/%04x/%04x/%04x/%04x' % (bus,
-                                             int(vendor_id or 0),
-                                             int(device_id or 0),
-                                             int(subsys_vendor_id or 0),
-                                             int(subsys_vendor_id or 0))
+def getDeviceWikiLink(device):
+    return '/wiki/%s/%04x/%04x/%04x/%04x' % (device.bus,
+                                             int(device.vendor_id or 0),
+                                             int(device.device_id or 0),
+                                             int(device.subsys_vendor_id or 0),
+                                             int(device.subsys_vendor_id or 0))
+
+def getHostWikiLink(host):
+    return '/wiki/System/%s/%s' % (host.vendor, host.system)
 
 class SingleSelectField(widgets.SingleSelectField):
     """This class is a workaround for TG which does not properly process
@@ -186,14 +189,60 @@ class Root(controllers.RootController):
     @expose(template="hardware.templates.show")
     @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show(self, UUID=''):
-        return self.getShow(UUID=UUID)
+        try:
+            uuid = u'%s' % UUID.strip()
+            uuid = uuid.encode('utf8')
+        except:
+            raise ValueError("Critical: Unicode Issue - Tell Mike!")
+        try:
+            host_object = Query(Host).selectone_by(uuid=UUID)
+            ctx.current.refresh(host_object)
+        except:
+            raise ValueError("Critical: UUID Not Found - %s" % UUID)
+        devices = {}
+        ven = DeviceMap('pci')
+
+        for dev in host_object.devices:
+            ctx.current.refresh(dev)
+            device = dev.device
+            if not device.vendor_id and device.device_id:
+                continue
+            device_name = ""
+            vname = ven.vendor(device.vendor_id, bus=device.bus)
+            if vname and vname != "N/A":
+                device_name += vname
+            dname = ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus)
+            if dname and dname != "N/A":
+                device_name += " " + dname
+            svname = ven.vendor(device.subsys_device_id)
+            if svname and svname != "N/A":
+                device_name += " " + svname
+            sdname = ven.subdevice(device.vendor_id, device.device_id, device.subsys_vendor_id, device.subsys_device_id)
+            if sdname and sdname != "N/A":
+                device_name += " " + sdname
+
+            #This is to prevent duplicate devices showing up, in the future,
+            #There will be no dups in the database
+            devices[dev.device_id] = dict(id = dev.device_id,
+                                          name = device_name,
+                                          link = getDeviceWikiLink(device),
+                                          cls = device.cls,
+                                          rating = dev.rating,
+                                          )
+
+        devices = devices.values()
+        devices.sort(key=lambda x: x.get('cls'))
+
+        return dict(host_object = host_object, 
+                    host_link = getHostWikiLink(host_object),
+                    devices=devices,
+                    ratingwidget=SingleRatingWidget(),
+                    )
+
         
     @expose(template="hardware.templates.showall")
     @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show_all(self, UUID=''):
-        return self.getShow(UUID=UUID)
-
-    def getShow(self, UUID=''):
         try:
             uuid = u'%s' % UUID.strip()
             uuid = uuid.encode('utf8')
@@ -211,10 +260,15 @@ class Root(controllers.RootController):
             #There will be no dups in the database
             devices[dev.device_id] = (dev.device, dev.rating)
         ven = DeviceMap('pci')
+
+        devices = devices.values()
+        devices.sort(key=lambda x: x[0].cls)
+
         return dict(host_object=host_object,
+                    host_link = getHostWikiLink(host_object),
                     devices=devices, ven=ven,
                     ratingwidget=SingleRatingWidget(),
-                    getWikiLink = getWikiLink,
+                    getDeviceWikiLink = getDeviceWikiLink,
                     )
 
     @expose()
