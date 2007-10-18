@@ -49,7 +49,7 @@ ${ratingwidget.display(update="rating",
             </tr>
             <tr py:for='device in devices'>
             	<td><div class="rating" id="Host${host_object.uuid}_Device${device.get('id')}">${device.get('rating')}</div></td>
-		<td><a href="device.get('link')">${device.get('name')}</a></td>
+		<td><a href="${device.get('link')}">${device.get('name')}</a></td>
                 <td align='center'>${device.get('cls')}</td>
             </tr>
         </table>
