@@ -24,6 +24,7 @@ ${ratingwidget.display(update="rating",
         <h3>${host_object.uuid}</h3>
 
 	<div id="legend">
+	    <img src="/static/images/rating/r0.gif"/> I don't use this/I don't know<br/>
 	    <img src="/static/images/rating/r1.gif"/> Breaks System<br/>
 	    <img src="/static/images/rating/r2.gif"/> Doesn't Work<br/>
 	    <img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>

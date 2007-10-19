@@ -72,7 +72,7 @@ function rating_init(href, maxnum, classname, img_on, img_off, img_over) {
 function single_rating_displayHover(ratingId, star, imgon_pre, img_post)
 {
     var starI = document.getElementById('star_'+ratingId+'_'+star)
-	starI.setAttribute('src', imgon_pre+(parseInt(star)+1)+img_post);
+	starI.setAttribute('src', imgon_pre+(parseInt(star))+img_post);
 }
 
 function single_rating_displayNormal(ratingId, star, imgoff_pre, img_post)
@@ -80,22 +80,22 @@ function single_rating_displayNormal(ratingId, star, imgoff_pre, img_post)
     var status = document.getElementById('star_'+ratingId+'_'+star).className;
     var starI = document.getElementById('star_'+ratingId+'_'+star);
     if (status == 'off') {
-	starI.setAttribute('src', imgoff_pre + (parseInt(star)+1) + img_post);
+	starI.setAttribute('src', imgoff_pre + (parseInt(star)) + img_post);
     }
 }
 
 function single_rating_submitRating(href, widgetId, starNbr, maxnum, imgon_pre, imgoff_pre, img_post)
 {
     doSimpleXMLHttpRequest(href,
-			   { 'ratingID': widgetId, 'value': parseInt(starNbr)+1});
-    for (var i = 0; i < maxnum; i++)
+			   { 'ratingID': widgetId, 'value': parseInt(starNbr)});
+    for (var i = 0; i <= maxnum; i++)
 	{
 	    var star = document.getElementById('star_'+widgetId+'_'+i)
 		if (i == starNbr) {
-		    star.setAttribute('src', imgon_pre+(i+1)+img_post);
+		    star.setAttribute('src', imgon_pre+i+img_post);
 		    star.className = 'on';
 		} else {
-		    star.setAttribute('src', imgoff_pre+(i+1)+img_post);
+		    star.setAttribute('src', imgoff_pre+i+img_post);
 		    star.className = 'off';
 		}
 	}
@@ -113,14 +113,14 @@ function single_rating_init(href, maxnum, classname, imgon_pre, imgoff_pre, img_
 	    rating = maxnum;
 	if (rating < 0)
 	    rating = 0;
-	for (var j = 0; j < maxnum; j++) {
+	for (var j = 0; j <= maxnum; j++) {
 	    var star = document.createElement('img');
-	    if (rating == (j+1)) {
-		star.setAttribute('src', '/static/images/rating/r'+(j+1)+'.gif');
+	    if (rating == j) {
+		star.setAttribute('src', '/static/images/rating/r'+j+'.gif');
 		star.className = 'on';
 	    }
 	    else {
-		star.setAttribute('src', '/static/images/rating/ro'+(j+1)+'.gif');
+		star.setAttribute('src', '/static/images/rating/ro'+j+'.gif');
 		star.className = 'off';
 	    }
 	    var widgetId = ratings[i].getAttribute('id');
