@@ -35,7 +35,7 @@ def getDeviceWikiLink(device):
                                              int(device.vendor_id or 0),
                                              int(device.device_id or 0),
                                              int(device.subsys_vendor_id or 0),
-                                             int(device.subsys_vendor_id or 0))
+                                             int(device.subsys_device_id or 0))
 
 def getHostWikiLink(host):
     return '/wiki/System/%s/%s' % (host.vendor, host.system)
