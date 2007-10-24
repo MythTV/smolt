@@ -24,5 +24,7 @@ def scan():
             print 'http://smolts.org/wiki/%s' % r['query']['pages'][page]['title']
         except KeyError:
             pass
-        
-scan()
+      
+if __name__ == "__main__":  
+    scan()
+
