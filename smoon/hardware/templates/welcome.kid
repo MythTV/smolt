@@ -19,7 +19,7 @@ Most people probably want to go to <a href='/stats'>/stats</a> or <a href='/devi
     <img src="/cacti/smoltArch.png"/>
 
 <h2>More info</h2>
-    Take a look at the <a href="/wiki/">Wiki</a><br>
+    Take a look at the <a href="/wiki/">Wiki</a><br/>
     Usage and other general answers can be found at <a href='https://hosted.fedoraproject.org/projects/smolt'>https://hosted.fedoraproject.org/projects/smolt</a>
 
 </body>
