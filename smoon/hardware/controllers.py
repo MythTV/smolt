@@ -754,16 +754,17 @@ class Root(controllers.RootController):
                 host_id = id[4:]
                 host = Query(Host).selectone_by(uuid=host_id)
                 host.rating = int(rating)
-                ctx.current.flush()
+                ctx.current.flush([host])
                 return dict()
                 
             host_id = id[4:sep]
-            host = Query(Host).selectone_by(uuid=host_id)
             id = id[sep+1:]
             if id.startswith("Device"):
                 device_id = int(id[6:])
+                host = Query(Host).selectone_by(uuid=host_id)
                 for device in host.devices:
                     if device.device_id == device_id:
                         device.rating = int(rating)
-                ctx.current.flush()
+                        ctx.current.flush([device])
+                        return dict()
         return dict()
