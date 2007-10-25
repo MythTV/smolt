@@ -102,9 +102,6 @@ function single_rating_callBackRating(widgetId, starNbr, maxnum, imgon_pre, imgo
 
 function single_rating_submitRating(href, widgetId, starNbr, maxnum, imgon_pre, imgoff_pre, imgbusy_pre, img_post)
 {
-    var d = doSimpleXMLHttpRequest(href,
-	{ 'ratingID': widgetId, 'value': parseInt(starNbr)});
-
     var oldStarNbr = starNbr;
 
     for (var i = 0; i <= maxnum; i++) {
@@ -116,6 +113,9 @@ function single_rating_submitRating(href, widgetId, starNbr, maxnum, imgon_pre, 
 	    return;
 	}
     }
+
+    var d = doSimpleXMLHttpRequest(href,
+	{ 'ratingID': widgetId, 'value': parseInt(starNbr)});
 
     d.addCallback(new Function("env", "single_rating_callBackRating('"+widgetId+"',"+starNbr+","+maxnum+",'"+imgon_pre+"','"+imgoff_pre+"','"+img_post+"');"),
 		  new Function("env", "single_rating_callBackRating('"+widgetId+"',"+oldStarNbr+","+maxnum+",'"+imgon_pre+"','"+imgoff_pre+"','"+img_post+"');"));
