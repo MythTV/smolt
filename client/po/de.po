@@ -98,7 +98,7 @@ msgstr "Tipp:"
 
 #: sendProfile.py:121
 msgid "Send this information to the Smolt server? (y/n)"
-msgstr "Diese Informationen an den Smolt-Server senden? (y/n)"
+msgstr "Diese Informationen an den Smolt-Server senden? (j/n)"
 
 #: sendProfile.py:122
 msgid "y"
