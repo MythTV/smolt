@@ -765,6 +765,6 @@ class Root(controllers.RootController):
                 for device in host.devices:
                     if device.device_id == device_id:
                         device.rating = int(rating)
-                        ctx.current.flush([device])
+                        ctx.current.flush([host,device])
                         return dict()
         return dict()
