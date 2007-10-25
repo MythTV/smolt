@@ -42,8 +42,6 @@ def scan(profile):
         print _("No errata found, if this machine is having issues please go to")
         print _("your profile and create a wiki page for the device so others can")
         print _("benefit")
-        print ""
-        print _("Please visit: %s" % urljoin(opts.smoonURL, '/show?UUID=%s' % profile.host.UUID))
       
 if __name__ == "__main__":  
     # read the profile
