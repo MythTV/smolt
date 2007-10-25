@@ -1,8 +1,19 @@
 import smolt
 import simplejson, urllib
+from i18n import _
+import config
 
-def scan():
+def get_config_attr(attr, default=""):
+    if hasattr(config, attr):
+        return getattr(config, attr)
+    else:
+        return default
 
+smoonURL = get_config_attr("SMOON_URL", "http://smolts.org/")
+
+
+def scan(profile):
+    print _("Scanning %s for known errata.\n" % smoonURL)
     h = smolt.Hardware()
     devices = []
     for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in h.deviceIter():
@@ -15,16 +26,33 @@ def scan():
     searchDevices = 'NULLPAGE'
     for dev in devices:
         searchDevices = "%s|%s" % (searchDevices, dev)
-    scanURL='http://smolts.org/w/api.php?action=query&titles=%s&format=json' % searchDevices
+    scanURL='%s/w/api.php?action=query&titles=%s&format=json' % (smoonURL, searchDevices)
     r = simplejson.load(urllib.urlopen(scanURL))
-
+    found = []
     for page in r['query']['pages']:
         try:
             r['query']['pages'][page]['id']
-            print 'http://smolts.org/wiki/%s' % r['query']['pages'][page]['title']
+            found.append('\t%swiki/%s' % (smoonURL, r['query']['pages'][page]['title']))
         except KeyError:
             pass
+    if found:
+        print _("Errata Found!")
+        for f in found: print "%s" % f
+    else:
+        print _("No errata found, if this machine is having issues please go to")
+        print _("your profile and create a wiki page for the device so others can")
+        print _("benefit")
+        print ""
+        print _("Please visit: %s" % urljoin(opts.smoonURL, '/show?UUID=%s' % profile.host.UUID))
       
 if __name__ == "__main__":  
-    scan()
+    # read the profile
+    try:
+        profile = smolt.Hardware()
+    except smolt.SystemBusError, e:
+        error(_('Error:') + ' ' + e.message)
+        if e.hint is not None:
+            error('\t' + _('Hint:') + ' ' + e.hint)
+        sys.exit(8)
+    scan(profile)
 

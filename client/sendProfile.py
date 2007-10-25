@@ -32,6 +32,7 @@ from i18n import _
 import smolt
 from smolt import debug
 from smolt import error
+from scan import scan
 
 parser = OptionParser(version = smolt.smoltProtocol)
 
@@ -85,6 +86,12 @@ parser.add_option('-c', '--checkin',
                   default = False,
                   action = 'store_true',
                   help = _('this is an automated checkin, will only run if the "smolt" service has been started'))
+parser.add_option('-S', '--scanOnly',
+                  dest = 'scanOnly',
+                  default = False,
+                  action = 'store_true',
+                  help = _('only scan this machine for known hardware errata, do not send profile.'))
+
 
 (opts, args) = parser.parse_args()
 
@@ -110,16 +117,23 @@ except smolt.SystemBusError, e:
         error('\t' + _('Hint:') + ' ' + e.hint)
     sys.exit(8)
     
-#print profile.getProfile()
+if opts.scanOnly:
+    scan(profile)
+    sys.exit(0)
+
 for line in profile.getProfile():
-	print line
+    print line
 
 if not opts.autoSend:
     if opts.printOnly:
         sys.exit(0)
     else:
-        send = raw_input('\n' + _('Send this information to the Smolt server? (y/n)') + ' ')
-        if send[:1].lower() != _('y'):
+        try:
+            send = raw_input('\n' + _('Send this information to the Smolt server? (y/n)') + ' ')
+            if send[:1].lower() != _('y'):
+                error(_('Exiting...'))
+                sys.exit(4)
+        except KeyboardInterrupt:
             error(_('Exiting...'))
             sys.exit(4)
     
@@ -143,5 +157,8 @@ if opts.userName:
     if profile.register(userName=opts.userName, password=password, user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
         print _('Registration Failed, Try again')
 
+scan(profile)
 url = urljoin(opts.smoonURL, '/show?UUID=%s' % profile.host.UUID)
+print
+
 print _('To view your profile visit: %s') % url
