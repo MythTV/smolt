@@ -198,6 +198,27 @@ class Host:
         except:
             self.formfactor = 'Unknown'
 
+        if self.platform == 'ppc64':
+            if hostInfo.get('openfirmware.model'):
+                if hostInfo['openfirmware.model'][:3] == 'IBM':
+                    self.systemVendor = 'IBM'
+                model = hostInfo['openfirmware.model'][4:8]
+                if model == '8842':
+                    self.systemModel = 'JS20'
+                    self.formfactor = 'Blade'
+                elif model == '6779' or model == '6778' or model == '7988':
+                    self.systemModel = 'JS21'
+                    self.formfactor = 'Blade'
+                elif model == '8844':
+                    self.systemModel = 'JS21'
+                    self.formfactor = 'Blade'
+                elif model == '0200':
+                    self.systemModel = 'QS20'
+                    self.formfactor = 'Blade'
+                elif model == '0792':
+                    self.systemModel = 'QS21'
+                    self.formfactor = 'Blade'
+
         try:
             import selinux
             try:
@@ -780,7 +801,7 @@ def read_cpuinfo():
     elif uname in ['ppc64','ppc']:
         tmpdict = {}
         count = 0
-        for cpu in cpulist.split("\n\n"):
+        for cpu in cpulist.split("processor"):
             if not len(cpu):
                 continue
             count = count + 1
@@ -803,7 +824,10 @@ def read_cpuinfo():
         hwdict['model_ver'] = get_entry(tmpdict, 'revision')
         hwdict['bogomips'] = get_entry(tmpdict, 'bogomips')
         hwdict['vendor'] = get_entry(tmpdict, 'machine')
-        hwdict['type'] = get_entry(tmpdict, 'platform')
+        if get_entry(tmpdict, 'cpu').startswith('ppc970'):
+            hwdict['type'] = 'IBM'
+        else:
+            hwdict['type'] = get_entry(tmpdict, 'platform')
         hwdict['system'] = get_entry(tmpdict, 'detected as')
         # strings are postpended with "mhz"
         mhz_speed = get_entry(tmpdict, 'clock')[:-3]
