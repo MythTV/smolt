@@ -12,6 +12,7 @@ ${ratingwidget.display(update="rating",
                        img_over="/static/images/stars/rating_over.gif",
                        imgon_pre="/static/images/rating/r",
                        imgoff_pre="/static/images/rating/ro",
+                       imgbusy_pre="/static/images/rating/rb",
                        img_post=".gif",
 )}
 </head>
