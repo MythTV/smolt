@@ -6,21 +6,20 @@
 <title>Smolt</title>
 </head>
 <body>
-
-<h1> Smolt </h1>
-
-Most people probably want to go to <a href='/stats'>/stats</a> or <a href='/devices'>/devices</a>
-
 <h2>Lookup</h2>
     <form method='GET' action='/show'>
-        UUID: <input type='text' name='UUID' size='32'/>
+        Enter your profile UUID: <input type='text' name='UUID' size='32'/>
     </form>
+<p></p>
+<h2>Statistics</h2>
+<p>
+For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>
+</p>
 <h2>Growth</h2>
-    <img src="/cacti/smoltArch.png"/>
+<p><img src="/cacti/smoltArch.png"/></p>
 
 <h2>More info</h2>
-    Take a look at the <a href="/wiki/">Wiki</a><br/>
-    Usage and other general answers can be found at <a href='https://hosted.fedoraproject.org/projects/smolt'>https://hosted.fedoraproject.org/projects/smolt</a>
-
+<p>Browse and search the <a href="/wiki/">Wiki</a> for detailed information about specific devices.
+Usage and other general answers can also be found at the <a href="/wiki/">Wiki</a>.</p>
 </body>
 </html>

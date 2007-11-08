@@ -43,4 +43,7 @@ ALTER TABLE `host_links` ADD COLUMN `rating` INT  NOT NULL DEFAULT 0 AFTER `devi
 ALTER TABLE `device` DROP INDEX `description`,
  ADD UNIQUE INDEX `description` USING BTREE(`description`, `device_id`, `vendor_id`, `subsys_device_id`, `subsys_vendor_id`);
 
+ALTER TABLE `device` MODIFY COLUMN class VARCHAR(40);
+ALTER TABLE device ADD INDEX(class);
+
 

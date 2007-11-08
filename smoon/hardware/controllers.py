@@ -21,7 +21,6 @@ from ratingwidget import SingleRatingWidget, RatingWidget
 from hardware.model import *
 from hwdata import DeviceMap
 from smoonexceptions import NotCachedException
-from lock.multilock import MultiLock
 
 import logging
 log = logging.getLogger("smoon")
@@ -40,104 +39,9 @@ def getDeviceWikiLink(device):
 def getHostWikiLink(host):
     return '/wiki/System/%s/%s' % (host.vendor, host.system)
 
-class SingleSelectField(widgets.SingleSelectField):
-    """This class is a workaround for TG which does not properly process
-    the field_id param on the SingleSelectField widget.
-    """
-    def update_params(self, d):
-        """For some reason, field_id, and name are both proper parameters
-        in the kid template for this widget, however, they are not allowed
-        to be configured at display time, only at widget creation time.
-        understanding that widgets should be as stateless as possible, this
-        allows you to declare new values at display time
-        """
-        if "field_id" in d:
-            field_id = d["field_id"]
-        else:
-            field_id = ""
-        super(SingleSelectField, self).update_params(d)
-        if not field_id == "":
-            d["field_id"] = field_id
-            d['name'] = field_id
-    
-    params = ["field_id"]
-
-rating = SingleSelectField(options = [(0, "Please Pick One"),
-                                      (1, "This breaks stuff"),
-                                      (2, "This doesn't work"),
-                                      (3, "This sorta works"),
-                                      (4, "This works great! ^_^")])
-rating_options = {0: "Not Rated",
-                  1: "This breaks stuff",
-                  2: "This doesn't work",
-                  3: "This sorta works :-/",
-                  4: "This works great! ^_^",
-                  5: "Mike is awesome"}
-
-class ByClass(object):
-    def __init__(self):
-        self.rw_lock = MultiLock()
-        self.data = {}
-        scheduler.add_interval_task(action=self.fetch_data, interval=21600, \
-                                    args=None, kw=None, initialdelay=60, \
-                                    processmethod=scheduler.method.threaded, \
-                                    taskname="byclass_cache")
-       
-    def fetch_data(self):
-        classes = Query(HardwareClass).select()
-        for cls in classes:
-            type = cls.cls
-            # We only want hosts that detected hardware (IE, hal was working properly)
-            total_hosts = select([host_links.c.host_link_id], distinct=True)\
-                            .alias("m").count()\
-                            .execute().fetchone()[0]
-            count = select([host_links.c.host_link_id], \
-                           and_(host_links.c.device_id == computer_logical_devices.c.id, \
-                                computer_logical_devices.c.cls == type), \
-                           distinct=True).alias("m")\
-                     .count().execute().fetchone()[0]
-            types = Query(HardwareByClass)\
-                        .order_by(desc(HardwareByClass.c.count))\
-                        .limit(100).select_by(cls=type)
-            device = computer_logical_devices
-            vendors = select([func.count(device.c.vendor_id).label('cnt'), \
-                              device.c.vendor_id], \
-                             device.c.cls==type, order_by=[desc('cnt')], \
-                             group_by=device.c.vendor_id)\
-                        .execute().fetchall()
-            self.rw_lock.write_acquire()
-            self.data[type] = (total_hosts, count, types, vendors)
-            self.rw_lock.write_release()
-    
-    def get_data(self, cls):
-        try:
-            self.rw_lock.read_acquire()
-            _return = self.data[cls]
-            self.rw_lock.read_release()
-        except Exception, e:
-            self.rw_lock.read_release()
-            raise e
-        return _return
-    
-    def __getitem__(self, key):
-        return self.get_data(key)
-
-    pass
-
 class Root(controllers.RootController):
     def __init__(self):
         controllers.RootController.__init__(self)
-        self.devices_lock = MultiLock()
-        self.stats_lock = MultiLock()
-        self.byclass_cache = ByClass()
-        scheduler.add_interval_task(action=self.write_devices, interval=21600, \
-                                    args=None, kw=None, initialdelay=30, \
-                                    processmethod=scheduler.method.threaded, \
-                                    taskname="devices_cache")
-        scheduler.add_interval_task(action=self.write_stats, interval=10800, \
-                                    args=None, kw=None, initialdelay=5, \
-                                    processmethod=scheduler.method.threaded, \
-                                    taskname="stats_cache")
 
         
     @expose(template="hardware.templates.welcome")
@@ -194,16 +98,17 @@ class Root(controllers.RootController):
             uuid = uuid.encode('utf8')
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
+
         try:
             host_object = Query(Host).selectone_by(uuid=UUID)
-            ctx.current.refresh(host_object)
+            #ctx.current.refresh(host_object)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % UUID)
         devices = {}
         ven = DeviceMap('pci')
 
         for dev in host_object.devices:
-            ctx.current.refresh(dev)
+            #ctx.current.refresh(dev)
             device = dev.device
             if not device.vendor_id and device.device_id:
                 continue
@@ -250,12 +155,12 @@ class Root(controllers.RootController):
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
             host_object = Query(Host).selectone_by(uuid=UUID)
-            ctx.current.refresh(host_object)
+            #ctx.current.refresh(host_object)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % UUID)
         devices = {}
         for dev in host_object.devices:
-            ctx.current.refresh(dev)
+            #ctx.current.refresh(dev)
             #This is to prevent duplicate devices showing up, in the future,
             #There will be no dups in the database
             devices[dev.device_id] = (dev.device, dev.rating)
@@ -606,142 +511,17 @@ class Root(controllers.RootController):
         for device_sql_id in orig_devices:
             bad_host_link = Query(HostLink)\
                 .select_by(device_id=device_sql_id,
-                           host_link_id=host_sql.id)[0]
-            ctx.current.delete(bad_host_link)
+                           host_link_id=host_sql.id)
+            if bad_host_link and len(bad_host_link):
+                ctx.current.delete(bad_host_link[0])
         ctx.current.flush()
         
         return dict()
     
-    @expose(template="hardware.templates.deviceclass", allow_json=True)
-    def by_class(self, type='VIDEO'):
-        type = type.encode('utf8')
-        #classes = Host._connection.queryAll('select distinct(class) from device;')
-        pci_vendors = DeviceMap('pci')
-        tabs = Tabber()
-        # We only want hosts that detected hardware (IE, hal was working properly)
-#        total_hosts = select([host_links.c.host_link_id], distinct=True).alias("m").count().execute().fetchone()[0]
-#        count = select([host_links.c.host_link_id], and_(host_links.c.device_id == computer_logical_devices.c.id, computer_logical_devices.c.cls == type), distinct=True).alias("m").count().execute().fetchone()[0]
-#        types = Query(HardwareByClass).order_by(desc(HardwareByClass.c.count)).limit(100).select_by(cls=type)
-#        device = computer_logical_devices
-#        vendors = select([func.count(device.c.vendor_id).label('cnt'), device.c.vendor_id], device.c.cls==type, order_by=[desc('cnt')], group_by=device.c.vendor_id).execute().fetchall()
-        try:
-            (total_hosts, count, types, vendors) = self.byclass_cache[type]
-        except KeyError:
-            raise redirect('unavailable')
-        return dict(types=types, type=type, total_hosts=total_hosts, count=count, pci_vendors=pci_vendors, vendors=vendors, tabs=tabs)
-
     @expose(template="hardware.templates.not_loaded")
     def unavailable(self, tg_exceptions=None):
         return dict()
-
-    @expose(template="hardware.templates.devices")
-#    @exception_handler(not_ready_handler, rules="isinstance(tg_exceptions,smoonexceptions.NotCachedException")
-# This seems to be borked, but it is the correct way to do things.  I will
-# now demonstrate a better, but incorrect way.  Moof.
-    def devices(self):
-        try:
-            devices = self.read_devices()
-        except:
-            raise redirect("unavailable")
-        tabs = Tabber()
-        return dict(devices=devices, tabs=tabs)
-    
-    def read_devices(self):
-        self.devices_lock.read_acquire()
-        try:
-            _return = self._devices_cache.copy()
-        except AttributeError:
-            self.devices_lock.read_release()
-            raise NotCachedException
-        else:
-            self.devices_lock.read_release()
-        return _return
-    
-    def write_devices(self):
-        devices = {}
-        devices['total'] = Query(HostLink).count()
-        devices['count'] = Query(ComputerLogicalDevice).count()
-        devices['total_hosts'] = Query(Host).count()
-        devices['totalList'] = Query(TotalList).select(limit=100)
-        devices['uniqueList'] = Query(UniqueList).select(limit=100)
-        devices['classes'] = Query(HardwareClass).select()
-        self.devices_lock.write_acquire()
-        self._devices_cache = devices
-        self.devices_lock.write_release()
-        pass
-
-    def read_stats(self):
-        self.stats_lock.read_acquire()
-        try:
-            _return = self._stats_cache.copy()
-        except AttributeError:
-            self.stats_lock.read_release()
-            raise NotCachedException
-        else:
-            self.stats_lock.read_release()
-        return _return
-
-
-    def write_stats(self):
-        self.stats_lock.write_acquire()
-        stats = {}
-        stats['total_hosts'] = Query(Host).count()
-        total_hosts = stats['total_hosts']
-        stats['archs'] = Query(Arch).select()
-        stats['os'] = Query(OS).select(limit=15)
-        stats['runlevel'] = Query(Runlevel).select()
-        stats['num_cpus'] = Query(NumCPUs).select()
-        stats['vendors'] = Query(Vendor).select(limit=100)
-        stats['systems'] = Query(System).select(limit=100)
-        stats['cpu_vendor'] = Query(CPUVendor).select(limit=100)
-        stats['kernel_version'] = Query(KernelVersion).select(limit=20)
-        stats['formfactor'] = Query(FormFactor).select()
-        stats['language'] = Query(Language).select()
-        stats['languagetot'] = stats['total_hosts']
- 
-        stats['sys_mem'] = []
-        stats['sys_mem'].append(("less than 256mb", Query(Host).filter(Host.c.system_memory<256).count()))
-        stats['sys_mem'].append(("between 256mb and 512mb", Query(Host).filter(and_(Host.c.system_memory>=256, Host.c.system_memory<512)).count()))
-        stats['sys_mem'].append(("between 512mb and 1023mb", Query(Host).filter(and_(Host.c.system_memory>=512, Host.c.system_memory<1024)).count()))
-        stats['sys_mem'].append(("between 1024mb and 2047mb", Query(Host).filter(and_(Host.c.system_memory>=1024, Host.c.system_memory<2048)).count()))
-        stats['sys_mem'].append(("more than 2048mb", Query(Host).filter(Host.c.system_memory>=2048).count()))
-
-        stats['swap_mem'] = []
-        stats['swap_mem'].append(("less than 512mb", Query(Host).filter(Host.c.system_swap<512).count()))
-        stats['swap_mem'].append(("between 512mb and 1027mb", Query(Host).filter(and_(Host.c.system_swap>=512, Host.c.system_swap<1024)).count()))
-        stats['swap_mem'].append(("between 1024mb and 2047mb", Query(Host).filter(and_(Host.c.system_swap>=1024, Host.c.system_swap<2048)).count()))
-        stats['swap_mem'].append(("more than 2048mb", Query(Host).filter(Host.c.system_swap>=2048).count()))
-
-        stats['cpu_speed'] = []
-        stats['cpu_speed'].append(("less than 512mhz", Query(Host).filter(Host.c.cpu_speed<512).count()))
-        stats['cpu_speed'].append(("between 512mhz and 1023mhz", Query(Host).filter(and_(Host.c.cpu_speed>=512, Host.c.cpu_speed<1024)).count()))
-        stats['cpu_speed'].append(("between 1024mhz and 2047mhz", Query(Host).filter(and_(Host.c.cpu_speed>=1024, Host.c.cpu_speed<2048)).count()))
-        stats['cpu_speed'].append(("more than 2048mhz", Query(Host).filter(Host.c.cpu_speed>=2048).count()))
-
-        stats['bogomips'] = []
-        stats['bogomips'].append(("less than 512", Query(Host).filter(Host.c.bogomips<512).count()))
-        stats['bogomips'].append(("between 512 and 1023", Query(Host).filter(and_(Host.c.bogomips>=512, Host.c.bogomips<1024)).count()))
-        stats['bogomips'].append(("between 1024 and 2047", Query(Host).filter(and_(Host.c.bogomips>=1024, Host.c.bogomips<2048)).count()))
-        stats['bogomips'].append(("between 2048 and 4000", Query(Host).filter(and_(Host.c.bogomips>=2048, Host.c.bogomips<4000)).count()))
-        stats['bogomips'].append(("more than 4000", Query(Host).filter(Host.c.system_memory>=4000).count()))
-
-        stats['bogomips_total'] = Query(Host).filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
-        stats['cpu_speed_total'] = Query(Host).filter(Host.c.cpu_speed > 0).sum(Host.c.cpu_speed * Host.c.num_cpus)
-        stats['cpus_total'] = Query(Host).sum(Host.c.num_cpus)
-        stats['registered_devices'] = Query(ComputerLogicalDevice).count()
-
-        self._stats_cache = stats
-        self.stats_lock.write_release()
-
-    @expose(template="hardware.templates.stats")
-    def stats(self):
-        try:
-            stats = self.read_stats()
-        except:
-            raise redirect("unavailable")
-        tabs = Tabber()
-        return dict(stat=stats, tabs=tabs, total_hosts=stats['total_hosts'])
-    
+        
     @expose()
     def rate_object(self, *args, **kwargs):
         #log.info('args = %s' % str(args))
@@ -754,7 +534,7 @@ class Root(controllers.RootController):
                 host_id = id[4:]
                 host = Query(Host).selectone_by(uuid=host_id)
                 host.rating = int(rating)
-                ctx.current.flush([host])
+                ctx.current.flush()
                 return dict()
                 
             host_id = id[4:sep]
@@ -765,6 +545,6 @@ class Root(controllers.RootController):
                 for device in host.devices:
                     if device.device_id == device_id:
                         device.rating = int(rating)
-                        ctx.current.flush([host,device])
+                        ctx.current.flush([host, device])
                         return dict()
         return dict()

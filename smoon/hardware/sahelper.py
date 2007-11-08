@@ -4,14 +4,13 @@
 #through in switching over.
 #When Smoon transitions to 0.4, this will not be necessary
 import sqlalchemy
-from sqlalchemy import MetaData
+from turbogears.database import metadata
 from sqlalchemy.ext import activemapper, sessioncontext
 from sqlalchemy.ext.sessioncontext import SessionContext
 from sqlalchemy.orm.mapper import global_extensions
 from turbogears import config
 
 _engine = None
-metadata = sqlalchemy.MetaData()
 
 def get_engine():
     "Retreives the engine based on the current configuration"
@@ -36,7 +35,8 @@ def create_session():
     return sqlalchemy.create_session(bind_to=get_engine())
 
 ctx = SessionContext(lambda:sqlalchemy.create_session(bind_to=get_engine()))
+bind = metadata.bind
 
 global_extensions.append(ctx.mapper_extension)
 
-__all__ = ['ctx']
+__all__ = ['ctx', 'bind']

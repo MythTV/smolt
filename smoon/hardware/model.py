@@ -1,12 +1,11 @@
 from datetime import datetime
-
 from sqlalchemy import *
+from turbogears.database import metadata, session
 from sqlalchemy.ext.assignmapper import assign_mapper
 from turbogears import identity
 from mx import DateTime
 
-from sahelper import ctx, metadata
-
+ctx = session.context
 
 computer_logical_devices = Table('device', metadata, 
                                  Column("id", INT, autoincrement=True,
@@ -174,6 +173,12 @@ class TotalList(object):
     pass
 class UniqueList(object):
     pass
+
+
+def mapper(*args, **kw):
+    """Map tables to objects with knowledge about the session context."""
+    return assign_mapper(session.context, *args, **kw)
+
 
 mapper(Foo, hosts,
        properties = {'clds': relation(ComputerLogicalDevice, secondary=host_links)})

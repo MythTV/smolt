@@ -39,7 +39,7 @@
        <div class="tabbertab"><h2>Classes</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='dev in devices["classes"]'>
-                    <th align="right"><a href='/by_class?type=${dev.cls}'>${dev.cls}</a></th>
+                    <th align="right"><a href='/static/stats/by_class_${dev.cls}.html'>${dev.cls}</a></th>
  <!--                   <td align="center">${dev[1]}</td>
                     <td nowrap="true"><strong>${'%.1f' % (float(dev[1]) / devices["count"] * 100) } %</strong></td>
                     <td nowrap="true"><img py:for='i in range(1, int( float(dev[1]) / devices["count"] * 100 ))' src='/static/images/tile.png' /></td>-->
