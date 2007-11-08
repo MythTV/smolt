@@ -1,0 +1,2452 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+<link media="screen" href="/tg_widgets/turbogears.widgets/tabber/tabber.css" type="text/css" rel="stylesheet">
+    <script src="/tg_widgets/turbogears/js/MochiKit.js" type="text/javascript"></script><script type="text/javascript">document.write('<style type="text/css">.tabber{display:none;}<\/style>');</script>
+    <title> Stats </title>
+    <style type="text/css">
+        #pageLogin
+        {
+            font-size: 10px;
+            font-family: verdana;
+            text-align: right;
+        }
+    </style>
+    <style media="screen" type="text/css">
+@import "/static/css/style.css";
+</style>
+</head>
+<body>
+    <script src="/tg_widgets/turbogears.widgets/tabber/tabber-minimized.js" type="text/javascript"></script>
+    <div id="header">
+        <div id="floatingTitle">
+            <h1>Hardware : <script type="text/javascript" language="javascript">document.write(document.title);</script></h1>
+            20 Thu Nov  8 11:33:58 2007
+        </div>
+    </div>
+    <div id="main_content">
+    <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+        <tr>
+            <th width="25%" valign="top">Total Registered Hosts</th>
+            <td><strong>184475</strong></td>
+        </tr>
+        <tr>
+            <th valign="top">Total Registered Devices</th>
+            <td><strong>84449</strong></td>
+        </tr>
+        <tr>
+            <th valign="top">Total bogomips</th>
+            <td><strong>1200518046.85</strong></td>
+        </tr>
+        <tr>
+            <th valign="top">Total processors</th>
+            <td><strong>276028</strong></td>
+        </tr>
+        <tr>
+            <th valign="top">Total MHz</th>
+            <td><strong>613431540.0</strong></td>
+        </tr>
+    </table>
+    <div class="tabber">
+        <div class="tabbertab"><h2>Archs</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr><th>Arch</th><th>Count</th><th>% of total</th><th halign="left"> </th></tr>
+                <tr>
+                    <th align="right">i686</th>
+                    <td align="center">146615</td>
+                    <td><strong>79.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="79.4768938881"><div width="100%" id="bar"></div></td><td width="20.5231061119"></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">x86_64</th>
+                    <td align="center">34752</td>
+                    <td><strong>18.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="18.8383249763"><div width="100%" id="bar"></div></td><td width="81.1616750237"></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">i386</th>
+                    <td align="center">1193</td>
+                    <td><strong>0.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.646700094864"><div width="100%" id="bar"></div></td><td width="99.3532999051"></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ppc</th>
+                    <td align="center">952</td>
+                    <td><strong>0.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.516059086597"><div width="100%" id="bar"></div></td><td width="99.4839409134"></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ppc64</th>
+                    <td align="center">777</td>
+                    <td><strong>0.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.421195283914"><div width="100%" id="bar"></div></td><td width="99.5788047161"></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">i586</th>
+                    <td align="center">133</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0720964900393"><div width="100%" id="bar"></div></td><td width="99.92790351"></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sparc64</th>
+                    <td align="center">21</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.011383656322"><div width="100%" id="bar"></div></td><td width="99.9886163437"></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Unknown</th>
+                    <td align="center">16</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00867326195962"><div width="100%" id="bar"></div></td><td width="99.991326738"></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ia64</th>
+                    <td align="center">9</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00487870985228"><div width="100%" id="bar"></div></td><td width="99.9951212901"></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sparc</th>
+                    <td align="center">5</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00271039436238"><div width="100%" id="bar"></div></td><td width="99.9972896056"></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">alpha</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div width="100%" id="bar"></div></td><td width="99.9989158423"></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>OS</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr>
+                    <th align="right">Fedora release 7 (Moonshine)</th>
+                    <td align="center">167080</td>
+                    <td><strong>90.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="90.5705380133"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Fedora Core release 6 (Zod)</th>
+                    <td align="center">6736</td>
+                    <td><strong>3.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="3.651443285"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Fedora release 6.93 (Rawhide)</th>
+                    <td align="center">2971</td>
+                    <td><strong>1.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.61051633013"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Fedora release 6.92 (Rawhide)</th>
+                    <td align="center">1797</td>
+                    <td><strong>1.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.974115733839"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Fedora release 7.92 (Rawhide)</th>
+                    <td align="center">1707</td>
+                    <td><strong>0.9 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.925328635316"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Fedora release 7.91 (Rawhide)</th>
+                    <td align="center">1671</td>
+                    <td><strong>0.9 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.905813795907"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Fedora release 7.90 (Rawhide)</th>
+                    <td align="center">1325</td>
+                    <td><strong>0.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.718254506031"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Fedora Core release 5 (Bordeaux)</th>
+                    <td align="center">621</td>
+                    <td><strong>0.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.336630979808"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Fedora release 7.89 (Rawhide)</th>
+                    <td align="center">76</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0411979943082"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Fedora release 6.91 (Rawhide)</th>
+                    <td align="center">64</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0346930478385"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">CentOS release 5 (Final)</th>
+                    <td align="center">52</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0281881013687"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Fedora release 6.90 (Rawhide)</th>
+                    <td align="center">46</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0249356281339"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">redhat-4</th>
+                    <td align="center">33</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0178886027917"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Unknown</th>
+                    <td align="center">19</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.010299498577"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Aurora SPARC Linux release 2.99 (Angel)</th>
+                    <td align="center">18</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00975741970457"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>Runlevel</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr>
+                    <th align="right">5</th>
+                    <td align="center">180665</td>
+                    <td><strong>97.9 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="97.9346794959"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">3</th>
+                    <td align="center">3751</td>
+                    <td><strong>2.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="2.03333785066"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2</th>
+                    <td align="center">25</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0135519718119"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">4</th>
+                    <td align="center">21</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.011383656322"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">55555</th>
+                    <td align="center">6</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00325247323486"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">333</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">7</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">35</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>Language</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr>
+                    <th align="right">en_US.UTF-8</th>
+                    <td align="center">110954</td>
+                    <td><strong>60.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="60.1458192167"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Unknown</th>
+                    <td align="center">21406</td>
+                    <td><strong>11.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="11.6037403442"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ja_JP.UTF-8</th>
+                    <td align="center">11769</td>
+                    <td><strong>6.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="6.37972625017"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">de_DE.UTF-8</th>
+                    <td align="center">6645</td>
+                    <td><strong>3.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="3.6021141076"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">es_ES.UTF-8</th>
+                    <td align="center">6419</td>
+                    <td><strong>3.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="3.47960428242"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">zh_CN.UTF-8</th>
+                    <td align="center">4812</td>
+                    <td><strong>2.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="2.60848353435"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">pt_BR.UTF-8</th>
+                    <td align="center">4078</td>
+                    <td><strong>2.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="2.21059764196"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">it_IT.UTF-8</th>
+                    <td align="center">3913</td>
+                    <td><strong>2.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="2.121154628"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">zh_TW.UTF-8</th>
+                    <td align="center">3051</td>
+                    <td><strong>1.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.65388263992"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ko_KR.UTF-8</th>
+                    <td align="center">2438</td>
+                    <td><strong>1.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.3215882911"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">cs_CZ.UTF-8</th>
+                    <td align="center">1491</td>
+                    <td><strong>0.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.808239598862"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">nl_NL.UTF-8</th>
+                    <td align="center">1450</td>
+                    <td><strong>0.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.78601436509"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fr_FR.UTF-8</th>
+                    <td align="center">1291</td>
+                    <td><strong>0.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.699823824366"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">pt_PT.UTF-8</th>
+                    <td align="center">676</td>
+                    <td><strong>0.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.366445317794"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">da_DK.UTF-8</th>
+                    <td align="center">607</td>
+                    <td><strong>0.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.329041875593"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ru_RU.UTF-8</th>
+                    <td align="center">443</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.240140940507"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">nb_NO.UTF-8</th>
+                    <td align="center">410</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.222252337715"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_GB.UTF-8</th>
+                    <td align="center">305</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.165334056105"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ca_ES.UTF-8</th>
+                    <td align="center">265</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.143650901206"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">el_GR.UTF-8</th>
+                    <td align="center">253</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.137145954736"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sk_SK.UTF-8</th>
+                    <td align="center">228</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.123593982925"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">pl_PL.UTF-8</th>
+                    <td align="center">185</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.100284591408"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US</th>
+                    <td align="center">173</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0937796449383"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ro_RO.UTF_8</th>
+                    <td align="center">120</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0650494646971"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sl_SI.UTF-8</th>
+                    <td align="center">103</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.055834123865"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">C</th>
+                    <td align="center">91</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0493291773953"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fi_FI.UTF-8</th>
+                    <td align="center">88</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0477029407779"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sv_SE.UTF-8</th>
+                    <td align="center">80</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0433663097981"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">et_EE.UTF-8</th>
+                    <td align="center">62</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0336088900935"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ar_SA.UTF-8</th>
+                    <td align="center">62</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0336088900935"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_AU.UTF-8</th>
+                    <td align="center">61</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.033066811221"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">uk_UA.UTF-8</th>
+                    <td align="center">56</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0303564168587"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">is_IS.UTF-8</th>
+                    <td align="center">49</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0265618647513"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">hu_HU.UTF-8</th>
+                    <td align="center">40</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.021683154899"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_GB</th>
+                    <td align="center">26</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0140940506844"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ro_RO.UTF-8</th>
+                    <td align="center">26</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0140940506844"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">vi_VN.UTF-8</th>
+                    <td align="center">25</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0135519718119"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_CA.UTF-8</th>
+                    <td align="center">21</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.011383656322"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">bg_BG.UTF-8</th>
+                    <td align="center">19</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.010299498577"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.iso885915</th>
+                    <td align="center">17</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00921534083209"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">de_DE</th>
+                    <td align="center">12</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00650494646971"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_AU</th>
+                    <td align="center">11</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00596286759724"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">de_AT.UTF-8</th>
+                    <td align="center">9</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00487870985228"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_CA</th>
+                    <td align="center">9</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00487870985228"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">POSIX</th>
+                    <td align="center">8</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00433663097981"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.utf8</th>
+                    <td align="center">8</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00433663097981"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sk_SK</th>
+                    <td align="center">8</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00433663097981"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ru_RU.CP1251</th>
+                    <td align="center">8</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00433663097981"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">es_NI.UTF-8</th>
+                    <td align="center">7</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00379455210733"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_ZA.UTF-8</th>
+                    <td align="center">7</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00379455210733"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">tr_TR.UTF-8</th>
+                    <td align="center">7</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00379455210733"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ru_RU.KOI8-R</th>
+                    <td align="center">7</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00379455210733"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">no_NO.utf8</th>
+                    <td align="center">7</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00379455210733"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">hr_HR.UTF-8</th>
+                    <td align="center">6</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00325247323486"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_NZ.UTF-8</th>
+                    <td align="center">6</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00325247323486"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_IE.UTF-8</th>
+                    <td align="center">6</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00325247323486"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">el_GR</th>
+                    <td align="center">6</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00325247323486"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">pl_PL</th>
+                    <td align="center">4</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0021683154899"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.ISO-8859-1</th>
+                    <td align="center">4</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0021683154899"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.ISO8859-1</th>
+                    <td align="center">4</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0021683154899"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">no_NO.UTF-8</th>
+                    <td align="center">4</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0021683154899"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">no_NO.ISO8859-1</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_DK.UTF-8</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fi_FI@euro</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">de_DE@euro</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sr_CS.UTF-8</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">it_IT@euro</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">es_MX.UTF-8</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sr_RS.UTF-8</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">lv_LV.UTF-8</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">af_ZA.UTF-8</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fr_BE.UTF-8</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">te_IN.UTF-8</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">es_CL.UTF-8</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fr_FR@euro</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">nb_NO.ISO-8859-1</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">pa_IN.UTF-8</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fr_CH.UTF-8</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_IN.UTF-8</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">kn_IN.UTF-8</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">bg_BG</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">zh_CN.GBK</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">it_IT</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_GB.iso885915</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.iso88591</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right"></th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ta_IN.UTF-8</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_IE.iso885915@euro</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.UTF_8</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">pt_BR</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fi_FI.utf8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">it_IT.utf8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fr_CA.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_NZ</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">nb_NO.iso88591</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">nn_NO.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_IE</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">es_AR.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">cs_CZ.utf8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">es_ES@euro</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.KOI8-R</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_AU.utf8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">zh_HK.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">german</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">es_VE.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">it_CH.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">uk_UA.KOI8-U</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.ISO8859-15</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fr_FR@euro.ISO-8859-15</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ru</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.8859-1</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_GB.utf8@iso</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">zh_CN.GB18030</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">mk_MK.utf-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_SG.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sv_SE.UTF8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.ISO-8859-2</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_DK.iso-8859-1</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">cs</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">cs_CZ</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">si_LK.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ru_RU.utf8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ru_UA.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">de_DE.iso88591</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">it_IT.iso-8859-1</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_US.ISO-8859-15</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">bn_BD.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">cs_CZ.8859-2</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">es_PY.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ja_JP</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">hi_IN.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">es_ES</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">id_ID.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">he_IL</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">en_DK</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fr_CA</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">fr</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">nso_ZA.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">he_IL.UTF-8</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>Vendor</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr>
+                    <th align="right">System manufacturer</th>
+                    <td align="center">22046</td>
+                    <td><strong>12.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="11.9506708226"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">VMware, Inc.</th>
+                    <td align="center">16263</td>
+                    <td><strong>8.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="8.81582870308"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Hewlett-Packard</th>
+                    <td align="center">10398</td>
+                    <td><strong>5.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="5.636536116"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">To Be Filled By O.E.M.</th>
+                    <td align="center">6211</td>
+                    <td><strong>3.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="3.36685187695"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">IBM</th>
+                    <td align="center">4404</td>
+                    <td><strong>2.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="2.38731535438"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">VIA Technologies, Inc.</th>
+                    <td align="center">4295</td>
+                    <td><strong>2.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="2.32822875728"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ASUSTeK Computer Inc.</th>
+                    <td align="center">3763</td>
+                    <td><strong>2.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="2.03984279713"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">TOSHIBA</th>
+                    <td align="center">3182</td>
+                    <td><strong>1.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.72489497222"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">MSI</th>
+                    <td align="center">3112</td>
+                    <td><strong>1.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.68694945115"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">MICRO-STAR INTERNATIONAL CO., LTD</th>
+                    <td align="center">2908</td>
+                    <td><strong>1.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.57636536116"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Acer</th>
+                    <td align="center">2619</td>
+                    <td><strong>1.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.41970456701"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">LENOVO</th>
+                    <td align="center">2421</td>
+                    <td><strong>1.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.31237295026"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ECS</th>
+                    <td align="center">2294</td>
+                    <td><strong>1.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.24352893346"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Gateway</th>
+                    <td align="center">2239</td>
+                    <td><strong>1.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.21371459547"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Sony Corporation</th>
+                    <td align="center">1914</td>
+                    <td><strong>1.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.03753896192"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Gigabyte Technology Co., Ltd.</th>
+                    <td align="center">1911</td>
+                    <td><strong>1.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.0359127253"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">FUJITSU SIEMENS</th>
+                    <td align="center">1750</td>
+                    <td><strong>0.9 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.948638026833"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Dell Computer Corporation</th>
+                    <td align="center">1531</td>
+                    <td><strong>0.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.829922753761"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">HP Pavilion 061</th>
+                    <td align="center">1377</td>
+                    <td><strong>0.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.746442607399"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Compaq</th>
+                    <td align="center">1355</td>
+                    <td><strong>0.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.734516872205"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Acer, inc.</th>
+                    <td align="center">1207</td>
+                    <td><strong>0.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.654289199078"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">innotek GmbH</th>
+                    <td align="center">1111</td>
+                    <td><strong>0.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.602249627321"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Dell Inc.</th>
+                    <td align="center">971</td>
+                    <td><strong>0.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.526358585174"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Shuttle Inc</th>
+                    <td align="center">890</td>
+                    <td><strong>0.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.482450196504"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Dell Inc</th>
+                    <td align="center">825</td>
+                    <td><strong>0.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.447215069793"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Supermicro</th>
+                    <td align="center">813</td>
+                    <td><strong>0.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.440710123323"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Compaq Presario 061</th>
+                    <td align="center">807</td>
+                    <td><strong>0.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.437457650088"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">MICRO-STAR INC.</th>
+                    <td align="center">805</td>
+                    <td><strong>0.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.436373492343"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">American Megatrends Inc.</th>
+                    <td align="center">681</td>
+                    <td><strong>0.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.369155712156"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">HP-Pavilion</th>
+                    <td align="center">532</td>
+                    <td><strong>0.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.288385960157"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">PCCHIPS</th>
+                    <td align="center">480</td>
+                    <td><strong>0.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.260197858788"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">FUJITSU</th>
+                    <td align="center">477</td>
+                    <td><strong>0.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.258571622171"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Apple Computer, Inc.</th>
+                    <td align="center">457</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.247730044722"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">NEC</th>
+                    <td align="center">435</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.235804309527"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">MEDIONPC</th>
+                    <td align="center">407</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.220626101098"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">BIOSTAR Group</th>
+                    <td align="center">388</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.210326602521"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">HP</th>
+                    <td align="center">353</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.191353841984"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">EVGA</th>
+                    <td align="center">329</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.178343949045"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Unknow</th>
+                    <td align="center">313</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.169670687085"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ASUS</th>
+                    <td align="center">288</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.156118715273"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Sun Microsystems</th>
+                    <td align="center">268</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.145277137824"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">To Be Filled By O.E.M. by More String</th>
+                    <td align="center">268</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.145277137824"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Viglen</th>
+                    <td align="center">256</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.138772191354"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Packard Bell NEC</th>
+                    <td align="center">248</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.134435560374"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">emachines</th>
+                    <td align="center">239</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.129556850522"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ASUSTEK COMPUTER INC</th>
+                    <td align="center">237</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.128472692777"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Winfast</th>
+                    <td align="center">237</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.128472692777"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">InnoTek Systemberatung GmbH</th>
+                    <td align="center">236</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.127930613904"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">HP Pavilion 04</th>
+                    <td align="center">202</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.10949993224"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Intel</th>
+                    <td align="center">195</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.105705380133"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">NEC Computers International</th>
+                    <td align="center">190</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.10299498577"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">PACKARD BELL BV</th>
+                    <td align="center">179</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0970321181732"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">SAMSUNG ELECTRONICS CO.,LTD</th>
+                    <td align="center">165</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0894430139585"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">MICRO-STAR INTERNATIONAL CO.,LTD</th>
+                    <td align="center">163</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0883588562136"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">empty</th>
+                    <td align="center">159</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0861905407237"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">alienware</th>
+                    <td align="center">157</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0851063829787"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">stem manufacturer</th>
+                    <td align="center">152</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0823959886163"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">OEM</th>
+                    <td align="center">148</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0802276731264"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Matsushita Electric Industrial Co.,Ltd.</th>
+                    <td align="center">146</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0791435153815"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">TYAN</th>
+                    <td align="center">140</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0758910421466"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">NVIDIA</th>
+                    <td align="center">140</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0758910421466"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">System Manufacter</th>
+                    <td align="center">140</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0758910421466"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Compaq-Presario</th>
+                    <td align="center">139</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0753489632742"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">MICRO-STAR INTERANTIONAL CO.,LTD</th>
+                    <td align="center">132</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0715544111668"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">powermac10,1</th>
+                    <td align="center">127</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0688440168044"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Foxconn</th>
+                    <td align="center">127</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0688440168044"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">TYAN Computer Corp</th>
+                    <td align="center">120</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0650494646971"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Clevo</th>
+                    <td align="center">118</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0639653069522"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">eMachines, Inc.</th>
+                    <td align="center">118</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0639653069522"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ThirdWave Corporation</th>
+                    <td align="center">115</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0623390703347"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">EPSON DIRECT CORP.</th>
+                    <td align="center">114</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0617969914623"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">LG Electronics</th>
+                    <td align="center">113</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0612549125898"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">MAXDATA</th>
+                    <td align="center">111</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0601707548448"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">BENQ</th>
+                    <td align="center">107</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0580024393549"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">AOpen</th>
+                    <td align="center">105</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.05691828161"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Intel Corporation</th>
+                    <td align="center">105</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.05691828161"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ABIT</th>
+                    <td align="center">98</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0531237295026"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">AVERATEC</th>
+                    <td align="center">95</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0514974928852"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">MICRO-STAR INTL, CO.,LTD.</th>
+                    <td align="center">94</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0509554140127"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Compaq Presario 06</th>
+                    <td align="center">90</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0487870985228"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">MSI.</th>
+                    <td align="center">88</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0477029407779"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">CdcPointSpa</th>
+                    <td align="center">87</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0471608619054"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">HP Pavilion 05</th>
+                    <td align="center">86</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0466187830329"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">ASUSTEK</th>
+                    <td align="center">85</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0460767041605"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Itautec Philco S.A.</th>
+                    <td align="center">85</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0460767041605"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">HP Pavilion 06</th>
+                    <td align="center">84</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.045534625288"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">soyocomputer</th>
+                    <td align="center">83</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0449925464155"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">CLEVO Co.</th>
+                    <td align="center">82</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.044450467543"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">DIXONSXP</th>
+                    <td align="center">81</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0439083886706"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">micronpc.com</th>
+                    <td align="center">80</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0433663097981"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">SAMSUNG ELECTRONICS CO., LTD.</th>
+                    <td align="center">80</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0433663097981"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">MICRO-STAR INT'L CO.,LTD.</th>
+                    <td align="center">80</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0433663097981"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Microsoft Corporation</th>
+                    <td align="center">77</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0417400731806"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Biostar</th>
+                    <td align="center">76</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0411979943082"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Micro-Star International</th>
+                    <td align="center">75</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0406559154357"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">COMPAL</th>
+                    <td align="center">75</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0406559154357"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">HCL Infosystems Limited</th>
+                    <td align="center">71</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0384875999458"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">eMachine</th>
+                    <td align="center">65</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0352351267109"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">TYAN Computer Corp.</th>
+                    <td align="center">64</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0346930478385"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">BUYMPC</th>
+                    <td align="center">63</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.034150968966"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>Model</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">VMware Virtual Platform None</th>
+                    <td align="center">16245</td>
+                    <td><strong>8.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="8.80607128337"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">System Product Name </th>
+                    <td align="center">15453</td>
+                    <td><strong>8.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="8.37674481637"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">To Be Filled By O.E.M. To Be Filled By O.E.M.</th>
+                    <td align="center">5953</td>
+                    <td><strong>3.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="3.22699552785"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">System Name </th>
+                    <td align="center">5370</td>
+                    <td><strong>2.9 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="2.9109635452"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">VirtualBox 1.2</th>
+                    <td align="center">1347</td>
+                    <td><strong>0.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.730180241225"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">VT8363</th>
+                    <td align="center">539</td>
+                    <td><strong>0.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.292180512265"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7125 1.0</th>
+                    <td align="center">451</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.244477571487"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">System Product Name</th>
+                    <td align="center">447</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.242309255997"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Dimension E521</th>
+                    <td align="center">393</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.213036996883"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">A7N8X-E REV 2.xx</th>
+                    <td align="center">391</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.211952839138"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Product Name SYS-xxxxxx</th>
+                    <td align="center">368</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.199485025071"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">K7S5A 1.0</th>
+                    <td align="center">358</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.194064236346"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Unknow Unknow</th>
+                    <td align="center">342</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.185390974387"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">A7N8X-X REV 2.xx</th>
+                    <td align="center">334</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.181054343407"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">VT82C694X</th>
+                    <td align="center">311</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.16858652934"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">KT600-8237</th>
+                    <td align="center">311</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.16858652934"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">965P-DS3</th>
+                    <td align="center">311</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.16858652934"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">KT400-8235</th>
+                    <td align="center">306</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.165876134978"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">P5W DH Deluxe </th>
+                    <td align="center">294</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.159371188508"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">System name 1.XX</th>
+                    <td align="center">289</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.156660794146"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">P4i65G 1.00</th>
+                    <td align="center">288</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.156118715273"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">00000000</th>
+                    <td align="center">280</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.151782084293"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Dimension C521</th>
+                    <td align="center">280</td>
+                    <td><strong>0.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.151782084293"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-6712 1.0</th>
+                    <td align="center">273</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.147987532186"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">KM400-8235</th>
+                    <td align="center">272</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.147445453313"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">A7N8X2.0 REV 2.xx</th>
+                    <td align="center">266</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.144192980079"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-6702 1.0</th>
+                    <td align="center">262</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.142024664589"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">K7S41GX 1.0</th>
+                    <td align="center">260</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.140940506844"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7260 1.0</th>
+                    <td align="center">249</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.134977639247"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">122-CK-NF68 2</th>
+                    <td align="center">243</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.131725166012"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">P4M800PRO-M 1.0</th>
+                    <td align="center">228</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.123593982925"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">VT8623-8235</th>
+                    <td align="center">219</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.118715273072"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">KM266-8235</th>
+                    <td align="center">212</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.114920720965"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">XPS-Z</th>
+                    <td align="center">201</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.108957853368"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">K8N </th>
+                    <td align="center">195</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.105705380133"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">939Dual-SATA2 1.00</th>
+                    <td align="center">190</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.10299498577"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-6728 2.00</th>
+                    <td align="center">187</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.101368749153"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">P5K </th>
+                    <td align="center">172</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0932375660659"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">K7S5A</th>
+                    <td align="center">170</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0921534083209"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Uknown 1.0</th>
+                    <td align="center">166</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.089985092831"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-6380E 1.0</th>
+                    <td align="center">165</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0894430139585"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Inspiron 700m -1</th>
+                    <td align="center">164</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0889009350861"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7142 1.00</th>
+                    <td align="center">163</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0883588562136"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">VT8601</th>
+                    <td align="center">162</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0878167773411"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Aspire 5050</th>
+                    <td align="center">161</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0872746984686"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">empty empty</th>
+                    <td align="center">159</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0861905407237"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7100 1.0</th>
+                    <td align="center">157</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0851063829787"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">VT82C692BX</th>
+                    <td align="center">155</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0840222252338"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Aspire 3000</th>
+                    <td align="center">155</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0840222252338"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">A7N8X REV 1.xx</th>
+                    <td align="center">155</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0840222252338"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">OptiPlex 740</th>
+                    <td align="center">151</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0818539097439"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">P4M266A-8235</th>
+                    <td align="center">147</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.079685594254"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7253 1.00</th>
+                    <td align="center">146</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0791435153815"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">M863 1.0</th>
+                    <td align="center">145</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.078601436509"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">VT8367-8235</th>
+                    <td align="center">142</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0769751998916"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-6330</th>
+                    <td align="center">142</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0769751998916"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7125 3.0</th>
+                    <td align="center">141</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0764331210191"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">P5L-MX Rev 1.xx</th>
+                    <td align="center">141</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0764331210191"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">945GZM-S2</th>
+                    <td align="center">140</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0758910421466"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7211 4.1</th>
+                    <td align="center">134</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0726385689118"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Evo D510 SFF</th>
+                    <td align="center">134</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0726385689118"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">K8N-E-Deluxe To Be Filled By O.E.M.</th>
+                    <td align="center">133</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0720964900393"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">OEM OEM</th>
+                    <td align="center">133</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0720964900393"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">K8N To Be Filled By O.E.M.</th>
+                    <td align="center">129</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0699281745494"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">287 (mac mini)</th>
+                    <td align="center">127</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0688440168044"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7250 1.0</th>
+                    <td align="center">125</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0677598590595"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Unknown X2.0</th>
+                    <td align="center">124</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.067217780187"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7327 1.0</th>
+                    <td align="center">123</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0666757013145"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">A7N8X2.0 REV 1.xx</th>
+                    <td align="center">122</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0661336224421"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7235 REV:1.1</th>
+                    <td align="center">121</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0655915435696"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">K7VT4APro 1.0x</th>
+                    <td align="center">120</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0650494646971"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Not Available</th>
+                    <td align="center">120</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0650494646971"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">287 (ibook g4)</th>
+                    <td align="center">117</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0634232280797"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">PM800-8237</th>
+                    <td align="center">116</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0628811492072"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">965P-S3</th>
+                    <td align="center">113</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0612549125898"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">C51GM03 FAB1.0</th>
+                    <td align="center">113</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0612549125898"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">945GCMX-S2</th>
+                    <td align="center">113</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0612549125898"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">HP Vectra VL400</th>
+                    <td align="center">112</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0607128337173"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">1234567890</th>
+                    <td align="center">111</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0601707548448"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7181 2.0</th>
+                    <td align="center">110</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0596286759724"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Compaq PC N/A</th>
+                    <td align="center">109</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0590865970999"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-6788 20A</th>
+                    <td align="center">107</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0580024393549"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-6702E 1.0</th>
+                    <td align="center">106</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0574603604825"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Evo D510 CMT</th>
+                    <td align="center">104</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0563762027375"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-6580 20A</th>
+                    <td align="center">104</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0563762027375"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-6380 2.0</th>
+                    <td align="center">103</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.055834123865"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Macmini1,1 1.0</th>
+                    <td align="center">103</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.055834123865"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">965P-DS4</th>
+                    <td align="center">101</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0547499661201"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">System Product Name </th>
+                    <td align="center">100</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7021 1.0</th>
+                    <td align="center">99</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0536658083751"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">P4VM800 1.00</th>
+                    <td align="center">99</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0536658083751"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Portable PC Version 1.0</th>
+                    <td align="center">97</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0525816506302"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">GA-MA69G-S3H</th>
+                    <td align="center">97</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0525816506302"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">S2895 TYAN Thunder K8WE S2895</th>
+                    <td align="center">96</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0520395717577"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-7104 20A</th>
+                    <td align="center">96</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0520395717577"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">Aspire 5000</th>
+                    <td align="center">96</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0520395717577"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">PT800-8237</th>
+                    <td align="center">96</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0520395717577"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">P4M266-8233</th>
+                    <td align="center">95</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0514974928852"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">nForce3-A</th>
+                    <td align="center">94</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0509554140127"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <!-- Temporary solution to a silly problem -->
+                    <th align="right">MS-6728 100</th>
+                    <td align="center">93</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0504133351403"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>RAM</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr>
+                    <th align="right">less than 256mb</th>
+                    <td align="center">14853</td>
+                    <td><strong>8.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="8.05149749289"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">between 256mb and 512mb</th>
+                    <td align="center">48006</td>
+                    <td><strong>26.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="26.0230383521"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">between 512mb and 1023mb</th>
+                    <td align="center">66539</td>
+                    <td><strong>36.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="36.0693860957"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">between 1024mb and 2047mb</th>
+                    <td align="center">44746</td>
+                    <td><strong>24.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="24.2558612278"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">more than 2048mb</th>
+                    <td align="center">10331</td>
+                    <td><strong>5.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="5.60021683155"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>Swap</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr>
+                    <th align="right">less than 512mb</th>
+                    <td align="center">21177</td>
+                    <td><strong>11.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="11.4796042824"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">between 512mb and 1027mb</th>
+                    <td align="center">43951</td>
+                    <td><strong>23.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="23.8249085242"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">between 1024mb and 2047mb</th>
+                    <td align="center">99177</td>
+                    <td><strong>53.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="53.7617563355"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">more than 2048mb</th>
+                    <td align="center">20170</td>
+                    <td><strong>10.9 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="10.9337308578"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>CPU</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr><th colspan="4">Speed (MHz)</th></tr>
+                <tr>
+                    <th align="right">less than 512mhz</th>
+                    <td align="center">2193</td>
+                    <td><strong>1.2 %</strong></td>
+                     <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.18877896734"><div id="bar"></div></td><td></td></tr></table></td>
+               </tr><tr>
+                    <th align="right">between 512mhz and 1023mhz</th>
+                    <td align="center">10793</td>
+                    <td><strong>5.9 %</strong></td>
+                     <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="5.85065727063"><div id="bar"></div></td><td></td></tr></table></td>
+               </tr><tr>
+                    <th align="right">between 1024mhz and 2047mhz</th>
+                    <td align="center">82064</td>
+                    <td><strong>44.5 %</strong></td>
+                     <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="44.4851605909"><div id="bar"></div></td><td></td></tr></table></td>
+               </tr><tr>
+                    <th align="right">more than 2048mhz</th>
+                    <td align="center">89425</td>
+                    <td><strong>48.5 %</strong></td>
+                     <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="48.4754031712"><div id="bar"></div></td><td></td></tr></table></td>
+               </tr>
+                <tr><th colspan="4">Number of CPUs</th></tr>
+                <tr>
+                    <th align="right">1</th>
+                    <td align="center">106561</td>
+                    <td><strong>57.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="57.7644667299"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2</th>
+                    <td align="center">72094</td>
+                    <td><strong>39.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="39.0806342323"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">4</th>
+                    <td align="center">4394</td>
+                    <td><strong>2.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="2.38189456566"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">3</th>
+                    <td align="center">767</td>
+                    <td><strong>0.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.415774495189"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">8</th>
+                    <td align="center">611</td>
+                    <td><strong>0.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.331210191083"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">5</th>
+                    <td align="center">25</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0135519718119"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">16</th>
+                    <td align="center">14</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00758910421466"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">32</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">9</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">6</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">30</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+                <tr><th colspan="4">CPU Vendor</th></tr>
+                <tr>
+                    <th align="right">GenuineIntel</th>
+                    <td align="center">122108</td>
+                    <td><strong>66.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="66.1921669603"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">AuthenticAMD</th>
+                    <td align="center">59438</td>
+                    <td><strong>32.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="32.2200840222"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">CentaurHauls</th>
+                    <td align="center">896</td>
+                    <td><strong>0.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.485702669738"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right"></th>
+                    <td align="center">868</td>
+                    <td><strong>0.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.470524461309"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">powermac</th>
+                    <td align="center">849</td>
+                    <td><strong>0.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.460224962732"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Unknown</th>
+                    <td align="center">225</td>
+                    <td><strong>0.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.121967746307"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">GenuineTMx86</th>
+                    <td align="center">49</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.0265618647513"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sun4u</th>
+                    <td align="center">15</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00813118308714"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">chrp</th>
+                    <td align="center">11</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00596286759724"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sun4m</th>
+                    <td align="center">5</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00271039436238"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sparc64</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">sun4v</th>
+                    <td align="center">3</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00162623661743"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">alpha</th>
+                    <td align="center">2</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00108415774495"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">efika</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Geode by NSC</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">CyrixInstead</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+                <tr><th colspan="4">Bogomips</th></tr>
+                <tr>
+                    <th align="right">less than 512</th>
+                    <td align="center">1805</td>
+                    <td><strong>1.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.978452364819"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">between 512 and 1023</th>
+                    <td align="center">1742</td>
+                    <td><strong>0.9 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.944301395853"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">between 1024 and 2047</th>
+                    <td align="center">30165</td>
+                    <td><strong>16.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="16.3518091882"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">between 2048 and 4000</th>
+                    <td align="center">54629</td>
+                    <td><strong>29.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="29.6132267245"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">more than 4000</th>
+                    <td align="center">1220</td>
+                    <td><strong>0.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.661336224421"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>Kernel</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr>
+                    <th align="right">2.6.21-1.3194.fc7</th>
+                    <td align="center">126751</td>
+                    <td><strong>68.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="68.7090391652"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.20-2925.9.fc7xen</th>
+                    <td align="center">20867</td>
+                    <td><strong>11.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="11.311559832"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.22.4-65.fc7</th>
+                    <td align="center">3867</td>
+                    <td><strong>2.1 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="2.09621899986"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.21-1.3228.fc7</th>
+                    <td align="center">3580</td>
+                    <td><strong>1.9 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.94064236346"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.22.5-76.fc7</th>
+                    <td align="center">3315</td>
+                    <td><strong>1.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.79699146226"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.22.1-41.fc7</th>
+                    <td align="center">2820</td>
+                    <td><strong>1.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.52866242038"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.20-1.3104.fc7</th>
+                    <td align="center">2296</td>
+                    <td><strong>1.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="1.2446130912"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.23-0.214.rc8.git2.fc8</th>
+                    <td align="center">1517</td>
+                    <td><strong>0.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.822333649546"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.23-0.164.rc5.fc8</th>
+                    <td align="center">1378</td>
+                    <td><strong>0.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.746984686272"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.20-1.3023.fc7</th>
+                    <td align="center">1249</td>
+                    <td><strong>0.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.677056511722"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.22.9-91.fc7</th>
+                    <td align="center">1237</td>
+                    <td><strong>0.7 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.670551565253"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.23-0.61.rc1.git9.fc8</th>
+                    <td align="center">1158</td>
+                    <td><strong>0.6 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.627727334327"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.20-1.2933.fc6</th>
+                    <td align="center">944</td>
+                    <td><strong>0.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.511722455617"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.22.1-33.fc7</th>
+                    <td align="center">931</td>
+                    <td><strong>0.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.504675430275"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.22.7-85.fc7</th>
+                    <td align="center">915</td>
+                    <td><strong>0.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.496002168315"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.20-1.2948.fc6</th>
+                    <td align="center">850</td>
+                    <td><strong>0.5 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.460767041605"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.22.1-27.fc7</th>
+                    <td align="center">828</td>
+                    <td><strong>0.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.44884130641"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.20-1.2944.fc6</th>
+                    <td align="center">755</td>
+                    <td><strong>0.4 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.409269548719"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.20-2931.fc7xen</th>
+                    <td align="center">593</td>
+                    <td><strong>0.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.321452771378"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">2.6.20-2925.11.fc7xen</th>
+                    <td align="center">575</td>
+                    <td><strong>0.3 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.311695351674"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbertab"><h2>Form Factor</h2>
+            <table cellpadding="3" width="100%" cellspacing="3" border="0" id="stats">
+                <tr>
+                    <th align="right">desktop</th>
+                    <td align="center">105179</td>
+                    <td><strong>57.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="57.0153137281"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">unknown</th>
+                    <td align="center">38622</td>
+                    <td><strong>20.9 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20.9361702128"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">laptop</th>
+                    <td align="center">37291</td>
+                    <td><strong>20.2 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20.2146632335"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">server</th>
+                    <td align="center">1516</td>
+                    <td><strong>0.8 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.821791570674"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">Terminal</th>
+                    <td align="center">9</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00487870985228"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">handheld</th>
+                    <td align="center">7</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.00379455210733"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr><tr>
+                    <th align="right">serveronly</th>
+                    <td align="center">1</td>
+                    <td><strong>0.0 %</strong></td>
+                    <td><table cellpadding="0" cellspacing="0" border="0"><tr><td width="0.000542078872476"><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+	<!-- End of main_content -->
+	</div>
+<div id="footer"> 
+  <!--
+  <img src="/static/images/under_the_hood_blue.png" alt="TurboGears under the hood" />
+  <p>TurboGears is a open source front-to-back web development
+    framework written in Python</p>
+  <p>Copyright &copy; 2006 Kevin Dangoor</p>
+  -->
+</div>
+</body>
+</html>
