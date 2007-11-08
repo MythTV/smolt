@@ -174,6 +174,9 @@ for type in byclass_cache.data.keys():
     f.close()
     print "Generated %s" % fname
 
+# Save some memory
+del byclass_cache
+del out_html
 
 stats = {}
 stats['total_hosts'] = Query(Host).count()
@@ -260,6 +263,10 @@ f.write(out_html)
 f.close()
 print "Generated %s" % fname
 
+# Save some memory
+del out_html
+del stats
+
 devices = {}
 devices['total'] = Query(HostLink).count()
 devices['count'] = Query(ComputerLogicalDevice).count()
@@ -279,3 +286,7 @@ f = open(fname, "w")
 f.write(out_html)
 f.close()
 print "Generated %s" % fname
+
+# Save some memory
+del devices
+del out_html
