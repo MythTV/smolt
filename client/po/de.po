@@ -1,4 +1,351 @@
 # translation of de.po to
+# German translation of the fedoraproject.org static website.
+# Copyright (C) 2007 Fedora Project
+# This file is distributed under the same license as the project.
+# Fabian Affolter <fab@fedoraproject.org>, 2007.
+# Matthias Wiora <counterroot@openwallet.de>, 2007.
+# Robert Scheck <robert@fedoraproject.org>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fpo static website\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2007-11-11 22:39-0500\n"
+"PO-Revision-Date: 2007-11-11 00:00+0100\n"
+"Last-Translator: Robert Scheck <robert@fedoraproject.org>\n"
+"Language-Team: Fedora Translation <fedora-trans-de@redhat.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/content/get-fedora.html:7 data/content/index.html:7 data/content/join-
+#: fedora.html:7 data/content/relnotes.html:7 data/content/sponsors.html:7
+#: data/content/verify.html:7
+msgid "Fedora Project"
+msgstr "Fedora Project"
+
+#: data/content/get-fedora.html:12
+msgid "Fedora, For You."
+msgstr "Fedora - für Sie"
+
+#: data/content/get-fedora.html:14
+msgid "Install Media"
+msgstr "Installationsmedien"
+
+#: data/content/get-fedora.html:17 data/content/get-fedora.html:36
+#: data/content /get-fedora.html:56
+msgid "BitTorrent"
+msgstr "BitTorrent"
+
+#: data/content/get-fedora.html:19 data/content/get-fedora.html:27
+msgid "i386"
+msgstr "i386"
+
+#: data/content/get-fedora.html:19 data/content/get-fedora.html:20
+#: data/content /get-fedora.html:21 data/content/get-fedora.html:27
+#: data/content/get- fedora.html:28 data/content/get-fedora.html:29
+msgid "Install DVD"
+msgstr "DVD"
+
+#: data/content/get-fedora.html:20 data/content/get-fedora.html:28
+#: data/content /get-fedora.html:39 data/content/get-fedora.html:47
+#: data/content/get- fedora.html:59 data/content/get-fedora.html:66
+msgid "x86_64"
+msgstr "x86_64"
+
+#: data/content/get-fedora.html:21 data/content/get-fedora.html:29
+#: data/content /get-fedora.html:40 data/content/get-fedora.html:48
+msgid "ppc"
+msgstr "ppc"
+
+#: data/content/get-fedora.html:25 data/content/get-fedora.html:44
+#: data/content /get-fedora.html:63
+msgid "Direct Download"
+msgstr "Direkter Download"
+
+#: data/content/get-fedora.html:33
+msgid "GNOME Live Media"
+msgstr "GNOME Live-Medien"
+
+#: data/content/get-fedora.html:38 data/content/get-fedora.html:46
+#: data/content /get-fedora.html:58 data/content/get-fedora.html:65
+msgid "i686"
+msgstr "i686"
+
+#: data/content/get-fedora.html:38 data/content/get-fedora.html:46
+#: data/content /get-fedora.html:58 data/content/get-fedora.html:65
+msgid "Live CD"
+msgstr "Live-CD"
+
+#: data/content/get-fedora.html:39 data/content/get-fedora.html:40
+#: data/content /get-fedora.html:47 data/content/get-fedora.html:48
+#: data/content/get- fedora.html:59 data/content/get-fedora.html:66
+msgid "Live DVD"
+msgstr "Live-DVD"
+
+#: data/content/get-fedora.html:53
+msgid "KDE Live Media"
+msgstr "KDE Live-Medien"
+
+#: data/content/get-fedora.html:71
+msgid "Let me look around..."
+msgstr "Einfach umschauen..."
+
+#: data/content/get-fedora.html:73
+msgid "See all torrents"
+msgstr "Alle Torrent-Links"
+
+#: data/content/get-fedora.html:74
+msgid "See all mirrors"
+msgstr "Alle Spiegel-Server"
+
+#: data/content/get-fedora.html:75
+msgid "See all custom spins"
+msgstr "Alle Fedora-Ausführungen"
+
+#: data/content/get-fedora.html:77
+msgid "Slow Internet? No Internet?"
+msgstr "Kein oder langsames Internet?"
+
+#: data/content/get-fedora.html:78
+msgid "Get a copy of Fedora Media sent via postal mail."
+msgstr "Lassen Sie sich ein Fedora-Installationsmedium per Post zuschicken."
+
+#: data/content/get-fedora.html:80
+msgid "Purchase installation media for Fedora from <a name=\"media\" href=\"http://fedoraproject.org/wiki/Distribution/OnlineVendors\">online vendors</a> or a <a href=\"http://fedoraproject.org/wiki/Distribution/LocalVendors\">local vendor</a> in your area."
+msgstr "Kaufen Sie ein Fedora-Installationsmedium bei einem <a name=\"media\" href=\"http://fedoraproject.org/wiki/Distribution/OnlineVendors\">Online-Händler</a> oder einem <a href=\"http://fedoraproject.org/wiki/Distribution/LocalVendors\">lokalen Anbieter</a> in Ihrer Region."
+
+#: data/content/get-fedora.html:81
+msgid "Can't afford the price of installation media? Request Fedora installation media from the <a href=\"http://fedoraproject.org/wiki/Distribution/FreeMedia\">Fedora Free Media Program</a>."
+msgstr "Sie können sich kein Fedora-Installationsmedium leisten? Beantragen Sie ein Installationsmedium beim <a href=\"http://fedoraproject.org/wiki/Distribution/FreeMedia\">Fedora Free Media Program</a>."
+
+#: data/content/get-fedora.html:84
+msgid "When you place an order with a <a href=\"http://fedoraproject.org/wiki/Distribution/SponsoredMedia\">participating vendor</a>, you may also sponsor the cost of media for users who cannot afford it, such as people in developing nations. Consider participating in the <a href=\"http://fedoraproject.org/wiki/Distribution/SponsoredMedia\">Fedora Sponsored Media Program</a>."
+msgstr "Wenn Sie Fedora bei einem <a href=\"http://fedoraproject.org/wiki/Distribution/SponsoredMedia\">am Projekt teilnehmenden Verkäufer</a> bestellen, können Sie das Geld für ein Medium spenden, welches für Benutzer aus Entwicklungsländern gedacht ist, die sich ein solches Medium nicht leisten können. Bitte ziehen Sie auch die Teilnahme am <a href=\"http://fedoraproject.org/wiki/Distribution/SponsoredMedia\">Fedora Free Media Program</a> in Betracht."
+
+#: data/content/index.html:10
+msgid "Fedora 8.  Infinite Possibilities."
+msgstr "Fedora 8 - unendliche Möglichkeiten"
+
+#: data/content/index.html:13 data/content/index.html:14
+#: data/content/index.html:15
+msgid "F8 Screenshot"
+msgstr "Bildschirmfotos von Fedora 8"
+
+#: data/content/index.html:17
+msgid "What's new in Fedora 8? Read the release notes. &gt;&gt;"
+msgstr "Was ist neu an Fedora 8? Lesen Sie die Versionshinweise. &gt;&gt;"
+
+#: data/content/index.html:20
+msgid "Fedora is a Linux-based operating system that showcases the latest in free and open source software. Fedora is <strong>always free for anyone to use, modify, and distribute.</strong>  It is built by people across the globe who work together as a community: the Fedora Project. The Fedora Project is open and anyone is welcome to join."
+msgstr "Fedora ist ein Betriebssystem, basierend auf Linux, das die neueste freie und Open Source Software enthält. Fedora ist <strong>immer frei, damit es jeder verwenden, ändern und verteilen</strong> kann. Es wird von Leuten entwickelt, die rund um den Erdball leben und als Gemeinschaft zusammenarbeiten: Dem Fedora Project. Das Fedora Project ist offen und jeder ist eingeladen es zu unterstützen."
+
+#: data/content/index.html:23
+msgid "The Fedora Project is out front for you, <strong>leading the advancement of free, open software and content</strong>."
+msgstr "Das Fedora Project ist für Sie an der Spitze bei der <strong>Weiterentwicklung von freier, offener Software und Inhalten</strong>."
+
+#: data/content/index.html:26
+msgid "<a href=\"http://fedoraproject.org/wiki/Overview\">Learn more. &gt;&gt;</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/Overview\">Erfahren Sie mehr. &gt;&gt;</a>"
+
+#: data/content/join-fedora.html:10
+msgid "Join Fedora."
+msgstr "Fedora unterstützen"
+
+#: data/content/join-fedora.html:11
+msgid "If you want to take an active hand in making Fedora even better, there are many ways to help. What role do you want to fill?"
+msgstr "Wenn Sie aktiv am Verbessern von Fedora teilnehmen möchten, gibt es sehr viele Möglichkeiten zu helfen. Welche Rolle möchten Sie erfüllen?"
+
+#: data/content/join-fedora.html:12
+msgid "Click on a role below to learn more about how you can help the Fedora Project."
+msgstr "Klicken Sie auf eine der Möglichkeiten, um mehr darüber zu erfahren, wie Sie das Fedora Project unterstützen können."
+
+#: data/content/join-fedora.html:15
+#, python-format
+msgid "<a href=\"http://fedoraproject.org/wiki/Join#ContentWriter\"><img src=\"%s/static/images/ContentDeveloper.png\" alt=\"Content Writer\"><br>Content Writer</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/Join#ContentWriter\"><img src=\"%s/static/images/ContentDeveloper.png\" alt=\"Verfasser\"><br>Verfasser</a>"
+
+#: data/content/join-fedora.html:18
+#, python-format
+msgid "<a href=\"http://fedoraproject.org/wiki/Join#Designer\"><img src=\"%s/static/images/Designer.png\" alt=\"Designer\"><br>Designer</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/Join#Designer\"><img src=\"%s/static/images/Designer.png\" alt=\"Designer\"><br>Designer</a>"
+
+#: data/content/join-fedora.html:21
+#, python-format
+msgid "<a href=\"http://fedoraproject.org/wiki/Join#PeoplePerson\"><img src=\"%s/static/images/PeoplePerson.png\" alt=\"People Person\"><br>People Person</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/Join#PeoplePerson\"><img src=\"%s/static/images/PeoplePerson.png\" alt=\"Ansprechpartner\"><br>Ansprechpartner</a>"
+
+#: data/content/join-fedora.html:24
+#, python-format
+msgid "<a href=\"http://fedoraproject.org/wiki/Join#OSDeveloper\"><img src=\"%s/static/images/OSDeveloper.png\" alt=\"OS Developer\"><br>OS Developer</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/Join#OSDeveloper\"><img src=\"%s/static/images/OSDeveloper.png\" alt=\"System-Entwickler\"><br>System-Entwickler</a>"
+
+#: data/content/join-fedora.html:27
+#, python-format
+msgid "<a href=\"http://fedoraproject.org/wiki/Join#Translator\"><img src=\"%s/static/images/Translator.png\" alt=\"Translator\"><br>Translator</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/Join#Translator\"><img src=\"%s/static/images/Translator.png\" alt=\"Übersetzer\"><br>Übersetzer</a>"
+
+#: data/content/join-fedora.html:30
+#, python-format
+msgid "<a href=\"http://fedoraproject.org/wiki/Join#WebDeveloperAdministrator\"><img src=\"%s/static/images/WebDeveloper.png\" alt=\"Web Developer or Administrator\"><br>Web Developer<br>or Administrator</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/Join#WebDeveloperAdministrator\"><img src=\"%s/static/images/WebDeveloper.png\" alt=\"Web-Entwickler oder Administrator\"><br>Web-Entwickler<br>oder Administrator</a>"
+
+#: data/content/relnotes.html:10
+msgid "Fedora 8 Release Notes"
+msgstr "Versionshinweise zu Fedora 8"
+
+#: data/content/relnotes.html:12
+msgid "Here are places you can find the Fedora 8 release notes.  If one location is unresponsive, try a different one."
+msgstr "Hier können Sie die Versionshinweise zu Fedora 8 finden. Sollte ein Server nicht erreichbar sein, versuchen Sie bitte einen anderen."
+
+#: data/content/relnotes.html:15
+msgid "<a href=\"http://docs.fedoraproject.org/release-notes/\">http://docs.fedoraproject.org/release-notes/</a>"
+msgstr "<a href=\"http://docs.fedoraproject.org/release-notes/\">http://docs.fedoraproject.org/release-notes/</a>"
+
+#: data/content/relnotes.html:18
+msgid "Check any <a href=\"http://mirrors.fedoraproject.org/publiclist/Fedora/8/\">mirror</a> using a path similar to <em>http://URL/fedora/linux/releases/8/Fedora/i386/os/</em>.  The mirrors only carry the US English version, <em>RELEASE-NOTES-en_US.html</em>.  Note that each mirror may have a slightly different path, but should be consistent below the <em>8/</em> directory.  For example:"
+msgstr "Überprüfen Sie jeden <a href=\"http://mirrors.fedoraproject.org/publiclist/Fedora/8/\">Spiegel-Server</a> durch Benutzung eines Pfades wie <em>http://URL/fedora/linux/releases/8/Fedora/i386/os/</em>. Die Spiegel-Server bieten nur die englische Fassung der <em>RELEASE-NOTES-en_US.html</em>. Beachten Sie, dass jeder Spiegel-Server einen leicht abweichenden Pfad besitzen kann. Jedoch sollte er ab dem Verzeichnis <em>8/</em> überall einheitlich sein. Zum Beispiel:"
+
+#: data/content/relnotes.html:21
+msgid "ATRPMs mirror"
+msgstr "ATRPMs Spiegel-Server"
+
+#: data/content/relnotes.html:22
+msgid "RPMFind.net mirror"
+msgstr "RPMFind.net Spiegel-Server"
+
+#: data/content/sponsors.html:10
+msgid "Fedora Sponsors"
+msgstr "Fedora-Sponsoren"
+
+#: data/content/sponsors.html:11
+msgid "The Fedora Project is proud to have the following organizations as sponsors:"
+msgstr "Das Fedora Project ist stolz darauf, die folgenden Organisationen als Sponsoren zu haben:"
+
+#: data/content/verify.html:10
+msgid "Verify your ISO download."
+msgstr "ISO-Dateien überprüfen"
+
+#: data/content/verify.html:12
+msgid "Windows user?  Follow <a href=\"http://docs.fedoraproject.org/readme-burning-isos/en_US/sn-validating-files.html\">these instructions</a> instead."
+msgstr "Wenn Sie ein Windows-Benutzer sind, folgen Sie stattdessen <a href=\"http://docs.fedoraproject.org/readme-burning-isos/en_US/sn-validating-files.html\">dieser Anleitung</a>."
+
+#: data/content/verify.html:15
+msgid "Once you have downloaded an ISO, verify it for security and integrity.  If you downloaded your ISO via BitTorrent, the file has already been verified as part of the download process (just make sure that you got the torrent from <a href=\"http://torrent.fedoraproject.org/\">torrent.fedoraproject.org</a>).  Otherwise, to verify your ISO, start by downloading the proper SHA1SUM file into the same directory as the ISO:"
+msgstr "Nachdem Sie eine ISO-Datei heruntergeladen haben, sollten Sie diese im Hinblick auf die Sicherheit und Vollständigkeit überprüfen. Wenn die ISO-Datei über BitTorrent heruntergeladen worden ist, wurde sie bereits als Teil des Downloadprozesses überprüft. Sie müssen lediglich sicherstellen, dass Sie den Torrent von <a href=\"http://torrent.fedoraproject.org/\">torrent.fedoraproject.org</a> verwendet haben. Andernfalls müssen Sie, um die ISO-Datei zu überprüfen, die entsprechende SHA1SUM-Datei herunterladen, welche sich im gleichen Verzeichnis wie die ISO-Datei befindet:"
+
+#: data/content/verify.html:17
+msgid "Install DVD / Rescue CD"
+msgstr "DVD / Rettungs-CD"
+
+#: data/content/verify.html:23
+msgid "Live Media (both GNOME and KDE)"
+msgstr "Live-Medien (GNOME und KDE)"
+
+#: data/content/verify.html:29
+msgid "Next, import Fedora's GPG key:"
+msgstr "Importieren Sie danach den GPG-Schlüssel von Fedora:"
+
+#: data/content/verify.html:34
+msgid "Now, to verify that the SHA1SUM file is valid, make sure that it has a good signature from the key ID 4F2A6FD2."
+msgstr "Um zu überprüfen, ob die SHA1SUM-Datei gültig ist, müssen Sie sicherstellen, dass die Signatur von der Schlüssel-ID 4F2A6FD2 stammt."
+
+#: data/content/verify.html:38
+msgid "Finally, now that the SHA1SUM file has been verified, check that the ISO's checksum matches:"
+msgstr "Abschließend, nachdem die SHA1SUM-Datei überprüft worden ist, können Sie nun kontrollieren, ob die Prüfsumme der ISO-Datei stimmt:"
+
+#: data/content/verify.html:42
+msgid "If the output states that the file is valid, you're good to go!"
+msgstr "Wenn die Ausgabe ergibt, dass die Datei korrekt ist, können Sie loslegen!"
+
+#: data/templates/foot.html:9
+msgid "Copyright &copy; 2007 Red Hat, Inc. and others.  All Rights Reserved.  Please send any comments or corrections to the <a href=\"mailto:webmaster@fedoraproject.org\">websites team</a>."
+msgstr "Copyright &copy; 2007 Red Hat, Inc. und andere. Alle Rechte vorbehalten. Bitte senden Sie alle Kommentare oder Korrekturen an das <a href=\"mailto:webmaster@fedoraproject.org\">Webseiten-Team</a>."
+
+#: data/templates/foot.html:12
+msgid "The Fedora Project is maintained and driven by the community and sponsored by Red Hat.  This is a community maintained site.  Red Hat is not responsible for content."
+msgstr "Das Fedora Project wird durch die Community verwaltet und von Red Hat unterstützt. Diese Seite wird von der Community gepflegt, Red Hat ist für den Inhalt nicht verantwortlich."
+
+#: data/templates/foot.html:15
+msgid "Sponsors"
+msgstr "Sponsoren"
+
+#: data/templates/foot.html:16
+msgid "<a href=\"http://fedoraproject.org/wiki/Legal\">Legal</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/Legal\">Rechtliche Informationen</a>"
+
+#: data/templates/foot.html:17
+msgid "<a href=\"http://fedoraproject.org/wiki/Legal/TrademarkGuidelines\">Trademark Guidelines</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/Legal/TrademarkGuidelines\">Richtlinien zum Markenzeichen</a>"
+
+#: data/templates/head.html:7
+msgid "Fedora"
+msgstr "Fedora"
+
+#: data/templates/sidebar.html:8
+#, python-format
+msgid "%s/static/images/banners/f8-banner-animation.gif"
+msgstr "%s/static/images/banners/f8-banner-animation.gif"
+
+#: data/templates/sidebar.html:8
+msgid "Fedora 8 Werewolf is here!"
+msgstr "Fedora 8 (Werewolf) ist da!"
+
+#: data/templates/sidebar.html:11
+msgid "Navigation"
+msgstr "Navigation"
+
+#: data/templates/sidebar.html:13
+msgid "Home"
+msgstr "Homepage"
+
+#: data/templates/sidebar.html:14
+msgid "Get Fedora"
+msgstr "Herunterladen"
+
+#: data/templates/sidebar.html:15
+msgid "Join Fedora"
+msgstr "Mithelfen"
+
+#: data/templates/sidebar.html:17
+msgid "Tools"
+msgstr "Werkzeuge"
+
+#: data/templates/sidebar.html:19
+msgid "Docs"
+msgstr "Dokumente"
+
+#: data/templates/sidebar.html:19
+msgid "Fedora documentation."
+msgstr "Fedora-Dokumentation"
+
+#: data/templates/sidebar.html:20
+msgid "<a href=\"http://fedoraproject.org/wiki/\">Wiki</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/\">Wiki</a>"
+
+#: data/templates/sidebar.html:20
+msgid "Collaborative knowledge."
+msgstr "Gemeinschaftliches Wissen"
+
+#: data/templates/sidebar.html:21
+msgid "Planet"
+msgstr "Planet"
+
+#: data/templates/sidebar.html:21
+msgid "The voices of the Fedora community."
+msgstr "Stimmen der Fedora-Community"
+
+#: data/templates/sidebar.html:22
+msgid "<a href=\"http://fedoraproject.org/wiki/Communicate\">Communicate</a>"
+msgstr "<a href=\"http://fedoraproject.org/wiki/Communicate\">Kontakt</a>"
+
+#: data/templates/sidebar.html:22
+msgid "Speak with Fedora."
+msgstr "Fedora kontaktieren"
+
+#: data/templates/sidebar.html:24
+msgid "Website Language"
+msgstr "Sprache"
 # German translation of PACKAGE.
 # Copyright (C) 2007 ORGANIZATION
 #
