@@ -1,348 +1,453 @@
 # translation of de.po to
-# German translation of the fedoraproject.org static website.
-# Copyright (C) 2007 Fedora Project
-# This file is distributed under the same license as the project.
-# Fabian Affolter <fab@fedoraproject.org>, 2007.
-# Matthias Wiora <counterroot@openwallet.de>, 2007.
-# Robert Scheck <robert@fedoraproject.org>, 2007.
+# German translation of PACKAGE.
+# Copyright (C) 2007 ORGANIZATION
 #
+#
+# Heiko Adams <heiko.adams@gmx.de>, 2007.
+# PGP-KeyID: 0x037FD3CF <ttrinks@redhat.com>, 2007.
+# Severin Heiniger <severinheiniger@gmail.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: fpo static website\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2007-11-11 22:39-0500\n"
-"PO-Revision-Date: 2007-11-11 00:00+0100\n"
-"Last-Translator: Robert Scheck <robert@fedoraproject.org>\n"
-"Language-Team: Fedora Translation <fedora-trans-de@redhat.com>\n"
+"Project-Id-Version: smolt\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-08-22 12:09-0400\n"
+"PO-Revision-Date: 2007-09-27 15:45+0100\n"
+"Last-Translator: Severin Heiniger <severinheiniger@gmail.com>\n"
+"Language-Team: German Translation Team <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
-#: data/content/get-fedora.html:7 data/content/index.html:7 data/content/join-
-#: fedora.html:7 data/content/relnotes.html:7 data/content/sponsors.html:7
-#: data/content/verify.html:7
-msgid "Fedora Project"
-msgstr "Fedora Project"
-
-#: data/content/get-fedora.html:12
-msgid "Fedora, For You."
-msgstr "Fedora - für Sie"
-
-#: data/content/get-fedora.html:14
-msgid "Install Media"
-msgstr "Installationsmedien"
-
-#: data/content/get-fedora.html:17 data/content/get-fedora.html:36
-#: data/content /get-fedora.html:56
-msgid "BitTorrent"
-msgstr "BitTorrent"
-
-#: data/content/get-fedora.html:19 data/content/get-fedora.html:27
-msgid "i386"
-msgstr "i386"
-
-#: data/content/get-fedora.html:19 data/content/get-fedora.html:20
-#: data/content /get-fedora.html:21 data/content/get-fedora.html:27
-#: data/content/get- fedora.html:28 data/content/get-fedora.html:29
-msgid "Install DVD"
-msgstr "DVD"
-
-#: data/content/get-fedora.html:20 data/content/get-fedora.html:28
-#: data/content /get-fedora.html:39 data/content/get-fedora.html:47
-#: data/content/get- fedora.html:59 data/content/get-fedora.html:66
-msgid "x86_64"
-msgstr "x86_64"
-
-#: data/content/get-fedora.html:21 data/content/get-fedora.html:29
-#: data/content /get-fedora.html:40 data/content/get-fedora.html:48
-msgid "ppc"
-msgstr "ppc"
-
-#: data/content/get-fedora.html:25 data/content/get-fedora.html:44
-#: data/content /get-fedora.html:63
-msgid "Direct Download"
-msgstr "Direkter Download"
-
-#: data/content/get-fedora.html:33
-msgid "GNOME Live Media"
-msgstr "GNOME Live-Medien"
-
-#: data/content/get-fedora.html:38 data/content/get-fedora.html:46
-#: data/content /get-fedora.html:58 data/content/get-fedora.html:65
-msgid "i686"
-msgstr "i686"
-
-#: data/content/get-fedora.html:38 data/content/get-fedora.html:46
-#: data/content /get-fedora.html:58 data/content/get-fedora.html:65
-msgid "Live CD"
-msgstr "Live-CD"
-
-#: data/content/get-fedora.html:39 data/content/get-fedora.html:40
-#: data/content /get-fedora.html:47 data/content/get-fedora.html:48
-#: data/content/get- fedora.html:59 data/content/get-fedora.html:66
-msgid "Live DVD"
-msgstr "Live-DVD"
-
-#: data/content/get-fedora.html:53
-msgid "KDE Live Media"
-msgstr "KDE Live-Medien"
-
-#: data/content/get-fedora.html:71
-msgid "Let me look around..."
-msgstr "Einfach umschauen..."
-
-#: data/content/get-fedora.html:73
-msgid "See all torrents"
-msgstr "Alle Torrent-Links"
-
-#: data/content/get-fedora.html:74
-msgid "See all mirrors"
-msgstr "Alle Spiegel-Server"
-
-#: data/content/get-fedora.html:75
-msgid "See all custom spins"
-msgstr "Alle Fedora-Ausführungen"
-
-#: data/content/get-fedora.html:77
-msgid "Slow Internet? No Internet?"
-msgstr "Kein oder langsames Internet?"
-
-#: data/content/get-fedora.html:78
-msgid "Get a copy of Fedora Media sent via postal mail."
-msgstr "Lassen Sie sich ein Fedora-Installationsmedium per Post zuschicken."
-
-#: data/content/get-fedora.html:80
-msgid "Purchase installation media for Fedora from <a name=\"media\" href=\"http://fedoraproject.org/wiki/Distribution/OnlineVendors\">online vendors</a> or a <a href=\"http://fedoraproject.org/wiki/Distribution/LocalVendors\">local vendor</a> in your area."
-msgstr "Kaufen Sie ein Fedora-Installationsmedium bei einem <a name=\"media\" href=\"http://fedoraproject.org/wiki/Distribution/OnlineVendors\">Online-Händler</a> oder einem <a href=\"http://fedoraproject.org/wiki/Distribution/LocalVendors\">lokalen Anbieter</a> in Ihrer Region."
-
-#: data/content/get-fedora.html:81
-msgid "Can't afford the price of installation media? Request Fedora installation media from the <a href=\"http://fedoraproject.org/wiki/Distribution/FreeMedia\">Fedora Free Media Program</a>."
-msgstr "Sie können sich kein Fedora-Installationsmedium leisten? Beantragen Sie ein Installationsmedium beim <a href=\"http://fedoraproject.org/wiki/Distribution/FreeMedia\">Fedora Free Media Program</a>."
-
-#: data/content/get-fedora.html:84
-msgid "When you place an order with a <a href=\"http://fedoraproject.org/wiki/Distribution/SponsoredMedia\">participating vendor</a>, you may also sponsor the cost of media for users who cannot afford it, such as people in developing nations. Consider participating in the <a href=\"http://fedoraproject.org/wiki/Distribution/SponsoredMedia\">Fedora Sponsored Media Program</a>."
-msgstr "Wenn Sie Fedora bei einem <a href=\"http://fedoraproject.org/wiki/Distribution/SponsoredMedia\">am Projekt teilnehmenden Verkäufer</a> bestellen, können Sie das Geld für ein Medium spenden, welches für Benutzer aus Entwicklungsländern gedacht ist, die sich ein solches Medium nicht leisten können. Bitte ziehen Sie auch die Teilnahme am <a href=\"http://fedoraproject.org/wiki/Distribution/SponsoredMedia\">Fedora Free Media Program</a> in Betracht."
-
-#: data/content/index.html:10
-msgid "Fedora 8.  Infinite Possibilities."
-msgstr "Fedora 8 - unendliche Möglichkeiten"
-
-#: data/content/index.html:13 data/content/index.html:14
-#: data/content/index.html:15
-msgid "F8 Screenshot"
-msgstr "Bildschirmfotos von Fedora 8"
-
-#: data/content/index.html:17
-msgid "What's new in Fedora 8? Read the release notes. &gt;&gt;"
-msgstr "Was ist neu an Fedora 8? Lesen Sie die Versionshinweise. &gt;&gt;"
-
-#: data/content/index.html:20
-msgid "Fedora is a Linux-based operating system that showcases the latest in free and open source software. Fedora is <strong>always free for anyone to use, modify, and distribute.</strong>  It is built by people across the globe who work together as a community: the Fedora Project. The Fedora Project is open and anyone is welcome to join."
-msgstr "Fedora ist ein Betriebssystem, basierend auf Linux, das die neueste freie und Open Source Software enthält. Fedora ist <strong>immer frei, damit es jeder verwenden, ändern und verteilen</strong> kann. Es wird von Leuten entwickelt, die rund um den Erdball leben und als Gemeinschaft zusammenarbeiten: Dem Fedora Project. Das Fedora Project ist offen und jeder ist eingeladen es zu unterstützen."
-
-#: data/content/index.html:23
-msgid "The Fedora Project is out front for you, <strong>leading the advancement of free, open software and content</strong>."
-msgstr "Das Fedora Project ist für Sie an der Spitze bei der <strong>Weiterentwicklung von freier, offener Software und Inhalten</strong>."
-
-#: data/content/index.html:26
-msgid "<a href=\"http://fedoraproject.org/wiki/Overview\">Learn more. &gt;&gt;</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/Overview\">Erfahren Sie mehr. &gt;&gt;</a>"
-
-#: data/content/join-fedora.html:10
-msgid "Join Fedora."
-msgstr "Fedora unterstützen"
-
-#: data/content/join-fedora.html:11
-msgid "If you want to take an active hand in making Fedora even better, there are many ways to help. What role do you want to fill?"
-msgstr "Wenn Sie aktiv am Verbessern von Fedora teilnehmen möchten, gibt es sehr viele Möglichkeiten zu helfen. Welche Rolle möchten Sie erfüllen?"
-
-#: data/content/join-fedora.html:12
-msgid "Click on a role below to learn more about how you can help the Fedora Project."
-msgstr "Klicken Sie auf eine der Möglichkeiten, um mehr darüber zu erfahren, wie Sie das Fedora Project unterstützen können."
-
-#: data/content/join-fedora.html:15
+#: deleteProfile.py:35
+#: smolt.py:235
 #, python-format
-msgid "<a href=\"http://fedoraproject.org/wiki/Join#ContentWriter\"><img src=\"%s/static/images/ContentDeveloper.png\" alt=\"Content Writer\"><br>Content Writer</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/Join#ContentWriter\"><img src=\"%s/static/images/ContentDeveloper.png\" alt=\"Verfasser\"><br>Verfasser</a>"
+msgid "Server Message: \"%s\""
+msgstr "Server-Meldung: \"%s\""
 
-#: data/content/join-fedora.html:18
+#: deleteProfile.py:45
+#: sendProfile.py:42
+msgid "enable debug information"
+msgstr "Debug-Informationen aktivieren"
+
+#: deleteProfile.py:50
+#: sendProfile.py:47
 #, python-format
-msgid "<a href=\"http://fedoraproject.org/wiki/Join#Designer\"><img src=\"%s/static/images/Designer.png\" alt=\"Designer\"><br>Designer</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/Join#Designer\"><img src=\"%s/static/images/Designer.png\" alt=\"Designer\"><br>Designer</a>"
+msgid "specify the URL of the server (default \"%default\")"
+msgstr "Server-URL angeben (Standard: \"%default\")"
 
-#: data/content/join-fedora.html:21
+#: deleteProfile.py:55
+#: sendProfile.py:62
+msgid "print information only, do not send"
+msgstr "Informationen nur ausdrucken, aber nicht senden"
+
+#: deleteProfile.py:60
+#: sendProfile.py:77
 #, python-format
-msgid "<a href=\"http://fedoraproject.org/wiki/Join#PeoplePerson\"><img src=\"%s/static/images/PeoplePerson.png\" alt=\"People Person\"><br>People Person</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/Join#PeoplePerson\"><img src=\"%s/static/images/PeoplePerson.png\" alt=\"Ansprechpartner\"><br>Ansprechpartner</a>"
+msgid "specify HTTP user agent (default \"%default\")"
+msgstr "HTTP-User-Agent angeben (Standard: \"%default\")"
 
-#: data/content/join-fedora.html:24
+#: deleteProfile.py:65
+#: sendProfile.py:82
 #, python-format
-msgid "<a href=\"http://fedoraproject.org/wiki/Join#OSDeveloper\"><img src=\"%s/static/images/OSDeveloper.png\" alt=\"OS Developer\"><br>OS Developer</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/Join#OSDeveloper\"><img src=\"%s/static/images/OSDeveloper.png\" alt=\"System-Entwickler\"><br>System-Entwickler</a>"
+msgid "specify HTTP timeout in seconds (default %default seconds)"
+msgstr "HTTP-Zeitüberschreitung in Sekunden angeben (Standard: %default Sekunden)"
 
-#: data/content/join-fedora.html:27
+#: deleteProfile.py:83
+msgid "Error contacting Server:"
+msgstr "Fehler beim Kontaktieren des Servers:"
+
+#: deleteProfile.py:91
+msgid "Profile removed, please verify at"
+msgstr "Profil wurde entfernt, bitte überprüfen unter"
+
+#: sendProfile.py:52
+msgid "(optional) Fedora Account System registration"
+msgstr "Registrierung im Fedora-Kontosystem (optional)"
+
+#: sendProfile.py:57
+msgid "password, will prompt if not specified"
+msgstr "Passwort, Aufforderung zur Eingabe wenn nicht angegeben"
+
+#: sendProfile.py:67
+msgid "don't prompt to send, just send"
+msgstr "Vor dem Senden keine Bestätigung verlangen"
+
+#: sendProfile.py:72
+msgid "continue to send until success"
+msgstr "So lange senden, bis erfolgreich"
+
+#: sendProfile.py:87
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgstr "Dies ist ein automatisiertes Check-In und läuft nur bei gestartetem \"smolt\"-Dienst"
+
+#: sendProfile.py:101
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr "Smolt ist für Check-Ins eingerichtet, diese sind jedoch deaktiviert (Tipp: service smolt start)"
+
+#: sendProfile.py:108
+msgid "Error:"
+msgstr "Fehler:"
+
+#: sendProfile.py:110
+msgid "Hint:"
+msgstr "Tipp:"
+
+#: sendProfile.py:121
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr "Diese Informationen an den Smolt-Server senden? (j/n)"
+
+#: sendProfile.py:122
+msgid "y"
+msgstr "j"
+
+#: sendProfile.py:123
+msgid "Exiting..."
+msgstr "Beenden..."
+
+#: sendProfile.py:130
+msgid "Retry Enabled - Retrying"
+msgstr "Wiederholung aktiviert - Erneut versuchen"
+
+#: sendProfile.py:134
+msgid "Could not send - Exiting"
+msgstr "Konnte nicht senden - Abbruch"
+
+#: sendProfile.py:139
+msgid "Password:"
+msgstr "Passwort:"
+
+#: sendProfile.py:144
+msgid "Registration Failed, Try again"
+msgstr "Registrierung fehlgeschlagen. Bitte erneut versuchen."
+
+#: sendProfile.py:147
 #, python-format
-msgid "<a href=\"http://fedoraproject.org/wiki/Join#Translator\"><img src=\"%s/static/images/Translator.png\" alt=\"Translator\"><br>Translator</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/Join#Translator\"><img src=\"%s/static/images/Translator.png\" alt=\"Übersetzer\"><br>Übersetzer</a>"
+msgid "To view your profile visit: %s"
+msgstr "Ihr Profil könnten Sie betrachten unter: %s"
 
-#: data/content/join-fedora.html:30
+#: smoltGui.py:74
+msgid "_Quit"
+msgstr "_Beenden"
+
+#: smoltGui.py:74
+msgid "Quit the program without sending your hardware profile to the server"
+msgstr "Das Programm beenden, ohne das Hardware-Profil zu senden"
+
+#: smoltGui.py:75
+msgid "_Send"
+msgstr "_Senden"
+
+#: smoltGui.py:75
+msgid "Send your hardware profile to the server."
+msgstr "Senden Sie ihr Hardware-Profil an den Server"
+
+#: smoltGui.py:76
+msgid "Show _Privacy Policy"
+msgstr "_Datenschutzrichtlinie anzeigen"
+
+#: smoltGui.py:76
+msgid "Show the Smolt privacy policy."
+msgstr "Smolt-Datenschutzrichtlinie anzeigen"
+
+#: smoltGui.py:77
+msgid "_About"
+msgstr "_Über"
+
+#: smoltGui.py:78
+msgid "_File"
+msgstr "_Datei"
+
+#: smoltGui.py:79
+msgid "_Help"
+msgstr "_Hilfe"
+
+#: smoltGui.py:80
+msgid "_My Smolt Page"
+msgstr "_Meine Smolt-Seite"
+
+#: smoltGui.py:80
+msgid "Take me to my smolt profile page"
+msgstr "Zu meiner Smolt-Profilseite gehen"
+
+#: smoltGui.py:145
+msgid "An error occurred while sending the data to the server."
+msgstr "Während des Sendens der Daten ist ein Fehler aufgetreten."
+
+#: smoltGui.py:152
 #, python-format
-msgid "<a href=\"http://fedoraproject.org/wiki/Join#WebDeveloperAdministrator\"><img src=\"%s/static/images/WebDeveloper.png\" alt=\"Web Developer or Administrator\"><br>Web Developer<br>or Administrator</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/Join#WebDeveloperAdministrator\"><img src=\"%s/static/images/WebDeveloper.png\" alt=\"Web-Entwickler oder Administrator\"><br>Web-Entwickler<br>oder Administrator</a>"
+msgid ""
+"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"%s\n"
+"stored in %s"
+msgstr ""
+"Die Daten wurden erfolgreich gesendet. Falls Sie für einen Fehlerbericht auf Ihr Hardware-Profil zurückgreifen müssen, ist Ihre UUID\n"
+"%s\n"
+"und befindet sich in %s"
 
-#: data/content/relnotes.html:10
-msgid "Fedora 8 Release Notes"
-msgstr "Versionshinweise zu Fedora 8"
+#: smoltGui.py:166
+msgid "Smolt Privacy Policy"
+msgstr "Smolt-Datenschutzrichtlinie"
 
-#: data/content/relnotes.html:12
-msgid "Here are places you can find the Fedora 8 release notes.  If one location is unresponsive, try a different one."
-msgstr "Hier können Sie die Versionshinweise zu Fedora 8 finden. Sollte ein Server nicht erreichbar sein, versuchen Sie bitte einen anderen."
+#: smoltGui.py:209
+msgid "translator-credits"
+msgstr " "
 
-#: data/content/relnotes.html:15
-msgid "<a href=\"http://docs.fedoraproject.org/release-notes/\">http://docs.fedoraproject.org/release-notes/</a>"
-msgstr "<a href=\"http://docs.fedoraproject.org/release-notes/\">http://docs.fedoraproject.org/release-notes/</a>"
+#: smoltGui.py:210
+msgid "Fedora hardware profiler."
+msgstr "Fedora-Hardwareprofiler"
 
-#: data/content/relnotes.html:18
-msgid "Check any <a href=\"http://mirrors.fedoraproject.org/publiclist/Fedora/8/\">mirror</a> using a path similar to <em>http://URL/fedora/linux/releases/8/Fedora/i386/os/</em>.  The mirrors only carry the US English version, <em>RELEASE-NOTES-en_US.html</em>.  Note that each mirror may have a slightly different path, but should be consistent below the <em>8/</em> directory.  For example:"
-msgstr "Überprüfen Sie jeden <a href=\"http://mirrors.fedoraproject.org/publiclist/Fedora/8/\">Spiegel-Server</a> durch Benutzung eines Pfades wie <em>http://URL/fedora/linux/releases/8/Fedora/i386/os/</em>. Die Spiegel-Server bieten nur die englische Fassung der <em>RELEASE-NOTES-en_US.html</em>. Beachten Sie, dass jeder Spiegel-Server einen leicht abweichenden Pfad besitzen kann. Jedoch sollte er ab dem Verzeichnis <em>8/</em> überall einheitlich sein. Zum Beispiel:"
+#: smoltGui.py:211
+msgid "Copyright © 2007 Mike McGrath"
+msgstr "Copyright © 2007 Mike McGrath"
 
-#: data/content/relnotes.html:21
-msgid "ATRPMs mirror"
-msgstr "ATRPMs Spiegel-Server"
+#: smoltGui.py:213
+msgid ""
+"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+msgstr ""
+"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 
-#: data/content/relnotes.html:22
-msgid "RPMFind.net mirror"
-msgstr "RPMFind.net Spiegel-Server"
-
-#: data/content/sponsors.html:10
-msgid "Fedora Sponsors"
-msgstr "Fedora-Sponsoren"
-
-#: data/content/sponsors.html:11
-msgid "The Fedora Project is proud to have the following organizations as sponsors:"
-msgstr "Das Fedora Project ist stolz darauf, die folgenden Organisationen als Sponsoren zu haben:"
-
-#: data/content/verify.html:10
-msgid "Verify your ISO download."
-msgstr "ISO-Dateien überprüfen"
-
-#: data/content/verify.html:12
-msgid "Windows user?  Follow <a href=\"http://docs.fedoraproject.org/readme-burning-isos/en_US/sn-validating-files.html\">these instructions</a> instead."
-msgstr "Wenn Sie ein Windows-Benutzer sind, folgen Sie stattdessen <a href=\"http://docs.fedoraproject.org/readme-burning-isos/en_US/sn-validating-files.html\">dieser Anleitung</a>."
-
-#: data/content/verify.html:15
-msgid "Once you have downloaded an ISO, verify it for security and integrity.  If you downloaded your ISO via BitTorrent, the file has already been verified as part of the download process (just make sure that you got the torrent from <a href=\"http://torrent.fedoraproject.org/\">torrent.fedoraproject.org</a>).  Otherwise, to verify your ISO, start by downloading the proper SHA1SUM file into the same directory as the ISO:"
-msgstr "Nachdem Sie eine ISO-Datei heruntergeladen haben, sollten Sie diese im Hinblick auf die Sicherheit und Vollständigkeit überprüfen. Wenn die ISO-Datei über BitTorrent heruntergeladen worden ist, wurde sie bereits als Teil des Downloadprozesses überprüft. Sie müssen lediglich sicherstellen, dass Sie den Torrent von <a href=\"http://torrent.fedoraproject.org/\">torrent.fedoraproject.org</a> verwendet haben. Andernfalls müssen Sie, um die ISO-Datei zu überprüfen, die entsprechende SHA1SUM-Datei herunterladen, welche sich im gleichen Verzeichnis wie die ISO-Datei befindet:"
-
-#: data/content/verify.html:17
-msgid "Install DVD / Rescue CD"
-msgstr "DVD / Rettungs-CD"
-
-#: data/content/verify.html:23
-msgid "Live Media (both GNOME and KDE)"
-msgstr "Live-Medien (GNOME und KDE)"
-
-#: data/content/verify.html:29
-msgid "Next, import Fedora's GPG key:"
-msgstr "Importieren Sie danach den GPG-Schlüssel von Fedora:"
-
-#: data/content/verify.html:34
-msgid "Now, to verify that the SHA1SUM file is valid, make sure that it has a good signature from the key ID 4F2A6FD2."
-msgstr "Um zu überprüfen, ob die SHA1SUM-Datei gültig ist, müssen Sie sicherstellen, dass die Signatur von der Schlüssel-ID 4F2A6FD2 stammt."
-
-#: data/content/verify.html:38
-msgid "Finally, now that the SHA1SUM file has been verified, check that the ISO's checksum matches:"
-msgstr "Abschließend, nachdem die SHA1SUM-Datei überprüft worden ist, können Sie nun kontrollieren, ob die Prüfsumme der ISO-Datei stimmt:"
-
-#: data/content/verify.html:42
-msgid "If the output states that the file is valid, you're good to go!"
-msgstr "Wenn die Ausgabe ergibt, dass die Datei korrekt ist, können Sie loslegen!"
-
-#: data/templates/foot.html:9
-msgid "Copyright &copy; 2007 Red Hat, Inc. and others.  All Rights Reserved.  Please send any comments or corrections to the <a href=\"mailto:webmaster@fedoraproject.org\">websites team</a>."
-msgstr "Copyright &copy; 2007 Red Hat, Inc. und andere. Alle Rechte vorbehalten. Bitte senden Sie alle Kommentare oder Korrekturen an das <a href=\"mailto:webmaster@fedoraproject.org\">Webseiten-Team</a>."
-
-#: data/templates/foot.html:12
-msgid "The Fedora Project is maintained and driven by the community and sponsored by Red Hat.  This is a community maintained site.  Red Hat is not responsible for content."
-msgstr "Das Fedora Project wird durch die Community verwaltet und von Red Hat unterstützt. Diese Seite wird von der Community gepflegt, Red Hat ist für den Inhalt nicht verantwortlich."
-
-#: data/templates/foot.html:15
-msgid "Sponsors"
-msgstr "Sponsoren"
-
-#: data/templates/foot.html:16
-msgid "<a href=\"http://fedoraproject.org/wiki/Legal\">Legal</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/Legal\">Rechtliche Informationen</a>"
-
-#: data/templates/foot.html:17
-msgid "<a href=\"http://fedoraproject.org/wiki/Legal/TrademarkGuidelines\">Trademark Guidelines</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/Legal/TrademarkGuidelines\">Richtlinien zum Markenzeichen</a>"
-
-#: data/templates/head.html:7
-msgid "Fedora"
-msgstr "Fedora"
-
-#: data/templates/sidebar.html:8
+#: smolt.py:237
 #, python-format
-msgid "%s/static/images/banners/f8-banner-animation.gif"
-msgstr "%s/static/images/banners/f8-banner-animation.gif"
+msgid "Could not contact server: %s"
+msgstr "Konnte Server nicht kontaktieren: %s"
 
-#: data/templates/sidebar.html:8
-msgid "Fedora 8 Werewolf is here!"
-msgstr "Fedora 8 (Werewolf) ist da!"
+#: smolt.py:268
+msgid "Could not bind to dbus.  Is dbus running?"
+msgstr "Konnte nicht an dbus binden. Wird dbus ausgeführt?"
 
-#: data/templates/sidebar.html:11
-msgid "Navigation"
-msgstr "Navigation"
+#: smolt.py:274
+msgid "Could not connect to hal, is it running?"
+msgstr "Konnte Verbindung zu hal nicht herstellen. Wird hal ausgeführt?"
 
-#: data/templates/sidebar.html:13
-msgid "Home"
-msgstr "Homepage"
+#: smolt.py:274
+msgid "Run \"service haldaemon start\" as root"
+msgstr "Führen Sie \"service haldaemon start\" als \"root\" aus"
 
-#: data/templates/sidebar.html:14
-msgid "Get Fedora"
-msgstr "Herunterladen"
+#: smolt.py:310
+#: smolt.py:399
+#: smolt.py:460
+#: smolt.py:477
+#, python-format
+msgid "Error contacting Server: %s"
+msgstr "Fehler beim Kontaktieren des Servers: %s"
 
-#: data/templates/sidebar.html:15
-msgid "Join Fedora"
-msgstr "Mithelfen"
+#: smolt.py:408
+msgid "Wrong version, server incapable of handling your client"
+msgstr "Falsche Version, Server kann mit Ihren Client nicht umgehen"
 
-#: data/templates/sidebar.html:17
-msgid "Tools"
-msgstr "Werkzeuge"
+#: smolt.py:424
+msgid "Communication with server failed"
+msgstr "Kommunikation mit dem Server fehlgeschlagen"
 
-#: data/templates/sidebar.html:19
-msgid "Docs"
-msgstr "Dokumente"
+#: smolt.py:498
+msgid "Devices"
+msgstr "Geräte"
 
-#: data/templates/sidebar.html:19
-msgid "Fedora documentation."
-msgstr "Fedora-Dokumentation"
+#: smolt.py:509
+msgid "UUID"
+msgstr "UUID"
 
-#: data/templates/sidebar.html:20
-msgid "<a href=\"http://fedoraproject.org/wiki/\">Wiki</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/\">Wiki</a>"
+#: smolt.py:510
+msgid "OS"
+msgstr "OS"
 
-#: data/templates/sidebar.html:20
-msgid "Collaborative knowledge."
-msgstr "Gemeinschaftliches Wissen"
+#: smolt.py:511
+msgid "Default run level"
+msgstr "Standard-Runlevel"
 
-#: data/templates/sidebar.html:21
-msgid "Planet"
-msgstr "Planet"
-
-#: data/templates/sidebar.html:21
-msgid "The voices of the Fedora community."
-msgstr "Stimmen der Fedora-Community"
-
-#: data/templates/sidebar.html:22
-msgid "<a href=\"http://fedoraproject.org/wiki/Communicate\">Communicate</a>"
-msgstr "<a href=\"http://fedoraproject.org/wiki/Communicate\">Kontakt</a>"
-
-#: data/templates/sidebar.html:22
-msgid "Speak with Fedora."
-msgstr "Fedora kontaktieren"
-
-#: data/templates/sidebar.html:24
-msgid "Website Language"
+#: smolt.py:512
+msgid "Language"
 msgstr "Sprache"
+
+#: smolt.py:513
+msgid "Platform"
+msgstr "Plattform"
+
+#: smolt.py:514
+msgid "BogoMIPS"
+msgstr "BogoMIPS"
+
+#: smolt.py:515
+msgid "CPU Vendor"
+msgstr "CPU-Anbieter"
+
+#: smolt.py:516
+msgid "CPU Model"
+msgstr "CPU-Modell"
+
+#: smolt.py:517
+msgid "Number of CPUs"
+msgstr "Anzahl der CPUs"
+
+#: smolt.py:518
+msgid "CPU Speed"
+msgstr "CPU-Geschwindigkeit"
+
+#: smolt.py:519
+msgid "System Memory"
+msgstr "Systemspeicher"
+
+#: smolt.py:520
+msgid "System Swap"
+msgstr "System-Swap"
+
+#: smolt.py:521
+msgid "Vendor"
+msgstr "Anbieter"
+
+#: smolt.py:522
+msgid "System"
+msgstr "System"
+
+#: smolt.py:523
+msgid "Form factor"
+msgstr "Form-Faktor"
+
+#: smolt.py:524
+msgid "Kernel"
+msgstr "Kernel"
+
+#: smolt.py:525
+msgid "SELinux Enabled"
+msgstr "SELinux aktiviert"
+
+#: smolt.py:526
+msgid "SELinux Enforce"
+msgstr "SELinux erzwingen"
+
+#: smolt.py:959
+msgid "Unable to save UUID, continuing...\n"
+msgstr "UUID konnte nicht gespeichert werden, fahre weiter...\n"
+
+#: smolt.py:961
+msgid "Unable to determine UUID of system!\n"
+msgstr "System-UUID konnte nicht erkannt werden!\n"
+
+#: software.py:43
+msgid "Cannot Determine Runlevel"
+msgstr "Kann Runlevel nicht bestimmen"
+
+#: smoltFirstBoot.py:24
+#: smoltFirstBoot.py:34
+msgid "Hardware Profile"
+msgstr "Hardware-Profil"
+
+#: smoltFirstBoot.py:50
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr "Smolt ist ein Hardware-Profiler für das Fedora-Projekt. Das Einreichen Ihres Profil ist eine gute Möglichkeit, etwas an die Community zurückzugeben, da diese Informationen dazu beitragen, unsere Bemühungen auf populäre Hardware und Plattformen zu fokussieren.  Die Profile sind anonym. Das Senden Ihres Profils ermöglicht eine monatliche Aktualisierung."
+
+#: smoltFirstBoot.py:69
+msgid "_Send Profile"
+msgstr "Profil _senden"
+
+#: smoltFirstBoot.py:70
+msgid "D_o not send profile"
+msgstr "Pr_ofil nicht senden"
+
+#: smoltFirstBoot.py:88
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr "Sind Sie sicher, dass Sie das Profil nicht doch senden möchten? Das Senden Ihres Profils ist eine wertvolle Informationsquelle für unsere Entwicklung und kann bei der Problembehebung in Zusammenhang mit Ihrer Hardware behilflich sein."
+
+#: smoltFirstBoot.py:96
+msgid "_Reconsider sending"
+msgstr "Senden e_rneut überdenken"
+
+#: smoltFirstBoot.py:97
+msgid "_No, do not send."
+msgstr "_Nein, nicht senden."
+
+#: gui.py:56
+msgid "Label"
+msgstr "Label"
+
+#: gui.py:62
+msgid "Data"
+msgstr "Daten"
+
+#: gui.py:100
+msgid "Bus"
+msgstr "Bus"
+
+#: gui.py:107
+msgid "Driver"
+msgstr "Treiber"
+
+#: gui.py:114
+msgid "Type"
+msgstr "Typ"
+
+#: gui.py:121
+msgid "Description"
+msgstr "Beschreibung"
+
+#: privacypolicy.py:3
+msgid ""
+"Smolt will only send hardware and basic operating system information to the\n"
+"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"machine is the UUID.  As long as the submitter does not give out this UUID\n"
+"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"their profile from the database they need only run\n"
+"\n"
+"    smoltDeleteProfile\n"
+"\n"
+"The information sent to the smolt database server should be considered public\n"
+"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
+"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"we will be using smolt as leverage to gain better support for open source\n"
+"drivers and better support in general.\n"
+"\n"
+"IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
+"server first.  This is the only place IP addresses are being logged and they\n"
+"are kept on that server for a period of 4 weeks at which time log rotation\n"
+"removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
+"the smolt database.  These logs are private and will not be available to the\n"
+"general public.\n"
+"\n"
+"Users unhappy with this policy should simply not use smolt.  Users with\n"
+"questions about this policy should contact the Fedora Infrastructure Team at\n"
+"admin [at] fedoraproject.org  Also remember that users can delete their\n"
+"profiles at any time using \"smoltDeleteProfile\"\n"
+msgstr ""
+"Smolt sendet nur grundlegende Informationen über die Hardware und das\n"
+"Betriebssystem an den smolt-Server von Fedora (smoon). Die einzige\n"
+"Verbindung zwischen der Datenbank und dem Rechner des Benutzers stellt\n"
+"die UUID dar. Solange diese UUID nicht vom Benutzer herausgegeben wird,\n"
+"bleiben die übertragenen Daten anonym. Möchte der Benutzer irgendwann mal\n"
+"das Profil aus der Datenbank entfernen, kann er dies mit folgendem\n"
+"Befehl tun:\n"
+"\n"
+"    smoltDeleteProfile\n"
+"\n"
+"Die an den Smolt-Datenbankserver gesendeten Informationen sind öffentlich\n"
+"zugänglich, wodurch jeder die Statistiken und Daten einsehen kann und\n"
+"Rechnerprofile teilen kann. Ziel ist es, dass Hardware-Verkäufer und Dritte\n"
+"auf Smolt aufmerksam werden. Jedoch werden diese Informationen nicht nur\n"
+"mit Dritten geteilt: Wir verwenden Smolt, um die Unterstützung für Open\n"
+"Source-Treiber und die Hardware-Unterstützung im Allgemeinen zu\n"
+"verbessern.\n"
+"\n"
+"IP-Protokollierung: Bei der Smolt-Installation von Fedora läuft zuerst jeglicher\n"
+"Internetverkehr über einen Proxy-Server. Nur an diesem Ort werden\n"
+"IP-Adressen protokolliert, wobei die Protokolle alle vier Wochen gelöscht\n"
+"werden. Das Fedora-Projekt sammelt keine IP-Adressen in der Smolt-Datenbank.\n"
+"Diese Protokolle sind geheim und nicht öffentlich zugänglich.\n"
+"\n"
+"Wenn Sie mit diesen Richtlinien nicht einverstanden sind, sollten Sie Smolt nicht\n"
+"verwenden. Falls Sie Fragen zur dieser Richtlinie haben, können Sie sich an das\n"
+"Fedora Infrastructure-Team (admin [at] fedoraproject.org) wenden. Bitte\n"
+"beachten Sie, dass Profile jederzeit mit dem Befehl \"smoltDeleteProfile\"\n"
+"gelöscht werden können.\n"
+
