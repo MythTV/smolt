@@ -1,6 +1,7 @@
 #!/usr/bin/python
+__requires__='TurboGears[future]'
 import pkg_resources
-pkg_resources.require("TurboGears")
+#pkg_resources.require("TurboGears")
 
 from turbogears import update_config, start_server
 import cherrypy
