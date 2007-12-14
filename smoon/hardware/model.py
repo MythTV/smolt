@@ -7,21 +7,22 @@ from mx import DateTime
 
 ctx = session.context
 
-computer_logical_devices = Table('device', metadata, 
-                                 Column("id", INT, autoincrement=True,
-                                        nullable=False, primary_key=True),
-                                 Column("description", VARCHAR(128),
-                                        nullable=False),
-                                 Column("bus", TEXT),
-                                 Column("driver", TEXT),
-                                 Column("class", VARCHAR(24),
-                                        ForeignKey("classes.cls"),
-                                        key="cls"),
-                                 Column("date_added", DATETIME),
-                                 Column("device_id", VARCHAR(16)),
-                                 Column("vendor_id", INT),
-                                 Column("subsys_device_id", INT),
-                                 Column("subsys_vendor_id", INT))
+computer_logical_devices = \
+       Table('device', metadata, 
+             Column("id", INT, autoincrement=True,
+                    nullable=False, primary_key=True),
+             Column("description", VARCHAR(128),
+                    nullable=False),
+             Column("bus", TEXT),
+             Column("driver", TEXT),
+             Column("class", VARCHAR(24),
+                    ForeignKey("classes.cls"),
+                    key="cls"),
+             Column("date_added", DATETIME),
+             Column("device_id", VARCHAR(16)),
+             Column("vendor_id", INT),
+             Column("subsys_device_id", INT),
+             Column("subsys_vendor_id", INT))
 
 host_links = Table('host_links', metadata, 
                    Column("id", INT, autoincrement=True, nullable=False, primary_key=True),
@@ -232,3 +233,5 @@ mapper(Language, languages, order_by=desc(languages.c.cnt))
 mapper(TotalList, totallist, order_by=desc(totallist.c.count))
 mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
 
+__all__ = ['ctx', 'Host', 'ComputerLogicalDevice', 'HostLink', 'FasLink', 'HardwareClass', 'HardwareByClass', 'Arch', 'OS',
+           'NumCPUs', 'Vendor', 'System', 'CPUVendor', 'KernelVersion', 'FormFactor', 'Language', 'Foo', 'TotalList', 'UniqueList']

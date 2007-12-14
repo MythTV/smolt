@@ -1,6 +1,6 @@
 import urllib
 import time
-import datetime
+from datetime import datetime
 import sys
 
 from Crypto.Cipher import XOR
@@ -15,6 +15,7 @@ from turbogears import scheduler
 from turbogears import redirect
 from turbogears import widgets
 from turbogears import flash
+from turbogears.database import session
 from turbogears.widgets import Tabber, JumpMenu
 from ratingwidget import SingleRatingWidget, RatingWidget
 
@@ -100,7 +101,7 @@ class Root(controllers.RootController):
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
 
         try:
-            host_object = Query(Host).selectone_by(uuid=UUID)
+            host_object = ctx.current.query(Host).selectone_by(uuid=UUID)
             #ctx.current.refresh(host_object)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % UUID)
@@ -154,7 +155,7 @@ class Root(controllers.RootController):
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
-            host_object = Query(Host).selectone_by(uuid=UUID)
+            host_object = ctx.current.query(Host).selectone_by(uuid=UUID)
             #ctx.current.refresh(host_object)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % UUID)
@@ -185,7 +186,7 @@ class Root(controllers.RootController):
     @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
     def share(self, sid=''):
         try:
-            host_object = Query(Host).get(sid)
+            host_object = ctx.current.query(Host).get(sid)
         except:
             raise ValueError("Critical: share ID Not Found - %s" % sid)
         devices = {}
@@ -201,7 +202,7 @@ class Root(controllers.RootController):
     @exception_handler(error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, UUID=''):
         try:
-            host = Query(Host).selectone_by(uuid=UUID)
+            host = ctx.current.query(Host).selectone_by(uuid=UUID)
         except:
             raise ValueError("Critical: UUID does not exist %s " % UUID)
         try:
@@ -233,7 +234,7 @@ class Root(controllers.RootController):
     @identity.require(identity.not_anonymous())
     def my_hosts(self):
         try:
-            link_sql = Query(FasLink).selectone_by(user_name=identity.current.user_name)
+            link_sql = ctx.current.query(FasLink).selectone_by(user_name=identity.current.user_name)
         except InvalidRequestError:
             link_sql = []
         return dict(link_sql=link_sql)
@@ -242,7 +243,7 @@ class Root(controllers.RootController):
     @identity.require(identity.not_anonymous())
     def link(self, UUID):
         try:
-            host_sql = Query(Host).selectone_by(uuid=UUID)
+            host_sql = ctx.current.query(Host).selectone_by(uuid=UUID)
         except InvalidRequestError:
             raise ValueError("Critical: Your UUID did not exist.")
         
@@ -289,7 +290,7 @@ class Root(controllers.RootController):
 
         uuid = UUID.strip()
         try:
-            host_sql = Query(Host).selectone_by(uuid=uuid)
+            host_sql = ctx.current.query(Host).selectone_by(uuid=uuid)
         except InvalidRequestError:
             host_sql = Host()
             host_sql.uuid = uuid
@@ -314,7 +315,7 @@ class Root(controllers.RootController):
         host_sql.formfactor = formfactor.strip()
         host_sql.selinux_enabled = bool(selinux_enabled)
         host_sql.selinux_enforce = selinux_enforce.strip()
-        host_sql.last_modified = DateTime.now()
+        host_sql.last_modified = datetime.now()
         
         ctx.current.flush()
         return dict()
@@ -325,7 +326,7 @@ class Root(controllers.RootController):
         import time
         from mx import DateTime
         try:
-            host = Query(Host).selectone_by(uuid=UUID)
+            host = ctx.current.query(Host).selectone_by(uuid=UUID)
         except InvalidRequestError:
             raise ValueError("Critical: UUID not found - %s" % UUID)
         # Read in device id's from the device bulk script
@@ -365,7 +366,7 @@ class Root(controllers.RootController):
 #            if device_id and vendor_id:
 #                description = '%s:%s:%s:%s' % (vendor_id, device_id, subsys_device_id, subsys_vendor_id)
             try:
-                device_sql = Query(ComputerLogicalDevice)\
+                device_sql = ctx.current.query(ComputerLogicalDevice)\
                                 .selectone_by(device_id=device_id,
                                               vendor_id=vendor_id,
                                               subsys_vendor_id=subsys_vendor_id,
@@ -384,7 +385,7 @@ class Root(controllers.RootController):
                     device_sql.description = description
                     
                     try: 
-                        class_sql = Query(HardwareClass).selectone_by(cls=cls)
+                        class_sql = ctx.current.query(HardwareClass).selectone_by(cls=cls)
                         device_sql.hardware_class = class_sql
                     except InvalidRequestError:
                         class_sql = HardwareClass()
@@ -420,7 +421,7 @@ class Root(controllers.RootController):
         host_dict = simplejson.loads(host)
         
         try:
-            host_sql = Query(Host).selectone_by(uuid=uuid)
+            host_sql = ctx.current.query(Host).selectone_by(uuid=uuid)
         except InvalidRequestError:
             host_sql = Host()
         host_sql.uuid = host_dict["uuid"]
@@ -462,7 +463,7 @@ class Root(controllers.RootController):
             if subsys_device_id is None:
                 subsys_device_id = 0
             try:
-                device_sql = Query(ComputerLogicalDevice)\
+                device_sql = ctx.current.query(ComputerLogicalDevice)\
                     .selectone_by(device_id=device_id,
                                   vendor_id=vendor_id,
                                   subsys_vendor_id=subsys_vendor_id,
@@ -493,7 +494,7 @@ class Root(controllers.RootController):
                 d = device_sql
                 
                 try: 
-                    class_sql = Query(HardwareClass).selectone_by(cls=cls)
+                    class_sql = ctx.current.query(HardwareClass).selectone_by(cls=cls)
                     device_sql.hardware_class = class_sql
                 except InvalidRequestError:
                     class_sql = HardwareClass()
@@ -509,7 +510,7 @@ class Root(controllers.RootController):
                 host_link.device = device_sql
             
         for device_sql_id in orig_devices:
-            bad_host_link = Query(HostLink)\
+            bad_host_link = ctx.current.query(HostLink)\
                 .select_by(device_id=device_sql_id,
                            host_link_id=host_sql.id)
             if bad_host_link and len(bad_host_link):
@@ -532,7 +533,7 @@ class Root(controllers.RootController):
             sep = id.find("_")
             if sep == -1:
                 host_id = id[4:]
-                host = Query(Host).selectone_by(uuid=host_id)
+                host = ctx.current.query(Host).selectone_by(uuid=host_id)
                 host.rating = int(rating)
                 ctx.current.flush()
                 return dict()
@@ -541,7 +542,7 @@ class Root(controllers.RootController):
             id = id[sep+1:]
             if id.startswith("Device"):
                 device_id = int(id[6:])
-                host = Query(Host).selectone_by(uuid=host_id)
+                host = ctx.current.query(Host).selectone_by(uuid=host_id)
                 for device in host.devices:
                     if device.device_id == device_id:
                         device.rating = int(rating)
