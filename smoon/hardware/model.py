@@ -25,15 +25,25 @@ computer_logical_devices = \
              Column("subsys_vendor_id", INT))
 
 host_links = Table('host_links', metadata, 
-                   Column("id", INT, autoincrement=True, nullable=False, primary_key=True),
-                   Column('host_link_id', INT, ForeignKey("host.id"),
+                   Column("id", INT, 
+                          autoincrement=True, 
+                          nullable=False, 
+                          primary_key=True),
+                   Column('host_link_id', INT, 
+                          ForeignKey("host.id"),
                           nullable=False),
-                   Column("device_id", INT, ForeignKey("device.id")),
+                   Column("device_id", INT, 
+                          ForeignKey("device.id")),
                    Column("rating", INT))
 
 hosts = Table('host', metadata,
-              Column("id", INT, autoincrement=True, nullable=False, primary_key=True),
-              Column('u_u_id', VARCHAR(36), nullable=False, unique=True),
+              Column("id", INT, 
+                     autoincrement=True, 
+                     nullable=False, 
+                     primary_key=True),
+              Column('u_u_id', VARCHAR(36), 
+                     nullable=False, 
+                     unique=True),
               Column('o_s', TEXT),
               Column('platform', TEXT),
               Column('bogomips', DECIMAL),
@@ -49,24 +59,31 @@ hosts = Table('host', metadata,
               Column('default_runlevel', INT),
               Column('kernel_version', TEXT),
               Column('formfactor', TEXT),
-              Column('last_modified', DATETIME, default=0, nullable=False),
+              Column('last_modified', DATETIME, 
+                     default=0, nullable=False),
               Column('rating', INT, nullable=False, default=0),
               Column('selinux_enabled', BOOLEAN, nullable=False),
               Column('selinux_enforce', TEXT))
 
 fas_links = Table('fas_link', metadata,
-                  Column("id", INT, autoincrement=True, nullable=False,
-                         primary_key=True),
-                  Column('u_u_id', VARCHAR(36), ForeignKey("host.u_u_id"),
+                  Column("id", INT, autoincrement=True, 
+                         nullable=False, primary_key=True),
+                  Column('u_u_id', VARCHAR(36), 
+                         ForeignKey("host.u_u_id"),
                          nullable=False),
-                  Column("user_name", VARCHAR(255), nullable=False))
+                  Column("user_name", VARCHAR(255), 
+                         nullable=False))
 
 hardware_classes = Table('classes', metadata,
-                         Column("class", VARCHAR(24), nullable=False, primary_key=True, key="cls"),
-                         Column("description", TEXT, key="class_description"))
+                         Column("class", VARCHAR(24), 
+                                nullable=False, 
+                                primary_key=True, key="cls"),
+                         Column("description", TEXT, 
+                                key="class_description"))
 
 hardware_by_class = Table("CLASS", metadata,
-                          Column('device_id', VARCHAR(16), primary_key=True),
+                          Column('device_id', VARCHAR(16), 
+                                 primary_key=True),
                           Column('description', VARCHAR(128)),
                           Column('bus', TEXT),
                           Column("driver", TEXT),
@@ -84,40 +101,52 @@ oses = Table("OS", metadata,
                   Column("o_s", TEXT, primary_key=True, key="os"),
                   Column("cnt", INT))
 runlevels = Table("RUNLEVEL", metadata,
-                      Column("default_runlevel", INT, primary_key=True, key="runlevel"),
+                      Column("default_runlevel", INT, 
+                             primary_key=True, key="runlevel"),
                       Column("cnt", INT))
 num_cpus = Table("NUM_CPUS", metadata,
-                     Column("num_cp_us", INT, primary_key=True, key="num_cpus"),
+                     Column("num_cp_us", INT, 
+                            primary_key=True, 
+                            key="num_cpus"),
                      Column("cnt", INT))
 vendors = Table("VENDOR", metadata,
-                    Column("vendor", TEXT, primary_key=True),
+                    Column("vendor", TEXT, 
+                           primary_key=True),
                     Column("cnt", INT))
 systems = Table("SYSTEM", metadata,
-                    Column("system", TEXT, primary_key=True),
+                    Column("system", TEXT, 
+                           primary_key=True),
                     Column("cnt", INT))
 cpu_vendors = Table("CPU_VENDOR", metadata,
-                    Column("cpu_vendor", TEXT, primary_key=True),
+                    Column("cpu_vendor", TEXT, 
+                           primary_key=True),
                     Column("cnt", INT))
 kernel_versions = Table("KERNEL_VERSION", metadata,
-                            Column("kernel_version", TEXT, primary_key=True),
+                            Column("kernel_version", TEXT, 
+                                   primary_key=True),
                             Column("cnt", INT))
 formfactors = Table("FORMFACTOR", metadata,
-                         Column("formfactor", TEXT, primary_key=True),
+                         Column("formfactor", TEXT, 
+                                primary_key=True),
                          Column("cnt", INT))
 languages = Table("LANGUAGE", metadata,
-                      Column('language', TEXT, primary_key=True),
+                      Column('language', TEXT, 
+                             primary_key=True),
                       Column('cnt', INT))
 
 totallist = Table("TOTALLIST", metadata,
-                  Column('description', TEXT, primary_key=True),
+                  Column('description', TEXT, 
+                         primary_key=True),
                   Column('cnt', INT, key="count"))
 
 uniquelist = Table("UNIQUELIST", metadata,
-                   Column('description', TEXT, primary_key=True),
+                   Column('description', TEXT, 
+                          primary_key=True),
                    Column('cnt', INT, key='count'))
 
 class Host(object):
-    def __init__(self, selinux_enabled=False, rating=0, last_modified=DateTime.now()):
+    def __init__(self, selinux_enabled=False, 
+                 rating=0, last_modified=DateTime.now()):
         self.selinux_enabled = selinux_enabled
         self.rating = rating
         self.last_modified = last_modified
@@ -182,7 +211,8 @@ def mapper(*args, **kw):
 
 
 mapper(Foo, hosts,
-       properties = {'clds': relation(ComputerLogicalDevice, secondary=host_links)})
+       properties = {'clds': relation(ComputerLogicalDevice, 
+                                      secondary=host_links)})
 
 mapper(Host, hosts,
        properties = {
@@ -233,5 +263,7 @@ mapper(Language, languages, order_by=desc(languages.c.cnt))
 mapper(TotalList, totallist, order_by=desc(totallist.c.count))
 mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
 
-__all__ = ['ctx', 'Host', 'ComputerLogicalDevice', 'HostLink', 'FasLink', 'HardwareClass', 'HardwareByClass', 'Arch', 'OS',
-           'NumCPUs', 'Vendor', 'System', 'CPUVendor', 'KernelVersion', 'FormFactor', 'Language', 'Foo', 'TotalList', 'UniqueList']
+__all__ = ['ctx', 'Host', 'ComputerLogicalDevice', 'HostLink', 
+           'FasLink', 'HardwareClass', 'HardwareByClass', 'Arch', 'OS',
+           'NumCPUs', 'Vendor', 'System', 'CPUVendor', 'KernelVersion', 
+           'FormFactor', 'Language', 'Foo', 'TotalList', 'UniqueList']
