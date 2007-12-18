@@ -1,5 +1,6 @@
 from datetime import datetime
 from sqlalchemy import *
+from sqlalchemy.orm import *
 from turbogears.database import metadata, session
 from sqlalchemy.ext.assignmapper import assign_mapper
 from turbogears import identity
@@ -211,7 +212,7 @@ def mapper(*args, **kw):
 
 
 mapper(Foo, hosts,
-       properties = {'clds': relation(ComputerLogicalDevice, 
+       properties = {'clds': relation(ComputerLogicalDevice, \
                                       secondary=host_links)})
 
 mapper(Host, hosts,
@@ -262,8 +263,3 @@ mapper(FormFactor, formfactors, order_by=desc(formfactors.c.cnt))
 mapper(Language, languages, order_by=desc(languages.c.cnt))
 mapper(TotalList, totallist, order_by=desc(totallist.c.count))
 mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
-
-__all__ = ['ctx', 'Host', 'ComputerLogicalDevice', 'HostLink', 
-           'FasLink', 'HardwareClass', 'HardwareByClass', 'Arch', 'OS',
-           'NumCPUs', 'Vendor', 'System', 'CPUVendor', 'KernelVersion', 
-           'FormFactor', 'Language', 'Foo', 'TotalList', 'UniqueList']

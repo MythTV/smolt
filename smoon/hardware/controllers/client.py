@@ -1,98 +1,23 @@
-import urllib
-import time
-from datetime import datetime
-import sys
-
-from Crypto.Cipher import XOR
-from cherrypy import request, response
-from mx import DateTime
 import simplejson
-from sqlalchemy import *
-from sqlalchemy.exceptions import InvalidRequestError
-from turbogears import controllers, expose, identity
+
+from turbogears import expose
 from turbogears import exception_handler
-from turbogears import scheduler
-from turbogears import redirect
-from turbogears import widgets
-from turbogears import flash
-from turbogears.database import session
-from turbogears.widgets import Tabber, JumpMenu
-from ratingwidget import SingleRatingWidget, RatingWidget
+from sqlalchemy.exceptions import InvalidRequestError
 
-from hardware.model import *
-from hwdata import DeviceMap
-from smoonexceptions import NotCachedException
+from hardware import util
+from hardware.ratingwidget import *
+from hardware.controllers.error import Error
+from hardware.model import ctx, Host, ComputerLogicalDevice
+from hardware.hwdata import DeviceMap
 
-import logging
-log = logging.getLogger("smoon")
-
-# This is such a bad idea, yet here it is.
-CRYPTPASS = 'PleaseChangeMe11'
-currentSmoltProtocol = '0.97' 
-
-def getDeviceWikiLink(device):
-    return '/wiki/%s/%04x/%04x/%04x/%04x' % (device.bus,
-                                             int(device.vendor_id or 0),
-                                             int(device.device_id or 0),
-                                             int(device.subsys_vendor_id or 0),
-                                             int(device.subsys_device_id or 0))
-
-def getHostWikiLink(host):
-    return '/wiki/System/%s/%s' % (host.vendor, host.system)
-
-class Root(controllers.RootController):
-    def __init__(self):
-        controllers.RootController.__init__(self)
-
-        
-    @expose(template="hardware.templates.welcome")
-    def index(self):
-        import time
-        # log.debug("Happy TurboGears Controller Responding For Duty")
-        return dict(now=time.ctime())
-
-
-    @expose(template="hardware.templates.login")
-    def login(self, forward_url=None, previous_url=None, *args, **kw):
-
-        if not identity.current.anonymous \
-            and identity.was_login_attempted() \
-            and not identity.get_identity_errors():
-            raise redirect(forward_url)
-
-        forward_url=None
-        previous_url= request.path
-
-        if identity.was_login_attempted():
-            msg=_("The credentials you supplied were not correct or "
-                   "did not grant access to this resource.")
-        elif identity.get_identity_errors():
-            msg=_("You must provide your credentials before accessing "
-                   "this resource.")
-        else:
-            msg=_("Please log in.")
-            forward_url= request.headers.get("Referer", "/")
-
-        response.status=403
-        return dict(message=msg, previous_url=previous_url, logging_in=True,
-                    original_parameters=request.params,
-                    forward_url=forward_url)
-
-
-    @expose(template="hardware.templates.error")
-    def error_client(self, tg_exceptions=None):
-        ''' Exception handler, Sends messages back to the client'''
-        message = 'ServerMessage: %s' % tg_exceptions
-        return dict(handling_value=True,exception=message)
-
-    @expose(template="hardware.templates.error")
-    def error_web(self, tg_exceptions=None):
-        ''' Exception handler, Sends messages back to the client'''
-        message = 'Error: %s' % tg_exceptions
-        return dict(handling_value=True,exception=message)
+class Client(object):
+    error = Error()
+    def __init__(self, smolt_protocol, token):
+        self.smolt_protocol = smolt_protocol
+        self.token = token
 
     @expose(template="hardware.templates.show")
-    @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
+#    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show(self, UUID=''):
         try:
             uuid = u'%s' % UUID.strip()
@@ -131,7 +56,7 @@ class Root(controllers.RootController):
             #There will be no dups in the database
             devices[dev.device_id] = dict(id = dev.device_id,
                                           name = device_name,
-                                          link = getDeviceWikiLink(device),
+                                          link = util.getDeviceWikiLink(device),
                                           cls = device.cls,
                                           rating = dev.rating,
                                           )
@@ -140,14 +65,14 @@ class Root(controllers.RootController):
         devices.sort(key=lambda x: x.get('cls'))
 
         return dict(host_object = host_object, 
-                    host_link = getHostWikiLink(host_object),
+                    host_link = util.getHostWikiLink(host_object),
                     devices=devices,
                     ratingwidget=SingleRatingWidget(),
                     )
 
         
     @expose(template="hardware.templates.showall")
-    @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show_all(self, UUID=''):
         try:
             uuid = u'%s' % UUID.strip()
@@ -171,19 +96,14 @@ class Root(controllers.RootController):
         devices.sort(key=lambda x: x[0].cls)
 
         return dict(host_object=host_object,
-                    host_link = getHostWikiLink(host_object),
+                    host_link = util.getHostWikiLink(host_object),
                     devices=devices, ven=ven,
                     ratingwidget=SingleRatingWidget(),
-                    getDeviceWikiLink = getDeviceWikiLink,
+                    getDeviceWikiLink = util.getDeviceWikiLink,
                     )
 
-    @expose()
-    def time(self):
-        import time
-        return time.ctime()
-
     @expose(template="hardware.templates.share")
-    @exception_handler(error_web,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     def share(self, sid=''):
         try:
             host_object = ctx.current.query(Host).get(sid)
@@ -199,7 +119,7 @@ class Root(controllers.RootController):
                     ven=ven, rating_options=rating_options)
 
     @expose(template="hardware.templates.delete")
-    @exception_handler(error_client,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, UUID=''):
         try:
             host = ctx.current.query(Host).selectone_by(uuid=UUID)
@@ -212,60 +132,8 @@ class Root(controllers.RootController):
             raise ValueError("Critical: Could not delete UUID - Please contact the smolt development team")
         raise ValueError('Success: UUID Removed')
 
-    @expose(template="hardware.templates.token", allow_json=True)
-    def token(self, UUID):
-        crypt = XOR.new(CRYPTPASS)
-        str = "%s\n%s " % ( int(time.mktime(datetime.now().timetuple())), UUID)
-        # I hate obfuscation.  Its all I've got
-        token = crypt.encrypt(str)
-        return dict(token=urllib.quote(token),
-                    prefered_protocol=".91")
-
-    @expose("json")
-    def token_json(self, uuid):
-        crypt = XOR.new(CRYPTPASS)
-        str = "%s\n%s " % ( int(time.mktime(datetime.now().timetuple())), uuid)
-        # I hate obfuscation.  Its all I've got
-        token = crypt.encrypt(str)
-        return dict(token=urllib.quote(token),
-                    prefered_protocol=currentSmoltProtocol)
-
-    @expose(template="hardware.templates.my_hosts")
-    @identity.require(identity.not_anonymous())
-    def my_hosts(self):
-        try:
-            link_sql = ctx.current.query(FasLink).selectone_by(user_name=identity.current.user_name)
-        except InvalidRequestError:
-            link_sql = []
-        return dict(link_sql=link_sql)
-
-    @expose(template="hardware.templates.link")
-    @identity.require(identity.not_anonymous())
-    def link(self, UUID):
-        try:
-            host_sql = ctx.current.query(Host).selectone_by(uuid=UUID)
-        except InvalidRequestError:
-            raise ValueError("Critical: Your UUID did not exist.")
-        
-        if host_sql.fas_account == None:
-            link_sql = FasLink(uuid=UUID, user_name=identity.current.user_name)
-            ctx.current.flush()
-        return dict()
-    
-    def check_token(self, token, uuid):
-        token = urllib.unquote(token)
-        crypt = XOR.new(CRYPTPASS)
-        token_plain = crypt.decrypt(token).split('\n')
-        token_time = int(token_plain[0])
-        token_uuid = token_plain[1]
-        current_time = int(time.mktime(datetime.now().timetuple()))
-        if current_time - token_time > 20:
-            raise ValueError("Critical [20]: Invalid Token")
-        if uuid.strip() != token_uuid.strip():
-            raise ValueError("Critical [s]: Invalid Token")
-
     @expose()
-    @exception_handler(error_client,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def add(self, UUID, OS, platform, bogomips, systemMemory, \
             systemSwap, CPUVendor, CPUModel, numCPUs, CPUSpeed, language, \
             defaultRunlevel, vendor, system, token, lsbRelease='Deprecated', \
@@ -286,7 +154,7 @@ class Root(controllers.RootController):
         if smoltProtocol > ".91":
             raise ValueError("Woah there marty mcfly, you got to go back to 1955!")
         
-        self.check_token(token, UUID)
+        self.token.check_token(token, UUID)
 
         uuid = UUID.strip()
         try:
@@ -321,8 +189,8 @@ class Root(controllers.RootController):
         return dict()
 
     @expose()
-    @exception_handler(error_client, rules="isinstance(tg_exceptions,ValueError)")
-    def addDevices(self, UUID, Devices):
+    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
+    def add_devices(self, UUID, Devices):
         import time
         from mx import DateTime
         try:
@@ -409,14 +277,14 @@ class Root(controllers.RootController):
         return dict()
     
     @expose()
-    @exception_handler(error_client, rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
-        if smolt_protocol < currentSmoltProtocol:
+        if smolt_protocol < self.smolt_protocol:
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
-        if smolt_protocol > currentSmoltProtocol:
+        if smolt_protocol > self.smolt_protocol:
             raise ValueError("Woah there marty mcfly, you got to go back to 1955!")
         
-        self.check_token(token, uuid)
+        self.token.check_token(token, uuid)
 
         host_dict = simplejson.loads(host)
         
@@ -518,11 +386,7 @@ class Root(controllers.RootController):
         ctx.current.flush()
         
         return dict()
-    
-    @expose(template="hardware.templates.not_loaded")
-    def unavailable(self, tg_exceptions=None):
-        return dict()
-        
+
     @expose()
     def rate_object(self, *args, **kwargs):
         #log.info('args = %s' % str(args))
@@ -549,3 +413,4 @@ class Root(controllers.RootController):
                         ctx.current.flush([host, device])
                         return dict()
         return dict()
+
