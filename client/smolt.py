@@ -419,7 +419,7 @@ class Hardware:
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         #first find out the server desired protocol
         try:
-            token = grabber.urlopen(urljoin(smoonURL + "/", '/token_json?uuid=%s' % self.host.UUID, False))
+            token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/token_json?uuid=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
             try:
                 token = grabber.urlopen(urljoin(smoonURL + "/", '/token?UUID=%s' % self.host.UUID, False))
@@ -480,7 +480,7 @@ class Hardware:
                                 ('Content-length', '%i' % len(send_host_str)),
                                 ('Content-type', 'application/x-www-form-urlencoded')))
             if prefered_protocol == '0.97':
-                o = grabber.urlopen(urljoin(smoonURL + "/", "/add_json", False), data=send_host_str,
+                o = grabber.urlopen(urljoin(smoonURL + "/", "/client/add_json", False), data=send_host_str,
                                     http_headers=(
                                 ('Content-length', '%i' % len(send_host_str)),
                                 ('Content-type', 'application/x-www-form-urlencoded')))

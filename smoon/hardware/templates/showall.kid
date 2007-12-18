@@ -36,7 +36,7 @@ ${ratingwidget.display(update="rating",
 	    <img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>
 	    <img src="/static/images/rating/r4.gif"/> Works, but required aditional configuration<br/>
 	    <img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
-	    <p><a href="show?UUID=${host_object.uuid}">Show basic Information</a></p>
+	    <p><a href="/client/show?UUID=${host_object.uuid}">Show basic Information</a></p>
 	</div>
         <table id="system_show">
        	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>

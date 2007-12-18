@@ -28,7 +28,7 @@ class Root(controllers.RootController):
     #usage patterns
     show = client.show
     show_all = client.show_all
-    share = client.share
+#    share = client.share
     delete = client.delete
     add = client.add
     addDevices = client.add_devices

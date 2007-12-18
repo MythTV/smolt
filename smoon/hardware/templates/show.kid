@@ -19,7 +19,7 @@ ${ratingwidget.display(update="rating",
 <body>
 <!--
 	<div class='share' id='share' name='share'>
-		<a href='share?sid=${host_object.id}'>Share my computer!</a>
+		<a href='/client/share?sid=${host_object.id}'>Share my computer!</a>
 	</div>
 -->
         <h3>${host_object.uuid}</h3>
@@ -31,7 +31,7 @@ ${ratingwidget.display(update="rating",
 	    <img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>
 	    <img src="/static/images/rating/r4.gif"/> Works, but required aditional configuration<br/>
 	    <img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
-	    <p><a href="show_all?UUID=${host_object.uuid}">Show all Information</a></p>
+	    <p><a href="/client/show_all?UUID=${host_object.uuid}">Show all Information</a></p>
 	</div>
         <table id="system_show">
        	    <tr><th>Overall Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>

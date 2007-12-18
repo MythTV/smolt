@@ -4,10 +4,10 @@ from turbogears import expose
 from turbogears import exception_handler
 from sqlalchemy.exceptions import InvalidRequestError
 
-from hardware import util
+from hardware.util import *
 from hardware.ratingwidget import *
 from hardware.controllers.error import Error
-from hardware.model import ctx, Host, ComputerLogicalDevice
+from hardware.model import *
 from hardware.hwdata import DeviceMap
 
 class Client(object):
@@ -56,7 +56,7 @@ class Client(object):
             #There will be no dups in the database
             devices[dev.device_id] = dict(id = dev.device_id,
                                           name = device_name,
-                                          link = util.getDeviceWikiLink(device),
+                                          link = getDeviceWikiLink(device),
                                           cls = device.cls,
                                           rating = dev.rating,
                                           )
@@ -65,14 +65,14 @@ class Client(object):
         devices.sort(key=lambda x: x.get('cls'))
 
         return dict(host_object = host_object, 
-                    host_link = util.getHostWikiLink(host_object),
+                    host_link = getHostWikiLink(host_object),
                     devices=devices,
                     ratingwidget=SingleRatingWidget(),
                     )
 
         
     @expose(template="hardware.templates.showall")
-    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
+#    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show_all(self, UUID=''):
         try:
             uuid = u'%s' % UUID.strip()
@@ -96,30 +96,30 @@ class Client(object):
         devices.sort(key=lambda x: x[0].cls)
 
         return dict(host_object=host_object,
-                    host_link = util.getHostWikiLink(host_object),
+                    host_link = getHostWikiLink(host_object),
                     devices=devices, ven=ven,
                     ratingwidget=SingleRatingWidget(),
-                    getDeviceWikiLink = util.getDeviceWikiLink,
+                    getDeviceWikiLink = getDeviceWikiLink,
                     )
 
-    @expose(template="hardware.templates.share")
-    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
-    def share(self, sid=''):
-        try:
-            host_object = ctx.current.query(Host).get(sid)
-        except:
-            raise ValueError("Critical: share ID Not Found - %s" % sid)
-        devices = {}
-        for dev in host_object.devices:
-            #This is to prevent duplicate devices showing up, in the future,
-            #There will be no dups in the database
-            devices[dev.device_id] = (dev.device, dev.rating)
-        ven = DeviceMap('pci')
-        return dict(host_object=host_object, devices=devices, \
-                    ven=ven, rating_options=rating_options)
+#    @expose(template="hardware.templates.share")
+##    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
+#    def share(self, sid=''):
+#        try:
+#            host_object = ctx.current.query(Host).get(sid)
+#        except:
+#            raise ValueError("Critical: share ID Not Found - %s" % sid)
+#        devices = {}
+#        for dev in host_object.devices:
+#            #This is to prevent duplicate devices showing up, in the future,
+#            #There will be no dups in the database
+#            devices[dev.device_id] = (dev.device, dev.rating)
+#        ven = DeviceMap('pci')
+#        return dict(host_object=host_object, devices=devices, \
+#                    ven=ven, rating_options=rating_options)
 
     @expose(template="hardware.templates.delete")
-    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
+#    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, UUID=''):
         try:
             host = ctx.current.query(Host).selectone_by(uuid=UUID)
@@ -133,7 +133,7 @@ class Client(object):
         raise ValueError('Success: UUID Removed')
 
     @expose()
-    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
+#    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def add(self, UUID, OS, platform, bogomips, systemMemory, \
             systemSwap, CPUVendor, CPUModel, numCPUs, CPUSpeed, language, \
             defaultRunlevel, vendor, system, token, lsbRelease='Deprecated', \
@@ -189,7 +189,7 @@ class Client(object):
         return dict()
 
     @expose()
-    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
+#    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_devices(self, UUID, Devices):
         import time
         from mx import DateTime
@@ -277,7 +277,7 @@ class Client(object):
         return dict()
     
     @expose()
-    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
+#    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
         if smolt_protocol < self.smolt_protocol:
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
