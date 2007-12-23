@@ -1,176 +1,178 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of smolt.master.po to Greek
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Dimitris Glezos <dimitris@glezos.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: smolt.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-27 08:19-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2007-12-23 12:15+0200\n"
+"Last-Translator: Dimitris Glezos <dimitris@glezos.com>\n"
+"Language-Team: Greek <fedora-trans-el@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: deleteProfile.py:35 smolt.py:263
 #, python-format
 msgid "Server Message: \"%s\""
-msgstr ""
+msgstr "Μήνυμα εξυπηρετητή: \"%s\""
 
 #: deleteProfile.py:45 sendProfile.py:43
 msgid "enable debug information"
-msgstr ""
+msgstr "ενεργοποίηση πληροφοριών αποσφαλμάτωσης"
 
 #: deleteProfile.py:50 sendProfile.py:48
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
-msgstr ""
+msgstr "ορισμός του URL του εξυπηρετητή (προεπιλογή: \"%default\")"
 
 #: deleteProfile.py:55 sendProfile.py:63
 msgid "print information only, do not send"
-msgstr ""
+msgstr "μόνο εμφάνιση πληροφοριών, όχι αποστολή"
 
 #: deleteProfile.py:60 sendProfile.py:78
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
-msgstr ""
+msgstr "ορισμός HTTP user agent (προεπιλογή: \"%default\")"
 
 #: deleteProfile.py:65 sendProfile.py:83
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr ""
+msgstr "ορισμός χρονικού περιθωρίου HTTP σε δευτερόλεπτα (προεπιλογή %default δευτερόλεπτα)"
 
 #: deleteProfile.py:83
 msgid "Error contacting Server:"
-msgstr ""
+msgstr "Σφάλμα στην επικοινωνία με τον εξυπηρετητή:"
 
 #: deleteProfile.py:91
 msgid "Profile removed, please verify at"
-msgstr ""
+msgstr "Το προφίλ απομακρύνθηκε, παρακαλώ επιβεβαιώστε στο"
 
 #: sendProfile.py:53
 msgid "(optional) Fedora Account System registration"
-msgstr ""
+msgstr "(προεραιτικό) Εγγραφή στο Σύστημα Λογαριασμών Fedora "
 
 #: sendProfile.py:58
 msgid "password, will prompt if not specified"
-msgstr ""
+msgstr "συνθηματικό, θα γίνει προτροπή αν δεν οριστεί"
 
 #: sendProfile.py:68
 msgid "don't prompt to send, just send"
-msgstr ""
+msgstr "να μη γίνει προτροπή για αποστολή, απλά να γίνει αποστολή"
 
 #: sendProfile.py:73
 msgid "continue to send until success"
-msgstr ""
+msgstr "να συνεχίσει η αποστολή μέχρι να είναι επιτυχής"
 
 #: sendProfile.py:88
 msgid ""
 "this is an automated checkin, will only run if the \"smolt\" service has "
 "been started"
 msgstr ""
+"αυτή είναι μια αυτόματη εναπόθεση, θα εκτελεστεί μόνο αν η υπηρεσία συστήματος \"smolt\" έχει "
+"εκκινήσει"
 
 #: sendProfile.py:93
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr ""
+msgstr "να γίνει μόνο ανίχνευση της μηχανής για γνωστές διορθώσεις προβλημάτων hardware, να μη γίνει αποστολή του προφίλ."
 
 #: sendProfile.py:108
-msgid ""
-"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr ""
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr "Το Smolt έχει ρυθμιστεί για εναπόθεση αλλά οι εναποθέσεις είναι απενεργοποιημένες (νήξη: service smolt start)"
 
 #: sendProfile.py:115 scan.py:51
 msgid "Error:"
-msgstr ""
+msgstr "Σφάλμα:"
 
 #: sendProfile.py:117 scan.py:53
 msgid "Hint:"
-msgstr ""
+msgstr "Νήξη:"
 
 #: sendProfile.py:132
 msgid "Send this information to the Smolt server? (y/n)"
-msgstr ""
+msgstr "Αποστολή αυτών των πληροφοριών στον εξυπηρετητή Smolt; (y/n)"
 
 #: sendProfile.py:133
 msgid "y"
-msgstr ""
+msgstr "y"
 
 #: sendProfile.py:134 sendProfile.py:137
 msgid "Exiting..."
-msgstr ""
+msgstr "Έξοδος..."
 
 #: sendProfile.py:144
 msgid "Retry Enabled - Retrying"
-msgstr ""
+msgstr "Εκ νέου προσπάθεια ενεργοποιημένη - Εκτελείται"
 
 #: sendProfile.py:148
 msgid "Could not send - Exiting"
-msgstr ""
+msgstr "Αποστολή αδύνατη - Έξοδος"
 
 #: sendProfile.py:153
 msgid "Password:"
-msgstr ""
+msgstr "Συνθηματικό:"
 
 #: sendProfile.py:158
 msgid "Registration Failed, Try again"
-msgstr ""
+msgstr "Εγγραφή Απέτυχε, δοκιμάστε ξανά"
 
 #: sendProfile.py:164
 #, python-format
 msgid "To view your profile visit: %s"
-msgstr ""
+msgstr "Για να εμφανίσετε το προφίλ σας επισκεφτείτε: %s"
 
 #: smoltGui.py:74
 msgid "_Quit"
-msgstr ""
+msgstr "Έ_ξοδος"
 
 #: smoltGui.py:74
 msgid "Quit the program without sending your hardware profile to the server"
-msgstr ""
+msgstr "Έξοδος από το πρόγραμμα χωρίς την αποστολή του προφίλ υλικού σας στον εξυπηρετητή"
 
 #: smoltGui.py:75
 msgid "_Send"
-msgstr ""
+msgstr "Απο_στολή"
 
 #: smoltGui.py:75
 msgid "Send your hardware profile to the server."
-msgstr ""
+msgstr "Αποστολή του προφίλ υλικού σας στον εξυπηρετητή."
 
 #: smoltGui.py:76
 msgid "Show _Privacy Policy"
-msgstr ""
+msgstr "Εμφάνιση _πολιτικής ιδιωτικότητας"
 
 #: smoltGui.py:76
 msgid "Show the Smolt privacy policy."
-msgstr ""
+msgstr "Εμφάνιση της πολιτικής ιδιωτικότητας του Smolt."
 
 #: smoltGui.py:77
 msgid "_About"
-msgstr ""
+msgstr "Πε_ρί"
 
 #: smoltGui.py:78
 msgid "_File"
-msgstr ""
+msgstr "_Αρχείο"
 
 #: smoltGui.py:79
 msgid "_Help"
-msgstr ""
+msgstr "_Βοήθεια"
 
 #: smoltGui.py:80
 msgid "_My Smolt Page"
-msgstr ""
+msgstr "H Smolt σε_λίδα μου"
 
 #: smoltGui.py:80
 msgid "Take me to my smolt profile page"
-msgstr ""
+msgstr "Οδήγησε με στη σελίδα του smolt προφίλ μου"
 
 #: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
-msgstr ""
+msgstr "Παρουσιάστηκε ένα σφάλμα κατά την αποστολή των δεδομένων στον εξυπηρετητή."
 
 #: smoltGui.py:152
 #, python-format
@@ -180,22 +182,26 @@ msgid ""
 "%s\n"
 "stored in %s"
 msgstr ""
+"Τα δεδομένα έχουν αποσταλεί με επιτυχία.  Αν χρειάζεται να ανατρέξετε στο"
+"προφίλ υλικού σας για μια αναφορά σφάλματος, το UUID σας είναι \n"
+"%s\n"
+"αποθηκευμένο στο %s"
 
 #: smoltGui.py:166
 msgid "Smolt Privacy Policy"
-msgstr ""
+msgstr "Πολιτική ιδιωτικότητας του Smolt"
 
 #: smoltGui.py:209
 msgid "translator-credits"
-msgstr ""
+msgstr "Dimitris Glezos <dimitris@glezos.com>, 2006"
 
 #: smoltGui.py:210
 msgid "Fedora hardware profiler."
-msgstr ""
+msgstr "Εργαλείο προφίλ υλικού Fedora."
 
 #: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
-msgstr ""
+msgstr "Πνευματικά δικαιώματα © 2007 Mike McGrath"
 
 #: smoltGui.py:213
 msgid ""
@@ -213,128 +219,141 @@ msgid ""
 "this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
 "Ave, Cambridge, MA 02139, USA."
 msgstr ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
+"Ave, Cambridge, MA 02139, USA."
 
 #: smolt.py:265
 #, python-format
 msgid "Could not contact server: %s"
-msgstr ""
+msgstr "Αδυναμία σύνδεσης με εξυπηρετητή: %s"
 
 #: smolt.py:296
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr ""
+msgstr "Αδυναμία σύνδεσης με dbus, μήπως δεν εκτελείται;"
 
 #: smolt.py:302
 msgid "Could not connect to hal, is it running?"
-msgstr ""
+msgstr "Αδυναμία σύνδεσης με hal, μήπως δεν εκτελείται;"
 
 #: smolt.py:302
 msgid "Run \"service haldaemon start\" as root"
-msgstr ""
+msgstr "Εκτελέστε ως υπερχρήστης \"service haldaemon start\""
 
 #: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
 #, python-format
 msgid "Error contacting Server: %s"
-msgstr ""
+msgstr "Σφάλμα σύνδεσης με εξυπηρετητή: %s"
 
 #: smolt.py:436
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
+msgstr "Λανθασμένη έκδοση, ο εξυπηρετητής δεν μπορεί να χειριστεί το λογισμικό πελάτη σας"
 
 #: smolt.py:452
 msgid "Communication with server failed"
-msgstr ""
+msgstr "Αποτυχία επικοινωνίας με εξυπηρετητή"
 
 #: smolt.py:526
 msgid "Devices"
-msgstr ""
+msgstr "Συσκευές"
 
 #: smolt.py:537
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: smolt.py:538
 msgid "OS"
-msgstr ""
+msgstr "ΛΣ"
 
 #: smolt.py:539
 msgid "Default run level"
-msgstr ""
+msgstr "Προεπιλεγμένο run level"
 
 #: smolt.py:540
 msgid "Language"
-msgstr ""
+msgstr "Γλώσσα"
 
 #: smolt.py:541
 msgid "Platform"
-msgstr ""
+msgstr "Πλατφόρμα"
 
 #: smolt.py:542
 msgid "BogoMIPS"
-msgstr ""
+msgstr "BogoMIPS"
 
 #: smolt.py:543
 msgid "CPU Vendor"
-msgstr ""
+msgstr "Κατασκευαστής CPU"
 
 #: smolt.py:544
 msgid "CPU Model"
-msgstr ""
+msgstr "Μοντέλο CPU"
 
 #: smolt.py:545
 msgid "Number of CPUs"
-msgstr ""
+msgstr "Αριθμός από CPU"
 
 #: smolt.py:546
 msgid "CPU Speed"
-msgstr ""
+msgstr "Ταχύτητα CPU"
 
 #: smolt.py:547
 msgid "System Memory"
-msgstr ""
+msgstr "Μνήμη συστήματος"
 
 #: smolt.py:548
 msgid "System Swap"
-msgstr ""
+msgstr "Σύστημα Swap"
 
 #: smolt.py:549
 msgid "Vendor"
-msgstr ""
+msgstr "Κατασκευαστής"
 
 #: smolt.py:550
 msgid "System"
-msgstr ""
+msgstr "Σύστημα"
 
 #: smolt.py:551
 msgid "Form factor"
-msgstr ""
+msgstr "Form factor"
 
 #: smolt.py:552
 msgid "Kernel"
-msgstr ""
+msgstr "Πυρήνας"
 
 #: smolt.py:553
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux Ενεργοποιημένο"
 
 #: smolt.py:554
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux Σε επιβολή"
 
 #: smolt.py:990
 msgid "Unable to save UUID, continuing...\n"
-msgstr ""
+msgstr "Αδυναμία αποθήκευσης UUID, συνέχεια...\n"
 
 #: smolt.py:992
 msgid "Unable to determine UUID of system!\n"
-msgstr ""
+msgstr "Αδυναμία προσδιορισμού UUID του συστήματος!\n"
 
 #: software.py:43
 msgid "Cannot Determine Runlevel"
-msgstr ""
+msgstr "Αδυναμία προσδιορισμού Runlevel"
 
 #: smoltFirstBoot.py:31 smoltFirstBoot.py:41
 msgid "Hardware Profile"
-msgstr ""
+msgstr "Προφίλ υλικού"
 
 #: smoltFirstBoot.py:57
 msgid ""
@@ -344,14 +363,19 @@ msgid ""
 "Submissions are anonymous.  Sending your profile will enable a monthly "
 "update."
 msgstr ""
+"Το Smolt είναι ένα εργαλείο προφίλ υλικού για το Έργο Fedora.  Η αποστολή του προφίλ "
+"υλικού σας είναι ένας πολύ καλός τρόπος να προσφέρετε πίσω στην κοινότητα αφού αυτή η πληροφορία "
+"βοηθά να εντείνουμε την προσοχή μας σε δημοφιλείς πλατφόρμες και υλικό.  "
+"Οι υποβολές είναι ανώνυμες.  Η αποστολή του προφίλ σας θα ενεργοποιήσει μια μηνιαία "
+"ενημέρωση."
 
 #: smoltFirstBoot.py:76
 msgid "_Send Profile"
-msgstr ""
+msgstr "_Αποστολή προφίλ"
 
 #: smoltFirstBoot.py:77
 msgid "D_o not send profile"
-msgstr ""
+msgstr "_Μη αποστολή προφίλ"
 
 #: smoltFirstBoot.py:95
 msgid ""
@@ -359,40 +383,44 @@ msgid ""
 "is a valuable source of information for our development and can help "
 "troubleshoot issues that may come up with your hardware."
 msgstr ""
+"Είστε βέβαιοι πως δε θέλετε να στείλετε το προφίλ;  Η αποστολή του προφίλ σας αποτελεί "
+"μια πολύτιμη πηγή πληροφορίας για την ανάπτυξη λογισμικού μας και μπορεί να βοηθήσει "
+"την ανίχνευση προβλημάτων που μπορεί να προκύψουν με το υλικό σας."
 
 #: smoltFirstBoot.py:103
 msgid "_Reconsider sending"
-msgstr ""
+msgstr "Επανα_θεώρηση αποστολής"
 
 #: smoltFirstBoot.py:104
 msgid "_No, do not send."
-msgstr ""
+msgstr "Ό_χι, να μη γίνει αποστολή."
 
 #: gui.py:56
 msgid "Label"
-msgstr ""
+msgstr "Ετικέτα"
 
 #: gui.py:62
 msgid "Data"
-msgstr ""
+msgstr "Δεδομένα"
 
 #: gui.py:100
 msgid "Bus"
-msgstr ""
+msgstr "Δίαυλος"
 
 #: gui.py:107
 msgid "Driver"
-msgstr ""
+msgstr "Οδηγός"
 
 #: gui.py:114
 msgid "Type"
-msgstr ""
+msgstr "Τύπος"
 
 #: gui.py:121
 msgid "Description"
-msgstr ""
+msgstr "Περιγραφή"
 
 #: privacypolicy.py:3
+#, fuzzy
 msgid ""
 "Smolt will only send hardware and basic operating system information to the\n"
 "Fedora smolt server (smoon).  The only tie from the database to a "
@@ -429,24 +457,27 @@ msgid ""
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
+"και σύστημα από a είναι UUID όχι έξω UUID είναι σε κάθε σημείο μέσα ώρα a χρήστης διαγραφή προφίλ από n\n"
+" n δημόσιο και Μέσα είναι get και άλλο 3η όχι με 3η κέρδος για open και μέσα γενικά n Καταγραφή Μέσα Fedora όλα a πρώτο είναι IP διευθύνσεις και ενεργό για a από εβδομάδες σε ώρα Fedora Έργο όχι διευθύνσεις μέσα ιδιωτικό και όχι δημόσιο n με όχι Χρήστες με about Fedora Ομάδα σε σε οργανισμός Χρήστες διαγραφή σε κάθε ώρα n"
 
 #: scan.py:16
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr ""
+msgstr "Σάρωση %s για γνωστές διορθώσεις προβλημάτων.\n"
 
 #: scan.py:39
 msgid "Errata Found!"
-msgstr ""
+msgstr "Βρέθηκαν διορθώσεις προβλημάτων!"
 
 #: scan.py:42
 msgid "No errata found, if this machine is having issues please go to"
-msgstr ""
+msgstr "Δε βρέθηκαν διορθώσεις προβλημάτων. Αν αυτό το μηχάνημα έχει προβλήματα παρακαλούμε πηγαίνετε στο"
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
-msgstr ""
+msgstr "προφίλ σας και δημιουργήστε μια σελίδα wiki για τη συσκευή ούτως ώστε"
 
 #: scan.py:44
 msgid "benefit"
-msgstr ""
+msgstr "κάποιοι άλλοι να επωφεληθούν επίσης"
+
