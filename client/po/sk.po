@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Smolt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-22 12:09-0400\n"
+"POT-Creation-Date: 2008-01-03 15:35-0500\n"
 "PO-Revision-Date: 2007-08-19 13:31+0200\n"
 "Last-Translator: Marek Mahut <mmahut@fedoraproject.org>\n"
 "Language-Team: Fedora Slovak translation team <fedora-trans-sk@redhat.com>\n"
@@ -12,106 +12,110 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: deleteProfile.py:35 smolt.py:235
+#: deleteProfile.py:36 smolt.py:263
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Správa servera: \"%s\""
 
-#: deleteProfile.py:45 sendProfile.py:42
+#: deleteProfile.py:46 sendProfile.py:43
 msgid "enable debug information"
 msgstr "zapnúť ladiace informácie"
 
-#: deleteProfile.py:50 sendProfile.py:47
+#: deleteProfile.py:51 sendProfile.py:48
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "špecifikujte URL servera (štandardne \"%default\")"
 
-#: deleteProfile.py:55 sendProfile.py:62
+#: deleteProfile.py:56 sendProfile.py:63
 msgid "print information only, do not send"
 msgstr "neodoslať, len zobraziť informácie"
 
-#: deleteProfile.py:60 sendProfile.py:77
+#: deleteProfile.py:61 sendProfile.py:78
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "špecifikuj HTTP user agent (štandardne \"%default\")"
 
-#: deleteProfile.py:65 sendProfile.py:82
+#: deleteProfile.py:66 sendProfile.py:83
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "špecifikuj časový limit v sekundách pre HTTP (štandardne %default sekúnd)"
 
-#: deleteProfile.py:83
+#: deleteProfile.py:84
 msgid "Error contacting Server:"
 msgstr "Chyba pri nadväzovaní spojenia so serverom:"
 
-#: deleteProfile.py:91
+#: deleteProfile.py:92
 msgid "Profile removed, please verify at"
 msgstr "Profil bol odstránený. Prosím, presvedčte sa o tom na"
 
-#: sendProfile.py:52
+#: sendProfile.py:53
 msgid "(optional) Fedora Account System registration"
 msgstr "(voliteľné) Registrácia do Fedora Account System"
 
 # review
-#: sendProfile.py:57
+#: sendProfile.py:58
 msgid "password, will prompt if not specified"
 msgstr "heslo bude požadované ak nebolo zadané"
 
-#: sendProfile.py:67
+#: sendProfile.py:68
 msgid "don't prompt to send, just send"
 msgstr "odoslať bez potvrdenia"
 
-#: sendProfile.py:72
+#: sendProfile.py:73
 msgid "continue to send until success"
 msgstr "skúšaj až kým nepošleš"
 
 # msgstr "pokračovať v odosielani, kým neprebehne úspešne"
-#: sendProfile.py:87
+#: sendProfile.py:88
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "toto je automatická kontrola; bude bežať, iba ak bola služba \"smolt\" spustená"
 
+#: sendProfile.py:93
+msgid "only scan this machine for known hardware errata, do not send profile."
+msgstr ""
+
 # XXX
-#: sendProfile.py:101
+#: sendProfile.py:108
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt bol spustený pre kontrolu zmien ale kontrola zmien je vypnutá (skúste: server smolt start)"
 
-#: sendProfile.py:108
+#: sendProfile.py:115 scan.py:51
 msgid "Error:"
 msgstr "Chyba:"
 
-#: sendProfile.py:110
+#: sendProfile.py:117 scan.py:53
 msgid "Hint:"
 msgstr "Rada:"
 
-#: sendProfile.py:121
+#: sendProfile.py:132
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr "Odoslať túto informáciu Smolt serveru? (y/n)"
 
-#: sendProfile.py:122
+#: sendProfile.py:133
 msgid "y"
 msgstr "y"
 
-#: sendProfile.py:123
+#: sendProfile.py:134 sendProfile.py:137
 msgid "Exiting..."
 msgstr "Ukončujem..."
 
-#: sendProfile.py:130
+#: sendProfile.py:144
 msgid "Retry Enabled - Retrying"
 msgstr "Opakovanie zapnuté - Skúšam znovu"
 
-#: sendProfile.py:134
+#: sendProfile.py:148
 msgid "Could not send - Exiting"
 msgstr "Neporarilo sa odoslať - Ukončujem."
 
-#: sendProfile.py:139
+#: sendProfile.py:153
 msgid "Password:"
 msgstr "Heslo:"
 
-#: sendProfile.py:144
+#: sendProfile.py:158
 msgid "Registration Failed, Try again"
 msgstr "Registrácia zlyhala, skúste znovu"
 
-#: sendProfile.py:147
+#: sendProfile.py:164
 #, python-format
 msgid "To view your profile visit: %s"
 msgstr "Pre náhľad vašeho profilu navštívte: %s"
@@ -205,118 +209,117 @@ msgstr ""
 "\n"
 "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 
-#: smolt.py:237
+#: smolt.py:265
 #, python-format
 msgid "Could not contact server: %s"
 msgstr "Neporadilo sa kontaktovať server: %s"
 
-#: smolt.py:268
+#: smolt.py:296
 msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "Nepodarilo sa pripojit k DBUS. Je DBUS spustený?"
 
-#: smolt.py:274
-msgid "Could not connect to hal, is it running?"
+#: smolt.py:302
+#, fuzzy
+msgid ""
+"Could not connect to hal, is it running?\n"
+"Run \"service haldaemon start\" as root"
 msgstr "Nepodarilo sa naviazať spojenie s HAL-om. Je HAL spustený?"
 
-#: smolt.py:274
-msgid "Run \"service haldaemon start\" as root"
-msgstr "Spustite \"server haldaemon start\" ako root."
-
-#: smolt.py:310 smolt.py:399 smolt.py:460 smolt.py:477
+#: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Chyba pri nadväzovaní spojenia so serverom: %s"
 
-#: smolt.py:408
+#: smolt.py:436
 msgid "Wrong version, server incapable of handling your client"
 msgstr "Nesprávna verzia klienta, server je nemôže spolupracovať s vašim klientom."
 
-#: smolt.py:424
+#: smolt.py:452
 msgid "Communication with server failed"
 msgstr "Komunikácia so serverom nebola úspešná"
 
-#: smolt.py:498
+#: smolt.py:526
 msgid "Devices"
 msgstr "Zariadenie"
 
-#: smolt.py:509
+#: smolt.py:537
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:510
+#: smolt.py:538
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:511
+#: smolt.py:539
 msgid "Default run level"
 msgstr "Štandardná úroveň behu"
 
-#: smolt.py:512
+#: smolt.py:540
 msgid "Language"
 msgstr "Jazyk"
 
-#: smolt.py:513
+#: smolt.py:541
 msgid "Platform"
 msgstr "Platforma"
 
-#: smolt.py:514
+#: smolt.py:542
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:515
+#: smolt.py:543
 msgid "CPU Vendor"
 msgstr "Predajca procesoru"
 
-#: smolt.py:516
+#: smolt.py:544
 msgid "CPU Model"
 msgstr "Model procesoru"
 
-#: smolt.py:517
+#: smolt.py:545
 msgid "Number of CPUs"
 msgstr "Počet procesorov"
 
-#: smolt.py:518
+#: smolt.py:546
 msgid "CPU Speed"
 msgstr "Rýchlosť CPU"
 
-#: smolt.py:519
+#: smolt.py:547
 msgid "System Memory"
 msgstr "Systémová pamäť"
 
-#: smolt.py:520
+#: smolt.py:548
 msgid "System Swap"
 msgstr "Pamäť Swap"
 
-#: smolt.py:521
+#: smolt.py:549
 msgid "Vendor"
 msgstr "Predajca"
 
-#: smolt.py:522
+#: smolt.py:550
 msgid "System"
 msgstr "Systém"
 
-#: smolt.py:523
+#: smolt.py:551
 msgid "Form factor"
 msgstr "Form factor"
 
-#: smolt.py:524
+#: smolt.py:552
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smolt.py:525
+#: smolt.py:553
 msgid "SELinux Enabled"
 msgstr "SELinux zapnutý"
 
 # XXX
-#: smolt.py:526
+#: smolt.py:554
 msgid "SELinux Enforce"
 msgstr "SELinux vynútený"
 
-#: smolt.py:959
+#: smolt.py:990
 msgid "Unable to save UUID, continuing...\n"
 msgstr "Nebolo možné uložiť UUID, pokračujem...\n"
 
-#: smolt.py:961
+#: smolt.py:992
 msgid "Unable to determine UUID of system!\n"
 msgstr "Nebolo možné zistiť UUID systému!\n"
 
@@ -324,32 +327,32 @@ msgstr "Nebolo možné zistiť UUID systému!\n"
 msgid "Cannot Determine Runlevel"
 msgstr "Nepodarilo sa zistiť úroveň behu"
 
-#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+#: smoltFirstBoot.py:31 smoltFirstBoot.py:41
 msgid "Hardware Profile"
 msgstr "Hardvérový profil"
 
 # XXX
-#: smoltFirstBoot.py:50
+#: smoltFirstBoot.py:57
 msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
 msgstr "Smolt je nástroj pre zber hardvérových profilov projektu Fedora.  Zaslenie Vášho profilu je významná odozva pre komunitu, ktorá pomáha zamerať naše úsilie na populárne zariadenia a platformy.  Zaslanie profilu je anonymné.  Zaslaním sa zapnú automatické mesačné aktualizácie."
 
-#: smoltFirstBoot.py:69
+#: smoltFirstBoot.py:76
 msgid "_Send Profile"
 msgstr "Odo_slať profil"
 
-#: smoltFirstBoot.py:70
+#: smoltFirstBoot.py:77
 msgid "D_o not send profile"
 msgstr "Ne_odoslať profil"
 
-#: smoltFirstBoot.py:88
+#: smoltFirstBoot.py:95
 msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
 msgstr "Ste si istý, že nechcete zaslať Váš hardvérový profil? Zaslanie Vašeho profilu je hodnotná informácia pre vývojárov projektu Fedora a uľahčuje riešenie problémov, ktoré môžu nastať aj s Vášim hardvérom."
 
-#: smoltFirstBoot.py:96
+#: smoltFirstBoot.py:103
 msgid "_Reconsider sending"
 msgstr "_Prehodnoťte odoslanie"
 
-#: smoltFirstBoot.py:97
+#: smoltFirstBoot.py:104
 msgid "_No, do not send."
 msgstr "_Nie, neodosielaj."
 
@@ -429,3 +432,27 @@ msgstr ""
 "Otázky obľadom tejto politiky môžete klásť Fedora Infrastrucutre team na\n"
 "emailovej adrese admin@fedoraproject.org. Nezabudnite, že váš hardvérový\n"
 "profil môžete kedykoľvek zmazať pomocou príkazu \"smoltDeleteProfile\"\n"
+
+#: scan.py:16
+#, python-format
+msgid "Scanning %s for known errata.\n"
+msgstr ""
+
+#: scan.py:39
+msgid "Errata Found!"
+msgstr ""
+
+#: scan.py:42
+msgid "No errata found, if this machine is having issues please go to"
+msgstr ""
+
+#: scan.py:43
+msgid "your profile and create a wiki page for the device so others can"
+msgstr ""
+
+#: scan.py:44
+msgid "benefit"
+msgstr ""
+
+#~ msgid "Run \"service haldaemon start\" as root"
+#~ msgstr "Spustite \"server haldaemon start\" ako root."

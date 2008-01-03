@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-27 08:19-0600\n"
+"POT-Creation-Date: 2008-01-03 15:35-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,39 +16,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: deleteProfile.py:35 smolt.py:263
+#: deleteProfile.py:36 smolt.py:263
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr ""
 
-#: deleteProfile.py:45 sendProfile.py:43
+#: deleteProfile.py:46 sendProfile.py:43
 msgid "enable debug information"
 msgstr ""
 
-#: deleteProfile.py:50 sendProfile.py:48
+#: deleteProfile.py:51 sendProfile.py:48
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:55 sendProfile.py:63
+#: deleteProfile.py:56 sendProfile.py:63
 msgid "print information only, do not send"
 msgstr ""
 
-#: deleteProfile.py:60 sendProfile.py:78
+#: deleteProfile.py:61 sendProfile.py:78
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:65 sendProfile.py:83
+#: deleteProfile.py:66 sendProfile.py:83
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr ""
 
-#: deleteProfile.py:83
+#: deleteProfile.py:84
 msgid "Error contacting Server:"
 msgstr ""
 
-#: deleteProfile.py:91
+#: deleteProfile.py:92
 msgid "Profile removed, please verify at"
 msgstr ""
 
@@ -224,11 +224,9 @@ msgid "Could not bind to dbus.  Is dbus running?"
 msgstr ""
 
 #: smolt.py:302
-msgid "Could not connect to hal, is it running?"
-msgstr ""
-
-#: smolt.py:302
-msgid "Run \"service haldaemon start\" as root"
+msgid ""
+"Could not connect to hal, is it running?\n"
+"Run \"service haldaemon start\" as root"
 msgstr ""
 
 #: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505

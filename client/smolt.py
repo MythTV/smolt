@@ -299,7 +299,7 @@ class Hardware:
             mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
             all_dev_lst = mgr.GetAllDevices()
         except:
-            raise SystemBusError, _('Could not connect to hal, is it running?'), _('Run "service haldaemon start" as root')
+            raise SystemBusError, _('Could not connect to hal, is it running?\nRun "service haldaemon start" as root')
 
         for udi in all_dev_lst:
             dev = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', udi, 'org.freedesktop.Hal.Device')

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-27 08:19-0600\n"
+"POT-Creation-Date: 2008-01-03 15:35-0500\n"
 "PO-Revision-Date: 2007-12-22 22:51+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German Translation Team <fedora-trans-de@redhat.com>\n"
@@ -23,45 +23,39 @@ msgstr ""
 "X-Poedit-Language: German\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: deleteProfile.py:35
-#: smolt.py:263
+#: deleteProfile.py:36 smolt.py:263
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Server-Meldung: \"%s\""
 
-#: deleteProfile.py:45
-#: sendProfile.py:43
+#: deleteProfile.py:46 sendProfile.py:43
 msgid "enable debug information"
 msgstr "Debug-Informationen aktivieren"
 
-#: deleteProfile.py:50
-#: sendProfile.py:48
+#: deleteProfile.py:51 sendProfile.py:48
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "Server-URL angeben (Standard: \"%default\")"
 
-#: deleteProfile.py:55
-#: sendProfile.py:63
+#: deleteProfile.py:56 sendProfile.py:63
 msgid "print information only, do not send"
 msgstr "Informationen nur ausdrucken, aber nicht senden"
 
-#: deleteProfile.py:60
-#: sendProfile.py:78
+#: deleteProfile.py:61 sendProfile.py:78
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "HTTP-User-Agent angeben (Standard: \"%default\")"
 
-#: deleteProfile.py:65
-#: sendProfile.py:83
+#: deleteProfile.py:66 sendProfile.py:83
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "HTTP-Zeitüberschreitung in Sekunden angeben (Standard: %default Sekunden)"
 
-#: deleteProfile.py:83
+#: deleteProfile.py:84
 msgid "Error contacting Server:"
 msgstr "Fehler beim Kontaktieren des Servers:"
 
-#: deleteProfile.py:91
+#: deleteProfile.py:92
 msgid "Profile removed, please verify at"
 msgstr "Profil wurde entfernt, bitte überprüfen unter"
 
@@ -93,13 +87,11 @@ msgstr "durchsuche nur das System für bekannte Hardware-Fehler, sende Profil ni
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt ist für Check-Ins eingerichtet, diese sind jedoch deaktiviert (Tipp: service smolt start)"
 
-#: sendProfile.py:115
-#: scan.py:51
+#: sendProfile.py:115 scan.py:51
 msgid "Error:"
 msgstr "Fehler:"
 
-#: sendProfile.py:117
-#: scan.py:53
+#: sendProfile.py:117 scan.py:53
 msgid "Hint:"
 msgstr "Tipp:"
 
@@ -111,8 +103,7 @@ msgstr "Diese Informationen an den Smolt-Server senden? (j/n)"
 msgid "y"
 msgstr "j"
 
-#: sendProfile.py:134
-#: sendProfile.py:137
+#: sendProfile.py:134 sendProfile.py:137
 msgid "Exiting..."
 msgstr "Beenden..."
 
@@ -236,17 +227,13 @@ msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "Konnte nicht an dbus binden. Wird dbus ausgeführt?"
 
 #: smolt.py:302
-msgid "Could not connect to hal, is it running?"
+#, fuzzy
+msgid ""
+"Could not connect to hal, is it running?\n"
+"Run \"service haldaemon start\" as root"
 msgstr "Konnte Verbindung zu hal nicht herstellen. Wird hal ausgeführt?"
 
-#: smolt.py:302
-msgid "Run \"service haldaemon start\" as root"
-msgstr "Führen Sie \"service haldaemon start\" als \"root\" aus"
-
-#: smolt.py:338
-#: smolt.py:427
-#: smolt.py:488
-#: smolt.py:505
+#: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Fehler beim Kontaktieren des Servers: %s"
@@ -347,8 +334,7 @@ msgstr "System-UUID konnte nicht erkannt werden!\n"
 msgid "Cannot Determine Runlevel"
 msgstr "Kann Runlevel nicht bestimmen"
 
-#: smoltFirstBoot.py:31
-#: smoltFirstBoot.py:41
+#: smoltFirstBoot.py:31 smoltFirstBoot.py:41
 msgid "Hardware Profile"
 msgstr "Hardware-Profil"
 
@@ -480,3 +466,5 @@ msgstr "Ihr Profil und erzeugen Sie eine  Wikiseite für das Gerät, so dass and
 msgid "benefit"
 msgstr "Vorteil"
 
+#~ msgid "Run \"service haldaemon start\" as root"
+#~ msgstr "Führen Sie \"service haldaemon start\" als \"root\" aus"

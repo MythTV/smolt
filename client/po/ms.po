@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-22 12:09-0400\n"
+"POT-Creation-Date: 2008-01-03 15:35-0500\n"
 "PO-Revision-Date: 2007-04-08 20:21+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <translation-team-ms@lists.sourceforge.net>\n"
@@ -15,109 +15,113 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: deleteProfile.py:35 smolt.py:235
+#: deleteProfile.py:36 smolt.py:263
 #, fuzzy, python-format
 msgid "Server Message: \"%s\""
 msgstr "Mesej Init"
 
-#: deleteProfile.py:45 sendProfile.py:42
+#: deleteProfile.py:46 sendProfile.py:43
 #, fuzzy
 msgid "enable debug information"
 msgstr "Membaca maklumat pakej..."
 
-#: deleteProfile.py:50 sendProfile.py:47
+#: deleteProfile.py:51 sendProfile.py:48
 #, fuzzy, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "pelayan admin kerberos default"
 
-#: deleteProfile.py:55 sendProfile.py:62
+#: deleteProfile.py:56 sendProfile.py:63
 msgid "print information only, do not send"
 msgstr ""
 
-#: deleteProfile.py:60 sendProfile.py:77
+#: deleteProfile.py:61 sendProfile.py:78
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:65 sendProfile.py:82
+#: deleteProfile.py:66 sendProfile.py:83
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr ""
 
-#: deleteProfile.py:83
+#: deleteProfile.py:84
 #, fuzzy
 msgid "Error contacting Server:"
 msgstr "Ralat Dalaman Pelayan"
 
-#: deleteProfile.py:91
+#: deleteProfile.py:92
 msgid "Profile removed, please verify at"
 msgstr ""
 
-#: sendProfile.py:52
+#: sendProfile.py:53
 msgid "(optional) Fedora Account System registration"
 msgstr ""
 
-#: sendProfile.py:57
+#: sendProfile.py:58
 msgid "password, will prompt if not specified"
 msgstr ""
 
-#: sendProfile.py:67
+#: sendProfile.py:68
 msgid "don't prompt to send, just send"
 msgstr ""
 
-#: sendProfile.py:72
+#: sendProfile.py:73
 msgid "continue to send until success"
 msgstr ""
 
-#: sendProfile.py:87
+#: sendProfile.py:88
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr ""
 
-#: sendProfile.py:101
-msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+#: sendProfile.py:93
+msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr ""
 
 #: sendProfile.py:108
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+
+#: sendProfile.py:115 scan.py:51
 msgid "Error:"
 msgstr "Ralat:"
 
-#: sendProfile.py:110
+#: sendProfile.py:117 scan.py:53
 #, fuzzy
 msgid "Hint:"
 msgstr "Bayangan yang ada"
 
-#: sendProfile.py:121
+#: sendProfile.py:132
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr ""
 
-#: sendProfile.py:122
+#: sendProfile.py:133
 msgid "y"
 msgstr "y"
 
-#: sendProfile.py:123
+#: sendProfile.py:134 sendProfile.py:137
 #, fuzzy
 msgid "Exiting..."
 msgstr "Hadmasa Tamat! Keluar..."
 
-#: sendProfile.py:130
+#: sendProfile.py:144
 #, fuzzy
 msgid "Retry Enabled - Retrying"
 msgstr "Denyhosts dihidupkan."
 
-#: sendProfile.py:134
+#: sendProfile.py:148
 #, fuzzy
 msgid "Could not send - Exiting"
 msgstr "Rangkaian tidak dikonfigurasikan - keluar"
 
-#: sendProfile.py:139
+#: sendProfile.py:153
 msgid "Password:"
 msgstr ""
 
-#: sendProfile.py:144
+#: sendProfile.py:158
 msgid "Registration Failed, Try again"
 msgstr ""
 
-#: sendProfile.py:147
+#: sendProfile.py:164
 #, python-format
 msgid "To view your profile visit: %s"
 msgstr ""
@@ -204,127 +208,125 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 msgstr ""
 
-#: smolt.py:237
+#: smolt.py:265
 #, fuzzy, python-format
 msgid "Could not contact server: %s"
 msgstr "tidak dapat mengikat ke pelayan LDAP"
 
-#: smolt.py:268
+#: smolt.py:296
 #, fuzzy
 msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "tidak dapat mengikat ke pelayan LDAP"
 
-#: smolt.py:274
-msgid "Could not connect to hal, is it running?"
+#: smolt.py:302
+msgid ""
+"Could not connect to hal, is it running?\n"
+"Run \"service haldaemon start\" as root"
 msgstr ""
 
-#: smolt.py:274
-msgid "Run \"service haldaemon start\" as root"
-msgstr ""
-
-#: smolt.py:310 smolt.py:399 smolt.py:460 smolt.py:477
+#: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
 #, fuzzy, python-format
 msgid "Error contacting Server: %s"
 msgstr "Ralat Dalaman Pelayan"
 
-#: smolt.py:408
+#: smolt.py:436
 msgid "Wrong version, server incapable of handling your client"
 msgstr ""
 
-#: smolt.py:424
+#: smolt.py:452
 #, fuzzy
 msgid "Communication with server failed"
 msgstr "Terdapat ralat komunikasi dengan pelayan: %s"
 
-#: smolt.py:498
+#: smolt.py:526
 msgid "Devices"
 msgstr "Peranti"
 
-#: smolt.py:509
+#: smolt.py:537
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:510
+#: smolt.py:538
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:511
+#: smolt.py:539
 #, fuzzy
 msgid "Default run level"
 msgstr "tidak dapat menentukan run level sekarang\n"
 
-#: smolt.py:512
+#: smolt.py:540
 msgid "Language"
 msgstr "Bahasa"
 
-#: smolt.py:513
+#: smolt.py:541
 msgid "Platform"
 msgstr "Platform"
 
-#: smolt.py:514
+#: smolt.py:542
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:515
+#: smolt.py:543
 #, fuzzy
 msgid "CPU Vendor"
 msgstr "Model CPU:"
 
-#: smolt.py:516
+#: smolt.py:544
 #, fuzzy
 msgid "CPU Model"
 msgstr "Model CPU:"
 
-#: smolt.py:517
+#: smolt.py:545
 #, fuzzy
 msgid "Number of CPUs"
 msgstr "Numbor peranti"
 
-#: smolt.py:518
+#: smolt.py:546
 #, fuzzy
 msgid "CPU Speed"
 msgstr "Kelajuan CPU:"
 
-#: smolt.py:519
+#: smolt.py:547
 #, fuzzy
 msgid "System Memory"
 msgstr "Memori Rendah"
 
-#: smolt.py:520
+#: smolt.py:548
 #, fuzzy
 msgid "System Swap"
 msgstr "Tambah Swap"
 
-#: smolt.py:521
+#: smolt.py:549
 msgid "Vendor"
 msgstr "Pengeluar"
 
-#: smolt.py:522
+#: smolt.py:550
 msgid "System"
 msgstr "Sistem"
 
-#: smolt.py:523
+#: smolt.py:551
 #, fuzzy
 msgid "Form factor"
 msgstr "Bentuk asas:"
 
-#: smolt.py:524
+#: smolt.py:552
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smolt.py:525
+#: smolt.py:553
 msgid "SELinux Enabled"
 msgstr ""
 
-#: smolt.py:526
+#: smolt.py:554
 msgid "SELinux Enforce"
 msgstr ""
 
-#: smolt.py:959
+#: smolt.py:990
 msgid "Unable to save UUID, continuing...\n"
 msgstr ""
 
-#: smolt.py:961
+#: smolt.py:992
 msgid "Unable to determine UUID of system!\n"
 msgstr ""
 
@@ -332,35 +334,35 @@ msgstr ""
 msgid "Cannot Determine Runlevel"
 msgstr ""
 
-#: smoltFirstBoot.py:24 smoltFirstBoot.py:34
+#: smoltFirstBoot.py:31 smoltFirstBoot.py:41
 #, fuzzy
 msgid "Hardware Profile"
 msgstr "Profil Perkakasan"
 
-#: smoltFirstBoot.py:50
+#: smoltFirstBoot.py:57
 msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
 msgstr ""
 
-#: smoltFirstBoot.py:69
+#: smoltFirstBoot.py:76
 #, fuzzy
 msgid "_Send Profile"
 msgstr "Profil aktif: %s"
 
-#: smoltFirstBoot.py:70
+#: smoltFirstBoot.py:77
 #, fuzzy
 msgid "D_o not send profile"
 msgstr "Profil \"%s\" tidak dapat dipadam!"
 
-#: smoltFirstBoot.py:88
+#: smoltFirstBoot.py:95
 msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
 msgstr ""
 
-#: smoltFirstBoot.py:96
+#: smoltFirstBoot.py:103
 #, fuzzy
 msgid "_Reconsider sending"
 msgstr "Menghantar stat..."
 
-#: smoltFirstBoot.py:97
+#: smoltFirstBoot.py:104
 #, fuzzy
 msgid "_No, do not send."
 msgstr "Jangan hantar soaljawab ini"
@@ -417,6 +419,27 @@ msgid ""
 "questions about this policy should contact the Fedora Infrastructure Team at\n"
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
+msgstr ""
+
+#: scan.py:16
+#, python-format
+msgid "Scanning %s for known errata.\n"
+msgstr ""
+
+#: scan.py:39
+msgid "Errata Found!"
+msgstr ""
+
+#: scan.py:42
+msgid "No errata found, if this machine is having issues please go to"
+msgstr ""
+
+#: scan.py:43
+msgid "your profile and create a wiki page for the device so others can"
+msgstr ""
+
+#: scan.py:44
+msgid "benefit"
 msgstr ""
 
 #, fuzzy
