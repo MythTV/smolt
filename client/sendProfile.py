@@ -91,6 +91,11 @@ parser.add_option('-S', '--scanOnly',
                   default = False,
                   action = 'store_true',
                   help = _('only scan this machine for known hardware errata, do not send profile.'))
+parser.add_option('--submitOnly',
+                  dest = 'submitOnly',
+                  default = False,
+                  action = 'store_true',
+                  help = _('do not scan this machine for know hardware errata, only submit profile.'))
 
 
 (opts, args) = parser.parse_args()
@@ -156,8 +161,8 @@ if opts.userName:
 
     if profile.register(userName=opts.userName, password=password, user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
         print _('Registration Failed, Try again')
-
-scan(profile)
+if not opts.submitOnly:
+    scan(profile)
 url = urljoin(opts.smoonURL, '/client/show?UUID=%s' % profile.host.UUID)
 print
 
