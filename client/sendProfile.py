@@ -96,11 +96,16 @@ parser.add_option('--submitOnly',
                   default = False,
                   action = 'store_true',
                   help = _('do not scan this machine for know hardware errata, only submit profile.'))
+parser.add_option('--uuidFile',
+                  dest = 'uuidFile',
+                  default = smolt.hw_uuid_file,
+                  help = _('specify which uuid to use, useful for debugging and testing mostly.'))
 
 
 (opts, args) = parser.parse_args()
 
 smolt.DEBUG = opts.DEBUG
+smolt.hw_uuid_file = opts.uuidFile
 
 if opts.checkin and os.path.exists('/var/lock/subsys/smolt'):
     # Smolt is set to run

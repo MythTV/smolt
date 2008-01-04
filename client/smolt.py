@@ -52,6 +52,7 @@ def get_config_attr(attr, default=""):
         return default
 
 smoonURL = get_config_attr("SMOON_URL", "http://smolt.fedoraproject.org/")
+hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
 smoltProtocol = '0.97'
 supported_protocols = ['0.97', '.91']
 user_agent = 'smolt/%s' % smoltProtocol
@@ -978,7 +979,7 @@ def read_memory_2_6():
     return memdict
 
 def getUUID():
-    hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
+    
     try:
         UUID = file(hw_uuid_file).read().strip()
     except IOError:

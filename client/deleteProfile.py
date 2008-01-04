@@ -64,11 +64,16 @@ parser.add_option('-t', '--timeout',
                   type = 'float',
                   default = smolt.timeout,
                   help = _('specify HTTP timeout in seconds (default %default seconds)'))
+parser.add_option('--uuidFile',
+                  dest = 'uuidFile',
+                  default = smolt.hw_uuid_file,
+                  help = _('specify which uuid to use, useful for debugging and testing mostly.'))
+
 
 (opts, args) = parser.parse_args()
 
 smolt.DEBUG = opts.DEBUG
-
+smolt.hw_uuid_file = opts.uuidFile
 # read the profile
 profile = smolt.Hardware()
 
@@ -91,4 +96,5 @@ else:
 
 sys.stdout.write(_('Profile removed, please verify at'))
 sys.stdout.write(urljoin(opts.smoonURL + '/', '/client/show?%s\n' % delHostString))
+
 
