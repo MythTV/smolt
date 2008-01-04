@@ -10,6 +10,8 @@ from hardware.controllers.error import Error
 from hardware.model import *
 from hardware.hwdata import DeviceMap
 
+import gc
+
 class Client(object):
     error = Error()
     def __init__(self, smolt_protocol, token):
@@ -384,7 +386,7 @@ class Client(object):
             if bad_host_link and len(bad_host_link):
                 ctx.current.delete(bad_host_link[0])
         ctx.current.flush()
-        
+        gc.collect()
         return dict()
 
     @expose()
