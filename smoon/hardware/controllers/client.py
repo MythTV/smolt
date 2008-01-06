@@ -74,7 +74,7 @@ class Client(object):
                     )
 
         
-    @expose(template="hardware.templates.showall")
+    @expose(template="hardware.templates.showall", allow_json=True)
 #    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show_all(self, UUID=''):
         try:
