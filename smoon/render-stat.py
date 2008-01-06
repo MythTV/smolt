@@ -14,6 +14,7 @@ cherrypy.lowercase_api = True
 from os.path import *
 import sys
 import time
+from hardware.util import *
 
 # first look on the command line for a desired config file,
 # if it's not on the command line, then
@@ -255,7 +256,7 @@ stats['registered_devices'] = ctx.current.query(ComputerLogicalDevice).count()
 
 t=engine.load_template('hardware.templates.stats')
 out_html=_process_output(dict(stat=stats, tabs=tabs, 
-                              total_hosts=total_hosts), 
+                              total_hosts=total_hosts, getOSWikiLink=getOSWikiLink), 
                          template=t, format='html')
 
 fname = "%s/stats.html" % (page_path)

@@ -41,7 +41,7 @@ ${ratingwidget.display(update="rating",
         <table id="system_show">
        	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
             <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
-            <tr><th>Operating System:</th><td><a href="${getOSWikiLink(host_object)}">${host_object.os}</a></td></tr>
+            <tr><th>Operating System:</th><td><a href="${getOSWikiLink(host_object.os)}">${host_object.os}</a></td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
             <tr><th>Bogomips:</th><td>${host_object.bogomips}</td></tr>
             <tr><th>CPU Speed:</th><td>${host_object.cpu_speed}</td></tr>

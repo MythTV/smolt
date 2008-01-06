@@ -36,7 +36,7 @@ ${ratingwidget.display(update="rating",
         <table id="system_show">
        	    <tr><th>Overall Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
             <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
-            <tr><th>Operating System:</th><td><a href="${getOSWikiLink(host_object)}">${host_object.os}</a></td></tr>
+            <tr><th>Operating System:</th><td><a href="${getOSWikiLink(host_object.os)}">${host_object.os}</a></td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
             <tr><th>System Vendor:</th><td>${host_object.vendor}</td></tr>
             <tr><th>System Model:</th><td><a href="${host_link}">${host_object.system}</a></td></tr>
