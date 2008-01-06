@@ -7,3 +7,6 @@ def getDeviceWikiLink(device):
 
 def getHostWikiLink(host):
     return '/wiki/System/%s/%s' % (host.vendor, host.system)
+
+def getOSWikiLink(host):
+    return '/wiki/OS/%s' % host.os

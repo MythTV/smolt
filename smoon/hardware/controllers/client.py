@@ -70,6 +70,7 @@ class Client(object):
                     host_link = getHostWikiLink(host_object),
                     devices=devices,
                     ratingwidget=SingleRatingWidget(),
+                    getOSWikiLink=getOSWikiLink
                     )
 
         
@@ -102,6 +103,7 @@ class Client(object):
                     devices=devices, ven=ven,
                     ratingwidget=SingleRatingWidget(),
                     getDeviceWikiLink = getDeviceWikiLink,
+                    getOSWikiLink=getOSWikiLink
                     )
 
 #    @expose(template="hardware.templates.share")
