@@ -36,12 +36,12 @@ ${ratingwidget.display(update="rating",
 	    <img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>
 	    <img src="/static/images/rating/r4.gif"/> Works, but required aditional configuration<br/>
 	    <img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
-	    <p><a href="show?UUID=${host_object.uuid}">Show basic Information</a></p>
+	    <p><a href="/client/show?UUID=${host_object.uuid}">Show basic Information</a></p>
 	</div>
         <table id="system_show">
        	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
             <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
-            <tr><th>Operating System:</th><td>${host_object.os}</td></tr>
+            <tr><th>Operating System:</th><td><a href="${getOSWikiLink(host_object.os)}">${host_object.os}</a></td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
             <tr><th>Bogomips:</th><td>${host_object.bogomips}</td></tr>
             <tr><th>CPU Speed:</th><td>${host_object.cpu_speed}</td></tr>

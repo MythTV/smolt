@@ -52,6 +52,7 @@ def get_config_attr(attr, default=""):
         return default
 
 smoonURL = get_config_attr("SMOON_URL", "http://smolt.fedoraproject.org/")
+hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
 smoltProtocol = '0.97'
 supported_protocols = ['0.97', '.91']
 user_agent = 'smolt/%s' % smoltProtocol
@@ -299,7 +300,7 @@ class Hardware:
             mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
             all_dev_lst = mgr.GetAllDevices()
         except:
-            raise SystemBusError, _('Could not connect to hal, is it running?'), _('Run "service haldaemon start" as root')
+            raise SystemBusError, _('Could not connect to hal, is it running?\nRun "service haldaemon start" as root')
 
         for udi in all_dev_lst:
             dev = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', udi, 'org.freedesktop.Hal.Device')
@@ -419,7 +420,7 @@ class Hardware:
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         #first find out the server desired protocol
         try:
-            token = grabber.urlopen(urljoin(smoonURL + "/", '/token_json?uuid=%s' % self.host.UUID, False))
+            token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/token_json?uuid=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
             try:
                 token = grabber.urlopen(urljoin(smoonURL + "/", '/token?UUID=%s' % self.host.UUID, False))
@@ -480,7 +481,7 @@ class Hardware:
                                 ('Content-length', '%i' % len(send_host_str)),
                                 ('Content-type', 'application/x-www-form-urlencoded')))
             if prefered_protocol == '0.97':
-                o = grabber.urlopen(urljoin(smoonURL + "/", "/add_json", False), data=send_host_str,
+                o = grabber.urlopen(urljoin(smoonURL + "/", "/client/add_json", False), data=send_host_str,
                                     http_headers=(
                                 ('Content-length', '%i' % len(send_host_str)),
                                 ('Content-type', 'application/x-www-form-urlencoded')))
@@ -978,7 +979,7 @@ def read_memory_2_6():
     return memdict
 
 def getUUID():
-    hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
+    
     try:
         UUID = file(hw_uuid_file).read().strip()
     except IOError:

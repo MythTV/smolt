@@ -21,6 +21,7 @@
 import sys
 import urlgrabber.grabber
 from optparse import OptionParser
+from urlparse import urljoin
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -63,11 +64,16 @@ parser.add_option('-t', '--timeout',
                   type = 'float',
                   default = smolt.timeout,
                   help = _('specify HTTP timeout in seconds (default %default seconds)'))
+parser.add_option('--uuidFile',
+                  dest = 'uuidFile',
+                  default = smolt.hw_uuid_file,
+                  help = _('specify which uuid to use, useful for debugging and testing mostly.'))
+
 
 (opts, args) = parser.parse_args()
 
 smolt.DEBUG = opts.DEBUG
-
+smolt.hw_uuid_file = opts.uuidFile
 # read the profile
 profile = smolt.Hardware()
 
@@ -76,7 +82,7 @@ grabber = urlgrabber.grabber.URLGrabber(user_agent=opts.user_agent, timeout=opts
 delHostString = 'UUID=%s' % profile.host.UUID
 
 try:
-    o=grabber.urlopen('%s/delete' % opts.smoonURL, data=delHostString, http_headers=(
+    o=grabber.urlopen(urljoin(opts.smoonURL + '/', '/client/delete'), data=delHostString, http_headers=(
                     ('Content-length', '%i' % len(delHostString)),
                     ('Content-type', 'application/x-www-form-urlencoded')))
 except urlgrabber.grabber.URLGrabError, e:
@@ -89,5 +95,6 @@ else:
     o.close()
 
 sys.stdout.write(_('Profile removed, please verify at'))
-sys.stdout.write(' %s/show?%s\n' % (opts.smoonURL, delHostString))
+sys.stdout.write(urljoin(opts.smoonURL + '/', '/client/show?%s\n' % delHostString))
+
 

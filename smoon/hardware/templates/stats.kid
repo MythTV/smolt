@@ -42,7 +42,7 @@
         <div class="tabbertab"><h2>OS</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='OS in stat["os"]'>
-                    <th align="right">${OS.os}</th>
+                    <th align="right"><a href="${getOSWikiLink(OS.os)}">${OS.os}</a></th>
                     <td align="center">${OS.cnt}</td>
                     <td><strong>${'%.1f' % (float(OS.cnt) / total_hosts * 100) } %</strong></td>
                     <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(OS.cnt) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
