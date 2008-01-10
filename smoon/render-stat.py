@@ -4,7 +4,7 @@ import pkg_resources
 pkg_resources.require("TurboGears")
 
 from turbogears.view import engines
-import turbogears.util as tg_util
+import turbogears.wiki as tg_util
 from turbogears import view, database, errorhandling, config
 from itertools import izip
 from inspect import isclass
@@ -14,7 +14,7 @@ cherrypy.lowercase_api = True
 from os.path import *
 import sys
 import time
-from hardware.util import *
+from hardware.wiki import *
 
 # first look on the command line for a desired config file,
 # if it's not on the command line, then

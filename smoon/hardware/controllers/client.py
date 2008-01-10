@@ -4,7 +4,7 @@ from turbogears import expose
 from turbogears import exception_handler
 from sqlalchemy.exceptions import InvalidRequestError
 
-from hardware.util import *
+from hardware.wiki import *
 from hardware.ratingwidget import *
 from hardware.controllers.error import Error
 from hardware.model import *
