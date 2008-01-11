@@ -6,6 +6,9 @@ from pwd import getpwnam
 from optparse import OptionParser
 from i18n import _
 
+class UUIDError(Exception):
+    pass
+
 parser = OptionParser(version = "1.monkey.0")
 
 parser.add_option('-d', '--debug',
@@ -42,9 +45,7 @@ if __name__ == "__main__":
         uuid = file(opts.uuid_file).read().strip()
     except IOError:
         try:
-            uuid = file('/proc/sys/kernel/random/uuid').read().strip()
-            if opts.public:
-                uuid = "pub_" + uuid
+            uuid=generate_uuid(opts.public)
             file(opts.uuid_file, 'w').write(uuid)
             if opts.secure:
                 chown(opts.uuid_file, getpwnam('smolt')[2], -1)
@@ -55,3 +56,12 @@ if __name__ == "__main__":
         except IOError:
             sys.stderr.write('Unable to determine UUID of system!\n')
             sys.exit(1)
+            
+def generate_uuid(public=False):
+    try:
+        uuid = file('/proc/sys/kernel/random/uuid').read().strip()
+        if public:
+            uuid = "pub_" + uuid
+        return uuid
+    except IOError:
+        raise UUIDError("Cannot generate UUID")
