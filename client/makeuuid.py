@@ -3,26 +3,52 @@ from os import chown
 from os import chmod
 import stat
 from pwd import getpwnam
+from optparse import OptionParser
+from i18n import _
+
+parser = OptionParser(version = "1.monkey.0")
+
+parser.add_option('-d', '--debug',
+                  dest = 'DEBUG',
+                  default = False,
+                  action = 'store_true',
+                  help = _('enable debug information'))
+parser.add_option('-f', '--force',
+                  dest='force',
+                  default=False,
+                  action='store_true',
+                  help=_('force makeuuid to generate a new UUID even when one exists'))
+parser.add_option('-o', '--output',
+                  dest='uuid_file',
+                  default='/etc/sysconfig/hw-uuid',
+                  help=_('the uuid file'))
+parser.add_option('-s', '--secure',
+                  dest='secure',
+                  action='store_true',
+                  default=False,
+                  help=_('generate a secure key'))
+parser.add_option('-p', '--public',
+                  dest='public',
+                  action='store_true',
+                  default=False,
+                  help=_('generate a public key'))
+
+(opts, args) = parser.parse_args()
 
 if __name__ == "__main__":
-    hw_uuid_file = argv[1]
-    secure = argv[2]
-    if secure == "True":
-        secure = True
-        print "do secure"
-    else:
-        secure = False
     try:
-        uuid = file(hw_uuid_file).read().strip()
+        #this is so horrible, i apologize.
+        if opts.force: raise IOError
+        uuid = file(opts.uuid_file).read().strip()
     except IOError:
         try:
             uuid = file('/proc/sys/kernel/random/uuid').read().strip()
-            file(hw_uuid_file, 'w').write(uuid)
-            print "secure = %s" % secure
-            if secure:
-                print "doing secure"
-                chown(hw_uuid_file, getpwnam('smolt')[2], -1)
-                chmod(hw_uuid_file, stat.S_IRUSR \
+            if opts.public:
+                uuid = "pub_" + uuid
+            file(opts.uuid_file, 'w').write(uuid)
+            if opts.secure:
+                chown(opts.uuid_file, getpwnam('smolt')[2], -1)
+                chmod(opts.uuid_file, stat.S_IRUSR \
                                       ^ stat.S_IWUSR \
                                       ^ stat.S_IRGRP \
                                       ^ stat.S_IWGRP)
