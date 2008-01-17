@@ -237,10 +237,11 @@ class SmoltGui(object):
         gtk.main()
 
 def url_hook(dialog, link, data):
-    print 'url', link
+    webbrowser.open(link)
 
 def email_hook(dialog, link, data):
-    print 'email', link
+    # hmm... I'm sure that there's something better that can be done here...
+    os.system('gnome-open mailto:%s' % link)
 
 if __name__ == '__main__':
     gtk.about_dialog_set_url_hook(url_hook, None)
