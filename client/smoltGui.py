@@ -205,7 +205,9 @@ class SmoltGui(object):
             self.aboutDialog.set_authors(['Mike McGrath <mmcgrath@redhat.com>',
                                           'Jeffrey C. Ollie <jeff@ocjtech.us>',
                                           'Dennis Gilmore <dennis@ausil.us>',
-                                          'Toshio Kuratomi <a.badger@gmail.com>'])
+                                          'Toshio Kuratomi <a.badger@gmail.com>',
+                                          'Yaakov M. Nemoy <loupgaroublond@gmail.com>',
+                                          'Harald Hoyer <harald@redhat.com>'])
             self.aboutDialog.set_translator_credits(_('translator-credits'))
             self.aboutDialog.set_comments(_('Fedora hardware profiler.'))
             self.aboutDialog.set_copyright(_('Copyright © 2007 Mike McGrath'))
