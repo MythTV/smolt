@@ -168,7 +168,7 @@ if opts.userName:
         print _('Registration Failed, Try again')
 if not opts.submitOnly:
     scan(profile)
-url = urljoin(opts.smoonURL, '/client/show?UUID=%s' % profile.host.UUID)
+url = urljoin(opts.smoonURL, '/show?UUID=%s' % profile.host.UUID)
 print
 
 print _('To view your profile visit: %s') % url
