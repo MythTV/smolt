@@ -201,7 +201,7 @@ class SmoltGui(object):
             self.aboutDialog.set_transient_for(self.mainWindow)
             self.aboutDialog.set_name('Smolt')
             self.aboutDialog.set_version(smolt.smoltProtocol)
-            self.aboutDialog.set_website('https://hosted.fedoraproject.org/projects/smolt')
+            self.aboutDialog.set_website('https://fedorahosted.org/smolt')
             self.aboutDialog.set_authors(['Mike McGrath <mmcgrath@redhat.com>',
                                           'Jeffrey C. Ollie <jeff@ocjtech.us>',
                                           'Dennis Gilmore <dennis@ausil.us>',
