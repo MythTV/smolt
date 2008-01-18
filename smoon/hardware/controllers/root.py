@@ -25,25 +25,6 @@ class Root(controllers.RootController):
     def __init__(self):
         controllers.RootController.__init__(self)
             
-    #legacy definitions
-    #TODO wrap these things into counters to measure current
-    #usage patterns
-    show = client.show
-    show_all = client.show_all
-#    share = client.share
-    delete = client.delete
-    add = client.add
-    addDevices = client.add_devices
-    add_json = client.add_json
-    rate_object = client.rate_object
-    
-    token = tokens.token
-    token_json = tokens.token_json
-    check_token = tokens.check_token
-    
-    error_web = error.error_web
-    error_client = error.error_client
-
         
     @expose(template="hardware.templates.welcome")
     def index(self):
