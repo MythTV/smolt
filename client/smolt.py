@@ -54,7 +54,7 @@ def get_config_attr(attr, default=""):
 smoonURL = get_config_attr("SMOON_URL", "http://smolt.fedoraproject.org/")
 hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
 smoltProtocol = '0.97'
-supported_protocols = ['0.97', '.91']
+supported_protocols = ['0.97',]
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
 DEBUG = False
@@ -424,14 +424,10 @@ class Hardware:
         try:
             token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/token_json?uuid=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
-            try:
-                token = grabber.urlopen(urljoin(smoonURL + "/", '/token?UUID=%s' % self.host.UUID, False))
-            except urlgrabber.grabber.URLGrabError, e:
-                error(_('Error contacting Server: %s') % e)
-                return 1
+            error(_('Error contacting Server: %s') % e)
+            return 1
         tok_str = token.read()
         try:
-            
             tok_obj = simplejson.loads(tok_str)
             if tok_obj['prefered_protocol'] in supported_protocols:
                 prefered_protocol = tok_obj['prefered_protocol']
@@ -440,20 +436,9 @@ class Hardware:
                 return 1
             tok = tok_obj['token']
         except ValueError, e:
-            for line in tok_str.split('\n'):
-                if 'tok' in line:
-                    tok = line.split(': ')[1]
+            error(_('Something went wrong fetching a token'))
+        finally:
             token.close()
-            #we're assuming since it does no json
-            #we can guess it's the last stable
-            #release
-            prefered_protocol = '.91'
-        
-        try:
-            tok = tok
-        except NameError, e:
-            error(_('Communication with server failed'))
-            return 1
         
         send_host_obj = self.get_sendable_host(prefered_protocol)
         my_devices = self.get_sendable_devices(prefered_protocol)
@@ -463,10 +448,6 @@ class Hardware:
             send_host_obj['smolt_protocol'] = prefered_protocol
         debug('smoon server URL: %s' % smoonURL)
         
-        if prefered_protocol == ".91":
-            send_host_str = send_host_obj + \
-                            '&token=%s&smoltProtocol=%s' % \
-                            (tok, smoltProtocol)
         if prefered_protocol == '0.97':
             send_host_str = ('uuid=%s&host=' + \
                              simplejson.dumps(send_host_obj) + \
@@ -477,11 +458,6 @@ class Hardware:
         debug('Sending Host')
         
         try:
-            if prefered_protocol == '.91':
-                o=grabber.urlopen(urljoin(smoonURL + '/', '/add', False),\
-                                  data=send_host_str, http_headers=(
-                                ('Content-length', '%i' % len(send_host_str)),
-                                ('Content-type', 'application/x-www-form-urlencoded')))
             if prefered_protocol == '0.97':
                 o = grabber.urlopen(urljoin(smoonURL + "/", "/client/add_json", False), data=send_host_str,
                                     http_headers=(
@@ -494,23 +470,6 @@ class Hardware:
             pub_uuid = serverMessage(o.read())
             print pub_uuid
             o.close()
-        
-        if prefered_protocol == '.91':
-            device_str = ''
-            for dev in my_devices:
-                device_str = device_str + dev + '\n'
-            send_devices_str = urlencode({'Devices' : device_str, 'UUID' : self.host.UUID})
-            
-            try:
-                o=grabber.urlopen(urljoin(smoonURL + '/', '/addDevices', False), data=send_devices_str, http_headers=(
-                                ('Content-length', '%i' % len(send_devices_str)),
-                                ('Content-type', 'application/x-www-form-urlencoded')))
-            except urlgrabber.grabber.URLGrabError, e:
-                error(_('Error contacting Server: %s') % e)
-                return 1
-            else:
-                serverMessage(o.read())
-                o.close()
         
         return (0, pub_uuid)
         
