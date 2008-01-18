@@ -64,30 +64,3 @@ class Root(controllers.RootController):
     def time(self):
         import time
         return time.ctime()
-
-    @expose(template="hardware.templates.my_hosts")
-    @identity.require(identity.not_anonymous())
-    def my_hosts(self):
-        try:
-            link_sql = ctx.current.query(FasLink).selectone_by(user_name=identity.current.user_name)
-        except InvalidRequestError:
-            link_sql = []
-        return dict(link_sql=link_sql)
-
-    @expose(template="hardware.templates.link")
-    @identity.require(identity.not_anonymous())
-    def link(self, UUID):
-        try:
-            host_sql = ctx.current.query(Host).selectone_by(uuid=UUID)
-        except InvalidRequestError:
-            raise ValueError("Critical: Your UUID did not exist.")
-        
-        if host_sql.fas_account == None:
-            link_sql = FasLink(uuid=UUID, user_name=identity.current.user_name)
-            ctx.current.flush()
-        return dict()
-    
-    @expose(template="hardware.templates.not_loaded")
-    def unavailable(self, tg_exceptions=None):
-        return dict()
-        
