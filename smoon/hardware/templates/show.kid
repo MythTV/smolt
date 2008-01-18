@@ -13,7 +13,7 @@ ${ratingwidget.display(update="rating",
                        imgon_pre="/static/images/rating/r",
                        imgoff_pre="/static/images/rating/ro",
                        imgbusy_pre="/static/images/rating/rb",
-                       img_post=".gif",
+                       img_post=".png",
 )}
 </head>
 <body>
@@ -25,12 +25,12 @@ ${ratingwidget.display(update="rating",
         <h3>${host_object.uuid}</h3>
 
 	<div id="legend">
-	    <img src="/static/images/rating/r0.gif"/> I don't use this/I don't know<br/>
-	    <img src="/static/images/rating/r1.gif"/> Breaks System<br/>
-	    <img src="/static/images/rating/r2.gif"/> Doesn't Work<br/>
-	    <img src="/static/images/rating/r3.gif"/> Requires 3rd Party Drivers<br/>
-	    <img src="/static/images/rating/r4.gif"/> Works, but required aditional configuration<br/>
-	    <img src="/static/images/rating/r5.gif"/> Worked out of the box<br/>
+	    <img src="/static/images/rating/r0.png"/> I don't use this/I don't know<br/>
+	    <img src="/static/images/rating/r1.png"/> Breaks System<br/>
+	    <img src="/static/images/rating/r2.png"/> Doesn't Work<br/>
+	    <img src="/static/images/rating/r3.png"/> Requires 3rd Party Drivers<br/>
+	    <img src="/static/images/rating/r4.png"/> Works, but required aditional configuration<br/>
+	    <img src="/static/images/rating/r5.png"/> Worked out of the box<br/>
 	    <p><a href="/client/show_all?UUID=${host_object.uuid}">Show all Information</a></p>
 	</div>
         <table id="system_show">

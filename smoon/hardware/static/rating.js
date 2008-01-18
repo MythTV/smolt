@@ -147,11 +147,11 @@ function single_rating_init(href, maxnum, classname, imgon_pre, imgoff_pre, imgb
 	for (var j = 0; j <= maxnum; j++) {
 	    var star = document.createElement('img');
 	    if (rating == j) {
-		star.setAttribute('src', '/static/images/rating/r'+j+'.gif');
+		star.setAttribute('src', '/static/images/rating/r'+j+'.png');
 		star.className = 'on';
 	    }
 	    else {
-		star.setAttribute('src', '/static/images/rating/ro'+j+'.gif');
+		star.setAttribute('src', '/static/images/rating/ro'+j+'.png');
 		star.className = 'off';
 	    }
 	    var widgetId = ratings[i].getAttribute('id');
