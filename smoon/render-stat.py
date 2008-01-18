@@ -4,7 +4,7 @@ import pkg_resources
 pkg_resources.require("TurboGears")
 
 from turbogears.view import engines
-import turbogears.wiki as tg_util
+import turbogears.util as tg_util
 from turbogears import view, database, errorhandling, config
 from itertools import izip
 from inspect import isclass

@@ -260,6 +260,8 @@ class ServerError(Exception):
 
 def serverMessage(page):
     for line in page.split("\n"):
+        if 'UUID:' in line:
+            return line.strip()[6:]
         if 'ServerMessage:' in line:
             print _('Server Message: "%s"') % line.split('ServerMessage: ')[1]
             if 'Critical' in line:
@@ -489,7 +491,8 @@ class Hardware:
             error(_('Error contacting Server: %s') % e)
             return 1
         else:
-            serverMessage(o.read())
+            pub_uuid = serverMessage(o.read())
+            print pub_uuid
             o.close()
         
         if prefered_protocol == '.91':
@@ -509,7 +512,7 @@ class Hardware:
                 serverMessage(o.read())
                 o.close()
         
-        return 0
+        return (0, pub_uuid)
         
     def getProfile(self):
         printBuffer = []

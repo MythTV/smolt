@@ -9,6 +9,7 @@ from hardware.ratingwidget import *
 from hardware.controllers.error import Error
 from hardware.model import *
 from hardware.hwdata import DeviceMap
+from hardware.uuid import generate_uuid
 
 import gc
 
@@ -166,6 +167,7 @@ class Client(object):
         except InvalidRequestError:
             host_sql = Host()
             host_sql.uuid = uuid
+            host_sql.pub_uuid = generate_uuid(public=True)
 
         host_sql.os = OS.strip()
         host_sql.platform = platform.strip()
@@ -190,7 +192,7 @@ class Client(object):
         host_sql.last_modified = datetime.now()
         
         ctx.current.flush()
-        return dict()
+        return dict(pub_uuid=host_sql.pub_uuid)
 
     @expose()
 #    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
@@ -280,7 +282,7 @@ class Client(object):
             ctx.current.flush()
         return dict()
     
-    @expose()
+    @expose(template="hardware.templates.pub_uuid")
 #    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
         if smolt_protocol < self.smolt_protocol:
@@ -296,7 +298,8 @@ class Client(object):
             host_sql = ctx.current.query(Host).selectone_by(uuid=uuid)
         except InvalidRequestError:
             host_sql = Host()
-        host_sql.uuid = host_dict["uuid"]
+            host_sql.uuid = host_dict["uuid"]
+            host_sql.pub_uuid = generate_uuid(public=True)
         host_sql.os = host_dict['os']
         host_sql.default_runlevel = host_dict['default_runlevel']
         host_sql.language = host_dict['language']
@@ -388,8 +391,8 @@ class Client(object):
             if bad_host_link and len(bad_host_link):
                 ctx.current.delete(bad_host_link[0])
         ctx.current.flush()
-        gc.collect()
-        return dict()
+        print "pub_uuid: %s" % host_sql.pub_uuid
+        return dict(pub_uuid=host_sql.pub_uuid)
 
     @expose()
     def rate_object(self, *args, **kwargs):

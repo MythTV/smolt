@@ -100,6 +100,11 @@ parser.add_option('--uuidFile',
                   dest = 'uuidFile',
                   default = smolt.hw_uuid_file,
                   help = _('specify which uuid to use, useful for debugging and testing mostly.'))
+parser.add_option('-b', '--bodhi',
+                  dest = 'bodhi',
+                  default = False,
+                  action = 'store_true',
+                  help = _('Submit this profile to Bodhi as well, for Fedora Developmnent'))
 
 
 (opts, args) = parser.parse_args()
@@ -139,7 +144,8 @@ if not opts.autoSend:
         sys.exit(0)
     else:
         try:
-            send = raw_input('\n' + _('Send this information to the Smolt server? (y/n)') + ' ')
+            send = raw_input('\n' + 
+                             _('Send this information to the Smolt server? (y/n)') + ' ')
             if send[:1].lower() != _('y'):
                 error(_('Exiting...'))
                 sys.exit(4)
@@ -149,12 +155,18 @@ if not opts.autoSend:
     
 if opts.retry:
     while 1:
-        if not profile.send(user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
+        result, pub_uuid = profile.send(user_agent=opts.user_agent, 
+                              smoonURL=opts.smoonURL, 
+                              timeout=opts.timeout) 
+        if not result:
             sys.exit(0)
         error(_('Retry Enabled - Retrying'))
         time.sleep(30)
 else:
-    if profile.send(user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
+    result, pub_uuid = profile.send(user_agent=opts.user_agent, 
+                                            smoonURL=opts.smoonURL, 
+                                            timeout=opts.timeout)
+    if result:
         print _('Could not send - Exiting')
         sys.exit(1)
 
@@ -168,7 +180,7 @@ if opts.userName:
         print _('Registration Failed, Try again')
 if not opts.submitOnly:
     scan(profile)
-url = urljoin(opts.smoonURL, '/client/show?UUID=%s' % profile.host.UUID)
+url = urljoin(opts.smoonURL, '/client/show?UUID=%s' % pub_uuid)
 print
 
 print _('To view your profile visit: %s') % url

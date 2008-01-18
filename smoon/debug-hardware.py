@@ -3,12 +3,13 @@ __requires__='TurboGears[future]'
 import pkg_resources
 #pkg_resources.require("TurboGears")
 
+import threading
+
 from turbogears import update_config, start_server
 import cherrypy
 cherrypy.lowercase_api = True
 from os.path import *
 import sys
-import threading
 
 # first look on the command line for a desired config file,
 # if it's not on the command line, then
@@ -26,6 +27,3 @@ from hardware.controllers import Root
 
 thoo = threading.Thread(target=start_server, args=(Root(),))
 thoo.start()
-
-from guppy import hpy
-h = hpy()
