@@ -1,47 +1,54 @@
-# translation of smolt-pt_BR.po to Brazilian Portuguese
 # Brazilian Portuguese translation of smolt.
 #
 #
-# Igor Pires Soares <igor@projetofedora.org>, 2007.
 # Diego Búrigo Zacarão <diegobz@gmail.com>, 2007.
+# Igor Pires Soares <igor@projetofedora.org>, 2007,2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2007-10-05 16:40-0300\n"
+"PO-Revision-Date: 2008-01-12 17:13-0500\n"
 "Last-Translator: Igor Pires Soares <igor@projetofedora.org>\n"
-"Language-Team: Brazilian Portuguese <fedora-docs-br@redhat.com>\n"
+"Language-Team: Brazilian Portuguese <fedora-trans-pt_br@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: KBabel 1.11.4\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
 
-#: deleteProfile.py:36 smolt.py:263
+#: deleteProfile.py:36
+#: smolt.py:263
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Mensagem do Servidor: \"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:43
+#: deleteProfile.py:46
+#: sendProfile.py:43
 msgid "enable debug information"
 msgstr "habilitar informações de depuração"
 
-#: deleteProfile.py:51 sendProfile.py:48
+#: deleteProfile.py:51
+#: sendProfile.py:48
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "especificar a URL do servidor (padrão \"%default\")"
 
-#: deleteProfile.py:56 sendProfile.py:63
+#: deleteProfile.py:56
+#: sendProfile.py:63
 msgid "print information only, do not send"
 msgstr "apenas imprimir informações, não enviá-las"
 
-#: deleteProfile.py:61 sendProfile.py:78
+#: deleteProfile.py:61
+#: sendProfile.py:78
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "especificar agente de usuário HTTP (padrão \"%default\")"
 
-#: deleteProfile.py:66 sendProfile.py:83
+#: deleteProfile.py:66
+#: sendProfile.py:83
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "especificar tempo de espera HTTP em segundos (padrão %default segundos)"
@@ -76,17 +83,19 @@ msgstr "esta é uma verificação automática, somente será executada se o serv
 
 #: sendProfile.py:93
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr ""
+msgstr "somente analisar esta máquina para saber se há alguma errata de hardware, não enviar o perfil."
 
 #: sendProfile.py:108
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "O Smolt está configurado para fazer verificações, mas elas estão desabilitadas (dica: service smolt start)"
 
-#: sendProfile.py:115 scan.py:51
+#: sendProfile.py:115
+#: scan.py:51
 msgid "Error:"
 msgstr "Erro:"
 
-#: sendProfile.py:117 scan.py:53
+#: sendProfile.py:117
+#: scan.py:53
 msgid "Hint:"
 msgstr "Dica:"
 
@@ -98,7 +107,8 @@ msgstr "Enviar estas informações para o servidor do Smolt? (s/n)"
 msgid "y"
 msgstr "s"
 
-#: sendProfile.py:134 sendProfile.py:137
+#: sendProfile.py:134
+#: sendProfile.py:137
 msgid "Exiting..."
 msgstr "Saindo..."
 
@@ -224,13 +234,17 @@ msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "Não foi possível se ligar ao dbus. O dbus está rodando?"
 
 #: smolt.py:302
-#, fuzzy
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
-msgstr "Não foi possível conectar ao hal, ele está rodando?"
+msgstr ""
+"Não foi possível conectar ao hal, ele está rodando?\n"
+"Execute \"service haldaemon start\" como root"
 
-#: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
+#: smolt.py:338
+#: smolt.py:427
+#: smolt.py:488
+#: smolt.py:505
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Erro ao contatar o servidor: %s"
@@ -331,7 +345,8 @@ msgstr "Incapaz de determinar UUID do sistema!\n"
 msgid "Cannot Determine Runlevel"
 msgstr "Inpossível Determinar Nível de Execusão (RunLevel)"
 
-#: smoltFirstBoot.py:31 smoltFirstBoot.py:41
+#: smoltFirstBoot.py:31
+#: smoltFirstBoot.py:41
 msgid "Hardware Profile"
 msgstr "Perfil de Hardware"
 
@@ -440,23 +455,24 @@ msgstr ""
 #: scan.py:16
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr ""
+msgstr "Analisando %s para encontrar erratas.\n"
 
 #: scan.py:39
 msgid "Errata Found!"
-msgstr ""
+msgstr "Errata Encontrada!"
 
 #: scan.py:42
 msgid "No errata found, if this machine is having issues please go to"
-msgstr ""
+msgstr "Nenhuma errata encontrada, se esta máquina estiver com problemas por favor visite"
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
-msgstr ""
+msgstr "o seu perfil e crie uma página wiki para o dispositivo, de forma que outros possam se"
 
 #: scan.py:44
 msgid "benefit"
-msgstr ""
+msgstr "beneficiar"
 
 #~ msgid "Run \"service haldaemon start\" as root"
 #~ msgstr "Execute \"service haldaemon start\" como root"
+

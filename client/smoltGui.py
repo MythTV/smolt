@@ -1,5 +1,5 @@
 #!/usr/bin/python 
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 # Author: Toshio Kuratomi
 
 # smolt - Fedora hardware profiler
@@ -201,17 +201,19 @@ class SmoltGui(object):
             self.aboutDialog.set_transient_for(self.mainWindow)
             self.aboutDialog.set_name('Smolt')
             self.aboutDialog.set_version(smolt.smoltProtocol)
-            self.aboutDialog.set_website('https://hosted.fedoraproject.org/projects/smolt')
+            self.aboutDialog.set_website('https://fedorahosted.org/smolt')
             self.aboutDialog.set_authors(['Mike McGrath <mmcgrath@redhat.com>',
                                           'Jeffrey C. Ollie <jeff@ocjtech.us>',
                                           'Dennis Gilmore <dennis@ausil.us>',
-                                          'Toshio Kuratomi <a.badger@gmail.com>'])
+                                          'Toshio Kuratomi <a.badger@gmail.com>',
+                                          'Yaakov M. Nemoy <loupgaroublond@gmail.com>',
+                                          'Harald Hoyer <harald@redhat.com>'])
             self.aboutDialog.set_translator_credits(_('translator-credits'))
             self.aboutDialog.set_comments(_('Fedora hardware profiler.'))
             self.aboutDialog.set_copyright(_('Copyright © 2007 Mike McGrath'))
             self.aboutDialog.set_wrap_license(True)
             self.aboutDialog.set_license(_('This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.'))
-            if os.path.exists('smolt-about.png'):
+            if os.path.exists('icons/smolt-about.png'):
                 logo = gtk.gdk.pixbuf_new_from_file('icons/smolt-about.png')
             else:
                 logo = gtk.gdk.pixbuf_new_from_file('/usr/share/smolt/client/icons/smolt-about.png')
@@ -235,10 +237,11 @@ class SmoltGui(object):
         gtk.main()
 
 def url_hook(dialog, link, data):
-    print 'url', link
+    webbrowser.open(link)
 
 def email_hook(dialog, link, data):
-    print 'email', link
+    # hmm... I'm sure that there's something better that can be done here...
+    os.system('gnome-open mailto:%s' % link)
 
 if __name__ == '__main__':
     gtk.about_dialog_set_url_hook(url_hook, None)

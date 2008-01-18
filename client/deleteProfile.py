@@ -95,6 +95,7 @@ else:
     o.close()
 
 sys.stdout.write(_('Profile removed, please verify at'))
+sys.stdout.write(' ')
 sys.stdout.write(urljoin(opts.smoonURL + '/', '/client/show?%s\n' % delHostString))
 
 
