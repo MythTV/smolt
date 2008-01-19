@@ -190,6 +190,8 @@ stats['cpu_vendor'] = ctx.current.query(CPUVendor).select(limit=100)
 stats['kernel_version'] = ctx.current.query(KernelVersion).select(limit=20)
 stats['formfactor'] = ctx.current.query(FormFactor).select()
 stats['language'] = ctx.current.query(Language).select()
+stats['selinux_enabled'] = ctx.current.query(SelinuxEnabled).select()
+stats['selinux_enforce'] = ctx.current.query(SelinuxEnforced).select()
 stats['languagetot'] = stats['total_hosts']
 
 stats['sys_mem'] = []

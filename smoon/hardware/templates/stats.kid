@@ -162,6 +162,24 @@
                 </tr>
             </table>
         </div>
+        <div class="tabbertab"><h2>Selinux</h2>
+            <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+                <tr py:for='enabled in stat["selinux_enabled"]'>
+                    <th align="right">${enabled.enabled}</th>
+                    <td align="center">${enabled.cnt}</td>
+                    <td><strong>${'%.1f' % (float(enabled.cnt) / total_hosts * 100) } %</strong></td>
+                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(enabled.cnt) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+            <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+                <tr py:for='enforce in stat["selinux_enforce"]'>
+                    <th align="right">${enforce.enforce}</th>
+                    <td align="center">${enforce.cnt}</td>
+                    <td><strong>${'%.1f' % (float(enforce.cnt) / total_hosts * 100) } %</strong></td>
+                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(enforce.cnt) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+            </table>
+        </div>
     </div>
 
 </body>

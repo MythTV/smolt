@@ -147,6 +147,14 @@ uniquelist = Table("UNIQUELIST", metadata,
                    Column('description', TEXT, 
                           primary_key=True),
                    Column('cnt', INT, key='count'))
+selinux_enabled = Table("SELINUX_ENABLED", metadata,
+                        Column('enabled', BOOLEAN, 
+                               primary_key=True),
+                        Column('cnt', INT, key='count'))
+selinux_enforce = Table("SELINUX_ENFORCE", metadata,
+                        Column('enforce', TEXT,
+                               primary_key=True),
+                        Column('cnt', INT, key='count'))
 
 class Host(object):
     def __init__(self, selinux_enabled=False, 
@@ -207,6 +215,10 @@ class TotalList(object):
     pass
 class UniqueList(object):
     pass
+class SelinuxEnabled(object):
+    pass
+class SelinuxEnforced(object):
+    pass
 
 
 def mapper(*args, **kw):
@@ -266,3 +278,5 @@ mapper(FormFactor, formfactors, order_by=desc(formfactors.c.cnt))
 mapper(Language, languages, order_by=desc(languages.c.cnt))
 mapper(TotalList, totallist, order_by=desc(totallist.c.count))
 mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
+mapper(SelinuxEnabled, selinux_enabled, order_by=desc(selinux_enabled.c.count))
+mapper(SelinuxEnforced, selinux_enforce, order_by=desc(selinux_enforce.c.count))
