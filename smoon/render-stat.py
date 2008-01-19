@@ -115,8 +115,7 @@ class ByClass(object):
         total_hosts = 0
         
         # We only want hosts that detected hardware (IE, hal was working properly)
-        total_hosts = select([host_links.c.host_link_id], distinct=True)\
-            .alias("m").count()\
+        total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))])\
             .execute().fetchone()[0]
 
         for cls in classes:
@@ -124,21 +123,19 @@ class ByClass(object):
 
             #devs = select([computer_logical_devices], computer_logical_devices.c.cls == type).alias("devs")
             devs = computer_logical_devices
-            types = select([host_links.c.host_link_id, 
-                            devs, 
-                            func.count(func.distinct(host_links.c.host_link_id)).label('count')], 
+            types = select([devs, 
+                            func.count(func.distinct(host_links.c.host_link_id)).label('c')], 
                            and_(devs.c.cls == type, host_links.c.device_id == devs.c.id), 
                            #from_obj=[ host_links.join(devs, host_links.c.device_id == devs.c.id) ],
                            group_by=host_links.c.device_id, 
-                           order_by=[desc('count')], 
+                           order_by=[desc('c')], 
                            limit=100).execute().fetchall();
 	    
-
             devs = select([computer_logical_devices.c.id], computer_logical_devices.c.cls == type).alias("devs")
-            count = select([host_links.c.host_link_id], 
-                           from_obj=[ host_links.join(devs, host_links.c.device_id == devs.c.id) ],
-                           distinct=True).alias("m")\
-                           .count().execute().fetchone()[0] 
+            devs = computer_logical_devices
+            count = select([func.count(func.distinct(host_links.c.host_link_id))], 
+                           and_(devs.c.cls == type, 
+                                host_links.c.device_id == devs.c.id)).execute().fetchone()[0] 
             
             device = computer_logical_devices
             vendors = select([func.count(device.c.vendor_id).label('cnt'), 
