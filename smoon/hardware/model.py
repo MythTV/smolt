@@ -4,6 +4,7 @@ from sqlalchemy.orm import *
 from turbogears.database import metadata, session
 from sqlalchemy.ext.assignmapper import assign_mapper
 from turbogears import identity
+from datetime import timedelta, date
 from mx import DateTime
 
 ctx = session.context
@@ -280,3 +281,6 @@ mapper(TotalList, totallist, order_by=desc(totallist.c.count))
 mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
 mapper(SelinuxEnabled, selinux_enabled, order_by=desc(selinux_enabled.c.count))
 mapper(SelinuxEnforced, selinux_enforce, order_by=desc(selinux_enforce.c.count))
+
+def old_hosts_clause():
+    return (hosts.c.last_modified > (date.today() - timedelta(days=36)))
