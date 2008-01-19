@@ -151,7 +151,7 @@ class ByClass(object):
                               device.c.vendor_id], 
                              and_(device.c.cls==type,
                                   hosts.c.id == host_links.c.host_link_id,
-                                  host_links.c.host_link_id,
+                                  host_links.c.device_id == devs.c.id,
                                   old_hosts_clause()), 
                              order_by=[desc('cnt')], 
                              group_by=device.c.vendor_id).execute().fetchall()
