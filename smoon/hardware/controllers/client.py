@@ -107,22 +107,6 @@ class Client(object):
                     getOSWikiLink=getOSWikiLink
                     )
 
-#    @expose(template="hardware.templates.share")
-##    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
-#    def share(self, sid=''):
-#        try:
-#            host_object = ctx.current.query(Host).get(sid)
-#        except:
-#            raise ValueError("Critical: share ID Not Found - %s" % sid)
-#        devices = {}
-#        for dev in host_object.devices:
-#            #This is to prevent duplicate devices showing up, in the future,
-#            #There will be no dups in the database
-#            devices[dev.device_id] = (dev.device, dev.rating)
-#        ven = DeviceMap('pci')
-#        return dict(host_object=host_object, devices=devices, \
-#                    ven=ven, rating_options=rating_options)
-
     @expose(template="hardware.templates.delete")
 #    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, UUID=''):
