@@ -940,6 +940,22 @@ def read_memory_2_6():
     memdict['swap'] = str(swap_megs)
     return memdict
 
+## For refactoring, I'll probably want to make a library
+## Of command line tool functions
+## This is one of them
+def get_profile():
+    try:
+        return Hardware()
+    except smolt.SystemBusError, e:
+        error(_('Error:') + ' ' + e.message)
+        if e.hint is not None:
+            error('\t' + _('Hint:') + ' ' + e.hint)
+        sys.exit(8)
+        
+##This is another
+def get_profile_link(smoonURL, pub_uuid):
+    return urljoin(smoonURL, '/client/show?uuid=%s' % pub_uuid)
+
 def getUUID():
     
     try:

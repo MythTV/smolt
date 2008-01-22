@@ -21,18 +21,17 @@ class Client(object):
 
     @expose(template="hardware.templates.show")
 #    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
-    def show(self, UUID=''):
+    def show(self, uuid=''):
         try:
-            uuid = u'%s' % UUID.strip()
+            uuid = u'%s' % uuid.strip()
             uuid = uuid.encode('utf8')
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
 
         try:
-            host_object = ctx.current.query(Host).selectone_by(uuid=UUID)
-            #ctx.current.refresh(host_object)
+            host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
         except:
-            raise ValueError("Critical: UUID Not Found - %s" % UUID)
+            raise ValueError("Critical: UUID Not Found - %s" % uuid)
         devices = {}
         ven = DeviceMap('pci')
 
@@ -77,20 +76,18 @@ class Client(object):
         
     @expose(template="hardware.templates.showall", allow_json=True)
 #    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
-    def show_all(self, UUID=''):
+    def show_all(self, uuid=''):
         try:
-            uuid = u'%s' % UUID.strip()
+            uuid = u'%s' % uuid.strip()
             uuid = uuid.encode('utf8')
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
-            host_object = ctx.current.query(Host).selectone_by(uuid=UUID)
-            #ctx.current.refresh(host_object)
+            host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
         except:
-            raise ValueError("Critical: UUID Not Found - %s" % UUID)
+            raise ValueError("Critical: UUID Not Found - %s" % uuid)
         devices = {}
         for dev in host_object.devices:
-            #ctx.current.refresh(dev)
             #This is to prevent duplicate devices showing up, in the future,
             #There will be no dups in the database
             devices[dev.device_id] = (dev.device, dev.rating)
@@ -107,29 +104,13 @@ class Client(object):
                     getOSWikiLink=getOSWikiLink
                     )
 
-#    @expose(template="hardware.templates.share")
-##    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
-#    def share(self, sid=''):
-#        try:
-#            host_object = ctx.current.query(Host).get(sid)
-#        except:
-#            raise ValueError("Critical: share ID Not Found - %s" % sid)
-#        devices = {}
-#        for dev in host_object.devices:
-#            #This is to prevent duplicate devices showing up, in the future,
-#            #There will be no dups in the database
-#            devices[dev.device_id] = (dev.device, dev.rating)
-#        ven = DeviceMap('pci')
-#        return dict(host_object=host_object, devices=devices, \
-#                    ven=ven, rating_options=rating_options)
-
     @expose(template="hardware.templates.delete")
 #    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
-    def delete(self, UUID=''):
+    def delete(self, uuid=''):
         try:
-            host = ctx.current.query(Host).selectone_by(uuid=UUID)
+            host = ctx.current.query(Host).selectone_by(uuid=uuid)
         except:
-            raise ValueError("Critical: UUID does not exist %s " % UUID)
+            raise ValueError("Critical: UUID does not exist %s " % uuid)
         try:
             ctx.current.delete(host)
             ctx.current.flush()
@@ -246,7 +227,6 @@ class Client(object):
             if bad_host_link and len(bad_host_link):
                 ctx.current.delete(bad_host_link[0])
         ctx.current.flush()
-        print "pub_uuid: %s" % host_sql.pub_uuid
         return dict(pub_uuid=host_sql.pub_uuid)
 
     @expose()
@@ -256,10 +236,10 @@ class Client(object):
         id = kwargs.get("ratingID")
         rating = kwargs.get("value")
         if id.startswith("Host"):
-            sep = id.find("_")
+            sep = id.find("@")
             if sep == -1:
                 host_id = id[4:]
-                host = ctx.current.query(Host).selectone_by(uuid=host_id)
+                host = ctx.current.query(Host).selectone_by(pub_uuid=host_id)
                 host.rating = int(rating)
                 ctx.current.flush()
                 return dict()
@@ -275,4 +255,10 @@ class Client(object):
                         ctx.current.flush([host, device])
                         return dict()
         return dict()
+    
+    @expose()
+    def pub_uuid(self, uuid):
+        host = ctx.current.query(Host).selectone_by(uuid=uuid)
+        return dict(pub_uuid=host.pub_uuid)
+        
 

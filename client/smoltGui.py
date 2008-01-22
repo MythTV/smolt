@@ -126,7 +126,7 @@ class SmoltGui(object):
         vpaned.pack2(self.device_table.get(), resize = True, shrink = True)
         
     def mysmolt_cb(self, *extra):
-        webbrowser.open(urljoin(smolt.smoonURL, '/show?UUID=%s' % self.profile.host.UUID))
+        webbrowser.open(urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID))
     
     def quit_cb(self, *extra):
         '''Quit the program.'''
@@ -144,16 +144,16 @@ class SmoltGui(object):
                     gtk.BUTTONS_OK,
                     message_format=_('An error occurred while sending the data to the server.'))
         else:
-            url = urljoin(smolt.smoonURL, '/show?UUID=%s' % self.profile.host.UUID)
+            url = urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID)
             finishMessage = gtk.MessageDialog(self.mainWindow,
                     gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
                     gtk.MESSAGE_INFO,
                     gtk.BUTTONS_OK,
                     message_format=_('The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in %s') \
-                                     % (urljoin(smolt.smoonURL, '/show?UUID=%s' % self.profile.host.UUID), smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")))
+                                     % (urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID), smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")))
         finishMessage.show()
         finishMessage.run()
-        webbrowser.open(urljoin(smolt.smoonURL, '/show?UUID=%s' % self.profile.host.UUID))
+        webbrowser.open(urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID))
         self.quit_cb(None)
 
     def privacy_cb(self, *extra):

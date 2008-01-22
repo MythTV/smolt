@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2007-12-11 22:27+0200\n"
+"PO-Revision-Date: 2008-01-19 14:40+0200\n"
 "Last-Translator: Piotr Drąg <raven@pmail.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -217,11 +217,12 @@ msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "Nie można dowiązać do D-Bus. Czy D-Bus jest uruchomiony?"
 
 #: smolt.py:302
-#, fuzzy
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
-msgstr "Nie można połączyć się z hal, czy jest uruchomiony?"
+msgstr ""
+"Nie można połączyć się z HAL, czy jest uruchomiony?\n"
+"Uruchom \"service haldaemon start\" jako root"
 
 #: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
 #, python-format
@@ -453,6 +454,3 @@ msgstr "przejdź swojego profilu i utwórz stronę wiki dla urządzenia, aby inn
 #: scan.py:44
 msgid "benefit"
 msgstr "mogli odnieść z tego korzyści"
-
-#~ msgid "Run \"service haldaemon start\" as root"
-#~ msgstr "Uruchom \"service haldaemon start\" jako root"

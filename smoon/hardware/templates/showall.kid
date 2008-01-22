@@ -27,7 +27,7 @@ ${ratingwidget.display(update="rating",
 		<a href='share?sid=${host_object.id}'>Share my computer!</a>
 	</div>
 -->
-        <h3>${host_object.uuid}</h3>
+        <h3>${host_object.pub_uuid}</h3>
 
 	<div id="legend">
             <img src="/static/images/rating/r0.png"/> I don't use this/I don't know<br/>
@@ -36,11 +36,11 @@ ${ratingwidget.display(update="rating",
 	    <img src="/static/images/rating/r3.png"/> Requires 3rd Party Drivers<br/>
 	    <img src="/static/images/rating/r4.png"/> Works, but required aditional configuration<br/>
 	    <img src="/static/images/rating/r5.png"/> Worked out of the box<br/>
-	    <p><a href="/client/show?UUID=${host_object.uuid}">Show basic Information</a></p>
+	    <p><a href="/client/show?uuid=${host_object.pub_uuid}">Show basic Information</a></p>
 	</div>
         <table id="system_show">
-       	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.uuid}">${host_object.rating}</div></td></tr>
-            <tr><th>UUID:</th><td>${host_object.uuid}</td></tr>
+       	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.pub_uuid}">${host_object.rating}</div></td></tr>
+            <tr><th>UUID:</th><td>${host_object.pub_uuid}</td></tr>
             <tr><th>Operating System:</th><td><a href="${getOSWikiLink(host_object.os)}">${host_object.os}</a></td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
             <tr><th>Bogomips:</th><td>${host_object.bogomips}</td></tr>
@@ -65,7 +65,7 @@ ${ratingwidget.display(update="rating",
             </tr>
             <tr py:for='device_node in devices'>
             	<?python device = device_node[0] ?>
-            	<td align='left'><div class="rating" id="Host${host_object.uuid}_Device${device.id}">${device_node[1]}</div></td>
+            	<td align='left'><div class="rating" id="Host${host_object.pub_uuid}@Device${device.id}">${device_node[1]}</div></td>
                 <td align='center'>${ven.vendor(device.vendor_id, bus=device.bus)}</td>
 		<td align='center'><span py:replace="wikilink(ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus), device)">Devicename</span></td>
                 <td align='center'>${ven.vendor(device.subsys_device_id)}</td>

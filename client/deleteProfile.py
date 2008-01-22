@@ -79,7 +79,7 @@ profile = smolt.Hardware()
 
 grabber = urlgrabber.grabber.URLGrabber(user_agent=opts.user_agent, timeout=opts.timeout)
 
-delHostString = 'UUID=%s' % profile.host.UUID
+delHostString = 'uuid=%s' % profile.host.UUID
 
 try:
     o=grabber.urlopen(urljoin(opts.smoonURL + '/', '/client/delete'), data=delHostString, http_headers=(

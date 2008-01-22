@@ -8,7 +8,7 @@
 <body>
 <h2>Lookup</h2>
     <form method='GET' action='/show'>
-        Enter your profile UUID: <input type='text' name='UUID' size='32'/>
+        Enter your profile UUID: <input type='text' name='uuid' size='32'/>
     </form>
 <p></p>
 <h2>Statistics</h2>

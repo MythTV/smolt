@@ -37,11 +37,11 @@ def test_add_old():
     selinux_enforce = "Security?"
     smoltProtocol = ".91"
     
-    token_result = testutil.call(root.token, UUID = UUID)
+    token_result = testutil.call(root.token, uuid = UUID)
     assert token_result["prefered_protocol"] == ".91"
     token =  token_result['token']
     
-    add_result = testutil.call(root.add, UUID = UUID, OS = OS, \
+    add_result = testutil.call(root.add, uuid = UUID, OS = OS, \
                                platform = platform, \
                                bogomips = bogomips, \
                                systemMemory = systemMemory, \
@@ -96,7 +96,7 @@ def test_add_old():
                                           cls,
                                           description)
     device = "%s\n%s" % (device, device)
-    addDevice_result = testutil.call(root.addDevices, UUID=UUID, Devices=device)
+    addDevice_result = testutil.call(root.addDevices, uuid=UUID, Devices=device)
     
     test_device = Query(ComputerLogicalDevice).selectone_by(description=description)
     
