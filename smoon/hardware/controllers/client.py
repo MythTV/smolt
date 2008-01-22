@@ -236,7 +236,7 @@ class Client(object):
         id = kwargs.get("ratingID")
         rating = kwargs.get("value")
         if id.startswith("Host"):
-            sep = id.find("_")
+            sep = id.find("@")
             if sep == -1:
                 host_id = id[4:]
                 host = ctx.current.query(Host).selectone_by(pub_uuid=host_id)

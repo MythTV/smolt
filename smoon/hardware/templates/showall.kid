@@ -65,7 +65,7 @@ ${ratingwidget.display(update="rating",
             </tr>
             <tr py:for='device_node in devices'>
             	<?python device = device_node[0] ?>
-            	<td align='left'><div class="rating" id="Host${host_object.pub_uuid}_Device${device.id}">${device_node[1]}</div></td>
+            	<td align='left'><div class="rating" id="Host${host_object.pub_uuid}@Device${device.id}">${device_node[1]}</div></td>
                 <td align='center'>${ven.vendor(device.vendor_id, bus=device.bus)}</td>
 		<td align='center'><span py:replace="wikilink(ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus), device)">Devicename</span></td>
                 <td align='center'>${ven.vendor(device.subsys_device_id)}</td>
