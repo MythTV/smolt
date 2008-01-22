@@ -11,9 +11,9 @@ class Token(object):
         self.password = password
         
     @expose(template="hardware.templates.token", allow_json=True)
-    def token(self, UUID):
+    def token(self, uuid):
         crypt = XOR.new(self.password)
-        str = "%s\n%s " % ( int(time.mktime(datetime.now().timetuple())), UUID)
+        str = "%s\n%s " % ( int(time.mktime(datetime.now().timetuple())), uuid)
         # I hate obfuscation.  Its all I've got
         token = crypt.encrypt(str)
         return dict(token=urllib.quote(token),

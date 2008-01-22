@@ -21,7 +21,6 @@ def selectQuery(query):
             sys.exit(1)
     return cursor
 
-'''systemMemory=1002&vendor=Dell+Inc.&UUID=391802cf-18ed-4f4c-b5c4-aa9a5fc2634c&language=en_US.UTF-8&CPUVendor=GenuineIntel&system=MXC051&bogomips=1597.33&platform=i686&CPUSpeed=799&systemSwap=2051&CPUModel=Intel%28R%29+Pentium%28R%29+M+processor+1.73GHz&OS=Fedora+Core+release+6+%28Zod%29&numCPUs=1&defaultRunlevel=5'''
 hosts = selectQuery('select * from host;')
 for host in hosts:
     UUID = host[1]
@@ -58,7 +57,6 @@ for host in hosts:
 
 
 devices = selectQuery('select host_links.host_u_u_id as UUID, device.description, device.bus, device.class, device.driver from host_links, device where host_links.device_id=device.id;')
-'''VendorID=0x0&UUID=391802cf-18ed-4f4c-b5c4-aa9a5fc2634c&Bus=scsi_generic&Driver=Unknown&DeviceID=0x0&Class=None&Description=SCSI+Generic+Interface'''
 for device in devices:
     UUID = device[0]
     try:
