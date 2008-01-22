@@ -108,7 +108,7 @@ class ByClass(object):
         self.data = {}
 
     def fetch_data(self):
-        classes = ctx.current.query(HardwareClass).select()
+        classes = ctx.current.query(HardwareClass).filter_by(cls="AUDIO").select()
         count = {}
         types = {}
         vendors = {}
@@ -266,11 +266,14 @@ stats['cpu_speed_total'] = ctx.current.query(Host).filter(old_hosts_clause()).fi
 stats['cpus_total'] = ctx.current.query(Host).filter(old_hosts_clause()).sum(Host.c.num_cpus)
 stats['registered_devices'] = ctx.current.query(ComputerLogicalDevice).filter(old_hosts_clause()).count()
 
+print "loading template1"
 t=engine.load_template('hardware.templates.stats')
+print "outputting html1"
 out_html=_process_output(dict(stat=stats, tabs=tabs, 
                               total_hosts=total_hosts, getOSWikiLink=getOSWikiLink), 
                          template=t, format='html')
 
+print "writing stats1"
 fname = "%s/stats.html" % (page_path)
 f = open(fname, "w")
 f.write(out_html)
@@ -283,18 +286,21 @@ del stats
 
 devices = {}
 devices['total'] = ctx.current.query(HostLink).filter(old_hosts_clause()).count()
-devices['count'] = ctx.current.query(ComputerLogicalDevice.filter(old_hosts_clause())).count()
+devices['count'] = ctx.current.query(ComputerLogicalDevice).filter(old_hosts_clause()).count()
 devices['total_hosts'] = ctx.current.query(Host).filter(old_hosts_clause()).count()
 devices['totalList'] = ctx.current.query(TotalList).filter(old_hosts_clause()).select(limit=100)
 devices['uniqueList'] = ctx.current.query(UniqueList).filter(old_hosts_clause()).select(limit=100)
-devices['classes'] = ctx.current.query(HardwareClass).filter(old_hosts_clause()).select()
+devices['classes'] = ctx.current.query(HardwareClass).select()
+
+print "loading templates2"
 
 t=engine.load_template('hardware.templates.devices')
 
+print "outputting html2"
 out_html = _process_output(dict(devices=devices, tabs=tabs, 
                                 total_hosts=total_hosts), 
                            template=t, format='html')
-
+print "printing devices2"
 fname = "%s/devices.html" % (page_path)
 f = open(fname, "w")
 f.write(out_html)
