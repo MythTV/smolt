@@ -29,7 +29,7 @@ class Client(object):
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
 
         try:
-            host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
+            host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % uuid)
         devices = {}
@@ -83,7 +83,7 @@ class Client(object):
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
-            host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
+            host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % uuid)
         devices = {}
@@ -240,7 +240,7 @@ class Client(object):
             sep = id.find("_")
             if sep == -1:
                 host_id = id[4:]
-                host = ctx.current.query(Host).selectone_by(uuid=host_id)
+                host = ctx.current.query(Host).selectone_by(pub_uuid=host_id)
                 host.rating = int(rating)
                 ctx.current.flush()
                 return dict()
@@ -259,6 +259,7 @@ class Client(object):
     
     @expose()
     def pub_uuid(self, uuid):
-        pass
+        host = ctx.current.query(Host).selectone_by(uuid=uuid)
+        return dict(pub_uuid=host.pub_uuid)
         
 

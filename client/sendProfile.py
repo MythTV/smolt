@@ -124,13 +124,7 @@ elif opts.checkin:
     sys.exit(6)
 
 # read the profile
-try:
-    profile = smolt.Hardware()
-except smolt.SystemBusError, e:
-    error(_('Error:') + ' ' + e.message)
-    if e.hint is not None:
-        error('\t' + _('Hint:') + ' ' + e.hint)
-    sys.exit(8)
+profile = smolt.get_profile()
     
 if opts.scanOnly:
     scan(profile)
@@ -180,7 +174,7 @@ if opts.userName:
         print _('Registration Failed, Try again')
 if not opts.submitOnly:
     scan(profile)
-url = urljoin(opts.smoonURL, '/client/show?uuid=%s' % pub_uuid)
+url = smolt.get_profile_link(pub_uuid)
 print
 
 print _('To view your profile visit: %s') % url
