@@ -2,7 +2,8 @@
 # fs_util.py - misc. routines not categorized in other modules
 #
 # Copyright 2008 Mike McGrath
-# Portions Copyright 2006-2007 Red Hat, Inc.
+# This file incorporates work covered by the following copyright 
+# Copyright 2006-2007 Red Hat, Inc.
 #
 # This copyrighted material is made available to anyone wishing to use, modify,
 # copy, or redistribute it subject to the terms and conditions of the GNU
