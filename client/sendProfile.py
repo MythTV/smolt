@@ -158,8 +158,8 @@ if opts.retry:
         time.sleep(30)
 else:
     result, pub_uuid = profile.send(user_agent=opts.user_agent, 
-                                            smoonURL=opts.smoonURL, 
-                                            timeout=opts.timeout)
+                                    smoonURL=opts.smoonURL, 
+                                    timeout=opts.timeout)
     if result:
         print _('Could not send - Exiting')
         sys.exit(1)
