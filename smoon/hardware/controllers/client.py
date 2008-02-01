@@ -227,7 +227,6 @@ class Client(object):
             if bad_host_link and len(bad_host_link):
                 ctx.current.delete(bad_host_link[0])
         ctx.current.flush()
-        print host_dict
         return dict(pub_uuid=host_sql.pub_uuid)
 
     @expose()
