@@ -27,3 +27,16 @@ CREATE TABLE `file_systems` (
 ENGINE = MyISAM
 CHARACTER SET utf8 COLLATE utf8_general_ci;
 
+ALTER TABLE `smoon`.`file_systems` MODIFY COLUMN `id` BIGINT  NOT NULL DEFAULT NULL AUTO_INCREMENT;
+
+alter table device modify column device_id int;
+
+ALTER TABLE `device` CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+ALTER TABLE `classes` CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+ALTER TABLE `host` CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+ALTER TABLE `host_links` CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+

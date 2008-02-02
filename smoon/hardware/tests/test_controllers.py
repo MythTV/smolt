@@ -79,7 +79,7 @@ def test_add_old():
     assert test_host.selinux_enforce == selinux_enforce
     
     vendor_id = 42
-    device_id = "42"
+    device_id = 42
     subsys_vendor_id = 43
     subsys_device_id = 44
     bus = "the short one"
@@ -141,7 +141,7 @@ def test_add_new():
     selinux_enabled = False
     selinux_enforce = "Security?"
     vendor_id = 42
-    device_id = "42"
+    device_id = 42
     subsys_vendor_id = 43
     subsys_device_id = 44
     bus = "the short one"
@@ -169,7 +169,7 @@ def test_add_new():
             'selinux_enabled':  False,
             'selinux_enforce':  "Security?"}
     device = [{"vendor_id": 42,
-               "device_id": "42",
+               "device_id": 42,
                "subsys_vendor_id": 43,
                "subsys_device_id": 44,
                "bus": "the short one",

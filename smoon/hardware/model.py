@@ -21,7 +21,7 @@ computer_logical_devices = \
                     ForeignKey("classes.cls"),
                     key="cls"),
              Column("date_added", DATETIME),
-             Column("device_id", VARCHAR(16)),
+             Column("device_id", INT),
              Column("vendor_id", INT),
              Column("subsys_device_id", INT),
              Column("subsys_vendor_id", INT))
