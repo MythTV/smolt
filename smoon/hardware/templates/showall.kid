@@ -5,7 +5,7 @@
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" py:replace="''"/>
 <title>Show Box</title>
 ${ratingwidget.display(update="rating", 
-                       href="/rate_object", 
+                       href="/client/rate_object", 
                        num="5",
                        img_on="/static/images/stars/rating_on.gif",
                        img_off="/static/images/stars/rating_off.gif",
