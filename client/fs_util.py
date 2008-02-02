@@ -63,10 +63,10 @@ class FileSystem(object):
         self.f_favail = stat_res.f_favail
         
     def to_dict(self):
-        return dict(mnt_dev=self.mnt_dev, mnt_pnt=self.mnt_pnt, fs_type=self.fs_type,
+        return dict(mnt_pnt=self.mnt_pnt, fs_type=self.fs_type, f_favail=self.f_favail,
                     f_bsize=self.f_bsize, f_frsize=self.f_frsize, f_blocks=self.f_blocks,
                     f_bfree=self.f_bfree, f_bavail=self.f_bavail, f_files=self.f_files,
-                    f_ffree=self.f_ffree, f_favail=self.f_favail)
+                    f_ffree=self.f_ffree)
 
     def __str__(self):
         return "%s %s %s %s %s %s %s %s %s %s %s" % \

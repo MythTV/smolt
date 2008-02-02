@@ -448,7 +448,6 @@ class Hardware:
             return 1
         else:
             pub_uuid = serverMessage(o.read())
-            print pub_uuid
             o.close()
         
         return (0, pub_uuid)

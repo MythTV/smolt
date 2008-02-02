@@ -86,6 +86,23 @@ hardware_classes = Table('classes', metadata,
                          Column("description", TEXT, 
                                 key="class_description"))
 
+file_systems = Table('file_systems', metadata,
+                     Column('id', INT, autoincrement=True,
+                            nullable=False, primary_key=True),
+                     Column('host_id', INT,
+                            ForeignKey("host.id")),
+                     Column('mnt_pnt', TEXT),
+                     Column('fs_type', TEXT),
+                     Column('f_favail', INT),
+                     Column('f_bsize', INT),
+                     Column('f_frsize', INT),
+                     Column('f_blocks', INT),
+                     Column('f_bfree', INT),
+                     Column('f_bavail', INT),
+                     Column('f_files', INT),
+                     Column('f_ffree', INT))
+
+
 hardware_by_class = Table("CLASS", metadata,
                           Column('device_id', VARCHAR(16), 
                                  primary_key=True),
@@ -186,6 +203,9 @@ class HardwareClass(object):
     pass
     cls = property(_get_cls, _set_cls)
 
+class FileSystem(object):
+    pass
+
 class HardwareByClass(object):
     pass
 
@@ -232,16 +252,17 @@ mapper(Foo, hosts,
                                       secondary=host_links)})
 
 mapper(Host, hosts,
-       properties = {
-          'uuid' : hosts.c.u_u_id,
-          'os': hosts.c.o_s,
-          'num_cpus': hosts.c.num_cp_us,
-          '_devices': relation(HostLink,
-                               cascade="all,delete-orphan",
-                               backref=backref('host'),
-                               lazy=None),
-          'devices': relation(HostLink, cascade='all,delete-orphan'),
-          'fas_account': relation(FasLink, uselist=False)})
+       properties=dict(uuid=hosts.c.u_u_id,
+                       os=hosts.c.o_s,
+                       num_cpus=hosts.c.num_cp_us,
+                       _devices=relation(HostLink,
+                                         cascade="all,delete-orphan",
+                                         backref=backref('host'),
+                                         lazy=None),
+                      devices=relation(HostLink, cascade='all,delete-orphan'),
+                      fas_account=relation(FasLink, uselist=False),
+                      file_systems=relation(FileSystem,
+                                            backref='host')))
 
 mapper(ComputerLogicalDevice,
        computer_logical_devices,
@@ -265,6 +286,9 @@ mapper(HardwareClass,
                                          lazy=None),
                      '_cls': hardware_classes.c.cls,
                      'cls': synonym('_cls')})
+
+mapper(FileSystem,
+       file_systems)
 
 mapper(HardwareByClass, hardware_by_class)
 mapper(OS, oses, order_by=desc(oses.c.cnt))

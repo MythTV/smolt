@@ -227,6 +227,23 @@ class Client(object):
             if bad_host_link and len(bad_host_link):
                 ctx.current.delete(bad_host_link[0])
         ctx.current.flush()
+        
+        map(ctx.current.delete, host_sql.file_systems)
+        def add_fs(fs_dict):
+            new_fs = FileSystem()
+            new_fs.mnt_pnt = fs_dict['mnt_pnt']
+            new_fs.fs_type = fs_dict['fs_type']
+            new_fs.f_favail = fs_dict['f_favail']
+            new_fs.f_bsize = fs_dict['f_bsize']
+            new_fs.f_frsize = fs_dict['f_frsize']
+            new_fs.f_blocks = fs_dict['f_blocks']
+            new_fs.f_bfree = fs_dict['f_bfree']
+            new_fs.f_bavail = fs_dict['f_bavail']
+            new_fs.f_files = fs_dict['f_files']
+            new_fs.f_ffree = fs_dict['f_ffree']
+            new_fs.host = host_sql
+        map(add_fs, host_dict['fss'])
+
         return dict(pub_uuid=host_sql.pub_uuid)
 
     @expose()
@@ -260,5 +277,9 @@ class Client(object):
     def pub_uuid(self, uuid):
         host = ctx.current.query(Host).selectone_by(uuid=uuid)
         return dict(pub_uuid=host.pub_uuid)
+    
+    def new_pub_uuid(self, uuid):
+        #TODO
+        pass
         
 
