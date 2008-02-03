@@ -50,3 +50,12 @@ order by count(policy) desc;
 
 ALTER TABLE `smoon`.`host` ADD COLUMN `selinux_enforce` VARCHAR(12)  AFTER `selinux_policy`;
 
+ALTER TABLE `smoon`.`host` CHANGE COLUMN `u_u_id` `uuid` VARCHAR(36)  NOT NULL,
+ CHANGE COLUMN `o_s` `os` VARCHAR(32)  DEFAULT NULL,
+ CHANGE COLUMN `num_cp_us` `num_cpus` INTEGER  DEFAULT NULL;
+
+CREATE OR REPLACE VIEW `NUM_CPUS` AS select `host`.`num_cpus` AS `num_cpus`,count(`host`.`num_cpus`) AS `cnt` from `host` group by `host`.`num_cpus` order by count(`host`.`num_cpus`) desc
+
+CREATE OR REPLACE VIEW `OS` AS select `host`.`os` AS `os`,count(`host`.`os`) AS `cnt` from `host` group by `host`.`os` order by count(`host`.`os`) desc
+
+
