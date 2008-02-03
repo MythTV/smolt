@@ -153,6 +153,7 @@ class Client(object):
         host_sql.formfactor = host_dict['formfactor']
         host_sql.selinux_enabled = host_dict['selinux_enabled']
         host_sql.selinux_policy = host_dict['selinux_policy']
+        host_sql.selinux_enforce = host_dict['selinux_enforce']
         
                 
         orig_devices = [device.device_id for device 

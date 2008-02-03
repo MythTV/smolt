@@ -121,6 +121,8 @@ class ByClass(object):
 
         for cls in classes:
             type = cls.cls 
+            if type != "AUDIO":
+                continue
 
             #devs = select([computer_logical_devices], computer_logical_devices.c.cls == type).alias("devs")
             devs = computer_logical_devices
@@ -196,6 +198,7 @@ stats['formfactor'] = ctx.current.query(FormFactor).select()
 stats['language'] = ctx.current.query(Language).select()
 stats['selinux_enabled'] = ctx.current.query(SelinuxEnabled).select()
 stats['selinux_enforce'] = ctx.current.query(SelinuxEnforced).select()
+stats['selinux_policy'] = ctx.current.query(SelinuxPolicy).select()
 stats['languagetot'] = stats['total_hosts']
 
 stats['sys_mem'] = []

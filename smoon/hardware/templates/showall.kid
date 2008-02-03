@@ -56,6 +56,7 @@ ${ratingwidget.display(update="rating",
             <tr><th>Formfactor</th><td>${host_object.formfactor}</td></tr>
             <tr><th>SELinux Enabled</th><td>${host_object.selinux_enabled}</td></tr>
             <tr><th>SELinux Policy</th><td>${host_object.selinux_policy}</td></tr>
+            <tr><th>SELinux Enforce</th><td>${host_object.selinux_enforce}</td></tr>
             <tr><th>Last Modified</th><td>${host_object.last_modified}</td></tr>
         </table> 
         <h3>Devices</h3>

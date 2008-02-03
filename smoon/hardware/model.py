@@ -68,7 +68,8 @@ hosts = Table('host', metadata,
                      default=0, nullable=False),
               Column('rating', INT, nullable=False, default=0),
               Column('selinux_enabled', BOOLEAN, nullable=False),
-              Column('selinux_policy', TEXT))
+              Column('selinux_policy', TEXT),
+              Column('selinux_enforce', TEXT))
 
 fas_links = Table('fas_link', metadata,
                   Column("id", INT, autoincrement=True, 
@@ -173,6 +174,10 @@ selinux_enforce = Table("SELINUX_ENFORCE", metadata,
                         Column('enforce', TEXT,
                                primary_key=True),
                         Column('cnt', INT, key='count'))
+selinux_policy = Table("SELINUX_POLICY", metadata,
+                       Column('policy', TEXT,
+                              primary_key=True),
+                       Column('cnt', INT, key='count'))
 
 class Host(object):
     def __init__(self, selinux_enabled=False, 
@@ -240,6 +245,8 @@ class SelinuxEnabled(object):
     pass
 class SelinuxEnforced(object):
     pass
+class SelinuxPolicy(object):
+    pass
 
 
 def mapper(*args, **kw):
@@ -305,6 +312,8 @@ mapper(TotalList, totallist, order_by=desc(totallist.c.count))
 mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
 mapper(SelinuxEnabled, selinux_enabled, order_by=desc(selinux_enabled.c.count))
 mapper(SelinuxEnforced, selinux_enforce, order_by=desc(selinux_enforce.c.count))
+mapper(SelinuxPolicy, selinux_policy, order_by=desc(selinux_policy.c.count))
+
 
 def old_hosts_clause():
     return (hosts.c.last_modified > (date.today() - timedelta(days=36)))

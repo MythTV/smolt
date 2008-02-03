@@ -41,4 +41,12 @@ ALTER TABLE `host_links` CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 ALTER TABLE `smoon`.`host` CHANGE COLUMN `selinux_enforce` `selinux_policy` VARCHAR(12) DEFAULT NULL;
 
+CREATE OR REPLACE VIEW `SELINUX_POLICY` AS 
+select `selinux_policy` AS `policy`, 
+	count(`selinux_policy`) AS `cnt` 
+from `host` 
+group by policy 
+order by count(policy) desc;
+
+ALTER TABLE `smoon`.`host` ADD COLUMN `selinux_enforce` VARCHAR(12)  AFTER `selinux_policy`;
 
