@@ -249,6 +249,8 @@ def get_file_systems():
         file_systems = [fs for fs in get_fslist() if fs.fs_type in fs_types]
     else:
         file_systems = get_fslist()
+        
+    file_systems = [fs for fs in file_systems if fs.mnt_dev.startswith('/dev')]
     
     if fs_m_filter:
         for fs in file_systems:
