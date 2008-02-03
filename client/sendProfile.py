@@ -114,9 +114,6 @@ smolt.hw_uuid_file = opts.uuidFile
 
 if opts.checkin and os.path.exists('/var/lock/subsys/smolt'):
     # Smolt is set to run
-    # Wait a random amount of time between 0 and 3 days to send
-    random.seed(file('/proc/sys/kernel/random/uuid').read().strip())
-    time.sleep(random.randint(1, 259200))
     opts.autoSend = True
 elif opts.checkin:
     # Tried to check in but checkins are disabled
