@@ -44,14 +44,20 @@ import urllib
 import simplejson
 
 import config
+from fs_util import get_fslist
 
 def get_config_attr(attr, default=""):
     if hasattr(config, attr):
         return getattr(config, attr)
     else:
         return default
+    
+fs_types = get_config_attr("FS_TYPES", ["ext2", "ext3", "xfs", "reiserfs"])
+fs_mounts = dict.fromkeys(get_config_attr("FS_MOUNTS", ["/", "/home", "/etc", "/var", "/boot"]), True)
+fs_m_filter = get_config_attr("FS_M_FILTER", False)
+fs_t_filter = get_config_attr("FS_T_FILTER", False)
 
-smoonURL = get_config_attr("SMOON_URL", "http://smolt.fedoraproject.org/")
+smoonURL = get_config_attr("SMOON_URL", "http://smolts.org/")
 hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
 smoltProtocol = '0.97'
 supported_protocols = ['0.97',]
@@ -230,13 +236,42 @@ class Host:
             except:
                 self.selinux_enabled = False
             try:
-                self.selinux_enforce = selinux.selinux_getpolicytype()[1]
+                self.selinux_policy = selinux.selinux_getpolicytype()[1]
+            except:
+                self.selinux_policy = "Unknown"
+            try:
+                enforce = selinux.security_getenforce()
+                if enforce == 0:
+                    self.selinux_enforce = "Permissive"
+                elif enforce == 1:
+                    self.selinux_enforce = "Enforcing"
+                else:
+                    self.selinux_enforce = "FUBARD"
             except:
                 self.selinux_enforce = "Unknown"
         except ImportError:
             self.selinux_enabled = "Not installed"
+            self.selinux_policy = "Not Installed"
             self.selinux_enforce = "Not Installed"
+        
+        
+def get_file_systems():
+    if fs_t_filter:
+        file_systems = [fs for fs in get_fslist() if fs.fs_type in fs_types]
+    else:
+        file_systems = get_fslist()
+        
+    file_systems = [fs for fs in file_systems if fs.mnt_dev.startswith('/dev')]
     
+    if fs_m_filter:
+        for fs in file_systems:
+            if not fs.mnt_pnt in fs_mounts:
+                fs.mnt_pnt = "Hidden"
+    else:
+        for fs in file_systems:
+            fs.mnt_pnt = "Hidden"
+    
+    return file_systems
 
 def ignoreDevice(device):
     ignore = 1
@@ -310,6 +345,8 @@ class Hardware:
             self.devices[udi] = Device(props)
             if udi == '/org/freedesktop/Hal/devices/computer':
                 self.host = Host(props)
+        
+        self.fss = get_file_systems()
 
     def dbus_get_interface(self, bus, service, object, interface):
         iface = None
@@ -323,27 +360,6 @@ class Hardware:
             svc = bus.get_service(service)
             iface = svc.get_object(object, interface)
         return iface
-
-    def register(self, userName, password, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
-        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
-
-        auth = urlencode({
-                'user_name' :        userName,
-                'password' :        password,
-                'login' :           'Login',
-                'UUID':             self.host.UUID})
-
-        try:
-            o=grabber.urlopen('%s/link' % smoonURL, data=auth, http_headers=(
-                            ('Content-length', '%i' % len(auth)),
-                            ('Content-type', 'application/x-www-form-urlencoded')))
-        except urlgrabber.grabber.URLGrabError, e:
-            error(_('Error contacting Server: %s') % e)
-            return 1
-        else:
-            serverMessage(o.read())
-            o.close()
-        return 0
 
     def get_sendable_devices(self, protocol_version=smoltProtocol):
         my_devices = []
@@ -361,62 +377,40 @@ class Hardware:
                 continue
             else:
                 if not ignoreDevice(self.devices[device]):
-                    if protocol_version == ".91":
-                        my_devices.append('%s|%s|%s|%s|%s|%s|%s|%s' % 
-                                              (VendorID, DeviceID, SubsysVendorID, 
-                                               SubsysDeviceID, Bus, Driver, Type, 
-                                               Description))
-                    if protocol_version == '0.97':
-                        my_devices.append({"vendor_id": VendorID,
-                                           "device_id": DeviceID,
-                                           "subsys_vendor_id": SubsysVendorID,
-                                           "subsys_device_id": SubsysDeviceID,
-                                           "bus": Bus,
-                                           "driver": Driver,
-                                           "type": Type,
-                                           "description": Description})
+                    my_devices.append({"vendor_id": VendorID,
+                                       "device_id": DeviceID,
+                                       "subsys_vendor_id": SubsysVendorID,
+                                       "subsys_device_id": SubsysDeviceID,
+                                       "bus": Bus,
+                                       "driver": Driver,
+                                       "type": Type,
+                                       "description": Description})
         
         return my_devices
 
     def get_sendable_host(self, protocol_version=smoltProtocol):
-        if protocol_version == '.91':
-            return urlencode({
-                            'UUID' :           self.host.UUID,
-                            'OS' :             self.host.os,
-                            'defaultRunlevel': self.host.defaultRunlevel,
-                            'language' :       self.host.language,
-                            'platform' :       self.host.platform,
-                            'bogomips' :       self.host.bogomips,
-                            'CPUVendor' :      self.host.cpuVendor,
-                            'CPUModel' :       self.host.cpuModel,
-                            'numCPUs':         self.host.numCpus,
-                            'CPUSpeed' :       self.host.cpuSpeed,
-                            'systemMemory' :   self.host.systemMemory,
-                            'systemSwap' :     self.host.systemSwap,
-                            'vendor' :         self.host.systemVendor,
-                            'system' :         self.host.systemModel,
-                            'kernelVersion' :  self.host.kernelVersion,
-                            'formfactor' :     self.host.formfactor,
-                            })
-        if protocol_version == '0.97':
-            return {'uuid' :           self.host.UUID,
-                    'os' :             self.host.os,
-                    'default_runlevel': self.host.defaultRunlevel,
-                    'language' :       self.host.language,
-                    'platform' :       self.host.platform,
-                    'bogomips' :       self.host.bogomips,
-                    'cpu_vendor' :      self.host.cpuVendor,
-                    'cpu_model' :       self.host.cpuModel,
-                    'num_cpus':         self.host.numCpus,
-                    'cpu_speed' :       self.host.cpuSpeed,
-                    'system_memory' :   self.host.systemMemory,
-                    'system_swap' :     self.host.systemSwap,
-                    'vendor' :         self.host.systemVendor,
-                    'system' :         self.host.systemModel,
-                    'kernel_version' :  self.host.kernelVersion,
-                    'formfactor' :     self.host.formfactor,
-                    'selinux_enabled': self.host.selinux_enabled,
-                    'selinux_enforce': self.host.selinux_enforce}
+        return {'uuid' :           self.host.UUID,
+                'os' :             self.host.os,
+                'default_runlevel': self.host.defaultRunlevel,
+                'language' :       self.host.language,
+                'platform' :       self.host.platform,
+                'bogomips' :       self.host.bogomips,
+                'cpu_vendor' :      self.host.cpuVendor,
+                'cpu_model' :       self.host.cpuModel,
+                'num_cpus':         self.host.numCpus,
+                'cpu_speed' :       self.host.cpuSpeed,
+                'system_memory' :   self.host.systemMemory,
+                'system_swap' :     self.host.systemSwap,
+                'vendor' :         self.host.systemVendor,
+                'system' :         self.host.systemModel,
+                'kernel_version' :  self.host.kernelVersion,
+                'formfactor' :     self.host.formfactor,
+                'selinux_enabled': self.host.selinux_enabled,
+                'selinux_policy': self.host.selinux_policy,
+                'selinux_enforce': self.host.selinux_enforce}
+    
+    def get_sendable_fss(self, protocol_version=smoltProtocol):
+        return [fs.to_dict() for fs in self.fss]
         
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
@@ -442,33 +436,32 @@ class Hardware:
         
         send_host_obj = self.get_sendable_host(prefered_protocol)
         my_devices = self.get_sendable_devices(prefered_protocol)
+        my_fss = self.get_sendable_fss(prefered_protocol)
         
-        if prefered_protocol == "0.97":
-            send_host_obj['devices'] = my_devices
-            send_host_obj['smolt_protocol'] = prefered_protocol
+        send_host_obj['devices'] = my_devices
+        send_host_obj['fss'] = my_fss
+        send_host_obj['smolt_protocol'] = prefered_protocol
+
         debug('smoon server URL: %s' % smoonURL)
         
-        if prefered_protocol == '0.97':
-            send_host_str = ('uuid=%s&host=' + \
-                             simplejson.dumps(send_host_obj) + \
-                             '&token=%s&smolt_protocol=%s') % \
-                             (self.host.UUID, tok, smoltProtocol)
+        send_host_str = ('uuid=%s&host=' + \
+                         simplejson.dumps(send_host_obj) + \
+                         '&token=%s&smolt_protocol=%s') % \
+                         (self.host.UUID, tok, smoltProtocol)
         
         debug('sendHostStr: %s' % simplejson.dumps(send_host_obj))
         debug('Sending Host')
         
         try:
-            if prefered_protocol == '0.97':
-                o = grabber.urlopen(urljoin(smoonURL + "/", "/client/add_json", False), data=send_host_str,
-                                    http_headers=(
-                                ('Content-length', '%i' % len(send_host_str)),
-                                ('Content-type', 'application/x-www-form-urlencoded')))
+            o = grabber.urlopen(urljoin(smoonURL + "/", "/client/add_json", False), data=send_host_str,
+                                http_headers=(
+                            ('Content-length', '%i' % len(send_host_str)),
+                            ('Content-type', 'application/x-www-form-urlencoded')))
         except urlgrabber.grabber.URLGrabError, e:
             error(_('Error contacting Server: %s') % e)
             return 1
         else:
             pub_uuid = serverMessage(o.read())
-            print pub_uuid
             o.close()
         
         return (0, pub_uuid)
@@ -491,7 +484,9 @@ class Hardware:
         
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-#            self.myDevices.append('%s|%s|%s|%s|%s|%s|%s|%s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+        
+        for fs in self.fss:
+            printBuffer.append(str(fs))
         return printBuffer
 
 
@@ -514,6 +509,7 @@ class Hardware:
         yield _('Form factor'), self.host.formfactor
         yield _('Kernel'), self.host.kernelVersion
         yield _('SELinux Enabled'), self.host.selinux_enabled
+        yield _('SELinux Policy'), self.host.selinux_policy
         yield _('SELinux Enforce'), self.host.selinux_enforce
         
     def deviceIter(self):

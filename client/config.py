@@ -1,5 +1,6 @@
 
 import os
+import commands
 
 SMOON_URL = "http://www.smolts.org/"
 
@@ -15,6 +16,16 @@ except IOError:
     OS = "Shadowman!"
 
 HW_UUID = "/etc/sysconfig/hw-uuid"
+
+#These are the defaults taken from the source code.
+#fs_types = get_config_attr("FS_TYPES", ["ext2", "ext3", "xfs", "reiserfs"])
+#fs_mounts = get_config_attr("FS_MOUNTS", ["/", "/home", "/etc", "/var", "/boot"])
+#fs_m_filter = get_config_attr("FS_M_FILTER", False)
+#fs_t_filter = get_config_attr("FS_T_FILTER", False)
+
+FS_T_FILTER=False
+FS_M_FILTER=True
+FS_MOUNTS=commands.getoutput('rpm -ql filesystem').split('\n')
 
 ##For SuSE
 #try:
@@ -80,3 +91,4 @@ HW_UUID = "/etc/sysconfig/hw-uuid"
 
 #For non RH Distros
 #HW_UUID = "/etc/smolt/hw-uuid"
+

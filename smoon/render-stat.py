@@ -101,14 +101,14 @@ def _process_output(output, template, format):
 stats = {}
 # somehow this has to be first, cause it binds us to
 # an sqlalchemy context
-stats['total_hosts'] = ctx.current.query(Host).filter(old_hosts_clause()).count()
+stats['total_hosts'] = ctx.current.query(Host).count()
 
 class ByClass(object):
     def __init__(self):
         self.data = {}
 
     def fetch_data(self):
-        classes = ctx.current.query(HardwareClass).filter_by(cls="AUDIO").select()
+        classes = ctx.current.query(HardwareClass).select()
         count = {}
         types = {}
         vendors = {}
@@ -116,21 +116,20 @@ class ByClass(object):
         
         # We only want hosts that detected hardware (IE, hal was working properly)
         total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))],
-                             and_(old_hosts_clause(),
-                                  hosts.c.id == host_links.c.host_link_id))\
+                             hosts.c.id == host_links.c.host_link_id)\
                         .execute().fetchone()[0]
 
         for cls in classes:
             type = cls.cls 
+            if type != "AUDIO":
+                continue
 
             #devs = select([computer_logical_devices], computer_logical_devices.c.cls == type).alias("devs")
             devs = computer_logical_devices
             types = select([devs, 
                             func.count(func.distinct(host_links.c.host_link_id)).label('c')], 
                            and_(devs.c.cls == type, 
-                                host_links.c.device_id == devs.c.id,
-                                hosts.c.id == host_links.c.host_link_id,
-                                old_hosts_clause()), 
+                                host_links.c.device_id == devs.c.id), 
                            #from_obj=[ host_links.join(devs, host_links.c.device_id == devs.c.id) ],
                            group_by=host_links.c.device_id, 
                            order_by=[desc('c')], 
@@ -142,17 +141,12 @@ class ByClass(object):
 #            devs = computer_logical_devices
             count = select([func.count(func.distinct(host_links.c.host_link_id))], 
                            and_(devs.c.cls == type, 
-                                host_links.c.device_id == devs.c.id,
-                                hosts.c.id == host_links.c.host_link_id,
-                                old_hosts_clause())).execute().fetchone()[0] 
+                                host_links.c.device_id == devs.c.id)).execute().fetchone()[0] 
             
             device = computer_logical_devices
             vendors = select([func.count(device.c.vendor_id).label('cnt'), 
                               device.c.vendor_id], 
-                             and_(device.c.cls==type,
-                                  hosts.c.id == host_links.c.host_link_id,
-                                  host_links.c.device_id == devs.c.id,
-                                  old_hosts_clause()), 
+                             device.c.cls==type, 
                              order_by=[desc('cnt')], 
                              group_by=device.c.vendor_id).execute().fetchall()
 
@@ -184,128 +178,120 @@ for type in byclass_cache.data.keys():
     f = open(fname, "w")
     f.write(out_html)
     f.close()
-    print "Generated %s" % fname
 
 # Save some memory
 del byclass_cache
 del out_html
 
 stats = {}
-stats['total_hosts'] = ctx.current.query(Host).filter(old_hosts_clause()).count()
+stats['total_hosts'] = ctx.current.query(Host).count()
 total_hosts = stats['total_hosts']
-stats['archs'] = ctx.current.query(Arch).filter(old_hosts_clause()).select()
-stats['os'] = ctx.current.query(OS).filter(old_hosts_clause()).select(limit=15)
-stats['runlevel'] = ctx.current.query(Runlevel).filter(old_hosts_clause()).select()
-stats['num_cpus'] = ctx.current.query(NumCPUs).filter(old_hosts_clause()).select()
-stats['vendors'] = ctx.current.query(Vendor).filter(old_hosts_clause()).select(limit=100)
-stats['systems'] = ctx.current.query(System).filter(old_hosts_clause()).select(limit=100)
-stats['cpu_vendor'] = ctx.current.query(CPUVendor).filter(old_hosts_clause()).select(limit=100)
-stats['kernel_version'] = ctx.current.query(KernelVersion).filter(old_hosts_clause()).select(limit=20)
-stats['formfactor'] = ctx.current.query(FormFactor).filter(old_hosts_clause()).select()
-stats['language'] = ctx.current.query(Language).filter(old_hosts_clause()).select()
-stats['selinux_enabled'] = ctx.current.query(SelinuxEnabled).filter(old_hosts_clause()).select()
-stats['selinux_enforce'] = ctx.current.query(SelinuxEnforced).filter(old_hosts_clause()).select()
+stats['archs'] = ctx.current.query(Arch).select()
+stats['os'] = ctx.current.query(OS).select(limit=15)
+stats['runlevel'] = ctx.current.query(Runlevel).select()
+stats['num_cpus'] = ctx.current.query(NumCPUs).select()
+stats['vendors'] = ctx.current.query(Vendor).select(limit=100)
+stats['systems'] = ctx.current.query(System).select(limit=100)
+stats['cpu_vendor'] = ctx.current.query(CPUVendor).select(limit=100)
+stats['kernel_version'] = ctx.current.query(KernelVersion).select(limit=20)
+stats['formfactor'] = ctx.current.query(FormFactor).select()
+stats['language'] = ctx.current.query(Language).select()
+stats['selinux_enabled'] = ctx.current.query(SelinuxEnabled).select()
+stats['selinux_enforce'] = ctx.current.query(SelinuxEnforced).select()
+stats['selinux_policy'] = ctx.current.query(SelinuxPolicy).select()
 stats['languagetot'] = stats['total_hosts']
 
 stats['sys_mem'] = []
 stats['sys_mem'].append(("less than 256mb", 
-                         ctx.current.query(Host).filter(old_hosts_clause()).filter(Host.c.system_memory<256).count()))
+                         ctx.current.query(Host).filter(Host.c.system_memory<256).count()))
 stats['sys_mem'].append(("between 256mb and 512mb", 
-                         ctx.current.query(Host).filter(old_hosts_clause()).filter(and_(Host.c.system_memory>=256, 
+                         ctx.current.query(Host).filter(and_(Host.c.system_memory>=256, 
                                                  Host.c.system_memory<512)).count()))
 stats['sys_mem'].append(("between 512mb and 1023mb", 
-                         ctx.current.query(Host).filter(old_hosts_clause()).filter(and_(Host.c.system_memory>=512, 
+                         ctx.current.query(Host).filter(and_(Host.c.system_memory>=512, 
                                                  Host.c.system_memory<1024)).count()))
 stats['sys_mem'].append(("between 1024mb and 2047mb", 
-                         ctx.current.query(Host).filter(old_hosts_clause()).filter(and_(Host.c.system_memory>=1024, 
+                         ctx.current.query(Host).filter(and_(Host.c.system_memory>=1024, 
                                                  Host.c.system_memory<2048)).count()))
 stats['sys_mem'].append(("more than 2048mb", 
-                         ctx.current.query(Host).filter(old_hosts_clause()).filter(Host.c.system_memory>=2048).count()))
+                         ctx.current.query(Host).filter(Host.c.system_memory>=2048).count()))
 
 stats['swap_mem'] = []
 stats['swap_mem'].append(("less than 512mb", 
-                          ctx.current.query(Host).filter(old_hosts_clause()).filter(Host.c.system_swap<512).count()))
+                          ctx.current.query(Host).filter(Host.c.system_swap<512).count()))
 stats['swap_mem'].append(("between 512mb and 1027mb", 
-                          ctx.current.query(Host).filter(old_hosts_clause()).filter(and_(Host.c.system_swap>=512, 
+                          ctx.current.query(Host).filter(and_(Host.c.system_swap>=512, 
                                                   Host.c.system_swap<1024)).count()))
 stats['swap_mem'].append(("between 1024mb and 2047mb", 
-                          ctx.current.query(Host).filter(old_hosts_clause()).filter(and_(Host.c.system_swap>=1024, 
+                          ctx.current.query(Host).filter(and_(Host.c.system_swap>=1024, 
                                                   Host.c.system_swap<2048)).count()))
 stats['swap_mem'].append(("more than 2048mb", 
-                          ctx.current.query(Host).filter(old_hosts_clause()).filter(Host.c.system_swap>=2048).count()))
+                          ctx.current.query(Host).filter(Host.c.system_swap>=2048).count()))
 
 stats['cpu_speed'] = []
 stats['cpu_speed'].append(("less than 512mhz", 
-                           ctx.current.query(Host).filter(old_hosts_clause()).filter(Host.c.cpu_speed<512).count()))
+                           ctx.current.query(Host).filter(Host.c.cpu_speed<512).count()))
 stats['cpu_speed'].append(("between 512mhz and 1023mhz", 
-                           ctx.current.query(Host).filter(old_hosts_clause()).filter(and_(Host.c.cpu_speed>=512, 
+                           ctx.current.query(Host).filter(and_(Host.c.cpu_speed>=512, 
                                                    Host.c.cpu_speed<1024)).count()))
 stats['cpu_speed'].append(("between 1024mhz and 2047mhz", 
-                           ctx.current.query(Host).filter(old_hosts_clause()).filter(and_(Host.c.cpu_speed>=1024, 
+                           ctx.current.query(Host).filter(and_(Host.c.cpu_speed>=1024, 
                                                    Host.c.cpu_speed<2048)).count()))
 stats['cpu_speed'].append(("more than 2048mhz", 
-                           ctx.current.query(Host).filter(old_hosts_clause()).filter(Host.c.cpu_speed>=2048).count()))
+                           ctx.current.query(Host).filter(Host.c.cpu_speed>=2048).count()))
 
 stats['bogomips'] = []
 stats['bogomips'].append(("less than 512", 
-                          ctx.current.query(Host).filter(old_hosts_clause()).filter(Host.c.bogomips<512).count()))
+                          ctx.current.query(Host).filter(Host.c.bogomips<512).count()))
 stats['bogomips'].append(("between 512 and 1023", 
-                          ctx.current.query(Host).filter(old_hosts_clause()).filter(and_(Host.c.bogomips>=512, 
+                          ctx.current.query(Host).filter(and_(Host.c.bogomips>=512, 
                                                   Host.c.bogomips<1024)).count()))
 stats['bogomips'].append(("between 1024 and 2047", 
-                          ctx.current.query(Host).filter(old_hosts_clause()).filter(and_(Host.c.bogomips>=1024, 
+                          ctx.current.query(Host).filter(and_(Host.c.bogomips>=1024, 
                                                   Host.c.bogomips<2048)).count()))
 stats['bogomips'].append(("between 2048 and 4000", 
-                          ctx.current.query(Host).filter(old_hosts_clause()).filter(and_(Host.c.bogomips>=2048, 
+                          ctx.current.query(Host).filter(and_(Host.c.bogomips>=2048, 
                                                   Host.c.bogomips<4000)).count()))
 stats['bogomips'].append(("more than 4000", 
-                          ctx.current.query(Host).filter(old_hosts_clause()).filter(Host.c.system_memory>=4000).count()))
+                          ctx.current.query(Host).filter(Host.c.system_memory>=4000).count()))
 
-stats['bogomips_total'] = ctx.current.query(Host).filter(old_hosts_clause()).filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
-stats['cpu_speed_total'] = ctx.current.query(Host).filter(old_hosts_clause()).filter(Host.c.cpu_speed > 0).sum(Host.c.cpu_speed * Host.c.num_cpus)
-stats['cpus_total'] = ctx.current.query(Host).filter(old_hosts_clause()).sum(Host.c.num_cpus)
-stats['registered_devices'] = ctx.current.query(ComputerLogicalDevice).filter(old_hosts_clause()).count()
+stats['bogomips_total'] = ctx.current.query(Host).filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
+stats['cpu_speed_total'] = ctx.current.query(Host).filter(Host.c.cpu_speed > 0).sum(Host.c.cpu_speed * Host.c.num_cpus)
+stats['cpus_total'] = ctx.current.query(Host).sum(Host.c.num_cpus)
+stats['registered_devices'] = ctx.current.query(ComputerLogicalDevice).count()
 
-print "loading template1"
 t=engine.load_template('hardware.templates.stats')
-print "outputting html1"
 out_html=_process_output(dict(stat=stats, tabs=tabs, 
                               total_hosts=total_hosts, getOSWikiLink=getOSWikiLink), 
                          template=t, format='html')
 
-print "writing stats1"
 fname = "%s/stats.html" % (page_path)
 f = open(fname, "w")
 f.write(out_html)
 f.close()
-print "Generated %s" % fname
 
 # Save some memory
 del out_html
 del stats
 
 devices = {}
-devices['total'] = ctx.current.query(HostLink).filter(old_hosts_clause()).count()
-devices['count'] = ctx.current.query(ComputerLogicalDevice).filter(old_hosts_clause()).count()
-devices['total_hosts'] = ctx.current.query(Host).filter(old_hosts_clause()).count()
-devices['totalList'] = ctx.current.query(TotalList).filter(old_hosts_clause()).select(limit=100)
-devices['uniqueList'] = ctx.current.query(UniqueList).filter(old_hosts_clause()).select(limit=100)
+devices['total'] = ctx.current.query(HostLink).count()
+devices['count'] = ctx.current.query(ComputerLogicalDevice).count()
+devices['total_hosts'] = ctx.current.query(Host).count()
+devices['totalList'] = ctx.current.query(TotalList).select(limit=100)
+devices['uniqueList'] = ctx.current.query(UniqueList).select(limit=100)
 devices['classes'] = ctx.current.query(HardwareClass).select()
 
-print "loading templates2"
 
 t=engine.load_template('hardware.templates.devices')
 
-print "outputting html2"
 out_html = _process_output(dict(devices=devices, tabs=tabs, 
                                 total_hosts=total_hosts), 
                            template=t, format='html')
-print "printing devices2"
 fname = "%s/devices.html" % (page_path)
 f = open(fname, "w")
 f.write(out_html)
 f.close()
-print "Generated %s" % fname
 
 # Save some memory
 del devices

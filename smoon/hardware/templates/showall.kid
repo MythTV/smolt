@@ -5,7 +5,7 @@
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" py:replace="''"/>
 <title>Show Box</title>
 ${ratingwidget.display(update="rating", 
-                       href="/rate_object", 
+                       href="/client/rate_object", 
                        num="5",
                        img_on="/static/images/stars/rating_on.gif",
                        img_off="/static/images/stars/rating_off.gif",
@@ -55,6 +55,7 @@ ${ratingwidget.display(update="rating",
             <tr><th>Kernel</th><td>${host_object.kernel_version}</td></tr>
             <tr><th>Formfactor</th><td>${host_object.formfactor}</td></tr>
             <tr><th>SELinux Enabled</th><td>${host_object.selinux_enabled}</td></tr>
+            <tr><th>SELinux Policy</th><td>${host_object.selinux_policy}</td></tr>
             <tr><th>SELinux Enforce</th><td>${host_object.selinux_enforce}</td></tr>
             <tr><th>Last Modified</th><td>${host_object.last_modified}</td></tr>
         </table> 

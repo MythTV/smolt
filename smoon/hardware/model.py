@@ -21,7 +21,7 @@ computer_logical_devices = \
                     ForeignKey("classes.cls"),
                     key="cls"),
              Column("date_added", DATETIME),
-             Column("device_id", VARCHAR(16)),
+             Column("device_id", INT),
              Column("vendor_id", INT),
              Column("subsys_device_id", INT),
              Column("subsys_vendor_id", INT))
@@ -43,13 +43,13 @@ hosts = Table('host', metadata,
                      autoincrement=True, 
                      nullable=False, 
                      primary_key=True),
-              Column('u_u_id', VARCHAR(36), 
+              Column('uuid', VARCHAR(36), 
                      nullable=False, 
                      unique=True),
               Column('pub_uuid', VARCHAR(40),
                      nullable=False,
                      unique=True),
-              Column('o_s', TEXT),
+              Column('os', TEXT),
               Column('platform', TEXT),
               Column('bogomips', DECIMAL),
               Column('system_memory', INT),
@@ -58,7 +58,7 @@ hosts = Table('host', metadata,
               Column('system', TEXT),
               Column('cpu_vendor', TEXT),
               Column('cpu_model', TEXT),
-              Column('num_cp_us', INT),
+              Column('num_cpus', INT),
               Column('cpu_speed', DECIMAL),
               Column('language', TEXT),
               Column('default_runlevel', INT),
@@ -68,13 +68,14 @@ hosts = Table('host', metadata,
                      default=0, nullable=False),
               Column('rating', INT, nullable=False, default=0),
               Column('selinux_enabled', BOOLEAN, nullable=False),
+              Column('selinux_policy', TEXT),
               Column('selinux_enforce', TEXT))
 
 fas_links = Table('fas_link', metadata,
                   Column("id", INT, autoincrement=True, 
                          nullable=False, primary_key=True),
-                  Column('u_u_id', VARCHAR(36), 
-                         ForeignKey("host.u_u_id"),
+                  Column('uuid', VARCHAR(36), 
+                         ForeignKey("host.uuid"),
                          nullable=False),
                   Column("user_name", VARCHAR(255), 
                          nullable=False))
@@ -85,6 +86,23 @@ hardware_classes = Table('classes', metadata,
                                 primary_key=True, key="cls"),
                          Column("description", TEXT, 
                                 key="class_description"))
+
+file_systems = Table('file_systems', metadata,
+                     Column('id', INT, autoincrement=True,
+                            nullable=False, primary_key=True),
+                     Column('host_id', INT,
+                            ForeignKey("host.id")),
+                     Column('mnt_pnt', TEXT),
+                     Column('fs_type', TEXT),
+                     Column('f_favail', INT),
+                     Column('f_bsize', INT),
+                     Column('f_frsize', INT),
+                     Column('f_blocks', INT),
+                     Column('f_bfree', INT),
+                     Column('f_bavail', INT),
+                     Column('f_files', INT),
+                     Column('f_ffree', INT))
+
 
 hardware_by_class = Table("CLASS", metadata,
                           Column('device_id', VARCHAR(16), 
@@ -103,14 +121,14 @@ archs = Table("ARCH", metadata,
                   Column("platform", TEXT, primary_key=True),
                   Column("cnt", INT))
 oses = Table("OS", metadata,
-                  Column("o_s", TEXT, primary_key=True, key="os"),
+                  Column("os", TEXT, primary_key=True),
                   Column("cnt", INT))
 runlevels = Table("RUNLEVEL", metadata,
                       Column("default_runlevel", INT, 
                              primary_key=True, key="runlevel"),
                       Column("cnt", INT))
 num_cpus = Table("NUM_CPUS", metadata,
-                     Column("num_cp_us", INT, 
+                     Column("num_cpus", INT, 
                             primary_key=True, 
                             key="num_cpus"),
                      Column("cnt", INT))
@@ -156,6 +174,10 @@ selinux_enforce = Table("SELINUX_ENFORCE", metadata,
                         Column('enforce', TEXT,
                                primary_key=True),
                         Column('cnt', INT, key='count'))
+selinux_policy = Table("SELINUX_POLICY", metadata,
+                       Column('policy', TEXT,
+                              primary_key=True),
+                       Column('cnt', INT, key='count'))
 
 class Host(object):
     def __init__(self, selinux_enabled=False, 
@@ -185,6 +207,9 @@ class HardwareClass(object):
         return self._cls
     pass
     cls = property(_get_cls, _set_cls)
+
+class FileSystem(object):
+    pass
 
 class HardwareByClass(object):
     pass
@@ -220,6 +245,8 @@ class SelinuxEnabled(object):
     pass
 class SelinuxEnforced(object):
     pass
+class SelinuxPolicy(object):
+    pass
 
 
 def mapper(*args, **kw):
@@ -232,16 +259,14 @@ mapper(Foo, hosts,
                                       secondary=host_links)})
 
 mapper(Host, hosts,
-       properties = {
-          'uuid' : hosts.c.u_u_id,
-          'os': hosts.c.o_s,
-          'num_cpus': hosts.c.num_cp_us,
-          '_devices': relation(HostLink,
-                               cascade="all,delete-orphan",
-                               backref=backref('host'),
-                               lazy=None),
-          'devices': relation(HostLink, cascade='all,delete-orphan'),
-          'fas_account': relation(FasLink, uselist=False)})
+       properties=dict(_devices=relation(HostLink,
+                                         cascade="all,delete-orphan",
+                                         backref=backref('host'),
+                                         lazy=None),
+                      devices=relation(HostLink, cascade='all,delete-orphan'),
+                      fas_account=relation(FasLink, uselist=False),
+                      file_systems=relation(FileSystem,
+                                            backref='host')))
 
 mapper(ComputerLogicalDevice,
        computer_logical_devices,
@@ -255,7 +280,7 @@ mapper(ComputerLogicalDevice,
 mapper(HostLink, host_links)
 
 mapper(FasLink, fas_links, properties = {'hosts': relation(Host),
-                                         'uuid': fas_links.c.u_u_id})
+                                         'uuid': fas_links.c.uuid})
 
 mapper(HardwareClass,
        hardware_classes,
@@ -265,6 +290,9 @@ mapper(HardwareClass,
                                          lazy=None),
                      '_cls': hardware_classes.c.cls,
                      'cls': synonym('_cls')})
+
+mapper(FileSystem,
+       file_systems)
 
 mapper(HardwareByClass, hardware_by_class)
 mapper(OS, oses, order_by=desc(oses.c.cnt))
@@ -281,6 +309,8 @@ mapper(TotalList, totallist, order_by=desc(totallist.c.count))
 mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
 mapper(SelinuxEnabled, selinux_enabled, order_by=desc(selinux_enabled.c.count))
 mapper(SelinuxEnforced, selinux_enforce, order_by=desc(selinux_enforce.c.count))
+mapper(SelinuxPolicy, selinux_policy, order_by=desc(selinux_policy.c.count))
+
 
 def old_hosts_clause():
     return (hosts.c.last_modified > (date.today() - timedelta(days=36)))

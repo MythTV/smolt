@@ -114,9 +114,6 @@ smolt.hw_uuid_file = opts.uuidFile
 
 if opts.checkin and os.path.exists('/var/lock/subsys/smolt'):
     # Smolt is set to run
-    # Wait a random amount of time between 0 and 3 days to send
-    random.seed(file('/proc/sys/kernel/random/uuid').read().strip())
-    time.sleep(random.randint(1, 259200))
     opts.autoSend = True
 elif opts.checkin:
     # Tried to check in but checkins are disabled
@@ -158,8 +155,8 @@ if opts.retry:
         time.sleep(30)
 else:
     result, pub_uuid = profile.send(user_agent=opts.user_agent, 
-                                            smoonURL=opts.smoonURL, 
-                                            timeout=opts.timeout)
+                                    smoonURL=opts.smoonURL, 
+                                    timeout=opts.timeout)
     if result:
         print _('Could not send - Exiting')
         sys.exit(1)
@@ -174,7 +171,7 @@ if opts.userName:
         print _('Registration Failed, Try again')
 if not opts.submitOnly:
     scan(profile)
-url = smolt.get_profile_link(pub_uuid)
+url = smolt.get_profile_link(opts.smoonURL, pub_uuid)
 print
 
 print _('To view your profile visit: %s') % url

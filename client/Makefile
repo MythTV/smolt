@@ -78,8 +78,13 @@ post-install: install-main
 	mkdir -p $(ETC)/cron.d/
 	cp -adv smolt-init $(ETC)/init.d/smolt
 	cp -adv smolt.cron.monthly $(ETC)/cron.d/smolt
+	
 uuid:
 	python makeuuid.py $(SMOLTCONFIGDIR)/hw-uuid True
+	
+cron:
+	python create_monthly.py > smolt.cron.monthly
+	cp -adv smolt.cron.monthly $(ETC)/cron.d/smolt
 	
 monkey: 
 	echo $(abspath $(DESTDIR))	
