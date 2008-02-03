@@ -34,7 +34,7 @@ def test_add_old():
     formfactor = "Sparta!"
     kernelVersion = "NT"
     selinux_enabled = False
-    selinux_enforce = "Security?"
+    selinux_policy = "Security?"
     smoltProtocol = ".91"
     
     token_result = testutil.call(root.token, uuid = UUID)
@@ -59,7 +59,7 @@ def test_add_old():
                                formfactor = formfactor, \
                                kernelVersion = kernelVersion, \
                                selinux_enabled = selinux_enabled, \
-                               selinux_enforce = selinux_enforce, \
+                               selinux_policy = selinux_policy, \
                                smoltProtocol = smoltProtocol)
     
     test_host = Query(Host).selectone_by(uuid=UUID)
@@ -76,7 +76,7 @@ def test_add_old():
     assert test_host.formfactor == formfactor
     assert test_host.kernel_version == kernelVersion
     assert test_host.selinux_enabled == selinux_enabled
-    assert test_host.selinux_enforce == selinux_enforce
+    assert test_host.selinux_policy == selinux_policy
     
     vendor_id = 42
     device_id = 42
@@ -139,7 +139,7 @@ def test_add_new():
     formfactor = "skinny"
     kernelVersion = "NT"
     selinux_enabled = False
-    selinux_enforce = "Security?"
+    selinux_policy = "Security?"
     vendor_id = 42
     device_id = 42
     subsys_vendor_id = 43
@@ -167,7 +167,7 @@ def test_add_new():
             'kernel_version' :  "NT",
             'formfactor' :      "skinny",
             'selinux_enabled':  False,
-            'selinux_enforce':  "Security?"}
+            'selinux_policy':  "Security?"}
     device = [{"vendor_id": 42,
                "device_id": 42,
                "subsys_vendor_id": 43,
@@ -205,7 +205,7 @@ def test_add_new():
     assert test_host.formfactor == formfactor
     assert test_host.kernel_version == kernelVersion
     assert test_host.selinux_enabled == selinux_enabled
-    assert test_host.selinux_enforce == selinux_enforce
+    assert test_host.selinux_policy == selinux_policy
     
     test_device = Query(ComputerLogicalDevice).selectone_by(description=description)
     

@@ -174,7 +174,7 @@
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='enforce in stat["selinux_enforce"]'>
                     <th align="right">${enforce.enforce}</th>
-                    <td align="center">${enforce.count}</td>
+                    <td align="center">${policy.count}</td>
                     <td><strong>${'%.1f' % (float(enforce.count) / total_hosts * 100) } %</strong></td>
                     <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(enforce.count) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
                 </tr>

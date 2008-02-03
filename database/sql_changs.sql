@@ -39,4 +39,6 @@ ALTER TABLE `host` CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 ALTER TABLE `host_links` CHARACTER SET utf8 COLLATE utf8_general_ci;
 
+ALTER TABLE `smoon`.`host` CHANGE COLUMN `selinux_enforce` `selinux_policy` VARCHAR(12) DEFAULT NULL;
+
 

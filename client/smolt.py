@@ -236,12 +236,12 @@ class Host:
             except:
                 self.selinux_enabled = False
             try:
-                self.selinux_enforce = selinux.selinux_getpolicytype()[1]
+                self.selinux_policy = selinux.selinux_getpolicytype()[1]
             except:
-                self.selinux_enforce = "Unknown"
+                self.selinux_policy = "Unknown"
         except ImportError:
             self.selinux_enabled = "Not installed"
-            self.selinux_enforce = "Not Installed"
+            self.selinux_policy = "Not Installed"
         
         
 def get_file_systems():
@@ -395,7 +395,7 @@ class Hardware:
                 'kernel_version' :  self.host.kernelVersion,
                 'formfactor' :     self.host.formfactor,
                 'selinux_enabled': self.host.selinux_enabled,
-                'selinux_enforce': self.host.selinux_enforce}
+                'selinux_policy': self.host.selinux_policy}
     
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
@@ -497,7 +497,7 @@ class Hardware:
         yield _('Form factor'), self.host.formfactor
         yield _('Kernel'), self.host.kernelVersion
         yield _('SELinux Enabled'), self.host.selinux_enabled
-        yield _('SELinux Enforce'), self.host.selinux_enforce
+        yield _('SELinux Policy'), self.host.selinux_policy
         
     def deviceIter(self):
         '''Iterate over our devices.'''

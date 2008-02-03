@@ -68,7 +68,7 @@ hosts = Table('host', metadata,
                      default=0, nullable=False),
               Column('rating', INT, nullable=False, default=0),
               Column('selinux_enabled', BOOLEAN, nullable=False),
-              Column('selinux_enforce', TEXT))
+              Column('selinux_policy', TEXT))
 
 fas_links = Table('fas_link', metadata,
                   Column("id", INT, autoincrement=True, 
