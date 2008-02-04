@@ -484,7 +484,10 @@ class Hardware:
         
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-        
+
+        printBuffer.append(_('Filesystem Information'))
+        printBuffer.append('device mtpt type bsize frsize blocks bfree bavail file ffree favail')
+        printBuffer.append('===================================================================')        
         for fs in self.fss:
             printBuffer.append(str(fs))
         return printBuffer
