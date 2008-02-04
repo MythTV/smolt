@@ -22,7 +22,7 @@ CREATE TABLE `file_systems` (
   `f_files` INT ,
   `f_ffree` INT ,
   PRIMARY KEY (`id`),
-  INDEX `host`(`host`)
+  INDEX `host_id`(`host_id`)
 )
 ENGINE = MyISAM
 CHARACTER SET utf8 COLLATE utf8_general_ci;
