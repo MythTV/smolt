@@ -50,6 +50,8 @@ order by count(policy) desc;
 
 ALTER TABLE `host` ADD COLUMN `selinux_enforce` VARCHAR(12)  AFTER `selinux_policy`;
 
+ALTER TABLE `fas_link` CHANGE COLUMN `u_u_id` `uuid` varchar(36);
+
 ALTER TABLE `host` CHANGE COLUMN `u_u_id` `uuid` VARCHAR(36)  NOT NULL,
  CHANGE COLUMN `o_s` `os` VARCHAR(32)  DEFAULT NULL,
  CHANGE COLUMN `num_cp_us` `num_cpus` INTEGER  DEFAULT NULL;
