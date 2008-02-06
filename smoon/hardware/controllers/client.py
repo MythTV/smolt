@@ -255,11 +255,13 @@ class Client(object):
         #log.info('kwargs = %s' % str(kwargs))
         id = kwargs.get("ratingID")
         rating = kwargs.get("value")
+        print "ID: %s" % id
+        print "RATING: %s" % rating
         if id.startswith("Host"):
             sep = id.find("@")
             if sep == -1:
                 host_id = id[4:]
-                host = ctx.current.query(Host).selectone_by(pub_uuid=host_id)
+                host = ctx.current.query(Host).selectone_by(uuid=host_id)
                 host.rating = int(rating)
                 ctx.current.flush()
                 return dict()
