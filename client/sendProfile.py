@@ -171,7 +171,9 @@ if opts.userName:
         print _('Registration Failed, Try again')
 if not opts.submitOnly:
     scan(profile)
-url = smolt.get_profile_link(opts.smoonURL, pub_uuid)
+pubUrl = smolt.get_profile_link(opts.smoonURL, pub_uuid)
+privUrl = smolt.get_profile_link(opts.smoonURL, smolt.getUUID())
 print
 
-print _('To view your profile visit: %s') % url
+print _('To rate your profile: \n\t%s (private)') % privUrl
+print _('To share your profile: \n\t%s (public)') % pubUrl
