@@ -60,4 +60,6 @@ CREATE OR REPLACE VIEW `NUM_CPUS` AS select `host`.`num_cpus` AS `num_cpus`,coun
 
 CREATE OR REPLACE VIEW `OS` AS select `host`.`os` AS `os`, count(`host`.`os`) AS `cnt` from `host` group by `host`.`os` order by count(`host`.`os`) desc;
 
+CREATE INDEX `pub_uuid` ON `host` (`pub_uuid`);
+
 
