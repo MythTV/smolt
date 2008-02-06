@@ -41,7 +41,7 @@ class Client(object):
         for dev in host_object.devices:
             #ctx.current.refresh(dev)
             device = dev.device
-            if not device.vendor_id and device.device_id:
+            if not device.vendor_id and not device.device_id:
                 continue
             device_name = ""
             vname = ven.vendor(device.vendor_id, bus=device.bus)
