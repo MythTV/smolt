@@ -73,7 +73,8 @@ class Client(object):
                     host_link = getHostWikiLink(host_object),
                     devices=devices,
                     ratingwidget=SingleRatingWidget(),
-                    getOSWikiLink=getOSWikiLink
+                    getOSWikiLink=getOSWikiLink,
+                    uuid=uuid
                     )
 
         

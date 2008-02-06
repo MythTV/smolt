@@ -34,8 +34,10 @@ ${ratingwidget.display(update="rating",
 	    <p><a href="/client/show_all?uuid=${host_object.pub_uuid}">Show all Information</a></p>
 	</div>
         <table id="system_show">
-       	    <tr><th>Overall Rating:</th><td><div class="rating" id="Host${host_object.pub_uuid}">${host_object.rating}</div></td></tr>
-            <tr><th>UUID:</th><td>${host_object.pub_uuid}</td></tr>
+       	    <tr><th>Overall Rating:</th><td>
+            <div py:if="uuid.startswith('pub_')"><img src="/static/images/rating/r${host_object.rating}.png"/></div>
+            <div py:if="not uuid.startswith('pub_')" class="rating" id="Host${host_object.pub_uuid}">${host_object.rating}</div></td></tr>
+            <tr><th>Public UUID:</th><td>${host_object.pub_uuid}</td></tr>
             <tr><th>Operating System:</th><td><a href="${getOSWikiLink(host_object.os)}">${host_object.os}</a></td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
             <tr><th>System Vendor:</th><td>${host_object.vendor}</td></tr>
@@ -50,7 +52,11 @@ ${ratingwidget.display(update="rating",
                 <th>Rating</th><th>Device</th><th>Class</th>
             </tr>
             <tr py:for='device in devices'>
-            	<td><div class="rating" id="Host${host_object.pub_uuid}@Device${device.get('id')}">${device.get('rating')}</div></td>
+            	<td>
+                    <div py:if="uuid.startswith('pub_')"><img src="/static/images/rating/r${device.get('rating')}.png"/></div>
+                    <div py:if="not uuid.startswith('pub_')" class="rating" id="Host${host_object.pub_uuid}@Device${device.get('id')}">${device.get('rating')}</div>
+
+                </td>
 		<td><a href="${device.get('link')}">${device.get('name')}</a></td>
                 <td align='center'>${device.get('cls')}</td>
             </tr>
