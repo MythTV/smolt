@@ -20,7 +20,7 @@ class Client(object):
         self.token = token
 
     @expose(template="hardware.templates.show")
-#    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show(self, uuid=''):
         try:
             uuid = u'%s' % uuid.strip()
@@ -31,7 +31,10 @@ class Client(object):
         try:
             host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
         except:
-            raise ValueError("Critical: UUID Not Found - %s" % uuid)
+            try:
+                host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
+            except:
+                raise ValueError("Critical: UUID Not Found - %s" % uuid)
         devices = {}
         ven = DeviceMap('pci')
 
@@ -75,7 +78,7 @@ class Client(object):
 
         
     @expose(template="hardware.templates.showall", allow_json=True)
-#    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show_all(self, uuid=''):
         try:
             uuid = u'%s' % uuid.strip()
@@ -105,7 +108,7 @@ class Client(object):
                     )
 
     @expose(template="hardware.templates.delete")
-#    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, uuid=''):
         try:
             host = ctx.current.query(Host).selectone_by(uuid=uuid)
@@ -119,7 +122,7 @@ class Client(object):
         raise ValueError('Success: UUID Removed')
 
     @expose(template="hardware.templates.pub_uuid")
-#    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
         if smolt_protocol < self.smolt_protocol:
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
@@ -155,10 +158,8 @@ class Client(object):
         host_sql.selinux_policy = host_dict['selinux_policy']
         host_sql.selinux_enforce = host_dict['selinux_enforce']
         
-                
         orig_devices = [device.device_id for device 
                                          in host_sql.devices]
-        
         
         for device in host_dict['devices']:
             description = device['description']
