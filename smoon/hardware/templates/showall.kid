@@ -34,7 +34,7 @@ ${ratingwidget.display(update="rating",
 	    <img src="/static/images/rating/r1.png"/> Breaks System<br/>
 	    <img src="/static/images/rating/r2.png"/> Doesn't Work<br/>
 	    <img src="/static/images/rating/r3.png"/> Requires 3rd Party Drivers<br/>
-	    <img src="/static/images/rating/r4.png"/> Works, but required aditional configuration<br/>
+	    <img src="/static/images/rating/r4.png"/> Works, but required additional configuration<br/>
 	    <img src="/static/images/rating/r5.png"/> Worked out of the box<br/>
 	    <p><a href="/client/show?uuid=${host_object.pub_uuid}">Show basic Information</a></p>
 	</div>
