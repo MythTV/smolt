@@ -245,6 +245,8 @@ class Host:
                     self.selinux_enforce = "Permissive"
                 elif enforce == 1:
                     self.selinux_enforce = "Enforcing"
+                elif enforce == -1:
+                    self.selinux_enforce = "Disabled"
                 else:
                     self.selinux_enforce = "FUBARD"
             except:
