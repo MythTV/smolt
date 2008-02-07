@@ -419,10 +419,12 @@ class Hardware:
         #first find out the server desired protocol
         try:
             token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/token_json?uuid=%s' % self.host.UUID, False))
+            admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
             error(_('Error contacting Server: %s') % e)
             return 1
         tok_str = token.read()
+        admin_str = admin_token.read()
         try:
             tok_obj = simplejson.loads(tok_str)
             if tok_obj['prefered_protocol'] in supported_protocols:
@@ -431,6 +433,14 @@ class Hardware:
                 error(_('Wrong version, server incapable of handling your client'))
                 return 1
             tok = tok_obj['token']
+            admin_obj = simplejson.loads(admin_str)
+            if admin_obj['prefered_protocol'] in supported_protocols:
+                prefered_protocol = admin_obj['prefered_protocol']
+            else: 
+                error(_('Wrong version, server incapable of handling your client'))
+                return 1
+            admin = admin_obj['token']
+
         except ValueError, e:
             error(_('Something went wrong fetching a token'))
         finally:
@@ -466,7 +476,7 @@ class Hardware:
             pub_uuid = serverMessage(o.read())
             o.close()
         
-        return (0, pub_uuid)
+        return (0, pub_uuid, admin)
         
     def getProfile(self):
         printBuffer = []
@@ -487,11 +497,14 @@ class Hardware:
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
 
+        printBuffer.append('')
         printBuffer.append(_('Filesystem Information'))
         printBuffer.append('device mtpt type bsize frsize blocks bfree bavail file ffree favail')
-        printBuffer.append('===================================================================')        
+        printBuffer.append('===================================================================')
         for fs in self.fss:
             printBuffer.append(str(fs))
+        
+        printBuffer.append('')
         return printBuffer
 
 

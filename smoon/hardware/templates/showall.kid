@@ -39,8 +39,11 @@ ${ratingwidget.display(update="rating",
 	    <p><a href="/client/show?uuid=${host_object.pub_uuid}">Show basic Information</a></p>
 	</div>
         <table id="system_show">
-       	    <tr><th>Rating:</th><td><div class="rating" id="Host${host_object.pub_uuid}">${host_object.rating}</div></td></tr>
-            <tr><th>UUID:</th><td>${host_object.pub_uuid}</td></tr>
+            <tr><th>Overall Rating:</th><td>
+              <div py:if="not admin"><img src="/static/images/rating/r${host_object.rating}.png"/></div>
+              <div py:if="admin" class="rating" id="Host${host_object.uuid}">${host_object.rating}</div>
+            </td></tr>
+            <tr><th>Public UUID</th><td><a href="/client/show/?uuid=${host_object.pub_uuid}">${host_object.pub_uuid}</a></td></tr>
             <tr><th>Operating System:</th><td><a href="${getOSWikiLink(host_object.os)}">${host_object.os}</a></td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
             <tr><th>Bogomips:</th><td>${host_object.bogomips}</td></tr>
@@ -58,6 +61,12 @@ ${ratingwidget.display(update="rating",
             <tr><th>SELinux Policy</th><td>${host_object.selinux_policy}</td></tr>
             <tr><th>SELinux Enforce</th><td>${host_object.selinux_enforce}</td></tr>
             <tr><th>Last Modified</th><td>${host_object.last_modified}</td></tr>
+            <tr py:if="not admin"><th>Admin Password</th><td>
+              <form method="POST">
+                <input type="text" name="admin" size="12"/>
+                <input type="hidden" name="uuid" value="${host_object.pub_uuid}"/>
+              </form></td>
+            </tr>
         </table> 
         <h3>Devices</h3>
         <table id="device_show">
@@ -66,7 +75,10 @@ ${ratingwidget.display(update="rating",
             </tr>
             <tr py:for='device_node in devices'>
             	<?python device = device_node[0] ?>
-            	<td align='left'><div class="rating" id="Host${host_object.pub_uuid}@Device${device.id}">${device_node[1]}</div></td>
+            	<td align='left'>
+                    <div py:if="not admin"><img src="/static/images/rating/r${device_node[1]}.png"/></div>
+                    <div py:if="admin" class="rating" id="Host${host_object.uuid}@Device${device.id}">${device_node[1]}</div>
+                </td>
                 <td align='center'>${ven.vendor(device.vendor_id, bus=device.bus)}</td>
 		<td align='center'><span py:replace="wikilink(ven.device(device.vendor_id, device.device_id, alt=device.description, bus=device.bus), device)">Devicename</span></td>
                 <td align='center'>${ven.vendor(device.subsys_device_id)}</td>

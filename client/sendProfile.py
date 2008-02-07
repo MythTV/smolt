@@ -154,7 +154,7 @@ if opts.retry:
         error(_('Retry Enabled - Retrying'))
         time.sleep(30)
 else:
-    result, pub_uuid = profile.send(user_agent=opts.user_agent, 
+    result, pub_uuid, admin = profile.send(user_agent=opts.user_agent, 
                                     smoonURL=opts.smoonURL, 
                                     timeout=opts.timeout)
     if result:
@@ -172,8 +172,7 @@ if opts.userName:
 if not opts.submitOnly:
     scan(profile)
 pubUrl = smolt.get_profile_link(opts.smoonURL, pub_uuid)
-privUrl = smolt.get_profile_link(opts.smoonURL, smolt.getUUID())
 print
 
-print _('To rate your profile: \n\t%s (private)') % privUrl
 print _('To share your profile: \n\t%s (public)') % pubUrl
+print _('\tAdmin Password: %s') % admin

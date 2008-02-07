@@ -21,7 +21,7 @@ class Client(object):
 
     @expose(template="hardware.templates.show")
     @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
-    def show(self, uuid=''):
+    def show(self, uuid='', admin=None):
         try:
             uuid = u'%s' % uuid.strip()
             uuid = uuid.encode('utf8')
@@ -31,10 +31,11 @@ class Client(object):
         try:
             host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
         except:
-            try:
-                host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
-            except:
-                raise ValueError("Critical: UUID Not Found - %s" % uuid)
+            raise ValueError("Critical: UUID Not Found - %s" % uuid)
+        
+        if admin:
+            admin = self.token.check_admin_token(admin, host_object.uuid)
+
         devices = {}
         ven = DeviceMap('pci')
 
@@ -74,13 +75,12 @@ class Client(object):
                     devices=devices,
                     ratingwidget=SingleRatingWidget(),
                     getOSWikiLink=getOSWikiLink,
-                    uuid=uuid
+                    admin=admin
                     )
-
         
     @expose(template="hardware.templates.showall", allow_json=True)
     @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
-    def show_all(self, uuid=''):
+    def show_all(self, uuid='', admin=None):
         try:
             uuid = u'%s' % uuid.strip()
             uuid = uuid.encode('utf8')
@@ -90,6 +90,9 @@ class Client(object):
             host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % uuid)
+        if admin:
+            admin = self.token.check_admin_token(admin, host_object.uuid)
+
         devices = {}
         for dev in host_object.devices:
             #This is to prevent duplicate devices showing up, in the future,
@@ -105,7 +108,8 @@ class Client(object):
                     devices=devices, ven=ven,
                     ratingwidget=SingleRatingWidget(),
                     getDeviceWikiLink = getDeviceWikiLink,
-                    getOSWikiLink=getOSWikiLink
+                    getOSWikiLink=getOSWikiLink,
+                    admin=admin
                     )
 
     @expose(template="hardware.templates.delete")
