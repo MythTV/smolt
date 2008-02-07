@@ -3,6 +3,7 @@ import os
 import commands
 
 SMOON_URL = "http://www.smolts.org/"
+SECURE = 0
 
 
 #Only a fool would edit what lays beyond here

@@ -175,4 +175,5 @@ pubUrl = smolt.get_profile_link(opts.smoonURL, pub_uuid)
 print
 
 print _('To share your profile: \n\t%s (public)') % pubUrl
-print _('\tAdmin Password: %s') % admin
+if not smolt.secure:
+    print _('\tAdmin Password: %s') % admin

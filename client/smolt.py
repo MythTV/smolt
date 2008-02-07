@@ -58,6 +58,7 @@ fs_m_filter = get_config_attr("FS_M_FILTER", False)
 fs_t_filter = get_config_attr("FS_T_FILTER", False)
 
 smoonURL = get_config_attr("SMOON_URL", "http://smolts.org/")
+secure = get_config_attr("SECURE", 0)
 hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
 smoltProtocol = '0.97'
 supported_protocols = ['0.97',]
