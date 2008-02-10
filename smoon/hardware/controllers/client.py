@@ -29,7 +29,7 @@ class Client(object):
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
 
         try:
-            host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
+            host_object = session.query(Host).filter_by(pub_uuid=uuid).one()
         except:
             raise ValueError("Critical: UUID Not Found - %s" % uuid)
         
@@ -40,7 +40,7 @@ class Client(object):
         ven = DeviceMap('pci')
 
         for dev in host_object.devices:
-            #ctx.current.refresh(dev)
+            #session.refresh(dev)
             device = dev.device
             if not device.vendor_id and not device.device_id:
                 continue
@@ -87,7 +87,7 @@ class Client(object):
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
-            host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
+            host_object = session.query(Host).filte_by(pub_uuid=uuid).one()
         except:
             raise ValueError("Critical: UUID Not Found - %s" % uuid)
         if admin:
@@ -116,12 +116,12 @@ class Client(object):
     @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, uuid=''):
         try:
-            host = ctx.current.query(Host).selectone_by(uuid=uuid)
+            host = session.query(Host).filter_by(uuid=uuid).one()
         except:
             raise ValueError("Critical: UUID does not exist %s " % uuid)
         try:
-            ctx.current.delete(host)
-            ctx.current.flush()
+            session.delete(host)
+            session.flush()
         except:
             raise ValueError("Critical: Could not delete UUID - Please contact the smolt development team")
         raise ValueError('Success: UUID Removed')
@@ -139,7 +139,7 @@ class Client(object):
         host_dict = simplejson.loads(host)
         
         try:
-            host_sql = ctx.current.query(Host).selectone_by(uuid=uuid)
+            host_sql = session.query(Host).filter_by(uuid=uuid).one()
         except InvalidRequestError:
             host_sql = Host()
             host_sql.uuid = host_dict["uuid"]
@@ -181,12 +181,12 @@ class Client(object):
             if subsys_device_id is None:
                 subsys_device_id = 0
             try:
-                device_sql = ctx.current.query(ComputerLogicalDevice)\
-                    .selectone_by(device_id=device_id,
+                device_sql = session.query(ComputerLogicalDevice)\
+                    .filter_by(device_id=device_id,
                                   vendor_id=vendor_id,
                                   subsys_vendor_id=subsys_vendor_id,
                                   subsys_device_id=subsys_device_id,
-                                  description=description)
+                                  description=description).one()
                 if device_sql.id in orig_devices:
                     orig_devices.remove(device_sql.id)
                 else:
@@ -212,30 +212,30 @@ class Client(object):
                 d = device_sql
                 
                 try: 
-                    class_sql = ctx.current.query(HardwareClass).selectone_by(cls=cls)
+                    class_sql = session.query(HardwareClass).filter_by(cls=cls).one()
                     device_sql.hardware_class = class_sql
                 except InvalidRequestError:
                     class_sql = HardwareClass()
                     class_sql.cls = cls
                     class_sql.class_description = "Fill me in!"
                     device_sql.hardware_class = class_sql
-                    ctx.current.flush()
+                    session.flush()
                     
-                ctx.current.flush()
+                session.flush()
                
                 host_link = HostLink()
                 host_link.host = host_sql
                 host_link.device = device_sql
             
         for device_sql_id in orig_devices:
-            bad_host_link = ctx.current.query(HostLink)\
+            bad_host_link = session.query(HostLink)\
                 .select_by(device_id=device_sql_id,
                            host_link_id=host_sql.id)
             if bad_host_link and len(bad_host_link):
-                ctx.current.delete(bad_host_link[0])
-        ctx.current.flush()
+                session.delete(bad_host_link[0])
+        session.flush()
         
-        map(ctx.current.delete, host_sql.file_systems)
+        map(session.delete, host_sql.file_systems)
         def add_fs(fs_dict):
             new_fs = FileSystem()
             new_fs.mnt_pnt = fs_dict['mnt_pnt']
@@ -265,26 +265,26 @@ class Client(object):
             sep = id.find("@")
             if sep == -1:
                 host_id = id[4:]
-                host = ctx.current.query(Host).selectone_by(uuid=host_id)
+                host = session.query(Host).selectone_by(uuid=host_id)
                 host.rating = int(rating)
-                ctx.current.flush()
+                session.flush()
                 return dict()
                 
             host_id = id[4:sep]
             id = id[sep+1:]
             if id.startswith("Device"):
                 device_id = int(id[6:])
-                host = ctx.current.query(Host).selectone_by(uuid=host_id)
+                host = session.query(Host).selectone_by(uuid=host_id)
                 for device in host.devices:
                     if device.device_id == device_id:
                         device.rating = int(rating)
-                        ctx.current.flush([host, device])
+                        session.flush([host, device])
                         return dict()
         return dict()
     
     @expose()
     def pub_uuid(self, uuid):
-        host = ctx.current.query(Host).selectone_by(uuid=uuid)
+        host = session.query(Host).selectone_by(uuid=uuid)
         return dict(pub_uuid=host.pub_uuid)
     
     def new_pub_uuid(self, uuid):

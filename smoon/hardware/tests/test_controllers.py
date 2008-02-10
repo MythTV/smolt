@@ -114,9 +114,9 @@ def test_add_old():
     assert test_host_link.device_id == test_device.id
     assert test_host_link.host_link_id == test_host.id
     
-#    ctx.current.delete(test_host)
-#    ctx.current.delete(test_device)
-    ctx.current.flush()
+#    session.delete(test_host)
+#    session.delete(test_device)
+    session.flush()
 
 def test_add_new():
     """Testing to make sure an add with the new protocol works"""
@@ -227,12 +227,12 @@ def test_add_new():
     print "host: %s" % test_host.devices
     print "link: %s" % test_host_link
     
-    ctx.current.delete(test_host)
-    ctx.current.flush()
-    ctx.current.refresh(test_device)
+    session.delete(test_host)
+    session.flush()
+    session.refresh(test_device)
     print "new device: %s" % test_device
     print test_device.host_links
     print test_device.id
     print test_device.description
-    ctx.current.delete(test_device)
-    ctx.current.flush()
+    session.delete(test_device)
+    session.flush()
