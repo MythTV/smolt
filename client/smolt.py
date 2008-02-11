@@ -961,7 +961,7 @@ def read_memory_2_6():
 def get_profile():
     try:
         return Hardware()
-    except smolt.SystemBusError, e:
+    except SystemBusError, e:
         error(_('Error:') + ' ' + e.message)
         if e.hint is not None:
             error('\t' + _('Hint:') + ' ' + e.hint)
