@@ -52,15 +52,19 @@ class FileSystem(object):
         self.mnt_dev = mntent.mnt_fsname
         self.mnt_pnt = mntent.mnt_dir
         self.fs_type = mntent.mnt_type
-        stat_res = os.statvfs(self.mnt_pnt)
-        self.f_bsize = stat_res.f_bsize
-        self.f_frsize = stat_res.f_frsize
-        self.f_blocks = stat_res.f_blocks
-        self.f_bfree = stat_res.f_bfree
-        self.f_bavail = stat_res.f_bavail
-        self.f_files = stat_res.f_files
-        self.f_ffree = stat_res.f_ffree
-        self.f_favail = stat_res.f_favail
+        try:
+            stat_res = os.statvfs('%s' % self.mnt_pnt)
+        except OSError:
+            stat_res = self.f_bsize = self.f_frsize = self.f_blocks = self.f_blocks = self.f_bfree = self.f_bavail = self.f_files = self.f_ffree = self.f_favail = "UNKNOWN"
+        else:
+            self.f_bsize = stat_res.f_bsize
+            self.f_frsize = stat_res.f_frsize
+            self.f_blocks = stat_res.f_blocks
+            self.f_bfree = stat_res.f_bfree
+            self.f_bavail = stat_res.f_bavail
+            self.f_files = stat_res.f_files
+            self.f_ffree = stat_res.f_ffree
+            self.f_favail = stat_res.f_favail
         
     def to_dict(self):
         return dict(mnt_pnt=self.mnt_pnt, fs_type=self.fs_type, f_favail=self.f_favail,
