@@ -86,7 +86,7 @@ def get_mtab(mtab="/proc/mounts", vfstype=None):
 
     mtab_stat = os.stat(mtab)
     if mtab_stat.st_mtime != mtab_mtime:
-        print '''cache is stale ... refresh'''
+        #print '''cache is stale ... refresh'''
         mtab_mtime = mtab_stat.st_mtime
         mtab_map = __cache_mtab__(mtab)
 
