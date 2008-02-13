@@ -31,6 +31,11 @@ class Root(controllers.RootController):
         import time
         # log.debug("Happy TurboGears Controller Smooning For Duty")
         return dict(now=time.ctime())
+        
+    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
+    @expose(template="hardware.templates.token", allow_json=True)
+    def token(self, UUID):
+        raise ValueError("Critical: Unicode Issue - Tell Mike!")
 
 
     @expose(template="hardware.templates.login")
