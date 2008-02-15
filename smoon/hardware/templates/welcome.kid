@@ -15,8 +15,11 @@
 <p>
 For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>
 </p>
-<h2>Growth</h2>
-<p><img src="/cacti/smoltArch.png"/></p>
+
+<h2> Arch Chart </h2>
+    ${archFlot.display()}
+<!--<h2>Growth</h2>
+<p><img src="/cacti/smoltArch.png"/></p> -->
 
 <h2>More info</h2>
 <p>Browse and search the <a href="/wiki/">Wiki</a> for detailed information about specific devices.

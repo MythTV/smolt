@@ -7,6 +7,9 @@ from hardware.controllers.client import Client
 from hardware.controllers.token import Token
 from hardware.controllers.upgrade import Upgrade
 from hardware.controllers.error import error
+from hardware.turboflot import TurboFlot
+
+from hardware.model import *
 
 import logging
 log = logging.getLogger("smoon")
@@ -24,13 +27,39 @@ class Root(controllers.RootController):
     
     def __init__(self):
         controllers.RootController.__init__(self)
-            
         
     @expose(template="hardware.templates.welcome")
     def index(self):
         import time
         # log.debug("Happy TurboGears Controller Smooning For Duty")
-        return dict(now=time.ctime())
+        import math
+        from turboflot import TurboFlot
+        archs = ctx.current.query(Arch).select()
+        types = []
+        count = []
+        i = 1
+        platform = []
+        counts = []
+        for type in archs:
+            if type.cnt > 10:
+                platform.append([i, type.platform])
+                counts.append([i, type.cnt])
+                i = i + 1
+        
+#        d2 = [(1.5, 'monday'), (2.5, 'tuesday'), (3.5, 'thursday')]
+#        d1 = [(1,6), (2,3), (3,5)]
+        archFlot = TurboFlot([
+            {
+                'data' : counts,
+                'bars' : { 'show' : True },
+                'label' : 'Archs',
+            }],
+            {
+                'xaxis' : { 'ticks' : platform },
+                #'xaxis' : { 'ticks': ['monday', 'tuesday', 'thursday'] }
+            }
+        )
+        return dict(now=time.ctime(), archFlot=archFlot)
         
     @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     @expose(template="hardware.templates.token", allow_json=True)
