@@ -7,7 +7,8 @@ from turbogears import identity
 from datetime import timedelta, date
 from mx import DateTime
 
-ctx = session.context
+#ctx = session.context
+
 
 computer_logical_devices = \
        Table('device', metadata, 
@@ -249,9 +250,9 @@ class SelinuxPolicy(object):
     pass
 
 
-def mapper(*args, **kw):
-    """Map tables to objects with knowledge about the session context."""
-    return assign_mapper(session.context, *args, **kw)
+#def mapper(*args, **kw):
+#    """Map tables to objects with knowledge about the session context."""
+#    return assign_mapper(session.context, *args, **kw)
 
 
 mapper(Foo, hosts,

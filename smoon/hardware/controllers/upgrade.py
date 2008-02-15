@@ -20,10 +20,10 @@ class Upgrade(object):
         pass
     @expose()
     def upgrade(self):
-        for host in ctx.current.query(Host).filter_by(pub_uuid="").limit(1000):
+        for host in session.query(Host).filter_by(pub_uuid="").limit(1000):
             host.pub_uuid=generate_uuid(True)
-            ctx.current.flush()
-#        for host in ctx.current.query(Host):
+            session.flush()
+#        for host in session.query(Host):
 #            #if host.pub_uuid
 #            pass
         return dict()

@@ -33,7 +33,7 @@ class Token(object):
         from hardware.model import *
         crypt = XOR.new(self.password)
         try:
-            host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
+            host_object = session.query(Host).filter_by(uuid=uuid).one()
         except:
             raise ValueError("Critical: UUID Not Found - %s" % uuid)
         
