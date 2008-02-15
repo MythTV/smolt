@@ -265,7 +265,7 @@ class Client(object):
             sep = id.find("@")
             if sep == -1:
                 host_id = id[4:]
-                host = session.query(Host).selectone_by(uuid=host_id)
+                host = session.query(Host).filter_by(uuid=host_id).one()
                 host.rating = int(rating)
                 session.flush()
                 return dict()
@@ -274,7 +274,7 @@ class Client(object):
             id = id[sep+1:]
             if id.startswith("Device"):
                 device_id = int(id[6:])
-                host = session.query(Host).selectone_by(uuid=host_id)
+                host = session.query(Host).filter_by(uuid=host_id).one()
                 for device in host.devices:
                     if device.device_id == device_id:
                         device.rating = int(rating)
@@ -284,7 +284,7 @@ class Client(object):
     
     @expose()
     def pub_uuid(self, uuid):
-        host = session.query(Host).selectone_by(uuid=uuid)
+        host = session.query(Host).filter_by(uuid=uuid).one()
         return dict(pub_uuid=host.pub_uuid)
     
     def new_pub_uuid(self, uuid):
