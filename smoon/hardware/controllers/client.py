@@ -21,7 +21,9 @@ class Client(object):
 
     @expose(template="hardware.templates.show")
     @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
-    def show(self, uuid='', admin=None):
+    def show(self, uuid='', UUID=None, admin=None):
+        if UUID:
+            uuid = UUID
         try:
             uuid = u'%s' % uuid.strip()
             uuid = uuid.encode('utf8')
@@ -31,7 +33,11 @@ class Client(object):
         try:
             host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
         except:
-            raise ValueError("Critical: UUID Not Found - %s" % uuid)
+            try:
+                host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
+                raise ValueError("Critical: New versions of smolt use a public UUID.  Yours is: %s" % host_object.pub_uuid)
+            except InvalidRequestError:
+                raise ValueError("Critical: UUID Not Found - %s" % uuid)
         
         if admin:
             admin = self.token.check_admin_token(admin, host_object.uuid)
@@ -184,7 +190,10 @@ class Client(object):
         host_sql.kernel_version = host_dict['kernel_version']
         host_sql.formfactor = host_dict['formfactor']
         host_sql.selinux_enabled = host_dict['selinux_enabled']
-        host_sql.selinux_policy = host_dict['selinux_policy']
+        try:
+            host_sql.selinux_policy = host_dict['selinux_policy']
+        except KeyError:
+            host_sql.selinux_policy = 'Unknown'
         host_sql.selinux_enforce = host_dict['selinux_enforce']
         
         orig_devices = [device.device_id for device 
@@ -273,8 +282,11 @@ class Client(object):
             new_fs.f_files = fs_dict['f_files']
             new_fs.f_ffree = fs_dict['f_ffree']
             new_fs.host = host_sql
-        map(add_fs, host_dict['fss'])
-
+        try:
+            map(add_fs, host_dict['fss'])
+        except:
+            pass
+        
         return dict(pub_uuid=host_sql.pub_uuid)
 
     @expose()
