@@ -28,6 +28,21 @@ class Token(object):
         return dict(token=urllib.quote(token),
                     prefered_protocol=self.smolt_protocol)
         
+    @expose("json")
+    def admin_token_json(self, uuid):
+        from hardware.model import *
+        crypt = XOR.new(self.password)
+        try:
+            host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
+        except:
+            raise ValueError("Critical: UUID Not Found - %s" % uuid)
+        
+        str = "%s" % (uuid[:7])
+        # I hate obfuscation.  Its all I've got
+        token = crypt.encrypt(str)
+        return dict(token=urllib.quote(token),
+                    prefered_protocol=self.smolt_protocol)
+        
     def check_token(self, token, uuid):
         token = urllib.unquote(token)
         crypt = XOR.new(self.password)
@@ -40,4 +55,13 @@ class Token(object):
         if uuid.strip() != token_uuid.strip():
             raise ValueError("Critical [s]: Invalid Token")
     
-
+    def check_admin_token(self, token, uuid):
+        print "TOKEN CHECK"
+        token = urllib.unquote(token)
+        crypt = XOR.new(self.password)
+        token_plain = crypt.decrypt(token).split('\n')
+        if uuid[:7] == token_plain[0]:
+            print 'GOT GOOD TOKEN!'
+            return token
+        else:
+            raise ValueError("Critical: %s not a valid token for UUID" % token)

@@ -20,6 +20,14 @@ RETVAL=0
 
 start() {
 	echo -n $"Enabling monthly Smolt checkin: "
+if ! [ -f /etc/sysconfig/hw-uuid ]
+	then
+		echo
+		echo "Generating UUID"
+		/bin/cat /proc/sys/kernel/random/uuid > /etc/sysconfig/hw-uuid
+		/bin/chmod 0644 /etc/sysconfig/hw-uuid
+		/bin/chown root:root /etc/sysconfig/hw-uuid
+	fi
 	touch "$lockfile" && success || failure
 	RETVAL=$?
 	echo

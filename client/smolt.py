@@ -58,6 +58,7 @@ fs_m_filter = get_config_attr("FS_M_FILTER", False)
 fs_t_filter = get_config_attr("FS_T_FILTER", False)
 
 smoonURL = get_config_attr("SMOON_URL", "http://smolts.org/")
+secure = get_config_attr("SECURE", 0)
 hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
 smoltProtocol = '0.97'
 supported_protocols = ['0.97',]
@@ -245,6 +246,8 @@ class Host:
                     self.selinux_enforce = "Permissive"
                 elif enforce == 1:
                     self.selinux_enforce = "Enforcing"
+                elif enforce == -1:
+                    self.selinux_enforce = "Disabled"
                 else:
                     self.selinux_enforce = "FUBARD"
             except:
@@ -411,7 +414,7 @@ class Hardware:
     
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
-        
+     
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         #first find out the server desired protocol
@@ -429,6 +432,7 @@ class Hardware:
                 error(_('Wrong version, server incapable of handling your client'))
                 return 1
             tok = tok_obj['token']
+
         except ValueError, e:
             error(_('Something went wrong fetching a token'))
         finally:
@@ -451,7 +455,7 @@ class Hardware:
         
         debug('sendHostStr: %s' % simplejson.dumps(send_host_obj))
         debug('Sending Host')
-        
+
         try:
             o = grabber.urlopen(urljoin(smoonURL + "/", "/client/add_json", False), data=send_host_str,
                                 http_headers=(
@@ -463,9 +467,30 @@ class Hardware:
         else:
             pub_uuid = serverMessage(o.read())
             o.close()
+            
+            admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
+            admin_str = admin_token.read()
+            admin_obj = simplejson.loads(admin_str)
+            if admin_obj['prefered_protocol'] in supported_protocols:
+                prefered_protocol = admin_obj['prefered_protocol']
+            else: 
+                error(_('Wrong version, server incapable of handling your client'))
+                return 1
+            admin = admin_obj['token']
         
-        return (0, pub_uuid)
-        
+        return (0, pub_uuid, admin)
+     
+    def regenerate_pub_uuid(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
+        try:
+            new_uuid = grabber.urlopen(urljoin(smoonURL + "/", '/client/regenerate_pub_uuid?uuid=%s' % self.host.UUID))
+        except urlgrabber.grabber.URLGrabError, e:
+            error(_('Error contacting Server: %s') % e)
+            sys.exit(0)
+        pub_uuid = simplejson.loads(new_uuid.read())['pub_uuid']
+        return pub_uuid
+
+     
     def getProfile(self):
         printBuffer = []
 
@@ -484,9 +509,15 @@ class Hardware:
         
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
-        
+
+        printBuffer.append('')
+        printBuffer.append(_('Filesystem Information'))
+        printBuffer.append('device mtpt type bsize frsize blocks bfree bavail file ffree favail')
+        printBuffer.append('===================================================================')
         for fs in self.fss:
             printBuffer.append(str(fs))
+        
+        printBuffer.append('')
         return printBuffer
 
 
@@ -942,7 +973,7 @@ def read_memory_2_6():
 def get_profile():
     try:
         return Hardware()
-    except smolt.SystemBusError, e:
+    except SystemBusError, e:
         error(_('Error:') + ' ' + e.message)
         if e.hint is not None:
             error('\t' + _('Hint:') + ' ' + e.hint)

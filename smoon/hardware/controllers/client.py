@@ -20,8 +20,8 @@ class Client(object):
         self.token = token
 
     @expose(template="hardware.templates.show")
-#    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
-    def show(self, uuid=''):
+    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
+    def show(self, uuid='', admin=None):
         try:
             uuid = u'%s' % uuid.strip()
             uuid = uuid.encode('utf8')
@@ -32,13 +32,17 @@ class Client(object):
             host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % uuid)
+        
+        if admin:
+            admin = self.token.check_admin_token(admin, host_object.uuid)
+
         devices = {}
         ven = DeviceMap('pci')
 
         for dev in host_object.devices:
             #ctx.current.refresh(dev)
             device = dev.device
-            if not device.vendor_id and device.device_id:
+            if not device.vendor_id and not device.device_id:
                 continue
             device_name = ""
             vname = ven.vendor(device.vendor_id, bus=device.bus)
@@ -70,13 +74,13 @@ class Client(object):
                     host_link = getHostWikiLink(host_object),
                     devices=devices,
                     ratingwidget=SingleRatingWidget(),
-                    getOSWikiLink=getOSWikiLink
+                    getOSWikiLink=getOSWikiLink,
+                    admin=admin
                     )
-
         
     @expose(template="hardware.templates.showall", allow_json=True)
-#    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
-    def show_all(self, uuid=''):
+    @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
+    def show_all(self, uuid='', admin=None):
         try:
             uuid = u'%s' % uuid.strip()
             uuid = uuid.encode('utf8')
@@ -86,6 +90,9 @@ class Client(object):
             host_object = ctx.current.query(Host).selectone_by(pub_uuid=uuid)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % uuid)
+        if admin:
+            admin = self.token.check_admin_token(admin, host_object.uuid)
+
         devices = {}
         for dev in host_object.devices:
             #This is to prevent duplicate devices showing up, in the future,
@@ -101,11 +108,12 @@ class Client(object):
                     devices=devices, ven=ven,
                     ratingwidget=SingleRatingWidget(),
                     getDeviceWikiLink = getDeviceWikiLink,
-                    getOSWikiLink=getOSWikiLink
+                    getOSWikiLink=getOSWikiLink,
+                    admin=admin
                     )
 
     @expose(template="hardware.templates.delete")
-#    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, uuid=''):
         try:
             host = ctx.current.query(Host).selectone_by(uuid=uuid)
@@ -118,8 +126,32 @@ class Client(object):
             raise ValueError("Critical: Could not delete UUID - Please contact the smolt development team")
         raise ValueError('Success: UUID Removed')
 
+    @expose("json")
+    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
+    def regenerate_pub_uuid(self, uuid):
+        try:
+            uuid = u'%s' % uuid.strip()
+            uuid = uuid.encode('utf8')
+        except:
+            raise ValueError("Critical: Unicode Issue - Tell Mike!")
+
+        try:
+            host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
+        except:
+            raise ValueError("Critical: UUID Not Found - %s" % uuid)
+
+        try:
+            pub_uuid = file('/proc/sys/kernel/random/uuid').read().strip()
+            pub_uuid = "pub_" + pub_uuid
+        except IOError:
+            raise UUIDError("Cannot generate UUID")
+        host_object.pub_uuid = pub_uuid
+        ctx.current.flush()
+        return dict(pub_uuid=pub_uuid)
+
+
     @expose(template="hardware.templates.pub_uuid")
-#    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
+    @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
         if smolt_protocol < self.smolt_protocol:
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
@@ -155,10 +187,8 @@ class Client(object):
         host_sql.selinux_policy = host_dict['selinux_policy']
         host_sql.selinux_enforce = host_dict['selinux_enforce']
         
-                
         orig_devices = [device.device_id for device 
                                          in host_sql.devices]
-        
         
         for device in host_dict['devices']:
             description = device['description']
@@ -253,11 +283,13 @@ class Client(object):
         #log.info('kwargs = %s' % str(kwargs))
         id = kwargs.get("ratingID")
         rating = kwargs.get("value")
+        print "ID: %s" % id
+        print "RATING: %s" % rating
         if id.startswith("Host"):
             sep = id.find("@")
             if sep == -1:
                 host_id = id[4:]
-                host = ctx.current.query(Host).selectone_by(pub_uuid=host_id)
+                host = ctx.current.query(Host).selectone_by(uuid=host_id)
                 host.rating = int(rating)
                 ctx.current.flush()
                 return dict()

@@ -105,6 +105,11 @@ parser.add_option('-b', '--bodhi',
                   default = False,
                   action = 'store_true',
                   help = _('Submit this profile to Bodhi as well, for Fedora Developmnent'))
+parser.add_option('-n', '--newPublicUUID',
+                  dest = 'new_pub',
+                  default = False,
+                  action = 'store_true',
+                  help = _('Request a new public UUID'))
 
 
 (opts, args) = parser.parse_args()
@@ -122,6 +127,13 @@ elif opts.checkin:
 
 # read the profile
 profile = smolt.get_profile()
+    
+if opts.new_pub:
+    pub_uuid = profile.regenerate_pub_uuid(user_agent=opts.user_agent, 
+                              smoonURL=opts.smoonURL, 
+                              timeout=opts.timeout)
+    print _('Success!  Your new public UUID is: %s' % pub_uuid)
+    sys.exit(0)
     
 if opts.scanOnly:
     scan(profile)
@@ -146,7 +158,7 @@ if not opts.autoSend:
     
 if opts.retry:
     while 1:
-        result, pub_uuid = profile.send(user_agent=opts.user_agent, 
+        result, pub_uuid, admin = profile.send(user_agent=opts.user_agent, 
                               smoonURL=opts.smoonURL, 
                               timeout=opts.timeout) 
         if not result:
@@ -154,9 +166,10 @@ if opts.retry:
         error(_('Retry Enabled - Retrying'))
         time.sleep(30)
 else:
-    result, pub_uuid = profile.send(user_agent=opts.user_agent, 
+    result, pub_uuid, admin = profile.send(user_agent=opts.user_agent, 
                                     smoonURL=opts.smoonURL, 
                                     timeout=opts.timeout)
+
     if result:
         print _('Could not send - Exiting')
         sys.exit(1)
@@ -171,7 +184,14 @@ if opts.userName:
         print _('Registration Failed, Try again')
 if not opts.submitOnly:
     scan(profile)
-url = smolt.get_profile_link(opts.smoonURL, pub_uuid)
+
 print
 
-print _('To view your profile visit: %s') % url
+if pub_uuid:
+    pubUrl = smolt.get_profile_link(opts.smoonURL, pub_uuid)
+    print _('To share your profile: \n\t%s (public)') % pubUrl
+    if not smolt.secure:
+        print _('\tAdmin Password: %s') % admin
+else:
+    print _('No Public UUID found!  Please re-run with -n to generate a new public uuid')
+

@@ -22,12 +22,12 @@ CREATE TABLE `file_systems` (
   `f_files` INT ,
   `f_ffree` INT ,
   PRIMARY KEY (`id`),
-  INDEX `host`(`host`)
+  INDEX `host_id`(`host_id`)
 )
 ENGINE = MyISAM
 CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-ALTER TABLE `smoon`.`file_systems` MODIFY COLUMN `id` BIGINT  NOT NULL DEFAULT NULL AUTO_INCREMENT;
+ALTER TABLE `file_systems` MODIFY COLUMN `id` BIGINT  NOT NULL DEFAULT NULL AUTO_INCREMENT;
 
 alter table device modify column device_id int;
 
@@ -39,7 +39,7 @@ ALTER TABLE `host` CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 ALTER TABLE `host_links` CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-ALTER TABLE `smoon`.`host` CHANGE COLUMN `selinux_enforce` `selinux_policy` VARCHAR(12) DEFAULT NULL;
+ALTER TABLE `host` CHANGE COLUMN `selinux_enforce` `selinux_policy` VARCHAR(12) DEFAULT NULL;
 
 CREATE OR REPLACE VIEW `SELINUX_POLICY` AS 
 select `selinux_policy` AS `policy`, 
@@ -48,14 +48,18 @@ from `host`
 group by policy 
 order by count(policy) desc;
 
-ALTER TABLE `smoon`.`host` ADD COLUMN `selinux_enforce` VARCHAR(12)  AFTER `selinux_policy`;
+ALTER TABLE `host` ADD COLUMN `selinux_enforce` VARCHAR(12)  AFTER `selinux_policy`;
 
-ALTER TABLE `smoon`.`host` CHANGE COLUMN `u_u_id` `uuid` VARCHAR(36)  NOT NULL,
+ALTER TABLE `fas_link` CHANGE COLUMN `u_u_id` `uuid` varchar(36);
+
+ALTER TABLE `host` CHANGE COLUMN `u_u_id` `uuid` VARCHAR(36)  NOT NULL,
  CHANGE COLUMN `o_s` `os` VARCHAR(32)  DEFAULT NULL,
  CHANGE COLUMN `num_cp_us` `num_cpus` INTEGER  DEFAULT NULL;
 
-CREATE OR REPLACE VIEW `NUM_CPUS` AS select `host`.`num_cpus` AS `num_cpus`,count(`host`.`num_cpus`) AS `cnt` from `host` group by `host`.`num_cpus` order by count(`host`.`num_cpus`) desc
+CREATE OR REPLACE VIEW `NUM_CPUS` AS select `host`.`num_cpus` AS `num_cpus`,count(`host`.`num_cpus`) AS `cnt` from `host` group by `host`.`num_cpus` order by count(`host`.`num_cpus`) desc;
 
-CREATE OR REPLACE VIEW `OS` AS select `host`.`os` AS `os`,count(`host`.`os`) AS `cnt` from `host` group by `host`.`os` order by count(`host`.`os`) desc
+CREATE OR REPLACE VIEW `OS` AS select `host`.`os` AS `os`, count(`host`.`os`) AS `cnt` from `host` group by `host`.`os` order by count(`host`.`os`) desc;
+
+CREATE INDEX `pub_uuid` ON `host` (`pub_uuid`);
 
 

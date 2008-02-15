@@ -98,9 +98,16 @@ class moduleClass(Module):
 
 
         iter = text_buffer.get_iter_at_offset(0)
-
+        # Generate the UUID if it does not exist yet
+        if not os.path.exists('/etc/sysconfig/hw-uuid'):
+            s=open('/proc/sys/kernel/random/uuid', 'r')
+            d=open('/etc/sysconfig/hw-uuid','w')
+            d.write(s.read())
+            s.close()
+            d.close()
+            
         for line in os.popen('/usr/bin/smoltSendProfile -p', 'r'):
-        	text_buffer.insert(iter, line)
+            text_buffer.insert(iter, line)
 
         text_view.set_buffer(text_buffer)
         
