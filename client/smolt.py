@@ -264,7 +264,7 @@ def get_file_systems():
     else:
         file_systems = get_fslist()
         
-    file_systems = [fs for fs in file_systems if fs.mnt_dev.startswith('/dev')]
+    file_systems = [fs for fs in file_systems if fs.mnt_dev.startswith('/dev/')]
     
     if fs_m_filter:
         for fs in file_systems:
