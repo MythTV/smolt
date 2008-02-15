@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Smolt hardware profiler\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2008-02-15 15:31+0700\n"
+"PO-Revision-Date: 2008-02-15 16:09+0700\n"
 "Last-Translator: Dapid Candra <dapidc@gmail.com>\n"
 "Language-Team: INDONESIAN <fedora-trans-id@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -214,6 +214,11 @@ msgid ""
 "\n"
 "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 msgstr ""
+"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 
 #: smolt.py:265
 #, python-format
@@ -238,136 +243,136 @@ msgstr ""
 #: smolt.py:505
 #, python-format
 msgid "Error contacting Server: %s"
-msgstr ""
+msgstr "Tidak dapat menghubungi server: %s"
 
 #: smolt.py:436
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
+msgstr "Salah versi, server tidak dapat menangani klien anda"
 
 #: smolt.py:452
 msgid "Communication with server failed"
-msgstr ""
+msgstr "Komunikasi dengan server gagal."
 
 #: smolt.py:526
 msgid "Devices"
-msgstr ""
+msgstr "Perangkat"
 
 #: smolt.py:537
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: smolt.py:538
 msgid "OS"
-msgstr ""
+msgstr "OS"
 
 #: smolt.py:539
 msgid "Default run level"
-msgstr ""
+msgstr "Default run level"
 
 #: smolt.py:540
 msgid "Language"
-msgstr ""
+msgstr "Bahasa"
 
 #: smolt.py:541
 msgid "Platform"
-msgstr ""
+msgstr "Platform"
 
 #: smolt.py:542
 msgid "BogoMIPS"
-msgstr ""
+msgstr "BogoMIPS"
 
 #: smolt.py:543
 msgid "CPU Vendor"
-msgstr ""
+msgstr "Vendor CPU"
 
 #: smolt.py:544
 msgid "CPU Model"
-msgstr ""
+msgstr "Model CPU"
 
 #: smolt.py:545
 msgid "Number of CPUs"
-msgstr ""
+msgstr "Jumlah CPU"
 
 #: smolt.py:546
 msgid "CPU Speed"
-msgstr ""
+msgstr "Kecepatan CPU"
 
 #: smolt.py:547
 msgid "System Memory"
-msgstr ""
+msgstr "Memori Sistem"
 
 #: smolt.py:548
 msgid "System Swap"
-msgstr ""
+msgstr "Swap Sistem"
 
 #: smolt.py:549
 msgid "Vendor"
-msgstr ""
+msgstr "Vendor"
 
 #: smolt.py:550
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 #: smolt.py:551
 msgid "Form factor"
-msgstr ""
+msgstr "Faktor bentuk"
 
 #: smolt.py:552
 msgid "Kernel"
-msgstr ""
+msgstr "Kernel"
 
 #: smolt.py:553
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux Aktif"
 
 #: smolt.py:554
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux Diharuskan"
 
 #: smolt.py:990
 msgid "Unable to save UUID, continuing...\n"
-msgstr ""
+msgstr "Tidak dapat menyimpan UUID, melanjutkan...\n"
 
 #: smolt.py:992
 msgid "Unable to determine UUID of system!\n"
-msgstr ""
+msgstr "Tidak dapat menentukan UUID sistem!\n"
 
 #: software.py:43
 msgid "Cannot Determine Runlevel"
-msgstr ""
+msgstr "Tidak Dapat Menentukan Run Level"
 
 #: smoltFirstBoot.py:31
 #: smoltFirstBoot.py:41
 msgid "Hardware Profile"
-msgstr ""
+msgstr "Profil Perangkat Keras"
 
 #: smoltFirstBoot.py:57
 msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr ""
+msgstr "Smolt adalah pembuat profil perangkat keras untuk Project Fedora. Mengirimkan profil Anda adalah timbal balik yang sangat baik untuk komunitas karena informasi ini akan digunakan untuk membantu kami fokus pada hardware dan platform yang populer. Pengiriman data dilakukan secara anonim. Pengiriman profil akan mengaktifkan pemutakhiran bulanan."
 
 #: smoltFirstBoot.py:76
 msgid "_Send Profile"
-msgstr ""
+msgstr "Kirim Profil"
 
 #: smoltFirstBoot.py:77
 msgid "D_o not send profile"
-msgstr ""
+msgstr "Jangan kirim profil"
 
 #: smoltFirstBoot.py:95
 msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr ""
+msgstr "Yakinkah Anda tidak mau mengirimkan profil ini? Mengirimkan profil adalah sumber informasi berharga untuk development kami dan dapat membantu mengatasi masalah yang mungkin muncul pada perangkat keras Anda."
 
 #: smoltFirstBoot.py:103
 msgid "_Reconsider sending"
-msgstr ""
+msgstr "_Reconsider sending"
 
 #: smoltFirstBoot.py:104
 msgid "_No, do not send."
-msgstr ""
+msgstr "Tidak, jangan kirim."
 
 #: gui.py:56
 msgid "Label"
-msgstr ""
+msgstr "Label"
 
 #: gui.py:62
 msgid "Data"
@@ -418,6 +423,35 @@ msgid ""
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
+"Smolt hanya akan mengirimkan informasi perangkat keras dan dasar sistem \n"
+"operasi ke Fedora smolt server (smoon).  Satu - satunya hubungan dari basis\n"
+"data ke pengirim data adalah UUID.  Selama pengirim data tidak \n"
+"menyebarluaskan UUID ini pendaftaran ini adalah anonim.  Jika pada satu saat\n"
+"pengguna ingin menghapus profil mereka dari basis data, mereka hanya perlu\n"
+"menjalankan perintah\n"
+"      smoltDeleteProfile\n"
+"\n"
+"Informasi yang dikirim ke server basis data smolt akan dianggap milik umum\n"
+"di mana setiap orang dapat melihat statistik, data dan berbagi profil mesin.\n"
+"Dalam banyak cara smolt dirancang untuk memperoleh perhatian dari vendor \n"
+"perangkat keras dan pihak ketiga lainnya. Jadi, informasi ini tidak hanya\n"
+"akan dibagi dengan pihak ketiga, kami akan menggunakan smolt untuk alat\n"
+"pengukur dalam mendapatkan dukungan lebih untuk driver sumber terbuka dan\n"
+"dukungan yang lebih baik secara umum.\n"
+"\n"
+"IP Logging:\n"
+"Di Fedora smolt akan melewatkan semua lalu lintas data ke server proxy dulu\n"
+"Di sini satu - satunya tempat alamat IP di catat dan data tersebut disimpan\n"
+"di server selama 4 minggu, dimana setelahnya rotasi log akan membuang catatan\n"
+"ini. Projek Fedora tidak menyimpan data ini ke basis data smolt manapun\n"
+"Log ini semuanya privat dan tidak akan dapat diakses oleh umum.\n"
+"\n"
+"Pengguna yang tidak menyukai kebijakan ini sebaiknya tidak menggunakan smolt.\n"
+"Pengguna yang memiliki pertanyaan seputar kebijakan ini sebaiknya menghubuni\n"
+"team Fedora Infrastructure di alamat\n"
+"admin [at] fedoraproject.org\n"
+"Harap juga diingat pengguna dapat menghapus profil mereka kapan saja dengan \n"
+"menggunakan perintah \"smoltDeleteProfile\"\n"
 
 #: scan.py:16
 #, python-format
@@ -430,7 +464,7 @@ msgstr "Ada Errata!"
 
 #: scan.py:42
 msgid "No errata found, if this machine is having issues please go to"
-msgstr ""
+msgstr "Tidak ada errata yang ditentukan, jika mesin ini mengalami masalah harap lanjutkan ke "
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
