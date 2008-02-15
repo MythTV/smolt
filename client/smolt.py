@@ -414,18 +414,16 @@ class Hardware:
     
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
-        
+     
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         #first find out the server desired protocol
         try:
             token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/token_json?uuid=%s' % self.host.UUID, False))
-            admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
             error(_('Error contacting Server: %s') % e)
             return 1
         tok_str = token.read()
-        admin_str = admin_token.read()
         try:
             tok_obj = simplejson.loads(tok_str)
             if tok_obj['prefered_protocol'] in supported_protocols:
@@ -434,13 +432,6 @@ class Hardware:
                 error(_('Wrong version, server incapable of handling your client'))
                 return 1
             tok = tok_obj['token']
-            admin_obj = simplejson.loads(admin_str)
-            if admin_obj['prefered_protocol'] in supported_protocols:
-                prefered_protocol = admin_obj['prefered_protocol']
-            else: 
-                error(_('Wrong version, server incapable of handling your client'))
-                return 1
-            admin = admin_obj['token']
 
         except ValueError, e:
             error(_('Something went wrong fetching a token'))
@@ -464,7 +455,7 @@ class Hardware:
         
         debug('sendHostStr: %s' % simplejson.dumps(send_host_obj))
         debug('Sending Host')
-        
+
         try:
             o = grabber.urlopen(urljoin(smoonURL + "/", "/client/add_json", False), data=send_host_str,
                                 http_headers=(
@@ -476,9 +467,30 @@ class Hardware:
         else:
             pub_uuid = serverMessage(o.read())
             o.close()
+            
+            admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
+            admin_str = admin_token.read()
+            admin_obj = simplejson.loads(admin_str)
+            if admin_obj['prefered_protocol'] in supported_protocols:
+                prefered_protocol = admin_obj['prefered_protocol']
+            else: 
+                error(_('Wrong version, server incapable of handling your client'))
+                return 1
+            admin = admin_obj['token']
         
         return (0, pub_uuid, admin)
-        
+     
+    def regenerate_pub_uuid(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
+        try:
+            new_uuid = grabber.urlopen(urljoin(smoonURL + "/", '/client/regenerate_pub_uuid?uuid=%s' % self.host.UUID))
+        except urlgrabber.grabber.URLGrabError, e:
+            error(_('Error contacting Server: %s') % e)
+            sys.exit(0)
+        pub_uuid = simplejson.loads(new_uuid.read())['pub_uuid']
+        return pub_uuid
+
+     
     def getProfile(self):
         printBuffer = []
 
@@ -961,7 +973,7 @@ def read_memory_2_6():
 def get_profile():
     try:
         return Hardware()
-    except smolt.SystemBusError, e:
+    except SystemBusError, e:
         error(_('Error:') + ' ' + e.message)
         if e.hint is not None:
             error('\t' + _('Hint:') + ' ' + e.hint)

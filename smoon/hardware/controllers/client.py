@@ -126,6 +126,30 @@ class Client(object):
             raise ValueError("Critical: Could not delete UUID - Please contact the smolt development team")
         raise ValueError('Success: UUID Removed')
 
+    @expose("json")
+    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
+    def regenerate_pub_uuid(self, uuid):
+        try:
+            uuid = u'%s' % uuid.strip()
+            uuid = uuid.encode('utf8')
+        except:
+            raise ValueError("Critical: Unicode Issue - Tell Mike!")
+
+        try:
+            host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
+        except:
+            raise ValueError("Critical: UUID Not Found - %s" % uuid)
+
+        try:
+            pub_uuid = file('/proc/sys/kernel/random/uuid').read().strip()
+            pub_uuid = "pub_" + pub_uuid
+        except IOError:
+            raise UUIDError("Cannot generate UUID")
+        host_object.pub_uuid = pub_uuid
+        ctx.current.flush()
+        return dict(pub_uuid=pub_uuid)
+
+
     @expose(template="hardware.templates.pub_uuid")
     @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
