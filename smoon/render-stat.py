@@ -121,8 +121,6 @@ class ByClass(object):
 
         for cls in classes:
             type = cls.cls 
-            if type != "AUDIO":
-                continue
 
             #devs = select([computer_logical_devices], computer_logical_devices.c.cls == type).alias("devs")
             devs = computer_logical_devices
