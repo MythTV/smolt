@@ -253,7 +253,7 @@ class Host:
             except:
                 self.selinux_enforce = "Unknown"
         except ImportError:
-            self.selinux_enabled = "Not installed"
+            self.selinux_enabled = False
             self.selinux_policy = "Not Installed"
             self.selinux_enforce = "Not Installed"
         
