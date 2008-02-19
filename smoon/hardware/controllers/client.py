@@ -93,7 +93,7 @@ class Client(object):
         except:
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
         try:
-            host_object = session.query(Host).filte_by(pub_uuid=uuid).one()
+            host_object = session.query(Host).filter_by(pub_uuid=uuid).one()
         except:
             raise ValueError("Critical: UUID Not Found - %s" % uuid)
         if admin:
