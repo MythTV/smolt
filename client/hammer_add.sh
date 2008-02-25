@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 echo $1
-for foo in {1..10}
+for foo in $(seq 1 10)
 
 do
 	python deleteProfile.py -s http://localhost:8080/ --uuidFile=uuid-sample$1
