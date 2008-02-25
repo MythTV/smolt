@@ -53,10 +53,11 @@ def main():
         return 1
     pub_uuid_str = pub_uuid_fli.read()
     try:
-        pub_uuid_obj = simplejson.loads(pub_uuid_str)
-        print _('To view your profile visit: %s') % smolt.get_profile_link(opts.smoonURL, pub_uuid_obj["pub_uuid"])
-    except ValueError, e:
-        error(_('Something went wrong fetching the public UUID'))
+        try:
+            pub_uuid_obj = simplejson.loads(pub_uuid_str)
+            print _('To view your profile visit: %s') % smolt.get_profile_link(opts.smoonURL, pub_uuid_obj["pub_uuid"])
+        except ValueError, e:
+            error(_('Something went wrong fetching the public UUID'))
     finally:
         pub_uuid_fli.close()
         

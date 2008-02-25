@@ -424,16 +424,17 @@ class Hardware:
             return 1
         tok_str = token.read()
         try:
-            tok_obj = simplejson.loads(tok_str)
-            if tok_obj['prefered_protocol'] in supported_protocols:
-                prefered_protocol = tok_obj['prefered_protocol']
-            else: 
-                error(_('Wrong version, server incapable of handling your client'))
-                return 1
-            tok = tok_obj['token']
+            try:
+                tok_obj = simplejson.loads(tok_str)
+                if tok_obj['prefered_protocol'] in supported_protocols:
+                    prefered_protocol = tok_obj['prefered_protocol']
+                else: 
+                    error(_('Wrong version, server incapable of handling your client'))
+                    return 1
+                tok = tok_obj['token']
 
-        except ValueError, e:
-            error(_('Something went wrong fetching a token'))
+            except ValueError, e:
+                error(_('Something went wrong fetching a token'))
         finally:
             token.close()
         
