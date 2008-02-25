@@ -1,4 +1,6 @@
 #!/bin/sh
+set -eu
+
 echo $1
 for foo in $(seq 1 10)
 
