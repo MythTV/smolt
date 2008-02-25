@@ -205,13 +205,13 @@ msgid ""
 "\n"
 "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
 msgstr ""
 "Овај програм је слободан софтвер; можете га раздељивати и/или измењивати под условима ГНУ Опште јавне лиценце као што је објавила Фондација слободног софтвера; или лиценцом верзије 2, или (по вашем избору) било којом каснијом верзијом.\n"
 "\n"
 "Овај програм се раздељује у нади да ће бити од користи, али БЕЗ ИКАКВЕ ГАРАНЦИЈЕ; чак и без подразумеване гаранције ПРИКЛАДНОСТИ ЗА ПРОДАЈУ или ПОДОБНОСТИ ЗА ПОСЕБНУ НАМЕНУ.  Погледајте ГНУ Општу јавну лиценцу за више детаља.\n"
 "\n"
-"Требало би да сте примили узорак ГНУ Опште јавне лиценце уз овај програм; ако нисте, пишите Фондација слободног софтвера: Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+"Требало би да сте примили узорак ГНУ Опште јавне лиценце уз овај програм; ако нисте, пишите Фондација слободног софтвера: Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
 
 #: smolt.py:265
 #, python-format

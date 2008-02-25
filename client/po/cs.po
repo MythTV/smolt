@@ -226,7 +226,7 @@ msgstr ""
 "\n"
 "Tento program je distribuován v dobré víře, že bude užitečný, ale bez jakékoli záruky. Podrobnosti najdete v GNU General Public Licenci.\n"
 "\n"
-"Kopii licence GNU General Public License jste měli obdržet s tímto programem. Pokud ne, napište Free Software Foundation Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+"Kopii licence GNU General Public License jste měli obdržet s tímto programem. Pokud ne, napište Free Software Foundation Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
 
 #: smolt.py:265
 #, python-format

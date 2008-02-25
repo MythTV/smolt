@@ -236,7 +236,7 @@ msgstr ""
 "\n"
 "Vous devriez avoir reçu une copie de la licence GNU General Public License avec "
 "ce programme. Si tel n'a pas été le cas, écrivez à la Free Software Foundation, "
-"Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+"Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
 
 #: smolt.py:265
 #, python-format

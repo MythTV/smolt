@@ -203,13 +203,13 @@ msgid ""
 "\n"
 "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
 msgstr ""
 "本プログラムはフリーソフトウェアです。 Free Software Foundation により発行される GNU General Public License の契約書、 バージョン 2 またはそれ以降に基づき本プログラムの再配布や変更が可能です。\n"
 "\n"
 "本プログラムは、 役に立つであろうという善意の下に配布されています。 ただし、なんらの保証がなされるものではなく、 市販性ないしは特定目的との適合性の暗示の保証をすることなく配布されます。 詳しくは GNU General Public License をご覧ください。\n"
 "\n"
-"本プログラムとともに GNU General Public License のコピーをお受取りになっているはずです。 お受取りになっていない場合は、 Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA 宛て書面にてお問い合わせください。"
+"本プログラムとともに GNU General Public License のコピーをお受取りになっているはずです。 お受取りになっていない場合は、 Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA 宛て書面にてお問い合わせください。"
 
 #: smolt.py:265
 #, python-format
