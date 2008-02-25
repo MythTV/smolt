@@ -24,6 +24,8 @@ import os
 import sys
 import subprocess
 import gtk
+import gobject
+import threading
 from urlparse import urljoin
 import webbrowser
 
@@ -66,6 +68,7 @@ class SmoltGui(object):
         self.aboutDialog = None
         self.privacyPolicy = None
         
+        gtk.gdk.threads_init()
         self.profile = smolt.Hardware()
         self._create_gtk_windows()
 
@@ -133,6 +136,9 @@ class SmoltGui(object):
         gtk.main_quit()
 
     def send_cb(self, *extra):
+        threading.Thread(target=self._send).start()
+
+    def _send(self):
         '''Send the profile to the smolt server'''
         # A little hacky.  Perhaps this should be a method in the library
         #retcode = subprocess.call('/usr/bin/smoltSendProfile -a')
@@ -151,10 +157,12 @@ class SmoltGui(object):
                     gtk.BUTTONS_OK,
                     message_format=_('The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in %s') \
                                      % (urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID), smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")))
+
+        def finish(*extra):
+            webbrowser.open(urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID))
+            self.quit_cb(None)
+        finishMessage.connect('response', finish)
         finishMessage.show()
-        finishMessage.run()
-        webbrowser.open(urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID))
-        self.quit_cb(None)
 
     def privacy_cb(self, *extra):
         if self.privacyPolicy is None:
