@@ -139,6 +139,8 @@ class SmoltGui(object):
         threading.Thread(target=self._send).start()
 
     def _send(self):
+        self.mainWindow.set_sensitive(False)
+
         '''Send the profile to the smolt server'''
         # A little hacky.  Perhaps this should be a method in the library
         #retcode = subprocess.call('/usr/bin/smoltSendProfile -a')
