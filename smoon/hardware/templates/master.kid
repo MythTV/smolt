@@ -32,6 +32,7 @@
         </span>
     </div>
     <div id="header">
+        <a id="logo" href="/"><span>Smolt</span></a>
         <div id="floatingTitle">
             <h1>Hardware : <script type="text/javascript" language="javascript">document.write(document.title);</script></h1>
             ${time.strftime('%C %c')}

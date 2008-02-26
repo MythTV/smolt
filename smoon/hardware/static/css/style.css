@@ -22,10 +22,21 @@ html, body, th, td {
 #header {
   height: 60px;
   width: 777px;
-  background: #1956A3 URL('../images/dna-banner.png') no-repeat;
+  background-color: #1956A3;
   border-left: 1px solid #aaa;
   border-right: 1px solid #aaa;
   margin: 0 auto 0 auto;
+}
+
+#header #logo {
+  height: 60px;
+  width: 468px;
+  background: #1956A3 URL('../images/dna-banner.png') no-repeat;
+  float: left;
+}
+
+#header #logo span {
+  display: none;
 }
 
 a.link, a, a.active {
