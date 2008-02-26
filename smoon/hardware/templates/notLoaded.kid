@@ -9,7 +9,7 @@
         <meta content="text/plain; charset=utf-8" http-equiv=
         "Content-Type" py:replace="''" />
 
-        <title>Crap!</title>
+        <title>Error!</title>
     </head>
 
     <body>
