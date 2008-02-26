@@ -144,17 +144,8 @@ class SmoltGui(object):
         '''Send the profile to the smolt server'''
         # A little hacky.  Perhaps this should be a method in the library
         #retcode = subprocess.call('/usr/bin/smoltSendProfile -a')
-        retcode = self.profile.send(smoonURL=smolt.smoonURL)
-        if retcode:
-            finishMessage = gtk.MessageDialog(self.mainWindow,
-                    gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
-                    gtk.MESSAGE_WARNING,
-                    gtk.BUTTONS_OK,
-                    message_format=_('An error occurred while sending the data to the server.'))
-            def finish(*extra):
-                finishMessage.destroy()
-                self.mainWindow.set_sensitive(True)
-        else:
+        try:
+            retvalue, pub_uuid, admin = self.profile.send(smoonURL=smolt.smoonURL)
             url = urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID)
             finishMessage = gtk.MessageDialog(self.mainWindow,
                     gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
@@ -165,6 +156,15 @@ class SmoltGui(object):
             def finish(*extra):
                 webbrowser.open(urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID))
                 self.quit_cb(None)
+        except TypeError:
+            finishMessage = gtk.MessageDialog(self.mainWindow,
+                    gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
+                    gtk.MESSAGE_WARNING,
+                    gtk.BUTTONS_OK,
+                    message_format=_('An error occurred while sending the data to the server.'))
+            def finish(*extra):
+                finishMessage.destroy()
+                self.mainWindow.set_sensitive(True)
         finishMessage.connect('response', finish)
         finishMessage.show()
 
