@@ -146,15 +146,15 @@ class SmoltGui(object):
         #retcode = subprocess.call('/usr/bin/smoltSendProfile -a')
         try:
             retvalue, pub_uuid, admin = self.profile.send(smoonURL=smolt.smoonURL)
-            url = urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID)
+            url = urljoin(smolt.smoonURL, '/show?uuid=%s' % pub_uuid)
             finishMessage = gtk.MessageDialog(self.mainWindow,
                     gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL,
                     gtk.MESSAGE_INFO,
                     gtk.BUTTONS_OK,
                     message_format=_('The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in %s') \
-                                     % (urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID), smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")))
+                                     % (url, smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")))
             def finish(*extra):
-                webbrowser.open(urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID))
+                webbrowser.open(url)
                 self.quit_cb(None)
         except TypeError:
             finishMessage = gtk.MessageDialog(self.mainWindow,
