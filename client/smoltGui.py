@@ -151,6 +151,9 @@ class SmoltGui(object):
                     gtk.MESSAGE_WARNING,
                     gtk.BUTTONS_OK,
                     message_format=_('An error occurred while sending the data to the server.'))
+            def finish(*extra):
+                finishMessage.destroy()
+                self.mainWindow.set_sensitive(True)
         else:
             url = urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID)
             finishMessage = gtk.MessageDialog(self.mainWindow,
@@ -159,10 +162,9 @@ class SmoltGui(object):
                     gtk.BUTTONS_OK,
                     message_format=_('The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in %s') \
                                      % (urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID), smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")))
-
-        def finish(*extra):
-            webbrowser.open(urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID))
-            self.quit_cb(None)
+            def finish(*extra):
+                webbrowser.open(urljoin(smolt.smoonURL, '/show?uuid=%s' % self.profile.host.UUID))
+                self.quit_cb(None)
         finishMessage.connect('response', finish)
         finishMessage.show()
 
