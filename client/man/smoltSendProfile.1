@@ -1,0 +1,71 @@
+.TH SMOLTSENDPROFILE 1 "February 27 2008"
+.SH NAME
+smoltSendProfie \- Submit Smolt hardware profile to server 
+.SH SYNOPSIS
+.B smoltSendProfile
+.RI [options]
+.SH DESCRIPTION
+\fBsmoltSendProfile\fP program submits the hardware profile of the current
+machine to the Smoon server. Smolt is a cross-desktop hardware reporting tool
+for GNU/Linux based systems.
+.TP
+.SH OPTIONS
+.TP
+\-p, \-\-printOnly
+Display information only; do not send
+.TP
+\-a, \-\-autoSend
+Don't prompt to send; just send
+.TP
+\-r, \-\-retry
+Continue to send until success
+.TP
+\-c, \-\-checkin
+Automated check-in, suitable for cron-jobs
+.TP
+\-S, \-\-scanOnly
+Only scan this machine for known hardware errata; do not send profile
+.TP
+\-\-submitOnly
+Do not scan this machine for known hardware errata; only submit profile
+.TP
+\-b, \-\-bodhi
+Submit this profile to Bodhi as well, for Fedora Developmnent
+.TP
+\-n, \-\-newPublicUUID
+Request a new public UUID
+.TP
+\-s \fISMOON_URL\fR, \-\-server=\fISMOON_URL\fR
+Specify the URL of the server
+.TP
+\-u \fIUSERAGENT\fR, \-\-useragent=\fIUSERAGENT\fR, \-\-user_agent=\fIUSERAGENT\fR
+Specify HTTP user agent (default "smolt/0.97")
+.TP
+\-t \fITIMEOUT\fR, \-\-timeout=\fITIMEOUT\fR
+Specify HTTP timeout in seconds (default 60.0 seconds)
+.TP
+\-\-uuidFile=\fIUUIDFILE\fR
+Specify which UUID to use; useful for debugging and testing
+.TP
+\-\-username=\fIUSERNAME\fR
+Fedora Account System registration username
+.TP
+\-\-password=\fIPASSWORD\fR
+Fedora Account System registration password (will prompt if not specified)
+.TP
+\-d, \-\-debug
+Enable debug information
+.TP
+\-\-version
+Show program's version number and exit
+.TP
+\-h, \-\-help
+Show this help message and exit
+.SH SEE ALSO
+.BR smoltDeleteProfile (1),
+.BR smoltGui (1).
+.SH AUTHOR
+\fBsmoltSendProfile\fP was written by Mike McGrath <mmcgrath@redhat.com> and others.
+.PP
+This manual page was written by Chris Lamb <chris@chris-lamb.co.uk>,
+for the Debian project (but may be used by others).
