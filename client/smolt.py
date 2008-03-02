@@ -511,11 +511,11 @@ class Hardware:
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
 
         printBuffer.append('')
-        printBuffer.append(_('Filesystem Information'))
-        printBuffer.append('device mtpt type bsize frsize blocks bfree bavail file ffree favail')
-        printBuffer.append('===================================================================')
+        printBuffer.append(_('\tFilesystem Information'))
+        printBuffer.append('\t\tdevice mtpt type bsize frsize blocks bfree bavail file ffree favail')
+        printBuffer.append('\t\t===================================================================')
         for fs in self.fss:
-            printBuffer.append(str(fs))
+            printBuffer.append(str("\t\t%s" % fs))
         
         printBuffer.append('')
         return printBuffer

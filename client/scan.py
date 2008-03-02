@@ -27,10 +27,8 @@ def get_config_attr(attr, default=""):
     else:
         return default
 
-smoonURL = get_config_attr("SMOON_URL", "http://smolts.org/")
-
 h = smolt.Hardware()
-def rating(profile):
+def rating(profile, smoonURL):
     print ""
     print _("Current rating for vendor/model.")
     print ""
@@ -47,9 +45,8 @@ def rating(profile):
     print "\t-----------------"
     for rate in r:
         print "\t%s\t%s" % (r[rate], rating_system[rate])
-    print ""
 
-def scan(profile):
+def scan(profile, smoonURL):
     print _("Scanning %s for known errata.\n" % smoonURL)
     devices = []
     for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in h.deviceIter():
@@ -82,6 +79,7 @@ def scan(profile):
       
 if __name__ == "__main__":  
     # read the profile
+    smoonURL = get_config_attr("SMOON_URL", "http://smolts.org/")
     try:
         profile = smolt.Hardware()
     except smolt.SystemBusError, e:
@@ -89,6 +87,6 @@ if __name__ == "__main__":
         if e.hint is not None:
             error('\t' + _('Hint:') + ' ' + e.hint)
         sys.exit(8)
-    scan(profile)
-    rating(profile)
+    scan(profile, smoonURL)
+    rating(profile, smoonURL)
 

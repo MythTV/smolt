@@ -136,8 +136,8 @@ if opts.new_pub:
     sys.exit(0)
     
 if opts.scanOnly:
-    scan(profile)
-    rating(profile)
+    scan(profile, opts.smoonURL)
+    rating(profile, opts.smoonURL)
     sys.exit(0)
 
 for line in profile.getProfile():
@@ -184,7 +184,8 @@ if opts.userName:
     if profile.register(userName=opts.userName, password=password, user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
         print _('Registration Failed, Try again')
 if not opts.submitOnly:
-    scan(profile)
+    scan(profile, opts.smoonURL)
+    rating(profile, opts.smoonURL)
 
 print
 
