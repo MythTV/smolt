@@ -981,7 +981,7 @@ def get_profile():
         
 ##This is another
 def get_profile_link(smoonURL, pub_uuid):
-    return urljoin(smoonURL, '/client/show?uuid=%s' % pub_uuid)
+    return urljoin(smoonURL, '/client/show/%s' % pub_uuid)
 
 def getUUID():
     
