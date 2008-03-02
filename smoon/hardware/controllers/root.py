@@ -34,32 +34,36 @@ class Root(controllers.RootController):
         # log.debug("Happy TurboGears Controller Smooning For Duty")
         import math
         from turboflot import TurboFlot
-        archs = session.query(Arch).select()
+        #archs = session.query(Arch).select()
+        topVendors = session.query(Host).group_by(Host.vendor).filter_by(rating=5).add_column(func.count(Host.rating).label('count')).order_by(desc('count')).limit(7)
         types = []
         count = []
         i = 1
-        platform = []
+        vendors = []
         counts = []
-        for type in archs:
-            if type.cnt > 10:
-                platform.append([i, type.platform])
-                counts.append([i, type.cnt])
-                i = i + 1
+        for vendor in topVendors:
+            vendors.append([i + .5, vendor[0].vendor])
+            counts.append([i, vendor[1]])
+            i = i + 1
+#            if type.cnt > 10:
+#                platform.append([i, type.platform])
+#                counts.append([i, type.cnt])
+#                i = i + 1
         
 #        d2 = [(1.5, 'monday'), (2.5, 'tuesday'), (3.5, 'thursday')]
 #        d1 = [(1,6), (2,3), (3,5)]
-        archFlot = TurboFlot([
+        vendorFlot = TurboFlot([
             {
                 'data' : counts,
                 'bars' : { 'show' : True },
-                'label' : 'Archs',
+                'label' : 'Vendors',
             }],
             {
-                'xaxis' : { 'ticks' : platform },
+                'xaxis' : { 'ticks' : vendors },
                 #'xaxis' : { 'ticks': ['monday', 'tuesday', 'thursday'] }
             }
         )
-        return dict(now=time.ctime(), archFlot=archFlot)
+        return dict(now=time.ctime(), vendorFlot=vendorFlot)
         
     @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     @expose(template="hardware.templates.token", allow_json=True)
