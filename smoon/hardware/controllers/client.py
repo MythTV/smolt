@@ -83,7 +83,6 @@ class Client(object):
                     getOSWikiLink=getOSWikiLink,
                     admin=admin
                     )
-        
     @expose(template="hardware.templates.showall", allow_json=True)
     @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show_all(self, uuid='', admin=None):
@@ -131,6 +130,15 @@ class Client(object):
         except:
             raise ValueError("Critical: Could not delete UUID - Please contact the smolt development team")
         raise ValueError('Success: UUID Removed')
+
+    @expose("json")
+    @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
+    def host_rating(self, vendor, system):
+        q = session.query(Host).filter_by(vendor=vendor, system=system).add_column(func.count(Host.rating).label('count')).group_by(Host.rating)
+        ratings = {}
+        for rate in q:
+            ratings[rate[0].rating] = rate[1]
+        return dict(ratings=ratings)
 
     @expose("json")
     @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")

@@ -29,10 +29,28 @@ def get_config_attr(attr, default=""):
 
 smoonURL = get_config_attr("SMOON_URL", "http://smolts.org/")
 
+h = smolt.Hardware()
+def rating(profile):
+    print ""
+    print _("Current rating for vendor/model.")
+    print ""
+    scanURL='%s/client/host_rating?vendor=%s&system=%s' % (smoonURL, urllib.quote(h.host.systemVendor), urllib.quote(h.host.systemModel))
+    r = simplejson.load(urllib.urlopen(scanURL))['ratings']
+    rating_system = { '0' : _('Unrated/Unknown'),
+                      '1' : _('Non-working'),
+                      '2' : _('Partially-working'),
+                      '3' : _('Requires 3rd party drivers'),
+                      '4' : _('Works, needs additional configuration'),
+                      '5' : _('Works out of the box')
+                    }
+    print "\tCount\tRating"
+    print "\t-----------------"
+    for rate in r:
+        print "\t%s\t%s" % (r[rate], rating_system[rate])
+    print ""
 
 def scan(profile):
     print _("Scanning %s for known errata.\n" % smoonURL)
-    h = smolt.Hardware()
     devices = []
     for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in h.deviceIter():
         if VendorID:
@@ -55,12 +73,12 @@ def scan(profile):
         except KeyError:
             pass
     if found:
-        print _("Errata Found!")
-        for f in found: print "%s" % f
+        print _("\tErrata Found!")
+        for f in found: print "\t%s" % f
     else:
-        print _("No errata found, if this machine is having issues please go to")
-        print _("your profile and create a wiki page for the device so others can")
-        print _("benefit")
+        print _("\tNo errata found, if this machine is having issues please go to")
+        print _("\tyour profile and create a wiki page for the device so others can")
+        print _("\tbenefit")
       
 if __name__ == "__main__":  
     # read the profile
@@ -72,4 +90,5 @@ if __name__ == "__main__":
             error('\t' + _('Hint:') + ' ' + e.hint)
         sys.exit(8)
     scan(profile)
+    rating(profile)
 

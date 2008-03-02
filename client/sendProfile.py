@@ -32,7 +32,7 @@ from i18n import _
 import smolt
 from smolt import debug
 from smolt import error
-from scan import scan
+from scan import scan, rating
 
 parser = OptionParser(version = smolt.smoltProtocol)
 
@@ -137,6 +137,7 @@ if opts.new_pub:
     
 if opts.scanOnly:
     scan(profile)
+    rating(profile)
     sys.exit(0)
 
 for line in profile.getProfile():
