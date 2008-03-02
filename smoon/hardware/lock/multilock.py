@@ -1,4 +1,3 @@
-#! /usr/bin/python
 #from __future__ import with_statement
 
 from threading import Lock, Event
