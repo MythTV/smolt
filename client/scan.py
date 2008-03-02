@@ -42,6 +42,7 @@ def scan(profile):
                                              int(SubsysVendorID or 0),
                                              int(SubsysDeviceID or 0)) )
     searchDevices = 'NULLPAGE'
+    devices.append('System/%s/%s' % ( urllib.quote(h.host.systemVendor), urllib.quote(h.host.systemModel) ))
     for dev in devices:
         searchDevices = "%s|%s" % (searchDevices, dev)
     scanURL='%s/w/api.php?action=query&titles=%s&format=json' % (smoonURL, searchDevices)
