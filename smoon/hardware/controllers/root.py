@@ -34,7 +34,7 @@ class Root(controllers.RootController):
         # log.debug("Happy TurboGears Controller Smooning For Duty")
         import math
         from turboflot import TurboFlot
-        archs = ctx.current.query(Arch).select()
+        archs = session.query(Arch).select()
         types = []
         count = []
         i = 1
