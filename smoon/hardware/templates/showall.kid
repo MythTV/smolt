@@ -64,7 +64,6 @@ ${ratingwidget.display(update="rating",
             <tr py:if="not admin"><th>Admin Password</th><td>
               <form method="POST">
                 <input type="text" name="admin" size="12"/>
-                <input type="hidden" name="uuid" value="${host_object.pub_uuid}"/>
               </form></td>
             </tr>
         </table> 

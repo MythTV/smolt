@@ -34,7 +34,7 @@ class Client(object):
             host_object = session.query(Host).filter_by(pub_uuid=uuid).one()
         except:
             try:
-                host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
+                host_object = session.query(Host).selectone_by(uuid=uuid)
                 raise ValueError("Critical: New versions of smolt use a public UUID.  Yours is: %s" % host_object.pub_uuid)
             except InvalidRequestError:
                 raise ValueError("Critical: UUID Not Found - %s" % uuid)
@@ -150,7 +150,7 @@ class Client(object):
             raise ValueError("Critical: Unicode Issue - Tell Mike!")
 
         try:
-            host_object = ctx.current.query(Host).selectone_by(uuid=uuid)
+            host_object = session.query(Host).selectone_by(uuid=uuid)
         except:
             raise ValueError("Critical: UUID Not Found - %s" % uuid)
 
@@ -160,7 +160,7 @@ class Client(object):
         except IOError:
             raise UUIDError("Cannot generate UUID")
         host_object.pub_uuid = pub_uuid
-        ctx.current.flush()
+        session.flush()
         return dict(pub_uuid=pub_uuid)
 
 
