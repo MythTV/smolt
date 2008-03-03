@@ -141,7 +141,10 @@ if opts.scanOnly:
     sys.exit(0)
 
 for line in profile.getProfile():
-    print line
+    try:
+        print line
+    except UnicodeEncodeError:
+        pass
 
 if not opts.autoSend:
     if opts.printOnly:

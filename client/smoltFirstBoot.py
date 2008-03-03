@@ -19,7 +19,10 @@ from firstboot.module import *
 ## 
 import gettext
 import locale
-locale.setlocale(locale.LC_ALL, '')
+try:
+    locale.setlocale(locale.LC_ALL, '')
+except locale.Error:
+    locale.setlocale(locale.LC_ALL, 'C')
 if os.path.isdir('po'):
     t = gettext.translation('smolt', 'po', fallback = True)
 else:
