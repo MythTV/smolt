@@ -45,13 +45,6 @@ class Root(controllers.RootController):
             vendors.append([i + .5, vendor[0].vendor])
             counts.append([i, vendor[1]])
             i = i + 1
-#            if type.cnt > 10:
-#                platform.append([i, type.platform])
-#                counts.append([i, type.cnt])
-#                i = i + 1
-        
-#        d2 = [(1.5, 'monday'), (2.5, 'tuesday'), (3.5, 'thursday')]
-#        d1 = [(1,6), (2,3), (3,5)]
         vendorFlot = TurboFlot([
             {
                 'data' : counts,
@@ -60,7 +53,6 @@ class Root(controllers.RootController):
             }],
             {
                 'xaxis' : { 'ticks' : vendors },
-                #'xaxis' : { 'ticks': ['monday', 'tuesday', 'thursday'] }
             }
         )
         return dict(now=time.ctime(), vendorFlot=vendorFlot)
