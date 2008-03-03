@@ -1,11 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://purl.org/kid/ns#"
-    py:extends="'master.kid'">
-<head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" py:replace="''"/>
-<title>Raw Dump</title>
-</head>
-<body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:py="http://genshi.edgewall.org/"
+  xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="master.html" />
+  <head>
+    <title>Raw Dump</title>
+  </head>
+  <body>
     <div py:for='host in Hosts'><table>
         <tr><td>UUID</td><td>${host.UUID}</td></tr>
         <tr><td>OS</td><td>${host.OS}</td></tr>
@@ -23,19 +24,19 @@
         <tr><td>selinux_enabled</td><td>${host.selinux_enabled}</td></tr>
         <tr><td>selinux_policy</td><td>${host.selinux_policy}</td></tr>
         <tr><td>selinux_enforce</td><td>${host.selinux_enforce}</td></tr>
-        </table>
-            <table>
-                <tr><th>Bus</th><th>Class</th><th>Driver</th><th>Description</th></tr>
-            <div py:for='link in HostLinks.select("host_u_u_id=\"%s\"" % host.UUID)'>
-                <tr>
-                    <td>${Device.select('id=%s' % link.deviceID)[0].Bus}</td>
-                    <td>${Device.select('id=%s' % link.deviceID)[0].Class}</td>
-                    <td>${Device.select('id=%s' % link.deviceID)[0].Driver}</td>
-                    <td>${Device.select('id=%s' % link.deviceID)[0].Description}</td>
-                </tr>
-            </div>
-            </table>
-        <br/>
+      </table>
+      <table>
+        <tr><th>Bus</th><th>Class</th><th>Driver</th><th>Description</th></tr>
+        <div py:for='link in HostLinks.select("host_u_u_id=\"%s\"" % host.UUID)'>
+          <tr>
+            <td>${Device.select('id=%s' % link.deviceID)[0].Bus}</td>
+            <td>${Device.select('id=%s' % link.deviceID)[0].Class}</td>
+            <td>${Device.select('id=%s' % link.deviceID)[0].Driver}</td>
+            <td>${Device.select('id=%s' % link.deviceID)[0].Description}</td>
+          </tr>
+        </div>
+      </table>
+      <br/>
     </div>
-</body>
+  </body>
 </html>
