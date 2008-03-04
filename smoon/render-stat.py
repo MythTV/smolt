@@ -4,6 +4,7 @@ import pkg_resources
 pkg_resources.require("TurboGears")
 
 from turbogears.view import engines
+import turbogears.view
 import turbogears.util as tg_util
 from turbogears import view, database, errorhandling, config
 from itertools import izip
@@ -40,7 +41,8 @@ tabs = Tabber()
 # the path, where to store the generated pages
 page_path = "hardware/static/stats"
 
-engine = engines.get('kid', None)
+engine = engines.get('genshi', None)
+turbogears.view.load_engines()
 
 def _process_output(output, template, format):
     """Produces final output form from the data returned from a
@@ -165,6 +167,9 @@ for type in byclass_cache.data.keys():
     pci_vendors = DeviceMap('pci')
     (total_hosts, count, types, vendors) = byclass_cache[type]
 
+    engine = engines.get('genshi', None)
+    print "BLAAAAAAAA: %s-%s-%s-%s-%s" % (type, total_hosts, count, type, vendors)
+    print "DIR: %s" % dir(engine)
     t=engine.load_template('hardware.templates.deviceclass')
 
     out_html = _process_output(dict(types=types, type=type, 
@@ -192,7 +197,7 @@ stats['vendors'] = session.query(Vendor).select(limit=100)
 stats['systems'] = session.query(System).select(limit=100)
 stats['cpu_vendor'] = session.query(CPUVendor).select(limit=100)
 stats['kernel_version'] = session.query(KernelVersion).select(limit=20)
-stats['formfactor'] = session.query(FormFactor).select()
+stats['formfactor'] = session.query(FormFactor).select(limit=8)
 stats['language'] = session.query(Language).select()
 stats['selinux_enabled'] = session.query(SelinuxEnabled).select()
 stats['selinux_enforce'] = session.query(SelinuxEnforced).select()
