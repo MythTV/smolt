@@ -16,6 +16,7 @@ from os.path import *
 import sys
 import time
 from hardware.wiki import *
+from turboflot import TurboFlot
 
 # first look on the command line for a desired config file,
 # if it's not on the command line, then
@@ -168,8 +169,6 @@ for type in byclass_cache.data.keys():
     (total_hosts, count, types, vendors) = byclass_cache[type]
 
     engine = engines.get('genshi', None)
-    print "BLAAAAAAAA: %s-%s-%s-%s-%s" % (type, total_hosts, count, type, vendors)
-    print "DIR: %s" % dir(engine)
     t=engine.load_template('hardware.templates.deviceclass')
 
     out_html = _process_output(dict(types=types, type=type, 
@@ -189,7 +188,21 @@ del out_html
 stats = {}
 stats['total_hosts'] = session.query(Host).count()
 total_hosts = stats['total_hosts']
+flot = {}
+# Arch calculation
 stats['archs'] = session.query(Arch).select()
+archs = []
+counts = []
+i = 0
+for arch in stats['archs']:
+    archs.append([i + .5, arch.platform])
+    counts.append([i, arch.cnt])
+    i += 1
+flot['archs'] = TurboFlot([
+    {   'data' : counts,
+        'bars' : { 'show' : True },
+        'label' : 'Archs', }],
+    {   'xaxis' : { 'ticks' : archs }, } )
 stats['os'] = session.query(OS).select(limit=15)
 stats['runlevel'] = session.query(Runlevel).select()
 stats['num_cpus'] = session.query(NumCPUs).select()
@@ -265,7 +278,7 @@ stats['registered_devices'] = session.query(ComputerLogicalDevice).count()
 
 t=engine.load_template('hardware.templates.stats')
 out_html=_process_output(dict(stat=stats, tabs=tabs, 
-                              total_hosts=total_hosts, getOSWikiLink=getOSWikiLink), 
+                              total_hosts=total_hosts, getOSWikiLink=getOSWikiLink, flot=flot), 
                          template=t, format='html')
 
 fname = "%s/stats.html" % (page_path)

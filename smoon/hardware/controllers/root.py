@@ -41,9 +41,9 @@ class Root(controllers.RootController):
         i = 1
         vendors = []
         counts = []
-        for vendor in topVendors:
-            vendors.append([i + .5, vendor[0].vendor])
-            counts.append([i, vendor[1]])
+        for vend in topVendors:
+            vendors.append([i + .5, vend[0].vendor])
+            counts.append([i, vend[1]])
             i = i + 1
         vendorFlot = TurboFlot([
             {
