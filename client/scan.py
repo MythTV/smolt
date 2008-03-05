@@ -61,7 +61,11 @@ def scan(profile, smoonURL):
     for dev in devices:
         searchDevices = "%s|%s" % (searchDevices, dev)
     scanURL='%s/w/api.php?action=query&titles=%s&format=json' % (smoonURL, searchDevices)
-    r = simplejson.load(urllib.urlopen(scanURL))
+    try:
+        r = simplejson.load(urllib.urlopen(scanURL))
+    except ValueError:
+        print "Could not wiki for errata!"
+        return
     found = []
     for page in r['query']['pages']:
         try:

@@ -468,7 +468,11 @@ class Hardware:
             pub_uuid = serverMessage(o.read())
             o.close()
             
-            admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
+            try:
+                admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
+            except urlgrabber.grabber.URLGrabError, e:
+                error(_('An error has occured while contacting the server: %s' % e))
+                sys.exit(1)
             admin_str = admin_token.read()
             admin_obj = simplejson.loads(admin_str)
             if admin_obj['prefered_protocol'] in supported_protocols:
