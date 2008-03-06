@@ -188,8 +188,10 @@ if opts.userName:
         print _('Registration Failed, Try again')
 if not opts.submitOnly:
     scan(profile, opts.smoonURL)
-    rating(profile, opts.smoonURL)
-
+    try:
+        rating(profile, opts.smoonURL)
+    except ValueError:
+        print "Could not get rating!"
 print
 
 if pub_uuid:
