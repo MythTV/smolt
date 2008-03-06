@@ -11,7 +11,7 @@ from mx import DateTime
 
 
 computer_logical_devices = \
-       Table('device', metadata, 
+       Table('device', metadata,
              Column("id", INT, autoincrement=True,
                     nullable=False, primary_key=True),
              Column("description", VARCHAR(128),
@@ -27,25 +27,25 @@ computer_logical_devices = \
              Column("subsys_device_id", INT),
              Column("subsys_vendor_id", INT))
 
-host_links = Table('host_links', metadata, 
-                   Column("id", INT, 
-                          autoincrement=True, 
-                          nullable=False, 
+host_links = Table('host_links', metadata,
+                   Column("id", INT,
+                          autoincrement=True,
+                          nullable=False,
                           primary_key=True),
-                   Column('host_link_id', INT, 
+                   Column('host_link_id', INT,
                           ForeignKey("host.id"),
                           nullable=False),
-                   Column("device_id", INT, 
+                   Column("device_id", INT,
                           ForeignKey("device.id")),
                    Column("rating", INT))
 
 hosts = Table('host', metadata,
-              Column("id", INT, 
-                     autoincrement=True, 
-                     nullable=False, 
+              Column("id", INT,
+                     autoincrement=True,
+                     nullable=False,
                      primary_key=True),
-              Column('uuid', VARCHAR(36), 
-                     nullable=False, 
+              Column('uuid', VARCHAR(36),
+                     nullable=False,
                      unique=True),
               Column('pub_uuid', VARCHAR(40),
                      nullable=False,
@@ -65,7 +65,7 @@ hosts = Table('host', metadata,
               Column('default_runlevel', INT),
               Column('kernel_version', TEXT),
               Column('formfactor', TEXT),
-              Column('last_modified', DATETIME, 
+              Column('last_modified', DATETIME,
                      default=0, nullable=False),
               Column('rating', INT, nullable=False, default=0),
               Column('selinux_enabled', BOOLEAN, nullable=False),
@@ -73,19 +73,19 @@ hosts = Table('host', metadata,
               Column('selinux_enforce', TEXT))
 
 fas_links = Table('fas_link', metadata,
-                  Column("id", INT, autoincrement=True, 
+                  Column("id", INT, autoincrement=True,
                          nullable=False, primary_key=True),
-                  Column('uuid', VARCHAR(36), 
+                  Column('uuid', VARCHAR(36),
                          ForeignKey("host.uuid"),
                          nullable=False),
-                  Column("user_name", VARCHAR(255), 
+                  Column("user_name", VARCHAR(255),
                          nullable=False))
 
 hardware_classes = Table('classes', metadata,
-                         Column("class", VARCHAR(24), 
-                                nullable=False, 
+                         Column("class", VARCHAR(24),
+                                nullable=False,
                                 primary_key=True, key="cls"),
-                         Column("description", TEXT, 
+                         Column("description", TEXT,
                                 key="class_description"))
 
 file_systems = Table('file_systems', metadata,
@@ -102,11 +102,16 @@ file_systems = Table('file_systems', metadata,
                      Column('f_bfree', INT),
                      Column('f_bavail', INT),
                      Column('f_files', INT),
-                     Column('f_ffree', INT))
+                     Column('f_ffree', INT),
+                     Column('f_fssize', INT))
 
+filesys = Table("FILESYSTEMS", metadata,
+                         Column("fs_type", TEXT,
+                                primary_key=True),
+                         Column("cnt", INT))
 
 hardware_by_class = Table("CLASS", metadata,
-                          Column('device_id', VARCHAR(16), 
+                          Column('device_id', VARCHAR(16),
                                  primary_key=True),
                           Column('description', VARCHAR(128)),
                           Column('bus', TEXT),
@@ -125,50 +130,50 @@ oses = Table("OS", metadata,
                   Column("os", TEXT, primary_key=True),
                   Column("cnt", INT))
 runlevels = Table("RUNLEVEL", metadata,
-                      Column("default_runlevel", INT, 
+                      Column("default_runlevel", INT,
                              primary_key=True, key="runlevel"),
                       Column("cnt", INT))
 num_cpus = Table("NUM_CPUS", metadata,
-                     Column("num_cpus", INT, 
-                            primary_key=True, 
+                     Column("num_cpus", INT,
+                            primary_key=True,
                             key="num_cpus"),
                      Column("cnt", INT))
 vendors = Table("VENDOR", metadata,
-                    Column("vendor", TEXT, 
+                    Column("vendor", TEXT,
                            primary_key=True),
                     Column("cnt", INT))
 systems = Table("SYSTEM", metadata,
-                    Column("system", TEXT, 
+                    Column("system", TEXT,
                            primary_key=True),
                     Column("cnt", INT))
 cpu_vendors = Table("CPU_VENDOR", metadata,
-                    Column("cpu_vendor", TEXT, 
+                    Column("cpu_vendor", TEXT,
                            primary_key=True),
                     Column("cnt", INT))
 kernel_versions = Table("KERNEL_VERSION", metadata,
-                            Column("kernel_version", TEXT, 
+                            Column("kernel_version", TEXT,
                                    primary_key=True),
                             Column("cnt", INT))
 formfactors = Table("FORMFACTOR", metadata,
-                         Column("formfactor", TEXT, 
+                         Column("formfactor", TEXT,
                                 primary_key=True),
                          Column("cnt", INT))
 languages = Table("LANGUAGE", metadata,
-                      Column('language', TEXT, 
+                      Column('language', TEXT,
                              primary_key=True),
                       Column('cnt', INT))
 
 totallist = Table("TOTALLIST", metadata,
-                  Column('description', TEXT, 
+                  Column('description', TEXT,
                          primary_key=True),
                   Column('cnt', INT, key="count"))
 
 uniquelist = Table("UNIQUELIST", metadata,
-                   Column('description', TEXT, 
+                   Column('description', TEXT,
                           primary_key=True),
                    Column('cnt', INT, key='count'))
 selinux_enabled = Table("SELINUX_ENABLED", metadata,
-                        Column('enabled', BOOLEAN, 
+                        Column('enabled', BOOLEAN,
                                primary_key=True),
                         Column('cnt', INT, key='count'))
 selinux_enforce = Table("SELINUX_ENFORCE", metadata,
@@ -181,7 +186,7 @@ selinux_policy = Table("SELINUX_POLICY", metadata,
                        Column('cnt', INT, key='count'))
 
 class Host(object):
-    def __init__(self, selinux_enabled=False, 
+    def __init__(self, selinux_enabled=False,
                  rating=0, last_modified=DateTime.now()):
         self.selinux_enabled = selinux_enabled
         self.rating = rating
@@ -210,6 +215,9 @@ class HardwareClass(object):
     cls = property(_get_cls, _set_cls)
 
 class FileSystem(object):
+    pass
+
+class FileSys(object):
     pass
 
 class HardwareByClass(object):
@@ -294,7 +302,7 @@ mapper(HardwareClass,
 
 mapper(FileSystem,
        file_systems)
-
+mapper(FileSys, filesys, order_by=desc(filesys.c.cnt))
 mapper(HardwareByClass, hardware_by_class)
 mapper(OS, oses, order_by=desc(oses.c.cnt))
 mapper(Arch, archs, order_by=desc(archs.c.cnt))

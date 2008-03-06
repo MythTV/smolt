@@ -38,7 +38,7 @@ class Client(object):
                 raise ValueError("Critical: New versions of smolt use a public UUID.  Yours is: %s" % host_object.pub_uuid)
             except InvalidRequestError:
                 raise ValueError("Critical: UUID Not Found - %s" % uuid)
-        
+
         if admin:
             admin = self.token.check_admin_token(admin, host_object.uuid)
 
@@ -76,7 +76,7 @@ class Client(object):
         devices = devices.values()
         devices.sort(key=lambda x: x.get('cls'))
 
-        return dict(host_object = host_object, 
+        return dict(host_object = host_object,
                     host_link = getHostWikiLink(host_object),
                     devices=devices,
                     ratingwidget=SingleRatingWidget(),
@@ -171,11 +171,11 @@ class Client(object):
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
         if smolt_protocol > self.smolt_protocol:
             raise ValueError("Woah there marty mcfly, you got to go back to 1955!")
-        
+
         self.token.check_token(token, uuid)
 
         host_dict = simplejson.loads(host)
-        
+
         try:
             host_sql = session.query(Host).filter_by(uuid=uuid).one()
         except InvalidRequestError:
@@ -203,10 +203,10 @@ class Client(object):
         except KeyError:
             host_sql.selinux_policy = 'Unknown'
         host_sql.selinux_enforce = host_dict['selinux_enforce']
-        
-        orig_devices = [device.device_id for device 
+
+        orig_devices = [device.device_id for device
                                          in host_sql.devices]
-        
+
         for device in host_dict['devices']:
             description = device['description']
             device_id = device['device_id']
@@ -248,11 +248,11 @@ class Client(object):
                 device_sql.driver = device['driver']
                 device_sql.cls = cls
                 device_sql.description = device['description']
-                device_sql.date_added = DateTime.now() 
-                
+                device_sql.date_added = DateTime.now()
+
                 d = device_sql
-                
-                try: 
+
+                try:
                     class_sql = session.query(HardwareClass).filter_by(cls=cls).one()
                     device_sql.hardware_class = class_sql
                 except InvalidRequestError:
@@ -261,13 +261,13 @@ class Client(object):
                     class_sql.class_description = "Fill me in!"
                     device_sql.hardware_class = class_sql
                     session.flush()
-                    
+
                 session.flush()
-               
+
                 host_link = HostLink()
                 host_link.host = host_sql
                 host_link.device = device_sql
-            
+
         for device_sql_id in orig_devices:
             bad_host_link = session.query(HostLink)\
                 .select_by(device_id=device_sql_id,
@@ -275,7 +275,7 @@ class Client(object):
             if bad_host_link and len(bad_host_link):
                 session.delete(bad_host_link[0])
         session.flush()
-        
+
         map(session.delete, host_sql.file_systems)
         def add_fs(fs_dict):
             new_fs = FileSystem()
@@ -289,12 +289,13 @@ class Client(object):
             new_fs.f_bavail = fs_dict['f_bavail']
             new_fs.f_files = fs_dict['f_files']
             new_fs.f_ffree = fs_dict['f_ffree']
+            new_fs.f_fssize = (fs_dict['f_blocks'] * fs_dict['f_bsize'] ) / 1024
             new_fs.host = host_sql
         try:
             map(add_fs, host_dict['fss'])
         except:
             pass
-        
+
         return dict(pub_uuid=host_sql.pub_uuid)
 
     @expose()
@@ -313,7 +314,7 @@ class Client(object):
                 host.rating = int(rating)
                 session.flush()
                 return dict()
-                
+
             host_id = id[4:sep]
             id = id[sep+1:]
             if id.startswith("Device"):
@@ -325,14 +326,14 @@ class Client(object):
                         session.flush([host, device])
                         return dict()
         return dict()
-    
+
     @expose()
     def pub_uuid(self, uuid):
         host = session.query(Host).filter_by(uuid=uuid).one()
         return dict(pub_uuid=host.pub_uuid)
-    
+
     def new_pub_uuid(self, uuid):
         #TODO
         pass
-        
+
 
