@@ -345,6 +345,13 @@ if not  template_config['filesystem'] == [] :
             FileSystem.c.f_fssize <= (3072*GB))).count()))
     stats['combined_fs_size'].append(("Over 3TB",session.query(FileSystem).filter((FileSystem.c.f_fssize) > (3072*GB)  ) .count()))
 
+if not  template_config['mythrole'] == [] :
+    stats['myth_systemrole'] = session.query(MythSystemRole).select()
+if not  template_config['mythremote'] == [] :
+    stats['mythremote'] = session.query(MythRemote).select()
+if not  template_config['myththeme'] == [] :
+    stats['myththeme'] = session.query(MythTheme).select()
+
 
 
 t=engine.load_template('hardware.templates.stats')
