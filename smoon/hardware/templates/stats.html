@@ -65,7 +65,7 @@
       <py:if test='template_config["runlevel"]'>
       <div class="tabbertab"><h2>Runlevel</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
-          <tr py:for='rl in stat["runlevel"]'>
+          <tr py:for='rl in stat["runlevel"][:-1]'>
             <th align="right">${rl.runlevel}</th>
             <td align="center">${rl.cnt}</td>
             <td><strong>${'%.1f' % (float(rl.cnt) / total_hosts * 100) } %</strong></td>
