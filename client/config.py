@@ -11,6 +11,9 @@ SECURE = 0
 #Are you that fool?
 
 HW_UUID = "/etc/sysconfig/hw-uuid"
+PUB_UUID = "/etc/sysconfig/pub-uuid"
+#ADMIN_TOKEN = "/etc/sysconfig/smolt-token"
+
 
 #These are the defaults taken from the source code.
 #fs_types = get_config_attr("FS_TYPES", ["ext2", "ext3", "xfs", "reiserfs"])

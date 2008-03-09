@@ -20,7 +20,7 @@
 
 ######################################################
 # This class is a basic wrapper for the dbus bindings
-# 
+#
 # I have completely destroyed this file, it needs some cleanup
 # - mmcgrath
 ######################################################
@@ -50,7 +50,7 @@ def get_config_attr(attr, default=""):
         return getattr(config, attr)
     else:
         return default
-    
+
 fs_types = get_config_attr("FS_TYPES", ["ext2", "ext3", "xfs", "reiserfs"])
 fs_mounts = dict.fromkeys(get_config_attr("FS_MOUNTS", ["/", "/home", "/etc", "/var", "/boot"]), True)
 fs_m_filter = get_config_attr("FS_M_FILTER", False)
@@ -59,6 +59,9 @@ fs_t_filter = get_config_attr("FS_T_FILTER", False)
 smoonURL = get_config_attr("SMOON_URL", "http://smolts.org/")
 secure = get_config_attr("SECURE", 0)
 hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
+pub_uuid_file = get_config_attr("PUB_UUID", "/etc/sysconfig/pub-uuid")
+admin_token_file = get_config_attr("ADMIN_TOKEN", '' )
+
 smoltProtocol = '0.97'
 supported_protocols = ['0.97',]
 user_agent = 'smolt/%s' % smoltProtocol
@@ -199,7 +202,7 @@ class Host:
                 self.systemModel += ' ' + hostInfo.get('system.hardware.version')
         if not self.systemModel:
             self.systemModel = 'Unknown'
-            
+
         try:
             self.formfactor = hostInfo['system.formfactor']
         except:
@@ -255,16 +258,16 @@ class Host:
             self.selinux_enabled = False
             self.selinux_policy = "Not Installed"
             self.selinux_enforce = "Not Installed"
-        
-        
+
+
 def get_file_systems():
     if fs_t_filter:
         file_systems = [fs for fs in get_fslist() if fs.fs_type in fs_types]
     else:
         file_systems = get_fslist()
-        
+
     file_systems = [fs for fs in file_systems if fs.mnt_dev.startswith('/dev/')]
-    
+
     if fs_m_filter:
         for fs in file_systems:
             if not fs.mnt_pnt in fs_mounts:
@@ -272,7 +275,7 @@ def get_file_systems():
     else:
         for fs in file_systems:
             fs.mnt_pnt = "Hidden"
-    
+
     return file_systems
 
 def ignoreDevice(device):
@@ -319,14 +322,14 @@ class SystemBusError(Exception):
 
     def __str__(self):
         return str(self.message)
-    
+
 class UUIDError(Exception):
     def __init__(self, message):
         self.message = message
 
     def __str__(self):
         return str(self.message)
-    
+
 class Hardware:
     devices = {}
     def __init__(self):
@@ -334,7 +337,7 @@ class Hardware:
             systemBus = dbus.SystemBus()
         except:
             raise SystemBusError, _('Could not bind to dbus.  Is dbus running?')
-        
+
         try:
             mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
             all_dev_lst = mgr.GetAllDevices()
@@ -347,7 +350,7 @@ class Hardware:
             self.devices[udi] = Device(props)
             if udi == '/org/freedesktop/Hal/devices/computer':
                 self.host = Host(props)
-        
+
         self.fss = get_file_systems()
 
     def dbus_get_interface(self, bus, service, object, interface):
@@ -387,7 +390,7 @@ class Hardware:
                                        "driver": Driver,
                                        "type": Type,
                                        "description": Description})
-        
+
         return my_devices
 
     def get_sendable_host(self, protocol_version=smoltProtocol):
@@ -410,10 +413,10 @@ class Hardware:
                 'selinux_enabled': self.host.selinux_enabled,
                 'selinux_policy': self.host.selinux_policy,
                 'selinux_enforce': self.host.selinux_enforce}
-    
+
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
-     
+
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         #first find out the server desired protocol
@@ -428,7 +431,7 @@ class Hardware:
                 tok_obj = simplejson.loads(tok_str)
                 if tok_obj['prefered_protocol'] in supported_protocols:
                     prefered_protocol = tok_obj['prefered_protocol']
-                else: 
+                else:
                     error(_('Wrong version, server incapable of handling your client'))
                     return 1
                 tok = tok_obj['token']
@@ -437,22 +440,22 @@ class Hardware:
                 error(_('Something went wrong fetching a token'))
         finally:
             token.close()
-        
+
         send_host_obj = self.get_sendable_host(prefered_protocol)
         my_devices = self.get_sendable_devices(prefered_protocol)
         my_fss = self.get_sendable_fss(prefered_protocol)
-        
+
         send_host_obj['devices'] = my_devices
         send_host_obj['fss'] = my_fss
         send_host_obj['smolt_protocol'] = prefered_protocol
 
         debug('smoon server URL: %s' % smoonURL)
-        
+
         send_host_str = ('uuid=%s&host=' + \
                          simplejson.dumps(send_host_obj) + \
                          '&token=%s&smolt_protocol=%s') % \
                          (self.host.UUID, tok, smoltProtocol)
-        
+
         debug('sendHostStr: %s' % simplejson.dumps(send_host_obj))
         debug('Sending Host')
 
@@ -467,7 +470,7 @@ class Hardware:
         else:
             pub_uuid = serverMessage(o.read())
             o.close()
-            
+
             try:
                 admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
             except urlgrabber.grabber.URLGrabError, e:
@@ -477,13 +480,25 @@ class Hardware:
             admin_obj = simplejson.loads(admin_str)
             if admin_obj['prefered_protocol'] in supported_protocols:
                 prefered_protocol = admin_obj['prefered_protocol']
-            else: 
+            else:
                 error(_('Wrong version, server incapable of handling your client'))
                 return 1
             admin = admin_obj['token']
-        
+
+            if  not admin_token_file == '' :
+                try:
+                    file(admin_token_file, 'w').write(admin)
+                except Exception, e:
+                    sys.stderr.write(_('Unable to save token, continuing...\n'))
+                    sys.err.write(_('Your admin token  could not be created: %s\n' % e))
+            try:
+                file(pub_uuid_file, 'w').write(pub_uuid)
+            except Exception, e:
+                sys.stderr.write(_('Unable to save pub_uuid, continuing...\n'))
+                sys.err.write(_('Your pub_uuid file  could not be created: %s\n' % e))
+                sys.exit(9)
         return (0, pub_uuid, admin)
-     
+
     def regenerate_pub_uuid(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         try:
@@ -492,9 +507,10 @@ class Hardware:
             error(_('Error contacting Server: %s') % e)
             sys.exit(0)
         pub_uuid = simplejson.loads(new_uuid.read())['pub_uuid']
+        file(pub_uuid_file, 'w').write(pub_uuid)
         return pub_uuid
 
-     
+
     def getProfile(self):
         printBuffer = []
 
@@ -506,11 +522,11 @@ class Hardware:
                     printBuffer.append('\t%s: %s' % (unicode(label, 'utf-8'), data))
                 except UnicodeDecodeError:
                     printBuffer.append('\t%r: %r' % (label, data))
-            
+
         printBuffer.append('')
         printBuffer.append('\t\t ' + _('Devices'))
         printBuffer.append('\t\t=================================')
-        
+
         for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
             printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
 
@@ -520,7 +536,7 @@ class Hardware:
         printBuffer.append('\t\t===================================================================')
         for fs in self.fss:
             printBuffer.append(str("\t\t%s" % fs))
-        
+
         printBuffer.append('')
         return printBuffer
 
@@ -546,7 +562,7 @@ class Hardware:
         yield _('SELinux Enabled'), self.host.selinux_enabled
         yield _('SELinux Policy'), self.host.selinux_policy
         yield _('SELinux Enforce'), self.host.selinux_enforce
-        
+
     def deviceIter(self):
         '''Iterate over our devices.'''
         for device in self.devices:
@@ -565,7 +581,7 @@ class Hardware:
             else:
                 if not ignoreDevice(self.devices[device]):
                     yield VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description
-                
+
 # From RHN Client Tools
 
 def classify_hal(node):
@@ -577,7 +593,7 @@ def classify_hal(node):
         if node['pci.device_class'] == PCI_BASE_CLASS_NETWORK:
             return 'NETWORK'
 
-    
+
     if node.has_key('info.product') and node.has_key('info.category'):
         if node['info.category'] == 'input':
             # KEYBOARD <-- do this before mouse, some keyboards have built-in mice
@@ -586,7 +602,7 @@ def classify_hal(node):
             # MOUSE
             if 'mouse' in node['info.product'].lower():
                 return 'MOUSE'
-    
+
     if node.has_key('pci.device_class'):
         #VIDEO
         if node['pci.device_class'] == PCI_BASE_CLASS_DISPLAY:
@@ -595,8 +611,8 @@ def classify_hal(node):
         if (node['pci.device_class'] ==  PCI_BASE_CLASS_SERIAL
                 and node['pci.device_subclass'] == PCI_CLASS_SERIAL_USB):
             return 'USB'
-        
-        if node['pci.device_class'] == PCI_BASE_CLASS_STORAGE: 
+
+        if node['pci.device_class'] == PCI_BASE_CLASS_STORAGE:
             #IDE
             if node['pci.device_subclass'] == PCI_CLASS_STORAGE_IDE:
                 return 'IDE'
@@ -607,15 +623,15 @@ def classify_hal(node):
             if node['pci.device_subclass'] == PCI_CLASS_STORAGE_RAID:
                 return 'RAID'
         #MODEM
-        if (node['pci.device_class'] == PCI_BASE_CLASS_COMMUNICATION 
+        if (node['pci.device_class'] == PCI_BASE_CLASS_COMMUNICATION
                 and node['pci.device_subclass'] == PCI_CLASS_COMMUNICATION_MODEM):
             return 'MODEM'
-        #SCANNER 
-        if (node['pci.device_class'] == PCI_BASE_CLASS_INPUT 
+        #SCANNER
+        if (node['pci.device_class'] == PCI_BASE_CLASS_INPUT
                 and node['pci.device_subclass'] == PCI_CLASS_INPUT_SCANNER):
             return 'SCANNER'
-        
-        if node['pci.device_class'] == PCI_BASE_CLASS_MULTIMEDIA: 
+
+        if node['pci.device_class'] == PCI_BASE_CLASS_MULTIMEDIA:
             #CAPTURE -- video capture card
             if node['pci.device_subclass'] == PCI_CLASS_MULTIMEDIA_VIDEO:
                 return 'CAPTURE'
@@ -624,15 +640,15 @@ def classify_hal(node):
                 return 'AUDIO'
 
         #FIREWIRE
-        if (node['pci.device_class'] == PCI_BASE_CLASS_SERIAL 
+        if (node['pci.device_class'] == PCI_BASE_CLASS_SERIAL
                 and node['pci.device_subclass'] == PCI_CLASS_SERIAL_FIREWIRE):
             return 'FIREWIRE'
         #SOCKET -- PCMCIA yenta socket stuff
-        if (node['pci.device_class'] == PCI_BASE_CLASS_BRIDGE 
+        if (node['pci.device_class'] == PCI_BASE_CLASS_BRIDGE
                 and (node['pci.device_subclass'] == PCI_CLASS_BRIDGE_PCMCIA
                 or node['pci.device_subclass'] == PCI_CLASS_BRIDGE_CARDBUS)):
             return 'SOCKET'
-    
+
     if node.has_key('storage.drive_type'):
         #CDROM
         if node['storage.drive_type'] == 'cdrom':
@@ -658,7 +674,7 @@ def classify_hal(node):
 
     # No class found
     return None
-    
+
 # This has got to be one of the ugliest fucntions alive
 def read_cpuinfo():
     def get_entry(a, entry):
@@ -672,7 +688,7 @@ def read_cpuinfo():
 
     cpulist = open("/proc/cpuinfo", "r").read()
     uname = os.uname()[4].lower()
-    
+
     # This thing should return a hwdict that has the following
     # members:
     #
@@ -706,7 +722,7 @@ def read_cpuinfo():
             hwdict['platform'] = 'x86_64'
         else:
             hwdict['platform']      = "i386"
-            
+
         hwdict['count']         = count
         hwdict['type']          = get_entry(tmpdict, 'vendor_id')
         hwdict['model']         = get_entry(tmpdict, 'model name')
@@ -829,7 +845,7 @@ def read_cpuinfo():
             hwdict['speed'] = int(round(float(mhz_speed)) - 1)
         except ValueError:
             hwdict['speed'] = -1
-       
+
     elif uname in ["sparc64","sparc"]:
         tmpdict = {}
         bogomips = 0
@@ -845,7 +861,7 @@ def read_cpuinfo():
                     # XXX: make at least some effort to recover this data...
                     continue
                 name, value = vals[0].strip(), vals[1].strip()
-                if name.endswith('Bogo'): 
+                if name.endswith('Bogo'):
                     if bogomips == 0:
                          bogomips = int(round(float(value)) )
                          continue
@@ -855,7 +871,7 @@ def read_cpuinfo():
         if not os.access("/proc/openprom/banner-name", os.R_OK):
             system = 'Unknown'
         if os.access("/proc/openprom/banner-name", os.R_OK):
-            system = open("/proc/openprom/banner-name", "r").read() 
+            system = open("/proc/openprom/banner-name", "r").read()
         hwdict['platform'] = uname
         hwdict['count'] = get_entry(tmpdict, 'ncpus probed')
         hwdict['model'] = get_entry(tmpdict, 'cpu')
@@ -867,7 +883,7 @@ def read_cpuinfo():
         speed = int(round(float(bogomips))) / 2
         hwdict['speed'] = speed
         hwdict['system'] = system
-         
+
     else:
         # XXX: expand me. Be nice to others
         hwdict['platform']      = uname
@@ -899,7 +915,7 @@ def read_cpuinfo():
     # the processor. Check sysfs for the proper file, and if it
     # exists, use that value.  Only use the value from CPU #0 and
     # assume that the rest of the CPUs are the same.
-    
+
     if os.path.exists('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq'):
         hwdict['speed'] = int(file('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq').read().strip()) / 1000
 
@@ -982,13 +998,13 @@ def get_profile():
         if e.hint is not None:
             error('\t' + _('Hint:') + ' ' + e.hint)
         sys.exit(8)
-        
+
 ##This is another
 def get_profile_link(smoonURL, pub_uuid):
     return urljoin(smoonURL, '/client/show/%s' % pub_uuid)
 
 def getUUID():
-    
+
     try:
         UUID = file(hw_uuid_file).read().strip()
     except IOError:
