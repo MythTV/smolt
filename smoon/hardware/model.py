@@ -70,7 +70,10 @@ hosts = Table('host', metadata,
               Column('rating', INT, nullable=False, default=0),
               Column('selinux_enabled', BOOLEAN, nullable=False),
               Column('selinux_policy', TEXT),
-              Column('selinux_enforce', TEXT))
+              Column('selinux_enforce', TEXT),
+              Column('myth_systemrole', TEXT),
+              Column('mythremote', TEXT),
+              Column('myththeme', TEXT))
 
 fas_links = Table('fas_link', metadata,
                   Column("id", INT, autoincrement=True,
@@ -184,6 +187,18 @@ selinux_policy = Table("SELINUX_POLICY", metadata,
                        Column('policy', TEXT,
                               primary_key=True),
                        Column('cnt', INT, key='count'))
+myth_systemroles = Table("MYTH_SYSTEMROLE", metadata,
+                         Column("myth_systemrole", TEXT,
+                                primary_key=True),
+                         Column("cnt", INT))
+mythremotes = Table("MYTHREMOTE", metadata,
+                         Column("mythremote", TEXT,
+                                primary_key=True),
+                         Column("cnt", INT))
+myththemes = Table("MYTHTHEME", metadata,
+                         Column("myththeme", TEXT,
+                                primary_key=True),
+                         Column("cnt", INT))
 
 class Host(object):
     def __init__(self, selinux_enabled=False,
@@ -256,7 +271,12 @@ class SelinuxEnforced(object):
     pass
 class SelinuxPolicy(object):
     pass
-
+class MythSystemRole(object):
+    pass
+class MythRemote(object):
+    pass
+class MythTheme(object):
+    pass
 
 #def mapper(*args, **kw):
 #    """Map tables to objects with knowledge about the session context."""
@@ -319,7 +339,9 @@ mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
 mapper(SelinuxEnabled, selinux_enabled, order_by=desc(selinux_enabled.c.count))
 mapper(SelinuxEnforced, selinux_enforce, order_by=desc(selinux_enforce.c.count))
 mapper(SelinuxPolicy, selinux_policy, order_by=desc(selinux_policy.c.count))
-
+mapper(MythSystemRole, myth_systemroles, order_by=desc(myth_systemroles.c.cnt))
+mapper(MythTheme, myththemes, order_by=desc(myththemes.c.cnt))
+mapper(MythRemote, mythremotes, order_by=desc(mythremotes.c.cnt))
 
 def old_hosts_clause():
     return (hosts.c.last_modified > (date.today() - timedelta(days=36)))

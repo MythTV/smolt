@@ -203,6 +203,19 @@ class Client(object):
         except KeyError:
             host_sql.selinux_policy = 'Unknown'
         host_sql.selinux_enforce = host_dict['selinux_enforce']
+        try:
+                host_sql.myth_systemrole = host_dict['myth_systemrole']
+        except KeyError:
+                 host_sql.myth_systemrole = 'Unknown'
+        try:
+                host_sql.mythremote = host_dict['mythremote']
+        except KeyError:
+                 host_sql.mythremote = 'Unknown'
+        try:
+                host_sql.myththeme = host_dict['myththeme']
+        except KeyError:
+                host_sql.myththeme = 'Unknown'
+
 
         orig_devices = [device.device_id for device
                                          in host_sql.devices]
