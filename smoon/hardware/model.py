@@ -4,8 +4,8 @@ from sqlalchemy.orm import *
 from turbogears.database import metadata, session
 from sqlalchemy.ext.assignmapper import assign_mapper
 from turbogears import identity
-from datetime import timedelta, date
-from mx import DateTime
+from datetime import timedelta, date, datetime
+
 
 #ctx = session.context
 
@@ -126,45 +126,101 @@ hardware_by_class = Table("CLASS", metadata,
                           Column("cnt", INT, key='count'),
                           Column("class", TEXT, key="cls"))
 
-archs = Table("ARCH", metadata,
-                  Column("platform", TEXT, primary_key=True),
-                  Column("cnt", INT))
-oses = Table("OS", metadata,
-                  Column("os", TEXT, primary_key=True),
-                  Column("cnt", INT))
-runlevels = Table("RUNLEVEL", metadata,
-                      Column("default_runlevel", INT,
-                             primary_key=True, key="runlevel"),
-                      Column("cnt", INT))
-num_cpus = Table("NUM_CPUS", metadata,
-                     Column("num_cpus", INT,
-                            primary_key=True,
-                            key="num_cpus"),
-                     Column("cnt", INT))
-vendors = Table("VENDOR", metadata,
-                    Column("vendor", TEXT,
-                           primary_key=True),
-                    Column("cnt", INT))
-systems = Table("SYSTEM", metadata,
-                    Column("system", TEXT,
-                           primary_key=True),
-                    Column("cnt", INT))
-cpu_vendors = Table("CPU_VENDOR", metadata,
-                    Column("cpu_vendor", TEXT,
-                           primary_key=True),
-                    Column("cnt", INT))
-kernel_versions = Table("KERNEL_VERSION", metadata,
-                            Column("kernel_version", TEXT,
-                                   primary_key=True),
-                            Column("cnt", INT))
-formfactors = Table("FORMFACTOR", metadata,
-                         Column("formfactor", TEXT,
-                                primary_key=True),
-                         Column("cnt", INT))
-languages = Table("LANGUAGE", metadata,
-                      Column('language', TEXT,
-                             primary_key=True),
-                      Column('cnt', INT))
+platform_cnt = func.count(hosts.c.platform).label('cnt')
+archs = select([hosts.c.platform, platform_cnt])\
+    .group_by(hosts.c.platform)\
+    .order_by(platform_cnt)\
+    .alias("ARCH")
+
+os_cnt = func.count(hosts.c.os).label('cnt')
+oses = select([hosts.c.os, os_cnt])\
+    .group_by(hosts.c.os)\
+    .order_by(os_cnt)\
+    .alias('OS')
+
+runlevel_cnt = func.count(hosts.c.default_runlevel).label('cnt')
+runlevels = select([hosts.c.default_runlevel, runlevel_cnt])\
+    .group_by(hosts.c.default_runlevel)\
+    .order_by(runlevel_cnt)\
+    .alias('RUNLEVEL')
+
+cpu_cnt = func.count(hosts.c.num_cpus).label('cnt')
+num_cpus = select([hosts.c.num_cpus, cpu_cnt])\
+    .group_by(hosts.c.num_cpus)\
+    .order_by(cpu_cnt)\
+    .alias('NUM_CPUS')
+
+vendor_cnt = func.count(hosts.c.vendor).label('cnt')
+vendors = select([hosts.c.vendor, vendor_cnt])\
+    .group_by(hosts.c.vendor)\
+    .order_by(vendor_cnt)\
+    .alias('VENDOR')
+
+system_cnt = func.count(hosts.c.system).label('cnt')
+systems = select([hosts.c.system, system_cnt])\
+    .group_by(hosts.c.system)\
+    .order_by(system_cnt)\
+    .alias('SYSTEM')
+
+cpu_vendor_cnt = func.count(hosts.c.cpu_vendor).label('cnt')
+cpu_vendors = select([hosts.c.cpu_vendor, cpu_vendor_cnt])\
+    .group_by(hosts.c.cpu_vendor)\
+    .order_by(cpu_vendor_cnt)\
+    .alias('CPU_VENDOR')
+
+kernel_cnt = func.count(hosts.c.kernel_version).label('cnt')
+kernel_versions = select([hosts.c.kernel_version, kernel_cnt])\
+    .group_by(hosts.c.kernel_version)\
+    .order_by(kernel_cnt)\
+    .alias('KERNEL_VERSION')
+
+formfactor_cnt = func.count(hosts.c.formfactor).label('cnt')
+formfactors = select([hosts.c.formfactor, formfactor_cnt])\
+    .group_by(hosts.c.formfactor)\
+    .order_by(formfactor_cnt)\
+    .alias('FORMFACTOR')
+
+l_cnt = func.count(hosts.c.language).label('cnt')
+languages = select([hosts.c.language, l_cnt])\
+    .group_by(hosts.c.language)\
+    .order_by(l_cnt)\
+    .alias('LANGUAGE')
+
+enabled_cnt = func.count(hosts.c.selinux_enabled).label('cnt')
+selinux_enabled = select([hosts.c.selinux_enabled, enabled_cnt])\
+    .group_by(hosts.c.selinux_enabled)\
+    .order_by(enabled_cnt)\
+    .alias('SELINUX_ENABLED')
+
+enforce_cnt = func.count(hosts.c.selinux_enforce).label('cnt')
+selinux_enforce = select([hosts.c.selinux_enforce, enforce_cnt])\
+    .group_by(hosts.c.selinux_enforce)\
+    .order_by(enforce_cnt)\
+    .alias('SELINUX_ENFORCE')
+
+policy_cnt = func.count(hosts.c.selinux_policy).label('cnt')
+selinux_policy = select([hosts.c.selinux_policy, policy_cnt])\
+    .group_by(hosts.c.selinux_policy)\
+    .order_by(policy_cnt)\
+    .alias('SELINUX_POLICY')
+
+mythrole_cnt = func.count(hosts.c.myth_systemrole).label('cnt')
+myth_systemroles = select([hosts.c.myth_systemrole, mythrole_cnt])\
+    .group_by(hosts.c.myth_systemrole)\
+    .order_by(mythrole_cnt)\
+    .alias('MYTH_SYSTEMROLE')
+
+remotes_cnt = func.count(hosts.c.mythremote).label('cnt')
+mythremotes = select([hosts.c.mythremote, remotes_cnt])\
+    .group_by(hosts.c.mythremote)\
+    .order_by(remotes_cnt)\
+    .alias('MYTHREMOTE')
+
+myththemes_cnt = func.count(hosts.c.myththeme).label('cnt')
+myththemes = select([hosts.c.myththeme, myththemes_cnt])\
+    .group_by(hosts.c.myththeme)\
+    .order_by(myththemes_cnt)\
+    .alias('MYTHTHEME')
 
 totallist = Table("TOTALLIST", metadata,
                   Column('description', TEXT,
@@ -175,34 +231,10 @@ uniquelist = Table("UNIQUELIST", metadata,
                    Column('description', TEXT,
                           primary_key=True),
                    Column('cnt', INT, key='count'))
-selinux_enabled = Table("SELINUX_ENABLED", metadata,
-                        Column('enabled', BOOLEAN,
-                               primary_key=True),
-                        Column('cnt', INT, key='count'))
-selinux_enforce = Table("SELINUX_ENFORCE", metadata,
-                        Column('enforce', TEXT,
-                               primary_key=True),
-                        Column('cnt', INT, key='count'))
-selinux_policy = Table("SELINUX_POLICY", metadata,
-                       Column('policy', TEXT,
-                              primary_key=True),
-                       Column('cnt', INT, key='count'))
-myth_systemroles = Table("MYTH_SYSTEMROLE", metadata,
-                         Column("myth_systemrole", TEXT,
-                                primary_key=True),
-                         Column("cnt", INT))
-mythremotes = Table("MYTHREMOTE", metadata,
-                         Column("mythremote", TEXT,
-                                primary_key=True),
-                         Column("cnt", INT))
-myththemes = Table("MYTHTHEME", metadata,
-                         Column("myththeme", TEXT,
-                                primary_key=True),
-                         Column("cnt", INT))
 
 class Host(object):
     def __init__(self, selinux_enabled=False,
-                 rating=0, last_modified=DateTime.now()):
+                 rating=0, last_modified=datetime.today()):
         self.selinux_enabled = selinux_enabled
         self.rating = rating
         self.last_modified = last_modified
@@ -278,11 +310,6 @@ class MythRemote(object):
 class MythTheme(object):
     pass
 
-#def mapper(*args, **kw):
-#    """Map tables to objects with knowledge about the session context."""
-#    return assign_mapper(session.context, *args, **kw)
-
-
 mapper(Foo, hosts,
        properties = {'clds': relation(ComputerLogicalDevice, \
                                       secondary=host_links)})
@@ -319,29 +346,60 @@ mapper(HardwareClass,
                                          lazy=None),
                      '_cls': hardware_classes.c.cls,
                      'cls': synonym('_cls')})
-
 mapper(FileSystem,
        file_systems)
 mapper(FileSys, filesys, order_by=desc(filesys.c.cnt))
 mapper(HardwareByClass, hardware_by_class)
-mapper(OS, oses, order_by=desc(oses.c.cnt))
-mapper(Arch, archs, order_by=desc(archs.c.cnt))
-mapper(Runlevel, runlevels, order_by=desc(runlevels.c.cnt))
-mapper(NumCPUs, num_cpus, order_by=desc(num_cpus.c.cnt))
-mapper(Vendor, vendors, order_by=desc(vendors.c.cnt))
-mapper(System, systems, order_by=desc(systems.c.cnt))
-mapper(CPUVendor, cpu_vendors, order_by=desc(cpu_vendors.c.cnt))
-mapper(KernelVersion, kernel_versions, order_by=desc(kernel_versions.c.cnt))
-mapper(FormFactor, formfactors, order_by=desc(formfactors.c.cnt))
-mapper(Language, languages, order_by=desc(languages.c.cnt))
+mapper(OS, oses, order_by=desc(oses.c.cnt),
+       primary_key=[oses.c.os])
+
+mapper(Arch, archs, order_by=desc(archs.c.cnt),
+       primary_key=[archs.c.platform])
+
+mapper(Runlevel, runlevels, order_by=desc(runlevels.c.cnt),
+       primary_key=[runlevels.c.default_runlevel])
+
+mapper(NumCPUs, num_cpus, order_by=desc(num_cpus.c.cnt),
+       primary_key=[num_cpus.c.num_cpus])
+
+mapper(Vendor, vendors, order_by=desc(vendors.c.cnt),
+       primary_key=[vendors.c.vendor])
+
+mapper(System, systems, order_by=desc(systems.c.cnt),
+       primary_key=[systems.c.system])
+
+mapper(CPUVendor, cpu_vendors, order_by=desc(cpu_vendors.c.cnt),
+       primary_key=[cpu_vendors.c.cpu_vendor])
+
+mapper(KernelVersion, kernel_versions, order_by=desc(kernel_versions.c.cnt),
+       primary_key=[kernel_versions.c.kernel_version])
+
+mapper(FormFactor, formfactors, order_by=desc(formfactors.c.cnt),
+       primary_key=[formfactors.c.formfactor])
+
+mapper(Language, languages, order_by=desc(languages.c.cnt),
+       primary_key=[languages.c.language])
+
+mapper(SelinuxEnabled, selinux_enabled, order_by=desc(selinux_enabled.c.cnt),
+       primary_key=[selinux_enabled.c.selinux_enabled])
+
+mapper(SelinuxEnforced, selinux_enforce, order_by=desc(selinux_enforce.c.cnt),
+       primary_key=[selinux_enforce.c.selinux_enforce])
+
+mapper(SelinuxPolicy, selinux_policy, order_by=desc(selinux_policy.c.cnt),
+       primary_key=[selinux_policy.c.selinux_policy])
+
+mapper(MythSystemRole, myth_systemroles, order_by=desc(myth_systemroles.c.cnt),
+       primary_key=[myth_systemroles.c.myth_systemrole])
+
+mapper(MythTheme, myththemes, order_by=desc(myththemes.c.cnt),
+       primary_key=[myththemes.c.myththeme])
+
+mapper(MythRemote, mythremotes, order_by=desc(mythremotes.c.cnt),
+       primary_key=[mythremotes.c.mythremote])
+
 mapper(TotalList, totallist, order_by=desc(totallist.c.count))
 mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
-mapper(SelinuxEnabled, selinux_enabled, order_by=desc(selinux_enabled.c.count))
-mapper(SelinuxEnforced, selinux_enforce, order_by=desc(selinux_enforce.c.count))
-mapper(SelinuxPolicy, selinux_policy, order_by=desc(selinux_policy.c.count))
-mapper(MythSystemRole, myth_systemroles, order_by=desc(myth_systemroles.c.cnt))
-mapper(MythTheme, myththemes, order_by=desc(myththemes.c.cnt))
-mapper(MythRemote, mythremotes, order_by=desc(mythremotes.c.cnt))
 
 def old_hosts_clause():
     return (hosts.c.last_modified > (date.today() - timedelta(days=36)))
