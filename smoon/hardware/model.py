@@ -108,18 +108,22 @@ file_systems = Table('file_systems', metadata,
                      Column('f_ffree', INT),
                      Column('f_fssize', INT))
 
-hardware_by_class = Table("CLASS", metadata,
-                          Column('device_id', VARCHAR(16),
-                                 primary_key=True),
-                          Column('description', VARCHAR(128)),
-                          Column('bus', TEXT),
-                          Column("driver", TEXT),
-                          Column("vendor_id", INT),
-                          Column("subsys_vendor_id", INT),
-                          Column("subsys_device_id", INT),
-                          Column("date_added", DATETIME),
-                          Column("cnt", INT, key='count'),
-                          Column("class", TEXT, key="cls"))
+hardware_host_cnt = func.count(func.distinct(host_links.c.host_link_id)).label('cnt')
+hardware_by_class = select([host_links.c.device_id.label('id'),
+                            computer_logical_devices.c.description,
+                            computer_logical_devices.c.bus,
+                            computer_logical_devices.c.driver,
+                            computer_logical_devices.c.vendor_id,
+                            computer_logical_devices.c.device_id,
+                            computer_logical_devices.c.subsys_device_id,
+                            computer_logical_devices.c.subsys_vendor_id,
+                            computer_logical_devices.c.date_added,
+                            computer_logical_devices.c.cls,
+                            hardware_host_cnt],
+                           host_links.c.device_id==computer_logical_devices.c.id)\
+                    .group_by(host_links.c.device_id)\
+                    .order_by(hardware_host_cnt)\
+                    .alias('CLASS')
 
 filetype_cnt = func.count(file_systems.c.fs_type).label('cnt')
 filesys = select([file_systems.c.fs_type, filetype_cnt])\
@@ -354,7 +358,8 @@ mapper(HardwareClass,
 
 mapper(FileSystem, file_systems)
 
-mapper(HardwareByClass, hardware_by_class)
+mapper(HardwareByClass, hardware_by_class,
+       primary_key=[hardware_by_class.c.id])
 
 mapper(OS, oses, order_by=desc(oses.c.cnt),
        primary_key=[oses.c.os])
