@@ -38,6 +38,7 @@ import os
 import urlgrabber.grabber
 import sys
 from urlparse import urljoin
+from urlparse import urlparse
 from urllib import urlencode
 import urllib
 import simplejson
@@ -417,6 +418,29 @@ class Hardware:
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
 
+    def write_pub_uuid(self,smoonURL,pub_uuid,pub_uuid_file):
+        smoonURLparsed=urlparse(smoonURL)
+        pub_uuid_file += ("-"+smoonURLparsed.hostname)
+        try:
+            file(pub_uuid_file, 'w').write(pub_uuid)
+        except Exception, e:
+            sys.stderr.write(_('Unable to save pub_uuid, continuing...\n'))
+            sys.err.write(_('Your pub_uuid file  could not be created: %s\n' % e))
+            sys.exit(9)
+        return
+
+    def write_admin_token(self,smoonURL,admin,admin_token_file):
+        smoonURLparsed=urlparse(smoonURL)
+        admin_token_file += ("-"+smoonURLparsed.hostname)
+        try:
+            file(admin_token_file, 'w').write(admin)
+        except Exception, e:
+            sys.stderr.write(_('Unable to save token, continuing...\n'))
+            sys.err.write(_('Your admin token  could not be created: %s\n' % e))
+            sys.exit(9)
+        return
+
+
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         #first find out the server desired protocol
@@ -486,17 +510,8 @@ class Hardware:
             admin = admin_obj['token']
 
             if  not admin_token_file == '' :
-                try:
-                    file(admin_token_file, 'w').write(admin)
-                except Exception, e:
-                    sys.stderr.write(_('Unable to save token, continuing...\n'))
-                    sys.err.write(_('Your admin token  could not be created: %s\n' % e))
-            try:
-                file(pub_uuid_file, 'w').write(pub_uuid)
-            except Exception, e:
-                sys.stderr.write(_('Unable to save pub_uuid, continuing...\n'))
-                sys.err.write(_('Your pub_uuid file  could not be created: %s\n' % e))
-                sys.exit(9)
+                self.write_admin_token(smoonURL,admin,admin_token_file)
+            self.write_pub_uuid(smoonURL,pub_uuid,pub_uuid_file)
         return (0, pub_uuid, admin)
 
     def regenerate_pub_uuid(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
@@ -507,7 +522,7 @@ class Hardware:
             error(_('Error contacting Server: %s') % e)
             sys.exit(0)
         pub_uuid = simplejson.loads(new_uuid.read())['pub_uuid']
-        file(pub_uuid_file, 'w').write(pub_uuid)
+        self.write_pub_uuid(smoonURL,pub_uuid,pub_uuid_file)
         return pub_uuid
 
 
