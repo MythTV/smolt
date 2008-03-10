@@ -108,11 +108,6 @@ file_systems = Table('file_systems', metadata,
                      Column('f_ffree', INT),
                      Column('f_fssize', INT))
 
-filesys = Table("FILESYSTEMS", metadata,
-                         Column("fs_type", TEXT,
-                                primary_key=True),
-                         Column("cnt", INT))
-
 hardware_by_class = Table("CLASS", metadata,
                           Column('device_id', VARCHAR(16),
                                  primary_key=True),
@@ -126,6 +121,12 @@ hardware_by_class = Table("CLASS", metadata,
                           Column("cnt", INT, key='count'),
                           Column("class", TEXT, key="cls"))
 
+filetype_cnt = func.count(file_systems.c.fs_type).label('cnt')
+filesys = select([file_systems.c.fs_type, filetype_cnt])\
+    .group_by(file_systems.c.fs_type)\
+    .order_by(filetype_cnt)\
+    .alias('FILESYSTEMS')
+    
 platform_cnt = func.count(hosts.c.platform).label('cnt')
 archs = select([hosts.c.platform, platform_cnt])\
     .group_by(hosts.c.platform)\
@@ -139,7 +140,7 @@ oses = select([hosts.c.os, os_cnt])\
     .alias('OS')
 
 runlevel_cnt = func.count(hosts.c.default_runlevel).label('cnt')
-runlevels = select([hosts.c.default_runlevel, runlevel_cnt])\
+runlevels = select([hosts.c.default_runlevel.label('runlevel'), runlevel_cnt])\
     .group_by(hosts.c.default_runlevel)\
     .order_by(runlevel_cnt)\
     .alias('RUNLEVEL')
@@ -180,26 +181,26 @@ formfactors = select([hosts.c.formfactor, formfactor_cnt])\
     .order_by(formfactor_cnt)\
     .alias('FORMFACTOR')
 
-l_cnt = func.count(hosts.c.language).label('cnt')
-languages = select([hosts.c.language, l_cnt])\
+language_cnt = func.count(hosts.c.language).label('cnt')
+languages = select([hosts.c.language, language_cnt])\
     .group_by(hosts.c.language)\
-    .order_by(l_cnt)\
+    .order_by(language_cnt)\
     .alias('LANGUAGE')
 
 enabled_cnt = func.count(hosts.c.selinux_enabled).label('cnt')
-selinux_enabled = select([hosts.c.selinux_enabled, enabled_cnt])\
+selinux_enabled = select([hosts.c.selinux_enabled.label('enabled'), enabled_cnt])\
     .group_by(hosts.c.selinux_enabled)\
     .order_by(enabled_cnt)\
     .alias('SELINUX_ENABLED')
 
 enforce_cnt = func.count(hosts.c.selinux_enforce).label('cnt')
-selinux_enforce = select([hosts.c.selinux_enforce, enforce_cnt])\
+selinux_enforce = select([hosts.c.selinux_enforce.label('enforce'), enforce_cnt])\
     .group_by(hosts.c.selinux_enforce)\
     .order_by(enforce_cnt)\
     .alias('SELINUX_ENFORCE')
 
 policy_cnt = func.count(hosts.c.selinux_policy).label('cnt')
-selinux_policy = select([hosts.c.selinux_policy, policy_cnt])\
+selinux_policy = select([hosts.c.selinux_policy.label('policy'), policy_cnt])\
     .group_by(hosts.c.selinux_policy)\
     .order_by(policy_cnt)\
     .alias('SELINUX_POLICY')
@@ -222,15 +223,19 @@ myththemes = select([hosts.c.myththeme, myththemes_cnt])\
     .order_by(myththemes_cnt)\
     .alias('MYTHTHEME')
 
-totallist = Table("TOTALLIST", metadata,
-                  Column('description', TEXT,
-                         primary_key=True),
-                  Column('cnt', INT, key="count"))
+tot_device_cnt = func.count(host_links.c.device_id).label('cnt')
+totallist = select([computer_logical_devices.c.description, tot_device_cnt], 
+                   host_links.c.device_id==computer_logical_devices.c.id)\
+                   .group_by(host_links.c.device_id)\
+                   .order_by(tot_device_cnt)\
+                   .alias('TOTALLIST')
 
-uniquelist = Table("UNIQUELIST", metadata,
-                   Column('description', TEXT,
-                          primary_key=True),
-                   Column('cnt', INT, key='count'))
+unq_device_cnt = func.count(distinct(host_links.c.device_id)).label('cnt')
+uniquelist = select([computer_logical_devices.c.description, unq_device_cnt], 
+                   host_links.c.device_id==computer_logical_devices.c.id)\
+                   .group_by(host_links.c.device_id)\
+                   .order_by(unq_device_cnt)\
+                   .alias('UNIQUELIST')
 
 class Host(object):
     def __init__(self, selinux_enabled=False,
@@ -346,10 +351,11 @@ mapper(HardwareClass,
                                          lazy=None),
                      '_cls': hardware_classes.c.cls,
                      'cls': synonym('_cls')})
-mapper(FileSystem,
-       file_systems)
-mapper(FileSys, filesys, order_by=desc(filesys.c.cnt))
+
+mapper(FileSystem, file_systems)
+
 mapper(HardwareByClass, hardware_by_class)
+
 mapper(OS, oses, order_by=desc(oses.c.cnt),
        primary_key=[oses.c.os])
 
@@ -357,7 +363,7 @@ mapper(Arch, archs, order_by=desc(archs.c.cnt),
        primary_key=[archs.c.platform])
 
 mapper(Runlevel, runlevels, order_by=desc(runlevels.c.cnt),
-       primary_key=[runlevels.c.default_runlevel])
+       primary_key=[runlevels.c.runlevel])
 
 mapper(NumCPUs, num_cpus, order_by=desc(num_cpus.c.cnt),
        primary_key=[num_cpus.c.num_cpus])
@@ -381,13 +387,13 @@ mapper(Language, languages, order_by=desc(languages.c.cnt),
        primary_key=[languages.c.language])
 
 mapper(SelinuxEnabled, selinux_enabled, order_by=desc(selinux_enabled.c.cnt),
-       primary_key=[selinux_enabled.c.selinux_enabled])
+       primary_key=[selinux_enabled.c.enabled])
 
 mapper(SelinuxEnforced, selinux_enforce, order_by=desc(selinux_enforce.c.cnt),
-       primary_key=[selinux_enforce.c.selinux_enforce])
+       primary_key=[selinux_enforce.c.enforce])
 
 mapper(SelinuxPolicy, selinux_policy, order_by=desc(selinux_policy.c.cnt),
-       primary_key=[selinux_policy.c.selinux_policy])
+       primary_key=[selinux_policy.c.policy])
 
 mapper(MythSystemRole, myth_systemroles, order_by=desc(myth_systemroles.c.cnt),
        primary_key=[myth_systemroles.c.myth_systemrole])
@@ -398,8 +404,15 @@ mapper(MythTheme, myththemes, order_by=desc(myththemes.c.cnt),
 mapper(MythRemote, mythremotes, order_by=desc(mythremotes.c.cnt),
        primary_key=[mythremotes.c.mythremote])
 
-mapper(TotalList, totallist, order_by=desc(totallist.c.count))
-mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.count))
+mapper(TotalList, totallist, order_by=desc(totallist.c.cnt),
+       primary_key=[totallist.c.description])
+
+mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.cnt),
+       primary_key=[uniquelist.c.description])
+
+mapper(FileSys, filesys, order_by=desc(filesys.c.cnt),
+       primary_key=[filesys.c.fs_type])
+
 
 def old_hosts_clause():
     return (hosts.c.last_modified > (date.today() - timedelta(days=36)))
