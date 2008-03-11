@@ -1,20 +1,19 @@
 # translation of smolt.pot to Bulgarian
-# Copyright (C) YEAR ORGANIZATION
+# Copyright (C) 2008 ORGANIZATION
 #
 # Doncho N. Gunchev <gunchev@gmail.com>, 2007.
+# Alexander Todorov <atodorov@redhat.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2007-03-31 18:18+0300\n"
-"Last-Translator: Doncho N. Gunchev <gunchev@gmail.com>\n"
+"PO-Revision-Date: 2008-03-11 16:00+0100\n"
+"Last-Translator: Alexander Todorov <atodorov@redhat.com>, 2008\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: pygettext.py 1.5\n"
-"X-Generator: KBabel 1.11.4\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: deleteProfile.py:36 smolt.py:263
 #, python-format
@@ -42,7 +41,9 @@ msgstr "указване на HTTP потребителски агент (по �
 #: deleteProfile.py:66 sendProfile.py:83
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr "указване на максимално време за HTTP отговор (по подразбиране е %default секунди)"
+msgstr ""
+"указване на максимално време за HTTP отговор (по подразбиране е %default "
+"секунди)"
 
 #: deleteProfile.py:84
 msgid "Error contacting Server:"
@@ -54,11 +55,11 @@ msgstr "Профила бе премахнат, моля проверете на
 
 #: sendProfile.py:53
 msgid "(optional) Fedora Account System registration"
-msgstr ""
+msgstr "(по желание) Регистрация за сметка във Федора (FAS)"
 
 #: sendProfile.py:58
 msgid "password, will prompt if not specified"
-msgstr ""
+msgstr "парола, ще бъде поискана, ако не е въведена"
 
 #: sendProfile.py:68
 msgid "don't prompt to send, just send"
@@ -69,16 +70,23 @@ msgid "continue to send until success"
 msgstr "изпращане до успех"
 
 #: sendProfile.py:88
-msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr "това е автоматизирано обновяване, ще работи само ако услугата \"smolt\" е стартирана"
+msgid ""
+"this is an automated checkin, will only run if the \"smolt\" service has "
+"been started"
+msgstr ""
+"това е автоматизирано обновяване, ще работи само ако услугата \"smolt\" е "
+"стартирана"
 
 #: sendProfile.py:93
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr ""
+msgstr "сканиране на машината за известни обновления за грешки, без изпращане на профила."
 
 #: sendProfile.py:108
-msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "Smolt е настроен за обновяване на профила, но обновяването е изключено (подсказка: service smolt start)"
+msgid ""
+"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+"Smolt е настроен за обновяване на профила, но обновяването е изключено "
+"(подсказка: service smolt start)"
 
 #: sendProfile.py:115 scan.py:51
 msgid "Error:"
@@ -110,11 +118,11 @@ msgstr "Не може да се изпрати - изход"
 
 #: sendProfile.py:153
 msgid "Password:"
-msgstr ""
+msgstr "Парола:"
 
 #: sendProfile.py:158
 msgid "Registration Failed, Try again"
-msgstr ""
+msgstr "Провал на регистрацията, опитайте отново"
 
 #: sendProfile.py:164
 #, python-format
@@ -151,34 +159,36 @@ msgstr "_За програмата"
 
 #: smoltGui.py:78
 msgid "_File"
-msgstr ""
+msgstr "_Файл"
 
 #: smoltGui.py:79
 msgid "_Help"
-msgstr ""
+msgstr "_Помощ"
 
 #: smoltGui.py:80
 msgid "_My Smolt Page"
-msgstr ""
+msgstr "_Моята СМОЛТ страница"
 
 #: smoltGui.py:80
 msgid "Take me to my smolt profile page"
-msgstr ""
+msgstr "Посещение на моята СМОЛТ страница"
 
 #: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
 msgstr "Възникна грешка при изпращане на данните към сървъра."
 
 #: smoltGui.py:152
-#, fuzzy, python-format
+#, python-format
 msgid ""
-"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"The data was successfully sent.  If you need to refer to your hardware "
+"profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
-"Данните бяха успешно изпратени.  Ако Ви дотрябва справка за вашия хардуерен профил за рапорт за грешка вашия UUID е \n"
+"Данните бяха успешно изпратени.  Ако Ви потрябва справка за вашия хардуерен "
+"профил за рапорт на грешка, Вашия UUID е \n"
 "%s\n"
-"записан в /etc/sysconfig/hw-uuid"
+"записан в %s"
 
 #: smoltGui.py:166
 msgid "Smolt Privacy Policy"
@@ -186,25 +196,47 @@ msgstr "Политика за конфиденциалност на Smolt"
 
 #: smoltGui.py:209
 msgid "translator-credits"
-msgstr ""
+msgstr "Doncho N. Gunchev <gunchev@gmail.com>, 2007\n"
+"Александър Тодоров <atodorov@redhat.com>, 2008"
 
 #: smoltGui.py:210
-#, fuzzy
 msgid "Fedora hardware profiler."
-msgstr "Изпращане на хардуерния Ви профил на сървъра."
+msgstr "Събирач на хардуерни профили за Федора."
 
 #: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
-msgstr ""
+msgstr "Copyright·©·2007·Mike·McGrath"
 
 #: smoltGui.py:213
+#, fuzzy
 msgid ""
-"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
 "\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
+"Ave, Cambridge, MA 02139, USA."
 msgstr ""
+"This·program·is·free·software;·you·can·redistribute·it·and/or·modify·it·"
+"under·the·terms·of·the·GNU·General·Public·License·as·published·by·the·Free·"
+"Software·Foundation;·either·version·2·of·the·License,·or·(at·your·option)·"
+"any·later·version.\n"
+"\n"
+"This·program·is·distributed·in·the·hope·that·it·will·be·useful,·but·WITHOUT·"
+"ANY·WARRANTY;·without·even·the·implied·warranty·of·MERCHANTABILITY·or·"
+"FITNESS·FOR·A·PARTICULAR·PURPOSE.··See·the·GNU·General·Public·License·for·"
+"more·details.\n"
+"\n"
+"You·should·have·received·a·copy·of·the·GNU·General·Public·License·along·with·"
+"this·program;·if·not,·write·to·the·Free·Software·Foundation,·Inc.,·675·Mass·"
+"Ave,·Cambridge,·MA·02139,·USA."
 
 #: smolt.py:265
 #, python-format
@@ -212,16 +244,16 @@ msgid "Could not contact server: %s"
 msgstr "Не може да се осъществи връзка със сървъра: %s"
 
 #: smolt.py:296
-#, fuzzy
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr "Не може да се направи връзка с dbus"
+msgstr "Не може да се направи връзка с dbus. Проверете дали работи."
 
 #: smolt.py:302
-#, fuzzy
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
-msgstr "Не може да се направи връзка с hal, работи ли той?"
+msgstr ""
+"Не може да се направи връзка с hal, работи ли той?\n"
+"Изпълнете \"service·haldaemon·start\" като root"
 
 #: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
 #, python-format
@@ -230,7 +262,7 @@ msgstr "Грешка при свързване със сървъра: %s"
 
 #: smolt.py:436
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
+msgstr "Неподходяща версия, сървърът не може да работи с този клиент"
 
 #: smolt.py:452
 msgid "Communication with server failed"
@@ -306,31 +338,42 @@ msgstr "Ядро"
 
 #: smolt.py:553
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux е включен"
 
 #: smolt.py:554
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux режим Активен"
 
 #: smolt.py:990
 msgid "Unable to save UUID, continuing...\n"
-msgstr ""
+msgstr "Невъзможно съхраняването на UUID, продължаване...\n"
 
 #: smolt.py:992
 msgid "Unable to determine UUID of system!\n"
-msgstr ""
+msgstr "Невъзможно да се определи UUID на системата!\n"
 
 #: software.py:43
 msgid "Cannot Determine Runlevel"
-msgstr ""
+msgstr "Неможе да се определи работното ниво"
 
 #: smoltFirstBoot.py:31 smoltFirstBoot.py:41
 msgid "Hardware Profile"
 msgstr "Хардуерен профил"
 
 #: smoltFirstBoot.py:57
-msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt е програма за изграждане на хардуерни профили за проекта Fedora.  Изпращането на вашия профил е много добър начин да направите нещо за общността, тъй като тази информация се ползва за фокусиране на усилията на разработчиците към популярния хардуер и платформи.  Информацията се изпраща анонимно.  Изпращането на профила ще разреши месечно обновяване (на тази информация)."
+msgid ""
+"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
+"profile is a great way to give back to the community as this information is "
+"used to help focus our efforts on popular hardware and platforms.  "
+"Submissions are anonymous.  Sending your profile will enable a monthly "
+"update."
+msgstr ""
+"Smolt е програма за изграждане на хардуерни профили за проекта Fedora.  "
+"Изпращането на вашия профил е много добър начин да направите нещо за "
+"общността, тъй като тази информация се ползва за фокусиране на усилията на "
+"разработчиците към популярния хардуер и платформи.  Информацията се изпраща "
+"анонимно.  Изпращането на профила ще разреши месечно обновяване (на тази "
+"информация)."
 
 #: smoltFirstBoot.py:76
 msgid "_Send Profile"
@@ -341,8 +384,14 @@ msgid "D_o not send profile"
 msgstr "_Без изпращане"
 
 #: smoltFirstBoot.py:95
-msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "Сигурни ли сте, че не искате да изпратите профила?  Изпратения от Вас профил е ценен източник на информация за разработчиците. Той може да помогне за отстраняване на проблеми, които може да има с вашия хардуер."
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr ""
+"Сигурни ли сте, че не искате да изпратите профила?  Изпратения от Вас профил "
+"е ценен източник на информация за разработчиците. Той може да помогне за "
+"отстраняване на проблеми, които може да има с вашия хардуер."
 
 #: smoltFirstBoot.py:103
 msgid "_Reconsider sending"
@@ -379,53 +428,86 @@ msgstr "Описание"
 #: privacypolicy.py:3
 msgid ""
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a "
+"submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"the submission is anonymous.  If at any point in time a user wants to "
+"delete\n"
 "their profile from the database they need only run\n"
 "\n"
 "    smoltDeleteProfile\n"
 "\n"
-"The information sent to the smolt database server should be considered public\n"
-"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"The information sent to the smolt database server should be considered "
+"public\n"
+"in that anyone can view the statistics, data and share machine profiles.  "
+"In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"attention.  As such, not only will this information be shared with 3rd "
+"parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.\n"
 "\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and they\n"
+"server first.  This is the only place IP addresses are being logged and "
+"they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
-"the smolt database.  These logs are private and will not be available to the\n"
+"the smolt database.  These logs are private and will not be available to "
+"the\n"
 "general public.\n"
 "\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team at\n"
+"questions about this policy should contact the Fedora Infrastructure Team "
+"at\n"
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
+"Смолт ще изпрати основна информация за Вашият хардуер и операционна система\n"
+"до сървъра на Федора (Смуун). Единствената връзка на тази информация с Вас е UUID.\n"
+"Докато не кажете на някого това UUID информацията е анонимна. Ако по някаква\n"
+"причина, някога желаете да изтриете този профил трябва само да изпълните\n"
+"\n"
+"····smoltDeleteProfile\n"
+"\n"
+"Информацията изпратена до сървъра се смята за публична, т.к. всеки може да\n"
+"разгледа статистиките или профилите на отделните машини. Смолт е създаден\n"
+"да привлече вниманието на производителите на хардуер, т.ч. тази информация\n"
+"не само ще бъде споделена с трети страни, но ние ще използваме Смолт, за да\n"
+"насърчим по-добра поддръжка на драйвери с отворен код и по-добра поддръжка\n"
+"като цяло.\n"
+"\n"
+"Записване на IP адрес: При инсталацията на сървъра на Федора целият Интернет\n"
+"трафик минава през междинен сървър. Това е единственото място на което се\n"
+"записва Вашият IP адрес и се пазят 4 седмици докато жърналните файлове не се\n"
+"презапишат. Проектът Федора не съхранява данни за IP адреси в базата данни.\n"
+"Тези журнални файлове няма да бъдат достъпни публично.\n"
+"\n"
+"Потребителите, които не са съгласни с тази политика не бива да използват Смолт.\n"
+"Потребители, които имат въпроси трябва да се свържат с екипа поддържащ\n"
+"инфраструктурата на Федора на адрес admin·[at]·fedoraproject.org\n"
+"Също така не забравяйте, че можете да изтриете профила си по всяко време\n"
+"чрез командата \"smoltDeleteProfile\"\n"
 
 #: scan.py:16
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr ""
+msgstr "Сканиране на %s за наличие на обновления за грешки.\n"
 
 #: scan.py:39
 msgid "Errata Found!"
-msgstr ""
+msgstr "Намерени са обновления за грешки!"
 
 #: scan.py:42
 msgid "No errata found, if this machine is having issues please go to"
-msgstr ""
+msgstr "Не са намерени обновления за грешки. Ако тази машина има проблеми, моля отидете на"
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
-msgstr ""
+msgstr "страницата с Вашия профил и създайте уйки страница с пояснения, т.ч."
 
 #: scan.py:44
 msgid "benefit"
-msgstr ""
+msgstr "другите да могат да си помогнат"
 
 #~ msgid "Run \"service haldaemon start\" as root"
 #~ msgstr "Изпълнете \"service haldaemon start\" като root"
