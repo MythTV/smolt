@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-03-10 23:12+0400\n"
-"PO-Revision-Date: 2008-03-11 11:35-0500\n"
+"PO-Revision-Date: 2008-03-11 16:28-0500\n"
 "Last-Translator: Yaakov M. Nemoy <loupgaroublond@gmail.com>\n"
 "Language-Team: nl <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -18,17 +18,14 @@ msgstr ""
 "Generated-By: Babel 0.9.1\n"
 
 #: hardware/controllers/root.py:93
-#, fuzzy
 msgid "The credentials you supplied were not correct or did not grant access to this resource."
 msgstr "De Getuigenisen U opgegeven heeft zijn onjuist."
 
 #: hardware/controllers/root.py:96
-#, fuzzy
 msgid "You must provide your credentials before accessing this resource."
 msgstr "U moet uw getuignenis opgeven bevor U kan deze resource gebruiken "
 
 #: hardware/controllers/root.py:99
-#, fuzzy
 msgid "Please log in."
 msgstr "Log in a.u.b."
 
@@ -57,45 +54,38 @@ msgid "Works, but required additional configuration"
 msgstr "Draait, maar heeft verder instellingen nodig"
 
 #: hardware/templates/show.html:35
-#, fuzzy
 msgid "Worked out of the box"
-msgstr "Projecteren op kubus"
+msgstr "Werkt zonder gekloot"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
 msgstr "Alle informatie weergeven"
 
 #: hardware/templates/show.html:39
-#, fuzzy
 msgid "Overall Rating:"
-msgstr "Totale voortgang:"
+msgstr "Totale beoordeling:"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
 msgstr "oppenbar UUID"
 
 #: hardware/templates/show.html:43
-#, fuzzy
 msgid "Operating System"
-msgstr "Operating System"
+msgstr "Besturingssysteem"
 
 #: hardware/templates/show.html:44
-#, fuzzy
 msgid "Platform"
 msgstr "Platform"
 
 #: hardware/templates/show.html:45
-#, fuzzy
 msgid "System Vendor"
 msgstr "Processorfabrikant"
 
 #: hardware/templates/show.html:46
-#, fuzzy
 msgid "System Model"
 msgstr "Processormodel"
 
 #: hardware/templates/show.html:47
-#, fuzzy
 msgid "Kernel"
 msgstr "Kernel"
 
@@ -104,7 +94,6 @@ msgid "Formfactor"
 msgstr "Formfactor"
 
 #: hardware/templates/show.html:49
-#, fuzzy
 msgid "Last Modified"
 msgstr "Laatst veranderd"
 
@@ -113,22 +102,18 @@ msgid "Admin Password"
 msgstr "Admin Wachtwoord"
 
 #: hardware/templates/show.html:57
-#, fuzzy
 msgid "Devices"
 msgstr "Apparaten"
 
 #: hardware/templates/show.html:60
-#, fuzzy
 msgid "Rating"
 msgstr "Beoordeling"
 
 #: hardware/templates/show.html:60
-#, fuzzy
 msgid "Device"
 msgstr "Apparaat"
 
 #: hardware/templates/show.html:60
-#, fuzzy
 msgid "Class"
 msgstr "Klasse"
 
