@@ -3,6 +3,7 @@ import simplejson
 from turbogears import expose
 from turbogears import exception_handler
 from sqlalchemy.exceptions import InvalidRequestError
+from datetime import datetime
 
 from hardware.wiki import *
 from hardware.ratingwidget import *
@@ -10,6 +11,7 @@ from hardware.controllers.error import Error
 from hardware.model import *
 from hardware.hwdata import DeviceMap
 from hardware.uuid import generate_uuid
+
 
 import gc
 
@@ -263,7 +265,7 @@ class Client(object):
                 device_sql.driver = device['driver']
                 device_sql.cls = cls
                 device_sql.description = device['description']
-                device_sql.date_added = DateTime.now()
+                device_sql.date_added = datetime.today()
 
                 d = device_sql
 
