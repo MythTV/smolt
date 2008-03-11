@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 from setuptools import setup, find_packages
 from turbogears.finddata import find_package_data
 
