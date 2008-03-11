@@ -197,6 +197,8 @@ class Client(object):
         host_sql.system = host_dict['system']
         host_sql.kernel_version = host_dict['kernel_version']
         host_sql.formfactor = host_dict['formfactor']
+        if host_sql.formfactor is None:
+            host_sql.formfactor = 'unknown'
         host_sql.selinux_enabled = host_dict['selinux_enabled']
         try:
             host_sql.selinux_policy = host_dict['selinux_policy']
