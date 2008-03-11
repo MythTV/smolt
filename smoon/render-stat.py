@@ -139,7 +139,7 @@ class ByClass(object):
         total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))],
                              hosts.c.id == host_links.c.host_link_id)\
                         .execute().fetchone()[0]
-
+        
         for cls in classes:
             type = cls.cls
 
