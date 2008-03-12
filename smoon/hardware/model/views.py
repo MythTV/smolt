@@ -2,124 +2,65 @@ from sqlalchemy import *
 
 from hardware.model.model import *
 
-hardware_host_cnt = func.count(func.distinct(host_links.c.host_link_id)).label('cnt')
-hardware_by_class = select([host_links.c.device_id.label('id'),
-                            computer_logical_devices.c.description,
-                            computer_logical_devices.c.bus,
-                            computer_logical_devices.c.driver,
-                            computer_logical_devices.c.vendor_id,
-                            computer_logical_devices.c.device_id,
-                            computer_logical_devices.c.subsys_device_id,
-                            computer_logical_devices.c.subsys_vendor_id,
-                            computer_logical_devices.c.date_added,
-                            computer_logical_devices.c.cls,
-                            hardware_host_cnt],
-                           host_links.c.device_id==computer_logical_devices.c.id)\
-                    .group_by(host_links.c.device_id)\
-                    .order_by(hardware_host_cnt)\
-                    .alias('CLASS')
+def column_cnt(column):
+    '''This is a counted column.  A convenience function'''
+    return func.count(column).label('cnt')
 
-filetype_cnt = func.count(file_systems.c.fs_type).label('cnt')
-filesys = select([file_systems.c.fs_type, filetype_cnt])\
-    .group_by(file_systems.c.fs_type)\
-    .order_by(filetype_cnt)\
-    .alias('FILESYSTEMS')
+def column_cnt_d(column):
+    '''The same as column_cnt, but distinct'''
+    return func.count(func.distinct(column)).label('cnt')
+
+def counted_view(name, columns, cnt_obj, group_by, restrictions=None, desc=False):
+    '''Generates a satistical counted view of some table or simple join 
+    for some group of columns.
     
-platform_cnt = func.count(hosts.c.platform).label('cnt')
-archs = select([hosts.c.platform, platform_cnt])\
-    .group_by(hosts.c.platform)\
-    .order_by(platform_cnt)\
-    .alias("ARCH")
+    This function is a bit low level, and you probably want the
+    simple version of this: simple_mapped_counted_view
+    
+    params:
+        name is the name of the view
+        columns is an iterable with the columns desired
+            - multiple tables' columns may be used here, for simple joins
+        cnt_obj is the object the count is performed on
+        group_by the object to group on, such that it is counted
+        restrictions are sqlalchemy where constraints
+        desc is a boolean whether you want it in ascending, descending or condescending order
+    '''
+    s = select(columns + [cnt_obj], restrictions).group_by(group_by)
+    if desc:
+        return s.order_by(cnt_obj.desc()).alias(name)
+    else:
+        return s.order_by(cnt_obj).alias(name)
 
-os_cnt = func.count(hosts.c.os).label('cnt')
-oses = select([hosts.c.os, os_cnt])\
-    .group_by(hosts.c.os)\
-    .order_by(os_cnt)\
-    .alias('OS')
+def simple_counted_view(name, column, desc=False, label=None):
+    '''Generates a counted view on a single column'''
+    cnt_obj = column_cnt(column)
+    if label:
+        column = column.label(label)
+    sel = counted_view(name, [column], cnt_obj, column, desc=desc)
+    return (cnt_obj, sel)
 
-runlevel_cnt = func.count(hosts.c.default_runlevel).label('cnt')
-runlevels = select([hosts.c.default_runlevel.label('runlevel'), runlevel_cnt])\
-    .group_by(hosts.c.default_runlevel)\
-    .order_by(runlevel_cnt)\
-    .alias('RUNLEVEL')
-
-cpu_cnt = func.count(hosts.c.num_cpus).label('cnt')
-num_cpus = select([hosts.c.num_cpus, cpu_cnt])\
-    .group_by(hosts.c.num_cpus)\
-    .order_by(cpu_cnt)\
-    .alias('NUM_CPUS')
-
-vendor_cnt = func.count(hosts.c.vendor).label('cnt')
-vendors = select([hosts.c.vendor, vendor_cnt])\
-    .group_by(hosts.c.vendor)\
-    .order_by(vendor_cnt)\
-    .alias('VENDOR')
-
-system_cnt = func.count(hosts.c.system).label('cnt')
-systems = select([hosts.c.system, system_cnt])\
-    .group_by(hosts.c.system)\
-    .order_by(system_cnt)\
-    .alias('SYSTEM')
-
-cpu_vendor_cnt = func.count(hosts.c.cpu_vendor).label('cnt')
-cpu_vendors = select([hosts.c.cpu_vendor, cpu_vendor_cnt])\
-    .group_by(hosts.c.cpu_vendor)\
-    .order_by(cpu_vendor_cnt)\
-    .alias('CPU_VENDOR')
-
-kernel_cnt = func.count(hosts.c.kernel_version).label('cnt')
-kernel_versions = select([hosts.c.kernel_version, kernel_cnt])\
-    .group_by(hosts.c.kernel_version)\
-    .order_by(kernel_cnt)\
-    .alias('KERNEL_VERSION')
-
-formfactor_cnt = func.count(hosts.c.formfactor).label('cnt')
-formfactors = select([hosts.c.formfactor, formfactor_cnt])\
-    .group_by(hosts.c.formfactor)\
-    .order_by(formfactor_cnt)\
-    .alias('FORMFACTOR')
-
-language_cnt = func.count(hosts.c.language).label('cnt')
-languages = select([hosts.c.language, language_cnt])\
-    .group_by(hosts.c.language)\
-    .order_by(language_cnt)\
-    .alias('LANGUAGE')
-
-enabled_cnt = func.count(hosts.c.selinux_enabled).label('cnt')
-selinux_enabled = select([hosts.c.selinux_enabled.label('enabled'), enabled_cnt])\
-    .group_by(hosts.c.selinux_enabled)\
-    .order_by(enabled_cnt)\
-    .alias('SELINUX_ENABLED')
-
-enforce_cnt = func.count(hosts.c.selinux_enforce).label('cnt')
-selinux_enforce = select([hosts.c.selinux_enforce.label('enforce'), enforce_cnt])\
-    .group_by(hosts.c.selinux_enforce)\
-    .order_by(enforce_cnt)\
-    .alias('SELINUX_ENFORCE')
-
-policy_cnt = func.count(hosts.c.selinux_policy).label('cnt')
-selinux_policy = select([hosts.c.selinux_policy.label('policy'), policy_cnt])\
-    .group_by(hosts.c.selinux_policy)\
-    .order_by(policy_cnt)\
-    .alias('SELINUX_POLICY')
-
-mythrole_cnt = func.count(hosts.c.myth_systemrole).label('cnt')
-myth_systemroles = select([hosts.c.myth_systemrole, mythrole_cnt])\
-    .group_by(hosts.c.myth_systemrole)\
-    .order_by(mythrole_cnt)\
-    .alias('MYTH_SYSTEMROLE')
-
-remotes_cnt = func.count(hosts.c.mythremote).label('cnt')
-mythremotes = select([hosts.c.mythremote, remotes_cnt])\
-    .group_by(hosts.c.mythremote)\
-    .order_by(remotes_cnt)\
-    .alias('MYTHREMOTE')
-
-myththemes_cnt = func.count(hosts.c.myththeme).label('cnt')
-myththemes = select([hosts.c.myththeme, myththemes_cnt])\
-    .group_by(hosts.c.myththeme)\
-    .order_by(myththemes_cnt)\
-    .alias('MYTHTHEME')
+#This creates one ugly sideeffect, but I couldn't think of a better way off hand
+#that doesn't require a sever language adjustment :p -ynemoy
+def simple_mapped_counted_view(name, column, map_obj, desc=False, label=None):
+    '''For some column in a table, generates a counted view and maps it to some object
+    
+    params:
+        name is the name of the view
+        column is the column being counted
+        map_obj is the object to be mapped to
+        desc is the order you want it in
+        label renames the column name to something else, so the class
+            uses a different attribute name than the source table
+    '''
+    cnt_obj, sel = simple_counted_view(name, column, desc, label)
+    if label:
+        p_key = getattr(sel.c, label)
+    else:
+        p_key = getattr(sel.c, column.name)
+    mapper(map_obj, sel, primary_key=[p_key])
+    return sel
+    
 
 tot_device_cnt = func.count(host_links.c.device_id).label('cnt')
 totallist = select([computer_logical_devices.c.description, tot_device_cnt], 
@@ -135,10 +76,8 @@ uniquelist = select([computer_logical_devices.c.description, unq_device_cnt],
                    .order_by(unq_device_cnt)\
                    .alias('UNIQUELIST')
 
-class FileSys(object):
-    pass
 
-class HardwareByClass(object):
+class FileSys(object):
     pass
 
 class Arch(object):
@@ -178,65 +117,62 @@ class MythRemote(object):
 class MythTheme(object):
     pass
 
-mapper(HardwareByClass, hardware_by_class,
-       primary_key=[hardware_by_class.c.id])
+filesys = simple_mapped_counted_view("FILESYSTEMS", file_systems.c.fs_type,
+                                     FileSys, desc=True)
 
-mapper(OS, oses, order_by=desc(oses.c.cnt),
-       primary_key=[oses.c.os])
+archs = simple_mapped_counted_view("ARCH", hosts.c.platform,
+                                   Arch, desc=True)
 
-mapper(Arch, archs, order_by=desc(archs.c.cnt),
-       primary_key=[archs.c.platform])
+oses = simple_mapped_counted_view("OS", hosts.c.os,
+                                  OS, desc=True)
 
-mapper(Runlevel, runlevels, order_by=desc(runlevels.c.cnt),
-       primary_key=[runlevels.c.runlevel])
+runlevels = simple_mapped_counted_view("RUNLEVEL", hosts.c.default_runlevel, 
+                                       Runlevel, desc=True, label='runlevel')
 
-mapper(NumCPUs, num_cpus, order_by=desc(num_cpus.c.cnt),
-       primary_key=[num_cpus.c.num_cpus])
+num_cpus = simple_mapped_counted_view("NUM_CPUS", hosts.c.num_cpus, 
+                                      NumCPUs, desc=True)
 
-mapper(Vendor, vendors, order_by=desc(vendors.c.cnt),
-       primary_key=[vendors.c.vendor])
+vendors = simple_mapped_counted_view('VENDOR', hosts.c.vendor,
+                                     Vendor, desc=True)
 
-mapper(System, systems, order_by=desc(systems.c.cnt),
-       primary_key=[systems.c.system])
+systems = simple_mapped_counted_view('SYSTEM', hosts.c.system,
+                                     System, desc=True)
 
-mapper(CPUVendor, cpu_vendors, order_by=desc(cpu_vendors.c.cnt),
-       primary_key=[cpu_vendors.c.cpu_vendor])
+cpu_vendors = simple_mapped_counted_view('CPU_VENDOR', hosts.c.cpu_vendor,
+                                         CPUVendor, desc=True)
 
-mapper(KernelVersion, kernel_versions, order_by=desc(kernel_versions.c.cnt),
-       primary_key=[kernel_versions.c.kernel_version])
+kernel_versions = simple_mapped_counted_view('KERNEL_VERSION', hosts.c.kernel_version,
+                                             KernelVersion, desc=True)
 
-mapper(FormFactor, formfactors, order_by=desc(formfactors.c.cnt),
-       primary_key=[formfactors.c.formfactor])
+formfactors = simple_mapped_counted_view('FORMFACTOR', hosts.c.formfactor,
+                                         FormFactor, desc=True)
 
-mapper(Language, languages, order_by=desc(languages.c.cnt),
-       primary_key=[languages.c.language])
+languages = simple_mapped_counted_view('LANGUAGE', hosts.c.language,
+                                       Language, desc=True)
 
-mapper(SelinuxEnabled, selinux_enabled, order_by=desc(selinux_enabled.c.cnt),
-       primary_key=[selinux_enabled.c.enabled])
+selinux_enabled = simple_mapped_counted_view('SELINUX_ENABLED', hosts.c.selinux_enabled,
+                                             SelinuxEnabled, desc=True, label='enabled')
 
-mapper(SelinuxEnforced, selinux_enforce, order_by=desc(selinux_enforce.c.cnt),
-       primary_key=[selinux_enforce.c.enforce])
+selinux_enforce = simple_mapped_counted_view('SELINUX_ENFORCE', hosts.c.selinux_enforce,
+                                             SelinuxEnforced, desc=True, label='enforce')
 
-mapper(SelinuxPolicy, selinux_policy, order_by=desc(selinux_policy.c.cnt),
-       primary_key=[selinux_policy.c.policy])
+selinux_policy = simple_mapped_counted_view('SELINUX_POLICY', hosts.c.selinux_policy,
+                                            SelinuxPolicy, desc=True, label='policy')
 
-mapper(MythSystemRole, myth_systemroles, order_by=desc(myth_systemroles.c.cnt),
-       primary_key=[myth_systemroles.c.myth_systemrole])
+myth_systemroles = simple_mapped_counted_view('MYTH_SYSTEMROLE', hosts.c.myth_systemrole,
+                                              MythSystemRole, desc=True)
 
-mapper(MythTheme, myththemes, order_by=desc(myththemes.c.cnt),
-       primary_key=[myththemes.c.myththeme])
+mythremotes = simple_mapped_counted_view('MYTHREMOTE', hosts.c.mythremote,
+                                         MythRemote, desc=True)
 
-mapper(MythRemote, mythremotes, order_by=desc(mythremotes.c.cnt),
-       primary_key=[mythremotes.c.mythremote])
+myththemes = simple_mapped_counted_view('MYTHTHEME', hosts.c.myththeme,
+                                        MythTheme, desc=True)
 
 mapper(TotalList, totallist, order_by=desc(totallist.c.cnt),
        primary_key=[totallist.c.description])
 
 mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.cnt),
        primary_key=[uniquelist.c.description])
-
-mapper(FileSys, filesys, order_by=desc(filesys.c.cnt),
-       primary_key=[filesys.c.fs_type])
 
 
 def old_hosts_clause():
