@@ -10,7 +10,7 @@ def column_cnt_d(column):
     '''The same as column_cnt, but distinct'''
     return func.count(func.distinct(column)).label('cnt')
 
-def counted_view(name, columns, cnt_obj, group_by, restrictions=None, desc=False):
+def counted_view(name, columns, group_by, restrictions=None, desc=False, distinct=False):
     '''Generates a satistical counted view of some table or simple join 
     for some group of columns.
     
@@ -21,24 +21,23 @@ def counted_view(name, columns, cnt_obj, group_by, restrictions=None, desc=False
         name is the name of the view
         columns is an iterable with the columns desired
             - multiple tables' columns may be used here, for simple joins
-        cnt_obj is the object the count is performed on
+            - what is in group_by should not be included here
         group_by the object to group on, such that it is counted
         restrictions are sqlalchemy where constraints
         desc is a boolean whether you want it in ascending, descending or condescending order
-    '''
-    s = select(columns + [cnt_obj], restrictions).group_by(group_by)
+    ''' 
+    cnt_f = column_cnt_d if distinct else column_cnt
+    cnt_obj = cnt_f(group_by)
+    s = select(columns + [group_by, cnt_obj], restrictions).group_by(group_by)
     if desc:
-        return s.order_by(cnt_obj.desc()).alias(name)
-    else:
-        return s.order_by(cnt_obj).alias(name)
+        cnt_obj = cnt_obj.desc()
+    return s.order_by(cnt_obj).alias(name)
 
-def simple_counted_view(name, column, desc=False, label=None):
+def simple_counted_view(name, column, desc=False, label=None, distinct=False):
     '''Generates a counted view on a single column'''
-    cnt_obj = column_cnt(column)
     if label:
         column = column.label(label)
-    sel = counted_view(name, [column], cnt_obj, column, desc=desc)
-    return (cnt_obj, sel)
+    return counted_view(name, [column], column, desc=desc, distinct=distinct)
 
 #This creates one ugly sideeffect, but I couldn't think of a better way off hand
 #that doesn't require a sever language adjustment :p -ynemoy
@@ -53,11 +52,8 @@ def simple_mapped_counted_view(name, column, map_obj, desc=False, label=None):
         label renames the column name to something else, so the class
             uses a different attribute name than the source table
     '''
-    cnt_obj, sel = simple_counted_view(name, column, desc, label)
-    if label:
-        p_key = getattr(sel.c, label)
-    else:
-        p_key = getattr(sel.c, column.name)
+    sel = simple_counted_view(name, column, desc, label)
+    p_key = getattr(sel.c, label) if label else getattr(sel.c, column.name)
     mapper(map_obj, sel, primary_key=[p_key])
     return sel
     
@@ -177,3 +173,6 @@ mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.cnt),
 
 def old_hosts_clause():
     return (hosts.c.last_modified > (date.today() - timedelta(days=36)))
+
+def old_hosts_table():
+    return select([hosts], old_hosts_clause()).alias('old_hosts')
