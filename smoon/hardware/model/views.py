@@ -64,21 +64,6 @@ def simple_mapped_counted_view(name, column, map_obj, desc=False, label=None):
     return sel
     
 
-tot_device_cnt = func.count(host_links.c.device_id).label('cnt')
-totallist = select([computer_logical_devices.c.description, tot_device_cnt], 
-                   host_links.c.device_id==computer_logical_devices.c.id)\
-                   .group_by(host_links.c.device_id)\
-                   .order_by(tot_device_cnt)\
-                   .alias('TOTALLIST')
-
-unq_device_cnt = func.count(distinct(host_links.c.device_id)).label('cnt')
-uniquelist = select([computer_logical_devices.c.description, unq_device_cnt], 
-                   host_links.c.device_id==computer_logical_devices.c.id)\
-                   .group_by(host_links.c.device_id)\
-                   .order_by(unq_device_cnt)\
-                   .alias('UNIQUELIST')
-
-
 class FileSys(object):
     pass
 
@@ -119,6 +104,7 @@ class MythRemote(object):
 class MythTheme(object):
     pass
 
+#this references hosts just as an example for now, this will become necessary later
 filesys = mapped_counted_view("FILESYSTEMS", FileSys, [],
                               file_systems.c.fs_type, hosts.c.id==file_systems.c.host_id, desc=True)
 
@@ -170,11 +156,18 @@ mythremotes = simple_mapped_counted_view('MYTHREMOTE', hosts.c.mythremote,
 myththemes = simple_mapped_counted_view('MYTHTHEME', hosts.c.myththeme,
                                         MythTheme, desc=True)
 
-mapper(TotalList, totallist, order_by=desc(totallist.c.cnt),
-       primary_key=[totallist.c.description])
+totallist = mapped_counted_view('TOTALLIST', TotalList,
+                                [computer_logical_devices.c.description],
+                                host_links.c.device_id,
+                                host_links.c.device_id==computer_logical_devices.c.id,
+                                desc=True)
 
-mapper(UniqueList, uniquelist, order_by=desc(uniquelist.c.cnt),
-       primary_key=[uniquelist.c.description])
+uniquelist = mapped_counted_view('UNIQUELIST', UniqueList,
+                                [computer_logical_devices.c.description],
+                                host_links.c.device_id,
+                                host_links.c.device_id==computer_logical_devices.c.id,
+                                desc=True, distinct=True)
+ 
 
 
 def old_hosts_clause():
