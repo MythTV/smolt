@@ -41,6 +41,12 @@ def simple_counted_view(name, column, desc=False, label=None, distinct=False):
 
 #This creates one ugly sideeffect, but I couldn't think of a better way off hand
 #that doesn't require a sever language adjustment :p -ynemoy
+def mapped_counted_view(name, map_obj, columns, group_by, restrictions=None, desc=False, distinct=False):
+    sel = counted_view(name, columns, group_by, restrictions, desc, distinct)
+    p_key = getattr(sel.c, group_by.name)
+    mapper(map_obj, sel, primary_key=[p_key])
+    return sel
+    
 def simple_mapped_counted_view(name, column, map_obj, desc=False, label=None):
     '''For some column in a table, generates a counted view and maps it to some object
     
@@ -113,8 +119,8 @@ class MythRemote(object):
 class MythTheme(object):
     pass
 
-filesys = simple_mapped_counted_view("FILESYSTEMS", file_systems.c.fs_type,
-                                     FileSys, desc=True)
+filesys = mapped_counted_view("FILESYSTEMS", FileSys, [],
+                              file_systems.c.fs_type, hosts.c.id==file_systems.c.host_id, desc=True)
 
 archs = simple_mapped_counted_view("ARCH", hosts.c.platform,
                                    Arch, desc=True)
