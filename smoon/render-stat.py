@@ -17,6 +17,7 @@ import sys
 import time
 from hardware.wiki import *
 from turboflot import TurboFlot
+from turbogears.database import get_engine
 
 # first look on the command line for a desired config file,
 # if it's not on the command line, then
@@ -122,55 +123,31 @@ def _process_output(output, template, format):
 stats = {}
 # somehow this has to be first, cause it binds us to
 # an sqlalchemy context
-stats['total_hosts'] = session.query(Host).count()
+#I'm not sure why SA needs this, but when I fix it, it's going to feel a world
+#of pain from me -ynemoy
+stats['total_hosts'] = get_engine().connect().execute(total_hosts()).fetchone()[0]
 
 class ByClass(object):
     def __init__(self):
         self.data = {}
 
     def fetch_data(self):
-        classes = session.query(HardwareClass).select()
+        classes = all_classes()
         count = {}
         types = {}
         vendors = {}
         total_hosts = 0
 
         # We only want hosts that detected hardware (IE, hal was working properly)
-        total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))],
-                             hosts.c.id == host_links.c.host_link_id)\
-                        .execute().fetchone()[0]
+        total_hosts = host_count_with_devices()
         
         for cls in classes:
             type = cls.cls
-
-            #devs = select([computer_logical_devices], computer_logical_devices.c.cls == type).alias("devs")
-            devs = computer_logical_devices
-            types = select([devs,
-                            func.count(func.distinct(host_links.c.host_link_id)).label('c')],
-                           and_(devs.c.cls == type,
-                                host_links.c.device_id == devs.c.id),
-                           #from_obj=[ host_links.join(devs, host_links.c.device_id == devs.c.id) ],
-                           group_by=host_links.c.device_id,
-                           order_by=[desc('c')],
-                           limit=100).execute().fetchall();
-
-#            devs = select([computer_logical_devices.c.id],
-#                          and_(computer_logical_devices.c.cls == type,
-#                               old_hosts_clause())).alias("devs")
-#            devs = computer_logical_devices
-            count = select([func.count(func.distinct(host_links.c.host_link_id))],
-                           and_(devs.c.cls == type,
-                                host_links.c.device_id == devs.c.id)).execute().fetchone()[0]
-
-            device = computer_logical_devices
-            vendors = select([func.count(device.c.vendor_id).label('cnt'),
-                              device.c.vendor_id],
-                             device.c.cls==type,
-                             order_by=[desc('cnt')],
-                             group_by=device.c.vendor_id).execute().fetchall()
+            types = top_devices_per_class(type)
+            count = hosts_per_class(type)
+            vendors = top_vendors_per_class(type)
 
             self.data[type] = (total_hosts, count, types, vendors)
-
 
     def __getitem__(self, key):
         return self.data[key]

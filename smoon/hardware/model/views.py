@@ -1,6 +1,15 @@
 from sqlalchemy import *
+from sqlalchemy.orm import *
 
 from hardware.model.model import *
+
+def old_hosts_clause():
+    return (hosts.c.last_modified > (date.today() - timedelta(days=36)))
+
+def old_hosts_table():
+    return select([hosts], old_hosts_clause()).alias('old_hosts')
+
+old_hosts = old_hosts_table()
 
 def column_cnt(column):
     '''This is a counted column.  A convenience function'''
@@ -106,54 +115,54 @@ class MythTheme(object):
 
 #this references hosts just as an example for now, this will become necessary later
 filesys = mapped_counted_view("FILESYSTEMS", FileSys, [],
-                              file_systems.c.fs_type, hosts.c.id==file_systems.c.host_id, desc=True)
+                              file_systems.c.fs_type, old_hosts.c.id==file_systems.c.host_id, desc=True)
 
-archs = simple_mapped_counted_view("ARCH", hosts.c.platform,
+archs = simple_mapped_counted_view("ARCH", old_hosts.c.platform,
                                    Arch, desc=True)
 
-oses = simple_mapped_counted_view("OS", hosts.c.os,
+oses = simple_mapped_counted_view("OS", old_hosts.c.os,
                                   OS, desc=True)
 
-runlevels = simple_mapped_counted_view("RUNLEVEL", hosts.c.default_runlevel, 
+runlevels = simple_mapped_counted_view("RUNLEVEL", old_hosts.c.default_runlevel, 
                                        Runlevel, desc=True, label='runlevel')
 
-num_cpus = simple_mapped_counted_view("NUM_CPUS", hosts.c.num_cpus, 
+num_cpus = simple_mapped_counted_view("NUM_CPUS", old_hosts.c.num_cpus, 
                                       NumCPUs, desc=True)
 
-vendors = simple_mapped_counted_view('VENDOR', hosts.c.vendor,
+vendors = simple_mapped_counted_view('VENDOR', old_hosts.c.vendor,
                                      Vendor, desc=True)
 
-systems = simple_mapped_counted_view('SYSTEM', hosts.c.system,
+systems = simple_mapped_counted_view('SYSTEM', old_hosts.c.system,
                                      System, desc=True)
 
-cpu_vendors = simple_mapped_counted_view('CPU_VENDOR', hosts.c.cpu_vendor,
+cpu_vendors = simple_mapped_counted_view('CPU_VENDOR', old_hosts.c.cpu_vendor,
                                          CPUVendor, desc=True)
 
-kernel_versions = simple_mapped_counted_view('KERNEL_VERSION', hosts.c.kernel_version,
+kernel_versions = simple_mapped_counted_view('KERNEL_VERSION', old_hosts.c.kernel_version,
                                              KernelVersion, desc=True)
 
-formfactors = simple_mapped_counted_view('FORMFACTOR', hosts.c.formfactor,
+formfactors = simple_mapped_counted_view('FORMFACTOR', old_hosts.c.formfactor,
                                          FormFactor, desc=True)
 
-languages = simple_mapped_counted_view('LANGUAGE', hosts.c.language,
+languages = simple_mapped_counted_view('LANGUAGE', old_hosts.c.language,
                                        Language, desc=True)
 
-selinux_enabled = simple_mapped_counted_view('SELINUX_ENABLED', hosts.c.selinux_enabled,
+selinux_enabled = simple_mapped_counted_view('SELINUX_ENABLED', old_hosts.c.selinux_enabled,
                                              SelinuxEnabled, desc=True, label='enabled')
 
-selinux_enforce = simple_mapped_counted_view('SELINUX_ENFORCE', hosts.c.selinux_enforce,
+selinux_enforce = simple_mapped_counted_view('SELINUX_ENFORCE', old_hosts.c.selinux_enforce,
                                              SelinuxEnforced, desc=True, label='enforce')
 
-selinux_policy = simple_mapped_counted_view('SELINUX_POLICY', hosts.c.selinux_policy,
+selinux_policy = simple_mapped_counted_view('SELINUX_POLICY', old_hosts.c.selinux_policy,
                                             SelinuxPolicy, desc=True, label='policy')
 
-myth_systemroles = simple_mapped_counted_view('MYTH_SYSTEMROLE', hosts.c.myth_systemrole,
+myth_systemroles = simple_mapped_counted_view('MYTH_SYSTEMROLE', old_hosts.c.myth_systemrole,
                                               MythSystemRole, desc=True)
 
-mythremotes = simple_mapped_counted_view('MYTHREMOTE', hosts.c.mythremote,
+mythremotes = simple_mapped_counted_view('MYTHREMOTE', old_hosts.c.mythremote,
                                          MythRemote, desc=True)
 
-myththemes = simple_mapped_counted_view('MYTHTHEME', hosts.c.myththeme,
+myththemes = simple_mapped_counted_view('MYTHTHEME', old_hosts.c.myththeme,
                                         MythTheme, desc=True)
 
 totallist = mapped_counted_view('TOTALLIST', TotalList,
@@ -170,8 +179,45 @@ uniquelist = mapped_counted_view('UNIQUELIST', UniqueList,
  
 
 
-def old_hosts_clause():
-    return (hosts.c.last_modified > (date.today() - timedelta(days=36)))
+def total_hosts ():
+    return select([func.count(old_hosts.c.id)])
 
-def old_hosts_table():
-    return select([hosts], old_hosts_clause()).alias('old_hosts')
+def all_classes():
+    return session.query(HardwareClass).all()
+
+# We only want hosts that detected hardware (IE, hal was working properly)
+def host_count_with_devices():
+    return select([func.count(func.distinct(old_hosts.c.id))],
+                 old_hosts.c.id == host_links.c.host_link_id).execute().fetchone()[0]
+
+def devices_per_class(cls):
+    return counted_view('tmp', [computer_logical_devices], host_links.c.host_link_id, 
+                        and_(computer_logical_devices.c.cls==cls,
+                             host_links.c.device_id==computer_logical_devices.c.id), 
+                        desc=True, distinct=True)
+              
+def top_devices_per_class(cls):
+    return devices_per_class(cls).select().limit(100).execute().fetchall()
+
+#            count = select([func.count(func.distinct(host_links.c.host_link_id))],
+#                           and_(devs.c.cls == type,
+#                                host_links.c.device_id == devs.c.id)).execute().fetchone()[0]
+#
+#            device = computer_logical_devices
+#            vendors = select([func.count(device.c.vendor_id).label('cnt'),
+#                              device.c.vendor_id],
+#                             device.c.cls==type,
+#                             order_by=[desc('cnt')],
+#                             group_by=device.c.vendor_id).execute().fetchall()
+
+def hosts_per_class(cls):
+    return select([func.count(func.distinct(host_links.c.host_link_id))],
+                  and_(computer_logical_devices.c.cls==cls,
+                       host_links.c.device_id==computer_logical_devices.c.id))\
+                .execute().fetchone()[0]
+
+def top_vendors_per_class(cls):
+    return counted_view('tmp', [], 
+                        computer_logical_devices.c.vendor_id,
+                        computer_logical_devices.c.cls==cls,
+                        desc=True, distinct=False).execute().fetchall()[:100]
