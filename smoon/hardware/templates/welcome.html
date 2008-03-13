@@ -7,22 +7,22 @@
     <title>Smolt</title>
   </head>
   <body>
-    <h2>Lookup</h2>
+    <h2>${_('Lookup')}</h2>
     <form method='GET' action='/show'>
-      Enter your profile UUID: <input type='text' name='uuid' size='32'/>
+      ${_('Enter your profile UUID:')} <input type='text' name='uuid' size='32'/>
     </form>
     <p></p>
-    <h2>Statistics</h2>
+    <h2>${_('Statistics')}</h2>
     <p>
+    <!-- This line refuses to let me run gettext on it! -ynemoy-->
     For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>
     </p>
-    <h2> Top Vendor Chart </h2>
+    <h2> ${_('Top Vendor Chart')} </h2>
     ${ET(vendorFlot.display())}
-<!--<h2>Growth</h2>
-<p><img src="/cacti/smoltArch.png"/></p> -->
     <p> </p>
     <p> </p>
-    <h2>More info</h2>
+    <h2>${_('More info')}</h2>
+    <!-- This one too! -ynemoy-->
     <p>Browse and search the <a href="/wiki/">Wiki</a> for detailed information about specific devices.
     Usage and other general answers can also be found at the <a href="/wiki/">Wiki</a>.</p>
   </body>

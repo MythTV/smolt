@@ -2,6 +2,8 @@ from cherrypy import request, response
 from turbogears import controllers, expose, identity
 from turbogears import exception_handler
 from turbogears import redirect
+from turbogears import config
+import turbogears
 
 from hardware.controllers.client import Client
 from hardware.controllers.token import Token
@@ -14,10 +16,23 @@ from hardware.model import *
 import logging
 log = logging.getLogger("smoon")
 
+from turbogears.i18n import gettext
+from genshi.filters import Translator
+import turbogears.startup
+import turbogears.view
+
+def genshi_loader_callback(template):
+    template.filters.insert(0, Translator(gettext))
+
+def init_callback():
+    turbogears.view.engines['genshi'].loader.callback = genshi_loader_callback
+
+turbogears.startup.call_on_startup.append( init_callback )
+config.update({'genshi.loader_callback': genshi_loader_callback})
+
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
 current_smolt_protocol = '0.97' 
-
 
 class Root(controllers.RootController):
     tokens = Token(current_smolt_protocol, CRYPTPASS) #should be 'token' but it is taken :(

@@ -193,7 +193,6 @@
       <div class="tabbertab"><h2>Form Factor</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='formfactor in stat["formfactor"]'>
-            <?python print formfactor ?>
             <th align="right">${formfactor.formfactor}</th>
             <td align="center">${formfactor.cnt}</td>
             <td><strong>${'%.1f' % (float(formfactor.cnt) / total_hosts * 100) } %</strong></td>

@@ -1,0 +1,139 @@
+# Dutch translations for hardware.
+# Copyright (C) 2008 ORGANIZATION
+# This file is distributed under the same license as the hardware project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hardware 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2008-03-10 23:12+0400\n"
+"PO-Revision-Date: 2008-03-11 16:28-0500\n"
+"Last-Translator: Yaakov M. Nemoy <loupgaroublond@gmail.com>\n"
+"Language-Team: nl <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.1\n"
+
+#: hardware/controllers/root.py:93
+msgid "The credentials you supplied were not correct or did not grant access to this resource."
+msgstr "De Getuigenisen U opgegeven heeft zijn onjuist."
+
+#: hardware/controllers/root.py:96
+msgid "You must provide your credentials before accessing this resource."
+msgstr "U moet uw getuignenis opgeven bevor U kan deze resource gebruiken "
+
+#: hardware/controllers/root.py:99
+msgid "Please log in."
+msgstr "Log in a.u.b."
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr ""
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr "Ik gebruik 't niet of ik weet niet"
+
+#: hardware/templates/show.html:31
+msgid "Breaks System"
+msgstr "Brekt systeem"
+
+#: hardware/templates/show.html:32
+msgid "Doesn't Work"
+msgstr "Draait niet"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr "Heeft 3e party drivers nodig"
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr "Draait, maar heeft verder instellingen nodig"
+
+#: hardware/templates/show.html:35
+msgid "Worked out of the box"
+msgstr "Werkt zonder gekloot"
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr "Alle informatie weergeven"
+
+#: hardware/templates/show.html:39
+msgid "Overall Rating:"
+msgstr "Totale beoordeling:"
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr "oppenbar UUID"
+
+#: hardware/templates/show.html:43
+msgid "Operating System"
+msgstr "Besturingssysteem"
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr "Platform"
+
+#: hardware/templates/show.html:45
+msgid "System Vendor"
+msgstr "Processorfabrikant"
+
+#: hardware/templates/show.html:46
+msgid "System Model"
+msgstr "Processormodel"
+
+#: hardware/templates/show.html:47
+msgid "Kernel"
+msgstr "Kernel"
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr "Formfactor"
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr "Laatst veranderd"
+
+#: hardware/templates/show.html:50
+msgid "Admin Password"
+msgstr "Admin Wachtwoord"
+
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "Apparaten"
+
+#: hardware/templates/show.html:60
+msgid "Rating"
+msgstr "Beoordeling"
+
+#: hardware/templates/show.html:60
+msgid "Device"
+msgstr "Apparaat"
+
+#: hardware/templates/show.html:60
+msgid "Class"
+msgstr "Klasse"
+
+#: hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "Zoeken"
+
+#: hardware/templates/welcome.html:12
+msgid "Enter your profile UUID:"
+msgstr "Voer uw profil UUID in:"
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr "Statistieken"
+
+#: hardware/templates/welcome.html:20
+msgid "Top Vendor Chart"
+msgstr "Hoofdvendorgrafiek"
+
+#: hardware/templates/welcome.html:24
+msgid "More info"
+msgstr "Meer informatie"
+
