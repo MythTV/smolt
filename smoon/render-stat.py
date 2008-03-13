@@ -36,6 +36,7 @@ from sqlalchemy import *
 from hardware.model import *
 from hardware.hwdata import DeviceMap
 
+
 #bind = metadata.bind
 from turbogears.widgets import Tabber
 tabs = Tabber()
@@ -43,8 +44,8 @@ tabs = Tabber()
 # the path, where to store the generated pages
 page_path = "hardware/static/stats"
 
-engine = engines.get('genshi', None)
 turbogears.view.load_engines()
+engine = engines.get('genshi', None)
 #template config vars
 template_config={}
 template_config['archs']=config.get("stats_template.archs", [])
@@ -115,70 +116,49 @@ def _process_output(output, template, format):
             output["tg_js_%s" % str(l)] = js[l]
 
         output["tg_flash"] = output.get("tg_flash")
-
         return engine.render(output, format=format, template=template)
 
 
 
 stats = {}
+
 # somehow this has to be first, cause it binds us to
 # an sqlalchemy context
-#I'm not sure why SA needs this, but when I fix it, it's going to feel a world
-#of pain from me -ynemoy
-stats['total_hosts'] = get_engine().connect().execute(total_hosts()).fetchone()[0]
+session.query(Host)[0]
 
-class ByClass(object):
-    def __init__(self):
-        self.data = {}
-
-    def fetch_data(self):
-        classes = all_classes()
-        count = {}
-        types = {}
-        vendors = {}
-        total_hosts = 0
-
-        # We only want hosts that detected hardware (IE, hal was working properly)
-        total_hosts = host_count_with_devices()
-        
-        for cls in classes:
-            type = cls.cls
-            types = top_devices_per_class(type)
-            count = hosts_per_class(type)
-            vendors = top_vendors_per_class(type)
-
-            self.data[type] = (total_hosts, count, types, vendors)
-
-    def __getitem__(self, key):
-        return self.data[key]
-
-    pass
+stats['total_hosts'] = total_hosts().execute().fetchone()[0]
 
 
-byclass_cache = ByClass()
-byclass_cache.fetch_data()
+def render_devices(byclass_cache):
+    byclass_cache.fetch_data()
+    
+    for type in byclass_cache.data.keys():
+        type=type
+        pci_vendors = DeviceMap('pci')
+        (total_hosts, count, types, vendors) = byclass_cache[type]
+    
+        t=engine.load_template('hardware.templates.deviceclass')
+        yield type, _process_output(dict(types=types, type=type,
+                                        total_hosts=total_hosts, count=count,
+                                        pci_vendors=pci_vendors, vendors=vendors,
+                                        tabs=tabs), template=t, format='html')
 
-for type in byclass_cache.data.keys():
-    type=type
-    pci_vendors = DeviceMap('pci')
-    (total_hosts, count, types, vendors) = byclass_cache[type]
+#This is a function in a function because
+def device_reporter(byclass_cache):
+    def write_devices(fname_template, path):
+        for type, out_html in render_devices(byclass_cache):
+            fname = fname_template % dict(path=path, type=type)
+            f = open(fname, "w")
+            f.write(out_html)
+            f.close()
+    return write_devices
 
-    engine = engines.get('genshi', None)
-    t=engine.load_template('hardware.templates.deviceclass')
-
-    out_html = _process_output(dict(types=types, type=type,
-                                    total_hosts=total_hosts, count=count,
-                                    pci_vendors=pci_vendors, vendors=vendors,
-                                    tabs=tabs), template=t, format='html')
-
-    fname = "%s/by_class_%s.html" % (page_path, type)
-    f = open(fname, "w")
-    f.write(out_html)
-    f.close()
+byclass_cache = reports.ByClass()
+device_reporter(byclass_cache)("%(path)s/by_class_%(type)s.html", page_path)
 
 # Save some memory
 del byclass_cache
-del out_html
+
 
 stats = {}
 stats['total_hosts'] = session.query(Host).count()
