@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="master.html"/>
+    <head>
+        <title>Smolt</title>
+    </head>
+    <body>
+        <script src="/static/js/jquery-1.2.3.pack.js" type='text/javascript'/><script src="/static/js/jquery.debug.js" type="text/javascript"/><script src='/static/js/jquery.superflydom.js' type='text/javascript'/>
+        <script type="text/javascript">
+            <!--
+            DEBUG = true;
+            -->
+        </script>
+        <script type='text/javascript'>
+            <!--
+            function update_table_values_callback(){
+            }
+            
+            function update_table_values(){
+                col = $('#restrict_field')
+                $.log(col.val())
+                $.getJSON('/reports/values_for_column', {
+                    col_name: col.val()
+                }, function(data){
+                    $.log(data)
+                    $.log(data['values'])
+                    $.each(data['values'], function(i, val){
+                        $('#table_values').createAppend('option', {
+                            value: val
+                        }, [val])
+                    })
+                })
+            }
+            -->
+        </script>
+        <form name='search' action='/reports/view'>
+            <h2>${_('Lookup')}</h2>
+            <input type='submit' value='Search'/><h3>${_('Dataset')}</h3>
+            <?python print fields ?>
+            <div name='table_col'>
+                <select id='restrict_field' name='restrict_field'>
+                    <option selected='True' value='fuckoff'>Nothing Selected</option>
+                    <option py:for='field in fields' value='${field}'>${field}</option>
+                </select>
+                <br/>
+                <br/>
+                <select id='table_values' name='table_values' multiple='True'>
+                    <option selected='True' value='nosoap'>No Soap Radio</option>
+                </select>
+            </div>
+            <div name='table_value'>
+            </div>
+            <h3>${_('Result Set')}</h3>
+            <select id='count_field' name='count_field'>
+                <option selected='True' value='fuckoff'>Nothing Selected</option>
+                <option py:for='field in fields' value='${field}'>${field}</option>
+            </select>
+            <input type='submit' value='Search'/><input type='hidden' name='foo' value='abcd'/>
+        </form>
+        <script type='text/javascript'>
+            <!--
+            $(document).ready(function(){
+                $("#restrict_field").change(update_table_values)
+            })
+            -->
+        </script>
+    </body>
+</html>

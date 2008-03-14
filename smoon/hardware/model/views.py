@@ -216,6 +216,12 @@ def hosts_per_class(cls):
                        host_links.c.device_id==computer_logical_devices.c.id))\
                 .execute().fetchone()[0]
 
+def just_select(table):
+    return table.select().execute().fetchall()
+
+def just_count(table):
+    return select([func.count(table.c.id)]).execute().fetchone()[0]
+
 def top_vendors_per_class(cls):
     return counted_view('tmp', [], 
                         computer_logical_devices.c.vendor_id,

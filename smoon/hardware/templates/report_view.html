@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:py="http://genshi.edgewall.org/"
+  xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="master.html" />
+  <head>
+    <script src="/tg_widgets/turboflot/excanvas.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.flot.js" type="text/javascript"></script>
+    <link media="screen" href="/tg_widgets/turbogears.widgets/tabber/tabber.css" type="text/css" rel="stylesheet"/>
+    <title>Stats</title>
+  </head>
+  <body>
+    <script src="/tg_widgets/turbogears.widgets/tabber/tabber-minimized.js" type="text/javascript"></script>
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+      <tr>
+        <th valign="top" width="25%">Total Hosts Searched</th>
+        <td><strong>${total}</strong></td>
+      </tr>
+	  <tr>
+	  	<th valign='top' width='25%'>Searched ${restrict} on:</th>
+		<td><strong>${", ".join(restrict_vals)}</strong></td>
+		</tr>
+    </table>
+	
+    <div class="tabber">
+      <div class="tabbertab"><h2>Results for ${name}</h2>
+        <table id="${name}" width="100%" border="0" cellpadding="3" cellspacing="3">
+          <tr><th>${name}</th><th>Count</th><th>% of total</th><th halign="left"> </th></tr>
+          <tr py:for='result in results'>
+            <th align="right">${getattr(result, name)}</th>
+            <td align="center">${result.cnt}</td>
+            <td><strong>${'%.1f' % (float(result.cnt) / total * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(result.cnt) / total * 100 }'><div width='100%' id="bar"></div></td><td width='${ 100 - (float(result.cnt) / total * 100) }'></td></tr></table></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -9,6 +9,7 @@ from hardware.controllers.client import Client
 from hardware.controllers.token import Token
 from hardware.controllers.upgrade import Upgrade
 from hardware.controllers.error import error
+from hardware.controllers.reports import Reports
 from hardware.turboflot import TurboFlot
 
 from hardware.model import *
@@ -38,6 +39,7 @@ class Root(controllers.RootController):
     tokens = Token(current_smolt_protocol, CRYPTPASS) #should be 'token' but it is taken :(
     client = Client(current_smolt_protocol, tokens)
     upgrade = Upgrade()
+    reports = Reports()
     error = error
     
     def __init__(self):
