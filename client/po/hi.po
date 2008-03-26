@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: smolt.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2008-03-26 15:38+0530\n"
+"PO-Revision-Date: 2008-03-26 15:50+0530\n"
 "Last-Translator: Rajesh Ranjan <rranjan@redhat.com>\n"
 "Language-Team: Hindi <hindi.sf.net>\n"
 "MIME-Version: 1.0\n"
@@ -55,11 +55,11 @@ msgstr "प्रोफाइल हटाया गया, कृपया य�
 
 #: sendProfile.py:53
 msgid "(optional) Fedora Account System registration"
-msgstr ""
+msgstr "(वैकल्पिक) Fedora खाता सिस्टम पंजीयन"
 
 #: sendProfile.py:58
 msgid "password, will prompt if not specified"
-msgstr ""
+msgstr "शब्दकूट, प्रांप्ट करेगा यदि निर्दिष्ट नहीं है"
 
 #: sendProfile.py:68
 msgid "don't prompt to send, just send"
@@ -77,7 +77,7 @@ msgstr "यह एक स्वचालित चेकिन है, सिर
 
 #: sendProfile.py:93
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr ""
+msgstr "ज्ञात हार्डवेयर इरेटा के लिए सिर्फ इस मशीन को स्कैन कर सकता है, कृपया प्रोफाइल मत भेजें."
 
 #: sendProfile.py:108
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
@@ -117,7 +117,7 @@ msgstr "शब्दकूट:"
 
 #: sendProfile.py:158
 msgid "Registration Failed, Try again"
-msgstr ""
+msgstr "पंजीयन विफल, फिर कोशिश करें"
 
 #: sendProfile.py:164
 #, python-format
@@ -162,11 +162,11 @@ msgstr "मदद (_H)"
 
 #: smoltGui.py:80
 msgid "_My Smolt Page"
-msgstr ""
+msgstr "मेरा स्मोल्ट पृष्ठ (_M)"
 
 #: smoltGui.py:80
 msgid "Take me to my smolt profile page"
-msgstr ""
+msgstr "मेरे smolt प्रोफाइल पृष्ठ पर मुझे ले जाएं"
 
 #: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
@@ -180,6 +180,9 @@ msgid ""
 "%s\n"
 "stored in %s"
 msgstr ""
+"आंकड़ा सफलतापूर्वक भेजा गया था.  यदि आप अपने हार्डवेयर प्रोफाइल में बग रिपोर्ट के लिए संदर्भित करने की जरूरत रखते हैं तो आपका UUID \n"
+"%s\n"
+"%s में जमा किया गया है"
 
 #: smoltGui.py:166
 msgid "Smolt Privacy Policy"
@@ -193,11 +196,11 @@ msgstr ""
 
 #: smoltGui.py:210
 msgid "Fedora hardware profiler."
-msgstr ""
+msgstr "Fedora हार्डवेयर प्रोफाइलर."
 
 #: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
-msgstr ""
+msgstr "कॉपीराइट © 2007 Mike McGrath"
 
 #: smoltGui.py:213
 msgid ""
@@ -236,13 +239,15 @@ msgstr "सर्वर से संपर्क नहीं कर सका:
 
 #: smolt.py:296
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr ""
+msgstr "dbus में बाइंड नहीं कर सका.  क्या dbus चल रहा है?"
 
 #: smolt.py:302
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
 msgstr ""
+"hal से जुड़ नहीं सका, क्या यह चल रहा है?\n"
+"\"service haldaemon start\" को बतौर रूट चलाएँ"
 
 #: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
 #, python-format
@@ -251,7 +256,7 @@ msgstr "सर्वर से संपर्क में त्रुटि: 
 
 #: smolt.py:436
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
+msgstr "गलत संस्करण, सर्वर आपके क्लाइंट के नियंत्रण में असमर्थ"
 
 #: smolt.py:452
 msgid "Communication with server failed"
@@ -327,23 +332,23 @@ msgstr "कर्नेल"
 
 #: smolt.py:553
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux सक्रिय"
 
 #: smolt.py:554
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux पुनर्बलित करें"
 
 #: smolt.py:990
 msgid "Unable to save UUID, continuing...\n"
-msgstr ""
+msgstr "UUID सहेजने में असमर्थ, जारी रख रहा है...\n"
 
 #: smolt.py:992
 msgid "Unable to determine UUID of system!\n"
-msgstr ""
+msgstr "सिस्टम के UUID को निर्धारित करने में असमर्थ!\n"
 
 #: software.py:43
 msgid "Cannot Determine Runlevel"
-msgstr ""
+msgstr "रनलेवल निर्धारित नहीं कर सकता है"
 
 #: smoltFirstBoot.py:31 smoltFirstBoot.py:41
 msgid "Hardware Profile"
@@ -446,21 +451,21 @@ msgstr ""
 #: scan.py:16
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr ""
+msgstr "%s को ज्ञात इरेटा के लिए स्कैन कर रहा है.\n"
 
 #: scan.py:39
 msgid "Errata Found!"
-msgstr ""
+msgstr "इरेटा मिला!"
 
 #: scan.py:42
 msgid "No errata found, if this machine is having issues please go to"
-msgstr ""
+msgstr "कोई इरेटा नहीं मिला, यदि यह मशीन समस्या ग्रस्त है तो कृपया जाएँ"
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
-msgstr ""
+msgstr "आपका प्रोफाइल और युक्तियों के लिए विकि पृष्ठ बनाएँ ताकि दूसरे कर सकें"
 
 #: scan.py:44
 msgid "benefit"
-msgstr ""
+msgstr "लाभ"
 
