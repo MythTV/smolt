@@ -425,7 +425,7 @@ class Hardware:
             file(pub_uuid_file, 'w').write(pub_uuid)
         except Exception, e:
             sys.stderr.write(_('Unable to save pub_uuid, continuing...\n'))
-            sys.err.write(_('Your pub_uuid file  could not be created: %s\n' % e))
+            sys.stderr.write(_('Your pub_uuid file  could not be created: %s\n' % e))
             sys.exit(9)
         return
 
@@ -436,7 +436,7 @@ class Hardware:
             file(admin_token_file, 'w').write(admin)
         except Exception, e:
             sys.stderr.write(_('Unable to save token, continuing...\n'))
-            sys.err.write(_('Your admin token  could not be created: %s\n' % e))
+            sys.stderr.write(_('Your admin token  could not be created: %s\n' % e))
             sys.exit(9)
         return
 
@@ -1029,7 +1029,7 @@ def getUUID():
                 file(hw_uuid_file, 'w').write(UUID)
             except Exception, e:
                 sys.stderr.write(_('Unable to save UUID, continuing...\n'))
-                sys.err.write(_('Your UUID file could not be created: %s\n' % e))
+                sys.stderr.write(_('Your UUID file could not be created: %s\n' % e))
                 sys.exit(9)
         except IOError:
             sys.stderr.write(_('Unable to determine UUID of system!\n'))
