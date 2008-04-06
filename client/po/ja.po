@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2008-03-09 18:07+0900\n"
+"PO-Revision-Date: 2008-04-07 07:44+0900\n"
 "Last-Translator: Makoto Mizukami <mmk9060@aol.com>\n"
 "Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,9 @@ msgstr ""
 
 #: sendProfile.py:93
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "このマシンに於ける既知のエラッタだけをスキャンし、プロフィールは送信しません。"
+msgstr ""
+"このマシンに於ける既知のエラッタだけをスキャンし、プロフィールは送信しませ"
+"ん。"
 
 #: sendProfile.py:108
 msgid ""
@@ -206,7 +208,6 @@ msgid "Copyright © 2007 Mike McGrath"
 msgstr "Copyright © 2007 Mike McGrath"
 
 #: smoltGui.py:213
-#, fuzzy
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -221,20 +222,19 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
 "Ave, Cambridge, MA 02139, USA."
-msgstr ""
-"本プログラムはフリーソフトウェアです。 Free Software Foundation により発行さ"
-"れる GNU General Public License の契約書、 バージョン 2 またはそれ以降に基づ"
-"き本プログラムの再配布や変更が可能です。\n"
+msgstr "このプログラムはフリーソフトウェアです。フリーソフトウェア財団が公開す"
+"る GNU 一般公衆利用許諾契約書 バージョン2 以降の元で、編集したり再配布したり"
+"することができます。\n"
 "\n"
-"本プログラムは、 役に立つであろうという善意の下に配布されています。 ただし、"
-"なんらの保証がなされるものではなく、 市販性ないしは特定目的との適合性の暗示の"
-"保証をすることなく配布されます。 詳しくは GNU General Public License をご覧く"
-"ださい。\n"
+"このプログラムは、有用であるという期待の元で配布されています。しかし、"
+"市場性に関する暗黙の保証や、特定の目的に適合する保証を含め、一切の保証はありません。"
+"詳細は GNU 一般公衆利用許諾契約書 をご覧下さい。\n"
 "\n"
-"本プログラムとともに GNU General Public License のコピーをお受取りになってい"
-"るはずです。 お受取りになっていない場合は、 Free Software Foundation, Inc., "
-"51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA 宛て書面にてお問い合"
-"わせください。"
+"あなたは、このプログラムと共に、GNU 一般公衆利用許諾契約書 のコピーを受"
+"け取っている必要があります。もし受け取っていなければ、郵送でフリーソフトウェア財団"
+"にGNU 一般公衆利用許諾契約書 のコピーを請求してください。\n"
+"Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA "
+"02110-130159 USA"
 
 #: smolt.py:265
 #, python-format
@@ -249,7 +249,8 @@ msgstr "dbus にバインドできませんでした。 dbus は実行してい�
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
-msgstr "hal に接続できません。\n"
+msgstr ""
+"hal に接続できません。\n"
 "ルートになって、\"service haldaemon start\" を実行してください。"
 
 #: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
@@ -486,7 +487,8 @@ msgstr "エラッタは発見されませんでした。このマシンに問題
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
-msgstr "あなたのプロフィールに行き、そのデバイスの wiki ページを作成して、他の人が"
+msgstr ""
+"あなたのプロフィールに行き、そのデバイスの wiki ページを作成して、他の人が"
 
 #: scan.py:44
 msgid "benefit"
