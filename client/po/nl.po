@@ -1,16 +1,18 @@
+# translation of smolt.master.po to
 # Translation of smolt to Dutch
 # Copyright (C) 2007, 2008 Free Software Foundation, Inc.
 #
-# Peter van Egdom <p.van.egdom@gmail.com>, 2007, 2008.
 #
+# Peter van Egdom <p.van.egdom@gmail.com>, 2007, 2008.
+# Bart Couvreur <couf@fedoraproject.org>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt\n"
+"Project-Id-Version: smolt.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2008-03-16 21:11+0100\n"
-"Last-Translator: Peter van Egdom <p.van.egdom@gmail.com>\n"
-"Language-Team: Dutch <fedora-trans-list@redhat.com>\n"
+"PO-Revision-Date: 2008-04-07 14:02+0200\n"
+"Last-Translator: Bart Couvreur <couf@fedoraproject.org>\n"
+"Language-Team:  <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -84,8 +86,7 @@ msgstr ""
 "verzenden."
 
 #: sendProfile.py:108
-msgid ""
-"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr ""
 "Smolt is ingesteld om in te checken, maar checkins zijn uitgeschakeld (hint: "
 "service smolt start)"
@@ -137,8 +138,7 @@ msgstr "_Afsluiten"
 
 #: smoltGui.py:74
 msgid "Quit the program without sending your hardware profile to the server"
-msgstr ""
-"Programma afsluiten zonder uw hardwareprofiel naar de server te verzenden"
+msgstr "Programma afsluiten zonder uw hardwareprofiel naar de server te verzenden"
 
 #: smoltGui.py:75
 msgid "_Send"
@@ -265,8 +265,7 @@ msgstr "Fout bij het contact opnemen met de server: %s"
 
 #: smolt.py:436
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
-"Verkeerde versie, de server is niet in staat om uw client te behandelen"
+msgstr "Verkeerde versie, de server is niet in staat om uw client te behandelen"
 
 #: smolt.py:452
 msgid "Communication with server failed"
@@ -466,6 +465,30 @@ msgid ""
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
+"Smolt zend enkel informatie over de hardware en het besturingssysteem naar de\n"
+"Fedora smolt server (smoon). Het enige verband tussen de database en de machine \n"
+"van de eigenaar is de UUID. Zolang de eigenaar deze UUID niet distribueert is de\n"
+"toevoeging op anonieme basis. Als een gebruiker moment zijn profiel uit de database\n"
+"wil wissen, moet enkel\n"
+"\n"
+"    smoltDeleteProfile\n"
+"\n"
+"uitgevoerd worden.\n"
+"De informatie die verstuurd wordt naar de smolt database server moet als publiek\n"
+"beschouwd worden aangezien iedereen de statistieken en de data kan bekijken en\n"
+"profielen kan uitwisselen. Smolt is ontwikkeld om de hardware fabrikanten en andere\n"
+"partijen te informeren. Daarom zal deze informatie gedeeld worden met die partijen om\n"
+"een betere ondersteuning te vragen voor open source drivers en support.\n"
+"\n"
+"Loggen van IP: Fedora's smolt is zodanig geïnstalleerd dat alle data eerst door een\n proxy server gaat. Dit is de enigste plaats waar IP adressen worden gelogd en bijgehouden\n"
+"voor een periode van 4 weken, waarna log rotation deze logs verwijdert. Het Fedora\n"
+"project houdt geen IP adressen bij in de smolt database. Deze logs zijn privaat en\n"
+"worden niet vrijgegeven aan het publiek.\n"
+"\n"
+"Gebruikers die niet akkoord gaan met deze werkwijze, moeten smolt niet gebruiken.\n"
+"Gebruikers met vragen over deze werkwijze kunnen steeds het Fedora Infrastructure Team\n"
+"contacteren op admin [at] fedoraproject.org. Gebruikers kunnen hun profiel steeds\n"
+"verwijderen met \"smoltDeleteProfile\"\n"
 
 #: scan.py:16
 #, python-format
@@ -488,14 +511,3 @@ msgstr "dan naar uw profiel en maak een wiki-pagina aan voor het apparaat"
 msgid "benefit"
 msgstr "in kwestie zodat anderen daar profijt van hebben"
 
-#~ msgid "Run \"service haldaemon start\" as root"
-#~ msgstr "Voer \"service haldaemon start\" uit als root"
-
-#~ msgid "Rate this system:"
-#~ msgstr "Verhoud dit systeem:"
-
-#~ msgid "Rate this device"
-#~ msgstr "Verhoud dit apparat"
-
-#~ msgid "Device ID"
-#~ msgstr "Apparaat-ID"
