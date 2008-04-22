@@ -35,7 +35,8 @@ class Token(object):
         try:
             host_object = session.query(Host).filter_by(uuid=uuid).one()
         except:
-            raise ValueError("Critical: UUID Not Found - %s" % uuid)
+            pass
+            #raise ValueError("Critical: UUID Not Found - %s" % uuid)
         
         str = "%s" % (uuid[:7])
         # I hate obfuscation.  Its all I've got
