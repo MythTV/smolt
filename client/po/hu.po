@@ -1,45 +1,54 @@
 # Translation of Smolt to Hungarian.
 # Copyright © 2007 Red Hat, Inc.
-# Sulyok Peti <peti@sulyok.hu>, 2007.
-# 
-# 
+# Sulyok Peti <peti@sulyok.hu>, 2007-2008.
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Smolt 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2007-04-02 22:02+0200\n"
-"Last-Translator:  Sulyok Péter <peti@sulyok.hu>\n"
+"PO-Revision-Date: 2008-04-23 19:21+0100\n"
+"Last-Translator: Sulyok Péter <peti@sulyok.hu>\n"
 "Language-Team: Hungarian <fedora-trans-hu@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Poedit-Language: Hungarian\n"
+"X-Poedit-Country: HUNGARY\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
-#: deleteProfile.py:36 smolt.py:263
+#: deleteProfile.py:36
+#: smolt.py:263
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Kiszolgáló üzenet: „%s”"
 
-#: deleteProfile.py:46 sendProfile.py:43
+#: deleteProfile.py:46
+#: sendProfile.py:43
 msgid "enable debug information"
 msgstr "hibakereső tájékoztatás engedélyezése"
 
-#: deleteProfile.py:51 sendProfile.py:48
+#: deleteProfile.py:51
+#: sendProfile.py:48
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "adja meg a kiszolgáló URL-jét (alapértelmezés „%default”)"
 
-#: deleteProfile.py:56 sendProfile.py:63
+#: deleteProfile.py:56
+#: sendProfile.py:63
 msgid "print information only, do not send"
 msgstr "tájékoztatás nyomtatása csak, nincs küldés"
 
-#: deleteProfile.py:61 sendProfile.py:78
+#: deleteProfile.py:61
+#: sendProfile.py:78
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "adja meg a HTTP használó ügyfelet (alapértelmezés „%default”)"
 
-#: deleteProfile.py:66 sendProfile.py:83
+#: deleteProfile.py:66
+#: sendProfile.py:83
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "adja meg a HTTP időkorlátot másodpercben (alapértelmezés %default másodperc)"
@@ -54,11 +63,11 @@ msgstr "Profil törölve, kérem ellenőrizze "
 
 #: sendProfile.py:53
 msgid "(optional) Fedora Account System registration"
-msgstr ""
+msgstr "(opció) Fedora Számlarendszer regisztráció"
 
 #: sendProfile.py:58
 msgid "password, will prompt if not specified"
-msgstr ""
+msgstr "jelszó; kérik, ha nincs megadva"
 
 #: sendProfile.py:68
 msgid "don't prompt to send, just send"
@@ -74,17 +83,19 @@ msgstr "ez egy önműködő ellenőrzés, csak akkor fut, ha a „smolt” szolg
 
 #: sendProfile.py:93
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr ""
+msgstr "csak ismert hibajegyzék után kutassa e gépet, ne küldjön profilt."
 
 #: sendProfile.py:108
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt beállítva bejelentkezésre, de bejelentkezés letiltva (tipp: service smolt start)"
 
-#: sendProfile.py:115 scan.py:51
+#: sendProfile.py:115
+#: scan.py:51
 msgid "Error:"
 msgstr "Hiba:"
 
-#: sendProfile.py:117 scan.py:53
+#: sendProfile.py:117
+#: scan.py:53
 msgid "Hint:"
 msgstr "Tipp:"
 
@@ -96,7 +107,8 @@ msgstr "Küldjük e tájékoztatást a Smolt kiszolgálóra? (i/n)"
 msgid "y"
 msgstr "i"
 
-#: sendProfile.py:134 sendProfile.py:137
+#: sendProfile.py:134
+#: sendProfile.py:137
 msgid "Exiting..."
 msgstr "Kilépés…"
 
@@ -110,11 +122,11 @@ msgstr "Nem sikerült küldeni – Kilépés"
 
 #: sendProfile.py:153
 msgid "Password:"
-msgstr ""
+msgstr "Jelszó:"
 
 #: sendProfile.py:158
 msgid "Registration Failed, Try again"
-msgstr ""
+msgstr "Sikertelen regisztráció. Próbálja újra!"
 
 #: sendProfile.py:164
 #, python-format
@@ -151,34 +163,34 @@ msgstr "Né_vjegy"
 
 #: smoltGui.py:78
 msgid "_File"
-msgstr ""
+msgstr "_Fájl"
 
 #: smoltGui.py:79
 msgid "_Help"
-msgstr ""
+msgstr "_Súgó"
 
 #: smoltGui.py:80
 msgid "_My Smolt Page"
-msgstr ""
+msgstr "_Saját Smolt lap"
 
 #: smoltGui.py:80
 msgid "Take me to my smolt profile page"
-msgstr ""
+msgstr "Vigyen a smolt profil lapra"
 
 #: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
 msgstr "Hiba történt az adatok kiszolgálóra küldésekor."
 
 #: smoltGui.py:152
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
-"Az adatokat sikerült elküldeni. Ha utalni kell az ön hardverprofiljára egy hibabejelentéskor, az ön UUID-je:\n"
+"Az adatokat sikerült elküldeni. Ha utalni kell az ön hardverprofiljára egy hibabejelentésben, az ön UUID-je:\n"
 "%s\n"
-"eltárolva /etc/sysconfig/hw-uuid fájlban"
+"eltárolva %s fájlban"
 
 #: smoltGui.py:166
 msgid "Smolt Privacy Policy"
@@ -186,16 +198,15 @@ msgstr "Smolt személyi adatok szabályzat"
 
 #: smoltGui.py:209
 msgid "translator-credits"
-msgstr ""
+msgstr "fordítók"
 
 #: smoltGui.py:210
-#, fuzzy
 msgid "Fedora hardware profiler."
-msgstr "A hardverprofil küldése a kiszolgálóra."
+msgstr "Fedora hardverelemző."
 
 #: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
-msgstr ""
+msgstr "Szerzői jog © 2007 Mike McGrath"
 
 #: smoltGui.py:213
 msgid ""
@@ -203,8 +214,13 @@ msgid ""
 "\n"
 "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 msgstr ""
+"Ez egy szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software Foundation által kiadott GNU General Public License második (vagy bármely későbbi) változatában foglaltak alapján.\n"
+"\n"
+"Ezt a programot abban a reményben terjesztjük, hogy hasznos lesz, de nem vállalunk SEMMIFÉLE GARANCIÁT, még olyan értelemben sem, hogy a program alkalmas-e a KÖZREADÁSRA vagy EGY BIZONYOS FELADAT ELVÉGZÉSÉRE. További részletekért tanulmányozza a GNU GPL engedélyt.\n"
+"\n"
+"A programhoz a GNU General Public License egy példánya is jár, ha nem kapta meg, írjon a Free Software Foundation Inc.-nek. Levélcímük: 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
 
 #: smolt.py:265
 #, python-format
@@ -212,25 +228,28 @@ msgid "Could not contact server: %s"
 msgstr "Nem sikerült elérni %s kiszolgálót."
 
 #: smolt.py:296
-#, fuzzy
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr "Nem sikerült kötni dbus-hoz"
+msgstr "Nem sikerült kötni dbus-hoz. Fut dbus?"
 
 #: smolt.py:302
-#, fuzzy
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
-msgstr "Nem sikerült halhoz kapcsolódni. Fut?"
+msgstr ""
+"Nem sikerült halhoz kapcsolódni. Fut?\n"
+"Így lehet elindítani rootként: „service haldaemon start”"
 
-#: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
+#: smolt.py:338
+#: smolt.py:427
+#: smolt.py:488
+#: smolt.py:505
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Hiba %s kiszolgálóhoz kapcsolódáskor"
 
 #: smolt.py:436
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
+msgstr "Hibás változat. A kiszolgáló képtelen az ügyfelet kezelni"
 
 #: smolt.py:452
 msgid "Communication with server failed"
@@ -306,25 +325,26 @@ msgstr "Rendszermag"
 
 #: smolt.py:553
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux engedélyezve"
 
 #: smolt.py:554
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux kényszerít"
 
 #: smolt.py:990
 msgid "Unable to save UUID, continuing...\n"
-msgstr ""
+msgstr "Nem lehet az UUID-t menteni, folytatás…\n"
 
 #: smolt.py:992
 msgid "Unable to determine UUID of system!\n"
-msgstr ""
+msgstr "Nem lehet a rendszer UUID-ját meghatározni!\n"
 
 #: software.py:43
 msgid "Cannot Determine Runlevel"
-msgstr ""
+msgstr "Nem sikerült a futási szintet meghatározni"
 
-#: smoltFirstBoot.py:31 smoltFirstBoot.py:41
+#: smoltFirstBoot.py:31
+#: smoltFirstBoot.py:41
 msgid "Hardware Profile"
 msgstr "Hardver profil"
 
@@ -405,30 +425,56 @@ msgid ""
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
+"Smolt csak hardver és alapvető operációs rendszer információkat továbbít a\n"
+"Fedora smolt kiszolgálóra (smoon). Az egyetlen kapcsolat az adatbázis és\n"
+"a beküldő gép között az UUID. Amíg a beküldő nem adja ki ezt az UUID-t,\n"
+"a beküldés névtelen. Ha bármely időpontban a használó törölni akarja\n"
+"a profilját az adatbázisból, csak ki kell adnia a következő parancsot:\n"
+"\n"
+"    smoltDeleteProfile\n"
+"\n"
+"A smolt adatbázis kiszolgálóra beküldött információ nyilvánosnak tekintendő,\n"
+"azaz bárki megnézheti a statisztikákat, adatokat és megoszthat gép profilokat.\n"
+"Smoltot igyekeztek úgy kialakítani, hogy felkeltse a hardver eladók és mások\n"
+"figyelmét. Ily módon nem csak információkat oszt meg másokkal, de használni\n"
+"fogjuk smoltot, hogy jobb támogatást nyerjünk a nyílt forrású vezérlőknek,\n"
+"illetve általában a jobb felhasználói támogatásért.\n"
+"\n"
+"IP naplózás: Fedora smolt telepítőjében minden webes forgalom egy proxy\n"
+"kiszolgálón megy át. Ez az egyetlen hely, ahol az IP címeket naplózzák és\n"
+"ezen a kiszolgálón tárolják 4 hét időtartamig, miután a napló forgatás\n"
+"eltávolítja ezeket a naplókat. A Fedora Terv nem gyűjt ip címeket a smolt\n"
+"adatbázisban. Ezek bizalmas naplók, és nem lesznek elérhetők a nagyközönség\n"
+"számára.\n"
+"\n"
+"E szabályzattal elégedetlen használók egyszerűen ne használják smoltot!\n"
+"Akinek kérdése van a szabályzatot illetően, lépjen kapcsolatba a Fedora\n"
+"Infrastruktúra Csapattal az admin [at] fedoraproject.org címen! Különben a\n"
+"használók bármikor törölhetik a profiljukat „smoltDeleteProfile” paranccsal.\n"
 
 #: scan.py:16
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr ""
+msgstr "%s kutatása ismert hibajegyzékért.\n"
 
 #: scan.py:39
 msgid "Errata Found!"
-msgstr ""
+msgstr "Van hibajegyzék!"
 
 #: scan.py:42
 msgid "No errata found, if this machine is having issues please go to"
-msgstr ""
+msgstr "Nincs hibajegyzék. Ha baj van e géppel, kérem menjen "
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
-msgstr ""
+msgstr "az ön profiljába és teremtsen egy wiki oldalt az eszköznek a többiek"
 
 #: scan.py:44
 msgid "benefit"
-msgstr ""
+msgstr "hasznára"
 
 #~ msgid "Run \"service haldaemon start\" as root"
 #~ msgstr "Futtassa „service haldaemon start”-ot rootként"
-
 #~ msgid "Device ID"
 #~ msgstr "Eszköz az"
+

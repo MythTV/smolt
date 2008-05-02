@@ -1,20 +1,20 @@
+# translation of smolt.master.de.po to
 # translation of de.po to
 # German translation of PACKAGE.
 # Copyright (C) 2007 ORGANIZATION
 #
 #
 # Heiko Adams <heiko.adams@gmx.de>, 2007.
-# Timo Trinks <ttrinks@redhat.com>, 2007.
 # Severin Heiniger <severinheiniger@gmail.com>, 2007.
 # Fabian Affolter <fab@fedoraproject.org>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt\n"
+"Project-Id-Version: smolt.master.de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2008-01-29 09:59+0100\n"
+"PO-Revision-Date: 2008-04-05 19:57+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
-"Language-Team: German Translation Team <fedora-trans-de@redhat.com>\n"
+"Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -202,7 +202,10 @@ msgstr "Smolt-Datenschutzrichtlinie"
 
 #: smoltGui.py:209
 msgid "translator-credits"
-msgstr " "
+msgstr ""
+"Heiko Adams <heiko.adams@gmx.de>, 2007.\n"
+"Severin Heiniger <severinheiniger@gmail.com>, 2007.\n"
+"Fabian Affolter <fab@fedoraproject.org>, 2007, 2008."
 
 #: smoltGui.py:210
 msgid "Fedora hardware profiler."
@@ -218,13 +221,13 @@ msgid ""
 "\n"
 "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 msgstr ""
 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
 "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 
 #: smolt.py:265
 #, python-format
@@ -354,7 +357,7 @@ msgstr "Hardware-Profil"
 
 #: smoltFirstBoot.py:57
 msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt ist ein Hardware-Profiler für das Fedora-Projekt. Das Einreichen Ihres Profil ist eine gute Möglichkeit, etwas an die Community zurückzugeben, da diese Informationen dazu beitragen, unsere Bemühungen auf populäre Hardware und Plattformen zu fokussieren.  Die Profile sind anonym. Das Senden Ihres Profils ermöglicht eine monatliche Aktualisierung."
+msgstr "Smolt ist ein Hardware-Profiler für das Fedora-Projekt. Das Einreichen Ihres Profil ist eine gute Möglichkeit, etwas an die Gemeinschaft zurückzugeben, da diese Informationen dazu beitragen, unsere Bemühungen auf populäre Hardware und Plattformen zu fokussieren. Die Profile sind anonym. Das Senden Ihres Profils ermöglicht eine monatliche Aktualisierung."
 
 #: smoltFirstBoot.py:76
 msgid "_Send Profile"
@@ -474,12 +477,9 @@ msgstr "Keine Fehler gefunden, wenn Sie Probleme mit Ihrem System haben, gehen S
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
-msgstr "Ihr Profil und erzeugen Sie eine  Wikiseite für das Gerät, so dass andere können"
+msgstr "Ihr Profil und erzeugen Sie eine Wikiseite für das Gerät, so dass andere können"
 
 #: scan.py:44
 msgid "benefit"
 msgstr "Vorteil"
-
-#~ msgid "Run \"service haldaemon start\" as root"
-#~ msgstr "Führen Sie \"service haldaemon start\" als \"root\" aus"
 
