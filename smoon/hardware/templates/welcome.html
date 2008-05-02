@@ -14,8 +14,7 @@
     <p></p>
     <h2>${_('Statistics')}</h2>
     <p>
-    <!-- This line refuses to let me run gettext on it! -ynemoy-->
-    For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>
+    ${Markup(_("For detailed statistics about the devices in the database see &lt;a href='/static/stats/stats.html'&gt;/stats&lt;/a&gt; or &lt;a href='/static/stats/devices.html'&gt;/devices&lt;/a&gt;"))}
     </p>
     <h2> ${_('Top Vendor Chart')} </h2>
     ${ET(vendorFlot.display())}
