@@ -14,7 +14,7 @@
     <p></p>
     <h2>${_('Statistics')}</h2>
     <p>
-    ${Markup(_("For detailed statistics about the devices in the database see &lt;a href='/static/stats/stats.html'&gt;/stats&lt;/a&gt; or &lt;a href='/static/stats/devices.html'&gt;/devices&lt;/a&gt;"))}
+    ${_("For detailed statistics about the devices in the database see &lt;a href='/static/stats/stats.html'&gt;/stats&lt;/a&gt; or &lt;a href='/static/stats/devices.html'&gt;/devices&lt;/a&gt;")}
     </p>
     <h2> ${_('Top Vendor Chart')} </h2>
     ${ET(vendorFlot.display())}
@@ -22,7 +22,6 @@
     <p> </p>
     <h2>${_('More info')}</h2>
     <!-- This one too! -ynemoy-->
-    <p>Browse and search the <a href="/wiki/">Wiki</a> for detailed information about specific devices.
-    Usage and other general answers can also be found at the <a href="/wiki/">Wiki</a>.</p>
+    ${_("&lt;p&gt;Browse and search the &lt;a href='/wiki/'&gt;Wiki&lt;/a&gt; for detailed information about specific devices. Usage and other general answers can also be found at the &lt;a href='/wiki/'&gt;Wiki&lt;/a&gt;.&lt;/p&gt;")}
   </body>
 </html>

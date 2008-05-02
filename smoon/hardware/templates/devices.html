@@ -6,22 +6,22 @@
   <head>
     <script src="/tg_widgets/turboflot/excanvas.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.flot.js" type="text/javascript"></script>
     <link media="screen" href="/tg_widgets/turbogears.widgets/tabber/tabber.css" type="text/css" rel="stylesheet"/>
-    <title> Devices </title>
+    <title>${_("Devices")}</title>
   </head>
   <body>
     <script src="/tg_widgets/turbogears.widgets/tabber/tabber-minimized.js" type="text/javascript"></script>
     <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
       <tr>
-        <th valign="top" width="25%">Total Registered Devices</th>
+        <th valign="top" width="25%">${_("Total Registered Devices")}</th>
         <td><strong>${devices["total"]}</strong></td>
       </tr>
       <tr>
-        <th valign="top" width="25%">Unique Devices</th>
+        <th valign="top" width="25%">${_("Unique Devices")}</th>
         <td><strong>${devices["count"]}</strong></td>
       </tr>
     </table>
     <div class="tabber">
-      <div class="tabbertab"><h2>Raw Devices</h2>
+      <div class="tabbertab"><h2>${_("Raw Devices")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='dev in devices["totalList"]'>
             <th align="right">${dev.description}</th>
@@ -31,7 +31,7 @@
           </tr>
         </table>
       </div>
-      <div class="tabbertab"><h2>Machines / Device</h2>
+      <div class="tabbertab"><h2>${_("Machines / Device")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='dev in devices["uniqueList"]'>
             <th align="right">${dev.description}</th>
@@ -41,7 +41,7 @@
           </tr>
         </table>
       </div>
-      <div class="tabbertab"><h2>Classes</h2>
+      <div class="tabbertab"><h2>${_("Classes")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='dev in devices["classes"]'>
             <th align="right"><a href='/static/stats/by_class_${dev.cls}.html'>${dev.cls}</a></th>

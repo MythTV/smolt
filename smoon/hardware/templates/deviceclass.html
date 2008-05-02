@@ -6,22 +6,22 @@
   <head>
     <script src="/tg_widgets/turboflot/excanvas.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.flot.js" type="text/javascript"></script>
     <link media="screen" href="/tg_widgets/turbogears.widgets/tabber/tabber.css" type="text/css" rel="stylesheet"/>
-    <title> Devices by class ${type} </title>
+    <title>${_("Devices by class ${type}")}</title>
   </head>
   <body>
     <script src="/tg_widgets/turbogears.widgets/tabber/tabber-minimized.js" type="text/javascript"></script>
     <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
       <tr>
-        <th valign="top" width="25%">Total Count</th>
+        <th valign="top" width="25%">${_("Total Count")}</th>
         <td><strong>${count}</strong></td>
       </tr>
       <tr>
-        <th valign="top" width="25%">% hosts detected ${type}</th>
+        <th valign="top" width="25%">${_("% hosts detected ${type}")}</th>
         <td><strong>${'%.1f' % (float(count) / total_hosts * 100)} %</strong></td>
       </tr>
     </table>
     <div class="tabber">
-      <div class="tabbertab"><h2>Vendors</h2>
+      <div class="tabbertab"><h2>${_("Vendors")}</h2>
         <table id='stats' width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='vendor in vendors'>
             <th>${pci_vendors.vendor(vendor.vendor_id, alt='Unknown ID: %s' %vendor.vendor_id)}</th>
@@ -31,9 +31,9 @@
           </tr>
         </table>
       </div>
-      <div class="tabbertab"><h2>Devices</h2>
+      <div class="tabbertab"><h2>${_("Devices")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
-          <tr><th>Device</th><td>bus</td><td>Driver</td><td>Vendor</td><td>Sub Vendor</td><td>Sub Device</td><td>Date Added</td><td>% tot hosts</td><td></td></tr>
+          <tr><th>${_("Device")}</th><td>${_("Bus")}</td><td>${_("Driver")}</td><td>${_("Vendor")}</td><td>${_("Sub Vendor")}</td><td>${_("Sub Device")}</td><td>${_("Date Added")}</td><td>${_("% tot hosts")}</td><td></td></tr>
           <tr py:for='type in types'>
             <th align="right">${pci_vendors.device(type.vendor_id, type.device_id, alt=type.description)}</th>
             <td align="center">${type.bus}</td>

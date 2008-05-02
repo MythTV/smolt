@@ -6,38 +6,38 @@
   <head>
     <script src="/tg_widgets/turboflot/excanvas.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.flot.js" type="text/javascript"></script>
     <link media="screen" href="/tg_widgets/turbogears.widgets/tabber/tabber.css" type="text/css" rel="stylesheet"/>
-    <title>Stats</title>
+    <title>${_("Stats")}</title>
   </head>
   <body>
     <script src="/tg_widgets/turbogears.widgets/tabber/tabber-minimized.js" type="text/javascript"></script>
     <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
       <tr>
-        <th valign="top" width="25%">Total Registered Hosts</th>
+        <th valign="top" width="25%">${_("Total Registered Hosts")}</th>
         <td><strong>${stat['total_hosts']}</strong></td>
       </tr>
       <tr>
-        <th valign="top">Total Registered Devices</th>
+        <th valign="top">${_("Total Registered Devices")}</th>
         <td><strong>${stat['registered_devices']}</strong></td>
       </tr>
       <tr>
-        <th valign="top">Total bogomips</th>
+        <th valign="top">${_("Total bogomips")}</th>
         <td><strong>${stat["bogomips_total"]}</strong></td>
       </tr>
       <tr>
-        <th valign="top">Total processors</th>
+        <th valign="top">${_("Total processors")}</th>
         <td><strong>${stat["cpus_total"]}</strong></td>
       </tr>
       <tr>
-        <th valign="top">Total MHz</th>
+        <th valign="top">${_("Total MHz")}</th>
         <td><strong>${stat["cpu_speed_total"]}</strong></td>
       </tr>
     </table>
     <div class="tabber">
 
     <py:if test='template_config["archs"]'>
-      <div class="tabbertab"><h2>Archs</h2>
+      <div class="tabbertab"><h2>${_("Archs")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
-          <tr><th>Arch</th><th>Count</th><th>% of total</th><th halign="left"> </th></tr>
+          <tr><th>${_("Arch")}</th><th>${_("Count")}</th><th>${_("% of total")}</th><th halign="left"> </th></tr>
           <tr py:for='arch in stat["archs"]'>
             <th align="right">${arch.platform}</th>
             <td align="center">${arch.cnt}</td>
@@ -50,7 +50,7 @@
       </py:if>
 
       <py:if test='template_config["os"]'>
-      <div class="tabbertab"><h2>OS</h2>
+      <div class="tabbertab"><h2>${_("OS")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='OS in stat["os"]'>
             <th align="right"><a href="${getOSWikiLink(OS.os)}">${OS.os}</a></th>
@@ -63,7 +63,7 @@
       </py:if>
 
       <py:if test='template_config["runlevel"]'>
-      <div class="tabbertab"><h2>Runlevel</h2>
+      <div class="tabbertab"><h2>${_("Runlevel")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='rl in stat["runlevel"][:-1]'>
             <th align="right">${rl.runlevel}</th>
@@ -76,7 +76,7 @@
       </py:if>
 
       <py:if test='template_config["lang"]'>
-      <div class="tabbertab"><h2>Language</h2>
+      <div class="tabbertab"><h2>${_("Language")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='lang in stat["language"]'>
             <th align="right">${lang.language}</th>
@@ -89,7 +89,7 @@
       </py:if>
 
      <py:if test='template_config["vendors"]'>
-      <div class="tabbertab"><h2>Vendor</h2>
+      <div class="tabbertab"><h2>${_("Vendor")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='vendor in stat["vendors"]'>
             <th align="right">${vendor.vendor}</th>
@@ -102,7 +102,7 @@
       </py:if>
 
       <py:if test='template_config["model"]'>
-      <div class="tabbertab"><h2>Model</h2>
+      <div class="tabbertab"><h2>${_("Model")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='system in stat["systems"]'>
             <!-- Temporary solution to a silly problem -->
@@ -116,7 +116,7 @@
       </py:if>
 
       <py:if test='template_config["ram"]'>
-      <div class="tabbertab"><h2>RAM</h2>
+      <div class="tabbertab"><h2>${_("RAM")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='mem in stat["sys_mem"]'>
             <th align="right">${mem[0]}</th>
@@ -129,7 +129,7 @@
       </py:if>
 
       <py:if test='template_config["swap"]'>
-      <div class="tabbertab"><h2>Swap</h2>
+      <div class="tabbertab"><h2>${_("Swap")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='mem in stat["swap_mem"]'>
             <th align="right">${mem[0]}</th>
@@ -142,30 +142,30 @@
       </py:if>
 
       <py:if test='template_config["cpu"]'>
-      <div class="tabbertab"><h2>CPU</h2>
+      <div class="tabbertab"><h2>${_("CPU")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
-          <tr><th colspan="4">Speed (MHz)</th></tr>
+          <tr><th colspan="4">${_("Speed (MHz)")}</th></tr>
           <tr py:for='cpu_speed in stat["cpu_speed"]'>
             <th align="right">${cpu_speed[0]}</th>
             <td align="center">${cpu_speed[1]}</td>
             <td><strong>${'%.1f' % (float(cpu_speed[1]) / total_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(cpu_speed[1]) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
-          <tr><th colspan="4">Number of CPUs</th></tr>
+          <tr><th colspan="4">${_("Number of CPUs")}</th></tr>
           <tr py:for='num_cpus in stat["num_cpus"]'>
             <th align="right">${num_cpus.num_cpus}</th>
             <td align="center">${num_cpus.cnt}</td>
             <td><strong>${'%.1f' % (float(num_cpus.cnt) / total_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(num_cpus.cnt) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
-          <tr><th colspan="4">CPU Vendor</th></tr>
+          <tr><th colspan="4">${_("CPU Vendor")}</th></tr>
           <tr py:for='cpu_vendor in stat["cpu_vendor"]'>
             <th align="right">${cpu_vendor.cpu_vendor}</th>
             <td align="center">${cpu_vendor.cnt}</td>
             <td><strong>${'%.1f' % (float(cpu_vendor.cnt) / total_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(cpu_vendor.cnt) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
-          <tr><th colspan="4">Bogomips</th></tr>
+          <tr><th colspan="4">${_("Bogomips")}</th></tr>
           <tr py:for='bogomips in stat["bogomips"]'>
             <th align="right">${bogomips[0]}</th>
             <td align="center">${bogomips[1]}</td>
@@ -177,7 +177,7 @@
       </py:if>
 
       <py:if test='template_config["kernel"]'>
-      <div class="tabbertab"><h2>Kernel</h2>
+      <div class="tabbertab"><h2>${_("Kernel")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='kernel_version in stat["kernel_version"]'>
             <th align="right">${kernel_version.kernel_version}</th>
@@ -190,7 +190,7 @@
       </py:if>
 
       <py:if test='template_config["formfactor"]'>
-      <div class="tabbertab"><h2>Form Factor</h2>
+      <div class="tabbertab"><h2>${_("Form Factor")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='formfactor in stat["formfactor"]'>
             <th align="right">${formfactor.formfactor}</th>
@@ -203,23 +203,23 @@
       </py:if>
 
       <py:if test='template_config["selinux"]'>
-      <div class="tabbertab"><h2>Selinux</h2>
+      <div class="tabbertab"><h2>${_("Selinux")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
-          <tr><th colspan="4">SELinux Enabled</th></tr>
+          <tr><th colspan="4">${_("SELinux Enabled")}</th></tr>
           <tr py:for='enabled in stat["selinux_enabled"]'>
             <th align="right">${enabled.enabled}</th>
             <td align="center">${enabled.cnt}</td>
             <td><strong>${'%.1f' % (float(enabled.cnt) / total_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(enabled.cnt) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
-          <tr><th colspan="4">SELinux Enforce</th></tr>
+          <tr><th colspan="4">${_("SELinux Enforce")}</th></tr>
           <tr py:for='enforce in stat["selinux_enforce"]'>
             <th py:if="enforce" align="right">${enforce.enforce}</th>
             <td py:if="enforce" align="center">${enforce.cnt}</td>
             <td py:if="enforce"><strong>${'%.1f' % (float(enforce.cnt) / total_hosts * 100) } %</strong></td>
             <td py:if="enforce"><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(enforce.cnt) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
-          <tr><th colspan="4">SELinux Policy</th></tr>
+          <tr><th colspan="4">${_("SELinux Policy")}</th></tr>
           <tr py:for='policy in stat["selinux_policy"]'>
             <th py:if="policy" align="right">${policy.policy}</th>
             <td py:if="policy" align="center">${policy.cnt}</td>
@@ -231,7 +231,7 @@
       </py:if>
 
        <py:if test='template_config["filesystem"]'>
-       <div class="tabbertab"><h2>Filesystems</h2>
+       <div class="tabbertab"><h2>${_("Filesystems")}</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='filesystems in stat["filesystems"]'>
                     <th align="right">${filesystems.fs_type}</th>
@@ -239,7 +239,7 @@
                     <td><strong>${'%.1f' % (float(filesystems.cnt) / float(stat["total_fs"]) * 100) } %</strong></td>
                     <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(filesystems.cnt) / float(stat["total_fs"]) * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
                 </tr>
-                 <tr><th colspan="4">Filesystems size</th></tr>
+                 <tr><th colspan="4">${_("Filesystem size")}</th></tr>
                 <tr py:for='combined_fs_size in stat["combined_fs_size"]'>
                     <th align="right">${combined_fs_size[0]}</th>
                     <td align="center">${combined_fs_size[1]}</td>
@@ -250,7 +250,7 @@
         </div>
         </py:if>
        <py:if test='template_config["mythrole"]'>
-        <div class="tabbertab"><h2>Myth Role</h2>
+        <div class="tabbertab"><h2>${_("Myth Role")}</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='myth_systemrole in stat["myth_systemrole"]'>
                     <th align="right">${myth_systemrole.myth_systemrole}</th>
@@ -263,7 +263,7 @@
         </py:if>
 
        <py:if test='template_config["mythremote"]'>
-         <div class="tabbertab"><h2>Myth Remote</h2>
+         <div class="tabbertab"><h2>${_("Myth Remote")}</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='mythremote in stat["mythremote"]'>
                     <th align="right">${mythremote.mythremote}</th>
@@ -276,7 +276,7 @@
         </py:if>
 
        <py:if test='template_config["myththeme"]'>
-         <div class="tabbertab"><h2>Myth  Theme</h2>
+         <div class="tabbertab"><h2>${_("Myth  Theme")}</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='myththeme in stat["myththeme"]'>
                     <th align="right">${myththeme.myththeme}</th>
