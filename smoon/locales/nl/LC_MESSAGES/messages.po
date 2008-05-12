@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-03-10 23:12+0400\n"
-"PO-Revision-Date: 2008-03-11 16:28-0500\n"
+"PO-Revision-Date: 2008-05-01 22:46-0500\n"
 "Last-Translator: Yaakov M. Nemoy <loupgaroublond@gmail.com>\n"
 "Language-Team: nl <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -17,17 +17,110 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.1\n"
 
-#: hardware/controllers/root.py:93
+#: hardware/controllers/root.py:95
 msgid "The credentials you supplied were not correct or did not grant access to this resource."
 msgstr "De Getuigenisen U opgegeven heeft zijn onjuist."
 
-#: hardware/controllers/root.py:96
+#: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
 msgstr "U moet uw getuignenis opgeven bevor U kan deze resource gebruiken "
 
-#: hardware/controllers/root.py:99
+#: hardware/controllers/root.py:101
 msgid "Please log in."
 msgstr "Log in a.u.b."
+
+#: hardware/templates/deviceclass.html:9
+msgid "Devices by class ${type}"
+msgstr "Aparaat bij klas"
+
+#: hardware/templates/deviceclass.html:15
+msgid "Total Count"
+msgstr "Totale telling"
+
+#: hardware/templates/deviceclass.html:19
+#, python-format
+msgid "% hosts detected ${type}"
+msgstr "% hosts gevonden ${type}"
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "Verkoperen"
+
+#: hardware/templates/deviceclass.html:34
+#: hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "Apparaten"
+
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/show.html:60
+msgid "Device"
+msgstr "Apparaat"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Bus"
+msgstr "Bus"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr "Vekoper"
+
+#: hardware/templates/deviceclass.html:36
+#, fuzzy
+msgid "Sub Vendor"
+msgstr "Processorfabrikant"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Device"
+msgstr "Sub-Device"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr "Samenvattingsdatum"
+
+#: hardware/templates/deviceclass.html:36
+msgid "% tot hosts"
+msgstr "$ totale hosten"
+
+#: hardware/templates/devices.html:15
+#: hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr "Totaal geregistieerd devices"
+
+#: hardware/templates/devices.html:19
+msgid "Unique Devices"
+msgstr "Enige Devices"
+
+#: hardware/templates/devices.html:24
+msgid "Raw Devices"
+msgstr "Rauwe Devices"
+
+#: hardware/templates/devices.html:34
+msgid "Machines / Device"
+msgstr "Maschinen / Device"
+
+#: hardware/templates/devices.html:44
+#, fuzzy
+msgid "Classes"
+msgstr "Klasse"
+
+#: hardware/templates/report_search.html:37
+#: hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "Zoeken"
+
+#: hardware/templates/report_search.html:38
+msgid "Dataset"
+msgstr "Dataverzameling"
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr "Gegevensverzameling"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
@@ -79,13 +172,14 @@ msgstr "Platform"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr "Processorfabrikant"
+msgstr ""
 
 #: hardware/templates/show.html:46
 msgid "System Model"
 msgstr "Processormodel"
 
 #: hardware/templates/show.html:47
+#: hardware/templates/stats.html:180
 msgid "Kernel"
 msgstr "Kernel"
 
@@ -101,25 +195,134 @@ msgstr "Laatst veranderd"
 msgid "Admin Password"
 msgstr "Admin Wachtwoord"
 
-#: hardware/templates/show.html:57
-msgid "Devices"
-msgstr "Apparaten"
-
 #: hardware/templates/show.html:60
 msgid "Rating"
 msgstr "Beoordeling"
 
 #: hardware/templates/show.html:60
-msgid "Device"
-msgstr "Apparaat"
-
-#: hardware/templates/show.html:60
 msgid "Class"
-msgstr "Klasse"
+msgstr ""
 
-#: hardware/templates/welcome.html:10
-msgid "Lookup"
-msgstr "Zoeken"
+#: hardware/templates/stats.html:9
+msgid "Stats"
+msgstr ""
+
+#: hardware/templates/stats.html:15
+msgid "Total Registered Hosts"
+msgstr ""
+
+#: hardware/templates/stats.html:23
+msgid "Total bogomips"
+msgstr ""
+
+#: hardware/templates/stats.html:27
+msgid "Total processors"
+msgstr ""
+
+#: hardware/templates/stats.html:31
+msgid "Total MHz"
+msgstr ""
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr ""
+
+#: hardware/templates/stats.html:40
+msgid "Arch"
+msgstr ""
+
+#: hardware/templates/stats.html:40
+msgid "Count"
+msgstr ""
+
+#: hardware/templates/stats.html:40
+#, python-format
+msgid "% of total"
+msgstr ""
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr ""
+
+#: hardware/templates/stats.html:66
+msgid "Runlevel"
+msgstr ""
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr ""
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr ""
+
+#: hardware/templates/stats.html:119
+msgid "RAM"
+msgstr ""
+
+#: hardware/templates/stats.html:132
+msgid "Swap"
+msgstr ""
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr ""
+
+#: hardware/templates/stats.html:147
+msgid "Speed (MHz)"
+msgstr ""
+
+#: hardware/templates/stats.html:154
+msgid "Number of CPUs"
+msgstr ""
+
+#: hardware/templates/stats.html:161
+msgid "CPU Vendor"
+msgstr ""
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr ""
+
+#: hardware/templates/stats.html:193
+msgid "Form Factor"
+msgstr ""
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr ""
+
+#: hardware/templates/stats.html:208
+msgid "SELinux Enabled"
+msgstr ""
+
+#: hardware/templates/stats.html:215
+msgid "SELinux Enforce"
+msgstr ""
+
+#: hardware/templates/stats.html:222
+msgid "SELinux Policy"
+msgstr ""
+
+#: hardware/templates/stats.html:234
+msgid "Filesystems"
+msgstr ""
+
+#: hardware/templates/stats.html:242
+msgid "Filesystem size"
+msgstr "Bestandssysteme grootte"
+
+#: hardware/templates/stats.html:253
+msgid "Myth Role"
+msgstr "Myth Rol"
+
+#: hardware/templates/stats.html:266
+msgid "Myth Remote"
+msgstr "Myth Remote"
+
+#: hardware/templates/stats.html:279
+msgid "Myth  Theme"
+msgstr "Myth Thema"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
@@ -129,11 +332,22 @@ msgstr "Voer uw profil UUID in:"
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: hardware/templates/welcome.html:20
+#: hardware/templates/welcome.html:17
+msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
+msgstr "Voor gedetaillieerd statistieken over de apparaten in de databank, naar <a href='/static/stats/stats.html'>/stats</a> of <a href='/static/stats/devices.html'>/devices</a> kijken"
+
+#: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
 msgstr "Hoofdvendorgrafiek"
 
-#: hardware/templates/welcome.html:24
+#: hardware/templates/welcome.html:23
 msgid "More info"
 msgstr "Meer informatie"
+
+#: hardware/templates/welcome.html:25
+msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr "<p>Voor gedetaillieerd informatie over specifiek apparaten door de <a href='/wiki/'>Wiki</a> zoeken.  Gebruik en andere algemene antwoorden kunnen zich ook daarop bevinden.</p>"
+
+#~ msgid "Count</th><th>% of total"
+#~ msgstr ""
 

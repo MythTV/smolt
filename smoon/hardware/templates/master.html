@@ -5,6 +5,8 @@
   py:strip="">
   <?python
   import time
+  from turbogears.i18n import gettext
+  _ = lambda text: Markup(gettext(text))
   ?>
   <head py:match="head" py:attrs="select('@*')">
     <link py:for="js in tg_js_head" py:replace="Markup(js.render())" />
