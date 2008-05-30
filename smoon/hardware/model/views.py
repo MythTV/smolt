@@ -35,7 +35,10 @@ def counted_view(name, columns, group_by, restrictions=None, desc=False, distinc
         restrictions are sqlalchemy where constraints
         desc is a boolean whether you want it in ascending, descending or condescending order
     ''' 
-    cnt_f = column_cnt_d if distinct else column_cnt
+    if distinct:
+        cnt_f = column_cnt_d
+    else:
+        cnt_f = column_cnt
     cnt_obj = cnt_f(group_by)
     s = select(columns + [group_by, cnt_obj], restrictions).group_by(group_by)
     if desc:
@@ -68,7 +71,11 @@ def simple_mapped_counted_view(name, column, map_obj, desc=False, label=None):
             uses a different attribute name than the source table
     '''
     sel = simple_counted_view(name, column, desc, label)
-    p_key = getattr(sel.c, label) if label else getattr(sel.c, column.name)
+    if label:
+        p_key = getattr(sel.c, label)
+    else:
+        p_key = getattr(sel.c, column.name)
+
     mapper(map_obj, sel, primary_key=[p_key])
     return sel
     
