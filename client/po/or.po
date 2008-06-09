@@ -1,21 +1,22 @@
-# translation of or.po to Oriya
+# translation of smolt.master.or.po to Oriya
 # Copyright (C) YEAR ORGANIZATION
 #
 # Subhransu Behera <arya_subhransu@yahoo.co.in>, 2007.
+# Manoj Kumar Giri <giri.manojkr@gmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: or\n"
+"Project-Id-Version: smolt.master.or\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2007-04-09 15:16+0530\n"
-"Last-Translator: Subhransu Behera <arya_subhransu@yahoo.co.in>\n"
-"Language-Team: Oriya <oriya-group@lists.sarovar.org>\n"
+"PO-Revision-Date: 2008-06-09 13:03+0530\n"
+"Last-Translator: Manoj Kumar Giri <giri.manojkr@gmail.com>\n"
+"Language-Team: Oriya\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "\n"
 
 #: deleteProfile.py:36 smolt.py:263
@@ -56,11 +57,11 @@ msgstr "ରୂପରେଖକୁ ଅପସାରଣ କରାଯାଇଛି, �
 
 #: sendProfile.py:53
 msgid "(optional) Fedora Account System registration"
-msgstr ""
+msgstr "(ଇଚ୍ଛାଧୀନ) Fedora ଖାତା ତନ୍ତ୍ର ପଞ୍ଜିକରଣ"
 
 #: sendProfile.py:58
 msgid "password, will prompt if not specified"
-msgstr ""
+msgstr "ଯଦି ଉଲ୍ଲେଖ କରାଯାଇନଥାଏ ତେବେ ପ୍ରବେଶସଂକେତ ପଚାରିବ"
 
 #: sendProfile.py:68
 msgid "don't prompt to send, just send"
@@ -71,16 +72,22 @@ msgid "continue to send until success"
 msgstr "ସଫଳତା ନ ମିଳିବା ପର୍ଯ୍ଯନ୍ତ ପଠାଇ ଚାଲନ୍ତୁ"
 
 #: sendProfile.py:88
-msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr "ଏହା ଗୋଟିଏ ସ୍ବତଃ ନିରୀକ୍ଷଣ ପ୍ରକ୍ରିୟା ଅଟେ, \"smolt\" ସେବାକୁ ପ୍ରାରମ୍ଭ କରାଯାଇଥିଲେ କେବଳ ଏହା ଚାଲିବ"
+msgid ""
+"this is an automated checkin, will only run if the \"smolt\" service has "
+"been started"
+msgstr ""
+"ଏହା ଗୋଟିଏ ସ୍ବତଃ ନିରୀକ୍ଷଣ ପ୍ରକ୍ରିୟା ଅଟେ, \"smolt\" ସେବାକୁ ପ୍ରାରମ୍ଭ କରାଯାଇଥିଲେ କେବଳ ଏହା "
+"ଚାଲିବ"
 
 #: sendProfile.py:93
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr ""
+msgstr "କେବଳ ଜଣାଥିବା ହାର୍ଡୱେର ତ୍ରୁଟି ପାଇଁ ଯନ୍ତ୍ରକୁ କ୍ରମବୀକ୍ଷଣ କରନ୍ତୁ, ରୂପରେଖ ପଠାନ୍ତୁ ନାହିଁ।"
 
 #: sendProfile.py:108
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "ଯାଞ୍ଚ କରିବା ପାଇଁ smolt କୁ ବିନ୍ଯାସ କରାଯାଇଛି କିନ୍ତୁ ଏହି ପ୍ରକ୍ରିୟା ଗୁଡିକ ନିଷ୍କ୍ରିୟ ଅଟନ୍ତି (ସଙ୍କେତ: service smolt start)"
+msgstr ""
+"ଯାଞ୍ଚ କରିବା ପାଇଁ smolt କୁ ବିନ୍ଯାସ କରାଯାଇଛି କିନ୍ତୁ ଏହି ପ୍ରକ୍ରିୟା ଗୁଡିକ ନିଷ୍କ୍ରିୟ ଅଟନ୍ତି (ସଙ୍କେତ: "
+"service smolt start)"
 
 #: sendProfile.py:115 scan.py:51
 msgid "Error:"
@@ -112,11 +119,11 @@ msgstr "ପଠାଇ ପାରିଲା ନାହିଁ - ପ୍ରସ୍ଥା�
 
 #: sendProfile.py:153
 msgid "Password:"
-msgstr ""
+msgstr "ପ୍ରବେଶସଂକେତ:"
 
 #: sendProfile.py:158
 msgid "Registration Failed, Try again"
-msgstr ""
+msgstr "ପଞ୍ଜିକରଣ ବିଫଳ ହେଲା, ପୁଣିଥରେ ଚେଷ୍ଟାକରନ୍ତୁ"
 
 #: sendProfile.py:164
 #, python-format
@@ -153,34 +160,36 @@ msgstr "ବିବରଣୀ (_A)"
 
 #: smoltGui.py:78
 msgid "_File"
-msgstr ""
+msgstr "ଫାଇଲ (_F)"
 
 #: smoltGui.py:79
 msgid "_Help"
-msgstr ""
+msgstr "ସହାୟତା (_H)"
 
 #: smoltGui.py:80
 msgid "_My Smolt Page"
-msgstr ""
+msgstr "ମୋର ସ୍ମୋଲ୍ଟ ପୃଷ୍ଠା (_M)"
 
 #: smoltGui.py:80
 msgid "Take me to my smolt profile page"
-msgstr ""
+msgstr "ମୋର ସ୍ମୋଲ୍ଟ ରୂପରେଖ ପୃଷ୍ଠାକୁ ମୋତେ ନିଅନ୍ତୁ"
 
 #: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
 msgstr "ସେବକକୁ ତଥ୍ଯ ପଠାଇବା ସମୟରେ ଗୋଟିଏ ତୃଟି ଘଟିଲା।"
 
 #: smoltGui.py:152
-#, fuzzy, python-format
+#, python-format
 msgid ""
-"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"The data was successfully sent.  If you need to refer to your hardware "
+"profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
-"ତଥ୍ଯକୁ ସଫଳତାର ସହିତ ପଠାଗଲା।  ଯଦି ଆପଣ ଗୋଟିଏ ତୃଟି ବିବରଣୀ ପାଇଁ ଆପଣଙ୍କ ହାର୍ଡୱେର ରୂପରେଖକୁ ଦେଖିବା ପାଇଁ ଚାହୁଁଛନ୍ତି ତାହାହେଲେ \n"
+"ତଥ୍ଯକୁ ସଫଳତାର ସହିତ ପଠାଗଲା।  ଯଦି ଆପଣ ଗୋଟିଏ ତୃଟି ବିବରଣୀ ପାଇଁ ଆପଣଙ୍କ ହାର୍ଡୱେର ରୂପରେଖକୁ ଦେଖିବା "
+"ପାଇଁ ଚାହୁଁଛନ୍ତି ତାହାହେଲେ \n"
 "ଆପଣଙ୍କ UUID ଟି ହେଲା %s\n"
-"ଏହାକୁ /etc/sysconfig/hw-uuid ରେ ରଖାଯାଇଛି"
+"ଏହାକୁ %s ରେ ରଖାଯାଇଛି"
 
 #: smoltGui.py:166
 msgid "Smolt Privacy Policy"
@@ -188,25 +197,37 @@ msgstr "Smolt ଗୋପନୀୟତା ନୀତି"
 
 #: smoltGui.py:209
 msgid "translator-credits"
-msgstr ""
+msgstr "ଅନୁବାଦକ-ଶ୍ରେୟ"
 
 #: smoltGui.py:210
-#, fuzzy
 msgid "Fedora hardware profiler."
-msgstr "ସେବକକୁ ଆପଣଙ୍କ ହାର୍ଡୱେର ରୂପରେଖ ପଠାନ୍ତୁ।"
+msgstr "Fedora ହାର୍ଡୱେର ରୂପରେଖ।"
 
 #: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
-msgstr ""
+msgstr "Copyright © 2007 Mike McGrath"
 
 #: smoltGui.py:213
 msgid ""
-"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
 "\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
+"Ave, Cambridge, MA 02139, USA."
 msgstr ""
+"ଏହି ପ୍ରଗ୍ରାମଟି ଗୋଟିଏ ମୁକ୍ତ ସଫ୍ଟୱେର; GNU ସାଧାରଣ ସାର୍ବଜନୀନ ଅନୁମତି ପତ୍ରର ନିୟମାବଳୀ ଅନ୍ତର୍ଗତ ମୁକ୍ତ ସଫ୍ଟୱେର ପ୍ରତିଷ୍ଠାନ ଦ୍ୱାରା ପ୍ରକାଶିତ ମୁତାବକ ଆପଣ ଏହାକୁ ପୁନଃବଣ୍ଟନ ଏବଂ/କିମ୍ୱା ପରିବର୍ତ୍ତନ କରିପାରିବେ; ପ୍ରମାଣପତ୍ରର ୨ୟ ସଂସ୍କରଣ, କିମ୍ୱା (ଆପଣଙ୍କ ପସନ୍ଦ ଅନୁଯାୟୀ) କୌଣସି ପରବର୍ତ୍ତୀ ସଂସ୍କରଣରେ।\n"
+"\n"
+"ଏହି ପ୍ରଗ୍ରାମଟି ଫଳପ୍ରଦ ହେବା ଆଶାରେ ବଣ୍ଟନ କରାଯାଇଛି, କିନ୍ତୁ କୌଣସି ନିର୍ଭରୋକ୍ତି ବିନା; ବିକ୍ରୟଯୋଗ୍ୟତା କିମ୍ୱା ଗୋଟିଏ ନିର୍ଦ୍ଧିଷ୍ଠ ଉଦ୍ଦେଶ୍ୟ ପାଇଁ ସକ୍ଷମତା ସୂଚିତ ନିର୍ଭରୋକ୍ତି ବିନା ମଧ୍ଯ।  ଅଧିକ ବିବରଣୀ ପାଇଁ GNU ସାଧାରଣ ସାର୍ବଜନୀନ ପ୍ରମାଣପତ୍ର ଦେଖନ୍ତୁ।\n"
+"\n"
+"ଏହି ପ୍ରଗ୍ରାମ ସହିତ ଆପଣ GNU ସାଧାରଣ ସାର୍ବଜନୀନ ପ୍ରମାଣପତ୍ରର ଗୋଟିଏ ନକଲ ପାଇଥିବେ; ଯଦି ନୁହଁ, ତେବେ ମୁକ୍ତ ସଫ୍ଟୱେର ପ୍ରତିଷ୍ଠାନ Inc., 675 Mass Ave, Cambridge, MA 02139, USA.କୁ ଲେଖି ଜଣାନ୍ତୁ।"
 
 #: smolt.py:265
 #, python-format
@@ -214,16 +235,16 @@ msgid "Could not contact server: %s"
 msgstr "ସେବକ ସହିତ ସମ୍ପର୍କ ସ୍ଥାପନ କରିପାରିଲା ନାହିଁ: %s"
 
 #: smolt.py:296
-#, fuzzy
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr "dbus ସହିତ bind କରିପାରିଲା ନାହିଁ"
+msgstr "dbus ସହିତ ବାନ୍ଧିପାରିଲା ନାହିଁ।  dbus ଚାଲୁଛିକି?"
 
 #: smolt.py:302
-#, fuzzy
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
-msgstr "hal ସହିତ ସଂଯୋଗ କରିପାରିଲା ନାହିଁ, ଏହା ଚାଲୁଅଛି କି?"
+msgstr ""
+"hal ସହିତ ସଂଯୋଗ କରିପାରିଲା ନାହିଁ, ଏହା ଚାଲୁଅଛି କି?\n"
+" \"service haldaemon start\" କୁ ରୁଟ ଆକାରରେ ଚଲାନ୍ତୁ"
 
 #: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
 #, python-format
@@ -232,7 +253,7 @@ msgstr "ସେବକ ସହିତ ସମ୍ପର୍କ ସ୍ଥାପନ କ�
 
 #: smolt.py:436
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
+msgstr "ଭୁଲ ସଂସ୍କରଣ, ଆପଣଙ୍କର ଗ୍ରାହକକୁ ନିୟନ୍ତ୍ରଣ କରିବାପାଇଁ ସର୍ଭର ଅସମର୍ଥ"
 
 #: smolt.py:452
 msgid "Communication with server failed"
@@ -308,31 +329,40 @@ msgstr "କର୍ଣ୍ଣଲ"
 
 #: smolt.py:553
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux ସକ୍ରିୟ"
 
 #: smolt.py:554
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux ଲାଗୁକରିବା"
 
 #: smolt.py:990
 msgid "Unable to save UUID, continuing...\n"
-msgstr ""
+msgstr "UUID କୁ ସଂରକ୍ଷଣ କରିବାରେ ଅସମର୍ଥ, ଚାଲୁଅଛି...\n"
 
 #: smolt.py:992
 msgid "Unable to determine UUID of system!\n"
-msgstr ""
+msgstr "ତନ୍ତ୍ରର UUID କୁ ନିର୍ଦ୍ଧାରଣ କରିବାରେ ଅସମର୍ଥ!\n"
 
 #: software.py:43
 msgid "Cannot Determine Runlevel"
-msgstr ""
+msgstr "ରନ ଲେଭେଲ ନିର୍ଦ୍ଧାରଣ କରିପାରୁନାହିଁ"
 
 #: smoltFirstBoot.py:31 smoltFirstBoot.py:41
 msgid "Hardware Profile"
 msgstr "ହାର୍ଡୱେର ରୂପରେଖ"
 
 #: smoltFirstBoot.py:57
-msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Fedora ଯୋଜନା ପାଇଁ smolt ଗୋଟିଏ ହାର୍ଡୱେର ରୂପରେଖ ସ୍ରଷ୍ଟା।  ଆପଣଙ୍କ ରୂପରେଖକୁ ଦାଖଲ କରିବା ସାମୁଦାୟକ ବିକାଶ ପାଇଁ ଲାଭପ୍ରଦ ହେବ ଯେହେତୁ ଏହି ସୂଚନା ଲୋକପ୍ରିୟ ହାର୍ଡୱେର ଏବଂ ପ୍ଲାଟଫର୍ମ ମାନଙ୍କୁ ବିଶେଷତା ପ୍ରଦାନ କରିବାରେ ସହାୟକ ହୋଇଥାଏ।  ଦାଖଲ ଗୁଡିକ ଅଜ୍ଞାତ ଅଟନ୍ତି।  ଆପଣଙ୍କ ରୂପରେଖକୁ ପଠାଇବା ଦ୍ବାରା ଏହା ଗୋଟିଏ ମାସିକ ଅଦ୍ଯତନ ପ୍ରକ୍ରିୟାକୁ ସକ୍ରିୟ କରିବ।"
+msgid ""
+"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
+"profile is a great way to give back to the community as this information is "
+"used to help focus our efforts on popular hardware and platforms.  "
+"Submissions are anonymous.  Sending your profile will enable a monthly "
+"update."
+msgstr ""
+"Fedora ଯୋଜନା ପାଇଁ smolt ଗୋଟିଏ ହାର୍ଡୱେର ରୂପରେଖ ସ୍ରଷ୍ଟା।  ଆପଣଙ୍କ ରୂପରେଖକୁ ଦାଖଲ କରିବା "
+"ସାମୁଦାୟକ ବିକାଶ ପାଇଁ ଲାଭପ୍ରଦ ହେବ ଯେହେତୁ ଏହି ସୂଚନା ଲୋକପ୍ରିୟ ହାର୍ଡୱେର ଏବଂ ପ୍ଲାଟଫର୍ମ ମାନଙ୍କୁ "
+"ବିଶେଷତା ପ୍ରଦାନ କରିବାରେ ସହାୟକ ହୋଇଥାଏ।  ଦାଖଲ ଗୁଡିକ ଅଜ୍ଞାତ ଅଟନ୍ତି।  ଆପଣଙ୍କ ରୂପରେଖକୁ ପଠାଇବା "
+"ଦ୍ବାରା ଏହା ଗୋଟିଏ ମାସିକ ଅଦ୍ଯତନ ପ୍ରକ୍ରିୟାକୁ ସକ୍ରିୟ କରିବ।"
 
 #: smoltFirstBoot.py:76
 msgid "_Send Profile"
@@ -343,8 +373,14 @@ msgid "D_o not send profile"
 msgstr "ରୂପରେଖ ପଠାନ୍ତୁ ନାହିଁ (_o)"
 
 #: smoltFirstBoot.py:95
-msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "ଆପଣ ନିଶ୍ଚିତ କି ଆପଣ ଆପଣଙ୍କ ରୂପରେଖକୁ ପଠାଇବା ପାଇଁ ଚାହୁଁ ନାହାଁନ୍ତି?  ଆପଣଙ୍କ ରୂପରେଖକୁ ଦାଖଲ କରିବା ଦ୍ବାରା ଏହା ଆମର ବିକାଶ ପାଇଁ ସୂଚନାର ଗୋଟିଏ ମୂଲ୍ଯବାନ ଉତ୍ସ ହୋଇପାରେ ଏବଂ ଆପଣଙ୍କ ହାର୍ଡୱେର ଦ୍ବାରା ହୋଇଥିବା ତୃଟି ନିବାରଣରେ ସାହାଯ୍ଯ କରିପାରିବ।"
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr ""
+"ଆପଣ ନିଶ୍ଚିତ କି ଆପଣ ଆପଣଙ୍କ ରୂପରେଖକୁ ପଠାଇବା ପାଇଁ ଚାହୁଁ ନାହାଁନ୍ତି?  ଆପଣଙ୍କ ରୂପରେଖକୁ ଦାଖଲ କରିବା "
+"ଦ୍ବାରା ଏହା ଆମର ବିକାଶ ପାଇଁ ସୂଚନାର ଗୋଟିଏ ମୂଲ୍ଯବାନ ଉତ୍ସ ହୋଇପାରେ ଏବଂ ଆପଣଙ୍କ ହାର୍ଡୱେର ଦ୍ବାରା "
+"ହୋଇଥିବା ତୃଟି ନିବାରଣରେ ସାହାଯ୍ଯ କରିପାରିବ।"
 
 #: smoltFirstBoot.py:103
 msgid "_Reconsider sending"
@@ -381,56 +417,81 @@ msgstr "ବର୍ଣ୍ଣନା"
 #: privacypolicy.py:3
 msgid ""
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a "
+"submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"the submission is anonymous.  If at any point in time a user wants to "
+"delete\n"
 "their profile from the database they need only run\n"
 "\n"
 "    smoltDeleteProfile\n"
 "\n"
-"The information sent to the smolt database server should be considered public\n"
-"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"The information sent to the smolt database server should be considered "
+"public\n"
+"in that anyone can view the statistics, data and share machine profiles.  "
+"In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"attention.  As such, not only will this information be shared with 3rd "
+"parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.\n"
 "\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and they\n"
+"server first.  This is the only place IP addresses are being logged and "
+"they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
-"the smolt database.  These logs are private and will not be available to the\n"
+"the smolt database.  These logs are private and will not be available to "
+"the\n"
 "general public.\n"
 "\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team at\n"
+"questions about this policy should contact the Fedora Infrastructure Team "
+"at\n"
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
+"Fedora ସ୍ମୋଲ୍ଟ ସର୍ଭର (smoon)କୁ ସ୍ମୋଲ୍ଟ କେବଳ ହାର୍ଡୱେର ଏବଂ ମୌଳିକ ଚାଳକତନ୍ତ୍ର ଉପରେ ସୂଚନା ଦେବ।\n "
+"ତତ୍ୟାଧାର ସହିତ ଦାଖଲକାରିର ଯନ୍ତ୍ରକୁ UUID ହେଉଛି କେବଳ ଗୋଟିଏ ସମ୍ପର୍କ।\n"
+"ଯେପର୍ଯ୍ୟନ୍ତ ଦାଖଲକାରି ଏହି UUID ନଦେଉଛି ସେପର୍ଯ୍ୟନ୍ତ ଦାଖଲଟି ଅଜ୍ଞାତ ଅଟେ।  ଯଦି କୌଣସି ସମୟରେ ଚାଳକ ତାଙ୍କର ରୂପରେଖକୁ\n"
+"ତଥ୍ୟାଧାରରୁ ଅପସାରଣ କରିବାକୁ ଚାହାଁନ୍ତି ସେମାନେ କେବଳ\n"
+"\n"
+"    smoltDeleteProfileକୁ ଚଲାଇବା ଆବଶ୍ୟକ\n"
+"\n"
+"ସ୍ମୋଲ୍ଟ ତଥ୍ୟାଧାର ସର୍ଭରକୁ ପଠାଯାଇଥିବା ସୂଚନା ସାର୍ବଜନୀନ ଆକାରରେ ଧରାଯିବା ଉଚିତ\n"
+"ସେଥିରେ ଯେକୌଣସି ବ୍ୟକ୍ତି ପରିସଂଖ୍ୟାନ,ତଥ୍ୟ ଦେଖିପାରୁଥିବେ ଏବଂ ଯନ୍ତ୍ର ରୂପରେଖକୁ ସହଭାଗ କରିପାରୁଥିବେ।\n "
+"ହାର୍ଡୱେର ବିକ୍ରେତା ଏବଂ ଅନ୍ୟ ତୃତୀୟ ପକ୍ଷର ଦୃଷ୍ଟି ଆକର୍ଷଣ କରିବାକୁ ସ୍ମୋଲ୍ଟ ବିଭିନ୍ନ ଉପାୟରେ ପରିକଳ୍ପନା କରାଯାଇଛି।\n"
+"ଆମେମାନେ ମୁକ୍ତସଙ୍କେତ ଚାଳକ ପାଇଁ ଉନ୍ନତତର ସମର୍ଥନ ହାସଲକରିବା ଏବଂ ସାଧାରଣ ଭାବରେ ଉନ୍ନତତର ସମର୍ଥନ ହାସଲକରିବା\n"
+"ଉଦ୍ଦେଶ୍ୟରେ ସ୍ମୋଲ୍ଟ ବ୍ୟବହାର କରିବାକୁ ଯାଉଛୁ।\n"
+"IP Logging:  Fedora ର ସ୍ମୋଲ୍ଟ ସ୍ଥାପନରେ ସମସ୍ତ ୱେବ ଗମନାଗମନ ପ୍ରଥମେ ଗୋଟିଏ ପ୍ରକ୍ସି ବାଟଦେଇ ଯାଏ।\n"
+"ଏହା ହିଁ କେବଳ ଗୋଟିଏ ସ୍ଥାନ ଯେଉଁଠି IP ଠିକଣା ସମୁହ ଲଗ ହୋଇଥାଏ ଏବଂ ସେମାନଙ୍କୁ ସେହି ସର୍ଭରରେ ୪ ସପ୍ତାହ \n"
+"ପର୍ଯ୍ୟନ୍ତ ରଖାଯାଇଥାଏ ଯେଉଁ ସମୟରେ ଲଗ ଆବର୍ତ୍ତନ ଏହି ଲଗଗୁଡିକୁ ହଟାଇଦେଇଥାଏ।\n"
+"  Fedora ପ୍ରକଳ୍ପ ip ଠିକଣାଗୁଡିକୁ \n"
+"ସ୍ମୋଲ୍ଟ ତଥ୍ୟାଧାରରେ ଏକତ୍ର କରିନଥାଏ।  ଏହି ଲଗଗୁଡିକ ବ୍ୟକ୍ତିଗତ ଏବଂ ସାଧାରଣ ନାଗରିକ ପାଇଁ ଉପଲବ୍ଧ ନୁହଁ।\n"
+"ବ୍ୟବହାରକାରୀ ଏହି ସିଧାସଳଖ ସ୍ମୋଲ୍ଟ ବ୍ୟବହାର ନକରିବା ଉଚିତ ନୀତିକୁ ନେଇ ଦୁଖିତ।  ବ୍ୟବହାରକରୀ ଏହି ନିତୀ\n"
+"ବିଷୟରେ ପ୍ରଶ୍ନକୁ ନେଇ Fedora Infrastructure Team "
+"at\n"
+"admin [at] fedoraproject.org ସହିତ ଯୋଗାଯୋଗ କରିବା ଉଚିତ।  ଏହାମଧ୍ଯ ମନେରଖନ୍ତୁ ଯେ \n"
+"ବ୍ୟବହାରକାରୀ ତାର ରୂପରେଖକୁ ଯେକୌଣସି ସମୟରେ  \"smoltDeleteProfile\" ବ୍ୟବହାର କରି ଲିଭାଇଦେଇପାରିବ।\n"
 
 #: scan.py:16
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr ""
+msgstr "ଜଣାଥିବା ତ୍ରୁଟିପାଇଁ %s କ୍ରମବୀକ୍ଷଣ କରନ୍ତୁ।\n"
 
 #: scan.py:39
 msgid "Errata Found!"
-msgstr ""
+msgstr "ତ୍ରୁଟି ମିଳିଲା!"
 
 #: scan.py:42
 msgid "No errata found, if this machine is having issues please go to"
-msgstr ""
+msgstr "କୌଣସି ତ୍ରୁଟି ମିଳିଲା ନାହିଁ, ଯଦି ଏହି ଯନ୍ତ୍ରରେ ସମସ୍ୟା ଅଛି ଦୟାକରି ଯାଆନ୍ତୁ"
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
-msgstr ""
+msgstr "ଆପଣଙ୍କର ରୂପରେଖ ଏବଂ ଏହି ଯନ୍ତ୍ରପାଇଁ ଗୋଟିଏ wiki ପୃଷ୍ଠା ସୃଷ୍ଟି କରନ୍ତୁ ଯାହାଫଳରେ ଅନ୍ୟମାନେ"
 
 #: scan.py:44
 msgid "benefit"
-msgstr ""
+msgstr "ଲାଭ"
 
-#~ msgid "Run \"service haldaemon start\" as root"
-#~ msgstr "ରୁଟ ଚାଳକ ଭାବରେ \"service haldaemon start\" ଚଳାନ୍ତୁ"
-
-#~ msgid "Device ID"
-#~ msgstr "ଉପକରଣ ପରିଚୟ"
