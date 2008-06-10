@@ -1,0 +1,354 @@
+# translation of pl.po to Polish
+# Piotr Dr??g <piotrdrag@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-01 22:37-0400\n"
+"PO-Revision-Date: 2008-06-10 18:39+0200\n"
+"Last-Translator: Piotr Dr??g <piotrdrag@gmail.com>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: hardware/controllers/root.py:95
+msgid ""
+"The credentials you supplied were not correct or did not grant access to "
+"this resource."
+msgstr ""
+"Podane dane uwierzytelniaj??ce nie s?? poprawne lub nie gwarantuj?? dost??pu do "
+"tego zasobu."
+
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr ""
+"Musisz poda?? dane uwierzytelniaj??ce przed uzyskaniem dost??pu do tego zasobu."
+
+#: hardware/controllers/root.py:101
+msgid "Please log in."
+msgstr "Zaloguj si??."
+
+#: hardware/templates/deviceclass.html:9
+msgid "Devices by class ${type}"
+msgstr "Urz??dzenia wed??ug klasy ${type}"
+
+#: hardware/templates/deviceclass.html:15
+msgid "Total Count"
+msgstr "Ca??kowity licznik"
+
+#: hardware/templates/deviceclass.html:19
+#, python-format
+msgid "% hosts detected ${type}"
+msgstr "% host??w wykryto ${type}"
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "Producenci"
+
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "Urz??dzenia"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+msgid "Device"
+msgstr "Urz??dzenie"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Bus"
+msgstr "Magistrala"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "Sterownik"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr "Producent"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Vendor"
+msgstr "Producent podrz??dny"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Device"
+msgstr "Urz??dzenie podrz??dne"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr "Data dodania"
+
+#: hardware/templates/deviceclass.html:36
+msgid "% tot hosts"
+msgstr "% tot komputer??w"
+
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr "Razem zarejestrowanych urz??dze??"
+
+#: hardware/templates/devices.html:19
+msgid "Unique Devices"
+msgstr "Unikalne urz??dzenia"
+
+#: hardware/templates/devices.html:24
+msgid "Raw Devices"
+msgstr "Surowe urz??dzenia"
+
+#: hardware/templates/devices.html:34
+msgid "Machines / Device"
+msgstr "Komputery/urz??dzenia"
+
+#: hardware/templates/devices.html:44
+msgid "Classes"
+msgstr "Klasy"
+
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "Znajd??"
+
+#: hardware/templates/report_search.html:38
+msgid "Dataset"
+msgstr "Zestaw danych"
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr "Zestaw wynikowy"
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr "Wy??wietl komputer"
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr "Nie u??ywam lub nie wiem"
+
+#: hardware/templates/show.html:31
+msgid "Breaks System"
+msgstr "Uszkadza system"
+
+#: hardware/templates/show.html:32
+msgid "Doesn't Work"
+msgstr "Nie dzia??a"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr "Wymaga sterownik??w firm trzecich"
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr "Dzia??a, ale wymaga dodatkowej konfiguracji"
+
+#: hardware/templates/show.html:35
+msgid "Worked out of the box"
+msgstr "Dzia??a od razu"
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr "Wy??wietl wszystkie informacje"
+
+#: hardware/templates/show.html:39
+msgid "Overall Rating:"
+msgstr "Ca??kowita ocena:"
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr "Publiczne UUID"
+
+#: hardware/templates/show.html:43
+msgid "Operating System"
+msgstr "System operacyjny"
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr "Platforma"
+
+#: hardware/templates/show.html:45
+msgid "System Vendor"
+msgstr "Producent systemu"
+
+#: hardware/templates/show.html:46
+msgid "System Model"
+msgstr "Model systemu"
+
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+msgid "Kernel"
+msgstr "J??dro"
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr "Konstrukcja p??yty g????wnej"
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr "Ostatnio zmodyfikowane"
+
+#: hardware/templates/show.html:50
+msgid "Admin Password"
+msgstr "Has??o administratora"
+
+#: hardware/templates/show.html:60
+msgid "Rating"
+msgstr "Ocena"
+
+#: hardware/templates/show.html:60
+msgid "Class"
+msgstr "Klasa"
+
+#: hardware/templates/stats.html:9
+msgid "Stats"
+msgstr "Statystyki"
+
+#: hardware/templates/stats.html:15
+msgid "Total Registered Hosts"
+msgstr "Razem zarejestrowanych komputer??w"
+
+#: hardware/templates/stats.html:23
+msgid "Total bogomips"
+msgstr "Razem BogoMIPS"
+
+#: hardware/templates/stats.html:27
+msgid "Total processors"
+msgstr "Razem procesor??w"
+
+#: hardware/templates/stats.html:31
+msgid "Total MHz"
+msgstr "Razem MHz"
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr "Architektury"
+
+#: hardware/templates/stats.html:40
+msgid "Arch"
+msgstr "Architektura"
+
+#: hardware/templates/stats.html:40
+msgid "Count"
+msgstr "Licznik"
+
+#: hardware/templates/stats.html:40
+#, python-format
+msgid "% of total"
+msgstr "% og????em"
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr "System operacyjny"
+
+#: hardware/templates/stats.html:66
+msgid "Runlevel"
+msgstr "Poziom uruchamiania"
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr "J??zyk"
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr "Model"
+
+#: hardware/templates/stats.html:119
+msgid "RAM"
+msgstr "RAM"
+
+#: hardware/templates/stats.html:132
+msgid "Swap"
+msgstr "Przestrze?? wymiany"
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr "Procesor"
+
+#: hardware/templates/stats.html:147
+msgid "Speed (MHz)"
+msgstr "Pr??dko???? (MHz)"
+
+#: hardware/templates/stats.html:154
+msgid "Number of CPUs"
+msgstr "Liczba procesor??w"
+
+#: hardware/templates/stats.html:161
+msgid "CPU Vendor"
+msgstr "Producent procesora"
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr "BogoMIPS"
+
+#: hardware/templates/stats.html:193
+msgid "Form Factor"
+msgstr "Konstrukcja p??yty g????wnej"
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr "SELinux"
+
+#: hardware/templates/stats.html:208
+msgid "SELinux Enabled"
+msgstr "SELinux jest w????czony"
+
+#: hardware/templates/stats.html:215
+msgid "SELinux Enforce"
+msgstr "SELinux w trybie wymuszania"
+
+#: hardware/templates/stats.html:222
+msgid "SELinux Policy"
+msgstr "Polityka SELinuksa"
+
+#: hardware/templates/stats.html:234
+msgid "Filesystems"
+msgstr "Systemy plik??w"
+
+#: hardware/templates/stats.html:242
+msgid "Filesystem size"
+msgstr "Rozmiar systemu plik??w"
+
+#: hardware/templates/stats.html:253
+msgid "Myth Role"
+msgstr "Rola Myth"
+
+#: hardware/templates/stats.html:266
+msgid "Myth Remote"
+msgstr "Zdalny Myth"
+
+#: hardware/templates/stats.html:279
+msgid "Myth  Theme"
+msgstr "Motyw Mytha"
+
+#: hardware/templates/welcome.html:12
+msgid "Enter your profile UUID:"
+msgstr "Podaj UUID profilu:"
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr "Statystyki"
+
+#: hardware/templates/welcome.html:17
+msgid ""
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+"Aby uzyska?? szczeg????owe statystyki urz??dze?? w bazie danych, zobacz <a "
+"href='/static/stats/stats.html'>/stats</a> lub <a "
+"href='/static/stats/devices.html'>/devices</a>"
+
+#: hardware/templates/welcome.html:19
+msgid "Top Vendor Chart"
+msgstr "Najpopularniejsi producenci"
+
+#: hardware/templates/welcome.html:23
+msgid "More info"
+msgstr "Wi??cej informacji"
+
+#: hardware/templates/welcome.html:25
+msgid ""
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
+"information about specific devices. Usage and other general answers can "
+"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+"<p>Przejrzyj i przeszukaj <a href='/wiki/'>Wiki</a>, aby uzyska?? szczeg????owe "
+"informacje o poszczeg??lnych urz??dzeniach. Spos??b u??ycia i inne og??lne "
+"odpowiedzi mo??na znale???? tak??e na <a href='/wiki/'>Wiki</a>.</p>"
