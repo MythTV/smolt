@@ -54,6 +54,7 @@ class odict(UserDict):
 
 
 distro_info= odict()
+distro_info['Blag Linux']='/etc/blag-release'
 distro_info['MythVantage']='/etc/mythvantage-release'
 distro_info['Knoppmyth']='/etc/KnoppMyth-version'
 distro_info['MythDora']='/etc/mythdora-release'
@@ -74,6 +75,7 @@ distro_info['PLD Linux']= '/etc/pld-release'
 distro_info['SUSE Linux']= '/etc/SuSE-release'
 distro_info['Yellow Dog Linux']= '/etc/yellowdog-release'
 distro_info['Redhat Linux']= '/etc/redhat-release'
+
 
 
 def get_os_info():
