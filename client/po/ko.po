@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: smolt.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2008-05-12 11:53+1000\n"
+"PO-Revision-Date: 2008-09-09 15:44+1000\n"
 "Last-Translator: Eunju Kim <eukim@redhat.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"\n"
+"\n"
+"\n"
 
 #: deleteProfile.py:36 smolt.py:263
 #, python-format
@@ -55,33 +58,33 @@ msgstr "프로파일이 삭제됨, 이를 확인하시기 바랍니다"
 
 #: sendProfile.py:53
 msgid "(optional) Fedora Account System registration"
-msgstr ""
+msgstr "(옵션) Fedora 계정 시스템 등록 "
 
 #: sendProfile.py:58
 msgid "password, will prompt if not specified"
-msgstr ""
+msgstr "암호, 지정되어 있지 않을 경우 묻게 됩니다 "
 
 #: sendProfile.py:68
 msgid "don't prompt to send, just send"
-msgstr ""
+msgstr "보낼지를 묻지않고 그냥 보냅니다 "
 
 #: sendProfile.py:73
 msgid "continue to send until success"
-msgstr "보내기 성공할 때 까지 계속 보냄  "
+msgstr "보내기 성공할 때 까지 계속 보냅니다 "
 
 #: sendProfile.py:88
 msgid ""
 "this is an automated checkin, will only run if the \"smolt\" service has "
 "been started"
-msgstr ""
+msgstr "자동 checkin입니다, \"smolt\" 서비스를 시작할 경우에만 실행됩니다  "
 
 #: sendProfile.py:93
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr ""
+msgstr "알려진 하드웨어 에라타의 경우에만 이 장치를 스캔합니다, 프로파일을 보내지 않습니다.   "
 
 #: sendProfile.py:108
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr ""
+msgstr "Smolt는 checkin으로 설정되어 있지만 checkin은 비활성화되어 있습니다 (힌트: service smolt start) "
 
 #: sendProfile.py:115 scan.py:51
 msgid "Error:"
@@ -162,15 +165,15 @@ msgstr "도움말(_H) "
 
 #: smoltGui.py:80
 msgid "_My Smolt Page"
-msgstr ""
+msgstr "사용자 Smolt 페이지(_M) "
 
 #: smoltGui.py:80
 msgid "Take me to my smolt profile page"
-msgstr ""
+msgstr "사용자 smolt 프로파일 페이지로 이동 "
 
 #: smoltGui.py:145
 msgid "An error occurred while sending the data to the server."
-msgstr ""
+msgstr "서버에 데이터를 전송하는 동안 오류가 발생했습니다. "
 
 #: smoltGui.py:152
 #, python-format
@@ -180,22 +183,25 @@ msgid ""
 "%s\n"
 "stored in %s"
 msgstr ""
+"성공적으로 데이터를 전송했습니다.  버그 신고를 위해 하드웨어 프로파일을 참조해야 할 경우 UUID는 \n"
+"%s\n"
+"%s에 저장되어 있습니다 "
 
 #: smoltGui.py:166
 msgid "Smolt Privacy Policy"
-msgstr ""
+msgstr "Smolt 개인 정보 보호정책   "
 
 #: smoltGui.py:209
 msgid "translator-credits"
-msgstr ""
+msgstr "김은주 (eukim@redhat.com) 2006-2008"
 
 #: smoltGui.py:210
 msgid "Fedora hardware profiler."
-msgstr ""
+msgstr "Fedora 하드웨어 프로파일러 "
 
 #: smoltGui.py:211
 msgid "Copyright © 2007 Mike McGrath"
-msgstr ""
+msgstr "Copyright © 2007 Mike McGrath"
 
 #: smoltGui.py:213
 msgid ""
@@ -230,30 +236,32 @@ msgstr ""
 #: smolt.py:265
 #, python-format
 msgid "Could not contact server: %s"
-msgstr ""
+msgstr "서버에 접속할 수 없음: %s"
 
 #: smolt.py:296
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr ""
+msgstr "dbus로 바인드할 수 없습니다. dbus가 실행 중 입니까?  "
 
 #: smolt.py:302
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
 msgstr ""
+"hal로 연결할 수 없습니다, hal이 실행되고 있습니까?\n"
+"root로 \"service haldaemon start\"를 실행합니다 "
 
 #: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
 #, python-format
 msgid "Error contacting Server: %s"
-msgstr ""
+msgstr "서버 연결 실패: %s "
 
 #: smolt.py:436
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
+msgstr "잘못된 버전입니다, 서버가 클라이언트를 처리할 수 없습니다 "
 
 #: smolt.py:452
 msgid "Communication with server failed"
-msgstr ""
+msgstr "서버와 통신 실패 "
 
 #: smolt.py:526
 msgid "Devices"
@@ -317,7 +325,7 @@ msgstr "시스템 "
 
 #: smolt.py:551
 msgid "Form factor"
-msgstr ""
+msgstr "폼 팩터 "
 
 #: smolt.py:552
 msgid "Kernel"
@@ -329,19 +337,19 @@ msgstr "SELinux 활성화 "
 
 #: smolt.py:554
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux 강제 "
 
 #: smolt.py:990
 msgid "Unable to save UUID, continuing...\n"
-msgstr ""
+msgstr "UUID 저장할 수 없습니다, 계속 실행...\n"
 
 #: smolt.py:992
 msgid "Unable to determine UUID of system!\n"
-msgstr ""
+msgstr "시스템의 UUID를 지정할 수 없습니다!\n"
 
 #: software.py:43
 msgid "Cannot Determine Runlevel"
-msgstr ""
+msgstr "런레벨을 지정할 수 없습니다 "
 
 #: smoltFirstBoot.py:31 smoltFirstBoot.py:41
 msgid "Hardware Profile"
@@ -354,7 +362,7 @@ msgid ""
 "used to help focus our efforts on popular hardware and platforms.  "
 "Submissions are anonymous.  Sending your profile will enable a monthly "
 "update."
-msgstr ""
+msgstr "Smolt는 Fedora 프로젝트의 하드웨어 프로파일러입니다. 프로파일을 제출하는 것은 제출한 프로파일 정보가 많이 사용되는 하드웨어 및 플랫폼에 초점을 맞추도록 함으로 커뮤니티에 환원할 수 있는 좋은 방법입니다. 제출은 익명으로 이루어 집니다. 프로파일을 보내시면 이는 매달 업데이트됩니다. "
 
 #: smoltFirstBoot.py:76
 msgid "_Send Profile"
@@ -369,15 +377,15 @@ msgid ""
 "Are you sure you wouldn't like to send the profile?  Submitting your profile "
 "is a valuable source of information for our development and can help "
 "troubleshoot issues that may come up with your hardware."
-msgstr ""
+msgstr "정말로 프로파일을 보내지 않으시겠습니까? 보내주시는 프로파일은 개발을 위한 중요한 자원으로 하드웨어에서 발생할 수 있는 문제를 해결하는데 사용될 수 있습니다.  "
 
 #: smoltFirstBoot.py:103
 msgid "_Reconsider sending"
-msgstr ""
+msgstr "전송 재고려(_R) "
 
 #: smoltFirstBoot.py:104
 msgid "_No, do not send."
-msgstr ""
+msgstr "아니요, 보내지 않습니다.(_N) "
 
 #: gui.py:56
 msgid "Label"
@@ -389,7 +397,7 @@ msgstr "데이터 "
 
 #: gui.py:100
 msgid "Bus"
-msgstr ""
+msgstr "버스 "
 
 #: gui.py:107
 msgid "Driver"
@@ -404,6 +412,7 @@ msgid "Description"
 msgstr "설명 "
 
 #: privacypolicy.py:3
+#, fuzzy
 msgid ""
 "Smolt will only send hardware and basic operating system information to the\n"
 "Fedora smolt server (smoon).  The only tie from the database to a "
@@ -439,12 +448,12 @@ msgid ""
 "at\n"
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
-msgstr ""
+msgstr "Smolt는 Fedora smolt 서버 (smoon)에 하드웨어 및 운영 체제 정보만을 전송합니다.\n"
 
 #: scan.py:16
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr ""
+msgstr "알려진 에라타에 해당하는 %s 을(를) 검색합니다.\n"
 
 #: scan.py:39
 msgid "Errata Found!"
@@ -452,13 +461,13 @@ msgstr "에라타 발견! "
 
 #: scan.py:42
 msgid "No errata found, if this machine is having issues please go to"
-msgstr ""
+msgstr "에라타가 발견되지 않았습니다. 장치에 문제가 발생할 경우 프로파일로 가시기 바랍니다  "
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
-msgstr ""
+msgstr "프로파일에 가셔서 장치에 해당하는 wiki 페이지를 생성합니다 "
 
 #: scan.py:44
 msgid "benefit"
-msgstr ""
+msgstr "이점 "
 
