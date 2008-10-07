@@ -1,8 +1,8 @@
 # Dutch translations for hardware.
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
+# Yaakov M. Nemoy <loupgaroublond@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: hardware 1.0\n"
