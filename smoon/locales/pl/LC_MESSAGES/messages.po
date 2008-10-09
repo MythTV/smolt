@@ -1,5 +1,5 @@
 # translation of pl.po to Polish
-# Piotr Dr??g <piotrdrag@gmail.com>, 2008.
+# Piotr Drąg <piotrdrag@gmail.com>, 2008.
 #
 msgid ""
 msgstr ""
@@ -7,7 +7,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
 "PO-Revision-Date: 2008-06-10 18:39+0200\n"
-"Last-Translator: Piotr Dr??g <piotrdrag@gmail.com>\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,30 +18,30 @@ msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
 msgstr ""
-"Podane dane uwierzytelniaj??ce nie s?? poprawne lub nie gwarantuj?? dost??pu do "
+"Podane dane uwierzytelniające nie są poprawne lub nie gwarantują dostępu do "
 "tego zasobu."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
 msgstr ""
-"Musisz poda?? dane uwierzytelniaj??ce przed uzyskaniem dost??pu do tego zasobu."
+"Musisz podać dane uwierzytelniające przed uzyskaniem dostępu do tego zasobu."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "Zaloguj si??."
+msgstr "Zaloguj się."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr "Urz??dzenia wed??ug klasy ${type}"
+msgstr "Urządzenia według klasy ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "Ca??kowity licznik"
+msgstr "Całkowity licznik"
 
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr "% host??w wykryto ${type}"
+msgstr "% hostów wykryto ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -50,11 +50,11 @@ msgstr "Producenci"
 #: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
-msgstr "Urz??dzenia"
+msgstr "Urządzenia"
 
 #: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
 msgid "Device"
-msgstr "Urz??dzenie"
+msgstr "Urządzenie"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
@@ -70,11 +70,11 @@ msgstr "Producent"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "Producent podrz??dny"
+msgstr "Producent podrzędny"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "Urz??dzenie podrz??dne"
+msgstr "Urządzenie podrzędne"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
@@ -82,23 +82,23 @@ msgstr "Data dodania"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% tot komputer??w"
+msgstr "% tot komputerów"
 
 #: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr "Razem zarejestrowanych urz??dze??"
+msgstr "Razem zarejestrowanych urządzeń"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr "Unikalne urz??dzenia"
+msgstr "Unikalne urządzenia"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr "Surowe urz??dzenia"
+msgstr "Surowe urządzenia"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "Komputery/urz??dzenia"
+msgstr "Komputery/urządzenia"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
@@ -106,7 +106,7 @@ msgstr "Klasy"
 
 #: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr "Znajd??"
+msgstr "Znajdź"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
@@ -118,11 +118,11 @@ msgstr "Zestaw wynikowy"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr "Wy??wietl komputer"
+msgstr "Wyświetl komputer"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr "Nie u??ywam lub nie wiem"
+msgstr "Nie używam lub nie wiem"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
@@ -130,27 +130,27 @@ msgstr "Uszkadza system"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
-msgstr "Nie dzia??a"
+msgstr "Nie działa"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "Wymaga sterownik??w firm trzecich"
+msgstr "Wymaga sterowników firm trzecich"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "Dzia??a, ale wymaga dodatkowej konfiguracji"
+msgstr "Działa, ale wymaga dodatkowej konfiguracji"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr "Dzia??a od razu"
+msgstr "Działa od razu"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "Wy??wietl wszystkie informacje"
+msgstr "Wyświetl wszystkie informacje"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr "Ca??kowita ocena:"
+msgstr "Całkowita ocena:"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
@@ -174,11 +174,11 @@ msgstr "Model systemu"
 
 #: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
-msgstr "J??dro"
+msgstr "Jądro"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr "Konstrukcja p??yty g????wnej"
+msgstr "Konstrukcja płyty głównej"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
@@ -186,7 +186,7 @@ msgstr "Ostatnio zmodyfikowane"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr "Has??o administratora"
+msgstr "Hasło administratora"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
@@ -202,7 +202,7 @@ msgstr "Statystyki"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr "Razem zarejestrowanych komputer??w"
+msgstr "Razem zarejestrowanych komputerów"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
@@ -210,7 +210,7 @@ msgstr "Razem BogoMIPS"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr "Razem procesor??w"
+msgstr "Razem procesorów"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
@@ -231,7 +231,7 @@ msgstr "Licznik"
 #: hardware/templates/stats.html:40
 #, python-format
 msgid "% of total"
-msgstr "% og????em"
+msgstr "% ogółem"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
@@ -243,7 +243,7 @@ msgstr "Poziom uruchamiania"
 
 #: hardware/templates/stats.html:79
 msgid "Language"
-msgstr "J??zyk"
+msgstr "Język"
 
 #: hardware/templates/stats.html:105
 msgid "Model"
@@ -255,7 +255,7 @@ msgstr "RAM"
 
 #: hardware/templates/stats.html:132
 msgid "Swap"
-msgstr "Przestrze?? wymiany"
+msgstr "Przestrzeń wymiany"
 
 #: hardware/templates/stats.html:145
 msgid "CPU"
@@ -263,11 +263,11 @@ msgstr "Procesor"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
-msgstr "Pr??dko???? (MHz)"
+msgstr "Prędkość (MHz)"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "Liczba procesor??w"
+msgstr "Liczba procesorów"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
@@ -279,7 +279,7 @@ msgstr "BogoMIPS"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr "Konstrukcja p??yty g????wnej"
+msgstr "Konstrukcja płyty głównej"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -287,7 +287,7 @@ msgstr "SELinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr "SELinux jest w????czony"
+msgstr "SELinux jest włączony"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
@@ -299,11 +299,11 @@ msgstr "Polityka SELinuksa"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
-msgstr "Systemy plik??w"
+msgstr "Systemy plików"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr "Rozmiar systemu plik??w"
+msgstr "Rozmiar systemu plików"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
@@ -331,7 +331,7 @@ msgid ""
 "href='/static/stats/stats.html'>/stats</a> or <a "
 "href='/static/stats/devices.html'>/devices</a>"
 msgstr ""
-"Aby uzyska?? szczeg????owe statystyki urz??dze?? w bazie danych, zobacz <a "
+"Aby uzyskać szczegółowe statystyki urządzeń w bazie danych, zobacz <a "
 "href='/static/stats/stats.html'>/stats</a> lub <a "
 "href='/static/stats/devices.html'>/devices</a>"
 
@@ -341,7 +341,7 @@ msgstr "Najpopularniejsi producenci"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr "Wi??cej informacji"
+msgstr "Więcej informacji"
 
 #: hardware/templates/welcome.html:25
 msgid ""
@@ -349,6 +349,6 @@ msgid ""
 "information about specific devices. Usage and other general answers can "
 "also be found at the <a href='/wiki/'>Wiki</a>.</p>"
 msgstr ""
-"<p>Przejrzyj i przeszukaj <a href='/wiki/'>Wiki</a>, aby uzyska?? szczeg????owe "
-"informacje o poszczeg??lnych urz??dzeniach. Spos??b u??ycia i inne og??lne "
-"odpowiedzi mo??na znale???? tak??e na <a href='/wiki/'>Wiki</a>.</p>"
+"<p>Przejrzyj i przeszukaj <a href='/wiki/'>Wiki</a>, aby uzyskać szczegółowe "
+"informacje o poszczególnych urządzeniach. Sposób użycia i inne ogólne "
+"odpowiedzi można znaleźć także na <a href='/wiki/'>Wiki</a>.</p>"
