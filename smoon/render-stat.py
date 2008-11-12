@@ -221,7 +221,7 @@ if not  template_config['archs'] == [] :
         {   'xaxis' : { 'ticks' : archs }, } )
 
 if not  template_config['os'] == [] :
-    stats['os'] = session.query(OS).select(limit=15)
+    stats['os'] = session.query(OS).select(limit=30)
 
 if not  template_config['runlevel'] == [] :
     stats['runlevel'] = session.query(Runlevel).select()
