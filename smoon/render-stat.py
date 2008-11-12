@@ -17,7 +17,6 @@ import sys
 import time
 from hardware.wiki import *
 from turboflot import TurboFlot
-from turbogears.database import get_engine
 
 # first look on the command line for a desired config file,
 # if it's not on the command line, then
@@ -36,7 +35,6 @@ from sqlalchemy import *
 from hardware.model import *
 from hardware.hwdata import DeviceMap
 
-
 #bind = metadata.bind
 from turbogears.widgets import Tabber
 tabs = Tabber()
@@ -44,8 +42,8 @@ tabs = Tabber()
 # the path, where to store the generated pages
 page_path = "hardware/static/stats"
 
-turbogears.view.load_engines()
 engine = engines.get('genshi', None)
+turbogears.view.load_engines()
 #template config vars
 template_config={}
 template_config['archs']=config.get("stats_template.archs", [])
@@ -116,49 +114,94 @@ def _process_output(output, template, format):
             output["tg_js_%s" % str(l)] = js[l]
 
         output["tg_flash"] = output.get("tg_flash")
+
         return engine.render(output, format=format, template=template)
 
 
 
 stats = {}
-
 # somehow this has to be first, cause it binds us to
 # an sqlalchemy context
-session.query(Host)[0]
+stats['total_hosts'] = session.query(Host).count()
 
-stats['total_hosts'] = total_hosts().execute().fetchone()[0]
+class ByClass(object):
+    def __init__(self):
+        self.data = {}
+
+    def fetch_data(self):
+        classes = session.query(HardwareClass).select()
+        count = {}
+        types = {}
+        vendors = {}
+        total_hosts = 0
+
+        # We only want hosts that detected hardware (IE, hal was working properly)
+        total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))],
+                             hosts.c.id == host_links.c.host_link_id)\
+                        .execute().fetchone()[0]
+
+        for cls in classes:
+            type = cls.cls
+
+            #devs = select([computer_logical_devices], computer_logical_devices.c.cls == type).alias("devs")
+            devs = computer_logical_devices
+            types = select([devs,
+                            func.count(func.distinct(host_links.c.host_link_id)).label('c')],
+                           and_(devs.c.cls == type,
+                                host_links.c.device_id == devs.c.id),
+                           #from_obj=[ host_links.join(devs, host_links.c.device_id == devs.c.id) ],
+                           group_by=host_links.c.device_id,
+                           order_by=[desc('c')],
+                           limit=100).execute().fetchall();
+
+#            devs = select([computer_logical_devices.c.id],
+#                          and_(computer_logical_devices.c.cls == type,
+#                               old_hosts_clause())).alias("devs")
+#            devs = computer_logical_devices
+            count = select([func.count(func.distinct(host_links.c.host_link_id))],
+                           and_(devs.c.cls == type,
+                                host_links.c.device_id == devs.c.id)).execute().fetchone()[0]
+
+            device = computer_logical_devices
+            vendors = select([func.count(device.c.vendor_id).label('cnt'),
+                              device.c.vendor_id],
+                             device.c.cls==type,
+                             order_by=[desc('cnt')],
+                             group_by=device.c.vendor_id).execute().fetchall()
+
+            self.data[type] = (total_hosts, count, types, vendors)
 
 
-def render_devices(byclass_cache):
-    byclass_cache.fetch_data()
-    
-    for type in byclass_cache.data.keys():
-        type=type
-        pci_vendors = DeviceMap('pci')
-        (total_hosts, count, types, vendors) = byclass_cache[type]
-    
-        t=engine.load_template('hardware.templates.deviceclass')
-        yield type, _process_output(dict(types=types, type=type,
-                                        total_hosts=total_hosts, count=count,
-                                        pci_vendors=pci_vendors, vendors=vendors,
-                                        tabs=tabs), template=t, format='html')
+    def __getitem__(self, key):
+        return self.data[key]
 
-#This is a function in a function because
-def device_reporter(byclass_cache):
-    def write_devices(fname_template, path):
-        for type, out_html in render_devices(byclass_cache):
-            fname = fname_template % dict(path=path, type=type)
-            f = open(fname, "w")
-            f.write(out_html)
-            f.close()
-    return write_devices
+    pass
 
-byclass_cache = reports.ByClass()
-device_reporter(byclass_cache)("%(path)s/by_class_%(type)s.html", page_path)
+
+byclass_cache = ByClass()
+byclass_cache.fetch_data()
+
+for type in byclass_cache.data.keys():
+    type=type
+    pci_vendors = DeviceMap('pci')
+    (total_hosts, count, types, vendors) = byclass_cache[type]
+
+    engine = engines.get('genshi', None)
+    t=engine.load_template('hardware.templates.deviceclass')
+
+    out_html = _process_output(dict(types=types, type=type,
+                                    total_hosts=total_hosts, count=count,
+                                    pci_vendors=pci_vendors, vendors=vendors,
+                                    tabs=tabs), template=t, format='html')
+
+    fname = "%s/by_class_%s.html" % (page_path, type)
+    f = open(fname, "w")
+    f.write(out_html)
+    f.close()
 
 # Save some memory
 del byclass_cache
-
+del out_html
 
 stats = {}
 stats['total_hosts'] = session.query(Host).count()
@@ -301,13 +344,6 @@ if not  template_config['filesystem'] == [] :
             session.query(FileSystem).filter(and_(FileSystem.c.f_fssize > (1024*GB),
             FileSystem.c.f_fssize <= (3072*GB))).count()))
     stats['combined_fs_size'].append(("Over 3TB",session.query(FileSystem).filter((FileSystem.c.f_fssize) > (3072*GB)  ) .count()))
-
-if not  template_config['mythrole'] == [] :
-    stats['myth_systemrole'] = session.query(MythSystemRole).select()
-if not  template_config['mythremote'] == [] :
-    stats['mythremote'] = session.query(MythRemote).select()
-if not  template_config['myththeme'] == [] :
-    stats['myththeme'] = session.query(MythTheme).select()
 
 
 
