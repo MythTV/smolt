@@ -59,9 +59,9 @@ template_config['kernel']=config.get("stats_template.kernel", [])
 template_config['formfactor']=config.get("stats_template.formfactor", [])
 template_config['selinux']=config.get("stats_template.selinux", [])
 template_config['filesystem']=config.get("stats_template.filesystem", [])
-template_config['mythrole']=config.get("stats_template.mythrole", [])
-template_config['mythremote']=config.get("stats_template.mythremote", [])
-template_config['myththeme']=config.get("stats_template.myththeme", [])
+#template_config['mythrole']=config.get("stats_template.mythrole", [])
+#template_config['mythremote']=config.get("stats_template.mythremote", [])
+#template_config['myththeme']=config.get("stats_template.myththeme", [])
 
 def _process_output(output, template, format):
     """Produces final output form from the data returned from a
@@ -185,15 +185,12 @@ for type in byclass_cache.data.keys():
     type=type
     pci_vendors = DeviceMap('pci')
     (total_hosts, count, types, vendors) = byclass_cache[type]
-
     engine = engines.get('genshi', None)
     t=engine.load_template('hardware.templates.deviceclass')
-
     out_html = _process_output(dict(types=types, type=type,
                                     total_hosts=total_hosts, count=count,
                                     pci_vendors=pci_vendors, vendors=vendors,
                                     tabs=tabs), template=t, format='html')
-
     fname = "%s/by_class_%s.html" % (page_path, type)
     f = open(fname, "w")
     f.write(out_html)
