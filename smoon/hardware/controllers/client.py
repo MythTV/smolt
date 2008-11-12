@@ -2,7 +2,7 @@ import simplejson
 
 from turbogears import expose
 from turbogears import exception_handler
-from sqlalchemy.exceptions import InvalidRequestError
+from sqlalchemy.exceptions import InvalidRequestError, OperationalError
 from datetime import datetime
 
 from hardware.wiki import *
@@ -184,6 +184,10 @@ class Client(object):
             host_sql = Host()
             host_sql.uuid = host_dict["uuid"]
             host_sql.pub_uuid = generate_uuid(public=True)
+        except OperationalError:
+            host_sql = Host()
+            host_sql.uuid = host_dict["uuid"]
+            host_sql.pub_uuid = generate_uuid(public=True)
         host_sql.os = host_dict['os']
         host_sql.default_runlevel = host_dict['default_runlevel']
         host_sql.language = host_dict['language']
@@ -207,18 +211,18 @@ class Client(object):
         except KeyError:
             host_sql.selinux_policy = 'Unknown'
         host_sql.selinux_enforce = host_dict['selinux_enforce']
-        try:
-                host_sql.myth_systemrole = host_dict['myth_systemrole']
-        except KeyError:
-                 host_sql.myth_systemrole = 'Unknown'
-        try:
-                host_sql.mythremote = host_dict['mythremote']
-        except KeyError:
-                 host_sql.mythremote = 'Unknown'
-        try:
-                host_sql.myththeme = host_dict['myththeme']
-        except KeyError:
-                host_sql.myththeme = 'Unknown'
+#        try:
+#                host_sql.myth_systemrole = host_dict['myth_systemrole']
+#        except KeyError:
+#                 host_sql.myth_systemrole = 'Unknown'
+#        try:
+#                host_sql.mythremote = host_dict['mythremote']
+#        except KeyError:
+#                 host_sql.mythremote = 'Unknown'
+#        try:
+#                host_sql.myththeme = host_dict['myththeme']
+#        except KeyError:
+#                host_sql.myththeme = 'Unknown'
 
 
         orig_devices = [device.device_id for device

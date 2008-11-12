@@ -163,14 +163,14 @@ selinux_enforce = simple_mapped_counted_view('SELINUX_ENFORCE', old_hosts.c.seli
 selinux_policy = simple_mapped_counted_view('SELINUX_POLICY', old_hosts.c.selinux_policy,
                                             SelinuxPolicy, desc=True, label='policy')
 
-myth_systemroles = simple_mapped_counted_view('MYTH_SYSTEMROLE', old_hosts.c.myth_systemrole,
-                                              MythSystemRole, desc=True)
+#myth_systemroles = simple_mapped_counted_view('MYTH_SYSTEMROLE', old_hosts.c.myth_systemrole,
+#                                              MythSystemRole, desc=True)
 
-mythremotes = simple_mapped_counted_view('MYTHREMOTE', old_hosts.c.mythremote,
-                                         MythRemote, desc=True)
+#mythremotes = simple_mapped_counted_view('MYTHREMOTE', old_hosts.c.mythremote,
+#                                         MythRemote, desc=True)
 
-myththemes = simple_mapped_counted_view('MYTHTHEME', old_hosts.c.myththeme,
-                                        MythTheme, desc=True)
+#myththemes = simple_mapped_counted_view('MYTHTHEME', old_hosts.c.myththeme,
+#                                        MythTheme, desc=True)
 
 totallist = mapped_counted_view('TOTALLIST', TotalList,
                                 [computer_logical_devices.c.description],

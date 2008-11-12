@@ -70,10 +70,10 @@ hosts = Table('host', metadata,
               Column('rating', INT, nullable=False, default=0),
               Column('selinux_enabled', BOOLEAN, nullable=False),
               Column('selinux_policy', TEXT),
-              Column('selinux_enforce', TEXT),
-              Column('myth_systemrole', TEXT),
-              Column('mythremote', TEXT),
-              Column('myththeme', TEXT))
+              Column('selinux_enforce', TEXT))
+#              Column('myth_systemrole', TEXT),
+#              Column('mythremote', TEXT),
+#              Column('myththeme', TEXT))
 
 fas_links = Table('fas_link', metadata,
                   Column("id", INT, autoincrement=True,
