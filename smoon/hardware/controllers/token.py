@@ -51,7 +51,7 @@ class Token(object):
         token_time = int(token_plain[0])
         token_uuid = token_plain[1]
         current_time = int(time.mktime(datetime.now().timetuple()))
-        if current_time - token_time > 20:
+        if current_time - token_time > 60:
             raise ValueError("Critical [20]: Invalid Token")
         if uuid.strip() != token_uuid.strip():
             raise ValueError("Critical [s]: Invalid Token")
