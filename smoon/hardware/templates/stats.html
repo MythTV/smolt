@@ -243,8 +243,8 @@
                 <tr py:for='combined_fs_size in stat["combined_fs_size"]'>
                     <th align="right">${combined_fs_size[0]}</th>
                     <td align="center">${combined_fs_size[1]}</td>
-                    <td><strong>${'%.1f' % (float(combined_fs_size[1]) / float(stat["total_fs"]) * 100) } %</strong></td>
-                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ (float(combined_fs_size[1]) / float(stat["total_fs"]) * 100) }'><div id="bar"></div></td><td></td></tr></table></td>
+                    <td><strong><!--${'%.1f' % (float(combined_fs_size[1]) / float(stat["total_fs"]) * 100) } %--></strong></td>
+                    <td><!--<table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ (float(combined_fs_size[1]) / float(stat["total_fs"]) * 100) }'><div id="bar"></div></td><td></td></tr></table>--></td>
                 </tr>
             </table>
         </div>

@@ -43,9 +43,9 @@
             <td align="center">${pci_vendors.vendor(type.subsys_vendor_id)}</td>
             <td align="center">${pci_vendors.subdevice(type.vendor_id, type.device_id, type.subsys_vendor_id, type.subsys_device_id)}</td>
             <td align="center">${type.date_added}</td>
-            <td nowrap="true"><strong>${'%.1f' % (float(type.c) / total_hosts * 100) } %</strong></td>
+            <td nowrap="true"><strong>${'%.1f' % (float(type.count) / total_hosts * 100) } %</strong></td>
             <!--<td nowrap="true"><img py:for='i in range(1, int( float(type[8]) / total_hosts * 100 ))' src='/static/images/tile.png' /></td>-->
-            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(type.c) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(type.count) / total_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
       </div>

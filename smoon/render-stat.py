@@ -122,6 +122,7 @@ def _process_output(output, template, format):
 stats = {}
 # somehow this has to be first, cause it binds us to
 # an sqlalchemy context
+print 'total_hosts'
 stats['total_hosts'] = session.query(Host).count()
 
 class ByClass(object):
@@ -136,33 +137,46 @@ class ByClass(object):
         total_hosts = 0
 
         # We only want hosts that detected hardware (IE, hal was working properly)
-        total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))],
-                             hosts.c.id == host_links.c.host_link_id)\
-                        .execute().fetchone()[0]
+        print 'Device: total_host with hardware'
+        total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))])\
+                      .execute().fetchone()[0]
 
         for cls in classes:
             type = cls.cls
 
             #devs = select([computer_logical_devices], computer_logical_devices.c.cls == type).alias("devs")
             devs = computer_logical_devices
-            types = select([devs,
-                            func.count(func.distinct(host_links.c.host_link_id)).label('c')],
-                           and_(devs.c.cls == type,
-                                host_links.c.device_id == devs.c.id),
-                           #from_obj=[ host_links.join(devs, host_links.c.device_id == devs.c.id) ],
-                           group_by=host_links.c.device_id,
-                           order_by=[desc('c')],
-                           limit=100).execute().fetchall();
+            print 'Device: %s types' % type
+            Device=select([ComputerLogicalDevice.c.id, ComputerLogicalDevice.c.description,
+              ComputerLogicalDevice.c.bus, ComputerLogicalDevice.c.driver,
+              ComputerLogicalDevice.c.cls, ComputerLogicalDevice.c.date_added,
+              ComputerLogicalDevice.c.device_id, ComputerLogicalDevice.c.vendor_id,
+              ComputerLogicalDevice.c.subsys_device_id,
+              ComputerLogicalDevice.c.subsys_vendor_id],
+              ComputerLogicalDevice.c.cls==type).alias('d')
+            types = select([Device, func.count(HostLink.c.host_link_id.distinct()
+                    ).label('count')], Device.c.id==HostLink.c.device_id).group_by(Device.c.id)\
+                    .order_by(desc('count')).limit(100).execute().fetchall()
+#            types = select([devs,
+#                            func.count(func.distinct(host_links.c.host_link_id)).label('c')],
+#                           and_(devs.c.cls == type,
+#                                host_links.c.device_id == devs.c.id),
+#                           #from_obj=[ host_links.join(devs, host_links.c.device_id == devs.c.id) ],
+#                           group_by=host_links.c.device_id,
+#                           order_by=[desc('c')],
+#                           limit=100).execute().fetchall();
 
 #            devs = select([computer_logical_devices.c.id],
 #                          and_(computer_logical_devices.c.cls == type,
 #                               old_hosts_clause())).alias("devs")
 #            devs = computer_logical_devices
+            print 'Device: %s count' % type
             count = select([func.count(func.distinct(host_links.c.host_link_id))],
                            and_(devs.c.cls == type,
                                 host_links.c.device_id == devs.c.id)).execute().fetchone()[0]
 
             device = computer_logical_devices
+            print 'Device: %s vendors' % type
             vendors = select([func.count(device.c.vendor_id).label('cnt'),
                               device.c.vendor_id],
                              device.c.cls==type,
@@ -201,11 +215,14 @@ del byclass_cache
 del out_html
 
 stats = {}
+
+print 'total_hosts'
 stats['total_hosts'] = session.query(Host).count()
 total_hosts = stats['total_hosts']
 flot = {}
 # Arch calculation
 if not  template_config['archs'] == [] :
+    print 'arch stats'
     stats['archs'] = session.query(Arch).select()
     archs = []
     counts = []
@@ -220,30 +237,39 @@ if not  template_config['archs'] == [] :
             'label' : 'Archs', }],
         {   'xaxis' : { 'ticks' : archs }, } )
 
+print "OS Stats"
 if not  template_config['os'] == [] :
     stats['os'] = session.query(OS).select(limit=30)
 
+print "Runlevel stats"
 if not  template_config['runlevel'] == [] :
     stats['runlevel'] = session.query(Runlevel).select()
 
+print "Vendor stats"
 if not  template_config['vendors'] == [] :
     stats['vendors'] = session.query(Vendor).select(limit=100)
 
+print "Model stats"
 if not  template_config['model'] == [] :
     stats['systems'] = session.query(System).select(limit=100)
 
+print "CPU stats"
 stats['cpu_vendor'] = session.query(CPUVendor).select(limit=100)
 
 if not  template_config['kernel'] == [] :
+    print "Kernel stats"
     stats['kernel_version'] = session.query(KernelVersion).select(limit=20)
 
 if not  template_config['formfactor'] == [] :
+    print 'Formfactor stats'
     stats['formfactor'] = session.query(FormFactor).select(limit=8)
 
 if not  template_config['lang'] == [] :
+    print 'language stats'
     stats['language'] = session.query(Language).select()
 
 if not  template_config['selinux'] == [] :
+    print 'selinux stats'
     stats['selinux_enabled'] = session.query(SelinuxEnabled).select()
     stats['selinux_enforce'] = session.query(SelinuxEnforced).select()
     stats['selinux_policy'] = session.query(SelinuxPolicy).select()
@@ -251,6 +277,7 @@ if not  template_config['selinux'] == [] :
 
 
 if not  template_config['ram'] == [] :
+    print 'memory stats'
     stats['sys_mem'] = []
     stats['sys_mem'].append(("less than 256mb",
                             session.query(Host).filter(Host.c.system_memory<256).count()))
@@ -267,6 +294,7 @@ if not  template_config['ram'] == [] :
                             session.query(Host).filter(Host.c.system_memory>=2048).count()))
 
 if not  template_config['swap'] == [] :
+    print 'swap stats'
     stats['swap_mem'] = []
     stats['swap_mem'].append(("less than 512mb",
                             session.query(Host).filter(Host.c.system_swap<512).count()))
@@ -281,6 +309,7 @@ if not  template_config['swap'] == [] :
 
 #cpu tab
 if not  template_config['cpu'] == [] :
+    print 'cpu stats'
     stats['cpu_speed'] = []
     stats['cpu_speed'].append(("less than 512mhz",
                             session.query(Host).filter(Host.c.cpu_speed<512).count()))
@@ -308,15 +337,26 @@ if not  template_config['cpu'] == [] :
     stats['bogomips'].append(("more than 4000",
                             session.query(Host).filter(Host.c.system_memory>=4000).count()))
 
+
 stats['languagetot'] = stats['total_hosts']
+
+print 'number of cpus'
 stats['num_cpus'] = session.query(NumCPUs).select()
+
+print 'bogomips count'
 stats['bogomips_total'] = session.query(Host).filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
+
+print 'cpu speed total'
 stats['cpu_speed_total'] = session.query(Host).filter(Host.c.cpu_speed > 0).sum(Host.c.cpu_speed * Host.c.num_cpus)
+
+print 'cpus total'
 stats['cpus_total'] = session.query(Host).sum(Host.c.num_cpus)
 
+print 'registered devices'
 stats['registered_devices'] = session.query(ComputerLogicalDevice).count()
 
 if not  template_config['filesystem'] == [] :
+    print 'filesystems'
     stats['filesystems'] = session.query(FileSys).select()
     stats['total_fs'] = session.query(FileSys).sum(FileSys.c.cnt)
     GB=1048576
@@ -359,11 +399,23 @@ del out_html
 del stats
 
 devices = {}
+print 'total devices'
 devices['total'] = session.query(HostLink).count()
+
+print 'device type count'
 devices['count'] = session.query(ComputerLogicalDevice).count()
+
+print 'total hosts'
 devices['total_hosts'] = session.query(Host).count()
-devices['totalList'] = session.query(TotalList).select(limit=100)
-devices['uniqueList'] = session.query(UniqueList).select(limit=100)
+
+print 'top 100 total list'
+#devices['totalList'] = session.query(TotalList).select(limit=100)
+devices['totalList'] = select([ComputerLogicalDevice.c.description, ComputerLogicalDevice.c.id, func.count(ComputerLogicalDevice.c.id).label('cnt')], HostLink.c.device_id == ComputerLogicalDevice.c.id).group_by(ComputerLogicalDevice.c.id).order_by(desc('cnt')).limit(10).execute().fetchall()
+
+#print 'top 100 unique list'
+#devices['uniqueList'] = session.query(UniqueList).select(limit=100)
+
+print 'class list'
 devices['classes'] = session.query(HardwareClass).select()
 
 

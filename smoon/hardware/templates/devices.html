@@ -31,6 +31,7 @@
           </tr>
         </table>
       </div>
+<!--  Disabled as its not that useful anymore>
       <div class="tabbertab"><h2>${_("Machines / Device")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='dev in devices["uniqueList"]'>
@@ -40,7 +41,7 @@
             <td nowrap="true"><img py:for='i in range(1, int( float(dev.cnt) / devices["total_hosts"] * 100 ))' src='/static/images/tile.png' /></td>
           </tr>
         </table>
-      </div>
+      </div> -->
       <div class="tabbertab"><h2>${_("Classes")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='dev in devices["classes"]'>
