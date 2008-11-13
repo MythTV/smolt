@@ -316,6 +316,18 @@ def debug(message):
     if DEBUG:
         print message
 
+def reset_resolver():
+    '''Attempt to reset the system hostname resolver.
+    returns 0 on success, or -1 if an error occurs.'''
+    import ctypes
+    try:
+        resolv = ctypes.CDLL("libresolv.so.2")
+        r = resolv.__res_init()
+    except (OSError, AttributeError):
+        print "Warning: could not find __res_init in libresolv.so.2"
+        r = -1
+    return r
+
 class SystemBusError(Exception):
     def __init__(self, message, hint = None):
         self.message = message
@@ -442,13 +454,14 @@ class Hardware:
 
 
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+        reset_resolver()
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
         #first find out the server desired protocol
         try:
             token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/token_json?uuid=%s' % self.host.UUID, False))
         except urlgrabber.grabber.URLGrabError, e:
             error(_('Error contacting Server: %s') % e)
-            return 1
+            return (1, None, None)
         tok_str = token.read()
         try:
             try:
@@ -457,7 +470,7 @@ class Hardware:
                     prefered_protocol = tok_obj['prefered_protocol']
                 else:
                     error(_('Wrong version, server incapable of handling your client'))
-                    return 1
+                    return (1, None, None)
                 tok = tok_obj['token']
 
             except ValueError, e:
@@ -490,7 +503,7 @@ class Hardware:
                             ('Content-type', 'application/x-www-form-urlencoded')))
         except urlgrabber.grabber.URLGrabError, e:
             error(_('Error contacting Server: %s') % e)
-            return 1
+            return (1, None, None)
         else:
             pub_uuid = serverMessage(o.read())
             o.close()
@@ -506,7 +519,7 @@ class Hardware:
                 prefered_protocol = admin_obj['prefered_protocol']
             else:
                 error(_('Wrong version, server incapable of handling your client'))
-                return 1
+                return (1, None, None)
             admin = admin_obj['token']
 
             if  not admin_token_file == '' :
