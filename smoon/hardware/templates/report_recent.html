@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:py="http://genshi.edgewall.org/"
+  xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="master.html" />
+  <head>
+    <script src="/tg_widgets/turboflot/excanvas.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.flot.js" type="text/javascript"></script>
+    <link media="screen" href="/tg_widgets/turbogears.widgets/tabber/tabber.css" type="text/css" rel="stylesheet"/>
+    <title>${_("Recent Activity")}</title>
+  </head>
+  <body>
+    <p>
+      <table>
+        <tr><th>${_("Public UUID")}</th><th>${_("Last Update")}</th></tr>
+        <tr py:for="profile in recent_pub_uuid">
+          <td><a href='/client/show/${profile.pub_uuid}'>${profile.pub_uuid}</a></td>
+          <td>${profile.last_modified}</td>
+        </tr>
+      </table>
+    </p>
+    <p>
+      <table>
+        <tr><th>${_('Description')}</th><th>${_('Date Added')}</th></tr>
+        <tr py:for="devices in recent_devices">
+          <td>${devices.description}</td>
+          <td>${devices.date_added}</td>
+        </tr>
+      </table>
+    </p>
+  </body>
+</html>

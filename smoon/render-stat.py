@@ -216,6 +216,9 @@ del out_html
 
 stats = {}
 
+print 'total_active_hosts'
+total_active_hosts = session.query(Host).filter(Host.c.last_modified > (date.today() - timedelta(days=90))).count()
+
 print 'total_hosts'
 stats['total_hosts'] = session.query(Host).count()
 total_hosts = stats['total_hosts']
@@ -386,7 +389,11 @@ if not  template_config['filesystem'] == [] :
 
 t=engine.load_template('hardware.templates.stats')
 out_html=_process_output(dict(stat=stats, tabs=tabs,
-                              total_hosts=total_hosts, getOSWikiLink=getOSWikiLink, flot=flot,template_config=template_config),
+                              total_hosts=total_hosts, 
+                              getOSWikiLink=getOSWikiLink,
+                              flot=flot,
+                              template_config=template_config,
+                              total_active_hosts=total_active_hosts),
                          template=t, format='html')
 
 fname = "%s/stats.html" % (page_path)

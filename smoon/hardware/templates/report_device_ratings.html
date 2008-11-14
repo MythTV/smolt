@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:py="http://genshi.edgewall.org/"
+  xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="master.html" />
+  <head>
+    <script src="/tg_widgets/turboflot/excanvas.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.flot.js" type="text/javascript"></script>
+    <link media="screen" href="/tg_widgets/turbogears.widgets/tabber/tabber.css" type="text/css" rel="stylesheet"/>
+    <title>${_("Device Ratings")}</title>
+  </head>
+  <body>
+    <div id="legend">
+        <img src="/static/images/rating/r0.png"/> ${_("I don't use this or I don't know")}<br/>
+        <img src="/static/images/rating/r1.png"/> ${_('Breaks System')}<br/>
+        <img src="/static/images/rating/r2.png"/> ${_("Doesn't Work")}<br/>
+        <img src="/static/images/rating/r3.png"/> ${_('Requires 3rd Party Drivers')}<br/>
+        <img src="/static/images/rating/r4.png"/> ${_('Works, but required additional configuration')}<br/>
+        <img src="/static/images/rating/r5.png"/> ${_('Worked out of the box')}<br/>
+    </div>
+
+    <p>
+      <table>
+        <tr><th>${_("Rating")}</th><th>${_("Device Name")}</th><th>${_("Ratings")}</th></tr>
+        <tr py:for="device in device_ratings">
+          <td><img src="/static/images/rating/r${device.rating}.png"/></td>
+          <td>${device.description}</td>
+          <td>${device[2]}</td>
+        </tr>
+      </table>
+    </p>
+  </body>
+</html>

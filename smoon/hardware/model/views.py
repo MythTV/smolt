@@ -4,7 +4,7 @@ from sqlalchemy.orm import *
 from hardware.model.model import *
 
 def old_hosts_clause():
-    return (hosts.c.last_modified > (date.today() - timedelta(days=36)))
+    return (hosts.c.last_modified > (date.today() - timedelta(days=90)))
 
 def old_hosts_table():
     return select([hosts], old_hosts_clause()).alias('old_hosts')

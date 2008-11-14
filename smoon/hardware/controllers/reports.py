@@ -13,6 +13,43 @@ class Reports(object):
     def index(self):
         return self.search()
 
+    @expose(template='hardware.templates.report_recent')
+    def recent(self):
+        ''' Shows recently added hosts and devices '''
+        recent_pub_uuid = select([Host.c.pub_uuid, Host.c.last_modified],
+              Host.c.last_modified > (date.today() - timedelta(days=90)))\
+              .order_by(desc(Host.c.last_modified)).limit(20).execute()\
+              .fetchall()
+        recent_devices = select([computer_logical_devices.c.description,
+                          computer_logical_devices.c.date_added],
+                          computer_logical_devices.c.date_added > (date.today() -
+                          timedelta(days=90))).order_by(desc(computer_logical_devices\
+                          .c.date_added)).limit(50).execute().fetchall()
+        return dict(recent_pub_uuid=recent_pub_uuid,
+                    recent_devices=recent_devices)
+
+    @expose(template='hardware.templates.report_host_ratings')
+    def host_ratings(self):
+      ''' Return basic ratings information '''
+      host_ratings = select([Host.c.system, Host.c.vendor, Host.c.rating,
+        func.count(Host.c.rating)], Host.c.rating != 0).group_by(Host.c.system).\
+        order_by(desc(func.count(Host.c.rating))).limit(50).\
+        execute().fetchall()
+#      This query is for the last 90 days.
+#      host_ratings = select([Host.c.system, Host.c.vendor, Host.c.rating,
+#        func.count(Host.c.rating)],  and_(Host.c.last_modified > (date.today() -
+#        timedelta(days=90)), Host.c.rating != 0)).group_by(Host.c.system).\
+#        order_by(desc(func.count(Host.c.rating))).limit(50).\
+#        execute().fetchall()
+      return dict(host_ratings=host_ratings)
+
+    @expose(template='hardware.templates.report_device_ratings')
+    def device_ratings(self):
+      ''' Return basic ratings information '''
+      h = select([HostLink.c.device_id, HostLink.c.rating, func.count(HostLink.c.rating).label('cnt')], HostLink.c.rating != 0).group_by(HostLink.c.device_id, HostLink.c.rating).order_by(desc('cnt')).limit(500).alias('h')
+      device_ratings = select([ComputerLogicalDevice.c.description, h.c.rating, h.c.cnt], ComputerLogicalDevice.c.id==h.c.device_id).execute().fetchall()
+      return dict(device_ratings=device_ratings)
+
     @expose(template='hardware.templates.report_search')
     def search(self):
         host_cols = [col.name for col in hosts.c]
