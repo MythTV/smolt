@@ -53,6 +53,20 @@ class Reports(object):
       device_ratings = select([ComputerLogicalDevice.c.description, h.c.rating, h.c.cnt], ComputerLogicalDevice.c.id==h.c.device_id).execute().fetchall()
       return dict(device_ratings=device_ratings)
 
+    @expose(template='hardware.templates.report_search_profiles')
+    def search_profiles(self):
+        return dict()
+
+    @expose(template='hardware.templates.report_view_profiles')
+    def view_profiles(self, profile, not_rating=6, *args, **keys):
+        found = select([Host.c.system, Host.c.vendor, Host.c.rating,
+                func.count(Host.c.rating)], and_(Host.c.rating!=not_rating,
+                or_(Host.c.system.like('''%%%s%%''' % profile), Host.c.vendor.\
+                like('''%%%s%%''' % profile)))).group_by(Host.c.rating,
+                Host.c.system, Host.c.vendor).order_by(desc(\
+                func.count(Host.c.rating))).limit(500).execute().fetchall()
+        return dict(found=found)
+
     @expose(template='hardware.templates.report_search_devices')
     def search_devices(self):
         host_cols = [col.name for col in hosts.c]
