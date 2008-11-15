@@ -39,7 +39,7 @@
             <?python print fields ?>
             <div name='table_col'>
                 <select id='restrict_field' name='restrict_field'>
-                    <option selected='True' value='fuckoff'>Nothing Selected</option>
+                    <option selected='True' value='wee'>Nothing Selected</option>
                     <option py:for='field in fields' value='${field}'>${field}</option>
                 </select>
                 <br/>
@@ -52,7 +52,7 @@
             </div>
             <h3>${_('Result Set')}</h3>
             <select id='count_field' name='count_field'>
-                <option selected='True' value='fuckoff'>Nothing Selected</option>
+                <option selected='True' value='wee'>Nothing Selected</option>
                 <option py:for='field in fields' value='${field}'>${field}</option>
             </select>
             <input type='submit' value='Search'/><input type='hidden' name='foo' value='abcd'/>

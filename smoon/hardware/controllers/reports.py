@@ -46,9 +46,28 @@ class Reports(object):
     @expose(template='hardware.templates.report_device_ratings')
     def device_ratings(self):
       ''' Return basic ratings information '''
-      h = select([HostLink.c.device_id, HostLink.c.rating, func.count(HostLink.c.rating).label('cnt')], HostLink.c.rating != 0).group_by(HostLink.c.device_id, HostLink.c.rating).order_by(desc('cnt')).limit(500).alias('h')
+      h = select([HostLink.c.device_id, HostLink.c.rating,
+          func.count(HostLink.c.rating).label('cnt')], HostLink.c.rating != 0).\
+          group_by(HostLink.c.device_id, HostLink.c.rating).\
+          order_by(desc('cnt')).limit(500).alias('h')
       device_ratings = select([ComputerLogicalDevice.c.description, h.c.rating, h.c.cnt], ComputerLogicalDevice.c.id==h.c.device_id).execute().fetchall()
       return dict(device_ratings=device_ratings)
+
+    @expose(template='hardware.templates.report_search_devices')
+    def search_devices(self):
+        host_cols = [col.name for col in hosts.c]
+        host_cols = filter(lambda x: x not in hosts_ban, host_cols)
+        return dict(fields=host_cols)
+
+    @expose(template='hardware.templates.report_view_devices')
+    def view_devices(self, *args, **keys):
+        device = keys['device']
+        d = select([ComputerLogicalDevice.c.id, ComputerLogicalDevice.c.description],
+            ComputerLogicalDevice.c.description.like('''%%%s%%''' % device)).limit(1000).alias('d')
+        found = select ([HostLink.c.rating, func.count(HostLink.c.rating).label('cnt'),
+            d.c.description], HostLink.c.device_id == d.c.id).group_by(HostLink.c.rating,
+            d.c.description).order_by(desc('cnt')).execute().fetchall()
+        return dict(found=found)
 
     @expose(template='hardware.templates.report_search')
     def search(self):
