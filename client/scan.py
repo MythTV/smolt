@@ -60,19 +60,22 @@ def scan(profile, smoonURL):
     devices.append('System/%s/%s' % ( urllib.quote(h.host.systemVendor), urllib.quote(h.host.systemModel) ))
     for dev in devices:
         searchDevices = "%s|%s" % (searchDevices, dev)
-    scanURL='%s/w/api.php?action=query&titles=%s&format=json' % (smoonURL, searchDevices)
+    scanURL='%s/smolt-w/api.php' % smoonURL
+    scanData = 'action=query&titles=%s&format=json' % searchDevices
     try:
-        r = simplejson.load(urllib.urlopen(scanURL))
+         r = simplejson.load(urllib.urlopen(scanURL, scanData))
     except ValueError:
         print "Could not wiki for errata!"
         return
     found = []
+
     for page in r['query']['pages']:
         try:
-            r['query']['pages'][page]['id']
-            found.append('\t%swiki/%s' % (smoonURL, r['query']['pages'][page]['title']))
+            if int(page) > 0:
+                found.append('\t%swiki/%s' % (smoonURL, r['query']['pages'][page]['title']))
         except KeyError:
             pass
+
     if found:
         print _("\tErrata Found!")
         for f in found: print "\t%s" % f
