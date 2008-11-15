@@ -34,6 +34,15 @@
         </tr>
       </table>
     </p>
+    <p>
+      <table>
+        <tr><th>pub_uuid</th><th>rating</th></tr>
+        <tr py:for="profile in pub_uuids">
+          <td><a href='/client/show/${profile.pub_uuid}'>${profile.pub_uuid}</a></td>
+          <td><img src="/static/images/rating/r${profile.rating}.png"/></td>
+        </tr>
+      </table>
+    </p>
 
 
   </body>

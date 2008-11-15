@@ -42,8 +42,8 @@ ${ET(ratingwidget.display(update="rating",
             <tr><th>${_('Public UUID')}</th><td><a href="/client/show/?uuid=${host_object.pub_uuid}">${host_object.pub_uuid}</a></td></tr>
             <tr><th>${_('Operating System')}</th><td><a href="${getOSWikiLink(host_object.os)}">${host_object.os}</a></td></tr>
             <tr><th>${_('Platform')}</th><td>${host_object.platform}</td></tr>
-            <tr><th>${_('System Vendor')}</th><td>${host_object.vendor}</td></tr>
-            <tr><th>${_('System Model')}</th><td><a href="${host_link}">${host_object.system}</a></td></tr>
+            <tr><th>${_('System Vendor')}</th><td><a href='/reports/view_profiles/${host_object.vendor}'>${host_object.vendor}</a></td></tr>
+            <tr><th>${_('System Model')}</th><td><a href="/reports/view_profile/${host_object.system}">${host_object.system}</a> (<a href="${host_link}">${_("wiki")}</a>)</td></tr>
             <tr><th>${_('Kernel')}</th><td>${host_object.kernel_version}</td></tr>
             <tr><th>${_('Formfactor')}</th><td>${host_object.formfactor}</td></tr>
             <tr><th>${_('Last Modified')}</th><td>${host_object.last_modified}</td></tr>
@@ -64,7 +64,7 @@ ${ET(ratingwidget.display(update="rating",
                     <div py:if="not admin"><img src="/static/images/rating/r${device.get('rating')}.png"/></div>
                     <div py:if="admin" class="rating" id="Host${host_object.uuid}@Device${device.get('id')}">${device.get('rating')}</div>
                 </td>
-		<td><a href="${device.get('link')}">${device.get('name')}</a></td>
+		<td><a href="${device.get('link')}">${device.get('name')}</a> (<a href="${device.get('link')}">${_("wiki")}</a>)</td>
                 <td align='center'>${device.get('cls')}</td>
             </tr>
         </table>

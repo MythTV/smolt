@@ -6,7 +6,8 @@
     </head>
     <body>
       <form name='search' action='/reports/view_profiles'>
-        <input type='text' name='profile' size='32'/>
+        ${_("System or vendor: ")} <input type='text' name='profile' size='32'/><br/>
+        <p>${_("Hide unrated profiles:")} <input type='checkbox' name='not_rated' value='0'/></p>
         <input type='submit' name='search'/>
       </form>
     </body>

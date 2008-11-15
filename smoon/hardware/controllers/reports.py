@@ -58,14 +58,26 @@ class Reports(object):
         return dict()
 
     @expose(template='hardware.templates.report_view_profiles')
-    def view_profiles(self, profile, not_rating=6, *args, **keys):
+    def view_profiles(self, profile, not_rated=6, *args, **keys):
         found = select([Host.c.system, Host.c.vendor, Host.c.rating,
-                func.count(Host.c.rating)], and_(Host.c.rating!=not_rating,
+                func.count(Host.c.rating)], and_(Host.c.rating != not_rated,
                 or_(Host.c.system.like('''%%%s%%''' % profile), Host.c.vendor.\
                 like('''%%%s%%''' % profile)))).group_by(Host.c.rating,
                 Host.c.system, Host.c.vendor).order_by(desc(\
                 func.count(Host.c.rating))).limit(500).execute().fetchall()
         return dict(found=found)
+
+    @expose(template='hardware.templates.report_view_profile')
+    def view_profile(self, profile, not_rated=6, *args, **keys):
+        found = select([Host.c.system, Host.c.vendor, Host.c.rating,
+                func.count(Host.c.rating)], and_(Host.c.rating != not_rated,
+                or_(Host.c.system.like('''%%%s%%''' % profile), Host.c.vendor.\
+                like('''%%%s%%''' % profile)))).group_by(Host.c.rating,
+                Host.c.system, Host.c.vendor).order_by(desc(\
+                func.count(Host.c.rating))).limit(500).execute().fetchall()
+        pub_uuids = select([Host.c.pub_uuid, Host.c.rating], and_(Host.c.pub_uuid!='', or_(Host.c.system.like('''%%%s%%''' % profile), Host.c.vendor.\
+                like('''%%%s%%''' % profile)))).execute().fetchall()
+        return dict(found=found, pub_uuids=pub_uuids)
 
     @expose(template='hardware.templates.report_search_devices')
     def search_devices(self):
