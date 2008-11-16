@@ -81,9 +81,7 @@ class Reports(object):
 
     @expose(template='hardware.templates.report_search_devices')
     def search_devices(self):
-        host_cols = [col.name for col in hosts.c]
-        host_cols = filter(lambda x: x not in hosts_ban, host_cols)
-        return dict(fields=host_cols)
+        return dict()
 
     @expose(template='hardware.templates.report_view_devices')
     def view_devices(self, *args, **keys):
@@ -94,6 +92,16 @@ class Reports(object):
             d.c.description], HostLink.c.device_id == d.c.id).group_by(HostLink.c.rating,
             d.c.description).order_by(desc('cnt')).execute().fetchall()
         return dict(found=found)
+
+    @expose(template='hardware.templates.report_view_device')
+    def view_device(self, device, *args, **keys):
+        d = select([ComputerLogicalDevice.c.id, ComputerLogicalDevice.c.vendor_id, ComputerLogicalDevice.c.device_id, ComputerLogicalDevice.c.subsys_vendor_id, ComputerLogicalDevice.c.subsys_device_id, ComputerLogicalDevice.c.description],
+            ComputerLogicalDevice.c.description.like('''%%%s%%''' % device)).limit(1000).alias('d')
+        found = select ([HostLink.c.rating, func.count(HostLink.c.rating).label('cnt'),
+            d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id], HostLink.c.device_id == d.c.id).group_by(HostLink.c.rating,
+            d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id).order_by(desc('cnt')).execute().fetchall()
+        return dict(found=found)
+
 
     @expose(template='hardware.templates.report_search')
     def search(self):
