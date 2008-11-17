@@ -73,6 +73,7 @@ class Client(object):
                                           link = getDeviceWikiLink(device),
                                           cls = device.cls,
                                           rating = dev.rating,
+                                          description = device.description
                                           )
 
         devices = devices.values()
