@@ -76,7 +76,7 @@ class Reports(object):
                 Host.c.system, Host.c.vendor).order_by(desc(\
                 func.count(Host.c.rating))).limit(500).execute().fetchall()
         pub_uuids = select([Host.c.pub_uuid, Host.c.rating], and_(Host.c.pub_uuid!='', or_(Host.c.system.like('''%%%s%%''' % profile), Host.c.vendor.\
-                like('''%%%s%%''' % profile)))).execute().fetchall()
+                like('''%%%s%%''' % profile)))).limit(1000).execute().fetchall()
         return dict(found=found, pub_uuids=pub_uuids)
 
     @expose(template='hardware.templates.report_search_devices')
@@ -96,11 +96,23 @@ class Reports(object):
     @expose(template='hardware.templates.report_view_device')
     def view_device(self, device, *args, **keys):
         d = select([ComputerLogicalDevice.c.id, ComputerLogicalDevice.c.vendor_id, ComputerLogicalDevice.c.device_id, ComputerLogicalDevice.c.subsys_vendor_id, ComputerLogicalDevice.c.subsys_device_id, ComputerLogicalDevice.c.description],
-            ComputerLogicalDevice.c.description.like('''%%%s%%''' % device)).limit(1000).alias('d')
+            ComputerLogicalDevice.c.description == '''%s''' % device).limit(1000).alias('d')
         found = select ([HostLink.c.rating, func.count(HostLink.c.rating).label('cnt'),
             d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id], HostLink.c.device_id == d.c.id).group_by(HostLink.c.rating,
             d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id).order_by(desc('cnt')).execute().fetchall()
-        return dict(found=found)
+
+            # Select Device ID's that match our description
+        d = select([computer_logical_devices.c.id],
+                computer_logical_devices.c.description == device).alias('d')
+
+            # Select the host ID's that have our device ID (from description)
+        hl = select([HostLink.c.host_link_id],
+             HostLink.c.device_id==d.c.id).alias('hl')
+
+            # Select pub_uuids that match our host ID from device ID from desc)
+        profiles = select([Host.c.pub_uuid, Host.c.system, Host.c.vendor], Host.c.id == hl.c.host_link_id).limit(5000).execute().fetchall()
+        device = args
+        return dict(found=found, profiles=profiles, device=device)
 
 
     @expose(template='hardware.templates.report_search')
