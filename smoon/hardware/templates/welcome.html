@@ -21,16 +21,12 @@
       <li>${_('Device Ratings:')} <a href='/reports/device_ratings'>/device_ratings</a></li>
       <li>${_('Search Devices:')} <a href='/reports/search_devices'>/search_devices</a></li>
       <li>${_('Search Profiles:')} <a href='/reports/search_profiles'>/search_profiles</a></li>
+      <li>${_('Smolt Wiki:')} <a href='/smolt-wiki/'>/smolt-wiki</a></li>
     </ul>
     <p>
     ${_("For detailed statistics about the devices in the database see &lt;a href='/static/stats/stats.html'&gt;/stats&lt;/a&gt; or &lt;a href='/static/stats/devices.html'&gt;/devices&lt;/a&gt;")}
     </p>
     <h2> ${_('Top Vendor Chart')} </h2>
     ${ET(vendorFlot.display())}
-    <p> </p>
-    <p> </p>
-    <h2>${_('More info')}</h2>
-    <!-- This one too! -ynemoy-->
-    ${_("&lt;p&gt;Browse and search the &lt;a href='/wiki/'&gt;Wiki&lt;/a&gt; for detailed information about specific devices. Usage and other general answers can also be found at the &lt;a href='/wiki/'&gt;Wiki&lt;/a&gt;.&lt;/p&gt;")}
   </body>
 </html>
