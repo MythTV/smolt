@@ -278,37 +278,38 @@ if not  template_config['selinux'] == [] :
     stats['selinux_policy'] = session.query(SelinuxPolicy).select()
 
 
+now = date.today() - timedelta(days=90)
 
 if not  template_config['ram'] == [] :
     print 'memory stats'
     stats['sys_mem'] = []
     stats['sys_mem'].append(("less than 256mb",
-                            session.query(Host).filter(Host.c.system_memory<256).count()))
+                            session.query(Host).filter(and_(Host.c.system_memory<256, Host.c.last_modified > (now))).count()))
     stats['sys_mem'].append(("between 256mb and 512mb",
                             session.query(Host).filter(and_(Host.c.system_memory>=256,
-                                                    Host.c.system_memory<512)).count()))
+                                                    Host.c.system_memory<512, Host.c.last_modified > (now))).count()))
     stats['sys_mem'].append(("between 512mb and 1023mb",
                             session.query(Host).filter(and_(Host.c.system_memory>=512,
-                                                    Host.c.system_memory<1024)).count()))
+                                                    Host.c.system_memory<1024, Host.c.last_modified > (now))).count()))
     stats['sys_mem'].append(("between 1024mb and 2047mb",
                             session.query(Host).filter(and_(Host.c.system_memory>=1024,
-                                                    Host.c.system_memory<2048)).count()))
+                                                    Host.c.system_memory<2048, Host.c.last_modified > (now))).count()))
     stats['sys_mem'].append(("more than 2048mb",
-                            session.query(Host).filter(Host.c.system_memory>=2048).count()))
+                            session.query(Host).filter(and_(Host.c.system_memory>=2048, Host.c.last_modified > (now))).count()))
 
 if not  template_config['swap'] == [] :
     print 'swap stats'
     stats['swap_mem'] = []
     stats['swap_mem'].append(("less than 512mb",
-                            session.query(Host).filter(Host.c.system_swap<512).count()))
+                            session.query(Host).filter(and_(Host.c.system_swap<512, Host.c.last_modified > (now))).count()))
     stats['swap_mem'].append(("between 512mb and 1027mb",
                             session.query(Host).filter(and_(Host.c.system_swap>=512,
-                                                    Host.c.system_swap<1024)).count()))
+                                                    Host.c.system_swap<1024, Host.c.last_modified > (now))).count()))
     stats['swap_mem'].append(("between 1024mb and 2047mb",
                             session.query(Host).filter(and_(Host.c.system_swap>=1024,
-                                                    Host.c.system_swap<2048)).count()))
+                                                    Host.c.system_swap<2048, Host.c.last_modified > (now))).count()))
     stats['swap_mem'].append(("more than 2048mb",
-                            session.query(Host).filter(Host.c.system_swap>=2048).count()))
+                            session.query(Host).filter(and_(Host.c.system_swap>=2048, Host.c.last_modified > (now))).count()))
 
 #cpu tab
 if not  template_config['cpu'] == [] :
