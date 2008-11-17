@@ -22,7 +22,7 @@
       <table>
         <tr><th>${_('Description')}</th><th>${_('Date Added')}</th></tr>
         <tr py:for="devices in recent_devices">
-          <td>${devices.description}</td>
+          <td><a href='/reports/view_device/${devices.description}'>${devices.description}</a></td>
           <td>${devices.date_added}</td>
         </tr>
       </table>
