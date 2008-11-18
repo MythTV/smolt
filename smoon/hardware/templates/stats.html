@@ -98,7 +98,7 @@
       <div class="tabbertab"><h2>${_("Vendor")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='vendor in stat["vendors"]'>
-            <th align="right">${vendor.vendor}</th>
+            <th align="right"><a href='/reports/view_profile/${vendor.vendor}'>${vendor.vendor}</a></th>
             <td align="center">${vendor.cnt}</td>
             <td><strong>${'%.1f' % (float(vendor.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(vendor.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
@@ -112,7 +112,7 @@
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='system in stat["systems"]'>
             <!-- Temporary solution to a silly problem -->
-            <th align="right">${system.system.split(' Not')[0].split(' To be')[0].split('System Version')[0]}</th>
+            <th align="right"><a href="/reports/view_profile/${system.system.split(' Not')[0].split(' To be')[0].split('System Version')[0]}">${system.system.split(' Not')[0].split(' To be')[0].split('System Version')[0]}</a></th>
             <td align="center">${system.cnt}</td>
             <td><strong>${'%.1f' % (float(system.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(system.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
