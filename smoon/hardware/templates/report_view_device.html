@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:py="http://genshi.edgewall.org/"
+  xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="master.html" />
+  <head>
+    <script src="/tg_widgets/turboflot/excanvas.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.flot.js" type="text/javascript"></script>
+    <link media="screen" href="/tg_widgets/turbogears.widgets/tabber/tabber.css" type="text/css" rel="stylesheet"/>
+    <title>${_("Devices")}</title>
+  </head>
+  <body>
+    <div id="legend">
+        <img src="/static/images/rating/r0.png"/> ${_("I don't use this or I don't know")}<br/>
+        <img src="/static/images/rating/r1.png"/> ${_('Breaks System')}<br/>
+        <img src="/static/images/rating/r2.png"/> ${_("Doesn't Work")}<br/>
+        <img src="/static/images/rating/r3.png"/> ${_('Requires 3rd Party Drivers')}<br/>
+        <img src="/static/images/rating/r4.png"/> ${_('Works, but required additional configuration')}<br/>
+        <img src="/static/images/rating/r5.png"/> ${_('Worked out of the box')}<br/>
+        <p>${_("Note: Devices limited to 1000 distinct types.")}</p>
+    </div>
+
+    <p>
+      ${_("Search Again")}<a href="/reports/search_devices"> /search_devices</a>
+    </p>
+
+    <h1>Devices Found: ${device}</h1>
+    <p>
+      <table>
+        <tr><th>${_("Description")}</th><th>${_("Rating")}</th><th>${_("Rating Count")}</th><th>${_("Vendor:Device:Subvend:Subdevice")}</th></tr>
+        <tr py:for="device in found">
+          <td><a href='/reports/view_device/${device.description.replace("/", "%2F")}'>${device.description}</a></td>
+          <td><img src="/static/images/rating/r${device.rating}.png"/></td>
+          <td>${device[1]}</td>
+          <td>${device.vendor_id}:${device.device_id}:${device.subsys_vendor_id}:${device.subsys_device_id}</td>
+        </tr>
+      </table>
+    </p>
+
+    <h1>${_('Profiles with this device')}</h1>
+    <p>
+      <table>
+        <tr><th>${_('Public UUID')}</th><th>${_('Vendor')}</th><th>${_('System')}</th></tr>
+        <tr py:for="profile in profiles">
+          <td><a href='/client/show/${profile.pub_uuid}'>${profile.pub_uuid}</a></td>
+          <td><a href='/reports/view_profile/${profile.vendor}'>${profile.vendor}</a></td>
+          <td><a href='/reports/view_profile/${profile.system}'>${profile.system}</a></td>
+        </tr>
+      </table>
+    </p>
+
+  </body>
+</html>
