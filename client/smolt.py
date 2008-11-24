@@ -436,9 +436,8 @@ class Hardware:
         try:
             file(pub_uuid_file, 'w').write(pub_uuid)
         except Exception, e:
-            sys.stderr.write(_('Unable to save pub_uuid, continuing...\n'))
-            sys.stderr.write(_('Your pub_uuid file  could not be created: %s\n' % e))
-            sys.exit(9)
+            sys.stderr.write(_('\tYour pub_uuid file  could not be cached: %s\n' % e))
+            sys.stderr.write(_('\tMaybe re-run as root?\n\n'))
         return
 
     def write_admin_token(self,smoonURL,admin,admin_token_file):
@@ -447,9 +446,7 @@ class Hardware:
         try:
             file(admin_token_file, 'w').write(admin)
         except Exception, e:
-            sys.stderr.write(_('Unable to save token, continuing...\n'))
-            sys.stderr.write(_('Your admin token  could not be created: %s\n' % e))
-            sys.exit(9)
+            sys.stderr.write(_('\tYour admin token  could not be cached: %s\n' % e))
         return
 
 

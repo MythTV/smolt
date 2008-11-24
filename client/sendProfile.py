@@ -32,6 +32,7 @@ from i18n import _
 import smolt
 from smolt import debug
 from smolt import error
+from smolt import get_config_attr
 from scan import scan, rating
 
 parser = OptionParser(version = smolt.smoltProtocol)
@@ -197,8 +198,11 @@ print
 if pub_uuid:
     pubUrl = smolt.get_profile_link(opts.smoonURL, pub_uuid)
     print _('To share your profile: \n\t%s (public)') % pubUrl
+    hw_uuid_file = get_config_attr("HW_PUBID", "/etc/sysconfig/hw-uuid.pub")
+    hw_uuid_pub = os.path.basename(pubUrl)
     if not smolt.secure:
         print _('\tAdmin Password: %s') % admin
+        
 else:
     print _('No Public UUID found!  Please re-run with -n to generate a new public uuid')
 

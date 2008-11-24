@@ -1,8 +1,8 @@
 PO_FILES=$(wildcard po/*.po)
 MO_FILES=$(patsubst %.po,%.mo,$(PO_FILES))
-PY_FILES=deleteProfile.py haldump.py __init__.py sendProfile.py smoltGui.py smolt.py software.py smoltFirstBoot.py gui.py privacypolicy.py scan.py
+PY_FILES=fs_util.py deleteProfile.py haldump.py __init__.py sendProfile.py smoltGui.py smolt.py software.py smoltFirstBoot.py gui.py privacypolicy.py scan.py
 DIRED_MO_FILES=$(patsubst po/%.mo,mo/%/LC_MESSAGES/$(NAME).mo,$(MO_FILES))
-CLIENT_FILES=deleteProfile.py gui.py haldump.py i18n.py privacypolicy.py sendProfile.py smolt.py smoltGui.py software.py scan.py
+CLIENT_FILES=fs_util.py deleteProfile.py gui.py haldump.py i18n.py privacypolicy.py sendProfile.py smolt.py smoltGui.py software.py scan.py
 
 
 NAME=smolt
