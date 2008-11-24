@@ -96,6 +96,11 @@ OS = os_detect.get_os_info()
 #        return "Chuck Norris"
 #except IOError:
 #    return "Chuck Norris"
+#For Gentoo
+#try:
+#    OS = file('/etc/gentoo-release').read().strip()
+#except IOError:
+#    OS = "It's the fastest penguin!"
 
 
 #For non RH Distros
