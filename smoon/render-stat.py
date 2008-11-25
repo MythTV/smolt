@@ -59,9 +59,9 @@ template_config['kernel']=config.get("stats_template.kernel", [])
 template_config['formfactor']=config.get("stats_template.formfactor", [])
 template_config['selinux']=config.get("stats_template.selinux", [])
 template_config['filesystem']=config.get("stats_template.filesystem", [])
-#template_config['mythrole']=config.get("stats_template.mythrole", [])
-#template_config['mythremote']=config.get("stats_template.mythremote", [])
-#template_config['myththeme']=config.get("stats_template.myththeme", [])
+template_config['mythrole']=config.get("stats_template.mythrole", [])
+template_config['mythremote']=config.get("stats_template.mythremote", [])
+template_config['myththeme']=config.get("stats_template.myththeme", [])
 
 def _process_output(output, template, format):
     """Produces final output form from the data returned from a
