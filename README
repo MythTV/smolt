@@ -17,7 +17,19 @@ Anyone interested in doing this please contact me.
 Client
 
 The client portion uses the RHN client to create a hardware object that then
-gets sent to the server.
+gets sent to the server.  The server then generates a public UUID and admin
+password and sends it back to the client.
+
+Submitting your profile is important but it should be done monthly.  Smolt's
+implementation in Fedora is such that, when enabled, it submits randomly
+every month.  It is up to the packager of your distribution to come up with
+a method to generate this random time frame.  In RPM's post section it looks
+like:
+
+TMPFILE=$(/bin/mktemp /tmp/smolt.XXXXX)
+/bin/awk '{ srand(); if($2 == 1 && $3 == 1) print $1,int((rand() * 100) % 22 + 1),int((rand() * 100) % 27 + 1),substr($0,index($0,$4)); else print $0}' /etc/cron.d/smolt > $TMPFILE
+/bin/cp $TMPFILE /etc/cron.d/smolt
+/bin/rm -f $TMPFILE
 
 Configuration:
 Note to Smolt Devs: I'm not sure where to put this info, so i'm putting it here
