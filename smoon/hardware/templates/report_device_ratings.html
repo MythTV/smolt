@@ -23,7 +23,7 @@
         <tr><th>${_("Rating")}</th><th>${_("Device Name")}</th><th>${_("Ratings")}</th></tr>
         <tr py:for="device in device_ratings">
           <td><img src="/static/images/rating/r${device.rating}.png"/></td>
-          <td>${device.description}</td>
+          <td><a href='/reports/view_device/${device.description}'>${device.description}</a></td>
           <td>${device[2]}</td>
         </tr>
       </table>
