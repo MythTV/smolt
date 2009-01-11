@@ -1,18 +1,17 @@
-# translation of smolt.master.de.po to
-# translation of de.po to
-# German translation of PACKAGE.
-# Copyright (C) 2007 ORGANIZATION
-#
+# German translation of smolt.
+# Copyright (C) 2007 Red Hat, Inc.
+# This file is distributed under the same license as the smolt package.
 #
 # Heiko Adams <heiko.adams@gmx.de>, 2007.
 # Severin Heiniger <severinheiniger@gmail.com>, 2007.
-# Fabian Affolter <fab@fedoraproject.org>, 2007, 2008.
+# Fabian Affolter <fab@fedoraproject.org>, 2007-2009.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master.de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2008-04-05 19:57+0100\n"
+"PO-Revision-Date: 2009-01-11 13:02+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +113,7 @@ msgstr "j"
 #: sendProfile.py:134
 #: sendProfile.py:137
 msgid "Exiting..."
-msgstr "Beenden..."
+msgstr "Beenden ..."
 
 #: sendProfile.py:144
 msgid "Retry Enabled - Retrying"
@@ -205,7 +204,7 @@ msgid "translator-credits"
 msgstr ""
 "Heiko Adams <heiko.adams@gmx.de>, 2007.\n"
 "Severin Heiniger <severinheiniger@gmail.com>, 2007.\n"
-"Fabian Affolter <fab@fedoraproject.org>, 2007, 2008."
+"Fabian Affolter <fab@fedoraproject.org>, 2007-2009."
 
 #: smoltGui.py:210
 msgid "Fedora hardware profiler."
@@ -381,7 +380,7 @@ msgstr "_Nein, nicht senden."
 
 #: gui.py:56
 msgid "Label"
-msgstr "Label"
+msgstr "Bezeichnung"
 
 #: gui.py:62
 msgid "Data"
