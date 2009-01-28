@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Eunju Kim <eukim@redhat.com>, 2008.
+# Eunju Kim <eukim@redhat.com>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2008-09-09 15:44+1000\n"
+"PO-Revision-Date: 2009-01-28 14:36+1000\n"
 "Last-Translator: Eunju Kim <eukim@redhat.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -80,11 +81,15 @@ msgstr "자동 checkin입니다, \"smolt\" 서비스를 시작할 경우에만 �
 
 #: sendProfile.py:93
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "알려진 하드웨어 에라타의 경우에만 이 장치를 스캔합니다, 프로파일을 보내지 않습니다.   "
+msgstr ""
+"알려진 하드웨어 에라타의 경우에만 이 장치를 스캔합니다, 프로파일을 보내지 않"
+"습니다.   "
 
 #: sendProfile.py:108
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "Smolt는 checkin으로 설정되어 있지만 checkin은 비활성화되어 있습니다 (힌트: service smolt start) "
+msgstr ""
+"Smolt는 checkin으로 설정되어 있지만 checkin은 비활성화되어 있습니다 (힌트: "
+"service smolt start) "
 
 #: sendProfile.py:115 scan.py:51
 msgid "Error:"
@@ -183,7 +188,8 @@ msgid ""
 "%s\n"
 "stored in %s"
 msgstr ""
-"성공적으로 데이터를 전송했습니다.  버그 신고를 위해 하드웨어 프로파일을 참조해야 할 경우 UUID는 \n"
+"성공적으로 데이터를 전송했습니다.  버그 신고를 위해 하드웨어 프로파일을 참조"
+"해야 할 경우 UUID는 \n"
 "%s\n"
 "%s에 저장되어 있습니다 "
 
@@ -362,7 +368,11 @@ msgid ""
 "used to help focus our efforts on popular hardware and platforms.  "
 "Submissions are anonymous.  Sending your profile will enable a monthly "
 "update."
-msgstr "Smolt는 Fedora 프로젝트의 하드웨어 프로파일러입니다. 프로파일을 제출하는 것은 제출한 프로파일 정보가 많이 사용되는 하드웨어 및 플랫폼에 초점을 맞추도록 함으로 커뮤니티에 환원할 수 있는 좋은 방법입니다. 제출은 익명으로 이루어 집니다. 프로파일을 보내시면 이는 매달 업데이트됩니다. "
+msgstr ""
+"Smolt는 Fedora 프로젝트의 하드웨어 프로파일러입니다. 프로파일을 제출하는 것"
+"은 제출한 프로파일 정보가 많이 사용되는 하드웨어 및 플랫폼에 초점을 맞추도록 "
+"함으로 커뮤니티에 환원할 수 있는 좋은 방법입니다. 제출은 익명으로 이루어 집니"
+"다. 프로파일을 보내시면 이는 매달 업데이트됩니다. "
 
 #: smoltFirstBoot.py:76
 msgid "_Send Profile"
@@ -377,7 +387,10 @@ msgid ""
 "Are you sure you wouldn't like to send the profile?  Submitting your profile "
 "is a valuable source of information for our development and can help "
 "troubleshoot issues that may come up with your hardware."
-msgstr "정말로 프로파일을 보내지 않으시겠습니까? 보내주시는 프로파일은 개발을 위한 중요한 자원으로 하드웨어에서 발생할 수 있는 문제를 해결하는데 사용될 수 있습니다.  "
+msgstr ""
+"정말로 프로파일을 보내지 않으시겠습니까? 보내주시는 프로파일은 개발을 위한 중"
+"요한 자원으로 하드웨어에서 발생할 수 있는 문제를 해결하는데 사용될 수 있습니"
+"다.  "
 
 #: smoltFirstBoot.py:103
 msgid "_Reconsider sending"
@@ -412,7 +425,6 @@ msgid "Description"
 msgstr "설명 "
 
 #: privacypolicy.py:3
-#, fuzzy
 msgid ""
 "Smolt will only send hardware and basic operating system information to the\n"
 "Fedora smolt server (smoon).  The only tie from the database to a "
@@ -448,7 +460,33 @@ msgid ""
 "at\n"
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
-msgstr "Smolt는 Fedora smolt 서버 (smoon)에 하드웨어 및 운영 체제 정보만을 전송합니다.\n"
+msgstr ""
+"Smolt는 Fedora smolt 서버 (smoon)에 하드웨어 및 운영 체제 정보만을 전송합니"
+"다.\n 데이터베이스에서 보낸사람의 컴퓨터로는 "
+"오직 UUID로 연결됩니다. 보낸사람이 이러한 UUID를 알려주지 않는 이상\n"
+"익명으로 제출됩니다. 어느 한 시점에서 사용자가 데이터베이스에서 "
+"자신의 프로파일을\n "
+"삭제하고자 할 경우 다음을 실행하면 됩니다\n"
+"\n"
+"    smoltDeleteProfile\n"
+"\n"
+"smolt 데이터베이스 서버로 전송된 정보는 누구나 통계 자료, 데이터를 볼 수 있고\n "
+"프로파일을 공유할 수 있도록 공개되어야 합니다. 여러 방면에서\n"
+"smolt는 하드웨어 벤더 및 기타 다른 제삼자의 주목을 끌도록 고안되었습니다.\n"
+"따라서, 이러한 정보는 제삼자와 공유될 뿐 만 아니라,\n"
+"보다 나은 오픈 소스 드라이버 지원은 물론 전반적으로 보다 나은 지원을\n"
+"받기 위한 원동력으로서 smolt를 사용하게 됩니다.\n"
+"\n"
+"IP 로깅: Fedora의 smolt 설치에서 모든 웹 소통은 우선적으로 proxy\n"
+"서버를 통하게 됩니다. 이는 IP 주소가 로깅되는 유일한 장소이며 로그 순환이\n"
+"이러한 로그를 제거하는 4 주라는 기간 동안 서버에 저장됩니다. Fedora 프로젝트는\n smolt 데이터베이스에서 ip 주소를 모으지 않습니다. 이러한 로그는 비공개이며\n"
+"공개되지\n"
+"않습니다.\n"
+"\n"
+"이러한 정책에 만족하지 않는 사용자는 smolt를 사용해서는 안됩니다.  이러한 정책에\n"
+"관해 의문 사항이 있으실 경우 admin [at] fedoraproject.org의 Fedora Infrastructure Team에게\n"
+"연락하시기 바랍니다.  또한 \"smoltDeleteProfile\"을 사용하여 사용자는 언제나\n"
+"자신의 프로파일을 삭제할 수 있음에 유의하시기 바랍니다\n"
 
 #: scan.py:16
 #, python-format
@@ -461,7 +499,9 @@ msgstr "에라타 발견! "
 
 #: scan.py:42
 msgid "No errata found, if this machine is having issues please go to"
-msgstr "에라타가 발견되지 않았습니다. 장치에 문제가 발생할 경우 프로파일로 가시기 바랍니다  "
+msgstr ""
+"에라타가 발견되지 않았습니다. 장치에 문제가 발생할 경우 프로파일로 가시기 바"
+"랍니다  "
 
 #: scan.py:43
 msgid "your profile and create a wiki page for the device so others can"
