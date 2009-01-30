@@ -95,6 +95,7 @@ PCI_BASE_CLASS_MULTIMEDIA =     4
 PCI_CLASS_MULTIMEDIA_VIDEO =    0
 PCI_CLASS_MULTIMEDIA_AUDIO =    1
 PCI_CLASS_MULTIMEDIA_PHONE =    2
+PCI_CLASS_MULTIMEDIA_HD_AUDIO = 3
 PCI_CLASS_MULTIMEDIA_OTHER =    80
 
 PCI_BASE_CLASS_BRIDGE =         6
@@ -661,7 +662,8 @@ def classify_hal(node):
             if node['pci.device_subclass'] == PCI_CLASS_MULTIMEDIA_VIDEO:
                 return 'CAPTURE'
             #AUDIO
-            if node['pci.device_subclass'] == PCI_CLASS_MULTIMEDIA_AUDIO:
+            if (node['pci.device_subclass'] == PCI_CLASS_MULTIMEDIA_AUDIO 
+                    or node['pci.device_subclass'] == PCI_CLASS_MULTIMEDIA_HD_AUDIO):
                 return 'AUDIO'
 
         #FIREWIRE
