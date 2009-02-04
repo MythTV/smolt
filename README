@@ -50,4 +50,3 @@ Usage:
      -p,--printOnly      Print Information only, do not send
      -s,--server=        serverUrl (http://yourSmoonServer/
 
-
