@@ -135,8 +135,33 @@ PCI_CLASS_SERIAL_FIBER =        4
 PCI_CLASS_SERIAL_SMBUS =        5
 
 class Device:
-    def __init__(self, props):
+    def __init__(self, props, hardware):
         self.UUID = getUUID()
+        self.type = classify_hal(props)
+        try:
+            self.description = props['info.product'].strip()
+        except KeyError:
+            self.description = 'No Description'
+        if self.type == "PRINTER":
+            try:
+                vendor = props['printer.vendor'].strip()
+                product = props['printer.product'].strip()
+                if product.startswith (vendor + ' '):
+                    product = product[len (vendor) + 1:]
+                self.description = "%s %s" % (vendor, product)
+            except KeyError:
+                pass
+
+            try:
+                # The USB vendor and product IDs are in the device UDI,
+                # whereas we are looking at the interface UDI.  Fetch the
+                # parent device UDI and use that for the remaining fields.
+                parent_udi = props['info.parent']
+                parent_props = hardware.get_properties_for_udi (parent_udi)
+                props = parent_props
+            except KeyError:
+                pass
+
         try:
             self.bus = props['linux.subsystem'].strip()
         except KeyError:
@@ -158,14 +183,9 @@ class Device:
         except KeyError:
             self.subsysdeviceid = None
         try:
-            self.description = props['info.product'].strip()
-        except KeyError:
-            self.description = 'No Description'
-        try:
             self.driver = props['info.linux.driver'].strip()
         except KeyError:
             self.driver = 'Unknown'
-        self.type = classify_hal(props)
 
 class Host:
     def __init__(self, hostInfo):
@@ -358,14 +378,19 @@ class Hardware:
         except:
             raise SystemBusError, _('Could not connect to hal, is it running?\nRun "service haldaemon start" as root')
 
+        self.systemBus = systemBus
         for udi in all_dev_lst:
-            dev = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', udi, 'org.freedesktop.Hal.Device')
-            props = dev.GetAllProperties()
-            self.devices[udi] = Device(props)
+            props = self.get_properties_for_udi (udi)
+            self.devices[udi] = Device(props, self)
             if udi == '/org/freedesktop/Hal/devices/computer':
                 self.host = Host(props)
 
         self.fss = get_file_systems()
+
+    def get_properties_for_udi (self, udi):
+        dev = self.dbus_get_interface(self.systemBus, 'org.freedesktop.Hal',
+                                      udi, 'org.freedesktop.Hal.Device')
+        return dev.GetAllProperties()
 
     def dbus_get_interface(self, bus, service, object, interface):
         iface = None
