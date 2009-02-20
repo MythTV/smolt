@@ -1,4 +1,5 @@
 import os
+from subprocess import *
 from UserDict import UserDict
 
 class odict(UserDict):
@@ -100,10 +101,14 @@ def get_os_info():
       full_path_to_executable = os.path.join(path, executable)
       if os.path.exists(full_path_to_executable):
         command = executable + params
-        child_stdin, child_stdout = os.popen2(command)
-        output = child_stdout.readline().strip()
-        child_stdout.close()
-        child_stdin.close()
+        try:
+          child = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, close_fds=True)
+        except OSError:
+          print "Warning: Could not run "+executable+", using alternate method."
+          break  # parse files instead
+        output = child.stdout.readline().strip()
+        child.stdout.close()
+        child.stdin.close()
         return output
     # lsb_release executable not available, so parse files
     for distro_name in distro_info.keys():
