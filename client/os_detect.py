@@ -105,7 +105,11 @@ def get_os_info():
           child = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, close_fds=True)
         except OSError:
           print "Warning: Could not run "+executable+", using alternate method."
-          break  # parse files instead
+          break # parse files instead
+        child.wait()
+        if child.returncode != 0:
+          print "Warning: an error occurred trying to run "+executable+", using alternate method."
+          break # parse files instead
         output = child.stdout.readline().strip()
         child.stdout.close()
         child.stdin.close()
@@ -118,8 +122,8 @@ def get_os_info():
         fd = open(path_to_file)
         text = fd.read().strip()
         fd.close()
-	if path_to_file.endswith('KnoppMyth-version'):
-	    text = text
+        if path_to_file.endswith('KnoppMyth-version'):
+          text = text
         elif path_to_file.endswith('version'):
           text = distro_name + ' ' + text
         elif path_to_file.endswith('aurox-release'):
@@ -127,4 +131,3 @@ def get_os_info():
         elif path_to_file.endswith('lfs-release'):
           text = distro_name + ' ' + text
         return text
-
