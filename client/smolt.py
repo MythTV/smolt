@@ -67,6 +67,7 @@ smoltProtocol = '0.97'
 supported_protocols = ['0.97',]
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
+httpproxy = None
 DEBUG = False
 
 PCI_BASE_CLASS_STORAGE =        1
@@ -476,9 +477,12 @@ class Hardware:
         return
 
 
-    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, httpproxy=httpproxy):
         reset_resolver()
-        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
+        if httpproxy != None :
+          grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout, proxies={'http':httpproxy})
+        else :
+          grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout, proxies=None)
         #first find out the server desired protocol
         try:
             token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/token_json?uuid=%s' % self.host.UUID, False))
@@ -687,7 +691,7 @@ def classify_hal(node):
             if node['pci.device_subclass'] == PCI_CLASS_MULTIMEDIA_VIDEO:
                 return 'CAPTURE'
             #AUDIO
-            if (node['pci.device_subclass'] == PCI_CLASS_MULTIMEDIA_AUDIO 
+            if (node['pci.device_subclass'] == PCI_CLASS_MULTIMEDIA_AUDIO
                     or node['pci.device_subclass'] == PCI_CLASS_MULTIMEDIA_HD_AUDIO):
                 return 'AUDIO'
 

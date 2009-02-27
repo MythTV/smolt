@@ -111,6 +111,10 @@ parser.add_option('-n', '--newPublicUUID',
                   default = False,
                   action = 'store_true',
                   help = _('Request a new public UUID'))
+parser.add_option('--http-proxy',
+                  dest = 'httpproxy',
+                  default = None,
+                  help = _('HTTP proxy'))
 
 
 (opts, args) = parser.parse_args()
@@ -128,14 +132,14 @@ elif opts.checkin:
 
 # read the profile
 profile = smolt.get_profile()
-    
+
 if opts.new_pub:
-    pub_uuid = profile.regenerate_pub_uuid(user_agent=opts.user_agent, 
-                              smoonURL=opts.smoonURL, 
+    pub_uuid = profile.regenerate_pub_uuid(user_agent=opts.user_agent,
+                              smoonURL=opts.smoonURL,
                               timeout=opts.timeout)
     print _('Success!  Your new public UUID is: %s' % pub_uuid)
     sys.exit(0)
-    
+
 if opts.scanOnly:
     scan(profile, opts.smoonURL)
     rating(profile, opts.smoonURL)
@@ -152,7 +156,7 @@ if not opts.autoSend:
         sys.exit(0)
     else:
         try:
-            send = raw_input('\n' + 
+            send = raw_input('\n' +
                              _('Send this information to the Smolt server? (y/n)') + ' ')
             if send[:1].lower() != _('y'):
                 error(_('Exiting...'))
@@ -160,26 +164,28 @@ if not opts.autoSend:
         except KeyboardInterrupt:
             error(_('Exiting...'))
             sys.exit(4)
-    
+
 if opts.retry:
     while 1:
-        result, pub_uuid, admin = profile.send(user_agent=opts.user_agent, 
-                              smoonURL=opts.smoonURL, 
-                              timeout=opts.timeout) 
+        result, pub_uuid, admin = profile.send(user_agent=opts.user_agent,
+                              smoonURL=opts.smoonURL,
+                              timeout=opts.timeout,
+                              httpproxy=opts.httpproxy)
         if not result:
             sys.exit(0)
         error(_('Retry Enabled - Retrying'))
         time.sleep(30)
 else:
-    result, pub_uuid, admin = profile.send(user_agent=opts.user_agent, 
-                                    smoonURL=opts.smoonURL, 
-                                    timeout=opts.timeout)
+    result, pub_uuid, admin = profile.send(user_agent=opts.user_agent,
+                                    smoonURL=opts.smoonURL,
+                                    timeout=opts.timeout,
+                                    httpproxy=opts.httpproxy)
 
     if result:
         print _('Could not send - Exiting')
         sys.exit(1)
 
-if opts.userName: 
+if opts.userName:
     if not opts.password:
         password = getpass.getpass('\n' + _('Password:') + ' ')
     else:
@@ -202,7 +208,7 @@ if pub_uuid:
     hw_uuid_pub = os.path.basename(pubUrl)
     if not smolt.secure:
         print _('\tAdmin Password: %s') % admin
-        
+
 else:
     print _('No Public UUID found!  Please re-run with -n to generate a new public uuid')
 
