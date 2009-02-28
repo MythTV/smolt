@@ -67,7 +67,7 @@ smoltProtocol = '0.97'
 supported_protocols = ['0.97',]
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
-httpproxy = None
+proxies = None
 DEBUG = False
 
 PCI_BASE_CLASS_STORAGE =        1
@@ -477,12 +477,9 @@ class Hardware:
         return
 
 
-    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, httpproxy=httpproxy):
+    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies):
         reset_resolver()
-        if httpproxy != None :
-          grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout, proxies={'http':httpproxy})
-        else :
-          grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout, proxies=None)
+        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout, proxies=proxies)
         #first find out the server desired protocol
         try:
             token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/token_json?uuid=%s' % self.host.UUID, False))

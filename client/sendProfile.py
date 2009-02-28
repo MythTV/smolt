@@ -121,6 +121,10 @@ parser.add_option('--http-proxy',
 
 smolt.DEBUG = opts.DEBUG
 smolt.hw_uuid_file = opts.uuidFile
+if opts.httpproxy == None:
+    proxies = None
+else:
+    proxies = {'http':opts.httpproxy}
 
 if opts.checkin and os.path.exists('/var/lock/subsys/smolt'):
     # Smolt is set to run
@@ -170,7 +174,7 @@ if opts.retry:
         result, pub_uuid, admin = profile.send(user_agent=opts.user_agent,
                               smoonURL=opts.smoonURL,
                               timeout=opts.timeout,
-                              httpproxy=opts.httpproxy)
+                              proxies=proxies)
         if not result:
             sys.exit(0)
         error(_('Retry Enabled - Retrying'))
@@ -179,7 +183,7 @@ else:
     result, pub_uuid, admin = profile.send(user_agent=opts.user_agent,
                                     smoonURL=opts.smoonURL,
                                     timeout=opts.timeout,
-                                    httpproxy=opts.httpproxy)
+                                    proxies=proxies)
 
     if result:
         print _('Could not send - Exiting')
