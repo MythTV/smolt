@@ -42,8 +42,8 @@ tabs = Tabber()
 # the path, where to store the generated pages
 page_path = "hardware/static/stats"
 
-engine = engines.get('genshi', None)
 turbogears.view.load_engines()
+engine = engines.get('genshi', None)
 #template config vars
 template_config={}
 template_config['archs']=config.get("stats_template.archs", [])
