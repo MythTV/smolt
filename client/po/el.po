@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: smolt.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2009-03-28 12:03+0200\n"
-"Last-Translator: Pierros Papadeas <ppapadeas@gmail.com>\n"
+"PO-Revision-Date: 2009-05-20 13:18+0200\n"
+"Last-Translator: \n"
 "Language-Team: Greek <fedora-trans-el@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Greek\n"
 
 #: deleteProfile.py:36
 #: smolt.py:263
@@ -62,7 +63,7 @@ msgstr "Το προφίλ απομακρύνθηκε, παρακαλώ επιβ�
 
 #: sendProfile.py:53
 msgid "(optional) Fedora Account System registration"
-msgstr "(προεραιτικό) Εγγραφή στο Σύστημα Λογαριασμών Fedora "
+msgstr "(προαιρετικό) Εγγραφή στο Σύστημα Λογαριασμών Fedora "
 
 #: sendProfile.py:58
 msgid "password, will prompt if not specified"
@@ -96,7 +97,7 @@ msgstr "Σφάλμα:"
 #: sendProfile.py:117
 #: scan.py:53
 msgid "Hint:"
-msgstr "Νήξη:"
+msgstr "Νύξη:"
 
 #: sendProfile.py:132
 msgid "Send this information to the Smolt server? (y/n)"
@@ -150,11 +151,11 @@ msgstr "Αποστολή του προφίλ υλικού σας στον εξυ
 
 #: smoltGui.py:76
 msgid "Show _Privacy Policy"
-msgstr "Εμφάνιση _πολιτικής ιδιωτικότητας"
+msgstr "Εμφάνιση _πολιτικής προστασίας απορρήτου"
 
 #: smoltGui.py:76
 msgid "Show the Smolt privacy policy."
-msgstr "Εμφάνιση της πολιτικής ιδιωτικότητας του Smolt."
+msgstr "Εμφάνιση της πολιτικής προστασίας απορρήτου του Smolt."
 
 #: smoltGui.py:77
 msgid "_About"
@@ -187,17 +188,17 @@ msgid ""
 "%s\n"
 "stored in %s"
 msgstr ""
-"Τα δεδομένα έχουν αποσταλεί με επιτυχία.  Αν χρειάζεται να ανατρέξετε στοπροφίλ υλικού σας για μια αναφορά σφάλματος, το UUID σας είναι \n"
+"Τα δεδομένα έχουν αποσταλεί με επιτυχία.  Αν χρειάζεται να ανατρέξετε στο προφίλ υλικού σας για μια αναφορά σφάλματος, το UUID σας είναι \n"
 "%s\n"
 "αποθηκευμένο στο %s"
 
 #: smoltGui.py:166
 msgid "Smolt Privacy Policy"
-msgstr "Πολιτική ιδιωτικότητας του Smolt"
+msgstr "Πολιτική προστασίας απορρήτου του Smolt"
 
 #: smoltGui.py:209
 msgid "translator-credits"
-msgstr "Dimitris Glezos <dimitris@glezos.com>, 2006/nPierros Papadeas <ppapadeas@gmail.com>,2009"
+msgstr "Dimitris Glezos <dimitris@glezos.com>, 2006/n Pierros Papadeas <ppapadeas@gmail.com>,2009"
 
 #: smoltGui.py:210
 msgid "Fedora hardware profiler."
@@ -215,7 +216,7 @@ msgid ""
 "\n"
 "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 msgstr ""
-"To λογισμικό αυτό είναι ελεύθερο; μπορείτε να το αναδιανέμεται ή και να το αλλάξεται υπό τους όρους της GNU General Public License εκδιδώμενης από το  Free Software Foundation; είτε της έκδοσης 2 είτε (κατ' επιλογή σας) επόμενης έκδοσης.\n"
+"To λογισμικό αυτό είναι ελεύθερο; μπορείτε να το αναδιανέμεται ή και να το τροποποιήσετε υπό τους όρους της GNU General Public License εκδιδώμενης από το  Free Software Foundation; είτε της έκδοσης 2 είτε (κατ' επιλογή σας) επόμενης έκδοσης.\n"
 "\n"
 "Το λογισμικό αυτό διανέμεται με την ελπίδα να είναι χρήσιμο, αλλά χωρίς ΚΑΜΙΑ ΕΓΓΥΗΣΗ; Δείτε την GNU General Public License για περισσότερες πληροφορίες.\n"
 "\n"
@@ -437,7 +438,7 @@ msgstr ""
 "Οι πληροφορίες που αποστέλνονται στον εξυπηρετητή smolt πρέπει να\n"
 "θεωρούνται δημόσιες στο ότι ο καθένας μπορεί να εμφανίσει τα στατιστικά,\n"
 "τα δεδομένα και να διαμοιράσει τα προφίλ των μηχανημάτων. Με αρκετούς\n"
-"τρόπους το smolt έχει σχεδιαστεί για να τραβήξει την προσοχή παρόχωνυλικού και άλλων φορέων. Συνεπώς, οι πληροφορίες που θα αποσταλούν θα\n"
+"τρόπους το smolt έχει σχεδιαστεί για να τραβήξει την προσοχή παρόχων υλικού και άλλων φορέων. Συνεπώς, οι πληροφορίες που θα αποσταλούν θα\n"
 "χρησιμοποιηθούν ως μοχλός για λήψη καλύτερης υποστήριξης για οδηγούς\n"
 "ελεύθερου λογισμικού και καλύτερη υποστήριξη υλικού γενικά.\n"
 "\n"
@@ -448,7 +449,7 @@ msgstr ""
 "αρχείο. Το έργο Fedora δεν καταχωρεί διευθύνσεις IP στη βάση δεδομένων\n"
 "του smolt. Αυτά τα αρχεία δεν είναι δημόσια.\n"
 "\n"
-"Οι χρήστες που δεν είναι ευτυχείς με αυτήν την πολιτική θα πρέπει να μη\n"
+"Οι χρήστες που διαφωνούν με αυτήν την πολιτική θα πρέπει να μη\n"
 "χρησιμοποιούν το smolt.  Ερωτήσεις για αυτήν την πολιτική μπορούν να\n"
 "αποσταλούν στην Ομάδα Υποδομής (Infrastructure) του Fedora στο\n"
 "admin [at] fedoraproject.org  Επίσης, θυμίζεται ότι οι χρήστες μπορούν να\n"
@@ -473,7 +474,7 @@ msgstr "προφίλ σας και δημιουργήστε μια σελίδα 
 
 #: scan.py:44
 msgid "benefit"
-msgstr "κάποιοι άλλοι να επωφεληθούν επίσης"
+msgstr "κάποιοι άλλοι να επωφεληθούν"
 
 #~ msgid "Run \"service haldaemon start\" as root"
 #~ msgstr "Εκτελέστε ως υπερχρήστης \"service haldaemon start\""
