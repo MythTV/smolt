@@ -42,8 +42,8 @@ tabs = Tabber()
 # the path, where to store the generated pages
 page_path = "hardware/static/stats"
 
-engine = engines.get('genshi', None)
 turbogears.view.load_engines()
+engine = engines.get('genshi', None)
 #template config vars
 template_config={}
 template_config['archs']=config.get("stats_template.archs", [])
@@ -211,13 +211,16 @@ for type in byclass_cache.data.keys():
     f.close()
 
 # Save some memory
-del byclass_cache
-del out_html
+if byclass_cache.data:
+    del byclass_cache
+    del out_html
 
 stats = {}
 
 print 'total_active_hosts'
 total_active_hosts = session.query(Host).filter(Host.c.last_modified > (date.today() - timedelta(days=90))).count()
+if not total_active_hosts:
+   total_active_hosts = 1
 
 print 'total_hosts'
 stats['total_hosts'] = session.query(Host).count()
@@ -363,6 +366,8 @@ if not  template_config['filesystem'] == [] :
     print 'filesystems'
     stats['filesystems'] = session.query(FileSys).select()
     stats['total_fs'] = session.query(FileSys).sum(FileSys.c.cnt)
+    if not stats['total_fs']:
+        stats['total_fs'] = 1
     GB=1048576
     stats['combined_fs_size']=[]
     stats['combined_fs_size'].append(("less than 2GB",session.query(FileSystem).filter((FileSystem.c.f_fssize) <= (2*GB)  ) .count()))

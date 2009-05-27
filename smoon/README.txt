@@ -22,7 +22,7 @@ you will need to execute the following commands at the command line from /smoon
 NOTE: In Fedora, Migrate is named sqlalchemy-migrate.  It might be called 'migrate' in
 other distributions.
 
- $ mysql -u smoon -p smoon < smoon.ddl.sql
+ $ mysql -p -u smoon smoon < smoon.ddl.sql
  $ sqlalchemy-migrate manage manage.py --repository=db --url=mysql://smoon:smoon@localhost/smoon
  $ python manage.py version_control
  $ python manage.py upgrade
