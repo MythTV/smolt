@@ -1,0 +1,522 @@
+# Danish translation of smolt
+# Copyright (C) 2009
+# This file is distributed under the same license as the smolt package.
+# Kris Thomsen <lakristho@gmail.com>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: smolt\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-01-03 15:35-0500\n"
+"PO-Revision-Date: 2009-05-15 13:41+0200\n"
+"Last-Translator: Kris Thomsen <lakristho@gmail.com>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: deleteProfile.py:36 smolt.py:263
+#, python-format
+msgid "Server Message: \"%s\""
+msgstr "Serverbesked: \"%s\""
+
+#: deleteProfile.py:46 sendProfile.py:43
+msgid "enable debug information"
+msgstr "aktivér fejlsøgningsinformation"
+
+#: deleteProfile.py:51 sendProfile.py:48
+#, python-format
+msgid "specify the URL of the server (default \"%default\")"
+msgstr "angiv serverens URL (standard \"%default\")"
+
+#: deleteProfile.py:56 sendProfile.py:63
+msgid "print information only, do not send"
+msgstr "udskriv kun information, undlad at sende"
+
+#: deleteProfile.py:61 sendProfile.py:78
+#, python-format
+msgid "specify HTTP user agent (default \"%default\")"
+msgstr "angiv HTTP-brugeragent (standard \"%default\")"
+
+#: deleteProfile.py:66 sendProfile.py:83
+#, python-format
+msgid "specify HTTP timeout in seconds (default %default seconds)"
+msgstr "angiv HTTP-udløb i sekunder (standard %default sekunder)"
+
+#: deleteProfile.py:84
+msgid "Error contacting Server:"
+msgstr "Kunne ikke kontakte server:"
+
+#: deleteProfile.py:92
+msgid "Profile removed, please verify at"
+msgstr "Profil fjernet, godkend venligst på"
+
+#: sendProfile.py:53
+msgid "(optional) Fedora Account System registration"
+msgstr "(valgfri) Registration af Fedorakontosystem"
+
+#: sendProfile.py:58
+msgid "password, will prompt if not specified"
+msgstr "adgangskode, vil fortælle dig hvis den ikke er angivet"
+
+#: sendProfile.py:68
+msgid "don't prompt to send, just send"
+msgstr "fortæl mig ikke at den sendes, bare send"
+
+#: sendProfile.py:73
+msgid "continue to send until success"
+msgstr "bliv ved med at sende indtil det lykkedes"
+
+#: sendProfile.py:88
+msgid ""
+"this is an automated checkin, will only run if the \"smolt\" service has "
+"been started"
+msgstr ""
+"dette er et automatiseret tjek ind, kører kun hvis \"smolt\"-tjenesten er "
+"blevet startet"
+
+#: sendProfile.py:93
+msgid "only scan this machine for known hardware errata, do not send profile."
+msgstr "skan kun denne maskine for kendte hardwarefejl, send ikke profil."
+
+#: sendProfile.py:108
+msgid ""
+"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+"Smolt er sat til at tjekke ind, men at tjekke ind er deaktiveret (tip: "
+"\"service smolt start\")"
+
+#: sendProfile.py:115 scan.py:51
+msgid "Error:"
+msgstr "Fejl:"
+
+#: sendProfile.py:117 scan.py:53
+msgid "Hint:"
+msgstr "Tip:"
+
+#: sendProfile.py:132
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr "Send denne information til Smolt-serveren? (y/n)"
+
+#: sendProfile.py:133
+msgid "y"
+msgstr "y"
+
+#: sendProfile.py:134 sendProfile.py:137
+msgid "Exiting..."
+msgstr "Afslutter..."
+
+#: sendProfile.py:144
+msgid "Retry Enabled - Retrying"
+msgstr "Prøv at aktivere igen - Prøver igen"
+
+#: sendProfile.py:148
+msgid "Could not send - Exiting"
+msgstr "Kunne ikke sende - Afslutter"
+
+#: sendProfile.py:153
+msgid "Password:"
+msgstr "Adgangskode:"
+
+#: sendProfile.py:158
+msgid "Registration Failed, Try again"
+msgstr "Registrering mislykkedes, prøv igen"
+
+#: sendProfile.py:164
+#, python-format
+msgid "To view your profile visit: %s"
+msgstr "For at se din profil, besøg: %s"
+
+#: smoltGui.py:74
+msgid "_Quit"
+msgstr "_Afslut"
+
+#: smoltGui.py:74
+msgid "Quit the program without sending your hardware profile to the server"
+msgstr "Afslut programmet uden at sende din hardwareprofil til serveren"
+
+#: smoltGui.py:75
+msgid "_Send"
+msgstr "_Send"
+
+#: smoltGui.py:75
+msgid "Send your hardware profile to the server."
+msgstr "Send din hardwareprofil til serveren."
+
+#: smoltGui.py:76
+msgid "Show _Privacy Policy"
+msgstr "Vis politik for _personlige oplysninger"
+
+#: smoltGui.py:76
+msgid "Show the Smolt privacy policy."
+msgstr "Vis Smolt-politik for personlige oplysninger."
+
+#: smoltGui.py:77
+msgid "_About"
+msgstr "_Om"
+
+#: smoltGui.py:78
+msgid "_File"
+msgstr "_Fil"
+
+#: smoltGui.py:79
+msgid "_Help"
+msgstr "_Hjælp"
+
+#: smoltGui.py:80
+msgid "_My Smolt Page"
+msgstr "_Min Smolt-side"
+
+#: smoltGui.py:80
+msgid "Take me to my smolt profile page"
+msgstr "Tag mig til min smolt-profilside"
+
+#: smoltGui.py:145
+msgid "An error occurred while sending the data to the server."
+msgstr "Der opstod en fejl under afsending af data til serveren."
+
+#: smoltGui.py:152
+#, python-format
+msgid ""
+"The data was successfully sent.  If you need to refer to your hardware "
+"profile for a bug report your UUID is \n"
+"%s\n"
+"stored in %s"
+msgstr ""
+"Dataene blev sendt med succes. Hvis du har brug for at referere til din "
+"hardwareprofil til en fejlrapport er dit UUID \n"
+"\"%s\"\n"
+"gemt i \"%s\""
+
+#: smoltGui.py:166
+msgid "Smolt Privacy Policy"
+msgstr "Smolt politik for personlige oplysninger"
+
+#: smoltGui.py:209
+msgid "translator-credits"
+msgstr ""
+"Kris Thomsen\n"
+"\n"
+"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
+"Mere info: http://www.dansk-gruppen.dk"
+
+#: smoltGui.py:210
+msgid "Fedora hardware profiler."
+msgstr "Fedora-hardwareprofileringsprogram."
+
+#: smoltGui.py:211
+msgid "Copyright © 2007 Mike McGrath"
+msgstr "Ophavsret © 2007 Mike McGrath"
+
+#: smoltGui.py:213
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
+"Ave, Cambridge, MA 02139, USA."
+msgstr ""
+"Dette program er fri software. Du kan redistribuere og/eller modificere det "
+"under de betingelserne som er angivet i GNU General Public License, som er "
+"udgivet af Free Software Foundation. Enten version 2 af licensen eller "
+"(efter eget valg) enhver senere version.\n"
+"\n"
+"Dette program distribueres i håb om at det vil vise sig nyttigt, men UDEN "
+"NOGEN FORM FOR GARANTI, uden selv de underforståede garantier omkring "
+"SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligere detaljer kan "
+"læses i GNU General Public License.\n"
+"\n"
+"Du skulle have modtaget en kopi af GNU General Public License sammen med "
+"dette program. Hvis ikke, så skriv til Free software Foundation, Inc., 675 "
+"Mass Ave, Cambridge, MA 02139, USA."
+
+#: smolt.py:265
+#, python-format
+msgid "Could not contact server: %s"
+msgstr "Kunne ikke kontakte server: %s"
+
+#: smolt.py:296
+msgid "Could not bind to dbus.  Is dbus running?"
+msgstr "Kunne ikke forbinde til dbus. Kører dbus?"
+
+#: smolt.py:302
+msgid ""
+"Could not connect to hal, is it running?\n"
+"Run \"service haldaemon start\" as root"
+msgstr ""
+"Kunne ikke forbinde til hal, kører den?\n"
+"Kør \"service haldeamon start\" som administrator (root)"
+
+#: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
+#, python-format
+msgid "Error contacting Server: %s"
+msgstr "Kunne ikke kontakte server: %s"
+
+#: smolt.py:436
+msgid "Wrong version, server incapable of handling your client"
+msgstr ""
+"Forkert version, serveren er ikke i stand til at arbejde med din klient"
+
+#: smolt.py:452
+msgid "Communication with server failed"
+msgstr "Kunne ikke kommunikere med server"
+
+#: smolt.py:526
+msgid "Devices"
+msgstr "Enheder"
+
+#: smolt.py:537
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:538
+msgid "OS"
+msgstr "OS"
+
+#: smolt.py:539
+msgid "Default run level"
+msgstr "Standard kørselsniveau"
+
+#: smolt.py:540
+msgid "Language"
+msgstr "Sprog"
+
+#: smolt.py:541
+msgid "Platform"
+msgstr "Platform"
+
+#: smolt.py:542
+msgid "BogoMIPS"
+msgstr "BogoMIPS"
+
+#: smolt.py:543
+msgid "CPU Vendor"
+msgstr "Processorproducent"
+
+#: smolt.py:544
+msgid "CPU Model"
+msgstr "Processormodel"
+
+#: smolt.py:545
+msgid "Number of CPUs"
+msgstr "Antal af processorer"
+
+#: smolt.py:546
+msgid "CPU Speed"
+msgstr "Processor hastighed"
+
+#: smolt.py:547
+msgid "System Memory"
+msgstr "Systemhukommelse"
+
+#: smolt.py:548
+msgid "System Swap"
+msgstr "Systemswap"
+
+#: smolt.py:549
+msgid "Vendor"
+msgstr "Producent"
+
+#: smolt.py:550
+msgid "System"
+msgstr "System"
+
+#: smolt.py:551
+msgid "Form factor"
+msgstr "Formfaktor"
+
+#: smolt.py:552
+msgid "Kernel"
+msgstr "Kerne"
+
+#: smolt.py:553
+msgid "SELinux Enabled"
+msgstr "SELinux aktiveret"
+
+#: smolt.py:554
+msgid "SELinux Enforce"
+msgstr "SELinux fremtvunget"
+
+#: smolt.py:990
+msgid "Unable to save UUID, continuing...\n"
+msgstr "Kunne ikke gemme UUID, fortsætter...\n"
+
+#: smolt.py:992
+msgid "Unable to determine UUID of system!\n"
+msgstr "Kunne ikke bestemme systemets UUID!\n"
+
+#: software.py:43
+msgid "Cannot Determine Runlevel"
+msgstr "Kan ikke bestemme kørselsniveau"
+
+#: smoltFirstBoot.py:31 smoltFirstBoot.py:41
+msgid "Hardware Profile"
+msgstr "Hardwareprofil"
+
+#: smoltFirstBoot.py:57
+msgid ""
+"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
+"profile is a great way to give back to the community as this information is "
+"used to help focus our efforts on popular hardware and platforms.  "
+"Submissions are anonymous.  Sending your profile will enable a monthly "
+"update."
+msgstr ""
+"Smolt er et hardwareprofileringsprogram til Fedora-projektet. At indsende "
+"din profil er en god måde at give noget tilbage til fællesskabet, da denne "
+"information bliver brugt til at fokusere vores indsats på populært hardware "
+"og platforme. Indsendelsen er anonym. Indsending af din profil vil aktivere "
+"en månedlig opdatering."
+
+#: smoltFirstBoot.py:76
+msgid "_Send Profile"
+msgstr "_Send profil"
+
+#: smoltFirstBoot.py:77
+msgid "D_o not send profile"
+msgstr "_Undlad at sende profil"
+
+#: smoltFirstBoot.py:95
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr ""
+"Er du sikker på at du ikke vil sende profilen? Indsendelsen af din profil er "
+"en værdifuld informationskilde til vores udvikling og kan hjælpe med at løse "
+"problemer der måtte opstå med dit hardware."
+
+#: smoltFirstBoot.py:103
+msgid "_Reconsider sending"
+msgstr "_Genovervej afsendelse"
+
+#: smoltFirstBoot.py:104
+msgid "_No, do not send."
+msgstr "_Nej, send ikke."
+
+#: gui.py:56
+msgid "Label"
+msgstr "Mærkat"
+
+#: gui.py:62
+msgid "Data"
+msgstr "Data"
+
+#: gui.py:100
+msgid "Bus"
+msgstr "Bus"
+
+#: gui.py:107
+msgid "Driver"
+msgstr "Driver"
+
+#: gui.py:114
+msgid "Type"
+msgstr "Type"
+
+#: gui.py:121
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: privacypolicy.py:3
+msgid ""
+"Smolt will only send hardware and basic operating system information to the\n"
+"Fedora smolt server (smoon).  The only tie from the database to a "
+"submitters\n"
+"machine is the UUID.  As long as the submitter does not give out this UUID\n"
+"the submission is anonymous.  If at any point in time a user wants to "
+"delete\n"
+"their profile from the database they need only run\n"
+"\n"
+"    smoltDeleteProfile\n"
+"\n"
+"The information sent to the smolt database server should be considered "
+"public\n"
+"in that anyone can view the statistics, data and share machine profiles.  "
+"In \n"
+"many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
+"attention.  As such, not only will this information be shared with 3rd "
+"parties,\n"
+"we will be using smolt as leverage to gain better support for open source\n"
+"drivers and better support in general.\n"
+"\n"
+"IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
+"server first.  This is the only place IP addresses are being logged and "
+"they\n"
+"are kept on that server for a period of 4 weeks at which time log rotation\n"
+"removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
+"the smolt database.  These logs are private and will not be available to "
+"the\n"
+"general public.\n"
+"\n"
+"Users unhappy with this policy should simply not use smolt.  Users with\n"
+"questions about this policy should contact the Fedora Infrastructure Team "
+"at\n"
+"admin [at] fedoraproject.org  Also remember that users can delete their\n"
+"profiles at any time using \"smoltDeleteProfile\"\n"
+msgstr ""
+"Smolt sender kun hardware og de grundlæggende operativsystemsinformationer "
+"til\n"
+"Fedoras Smoltserver (smoon). Den eneste forbindelse der er mellem databasen "
+"og indsenderens\n"
+"maskine er UUID'en. Så længe indsenderen giver UUID'en væk er indsendelsen "
+"anonym.\n"
+"Hvis brugeren på noget tidspunkt ønsker at slette sin profil fra databasen, "
+"skal de blot køre:\n"
+"\n"
+"    smoltDeleteProfile\n"
+"\n"
+"Informationen som bliver sendt til smolt databaseserveren skal ses som "
+"offentligt\n"
+"på den måde at alle kan se statistikkerne, dataene og dele maskineprofiler."
+"På mange måder er smolt designet til at fange hardwareproducenter og andre "
+"3. parters\n"
+"opmærksomhed. Derfor vil denne information ikke blot blive delt med 3. "
+"parter, vi vil\n"
+"også bruge smolt til at sørge for bedre understøttelse for opensource-"
+"drivere og bedre understøttelse generelt.\n"
+"\n"
+"IP logning: I Fedoras smolt-installation går alt internettrafik gennem en "
+"proxyserver\n"
+"først. Dette er det eneste sted IP-adresser bliver logget og de beholdes på "
+"den server\n"
+"for en fire ugers periode, hvorefter logfilerne bliver fjernet. Fedora-"
+"projektet gemmerikke ip-adresser i smolt-databasen.\n"
+"Disse logfiler er private og vil ikke være tilgængelige til den almindelige "
+"offentlighed.\n"
+"\n"
+"Brugere der er utilfredse med denne politik bør simpelthen ikke bruge smolt. "
+"Brugere medspørgsmål omkring denne politik kan kontakte Fedoras "
+"infrastrukturhold på\n"
+"admin [at] fedoraproject.org  Husk også at brugere kan slette deres profiler "
+"til hver entid ved at bruge \"smoltDeleteProfile\"\n"
+
+#: scan.py:16
+#, python-format
+msgid "Scanning %s for known errata.\n"
+msgstr "Skanner \"%s\" for kendte fejl.\n"
+
+#: scan.py:39
+msgid "Errata Found!"
+msgstr "Fejl fundet!"
+
+#: scan.py:42
+msgid "No errata found, if this machine is having issues please go to"
+msgstr ""
+"Ingen fejl fundet, hvis denne maskine har problemer, skal du venligst gå til"
+
+#: scan.py:43
+msgid "your profile and create a wiki page for the device so others can"
+msgstr "din profil og oprette en wikiside om enheden, så andre kan"
+
+#: scan.py:44
+msgid "benefit"
+msgstr "drage nytte af det"
