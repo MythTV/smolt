@@ -21,6 +21,7 @@ import commands
 import re
 import sys
 import smolt
+from gate import Gate
 
 def read_lsb_release():
     if os.access('/usr/bin/lsb_release', os.X_OK):
