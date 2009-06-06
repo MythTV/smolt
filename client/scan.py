@@ -21,18 +21,26 @@ import simplejson, urllib
 from i18n import _
 import config
 
+h = None
+
+def hardware():
+    # Singleton pattern
+    global h
+    if h == None:
+        h = smolt.Hardware()
+    return h
+
 def get_config_attr(attr, default=""):
     if hasattr(config, attr):
         return getattr(config, attr)
     else:
         return default
 
-h = smolt.Hardware()
 def rating(profile, smoonURL):
     print ""
     print _("Current rating for vendor/model.")
     print ""
-    scanURL='%s/client/host_rating?vendor=%s&system=%s' % (smoonURL, urllib.quote(h.host.systemVendor), urllib.quote(h.host.systemModel))
+    scanURL='%s/client/host_rating?vendor=%s&system=%s' % (smoonURL, urllib.quote(hardware().host.systemVendor), urllib.quote(hardware().host.systemModel))
     r = simplejson.load(urllib.urlopen(scanURL))['ratings']
     rating_system = { '0' : _('Unrated/Unknown'),
                       '1' : _('Non-working'),
@@ -49,7 +57,7 @@ def rating(profile, smoonURL):
 def scan(profile, smoonURL):
     print _("Scanning %s for known errata.\n" % smoonURL)
     devices = []
-    for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in h.deviceIter():
+    for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in hardware().deviceIter():
         if VendorID:
             devices.append('%s/%04x/%04x/%04x/%04x' % (Bus,
                                              int(VendorID or 0),
@@ -57,7 +65,7 @@ def scan(profile, smoonURL):
                                              int(SubsysVendorID or 0),
                                              int(SubsysDeviceID or 0)) )
     searchDevices = 'NULLPAGE'
-    devices.append('System/%s/%s' % ( urllib.quote(h.host.systemVendor), urllib.quote(h.host.systemModel) ))
+    devices.append('System/%s/%s' % ( urllib.quote(hardware().host.systemVendor), urllib.quote(hardware().host.systemModel) ))
     for dev in devices:
         searchDevices = "%s|%s" % (searchDevices, dev)
     scanURL='%s/smolt-w/api.php' % smoonURL
