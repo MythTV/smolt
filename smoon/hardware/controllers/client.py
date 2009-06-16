@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import simplejson
 
 from turbogears import expose
@@ -212,6 +213,13 @@ class Client(object):
             host_sql.selinux_policy = host_dict['selinux_policy']
         except KeyError:
             host_sql.selinux_policy = 'Unknown'
+        try:
+          host_sql.cpu_stepping = host_dict['cpu_stepping']
+          host_sql.cpu_family = host_dict['cpu_family']
+          host_sql.cpu_model_num = host_dict['cpu_model_num']
+        except KeyError:
+          host_sql.cpu_stepping = host_sql.cpu_family = host_sql.cpu_model_num = None
+
         host_sql.selinux_enforce = host_dict['selinux_enforce']
 #        try:
 #                host_sql.myth_systemrole = host_dict['myth_systemrole']

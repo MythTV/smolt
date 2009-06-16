@@ -71,7 +71,10 @@ hosts = Table('host', metadata,
               Column('rating', INT, nullable=False, default=0),
               Column('selinux_enabled', INT, nullable=False),
               Column('selinux_policy', TEXT),
-              Column('selinux_enforce', TEXT))
+              Column('selinux_enforce', TEXT),
+              Column('cpu_stepping', INT, default=None),
+              Column('cpu_family', INT, default=None),
+              Column('cpu_model_num', INT, default=None))
 #              Column('myth_systemrole', TEXT),
 #              Column('mythremote', TEXT),
 #              Column('myththeme', TEXT))
