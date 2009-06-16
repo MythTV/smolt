@@ -135,7 +135,7 @@ class ByClass(object):
 
     def fetch_data(self):
 #        classes = session.query(HardwareClass).select()
-        classes = session.query(HardwareClass).select()
+        classes = session.query(HardwareClass).all()
         count = {}
         types = {}
         vendors = {}
@@ -152,15 +152,15 @@ class ByClass(object):
             #devs = select([computer_logical_devices], computer_logical_devices.c.cls == type).alias("devs")
             devs = computer_logical_devices
             print 'Device: %s types' % type
-            Device=select([ComputerLogicalDevice.c.id, ComputerLogicalDevice.c.description,
-              ComputerLogicalDevice.c.bus, ComputerLogicalDevice.c.driver,
-              ComputerLogicalDevice.c.cls, ComputerLogicalDevice.c.date_added,
-              ComputerLogicalDevice.c.device_id, ComputerLogicalDevice.c.vendor_id,
-              ComputerLogicalDevice.c.subsys_device_id,
-              ComputerLogicalDevice.c.subsys_vendor_id],
-              ComputerLogicalDevice.c.cls==type).alias('d')
-            types = select([Device, func.count(HostLink.c.host_link_id.distinct()
-                    ).label('count')], Device.c.id==HostLink.c.device_id).group_by(Device.c.id)\
+            Device=select([ComputerLogicalDevice.id, ComputerLogicalDevice.description,
+              ComputerLogicalDevice.bus, ComputerLogicalDevice.driver,
+              ComputerLogicalDevice.cls, ComputerLogicalDevice.date_added,
+              ComputerLogicalDevice.device_id, ComputerLogicalDevice.vendor_id,
+              ComputerLogicalDevice.subsys_device_id,
+              ComputerLogicalDevice.subsys_vendor_id],
+              ComputerLogicalDevice.cls==type).alias('d')
+            types = select([Device, func.count(HostLink.host_link_id.distinct()
+                    ).label('count')], Device.c.id==HostLink.device_id).group_by(Device.c.id)\
                     .order_by(desc('count')).limit(100).execute().fetchall()
 #            types = select([devs,
 #                            func.count(func.distinct(host_links.c.host_link_id)).label('c')],
@@ -223,7 +223,7 @@ if byclass_cache.data:
 stats = {}
 
 print 'total_active_hosts'
-total_active_hosts = session.query(Host).filter(Host.c.last_modified > (date.today() - timedelta(days=90))).count()
+total_active_hosts = session.query(Host).filter(Host.last_modified > (date.today() - timedelta(days=90))).count()
 if not total_active_hosts:
    total_active_hosts = 1
 
@@ -234,7 +234,7 @@ flot = {}
 # Arch calculation
 if not  template_config['archs'] == [] :
     print 'arch stats'
-    stats['archs'] = session.query(Arch).select()
+    stats['archs'] = session.query(Arch).all()
     archs = []
     counts = []
     i = 0
@@ -252,7 +252,7 @@ if not  template_config['archs'] == [] :
 
 print "OS Stats"
 if not  template_config['os'] == [] :
-    stats['os'] = session.query(OS).select(limit=30)
+    stats['os'] = session.query(OS).limit(30).all()
     for i in stats["os"]:
         if i.os == WITHHELD_MAGIC_STRING:
             i.os = withheld_label
@@ -260,7 +260,7 @@ if not  template_config['os'] == [] :
 
 print "Runlevel stats"
 if not  template_config['runlevel'] == [] :
-    stats['runlevel'] = session.query(Runlevel).select()
+    stats['runlevel'] = session.query(Runlevel).all()
     for i in stats["runlevel"]:
         if i.runlevel == -1:
             i.runlevel = withheld_label
@@ -268,7 +268,7 @@ if not  template_config['runlevel'] == [] :
 
 print "Vendor stats"
 if not  template_config['vendors'] == [] :
-    stats['vendors'] = session.query(Vendor).select(limit=100)
+    stats['vendors'] = session.query(Vendor).limit(100).all()
     for i in stats["vendors"]:
         if i.vendor == WITHHELD_MAGIC_STRING:
             i.vendor = withheld_label
@@ -276,14 +276,14 @@ if not  template_config['vendors'] == [] :
 
 print "Model stats"
 if not  template_config['model'] == [] :
-    stats['systems'] = session.query(System).select(limit=100)
+    stats['systems'] = session.query(System).limit(100).all()
     for i in stats["systems"]:
         if i.system == WITHHELD_MAGIC_STRING:
             i.system = withheld_label
             break
 
 print "CPU stats"
-stats['cpu_vendor'] = session.query(CPUVendor).select(limit=100)
+stats['cpu_vendor'] = session.query(CPUVendor).limit(100).all()
 for i in stats["cpu_vendor"]:
     if i.cpu_vendor == WITHHELD_MAGIC_STRING:
         i.cpu_vendor = withheld_label
@@ -291,7 +291,7 @@ for i in stats["cpu_vendor"]:
 
 if not  template_config['kernel'] == [] :
     print "Kernel stats"
-    stats['kernel_version'] = session.query(KernelVersion).select(limit=20)
+    stats['kernel_version'] = session.query(KernelVersion).limit(20).all()
     for i in stats["kernel_version"]:
         if i.kernel_version == WITHHELD_MAGIC_STRING:
             i.kernel_version = withheld_label
@@ -299,7 +299,7 @@ if not  template_config['kernel'] == [] :
 
 if not  template_config['formfactor'] == [] :
     print 'Formfactor stats'
-    stats['formfactor'] = session.query(FormFactor).select(limit=8)
+    stats['formfactor'] = session.query(FormFactor).limit(8).all()
     for i in stats["formfactor"]:
         if i.formfactor == WITHHELD_MAGIC_STRING:
             i.formfactor = withheld_label
@@ -307,7 +307,7 @@ if not  template_config['formfactor'] == [] :
 
 if not  template_config['lang'] == [] :
     print 'language stats'
-    stats['language'] = session.query(Language).select()
+    stats['language'] = session.query(Language).all()
     for i in stats["language"]:
         if i.language == WITHHELD_MAGIC_STRING:
             i.language = withheld_label
@@ -315,19 +315,19 @@ if not  template_config['lang'] == [] :
 
 if not  template_config['selinux'] == [] :
     print 'selinux stats'
-    stats['selinux_enabled'] = session.query(SelinuxEnabled).select()
+    stats['selinux_enabled'] = session.query(SelinuxEnabled).all()
     for i in stats["selinux_enabled"]:
         if i.enabled == -1:
             i.enabled = withheld_label
             break
 
-    stats['selinux_enforce'] = session.query(SelinuxEnforced).select()
+    stats['selinux_enforce'] = session.query(SelinuxEnforced).all()
     for i in stats["selinux_enforce"]:
         if i.enforce == WITHHELD_MAGIC_STRING:
             i.enforce = withheld_label
             break
 
-    stats['selinux_policy'] = session.query(SelinuxPolicy).select()
+    stats['selinux_policy'] = session.query(SelinuxPolicy).all()
     for i in stats["selinux_policy"]:
         if i.policy == WITHHELD_MAGIC_STRING:
             i.policy = withheld_label
@@ -340,59 +340,84 @@ if not  template_config['ram'] == [] :
     stats['sys_mem'] = []
     stats['sys_mem'].append(("less than 256mb",
                             session.query(Host).filter(and_(
-                                                    Host.c.system_memory!=0,
-                                                    Host.c.system_memory<256,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.system_memory!=0,
+                                                    Host.system_memory<256,
+                                                    Host.last_modified > (now))).count()))
     stats['sys_mem'].append(("between 256mb and 512mb",
                             session.query(Host).filter(and_(
-                                                    Host.c.system_memory>=256,
-                                                    Host.c.system_memory<512,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.system_memory>=256,
+                                                    Host.system_memory<512,
+                                                    Host.last_modified > (now))).count()))
     stats['sys_mem'].append(("between 512mb and 1023mb",
                             session.query(Host).filter(and_(
-                                                    Host.c.system_memory>=512,
-                                                    Host.c.system_memory<1024,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.system_memory>=512,
+                                                    Host.system_memory<1024,
+                                                    Host.last_modified > (now))).count()))
     stats['sys_mem'].append(("between 1024mb and 2047mb",
                             session.query(Host).filter(and_(
-                                                    Host.c.system_memory>=1024,
-                                                    Host.c.system_memory<2048,
-                                                    Host.c.last_modified > (now))).count()))
-    stats['sys_mem'].append(("more than 2048mb",
+                                                    Host.system_memory>=1024,
+                                                    Host.system_memory<2048,
+                                                    Host.last_modified > (now))).count()))
+    stats['sys_mem'].append(("between 2048mb and 4095mb",
                             session.query(Host).filter(and_(
-                                                    Host.c.system_memory>=2048,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.system_memory>=2048,
+                                                    Host.system_memory<4096,
+                                                    Host.last_modified > (now))).count()))
+    stats['sys_mem'].append(("between 4096mb and 8191mb",
+                            session.query(Host).filter(and_(
+                                                    Host.system_memory>=4096,
+                                                    Host.system_memory<8191,
+                                                    Host.last_modified > (now))).count()))
+    stats['sys_mem'].append(("between 8192mb and 16383mb",
+                            session.query(Host).filter(and_(
+                                                    Host.system_memory>=8192,
+                                                    Host.system_memory<16383,
+                                                    Host.last_modified > (now))).count()))
+    stats['sys_mem'].append(("more than 16384mb",
+                            session.query(Host).filter(and_(
+                                                    Host.system_memory>=16384,
+                                                    Host.last_modified > (now))).count()))
     stats['sys_mem'].append((withheld_label,
                             session.query(Host).filter(and_(
-                                                    Host.c.system_memory==0,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.system_memory==0,
+                                                    Host.last_modified > (now))).count()))
 
 if not  template_config['swap'] == [] :
     print 'swap stats'
     stats['swap_mem'] = []
     stats['swap_mem'].append(("less than 512mb",
                             session.query(Host).filter(and_(
-                                                    Host.c.system_swap!=0,
-                                                    Host.c.system_swap<512,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.system_swap!=0,
+                                                    Host.system_swap<512,
+                                                    Host.last_modified > (now))).count()))
     stats['swap_mem'].append(("between 512mb and 1027mb",
                             session.query(Host).filter(and_(
-                                                    Host.c.system_swap>=512,
-                                                    Host.c.system_swap<1024,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.system_swap>=512,
+                                                    Host.system_swap<1024,
+                                                    Host.last_modified > (now))).count()))
     stats['swap_mem'].append(("between 1024mb and 2047mb",
                             session.query(Host).filter(and_(
-                                                    Host.c.system_swap>=1024,
-                                                    Host.c.system_swap<2048,
-                                                    Host.c.last_modified > (now))).count()))
-    stats['swap_mem'].append(("more than 2048mb",
+                                                    Host.system_swap>=1024,
+                                                    Host.system_swap<2048,
+                                                    Host.last_modified > (now))).count()))
+    stats['swap_mem'].append(("between 2048mb and 4095",
                             session.query(Host).filter(and_(
-                                                    Host.c.system_swap>=2048,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.system_swap>=2048,
+                                                    Host.system_swap<4095,
+                                                    Host.last_modified > (now))).count()))
+    stats['swap_mem'].append(("between 4096mb and 8191",
+                            session.query(Host).filter(and_(
+                                                    Host.system_swap>=4096,
+                                                    Host.system_swap<8191,
+                                                    Host.last_modified > (now))).count()))
+    stats['swap_mem'].append(("more than 8192",
+                            session.query(Host).filter(and_(
+                                                    Host.system_swap>=8192,
+                                                    Host.last_modified > (now))).count()))
     stats['swap_mem'].append((withheld_label,
                             session.query(Host).filter(and_(
-                                                    Host.c.system_swap==0,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.system_swap==0,
+                                                    Host.last_modified > (now))).count()))
 
 #cpu tab
 if not  template_config['cpu'] == [] :
@@ -400,109 +425,109 @@ if not  template_config['cpu'] == [] :
     stats['cpu_speed'] = []
     stats['cpu_speed'].append(("less than 512mhz",
                             session.query(Host).filter(and_(
-                                                    Host.c.cpu_speed!=0,
-                                                    Host.c.cpu_speed<512,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.cpu_speed!=0,
+                                                    Host.cpu_speed<512,
+                                                    Host.last_modified > (now))).count()))
     stats['cpu_speed'].append(("between 512mhz and 1023mhz",
                             session.query(Host).filter(and_(
-                                                    Host.c.cpu_speed>=512,
-                                                    Host.c.cpu_speed<1024,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.cpu_speed>=512,
+                                                    Host.cpu_speed<1024,
+                                                    Host.last_modified > (now))).count()))
     stats['cpu_speed'].append(("between 1024mhz and 2047mhz",
                             session.query(Host).filter(and_(
-                                                    Host.c.cpu_speed>=1024,
-                                                    Host.c.cpu_speed<2048,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.cpu_speed>=1024,
+                                                    Host.cpu_speed<2048,
+                                                    Host.last_modified > (now))).count()))
     stats['cpu_speed'].append(("more than 2048mhz",
                             session.query(Host).filter(and_(
-                                                    Host.c.cpu_speed>=2048,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.cpu_speed>=2048,
+                                                    Host.last_modified > (now))).count()))
     stats['cpu_speed'].append((withheld_label,
                             session.query(Host).filter(and_(
-                                                    Host.c.cpu_speed==0,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.cpu_speed==0,
+                                                    Host.last_modified > (now))).count()))
 
     stats['bogomips'] = []
     stats['bogomips'].append(("less than 512",
                             session.query(Host).filter(and_(
-                                                    Host.c.bogomips!=0,
-                                                    Host.c.bogomips<512,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.bogomips!=0,
+                                                    Host.bogomips<512,
+                                                    Host.last_modified > (now))).count()))
     stats['bogomips'].append(("between 512 and 1023",
                             session.query(Host).filter(and_(
-                                                    Host.c.bogomips>=512,
-                                                    Host.c.bogomips<1024,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.bogomips>=512,
+                                                    Host.bogomips<1024,
+                                                    Host.last_modified > (now))).count()))
     stats['bogomips'].append(("between 1024 and 2047",
                             session.query(Host).filter(and_(
-                                                    Host.c.bogomips>=1024,
-                                                    Host.c.bogomips<2048,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.bogomips>=1024,
+                                                    Host.bogomips<2048,
+                                                    Host.last_modified > (now))).count()))
     stats['bogomips'].append(("between 2048 and 4000",
                             session.query(Host).filter(and_(
-                                                    Host.c.bogomips>=2048,
-                                                    Host.c.bogomips<4000,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.bogomips>=2048,
+                                                    Host.bogomips<4000,
+                                                    Host.last_modified > (now))).count()))
     stats['bogomips'].append(("more than 4000",
                             session.query(Host).filter(and_(
-                                                    Host.c.bogomips>=4000,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.bogomips>=4000,
+                                                    Host.last_modified > (now))).count()))
     stats['bogomips'].append((withheld_label,
                             session.query(Host).filter(and_(
-                                                    Host.c.bogomips==0,
-                                                    Host.c.last_modified > (now))).count()))
+                                                    Host.bogomips==0,
+                                                    Host.last_modified > (now))).count()))
 
 
 stats['languagetot'] = stats['total_hosts']
 
 print 'number of cpus'
-stats['num_cpus'] = session.query(NumCPUs).select()
+stats['num_cpus'] = session.query(NumCPUs).all()
 for i in stats["num_cpus"]:
     if i.num_cpus == 0:
         i.num_cpus = withheld_label
         break
 
 print 'bogomips count'
-stats['bogomips_total'] = session.query(Host).filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
+stats['bogomips_total'] = session.query(func.sum(Host.bogomips * Host.num_cpus)).filter(Host.bogomips > 0).first()
 
 print 'cpu speed total'
-stats['cpu_speed_total'] = session.query(Host).filter(Host.c.cpu_speed > 0).sum(Host.c.cpu_speed * Host.c.num_cpus)
+stats['cpu_speed_total'] = session.query(func.sum(Host.cpu_speed * Host.num_cpus)).filter(Host.cpu_speed > 0).first()
 
 print 'cpus total'
-stats['cpus_total'] = session.query(Host).sum(Host.c.num_cpus)
+stats['cpus_total'] = session.query(func.sum(Host.num_cpus)).first()
 
 print 'registered devices'
 stats['registered_devices'] = session.query(ComputerLogicalDevice).count()
 
 if not  template_config['filesystem'] == [] :
     print 'filesystems'
-    stats['filesystems'] = session.query(FileSys).select()
-    stats['total_fs'] = session.query(FileSys).sum(FileSys.c.cnt)
+    stats['filesystems'] = session.query(FileSys).all()
+    stats['total_fs'] = session.query(FileSys).count()
     if not stats['total_fs']:
         stats['total_fs'] = 1
     GB=1048576
     stats['combined_fs_size']=[]
-    stats['combined_fs_size'].append(("less than 2GB",session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize <= (2*GB))).count()))
+    stats['combined_fs_size'].append(("less than 2GB",session.query(FileSystem).filter(and_(FileSystem.f_fssize!=0, FileSystem.f_fssize <= (2*GB))).count()))
     stats['combined_fs_size'].append(("Between 2GB and 80GB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (2*GB),
-            FileSystem.c.f_fssize <= (80*GB))).count()))
+            session.query(FileSystem).filter(and_(FileSystem.f_fssize!=0, FileSystem.f_fssize > (2*GB),
+            FileSystem.f_fssize <= (80*GB))).count()))
     stats['combined_fs_size'].append(("Between 80GB and 200GB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (80*GB),
-            FileSystem.c.f_fssize <= (200*GB))).count()))
+            session.query(FileSystem).filter(and_(FileSystem.f_fssize!=0, FileSystem.f_fssize > (80*GB),
+            FileSystem.f_fssize <= (200*GB))).count()))
     stats['combined_fs_size'].append(("Between 200GB and 400GB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (200*GB),
-            FileSystem.c.f_fssize <= (400*GB))).count()))
+            session.query(FileSystem).filter(and_(FileSystem.f_fssize!=0, FileSystem.f_fssize > (200*GB),
+            FileSystem.f_fssize <= (400*GB))).count()))
     stats['combined_fs_size'].append(("Between 400GB and 800GB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (400*GB),
-            FileSystem.c.f_fssize <= (800*GB))).count()))
+            session.query(FileSystem).filter(and_(FileSystem.f_fssize!=0, FileSystem.f_fssize > (400*GB),
+            FileSystem.f_fssize <= (800*GB))).count()))
     stats['combined_fs_size'].append(("Between 800GB and 1TB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (800*GB),
-            FileSystem.c.f_fssize <= (1024*GB))).count()))
+            session.query(FileSystem).filter(and_(FileSystem.f_fssize!=0, FileSystem.f_fssize > (800*GB),
+            FileSystem.f_fssize <= (1024*GB))).count()))
     stats['combined_fs_size'].append(("Between 1TB and 3TB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (1024*GB),
-            FileSystem.c.f_fssize <= (3072*GB))).count()))
-    stats['combined_fs_size'].append(("Over 3TB",session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, (FileSystem.c.f_fssize) > (3072*GB)  )) .count()))
-    stats['combined_fs_size'].append((withheld_label,session.query(FileSystem).filter(FileSystem.c.f_fssize==0) .count()))
+            session.query(FileSystem).filter(and_(FileSystem.f_fssize!=0, FileSystem.f_fssize > (1024*GB),
+            FileSystem.f_fssize <= (3072*GB))).count()))
+    stats['combined_fs_size'].append(("Over 3TB",session.query(FileSystem).filter(and_(FileSystem.f_fssize!=0, (FileSystem.f_fssize) > (3072*GB)  )) .count()))
+    stats['combined_fs_size'].append((withheld_label,session.query(FileSystem).filter(FileSystem.f_fssize==0) .count()))
 
 
 
@@ -536,13 +561,13 @@ devices['total_hosts'] = session.query(Host).count()
 
 print 'top 100 total list'
 #devices['totalList'] = session.query(TotalList).select(limit=100)
-devices['totalList'] = select([ComputerLogicalDevice.c.description, ComputerLogicalDevice.c.id, func.count(ComputerLogicalDevice.c.id).label('cnt')], HostLink.c.device_id == ComputerLogicalDevice.c.id).group_by(ComputerLogicalDevice.c.id).order_by(desc('cnt')).limit(10).execute().fetchall()
+devices['totalList'] = select([ComputerLogicalDevice.description, ComputerLogicalDevice.id, func.count(ComputerLogicalDevice.id).label('cnt')], HostLink.device_id == ComputerLogicalDevice.id).group_by(ComputerLogicalDevice.id).order_by(desc('cnt')).limit(10).execute().fetchall()
 
 #print 'top 100 unique list'
 #devices['uniqueList'] = session.query(UniqueList).select(limit=100)
 
 print 'class list'
-devices['classes'] = session.query(HardwareClass).select()
+devices['classes'] = session.query(HardwareClass).all()
 
 
 t=engine.load_template('hardware.templates.devices')
