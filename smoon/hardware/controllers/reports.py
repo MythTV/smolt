@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from turbogears import expose
 from hardware.model import *
 from sqlalchemy.sql import *
@@ -16,9 +17,9 @@ class Reports(object):
     @expose(template='hardware.templates.report_recent')
     def recent(self):
         ''' Shows recently added hosts and devices '''
-        recent_pub_uuid = select([Host.c.pub_uuid, Host.c.last_modified],
-              Host.c.last_modified > (date.today() - timedelta(days=90)))\
-              .order_by(desc(Host.c.last_modified)).limit(20).execute()\
+        recent_pub_uuid = select([Host.pub_uuid, Host.last_modified],
+              Host.last_modified > (date.today() - timedelta(days=90)))\
+              .order_by(desc(Host.last_modified)).limit(20).execute()\
               .fetchall()
         recent_devices = select([computer_logical_devices.c.description,
                           computer_logical_devices.c.date_added],
@@ -31,26 +32,26 @@ class Reports(object):
     @expose(template='hardware.templates.report_host_ratings')
     def host_ratings(self):
       ''' Return basic ratings information '''
-      host_ratings = select([Host.c.system, Host.c.vendor, Host.c.rating,
-        func.count(Host.c.rating)], Host.c.rating != 0).group_by(Host.c.system).\
-        order_by(desc(func.count(Host.c.rating))).limit(50).\
+      host_ratings = select([Host.system, Host.vendor, Host.rating,
+        func.count(Host.rating)], Host.rating != 0).group_by(Host.system).\
+        order_by(desc(func.count(Host.rating))).limit(50).\
         execute().fetchall()
 #      This query is for the last 90 days.
-#      host_ratings = select([Host.c.system, Host.c.vendor, Host.c.rating,
-#        func.count(Host.c.rating)],  and_(Host.c.last_modified > (date.today() -
-#        timedelta(days=90)), Host.c.rating != 0)).group_by(Host.c.system).\
-#        order_by(desc(func.count(Host.c.rating))).limit(50).\
+#      host_ratings = select([Host.system, Host.vendor, Host.rating,
+#        func.count(Host.rating)],  and_(Host.last_modified > (date.today() -
+#        timedelta(days=90)), Host.rating != 0)).group_by(Host.system).\
+#        order_by(desc(func.count(Host.rating))).limit(50).\
 #        execute().fetchall()
       return dict(host_ratings=host_ratings)
 
     @expose(template='hardware.templates.report_device_ratings')
     def device_ratings(self):
       ''' Return basic ratings information '''
-      h = select([HostLink.c.device_id, HostLink.c.rating,
-          func.count(HostLink.c.rating).label('cnt')], HostLink.c.rating != 0).\
-          group_by(HostLink.c.device_id, HostLink.c.rating).\
+      h = select([HostLink.device_id, HostLink.rating,
+          func.count(HostLink.rating).label('cnt')], HostLink.rating != 0).\
+          group_by(HostLink.device_id, HostLink.rating).\
           order_by(desc('cnt')).limit(500).alias('h')
-      device_ratings = select([ComputerLogicalDevice.c.description, h.c.rating, h.c.cnt], ComputerLogicalDevice.c.id==h.c.device_id).execute().fetchall()
+      device_ratings = select([ComputerLogicalDevice.description, h.c.rating, h.c.cnt], ComputerLogicalDevice.id==h.c.device_id).execute().fetchall()
       return dict(device_ratings=device_ratings)
 
     @expose(template='hardware.templates.report_search_profiles')
@@ -59,23 +60,23 @@ class Reports(object):
 
     @expose(template='hardware.templates.report_view_profiles')
     def view_profiles(self, profile, not_rated=6, *args, **keys):
-        found = select([Host.c.system, Host.c.vendor, Host.c.rating,
-                func.count(Host.c.rating)], and_(Host.c.rating != not_rated,
-                or_(Host.c.system.like('''%%%s%%''' % profile), Host.c.vendor.\
-                like('''%%%s%%''' % profile)))).group_by(Host.c.rating,
-                Host.c.system, Host.c.vendor).order_by(desc(\
-                func.count(Host.c.rating))).limit(500).execute().fetchall()
+        found = select([Host.system, Host.vendor, Host.rating,
+                func.count(Host.rating)], and_(Host.rating != not_rated,
+                or_(Host.system.like('''%%%s%%''' % profile), Host.vendor.\
+                like('''%%%s%%''' % profile)))).group_by(Host.rating,
+                Host.system, Host.vendor).order_by(desc(\
+                func.count(Host.rating))).limit(500).execute().fetchall()
         return dict(found=found)
 
     @expose(template='hardware.templates.report_view_profile')
     def view_profile(self, profile, not_rated=6, *args, **keys):
-        found = select([Host.c.system, Host.c.vendor, Host.c.rating,
-                func.count(Host.c.rating)], and_(Host.c.rating != not_rated,
-                or_(Host.c.system.like('''%%%s%%''' % profile), Host.c.vendor.\
-                like('''%%%s%%''' % profile)))).group_by(Host.c.rating,
-                Host.c.system, Host.c.vendor).order_by(desc(\
-                func.count(Host.c.rating))).limit(500).execute().fetchall()
-        pub_uuids = select([Host.c.pub_uuid, Host.c.rating], and_(Host.c.pub_uuid!='', or_(Host.c.system.like('''%%%s%%''' % profile), Host.c.vendor.\
+        found = select([Host.system, Host.vendor, Host.rating,
+                func.count(Host.rating)], and_(Host.rating != not_rated,
+                or_(Host.system.like('''%%%s%%''' % profile), Host.vendor.\
+                like('''%%%s%%''' % profile)))).group_by(Host.rating,
+                Host.system, Host.vendor).order_by(desc(\
+                func.count(Host.rating))).limit(500).execute().fetchall()
+        pub_uuids = select([Host.pub_uuid, Host.rating], and_(Host.pub_uuid!='', or_(Host.system.like('''%%%s%%''' % profile), Host.vendor.\
                 like('''%%%s%%''' % profile)))).limit(1000).execute().fetchall()
         return dict(found=found, pub_uuids=pub_uuids)
 
@@ -86,19 +87,19 @@ class Reports(object):
     @expose(template='hardware.templates.report_view_devices')
     def view_devices(self, *args, **keys):
         device = keys['device']
-        d = select([ComputerLogicalDevice.c.id, ComputerLogicalDevice.c.description],
-            ComputerLogicalDevice.c.description.like('''%%%s%%''' % device)).limit(1000).alias('d')
-        found = select ([HostLink.c.rating, func.count(HostLink.c.rating).label('cnt'),
-            d.c.description], HostLink.c.device_id == d.c.id).group_by(HostLink.c.rating,
+        d = select([ComputerLogicalDevice.id, ComputerLogicalDevice.description],
+            ComputerLogicalDevice.description.like('''%%%s%%''' % device)).limit(1000).alias('d')
+        found = select ([HostLink.rating, func.count(HostLink.rating).label('cnt'),
+            d.c.description], HostLink.device_id == d.c.id).group_by(HostLink.rating,
             d.c.description).order_by(desc('cnt')).execute().fetchall()
         return dict(found=found)
 
     @expose(template='hardware.templates.report_view_device')
     def view_device(self, device, *args, **keys):
-        d = select([ComputerLogicalDevice.c.id, ComputerLogicalDevice.c.vendor_id, ComputerLogicalDevice.c.device_id, ComputerLogicalDevice.c.subsys_vendor_id, ComputerLogicalDevice.c.subsys_device_id, ComputerLogicalDevice.c.description],
-            ComputerLogicalDevice.c.description == '''%s''' % device).limit(1000).alias('d')
-        found = select ([HostLink.c.rating, func.count(HostLink.c.rating).label('cnt'),
-            d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id], HostLink.c.device_id == d.c.id).group_by(HostLink.c.rating,
+        d = select([ComputerLogicalDevice.id, ComputerLogicalDevice.vendor_id, ComputerLogicalDevice.device_id, ComputerLogicalDevice.subsys_vendor_id, ComputerLogicalDevice.subsys_device_id, ComputerLogicalDevice.description],
+            ComputerLogicalDevice.description == '''%s''' % device).limit(1000).alias('d')
+        found = select ([HostLink.rating, func.count(HostLink.rating).label('cnt'),
+            d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id], HostLink.device_id == d.c.id).group_by(HostLink.rating,
             d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id).order_by(desc('cnt')).execute().fetchall()
 
             # Select Device ID's that match our description
@@ -106,11 +107,11 @@ class Reports(object):
                 computer_logical_devices.c.description == device).alias('d')
 
             # Select the host ID's that have our device ID (from description)
-        hl = select([HostLink.c.host_link_id],
-             HostLink.c.device_id==d.c.id).alias('hl')
+        hl = select([HostLink.host_link_id],
+             HostLink.device_id==d.c.id).alias('hl')
 
             # Select pub_uuids that match our host ID from device ID from desc)
-        profiles = select([Host.c.pub_uuid, Host.c.system, Host.c.vendor], Host.c.id == hl.c.host_link_id).limit(5000).execute().fetchall()
+        profiles = select([Host.pub_uuid, Host.system, Host.vendor], Host.id == hl.c.host_link_id).limit(5000).execute().fetchall()
         device = args
         return dict(found=found, profiles=profiles, device=device)
 

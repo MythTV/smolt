@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from turbogears.database import metadata, session
-from sqlalchemy.ext.assignmapper import assign_mapper
+#from sqlalchemy.ext.assignmapper import assign_mapper
 from turbogears import identity
 from datetime import timedelta, date, datetime
 from turbogears.database import mapper

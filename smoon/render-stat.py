@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 __requires__ = "Turbogears[future]"
 import pkg_resources
 pkg_resources.require("TurboGears")
@@ -130,6 +131,7 @@ class ByClass(object):
         self.data = {}
 
     def fetch_data(self):
+#        classes = session.query(HardwareClass).select()
         classes = session.query(HardwareClass).select()
         count = {}
         types = {}
