@@ -33,7 +33,7 @@ config.update({'genshi.loader_callback': genshi_loader_callback})
 
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
-current_smolt_protocol = '0.97' 
+current_smolt_protocol = '0.98'
 
 class Root(controllers.RootController):
     tokens = Token(current_smolt_protocol, CRYPTPASS) #should be 'token' but it is taken :(

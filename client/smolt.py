@@ -46,6 +46,13 @@ import simplejson
 import config
 from fs_util import get_fslist
 
+from gate import Gate
+
+WITHHELD_MAGIC_STRING = 'WITHHELD'
+SELINUX_ENABLED = 1
+SELINUX_DISABLED = 0
+SELINUX_WITHHELD = -1
+
 def get_config_attr(attr, default=""):
     if hasattr(config, attr):
         return getattr(config, attr)
@@ -63,8 +70,8 @@ hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
 pub_uuid_file = get_config_attr("PUB_UUID", "/etc/sysconfig/pub-uuid")
 admin_token_file = get_config_attr("ADMIN_TOKEN", '' )
 
-smoltProtocol = '0.97'
-supported_protocols = ['0.97',]
+smoltProtocol = '0.98'
+supported_protocols = ['0.98',]
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
 proxies = None
@@ -193,97 +200,120 @@ class Host:
         cpuInfo = read_cpuinfo()
         memory = read_memory()
         self.UUID = getUUID()
-        self.os = software.read_os()
-        self.defaultRunlevel = software.read_runlevel()
-        self.bogomips = cpuInfo['bogomips']
-        self.cpuVendor = cpuInfo['type']
-        self.cpuModel = cpuInfo['model']
-        self.numCpus = cpuInfo['count']
-        self.cpuSpeed = cpuInfo['speed']
-        self.systemMemory = memory['ram']
-        self.systemSwap = memory['swap']
-        self.kernelVersion = os.uname()[2]
+        self.os = Gate().process('distro', software.read_os(), WITHHELD_MAGIC_STRING)
+        self.defaultRunlevel = Gate().process('run_level', software.read_runlevel(), -1)
+        self.bogomips = Gate().process('cpu', cpuInfo['bogomips'], 0)
+        self.cpuVendor = Gate().process('cpu', cpuInfo['type'], WITHHELD_MAGIC_STRING)
+        self.cpuModel = Gate().process('cpu', cpuInfo['model'], WITHHELD_MAGIC_STRING)
+        self.numCpus = Gate().process('cpu', cpuInfo['count'], 0)
+        self.cpuSpeed = Gate().process('cpu', cpuInfo['speed'], 0)
+        self.systemMemory = Gate().process('ram_size', memory['ram'], 0)
+        self.systemSwap = Gate().process('swap_size', memory['swap'], 0)
+        self.kernelVersion = Gate().process('kernel', os.uname()[2], WITHHELD_MAGIC_STRING)
+        if Gate().grants('language'):
+            try:
+                self.language = os.environ['LANG']
+            except KeyError:
+                self.language = 'Unknown'
+        else:
+            self.language = WITHHELD_MAGIC_STRING
+
         try:
-            self.language = os.environ['LANG']
+            tempform = hostInfo['system.kernel.machine']
         except KeyError:
-            self.language = 'Unknown'
-        try:
-            self.platform = hostInfo['system.kernel.machine']
-        except KeyError:
-            self.platform = 'Unknown'
+            tempform = 'Unknown'
+        self.platform = Gate().process('arch', tempform, WITHHELD_MAGIC_STRING)
 
-        self.systemVendor = hostInfo.get('system.vendor')
-        if not self.systemVendor:
-            self.systemVendor = hostInfo.get('system.hardware.vendor')
-        if not self.systemVendor:
-            self.systemVendor = 'Unknown'
+        if Gate().grants('vendor'):
+            self.systemVendor = hostInfo.get('system.vendor')
+            if not self.systemVendor:
+                self.systemVendor = hostInfo.get('system.hardware.vendor')
+            if not self.systemVendor:
+                self.systemVendor = 'Unknown'
+        else:
+            self.systemVendor = WITHHELD_MAGIC_STRING
 
-        self.systemModel = hostInfo.get('system.product')
-        if not self.systemModel:
-            self.systemModel = hostInfo.get('system.hardware.product')
-            if hostInfo.get('system.hardware.version'):
-                self.systemModel += ' ' + hostInfo.get('system.hardware.version')
-        if not self.systemModel:
-            self.systemModel = 'Unknown'
+        if Gate().grants('model'):
+            self.systemModel = hostInfo.get('system.product')
+            if not self.systemModel:
+                self.systemModel = hostInfo.get('system.hardware.product')
+                if hostInfo.get('system.hardware.version'):
+                    self.systemModel += ' ' + hostInfo.get('system.hardware.version')
+            if not self.systemModel:
+                self.systemModel = 'Unknown'
+        else:
+            self.systemModel = WITHHELD_MAGIC_STRING
 
-        try:
-            self.formfactor = hostInfo['system.formfactor']
-        except:
-            self.formfactor = 'Unknown'
+        if Gate().grants('form_factor'):
+            try:
+                self.formfactor = hostInfo['system.formfactor']
+            except:
+                self.formfactor = 'Unknown'
+        else:
+            self.formfactor = WITHHELD_MAGIC_STRING
 
-        if self.platform == 'ppc64':
+        if tempform == 'ppc64':
             if hostInfo.get('openfirmware.model'):
                 if hostInfo['openfirmware.model'][:3] == 'IBM':
                     self.systemVendor = 'IBM'
                 model = hostInfo['openfirmware.model'][4:8]
-                if model == '8842':
-                    self.systemModel = 'JS20'
-                    self.formfactor = 'Blade'
-                elif model == '6779' or model == '6778' or model == '7988':
-                    self.systemModel = 'JS21'
-                    self.formfactor = 'Blade'
-                elif model == '8844':
-                    self.systemModel = 'JS21'
-                    self.formfactor = 'Blade'
-                elif model == '0200':
-                    self.systemModel = 'QS20'
-                    self.formfactor = 'Blade'
-                elif model == '0792':
-                    self.systemModel = 'QS21'
-                    self.formfactor = 'Blade'
 
-        try:
-            import selinux
+                model_map = {
+                    '8842':'JS20',
+                    '6779':'JS21',
+                    '6778':'JS21',
+                    '7988':'JS21',
+                    '8844':'JS21',
+                    '0200':'QS20',
+                    '0792':'QS21',
+                }
+                try:
+                    model_name = model_map[model]
+                    self.systemModel = Gate().process('model', model_name)
+                    self.formfactor = Gate().process('form_factor', 'Blade')
+                except KeyError:
+                    pass
+
+        if Gate().grants('selinux'):
             try:
-                if selinux.is_selinux_enabled() == 1:
-                    self.selinux_enabled = True
-                else:
-                    self.selinux_enabled = False
-            except:
-                self.selinux_enabled = False
-            try:
-                self.selinux_policy = selinux.selinux_getpolicytype()[1]
-            except:
-                self.selinux_policy = "Unknown"
-            try:
-                enforce = selinux.security_getenforce()
-                if enforce == 0:
-                    self.selinux_enforce = "Permissive"
-                elif enforce == 1:
-                    self.selinux_enforce = "Enforcing"
-                elif enforce == -1:
-                    self.selinux_enforce = "Disabled"
-                else:
-                    self.selinux_enforce = "FUBARD"
-            except:
-                self.selinux_enforce = "Unknown"
-        except ImportError:
-            self.selinux_enabled = False
-            self.selinux_policy = "Not Installed"
-            self.selinux_enforce = "Not Installed"
+                import selinux
+                try:
+                    if selinux.is_selinux_enabled() == 1:
+                        self.selinux_enabled = SELINUX_ENABLED
+                    else:
+                        self.selinux_enabled = SELINUX_DISABLED
+                except:
+                    self.selinux_enabled = SELINUX_DISABLED
+                try:
+                    self.selinux_policy = selinux.selinux_getpolicytype()[1]
+                except:
+                    self.selinux_policy = "Unknown"
+                try:
+                    enforce = selinux.security_getenforce()
+                    if enforce == 0:
+                        self.selinux_enforce = "Permissive"
+                    elif enforce == 1:
+                        self.selinux_enforce = "Enforcing"
+                    elif enforce == -1:
+                        self.selinux_enforce = "Disabled"
+                    else:
+                        self.selinux_enforce = "FUBARD"
+                except:
+                    self.selinux_enforce = "Unknown"
+            except ImportError:
+                self.selinux_enabled = SELINUX_DISABLED
+                self.selinux_policy = "Not Installed"
+                self.selinux_enforce = "Not Installed"
+        else:
+            self.selinux_enabled = SELINUX_WITHHELD
+            self.selinux_policy = WITHHELD_MAGIC_STRING
+            self.selinux_enforce = WITHHELD_MAGIC_STRING
 
 
 def get_file_systems():
+    if not Gate().grants('file_systems'):
+        return []
+
     if fs_t_filter:
         file_systems = [fs for fs in get_fslist() if fs.fs_type in fs_types]
     else:
@@ -294,10 +324,10 @@ def get_file_systems():
     if fs_m_filter:
         for fs in file_systems:
             if not fs.mnt_pnt in fs_mounts:
-                fs.mnt_pnt = "Hidden"
+                fs.mnt_pnt = WITHHELD_MAGIC_STRING
     else:
         for fs in file_systems:
-            fs.mnt_pnt = "Hidden"
+            fs.mnt_pnt = WITHHELD_MAGIC_STRING
 
     return file_systems
 
@@ -382,7 +412,8 @@ class Hardware:
         self.systemBus = systemBus
         for udi in all_dev_lst:
             props = self.get_properties_for_udi (udi)
-            self.devices[udi] = Device(props, self)
+            if Gate().grants('devices'):
+                self.devices[udi] = Device(props, self)
             if udi == '/org/freedesktop/Hal/devices/computer':
                 self.host = Host(props)
 
@@ -575,21 +606,22 @@ class Hardware:
                 except UnicodeDecodeError:
                     printBuffer.append('\t%r: %r' % (label, data))
 
-        printBuffer.append('')
-        printBuffer.append('\t\t ' + _('Devices'))
-        printBuffer.append('\t\t=================================')
+        if self.devices:
+            printBuffer.append('')
+            printBuffer.append('\t\t ' + _('Devices'))
+            printBuffer.append('\t\t=================================')
 
-        for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
-            printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+            for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
+                printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
 
-        printBuffer.append('')
-        printBuffer.append(_('\tFilesystem Information'))
-        printBuffer.append('\t\tdevice mtpt type bsize frsize blocks bfree bavail file ffree favail')
-        printBuffer.append('\t\t===================================================================')
-        for fs in self.fss:
-            printBuffer.append(str("\t\t%s" % fs))
+            printBuffer.append('')
+            printBuffer.append(_('\tFilesystem Information'))
+            printBuffer.append('\t\tdevice mtpt type bsize frsize blocks bfree bavail file ffree favail')
+            printBuffer.append('\t\t===================================================================')
+            for fs in self.fss:
+                printBuffer.append(str("\t\t%s" % fs))
 
-        printBuffer.append('')
+            printBuffer.append('')
         return printBuffer
 
 
