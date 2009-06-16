@@ -163,7 +163,7 @@ DROP TABLE IF EXISTS `SELINUX_ENFORCE`;
 /*!50001 DROP VIEW IF EXISTS `SELINUX_ENFORCE`*/;
 /*!50001 DROP TABLE IF EXISTS `SELINUX_ENFORCE`*/;
 /*!50001 CREATE TABLE `SELINUX_ENFORCE` (
-  `enforce` varchar(12),
+  `enforce` varchar(20),
   `cnt` bigint(21)
 ) */;
 
@@ -175,7 +175,7 @@ DROP TABLE IF EXISTS `SELINUX_POLICY`;
 /*!50001 DROP VIEW IF EXISTS `SELINUX_POLICY`*/;
 /*!50001 DROP TABLE IF EXISTS `SELINUX_POLICY`*/;
 /*!50001 CREATE TABLE `SELINUX_POLICY` (
-  `policy` varchar(12),
+  `policy` varchar(20),
   `cnt` bigint(21)
 ) */;
 
@@ -322,8 +322,8 @@ CREATE TABLE `host` (
   `last_modified` datetime NOT NULL default '0000-00-00 00:00:00',
   `rating` int(11) NOT NULL default '0',
   `selinux_enabled` tinyint(1) NOT NULL default '0',
-  `selinux_policy` varchar(12) default NULL,
-  `selinux_enforce` varchar(12) default NULL,
+  `selinux_policy` varchar(20) default NULL,
+  `selinux_enforce` varchar(20) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `u_u_id` (`uuid`),
   KEY `platform` (`platform`),
