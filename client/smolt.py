@@ -70,8 +70,8 @@ hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
 pub_uuid_file = get_config_attr("PUB_UUID", "/etc/sysconfig/pub-uuid")
 admin_token_file = get_config_attr("ADMIN_TOKEN", '' )
 
-smoltProtocol = '0.97'
-supported_protocols = ['0.97',]
+smoltProtocol = '0.98'
+supported_protocols = ['0.98',]
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
 proxies = None
