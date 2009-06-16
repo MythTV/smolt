@@ -18,6 +18,9 @@ import time
 from hardware.wiki import *
 from turboflot import TurboFlot
 
+WITHHELD_MAGIC_STRING = 'WITHHELD'
+withheld_label = "withheld"
+
 # first look on the command line for a desired config file,
 # if it's not on the command line, then
 # look for setup.py in this directory. If it's not there, this script is
@@ -234,6 +237,8 @@ if not  template_config['archs'] == [] :
     counts = []
     i = 0
     for arch in stats['archs']:
+        if arch.platform == WITHHELD_MAGIC_STRING:
+            arch.platform = withheld_label
         archs.append([i + .5, arch.platform])
         counts.append([i, arch.cnt])
         i += 1
@@ -246,40 +251,85 @@ if not  template_config['archs'] == [] :
 print "OS Stats"
 if not  template_config['os'] == [] :
     stats['os'] = session.query(OS).select(limit=30)
+    for i in stats["os"]:
+        if i.os == WITHHELD_MAGIC_STRING:
+            i.os = withheld_label
+            break
 
 print "Runlevel stats"
 if not  template_config['runlevel'] == [] :
     stats['runlevel'] = session.query(Runlevel).select()
+    for i in stats["runlevel"]:
+        if i.runlevel == -1:
+            i.runlevel = withheld_label
+            break
 
 print "Vendor stats"
 if not  template_config['vendors'] == [] :
     stats['vendors'] = session.query(Vendor).select(limit=100)
+    for i in stats["vendors"]:
+        if i.vendor == WITHHELD_MAGIC_STRING:
+            i.vendor = withheld_label
+            break
 
 print "Model stats"
 if not  template_config['model'] == [] :
     stats['systems'] = session.query(System).select(limit=100)
+    for i in stats["systems"]:
+        if i.system == WITHHELD_MAGIC_STRING:
+            i.system = withheld_label
+            break
 
 print "CPU stats"
 stats['cpu_vendor'] = session.query(CPUVendor).select(limit=100)
+for i in stats["cpu_vendor"]:
+    if i.cpu_vendor == WITHHELD_MAGIC_STRING:
+        i.cpu_vendor = withheld_label
+        break
 
 if not  template_config['kernel'] == [] :
     print "Kernel stats"
     stats['kernel_version'] = session.query(KernelVersion).select(limit=20)
+    for i in stats["kernel_version"]:
+        if i.kernel_version == WITHHELD_MAGIC_STRING:
+            i.kernel_version = withheld_label
+            break
 
 if not  template_config['formfactor'] == [] :
     print 'Formfactor stats'
     stats['formfactor'] = session.query(FormFactor).select(limit=8)
+    for i in stats["formfactor"]:
+        if i.formfactor == WITHHELD_MAGIC_STRING:
+            i.formfactor = withheld_label
+            break
 
 if not  template_config['lang'] == [] :
     print 'language stats'
     stats['language'] = session.query(Language).select()
+    for i in stats["language"]:
+        if i.language == WITHHELD_MAGIC_STRING:
+            i.language = withheld_label
+            break
 
 if not  template_config['selinux'] == [] :
     print 'selinux stats'
     stats['selinux_enabled'] = session.query(SelinuxEnabled).select()
-    stats['selinux_enforce'] = session.query(SelinuxEnforced).select()
-    stats['selinux_policy'] = session.query(SelinuxPolicy).select()
+    for i in stats["selinux_enabled"]:
+        if i.enabled == -1:
+            i.enabled = withheld_label
+            break
 
+    stats['selinux_enforce'] = session.query(SelinuxEnforced).select()
+    for i in stats["selinux_enforce"]:
+        if i.enforce == WITHHELD_MAGIC_STRING:
+            i.enforce = withheld_label
+            break
+
+    stats['selinux_policy'] = session.query(SelinuxPolicy).select()
+    for i in stats["selinux_policy"]:
+        if i.policy == WITHHELD_MAGIC_STRING:
+            i.policy = withheld_label
+            break
 
 now = date.today() - timedelta(days=90)
 
@@ -287,68 +337,128 @@ if not  template_config['ram'] == [] :
     print 'memory stats'
     stats['sys_mem'] = []
     stats['sys_mem'].append(("less than 256mb",
-                            session.query(Host).filter(and_(Host.c.system_memory<256, Host.c.last_modified > (now))).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_memory!=0,
+                                                    Host.c.system_memory<256,
+                                                    Host.c.last_modified > (now))).count()))
     stats['sys_mem'].append(("between 256mb and 512mb",
-                            session.query(Host).filter(and_(Host.c.system_memory>=256,
-                                                    Host.c.system_memory<512, Host.c.last_modified > (now))).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_memory>=256,
+                                                    Host.c.system_memory<512,
+                                                    Host.c.last_modified > (now))).count()))
     stats['sys_mem'].append(("between 512mb and 1023mb",
-                            session.query(Host).filter(and_(Host.c.system_memory>=512,
-                                                    Host.c.system_memory<1024, Host.c.last_modified > (now))).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_memory>=512,
+                                                    Host.c.system_memory<1024,
+                                                    Host.c.last_modified > (now))).count()))
     stats['sys_mem'].append(("between 1024mb and 2047mb",
-                            session.query(Host).filter(and_(Host.c.system_memory>=1024,
-                                                    Host.c.system_memory<2048, Host.c.last_modified > (now))).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_memory>=1024,
+                                                    Host.c.system_memory<2048,
+                                                    Host.c.last_modified > (now))).count()))
     stats['sys_mem'].append(("more than 2048mb",
-                            session.query(Host).filter(and_(Host.c.system_memory>=2048, Host.c.last_modified > (now))).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_memory>=2048,
+                                                    Host.c.last_modified > (now))).count()))
+    stats['sys_mem'].append((withheld_label,
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_memory==0,
+                                                    Host.c.last_modified > (now))).count()))
 
 if not  template_config['swap'] == [] :
     print 'swap stats'
     stats['swap_mem'] = []
     stats['swap_mem'].append(("less than 512mb",
-                            session.query(Host).filter(and_(Host.c.system_swap<512, Host.c.last_modified > (now))).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_swap!=0,
+                                                    Host.c.system_swap<512,
+                                                    Host.c.last_modified > (now))).count()))
     stats['swap_mem'].append(("between 512mb and 1027mb",
-                            session.query(Host).filter(and_(Host.c.system_swap>=512,
-                                                    Host.c.system_swap<1024, Host.c.last_modified > (now))).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_swap>=512,
+                                                    Host.c.system_swap<1024,
+                                                    Host.c.last_modified > (now))).count()))
     stats['swap_mem'].append(("between 1024mb and 2047mb",
-                            session.query(Host).filter(and_(Host.c.system_swap>=1024,
-                                                    Host.c.system_swap<2048, Host.c.last_modified > (now))).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_swap>=1024,
+                                                    Host.c.system_swap<2048,
+                                                    Host.c.last_modified > (now))).count()))
     stats['swap_mem'].append(("more than 2048mb",
-                            session.query(Host).filter(and_(Host.c.system_swap>=2048, Host.c.last_modified > (now))).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_swap>=2048,
+                                                    Host.c.last_modified > (now))).count()))
+    stats['swap_mem'].append((withheld_label,
+                            session.query(Host).filter(and_(
+                                                    Host.c.system_swap==0,
+                                                    Host.c.last_modified > (now))).count()))
 
 #cpu tab
 if not  template_config['cpu'] == [] :
     print 'cpu stats'
     stats['cpu_speed'] = []
     stats['cpu_speed'].append(("less than 512mhz",
-                            session.query(Host).filter(Host.c.cpu_speed<512).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.cpu_speed!=0,
+                                                    Host.c.cpu_speed<512,
+                                                    Host.c.last_modified > (now))).count()))
     stats['cpu_speed'].append(("between 512mhz and 1023mhz",
-                            session.query(Host).filter(and_(Host.c.cpu_speed>=512,
-                                                    Host.c.cpu_speed<1024)).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.cpu_speed>=512,
+                                                    Host.c.cpu_speed<1024,
+                                                    Host.c.last_modified > (now))).count()))
     stats['cpu_speed'].append(("between 1024mhz and 2047mhz",
-                            session.query(Host).filter(and_(Host.c.cpu_speed>=1024,
-                                                    Host.c.cpu_speed<2048)).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.cpu_speed>=1024,
+                                                    Host.c.cpu_speed<2048,
+                                                    Host.c.last_modified > (now))).count()))
     stats['cpu_speed'].append(("more than 2048mhz",
-                            session.query(Host).filter(Host.c.cpu_speed>=2048).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.cpu_speed>=2048,
+                                                    Host.c.last_modified > (now))).count()))
+    stats['cpu_speed'].append((withheld_label,
+                            session.query(Host).filter(and_(
+                                                    Host.c.cpu_speed==0,
+                                                    Host.c.last_modified > (now))).count()))
 
     stats['bogomips'] = []
     stats['bogomips'].append(("less than 512",
-                            session.query(Host).filter(Host.c.bogomips<512).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.bogomips!=0,
+                                                    Host.c.bogomips<512,
+                                                    Host.c.last_modified > (now))).count()))
     stats['bogomips'].append(("between 512 and 1023",
-                            session.query(Host).filter(and_(Host.c.bogomips>=512,
-                                                    Host.c.bogomips<1024)).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.bogomips>=512,
+                                                    Host.c.bogomips<1024,
+                                                    Host.c.last_modified > (now))).count()))
     stats['bogomips'].append(("between 1024 and 2047",
-                            session.query(Host).filter(and_(Host.c.bogomips>=1024,
-                                                    Host.c.bogomips<2048)).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.bogomips>=1024,
+                                                    Host.c.bogomips<2048,
+                                                    Host.c.last_modified > (now))).count()))
     stats['bogomips'].append(("between 2048 and 4000",
-                            session.query(Host).filter(and_(Host.c.bogomips>=2048,
-                                                    Host.c.bogomips<4000)).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.bogomips>=2048,
+                                                    Host.c.bogomips<4000,
+                                                    Host.c.last_modified > (now))).count()))
     stats['bogomips'].append(("more than 4000",
-                            session.query(Host).filter(Host.c.system_memory>=4000).count()))
+                            session.query(Host).filter(and_(
+                                                    Host.c.bogomips>=4000,
+                                                    Host.c.last_modified > (now))).count()))
+    stats['bogomips'].append((withheld_label,
+                            session.query(Host).filter(and_(
+                                                    Host.c.bogomips==0,
+                                                    Host.c.last_modified > (now))).count()))
 
 
 stats['languagetot'] = stats['total_hosts']
 
 print 'number of cpus'
 stats['num_cpus'] = session.query(NumCPUs).select()
+for i in stats["num_cpus"]:
+    if i.num_cpus == 0:
+        i.num_cpus = withheld_label
+        break
 
 print 'bogomips count'
 stats['bogomips_total'] = session.query(Host).filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
@@ -370,26 +480,27 @@ if not  template_config['filesystem'] == [] :
         stats['total_fs'] = 1
     GB=1048576
     stats['combined_fs_size']=[]
-    stats['combined_fs_size'].append(("less than 2GB",session.query(FileSystem).filter((FileSystem.c.f_fssize) <= (2*GB)  ) .count()))
+    stats['combined_fs_size'].append(("less than 2GB",session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize <= (2*GB))).count()))
     stats['combined_fs_size'].append(("Between 2GB and 80GB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize > (2*GB),
+            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (2*GB),
             FileSystem.c.f_fssize <= (80*GB))).count()))
     stats['combined_fs_size'].append(("Between 80GB and 200GB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize > (80*GB),
+            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (80*GB),
             FileSystem.c.f_fssize <= (200*GB))).count()))
     stats['combined_fs_size'].append(("Between 200GB and 400GB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize > (200*GB),
+            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (200*GB),
             FileSystem.c.f_fssize <= (400*GB))).count()))
     stats['combined_fs_size'].append(("Between 400GB and 800GB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize > (400*GB),
+            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (400*GB),
             FileSystem.c.f_fssize <= (800*GB))).count()))
     stats['combined_fs_size'].append(("Between 800GB and 1TB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize > (800*GB),
+            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (800*GB),
             FileSystem.c.f_fssize <= (1024*GB))).count()))
     stats['combined_fs_size'].append(("Between 1TB and 3TB",
-            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize > (1024*GB),
+            session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, FileSystem.c.f_fssize > (1024*GB),
             FileSystem.c.f_fssize <= (3072*GB))).count()))
-    stats['combined_fs_size'].append(("Over 3TB",session.query(FileSystem).filter((FileSystem.c.f_fssize) > (3072*GB)  ) .count()))
+    stats['combined_fs_size'].append(("Over 3TB",session.query(FileSystem).filter(and_(FileSystem.c.f_fssize!=0, (FileSystem.c.f_fssize) > (3072*GB)  )) .count()))
+    stats['combined_fs_size'].append((withheld_label,session.query(FileSystem).filter(FileSystem.c.f_fssize==0) .count()))
 
 
 
