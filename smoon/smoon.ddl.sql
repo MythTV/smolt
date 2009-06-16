@@ -151,7 +151,7 @@ DROP TABLE IF EXISTS `SELINUX_ENABLED`;
 /*!50001 DROP VIEW IF EXISTS `SELINUX_ENABLED`*/;
 /*!50001 DROP TABLE IF EXISTS `SELINUX_ENABLED`*/;
 /*!50001 CREATE TABLE `SELINUX_ENABLED` (
-  `enabled` tinyint(1),
+  `enabled` tinyint(2),
   `cnt` bigint(21)
 ) */;
 
@@ -321,7 +321,7 @@ CREATE TABLE `host` (
   `formfactor` varchar(32) character set latin1 default NULL,
   `last_modified` datetime NOT NULL default '0000-00-00 00:00:00',
   `rating` int(11) NOT NULL default '0',
-  `selinux_enabled` tinyint(1) NOT NULL default '0',
+  `selinux_enabled` tinyint(2) NOT NULL default '-1',
   `selinux_policy` varchar(20) default NULL,
   `selinux_enforce` varchar(20) default NULL,
   PRIMARY KEY  (`id`),

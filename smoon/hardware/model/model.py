@@ -68,7 +68,7 @@ hosts = Table('host', metadata,
               Column('last_modified', DATETIME,
                      default=0, nullable=False),
               Column('rating', INT, nullable=False, default=0),
-              Column('selinux_enabled', BOOLEAN, nullable=False),
+              Column('selinux_enabled', INT, nullable=False),
               Column('selinux_policy', TEXT),
               Column('selinux_enforce', TEXT))
 #              Column('myth_systemrole', TEXT),
