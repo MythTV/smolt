@@ -70,8 +70,8 @@ hw_uuid_file = get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")
 pub_uuid_file = get_config_attr("PUB_UUID", "/etc/sysconfig/pub-uuid")
 admin_token_file = get_config_attr("ADMIN_TOKEN", '' )
 
-smoltProtocol = '0.98'
-supported_protocols = ['0.98',]
+smoltProtocol = '0.97'
+supported_protocols = ['0.97',]
 user_agent = 'smolt/%s' % smoltProtocol
 timeout = 60.0
 proxies = None
@@ -205,6 +205,9 @@ class Host:
         self.bogomips = Gate().process('cpu', cpuInfo['bogomips'], 0)
         self.cpuVendor = Gate().process('cpu', cpuInfo['type'], WITHHELD_MAGIC_STRING)
         self.cpuModel = Gate().process('cpu', cpuInfo['model'], WITHHELD_MAGIC_STRING)
+        self.cpu_stepping = Gate().process('cpu', cpuInfo['cpu_stepping'], 0)
+        self.cpu_family = Gate().process('cpu', cpuInfo['cpu_family'], 0)
+        self.cpu_model_num = Gate().process('cpu', cpuInfo['cpu_model_num'], 0)
         self.numCpus = Gate().process('cpu', cpuInfo['count'], 0)
         self.cpuSpeed = Gate().process('cpu', cpuInfo['speed'], 0)
         self.systemMemory = Gate().process('ram_size', memory['ram'], 0)
@@ -465,25 +468,28 @@ class Hardware:
         return my_devices
 
     def get_sendable_host(self, protocol_version=smoltProtocol):
-        return {'uuid' :           self.host.UUID,
-                'os' :             self.host.os,
+        return {'uuid' :            self.host.UUID,
+                'os' :              self.host.os,
                 'default_runlevel': self.host.defaultRunlevel,
-                'language' :       self.host.language,
-                'platform' :       self.host.platform,
-                'bogomips' :       self.host.bogomips,
+                'language' :        self.host.language,
+                'platform' :        self.host.platform,
+                'bogomips' :        self.host.bogomips,
                 'cpu_vendor' :      self.host.cpuVendor,
                 'cpu_model' :       self.host.cpuModel,
+                'cpu_stepping' :    self.host.cpu_stepping,
+                'cpu_family' :      self.host.cpu_family,
+                'cpu_model_num' :   self.host.cpu_model_num,
                 'num_cpus':         self.host.numCpus,
                 'cpu_speed' :       self.host.cpuSpeed,
                 'system_memory' :   self.host.systemMemory,
                 'system_swap' :     self.host.systemSwap,
-                'vendor' :         self.host.systemVendor,
-                'system' :         self.host.systemModel,
+                'vendor' :          self.host.systemVendor,
+                'system' :          self.host.systemModel,
                 'kernel_version' :  self.host.kernelVersion,
-                'formfactor' :     self.host.formfactor,
-                'selinux_enabled': self.host.selinux_enabled,
-                'selinux_policy': self.host.selinux_policy,
-                'selinux_enforce': self.host.selinux_enforce}
+                'formfactor' :      self.host.formfactor,
+                'selinux_enabled':  self.host.selinux_enabled,
+                'selinux_policy':   self.host.selinux_policy,
+                'selinux_enforce':  self.host.selinux_enforce}
 
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
@@ -635,6 +641,9 @@ class Hardware:
         yield _('BogoMIPS'), self.host.bogomips
         yield _('CPU Vendor'), self.host.cpuVendor
         yield _('CPU Model'), self.host.cpuModel
+        yield _('CPU Stepping'), self.host.cpu_stepping
+        yield _('CPU Family'), self.host.cpu_family
+        yield _('CPU Model Num'), self.host.cpu_model_num
         yield _('Number of CPUs'), self.host.numCpus
         yield _('CPU Speed'), self.host.cpuSpeed
         yield _('System Memory'), self.host.systemMemory
@@ -781,7 +790,7 @@ def read_cpuinfo():
     # count, type, model, model_number, model_ver, model_rev
     # bogomips, platform, speed, cache
     hwdict = { 'class': "CPU",
-               "desc" : "Processor",
+               'desc' : "Processor",
                }
     if uname[0] == "i" and uname[-2:] == "86" or (uname == "x86_64"):
         # IA32 compatible enough
@@ -813,7 +822,9 @@ def read_cpuinfo():
         hwdict['model']         = get_entry(tmpdict, 'model name')
         hwdict['model_number']  = get_entry(tmpdict, 'cpu family')
         hwdict['model_ver']     = get_entry(tmpdict, 'model')
-        hwdict['model_rev']     = get_entry(tmpdict, 'stepping')
+        hwdict['cpu_stepping']  = get_entry(tmpdict, 'stepping')
+        hwdict['cpu_family']    = get_entry(tmpdict, 'cpu family')
+        hwdict['cpu_model_num'] = get_entry(tmpdict, 'model')
         hwdict['cache']         = get_entry(tmpdict, 'cache size')
         hwdict['bogomips']      = get_entry(tmpdict, 'bogomips')
         hwdict['other']         = get_entry(tmpdict, 'flags')

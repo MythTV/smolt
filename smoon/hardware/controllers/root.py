@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from cherrypy import request, response
 from turbogears import controllers, expose, identity
 from turbogears import exception_handler
@@ -33,7 +34,7 @@ config.update({'genshi.loader_callback': genshi_loader_callback})
 
 # This is such a bad idea, yet here it is.
 CRYPTPASS = 'PleaseChangeMe11'
-current_smolt_protocol = '0.98'
+current_smolt_protocol = '0.97'
 
 class Root(controllers.RootController):
     tokens = Token(current_smolt_protocol, CRYPTPASS) #should be 'token' but it is taken :(
