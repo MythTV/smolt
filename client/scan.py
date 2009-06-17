@@ -70,7 +70,6 @@ def scan(profile, smoonURL):
         searchDevices = "%s|%s" % (searchDevices, dev)
     scanURL='%s/smolt-w/api.php' % smoonURL
     scanData = 'action=query&titles=%s&format=json' % searchDevices
-    print scanData
     try:
          r = simplejson.load(urllib.urlopen(scanURL, scanData))
     except ValueError:
