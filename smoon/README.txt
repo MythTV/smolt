@@ -12,7 +12,11 @@ python -i debug-hardware.py
 Deployment / Development
 ------------------------
 
-You will need execute the following commands at the command line from the database directory :
+This assumes that you have a running MySQL server on localhost.
+You will need to execute the following commands at the command line from
+the "database" directory.
+Those create a MySQL smoon user (password = smoon) and grant it rights on
+the smoon database.
 
  $ mysql -p -u root
  > CREATE DATABASE smoon;
@@ -23,11 +27,15 @@ You will need execute the following commands at the command line from the databa
 
 Then go to the smoon directory and edit sample-dev.cfg to your liking.
 
-Then launch smoon from the smoon directory :
+Install python-turboflot TurboGears.noarch and MySQL-python :
+
+# yum install python-turboflot TurboGears.noarch MySQL-python
+
+Then launch smoon :
 
  $ python start-hardware.py sample-dev.cfg
 
-A smoon server is now running at http://127.0.0.1:8080/ .
+A smoon server show now be running at http://127.0.0.1:8080/ .
 
 
 ------------
