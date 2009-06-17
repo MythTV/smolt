@@ -13,29 +13,28 @@ msgstr ""
 
 #: hardware/controllers/root.py:95
 msgid "The credentials you supplied were not correct or did not grant access to this resource."
-msgstr ""
+msgstr "Las credenciales que dió no eran las correctas o bien Ud. no tiene acceso a este recurso."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr ""
+msgstr "Debe proveer sus credenciales antes de acceder a este recurso."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
 msgstr "Por favor, ingrese."
 
 #: hardware/templates/deviceclass.html:9
-#, fuzzy
 msgid "Devices by class ${type}"
-msgstr "Todos por Tipo"
+msgstr "Dispositivos por clase ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
 msgstr "Cantidad Total"
 
 #: hardware/templates/deviceclass.html:19
-#, fuzzy, python-format
+#, python-format
 msgid "% hosts detected ${type}"
-msgstr "Cambiar el tipo de papel"
+msgstr "% hosts detectados ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -78,15 +77,13 @@ msgid "Date Added"
 msgstr "Fecha de adición"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "% tot hosts"
-msgstr "Hosts virtuales"
+msgstr "% tot equipos"
 
 #: hardware/templates/devices.html:15
 #: hardware/templates/stats.html:19
-#, fuzzy
 msgid "Total Registered Devices"
-msgstr "Dispositivo de audio predeterminado"
+msgstr "Total de Dispositivos Registrados"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
@@ -139,7 +136,7 @@ msgstr "Requiere Controladores de Terceros"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr ""
+msgstr "Funciona, pero se necesita configuración adicional"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
@@ -180,7 +177,7 @@ msgstr "Kernel"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr ""
+msgstr "Factor de Forma"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
@@ -220,7 +217,7 @@ msgstr "MHz totales"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr ""
+msgstr "Arquitecturas"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
@@ -231,9 +228,9 @@ msgid "Count"
 msgstr "Cantidad"
 
 #: hardware/templates/stats.html:40
-#, fuzzy, python-format
+#, python-format
 msgid "% of total"
-msgstr "Total"
+msgstr "% del Total"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
@@ -308,19 +305,16 @@ msgid "Filesystem size"
 msgstr "Tamaño del sistema de archivos"
 
 #: hardware/templates/stats.html:253
-#, fuzzy
 msgid "Myth Role"
-msgstr "Rol de Usuario"
+msgstr "Rol de Myth"
 
 #: hardware/templates/stats.html:266
-#, fuzzy
 msgid "Myth Remote"
-msgstr "Acceso remoto"
+msgstr "Myth Remoto"
 
 #: hardware/templates/stats.html:279
-#, fuzzy
 msgid "Myth  Theme"
-msgstr "_Seleccione un tema:"
+msgstr "Tema de Myth"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
@@ -332,12 +326,11 @@ msgstr "Estadísticas"
 
 #: hardware/templates/welcome.html:17
 msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
-msgstr ""
+msgstr "Para estadísticas detalladas acerca de los dispositivos, en la base de datos vea <a href='/static/stats/stats.html'>/stats</a> o <a href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
-#, fuzzy
 msgid "Top Vendor Chart"
-msgstr "Leyendo trozo de gráfica"
+msgstr "Gráfico de Fabricantes Principales"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
@@ -345,5 +338,5 @@ msgstr "Más info"
 
 #: hardware/templates/welcome.html:25
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
+msgstr "<p>Navegue y busque en la <a href='/wiki/'>Wiki</a> la información detallada sobre ciertos dispositivos. El uso general y otras respuestas están en la <a href='/wiki/'>Wiki</a>.</p>"
 
