@@ -126,7 +126,7 @@ def _process_output(output, template, format):
 stats = {}
 # somehow this has to be first, cause it binds us to
 # an sqlalchemy context
-print 'total_hosts'
+print '====================== total_hosts ======================'
 stats['total_hosts'] = session.query(Host).count()
 
 class ByClass(object):
@@ -222,12 +222,12 @@ if byclass_cache.data:
 
 stats = {}
 
-print 'total_active_hosts'
+print '====================== total_active_hosts ======================'
 total_active_hosts = session.query(Host).filter(Host.last_modified > (date.today() - timedelta(days=90))).count()
 if not total_active_hosts:
    total_active_hosts = 1
 
-print 'total_hosts'
+print '====================== total_hosts ======================'
 stats['total_hosts'] = session.query(Host).count()
 total_hosts = stats['total_hosts']
 flot = {}
@@ -250,7 +250,7 @@ if not  template_config['archs'] == [] :
             'label' : 'Archs', }],
         {   'xaxis' : { 'ticks' : archs }, } )
 
-print "OS Stats"
+print "====================== OS Stats ======================"
 if not  template_config['os'] == [] :
     stats['os'] = session.query(OS).limit(30).all()
     for i in stats["os"]:
@@ -258,7 +258,7 @@ if not  template_config['os'] == [] :
             i.os = withheld_label
             break
 
-print "Runlevel stats"
+print "====================== Runlevel stats ======================"
 if not  template_config['runlevel'] == [] :
     stats['runlevel'] = session.query(Runlevel).all()
     for i in stats["runlevel"]:
@@ -266,7 +266,7 @@ if not  template_config['runlevel'] == [] :
             i.runlevel = withheld_label
             break
 
-print "Vendor stats"
+print "====================== Vendor stats ======================"
 if not  template_config['vendors'] == [] :
     stats['vendors'] = session.query(Vendor).limit(100).all()
     for i in stats["vendors"]:
@@ -274,7 +274,7 @@ if not  template_config['vendors'] == [] :
             i.vendor = withheld_label
             break
 
-print "Model stats"
+print "====================== Model stats ======================"
 if not  template_config['model'] == [] :
     stats['systems'] = session.query(System).limit(100).all()
     for i in stats["systems"]:
@@ -282,7 +282,7 @@ if not  template_config['model'] == [] :
             i.system = withheld_label
             break
 
-print "CPU stats"
+print "====================== CPU stats ======================"
 stats['cpu_vendor'] = session.query(CPUVendor).limit(100).all()
 for i in stats["cpu_vendor"]:
     if i.cpu_vendor == WITHHELD_MAGIC_STRING:
@@ -290,7 +290,7 @@ for i in stats["cpu_vendor"]:
         break
 
 if not  template_config['kernel'] == [] :
-    print "Kernel stats"
+    print "====================== Kernel stats ======================"
     stats['kernel_version'] = session.query(KernelVersion).limit(20).all()
     for i in stats["kernel_version"]:
         if i.kernel_version == WITHHELD_MAGIC_STRING:
@@ -298,7 +298,7 @@ if not  template_config['kernel'] == [] :
             break
 
 if not  template_config['formfactor'] == [] :
-    print 'Formfactor stats'
+    print '====================== Formfactor stats ======================'
     stats['formfactor'] = session.query(FormFactor).limit(8).all()
     for i in stats["formfactor"]:
         if i.formfactor == WITHHELD_MAGIC_STRING:
@@ -306,7 +306,7 @@ if not  template_config['formfactor'] == [] :
             break
 
 if not  template_config['lang'] == [] :
-    print 'language stats'
+    print '====================== language stats ======================'
     stats['language'] = session.query(Language).all()
     for i in stats["language"]:
         if i.language == WITHHELD_MAGIC_STRING:
@@ -314,7 +314,7 @@ if not  template_config['lang'] == [] :
             break
 
 if not  template_config['selinux'] == [] :
-    print 'selinux stats'
+    print '====================== selinux stats ======================'
     stats['selinux_enabled'] = session.query(SelinuxEnabled).all()
     for i in stats["selinux_enabled"]:
         if i.enabled == -1:
@@ -336,7 +336,7 @@ if not  template_config['selinux'] == [] :
 now = date.today() - timedelta(days=90)
 
 if not  template_config['ram'] == [] :
-    print 'memory stats'
+    print '====================== memory stats ======================'
     stats['sys_mem'] = []
     stats['sys_mem'].append(("less than 256mb",
                             session.query(Host).filter(and_(
@@ -383,7 +383,7 @@ if not  template_config['ram'] == [] :
                                                     Host.last_modified > (now))).count()))
 
 if not  template_config['swap'] == [] :
-    print 'swap stats'
+    print '====================== swap stats ======================'
     stats['swap_mem'] = []
     stats['swap_mem'].append(("less than 512mb",
                             session.query(Host).filter(and_(
@@ -421,7 +421,7 @@ if not  template_config['swap'] == [] :
 
 #cpu tab
 if not  template_config['cpu'] == [] :
-    print 'cpu stats'
+    print '====================== cpu stats ======================'
     stats['cpu_speed'] = []
     stats['cpu_speed'].append(("less than 512mhz",
                             session.query(Host).filter(and_(
@@ -480,27 +480,27 @@ if not  template_config['cpu'] == [] :
 
 stats['languagetot'] = stats['total_hosts']
 
-print 'number of cpus'
+print '====================== number of cpus ======================'
 stats['num_cpus'] = session.query(NumCPUs).all()
 for i in stats["num_cpus"]:
     if i.num_cpus == 0:
         i.num_cpus = withheld_label
         break
 
-print 'bogomips count'
+print '====================== bogomips count ======================'
 stats['bogomips_total'] = session.query(func.sum(Host.bogomips * Host.num_cpus)).filter(Host.bogomips > 0).first()
 
-print 'cpu speed total'
+print '====================== cpu speed total ======================'
 stats['cpu_speed_total'] = session.query(func.sum(Host.cpu_speed * Host.num_cpus)).filter(Host.cpu_speed > 0).first()
 
-print 'cpus total'
+print '====================== cpus total ======================'
 stats['cpus_total'] = session.query(func.sum(Host.num_cpus)).first()
 
-print 'registered devices'
+print '====================== registered devices ======================'
 stats['registered_devices'] = session.query(ComputerLogicalDevice).count()
 
 if not  template_config['filesystem'] == [] :
-    print 'filesystems'
+    print '====================== filesystems ======================'
     stats['filesystems'] = session.query(FileSys).all()
     stats['total_fs'] = session.query(FileSys).count()
     if not stats['total_fs']:
@@ -550,23 +550,23 @@ del out_html
 del stats
 
 devices = {}
-print 'total devices'
+print '====================== total devices ======================'
 devices['total'] = session.query(HostLink).count()
 
-print 'device type count'
+print '====================== device type count ======================'
 devices['count'] = session.query(ComputerLogicalDevice).count()
 
-print 'total hosts'
+print '====================== total hosts ======================'
 devices['total_hosts'] = session.query(Host).count()
 
-print 'top 100 total list'
+print '====================== top 100 total list ======================'
 #devices['totalList'] = session.query(TotalList).select(limit=100)
 devices['totalList'] = select([ComputerLogicalDevice.description, ComputerLogicalDevice.id, func.count(ComputerLogicalDevice.id).label('cnt')], HostLink.device_id == ComputerLogicalDevice.id).group_by(ComputerLogicalDevice.id).order_by(desc('cnt')).limit(10).execute().fetchall()
 
 #print 'top 100 unique list'
 #devices['uniqueList'] = session.query(UniqueList).select(limit=100)
 
-print 'class list'
+print '====================== class list ======================'
 devices['classes'] = session.query(HardwareClass).all()
 
 
