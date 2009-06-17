@@ -1,4 +1,5 @@
-hardware
+
+Smoon is the server part of smolt. 
 
 This is a TurboGears (http://www.turbogears.org) project. It can be
 started by running the start-hardware.py script.
@@ -11,30 +12,22 @@ python -i debug-hardware.py
 Deployment / Development
 ------------------------
 
-This project uses SQLAlchemy-Migrate.  Since it was originally deployed
-without it, you cannot just upgrade your DB and have everything in working
-condition.  Instead, you have to initialize your DB to match the last working version
-before we migrated to Migrate.
+You will need execute the following commands at the command line from the database directory :
 
-Assuming your user is 'smoon', password is 'smoon', and DB is 'smoon', runing on mysql
-you will need to execute the following commands at the command line from /smoon
+ $ mysql -p -u root
+ > CREATE DATABASE smoon;
+ > CREATE USER 'smoon'@'smoon' IDENTIFIED BY 'smoon';
+ > GRANT ALL ON smoon.* to 'smoon'@'localhost' ;
+ > quit
+ $ mysql -p -u smoon smoon < smolt.sql
 
-NOTE: In Fedora, Migrate is named sqlalchemy-migrate.  It might be called 'migrate' in
-other distributions.
+Then go to the smoon directory and edit sample-dev.cfg to your liking.
 
- $ mysql -p -u smoon smoon < smoon.ddl.sql
- $ sqlalchemy-migrate manage manage.py --repository=db --url=mysql://smoon:smoon@localhost/smoon
- $ python manage.py version_control
- $ python manage.py upgrade
+Then launch smoon from the smoon directory :
 
-NOTE: THE FOLLOWING DOESN'T WORK YET! DON'T DO IT.
+ $ python start-hardware.py sample-dev.cfg
 
-If you don't have the mythtv extensions setup, you may receive some warnings when running
-the upgrade.  These warnings are harmless.  If you want to installed the mythtv extensions
-after upgrading, run the following.
-
- $ sqlalchemy-migrate manage manage.myth.py --repository=db_myth --url=mysql://smoon:smoon@localhost/smoon
- $ python manage.myth.py upgrade
+A smoon server is now running at http://127.0.0.1:8080/ .
 
 
 ------------
