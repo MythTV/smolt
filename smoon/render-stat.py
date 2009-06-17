@@ -121,7 +121,16 @@ def _process_output(output, template, format):
 
         return engine.render(output, format=format, template=template)
 
-
+def handle_withheld_elem(list, attrib_to_check, value_to_check_for):
+    """finds the the withheld special entry,
+        fixes it's label, and moves it to the end"""
+    condition = lambda x: getattr(x, attrib_to_check) == value_to_check_for
+    def modify(x):
+        setattr(x, attrib_to_check, withheld_label)
+        return x
+    other_list = [e for e in list if not condition(e)]
+    withheld_list = [modify(e) for e in list if condition(e)]
+    return other_list + withheld_list
 
 stats = {}
 # somehow this has to be first, cause it binds us to
@@ -234,13 +243,13 @@ flot = {}
 # Arch calculation
 if not  template_config['archs'] == [] :
     print 'arch stats'
-    stats['archs'] = session.query(Arch).all()
+    stats['archs'] = handle_withheld_elem(
+            session.query(Arch).all(),
+            'platform', WITHHELD_MAGIC_STRING)
     archs = []
     counts = []
     i = 0
     for arch in stats['archs']:
-        if arch.platform == WITHHELD_MAGIC_STRING:
-            arch.platform = withheld_label
         archs.append([i + .5, arch.platform])
         counts.append([i, arch.cnt])
         i += 1
@@ -252,86 +261,67 @@ if not  template_config['archs'] == [] :
 
 print "====================== OS Stats ======================"
 if not  template_config['os'] == [] :
-    stats['os'] = session.query(OS).limit(30).all()
-    for i in stats["os"]:
-        if i.os == WITHHELD_MAGIC_STRING:
-            i.os = withheld_label
-            break
+    stats['os'] = handle_withheld_elem(
+            session.query(OS).limit(30).all(),
+            'os', WITHHELD_MAGIC_STRING)
+
 
 print "====================== Runlevel stats ======================"
 if not  template_config['runlevel'] == [] :
-    stats['runlevel'] = session.query(Runlevel).all()
-    for i in stats["runlevel"]:
-        if i.runlevel == -1:
-            i.runlevel = withheld_label
-            break
+    stats['runlevel'] = handle_withheld_elem(
+            session.query(Runlevel).all(),
+            'runlevel', -1)
+
 
 print "====================== Vendor stats ======================"
 if not  template_config['vendors'] == [] :
-    stats['vendors'] = session.query(Vendor).limit(100).all()
-    for i in stats["vendors"]:
-        if i.vendor == WITHHELD_MAGIC_STRING:
-            i.vendor = withheld_label
-            break
+    stats['vendors'] = handle_withheld_elem(
+            session.query(Vendor).limit(100).all(),
+            'vendor', WITHHELD_MAGIC_STRING)
+
 
 print "====================== Model stats ======================"
 if not  template_config['model'] == [] :
-    stats['systems'] = session.query(System).limit(100).all()
-    for i in stats["systems"]:
-        if i.system == WITHHELD_MAGIC_STRING:
-            i.system = withheld_label
-            break
+    stats['systems'] = handle_withheld_elem(
+            session.query(System).limit(100).all(),
+            'system', WITHHELD_MAGIC_STRING)
 
 print "====================== CPU stats ======================"
-stats['cpu_vendor'] = session.query(CPUVendor).limit(100).all()
-for i in stats["cpu_vendor"]:
-    if i.cpu_vendor == WITHHELD_MAGIC_STRING:
-        i.cpu_vendor = withheld_label
-        break
+stats['cpu_vendor'] = handle_withheld_elem(
+        session.query(CPUVendor).limit(100).all(),
+        'cpu_vendor', WITHHELD_MAGIC_STRING)
 
 if not  template_config['kernel'] == [] :
     print "====================== Kernel stats ======================"
-    stats['kernel_version'] = session.query(KernelVersion).limit(20).all()
-    for i in stats["kernel_version"]:
-        if i.kernel_version == WITHHELD_MAGIC_STRING:
-            i.kernel_version = withheld_label
-            break
+    stats['kernel_version'] = handle_withheld_elem(
+            session.query(KernelVersion).limit(20).all(),
+            'kernel_version', WITHHELD_MAGIC_STRING)
 
 if not  template_config['formfactor'] == [] :
     print '====================== Formfactor stats ======================'
-    stats['formfactor'] = session.query(FormFactor).limit(8).all()
-    for i in stats["formfactor"]:
-        if i.formfactor == WITHHELD_MAGIC_STRING:
-            i.formfactor = withheld_label
-            break
+    stats['formfactor'] = handle_withheld_elem(
+            session.query(FormFactor).limit(8).all(),
+            'formfactor', WITHHELD_MAGIC_STRING)
 
 if not  template_config['lang'] == [] :
     print '====================== language stats ======================'
-    stats['language'] = session.query(Language).all()
-    for i in stats["language"]:
-        if i.language == WITHHELD_MAGIC_STRING:
-            i.language = withheld_label
-            break
+    stats['language'] = handle_withheld_elem(
+            session.query(Language).all(),
+            'language', WITHHELD_MAGIC_STRING)
 
 if not  template_config['selinux'] == [] :
     print '====================== selinux stats ======================'
-    stats['selinux_enabled'] = session.query(SelinuxEnabled).all()
-    for i in stats["selinux_enabled"]:
-        if i.enabled == -1:
-            i.enabled = withheld_label
-            break
+    stats['selinux_enabled'] = handle_withheld_elem(
+            session.query(SelinuxEnabled).all(),
+            'enabled', -1)
 
-    stats['selinux_enforce'] = session.query(SelinuxEnforced).all()
-    for i in stats["selinux_enforce"]:
-        if i.enforce == WITHHELD_MAGIC_STRING:
-            i.enforce = withheld_label
-            break
+    stats['selinux_enforce'] = handle_withheld_elem(
+            session.query(SelinuxEnforced).all(),
+            'enforce', WITHHELD_MAGIC_STRING)
 
-    stats['selinux_policy'] = session.query(SelinuxPolicy).all()
-    for i in stats["selinux_policy"]:
-        if i.policy == WITHHELD_MAGIC_STRING:
-            i.policy = withheld_label
-            break
+    stats['selinux_policy'] = handle_withheld_elem(
+            session.query(SelinuxPolicy).all(),
+            'policy', WITHHELD_MAGIC_STRING)
 
 now = date.today() - timedelta(days=90)
 
@@ -480,12 +470,11 @@ if not  template_config['cpu'] == [] :
 
 stats['languagetot'] = stats['total_hosts']
 
-print '====================== number of cpus ======================'
-stats['num_cpus'] = session.query(NumCPUs).all()
-for i in stats["num_cpus"]:
-    if i.num_cpus == 0:
-        i.num_cpus = withheld_label
-        break
+print 'number of cpus'
+stats['num_cpus'] = handle_withheld_elem(
+        session.query(NumCPUs).all(),
+        'num_cpus', 0)
+
 
 print '====================== bogomips count ======================'
 stats['bogomips_total'] = session.query(func.sum(Host.bogomips * Host.num_cpus)).filter(Host.bogomips > 0).first()
