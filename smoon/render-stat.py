@@ -120,7 +120,16 @@ def _process_output(output, template, format):
 
         return engine.render(output, format=format, template=template)
 
-
+def handle_withheld_elem(list, attrib_to_check, value_to_check_for):
+    """finds the the withheld special entry,
+        fixes it's label, and moves it to the end"""
+    condition = lambda x: getattr(x, attrib_to_check) == value_to_check_for
+    def modify(x):
+        setattr(x, attrib_to_check, withheld_label)
+        return x
+    other_list = [e for e in list if not condition(e)]
+    withheld_list = [modify(e) for e in list if condition(e)]
+    return other_list + withheld_list
 
 stats = {}
 # somehow this has to be first, cause it binds us to
@@ -232,13 +241,13 @@ flot = {}
 # Arch calculation
 if not  template_config['archs'] == [] :
     print 'arch stats'
-    stats['archs'] = session.query(Arch).select()
+    stats['archs'] = handle_withheld_elem(
+            session.query(Arch).select(),
+            'platform', WITHHELD_MAGIC_STRING)
     archs = []
     counts = []
     i = 0
     for arch in stats['archs']:
-        if arch.platform == WITHHELD_MAGIC_STRING:
-            arch.platform = withheld_label
         archs.append([i + .5, arch.platform])
         counts.append([i, arch.cnt])
         i += 1
@@ -250,86 +259,64 @@ if not  template_config['archs'] == [] :
 
 print "OS Stats"
 if not  template_config['os'] == [] :
-    stats['os'] = session.query(OS).select(limit=30)
-    for i in stats["os"]:
-        if i.os == WITHHELD_MAGIC_STRING:
-            i.os = withheld_label
-            break
+    stats['os'] = handle_withheld_elem(
+            session.query(OS).select(limit=30),
+            'os', WITHHELD_MAGIC_STRING)
 
 print "Runlevel stats"
 if not  template_config['runlevel'] == [] :
-    stats['runlevel'] = session.query(Runlevel).select()
-    for i in stats["runlevel"]:
-        if i.runlevel == -1:
-            i.runlevel = withheld_label
-            break
+    stats['runlevel'] = handle_withheld_elem(
+            session.query(Runlevel).select(),
+            'runlevel', -1)
 
 print "Vendor stats"
 if not  template_config['vendors'] == [] :
-    stats['vendors'] = session.query(Vendor).select(limit=100)
-    for i in stats["vendors"]:
-        if i.vendor == WITHHELD_MAGIC_STRING:
-            i.vendor = withheld_label
-            break
+    stats['vendors'] = handle_withheld_elem(
+            session.query(Vendor).select(limit=100),
+            'vendor', WITHHELD_MAGIC_STRING)
 
 print "Model stats"
 if not  template_config['model'] == [] :
-    stats['systems'] = session.query(System).select(limit=100)
-    for i in stats["systems"]:
-        if i.system == WITHHELD_MAGIC_STRING:
-            i.system = withheld_label
-            break
+    stats['systems'] = handle_withheld_elem(
+            session.query(System).select(limit=100),
+            'system', WITHHELD_MAGIC_STRING)
 
 print "CPU stats"
-stats['cpu_vendor'] = session.query(CPUVendor).select(limit=100)
-for i in stats["cpu_vendor"]:
-    if i.cpu_vendor == WITHHELD_MAGIC_STRING:
-        i.cpu_vendor = withheld_label
-        break
+stats['cpu_vendor'] = handle_withheld_elem(
+        session.query(CPUVendor).select(limit=100),
+        'cpu_vendor', WITHHELD_MAGIC_STRING)
 
 if not  template_config['kernel'] == [] :
     print "Kernel stats"
-    stats['kernel_version'] = session.query(KernelVersion).select(limit=20)
-    for i in stats["kernel_version"]:
-        if i.kernel_version == WITHHELD_MAGIC_STRING:
-            i.kernel_version = withheld_label
-            break
+    stats['kernel_version'] = handle_withheld_elem(
+            session.query(KernelVersion).select(limit=20),
+            'kernel_version', WITHHELD_MAGIC_STRING)
 
 if not  template_config['formfactor'] == [] :
     print 'Formfactor stats'
-    stats['formfactor'] = session.query(FormFactor).select(limit=8)
-    for i in stats["formfactor"]:
-        if i.formfactor == WITHHELD_MAGIC_STRING:
-            i.formfactor = withheld_label
-            break
+    stats['formfactor'] = handle_withheld_elem(
+            session.query(FormFactor).select(limit=8),
+            'formfactor', WITHHELD_MAGIC_STRING)
 
 if not  template_config['lang'] == [] :
     print 'language stats'
-    stats['language'] = session.query(Language).select()
-    for i in stats["language"]:
-        if i.language == WITHHELD_MAGIC_STRING:
-            i.language = withheld_label
-            break
+    stats['language'] = handle_withheld_elem(
+            session.query(Language).select(),
+            'language', WITHHELD_MAGIC_STRING)
 
 if not  template_config['selinux'] == [] :
     print 'selinux stats'
-    stats['selinux_enabled'] = session.query(SelinuxEnabled).select()
-    for i in stats["selinux_enabled"]:
-        if i.enabled == -1:
-            i.enabled = withheld_label
-            break
+    stats['selinux_enabled'] = handle_withheld_elem(
+            session.query(SelinuxEnabled).select(),
+            'enabled', -1)
 
-    stats['selinux_enforce'] = session.query(SelinuxEnforced).select()
-    for i in stats["selinux_enforce"]:
-        if i.enforce == WITHHELD_MAGIC_STRING:
-            i.enforce = withheld_label
-            break
+    stats['selinux_enforce'] = handle_withheld_elem(
+            session.query(SelinuxEnforced).select(),
+            'enforce', WITHHELD_MAGIC_STRING)
 
-    stats['selinux_policy'] = session.query(SelinuxPolicy).select()
-    for i in stats["selinux_policy"]:
-        if i.policy == WITHHELD_MAGIC_STRING:
-            i.policy = withheld_label
-            break
+    stats['selinux_policy'] = handle_withheld_elem(
+            session.query(SelinuxPolicy).select(),
+            'policy', WITHHELD_MAGIC_STRING)
 
 now = date.today() - timedelta(days=90)
 
@@ -454,11 +441,9 @@ if not  template_config['cpu'] == [] :
 stats['languagetot'] = stats['total_hosts']
 
 print 'number of cpus'
-stats['num_cpus'] = session.query(NumCPUs).select()
-for i in stats["num_cpus"]:
-    if i.num_cpus == 0:
-        i.num_cpus = withheld_label
-        break
+stats['num_cpus'] = handle_withheld_elem(
+        session.query(NumCPUs).select(),
+        'num_cpus', 0)
 
 print 'bogomips count'
 stats['bogomips_total'] = session.query(Host).filter(Host.c.bogomips > 0).sum(Host.c.bogomips * Host.c.num_cpus)
