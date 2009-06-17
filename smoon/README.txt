@@ -35,7 +35,7 @@ Then launch smoon :
 
  $ python start-hardware.py sample-dev.cfg
 
-A smoon server show now be running at http://127.0.0.1:8080/ .
+A smoon server should now be running at http://127.0.0.1:8080/ .
 
 
 ------------
