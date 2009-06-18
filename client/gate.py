@@ -22,13 +22,9 @@ import os
 class _Gate:
     def __init__(self):
         self.config = ConfigParser.ConfigParser()
-        # TODO file locations
-        self.config.readfp(open('defaults.cfg'))
-        # TODO file locations
         self.config.read([
-            'client.cfg',
             '/etc/smolt/client.cfg',
-            os.path.expanduser('~/.smolt.cfg')])
+            os.path.expanduser('~/.smolt/client.cfg')])
 
     def grants(*args):
         assert 2 <= len(args) <= 3
