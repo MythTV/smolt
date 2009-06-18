@@ -102,9 +102,9 @@ class moduleClass(Module):
 
         iter = text_buffer.get_iter_at_offset(0)
         # Generate the UUID if it does not exist yet
-        if not os.path.exists('/etc/sysconfig/hw-uuid'):
+        if not os.path.exists('/etc/smolt/hw-uuid'):
             s=open('/proc/sys/kernel/random/uuid', 'r')
-            d=open('/etc/sysconfig/hw-uuid','w')
+            d=open('/etc/smolt/hw-uuid','w')
             d.write(s.read())
             s.close()
             d.close()

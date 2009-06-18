@@ -97,7 +97,7 @@ class SmoltGui(QMainWindow):
 			url = urljoin(smolt.smoonURL, '/show?uuid=%s' % pub_uuid)
 			finishMessage = QMessageBox(QMessageBox.Information, _('Profile Sent'),
 					_('The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in %s') \
-						% (url, smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")),
+						% (url, smolt.get_config_attr("HW_UUID", "/etc/smolt/hw-uuid")),
 					QMessageBox.NoButton, self)
 			success = True
 		except TypeError:

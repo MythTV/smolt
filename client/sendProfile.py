@@ -208,7 +208,7 @@ print
 if pub_uuid:
     pubUrl = smolt.get_profile_link(opts.smoonURL, pub_uuid)
     print _('To share your profile: \n\t%s (public)') % pubUrl
-    hw_uuid_file = get_config_attr("HW_PUBID", "/etc/sysconfig/hw-uuid.pub")
+    hw_uuid_file = get_config_attr("HW_PUBID", "/etc/smolt/hw-uuid.pub")
     hw_uuid_pub = os.path.basename(pubUrl)
     if not smolt.secure:
         print _('\tAdmin Password: %s') % admin
