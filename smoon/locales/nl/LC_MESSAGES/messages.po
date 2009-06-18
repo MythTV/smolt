@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the hardware project.
 #
 # Yaakov M. Nemoy <loupgaroublond@gmail.com>, 2008, 2009.
+# Geert Warrink <geert.warrink@onsnet.nu>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: hardware 1.0\n"
@@ -22,7 +23,7 @@ msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
 msgstr ""
-"De legitimatie die je hebt opgegeven heeft zijn onjuist of geven geen "
+"De legitimatie die je hebt opgegeven heeft is onjuist of geeft geen "
 "toegang tot deze hulpbron."
 
 #: hardware/controllers/root.py:98
