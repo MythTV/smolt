@@ -20,11 +20,13 @@ import ConfigParser
 import os
 
 class _Gate:
-    def __init__(self):
+    def __init__(self, the_only_config_file):
+        config_files = (the_only_config_file == None) and \
+                ['/etc/smolt/client.cfg',
+                    os.path.expanduser('~/.smolt/client.cfg')] or \
+                [the_only_config_file]
         self.config = ConfigParser.ConfigParser()
-        self.config.read([
-            '/etc/smolt/client.cfg',
-            os.path.expanduser('~/.smolt/client.cfg')])
+        self.config.read(config_files)
 
     def grants(*args):
         assert 2 <= len(args) <= 3
@@ -54,5 +56,12 @@ def Gate():
     """Simple singleton wrapper with lazy initialization"""
     global _gate
     if _gate == None:
-        _gate = _Gate()
+        _gate = _Gate(None)
+    return _gate
+
+def GateFromConfig(the_only_config_file):
+    """Simple singleton wrapper with lazy initialization"""
+    global _gate
+    if _gate == None:
+        _gate = _Gate(the_only_config_file)
     return _gate
