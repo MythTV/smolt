@@ -31,9 +31,10 @@ class TestGate(unittest.TestCase):
         self.assertEqual(a, b)
 
     def test_valid(self):
-        _wrap_gate().grants("any", "cpu")
-        _wrap_gate().grants("cpu")
+        self.assertFalse(_wrap_gate().grants("any", "arch"))
+        self.assertTrue(_wrap_gate().grants("any", "cpu"))
+        self.assertTrue(_wrap_gate().grants("cpu"))
 
     def test_invalid(self):
-        self.assertRaises(ConfigParser.NoOptionError,
-            _wrap_gate().grants, "any", "FOO")
+        self.assertFalse(_wrap_gate().grants("any", "FOO"))
+        self.assertFalse(_wrap_gate().grants("FOO", "BAR"))

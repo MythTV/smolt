@@ -40,7 +40,10 @@ class _Gate:
     def _grants(self, distro, data_set):
         try:
             return self.config.getboolean(distro, data_set)
-        except ValueError:
+        except (ValueError,
+                ConfigParser.NoOptionError,
+                ConfigParser.NoSectionError):
+            # TODO warn about error?
             # Deny if in doubt
             return False
 
