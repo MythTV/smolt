@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 # smolt - Fedora hardware profiler
 #
@@ -107,11 +108,11 @@ parser.add_option('--uuidFile',
                   dest = 'uuidFile',
                   default = smolt.hw_uuid_file,
                   help = _('specify which uuid to use, useful for debugging and testing mostly.'))
-parser.add_option('-b', '--bodhi',
-                  dest = 'bodhi',
-                  default = False,
-                  action = 'store_true',
-                  help = _('Submit this profile to Bodhi as well, for Fedora Developmnent'))
+#parser.add_option('-b', '--bodhi',
+#                  dest = 'bodhi',
+#                  default = False,
+#                  action = 'store_true',
+#                  help = _('Submit this profile to Bodhi as well, for Fedora Developmnent'))
 parser.add_option('-n', '--newPublicUUID',
                   dest = 'new_pub',
                   default = False,
