@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Crypto.Cipher import XOR
 import urllib
 import time
@@ -52,9 +53,9 @@ class Token(object):
         token_uuid = token_plain[1]
         current_time = int(time.mktime(datetime.now().timetuple()))
         if current_time - token_time > 60:
-            raise ValueError("Critical [20]: Invalid Token")
+            raise ValueError("Critical [20]: Invalid Token - Likely A timeout, please try again.")
         if uuid.strip() != token_uuid.strip():
-            raise ValueError("Critical [s]: Invalid Token")
+            raise ValueError("Critical [s]: Invalid Token - Likely A timeout, please try again.")
     
     def check_admin_token(self, token, uuid):
         print "TOKEN CHECK"
