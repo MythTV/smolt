@@ -10,8 +10,8 @@ SECURE = 0
 #Only a fool would edit what lays beyond here
 #Are you that fool?
 
-HW_UUID = "/etc/sysconfig/hw-uuid"
-PUB_UUID = "/etc/sysconfig/pub-uuid"
+HW_UUID = "/etc/smolt/hw-uuid"
+PUB_UUID = "/etc/smolt/pub-uuid"
 #ADMIN_TOKEN = "/etc/sysconfig/smolt-token"
 
 

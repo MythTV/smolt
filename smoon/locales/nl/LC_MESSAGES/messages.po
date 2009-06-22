@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the hardware project.
 #
 # Yaakov M. Nemoy <loupgaroublond@gmail.com>, 2008, 2009.
+# Geert Warrink <geert.warrink@onsnet.nu>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-06-17 21:58+0200\n"
+"PO-Revision-Date: 2009-06-18 11:06+0200\n"
 "Last-Translator: Yaakov M. Nemoy <loupgaroublond@gmail.com>\n"
 "Language-Team: nl <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,8 +23,8 @@ msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
 msgstr ""
-"De legitimatie die je hebt opgegeven heeft zijn onjuist of geven geen "
-"toegang tot deze hulpbron."
+"De legitimatie die je hebt opgegeven heeft is onjuist of geeft geen toegang "
+"tot deze hulpbron."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
@@ -49,7 +50,7 @@ msgstr "% hosts gevonden ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr "Verkopers"
+msgstr "Fabrikant"
 
 #: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
@@ -70,11 +71,11 @@ msgstr "Driver"
 
 #: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr "Verkoper"
+msgstr "Fabrikant"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "Sub-verkoper"
+msgstr "Sub-fabrikant"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
@@ -86,7 +87,7 @@ msgstr "Datum van toevoeging"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "$ tot hosten"
+msgstr "$ tot hosts"
 
 #: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
@@ -170,11 +171,11 @@ msgstr "Platform"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr "systeemverkoper"
+msgstr "Systeemfabrikant"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr "Processormodel"
+msgstr "Systeemmodel"
 
 #: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
@@ -275,7 +276,7 @@ msgstr "Aantal CPU's"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr "CPU verkoper"
+msgstr "CPU fabrikant"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
@@ -341,7 +342,7 @@ msgstr ""
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr "Hoofd-verkoper grafiek"
+msgstr "Hoofd fabrikant grafiek"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"

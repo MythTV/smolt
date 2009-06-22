@@ -23,7 +23,7 @@ parser.add_option('-f', '--force',
                   help=_('force makeuuid to generate a new UUID even when one exists'))
 parser.add_option('-o', '--output',
                   dest='uuid_file',
-                  default='/etc/sysconfig/hw-uuid',
+                  default='/etc/smolt/hw-uuid',
                   help=_('the uuid file'))
 parser.add_option('-s', '--secure',
                   dest='secure',

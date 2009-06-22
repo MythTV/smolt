@@ -205,7 +205,7 @@ msgid ""
 msgstr ""
 "Podaci su uspješno poslati. Ako vam tijekom izrade prijave o nedostatku zatreba pozivanje na vaš profil hardvera, vaš UUID je \n"
 "%s,\n"
-"a pohranjen je u datoteci /etc/sysconfig/hw-uuid"
+"a pohranjen je u datoteci /etc/smolt/hw-uuid"
 
 #: smoltGui.py:104
 #, fuzzy

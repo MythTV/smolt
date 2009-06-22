@@ -34,6 +34,7 @@ from smolt import debug
 from smolt import error
 from smolt import get_config_attr
 from scan import scan, rating
+from gate import GateFromConfig
 
 parser = OptionParser(version = smolt.smoltProtocol)
 
@@ -42,6 +43,11 @@ parser.add_option('-d', '--debug',
                   default = False,
                   action = 'store_true',
                   help = _('enable debug information'))
+parser.add_option('--config',
+                  dest = 'the_only_config_file',
+                  default = None,
+                  metavar = 'file.cfg',
+                  help = _('specify the location of the (only) config file to use'))
 parser.add_option('-s', '--server',
                   dest = 'smoonURL',
                   default = smolt.smoonURL,
@@ -118,6 +124,9 @@ parser.add_option('--http-proxy',
 
 
 (opts, args) = parser.parse_args()
+
+if opts.the_only_config_file != None:
+    GateFromConfig(opts.the_only_config_file)
 
 smolt.DEBUG = opts.DEBUG
 smolt.hw_uuid_file = opts.uuidFile
@@ -208,7 +217,7 @@ print
 if pub_uuid:
     pubUrl = smolt.get_profile_link(opts.smoonURL, pub_uuid)
     print _('To share your profile: \n\t%s (public)') % pubUrl
-    hw_uuid_file = get_config_attr("HW_PUBID", "/etc/sysconfig/hw-uuid.pub")
+    hw_uuid_file = get_config_attr("HW_PUBID", "/etc/smolt/hw-uuid.pub")
     hw_uuid_pub = os.path.basename(pubUrl)
     if not smolt.secure:
         print _('\tAdmin Password: %s') % admin

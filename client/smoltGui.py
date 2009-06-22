@@ -27,7 +27,9 @@ from i18n import _
 import smolt
 import gui
 import privacypolicy
- 
+from optparse import OptionParser
+from gate import GateFromConfig
+
 class SmoltGui(QMainWindow):
  
 	def __init__(self):
@@ -97,7 +99,7 @@ class SmoltGui(QMainWindow):
 			url = urljoin(smolt.smoonURL, '/show?uuid=%s' % pub_uuid)
 			finishMessage = QMessageBox(QMessageBox.Information, _('Profile Sent'),
 					_('The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in %s') \
-						% (url, smolt.get_config_attr("HW_UUID", "/etc/sysconfig/hw-uuid")),
+						% (url, smolt.get_config_attr("HW_UUID", "/etc/smolt/hw-uuid")),
 					QMessageBox.NoButton, self)
 			success = True
 		except TypeError:
@@ -162,10 +164,22 @@ class SmoltGui(QMainWindow):
 		layout.addWidget(buttonBox, 4, 2, 1, 1);
  
 		about.exec_()
- 
-if __name__ == '__main__':
-	app = QApplication(sys.argv)
-	smolt = SmoltGui()
-	smolt.show()
-	sys.exit(app.exec_())
 
+if __name__ == '__main__':
+    dollar_zero_backup = sys.argv[0]
+    parser = OptionParser(version = smolt.smoltProtocol)
+    parser.add_option('--config',
+                    dest = 'the_only_config_file',
+                    default = None,
+                    metavar = 'file.cfg',
+                    help = _('specify the location of the (only) config file to use'))
+    (opts, args) = parser.parse_args()
+    if opts.the_only_config_file != None:
+        GateFromConfig(opts.the_only_config_file)
+
+    # NOTE: Run "python smoltGui.py --foo -- --one --two"
+    # to set args passed to Qt to ['--one', '--two']
+    app = QApplication([dollar_zero_backup] + args)
+    smolt = SmoltGui()
+    smolt.show()
+    sys.exit(app.exec_())

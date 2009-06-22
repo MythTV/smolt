@@ -16,20 +16,25 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
-from gate import Gate
+from gate import GateFromConfig
 import unittest
 import ConfigParser
 
+def _wrap_gate():
+    return GateFromConfig('tests/test.cfg')
+
 class TestGate(unittest.TestCase):
+
     def test_singleton(self):
-        a = Gate()
-        b = Gate()
+        a = _wrap_gate()
+        b = _wrap_gate()
         self.assertEqual(a, b)
 
     def test_valid(self):
-        Gate().grants("any", "cpu")
-        Gate().grants("cpu")
+        self.assertFalse(_wrap_gate().grants("any", "arch"))
+        self.assertTrue(_wrap_gate().grants("any", "cpu"))
+        self.assertTrue(_wrap_gate().grants("cpu"))
 
     def test_invalid(self):
-        self.assertRaises(ConfigParser.NoOptionError,
-            Gate().grants, "any", "FOO")
+        self.assertFalse(_wrap_gate().grants("any", "FOO"))
+        self.assertFalse(_wrap_gate().grants("FOO", "BAR"))
