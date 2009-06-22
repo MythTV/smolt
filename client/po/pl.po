@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-22 13:41-0500\n"
-"PO-Revision-Date: 2008-06-10 18:15+0200\n"
+"PO-Revision-Date: 2009-06-22 22:14+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr "podaj czas oczekiwania HTTP w sekundach (domyślnie %default sekund)"
 
 #: deleteProfile.py:70 sendProfile.py:103
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr ""
+msgstr "podaj UUID do użycia, przydatne głównie do debugowania i testowania."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -78,21 +78,20 @@ msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr "przeskanuj ten komputer tylko w poszukiwaniu znanych aktualizacji sprzętu, nie wysyłaj profilu."
 
 #: sendProfile.py:99
-#, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "przeskanuj ten komputer tylko w poszukiwaniu znanych aktualizacji sprzętu, nie wysyłaj profilu."
+msgstr "nie skanuj tego komputera w poszukiwaniu znanych aktualizacji sprzętu, tylko wyślij profil."
 
 #: sendProfile.py:108
 msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
-msgstr ""
+msgstr "Wyślij ten profil także do Bodhi, dla rozwoju Fedory"
 
 #: sendProfile.py:113
 msgid "Request a new public UUID"
-msgstr ""
+msgstr "Zażądaj nowego publicznego UUID"
 
 #: sendProfile.py:117
 msgid "HTTP proxy"
-msgstr ""
+msgstr "Pośrednik HTTP"
 
 #: sendProfile.py:134
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
@@ -101,7 +100,7 @@ msgstr "Smolt jest ustawiony tak, aby sprawdzał, ale sprawdzanie jest wyłączo
 #: sendProfile.py:144
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
-msgstr ""
+msgstr "Powodzenie! Nowy publiczny UUID to: %s"
 
 #: sendProfile.py:164
 msgid "Send this information to the Smolt server? (y/n)"
@@ -132,117 +131,110 @@ msgid "Registration Failed, Try again"
 msgstr "Rejestracja nie powiodła się, spróbuj ponownie"
 
 #: sendProfile.py:210
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
-msgstr "Aby wyświetlić profil, odwiedź: %s"
+msgstr ""
+"Aby współdzielić profil: \n"
+"\t%s (publiczne)"
 
 #: sendProfile.py:214
-#, fuzzy, python-format
+#, python-format
 msgid "\tAdmin Password: %s"
-msgstr "Hasło:"
+msgstr "\tHasło administratora: %s"
 
 #: sendProfile.py:217
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
-msgstr ""
+msgstr "Nie znaleziono publicznego UUID! Ponownie wykonaj za pomocą -n, aby utworzyć nowy publiczny UUID"
 
 #: smoltGui.py:39
 msgid "Smolt"
-msgstr ""
+msgstr "Smolt"
 
 #: smoltGui.py:44
-#, fuzzy
 msgid "&File"
-msgstr "_Plik"
+msgstr "&Plik"
 
 #: smoltGui.py:45
-#, fuzzy
 msgid "&Help"
-msgstr "Pomo_c"
+msgstr "Pomo&c"
 
 #: smoltGui.py:48
-#, fuzzy
 msgid "&Send Profile"
-msgstr "_Wyślij profil"
+msgstr "&Wyślij profil"
 
 #: smoltGui.py:49
-#, fuzzy
 msgid "&My Smolt Page"
-msgstr "_Moja strona Smolta"
+msgstr "&Moja strona Smolta"
 
 #: smoltGui.py:50
 msgid "&Exit"
-msgstr ""
+msgstr "&Zakończ"
 
 #: smoltGui.py:51
-#, fuzzy
 msgid "Show &Privacy Policy"
-msgstr "Wyświetl p_olitykę prywatności"
+msgstr "Wyświetl p&olitykę prywatności"
 
 #: smoltGui.py:52
-#, fuzzy
 msgid "&About"
-msgstr "_O programie"
+msgstr "&O programie"
 
 #: smoltGui.py:53
-#, fuzzy
 msgid "About &Qt"
-msgstr "_O programie"
+msgstr "O bibliotece &Qt"
 
 #: smoltGui.py:67
 msgid "Main Tool Bar"
-msgstr ""
+msgstr "Główny pasek narzędziowy"
 
 #: smoltGui.py:98
 msgid "Profile Sent"
-msgstr ""
+msgstr "Wysłano profil"
 
 #: smoltGui.py:99
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
-"Dane zostały pomyślnie wysłane. Jeśli potrzebujesz profilu sprzętu dla raportu o błędzie, twój UUID to \n"
+"Pomyślnie wysłano dane. Jeśli potrzebujesz profilu sprzętu dla raportu o błędzie, twój UUID to \n"
 "%s\n"
 "przechowywany w %s"
 
 #: smoltGui.py:104
-#, fuzzy
 msgid "Error"
-msgstr "Błąd:"
+msgstr "Błąd"
 
 #: smoltGui.py:105
 msgid "An error occurred while sending the data to the server."
 msgstr "Wystąpił błąd podczas wysyłania danych do serwera."
 
 #: smoltGui.py:122
-#, fuzzy
 msgid "Privacy Policy"
-msgstr "Wyświetl p_olitykę prywatności"
+msgstr "Polityka prywatności"
 
 #: smoltGui.py:136
 msgid "<h3>Smolt Qt</h3>Version 0.1.1<br/>"
-msgstr ""
+msgstr "<h3>Smolt Qt</h3>Wersja 0.1.1<br/>"
 
 #: smoltGui.py:137
 msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
-msgstr ""
+msgstr "<br/>Smolt Qt jest klientem GUI Smolta do wysyłania profili sprzętu Smolta \t\t\t\tdo serwera Smoon.<br/>"
 
 #: smoltGui.py:140
 msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr ""
+msgstr "<b>O programie Smolt:</b><br/>Profiler sprzętu Smolt jest systemem serwer-klient \t\t\t\t, który wykonuje skanowanie sprzętu komputera i wysyła wyniki \t\t\t\tdo publicznego serwera Projektu Fedora opartego na TurboGears. Wysyłane dane są anonimowe \t\t\t\ti nie powinny zawierać żadnych prywatnych danych, innych niż informacje \t\t\t\to fizycznym sprzęcie i podstawowe informacje o systemie operacyjnym.<br/>"
 
 #: smoltGui.py:146
 msgid "<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
-msgstr ""
+msgstr "<b>Autorzy:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:148
 #, python-format
 msgid "%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; \t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU General \t\t\t\tPublic License as published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr ""
+msgstr "%s<br/>%s<br/>%s<br/><br/><b>Licencja:</b><br/>Ten program jest wolnym oprogramowaniem; \t\t\t\tmożna go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej \t\t\t\tLicencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania (Free Software Foundation) - według wersji trzeciej \t\t\t\ttej Licencji lub którejś z późniejszych wersji."
 
 #: smolt.py:364
 #, python-format
@@ -264,18 +256,20 @@ msgstr ""
 #: smolt.py:503
 #, python-format
 msgid "\tYour pub_uuid file  could not be cached: %s\n"
-msgstr ""
+msgstr "\tNie można zapisać pliku pub_uuid w pamięci podręcznej: %s\n"
 
 #: smolt.py:504
 msgid ""
 "\tMaybe re-run as root?\n"
 "\n"
 msgstr ""
+"\tMoże uruchom ponownie jako root?\n"
+"\n"
 
 #: smolt.py:513
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr ""
+msgstr "\tNie można zapisać tokena administratora w pamięci podręcznej: %s\n"
 
 #: smolt.py:524 smolt.py:566 smolt.py:596
 #, python-format
@@ -288,12 +282,12 @@ msgstr "Błędna wersja, serwer nie może obsłużyć klienta"
 
 #: smolt.py:538
 msgid "Something went wrong fetching a token"
-msgstr ""
+msgstr "Coś poszło źle podczas przechwytywania tokena"
 
 #: smolt.py:575
-#, fuzzy, python-format
+#, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "Wystąpił błąd podczas wysyłania danych do serwera."
+msgstr "Wystąpił błąd podczas kontaktowania się z serwerem: %s"
 
 #: smolt.py:617
 msgid "Devices"
@@ -301,7 +295,7 @@ msgstr "Urządzenia"
 
 #: smolt.py:624
 msgid "\tFilesystem Information"
-msgstr ""
+msgstr "\tInformacje o systemie plików"
 
 #: smolt.py:636
 msgid "UUID"
@@ -337,16 +331,15 @@ msgstr "Model procesora"
 
 #: smolt.py:644
 msgid "CPU Stepping"
-msgstr ""
+msgstr "Stepping procesora"
 
 #: smolt.py:645
 msgid "CPU Family"
-msgstr ""
+msgstr "Rodzina procesora"
 
 #: smolt.py:646
-#, fuzzy
 msgid "CPU Model Num"
-msgstr "Model procesora"
+msgstr "Numer modelu procesora"
 
 #: smolt.py:647
 msgid "Number of CPUs"
@@ -385,9 +378,8 @@ msgid "SELinux Enabled"
 msgstr "SELinux jest włączony"
 
 #: smolt.py:656
-#, fuzzy
 msgid "SELinux Policy"
-msgstr "Wymuszanie SELinuksa"
+msgstr "Polityka SELinuksa"
 
 #: smolt.py:657
 msgid "SELinux Enforce"
@@ -408,7 +400,7 @@ msgstr "Nie można zapisać UUID, kontynuowanie...\n"
 #: smolt.py:1113
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
-msgstr ""
+msgstr "Nie można utworzyć pliku UUID: %s\n"
 
 #: smolt.py:1116
 msgid "Unable to determine UUID of system!\n"
@@ -440,11 +432,11 @@ msgstr "Smolt jest narzędziem profilowania sprzętu dla Projektu Fedora. Wysył
 
 #: smoltFirstBoot.py:117
 msgid "_Participate in KernelOOPS"
-msgstr ""
+msgstr "_Weź udział w KernelOOPS"
 
 #: smoltFirstBoot.py:118
 msgid "Submit profile link to _Bodhi"
-msgstr ""
+msgstr "Wyślij odnośnik do profilu do _Bodhi"
 
 #: smoltFirstBoot.py:120
 msgid "_Send Profile"
@@ -537,31 +529,31 @@ msgstr ""
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr ""
+msgstr "Obecna ocena producenta/modelu."
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr ""
+msgstr "Bez oceny/nieznane"
 
 #: scan.py:46
 msgid "Non-working"
-msgstr ""
+msgstr "Nie działa"
 
 #: scan.py:47
 msgid "Partially-working"
-msgstr ""
+msgstr "Częściowo działa"
 
 #: scan.py:48
 msgid "Requires 3rd party drivers"
-msgstr ""
+msgstr "Wymaga sterowników firm trzecich"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr ""
+msgstr "Działa, ale wymaga dodatkowej konfiguracji"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr ""
+msgstr "Działa od razu"
 
 #: scan.py:58
 #, python-format
@@ -569,67 +561,17 @@ msgid "Scanning %s for known errata.\n"
 msgstr "Skanowanie %s w poszukiwaniu znanych aktualizacji.\n"
 
 #: scan.py:88
-#, fuzzy
 msgid "\tErrata Found!"
-msgstr "Znaleziono aktualizację!"
+msgstr "\tZnaleziono aktualizację!"
 
 #: scan.py:91
-#, fuzzy
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "Nie znaleziono aktualizacji, jeśli masz problem z tym komputerem,"
+msgstr "\tNie znaleziono aktualizacji, jeśli masz problem z tym komputerem,"
 
 #: scan.py:92
-#, fuzzy
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "przejdź swojego profilu i utwórz stronę wiki dla urządzenia, aby inni"
+msgstr "\tprzejdź swojego profilu i utwórz stronę wiki dla urządzenia, aby inni"
 
 #: scan.py:93
-#, fuzzy
 msgid "\tbenefit"
-msgstr "mogli odnieść z tego korzyści"
-
-#~ msgid "_Quit"
-#~ msgstr "Za_kończ"
-
-#~ msgid "Quit the program without sending your hardware profile to the server"
-#~ msgstr "Zakończ program bez wysyłania profilu sprzętu do serwera"
-
-#~ msgid "_Send"
-#~ msgstr "_Wyślij"
-
-#~ msgid "Send your hardware profile to the server."
-#~ msgstr "Wyślij profil sprzętu do serwera."
-
-#~ msgid "Show the Smolt privacy policy."
-#~ msgstr "Wyświetl politykę prywatności Smolta."
-
-#~ msgid "Take me to my smolt profile page"
-#~ msgstr "Przejdź na stronę z profilem Smolta"
-
-#~ msgid "Smolt Privacy Policy"
-#~ msgstr "Polityka prywatności Smolta"
-
-#~ msgid "translator-credits"
-#~ msgstr "Piotr Drąg <piotrdrag@gmail.com>, 2007"
-
-#~ msgid "Fedora hardware profiler."
-#~ msgstr "Profilowanie sprzętu Fedory."
-
-#~ msgid "Copyright © 2007 Mike McGrath"
-#~ msgstr "Copyright © 2007 Mike McGrath"
-
-#~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
-#~ msgstr ""
-#~ "Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania - według wersji 2-giej tej Licencji lub którejś z późniejszych wersji.\n"
-#~ "\n"
-#~ "Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania bliższych informacji - Powszechna Licencja Publiczna GNU.\n"
-#~ "\n"
-#~ "Z pewnością wraz z niniejszym programem otrzymałeś też egzemplarz Powszechnej Licencji Publicznej GNU; jeśli nie - napisz do Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
-
-#~ msgid "Communication with server failed"
-#~ msgstr "Komunikacja z serwerem nie powiodła się"
+msgstr "\tmogli odnieść z tego korzyści"
