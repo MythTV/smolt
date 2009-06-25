@@ -1,15 +1,15 @@
 # Translation of Smolt to Hungarian.
-# Copyright © 2007 Red Hat, Inc.
-# Sulyok Peti <peti@sulyok.hu>, 2007-2008.
+# Copyright © 2009 Fedora Project
+# Sulyok Peti <peti@fedoraproject.org>, 2007-2009.
 #
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Smolt 1.0\n"
+"Project-Id-Version: Smolt master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-22 13:41-0500\n"
-"PO-Revision-Date: 2008-04-23 19:21+0100\n"
-"Last-Translator: Sulyok Péter <peti@sulyok.hu>\n"
+"PO-Revision-Date: 2009-06-25 23:44+0200\n"
+"Last-Translator: Sulyok Péter <peti@fedoraproject.org>\n"
 "Language-Team: Hungarian <fedora-trans-hu@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,11 +45,14 @@ msgstr "adja meg a HTTP használó ügyfelet (alapértelmezés „%default”)"
 #: deleteProfile.py:66 sendProfile.py:84
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr "adja meg a HTTP időkorlátot másodpercben (alapértelmezés %default másodperc)"
+msgstr ""
+"adja meg a HTTP időkorlátot másodpercben (alapértelmezés %default másodperc)"
 
 #: deleteProfile.py:70 sendProfile.py:103
 msgid "specify which uuid to use, useful for debugging and testing mostly."
 msgstr ""
+"adja meg a használandó UUID-t. Ez főként a hibakeresésnél és próbáknál "
+"hasznos."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -76,38 +79,44 @@ msgid "continue to send until success"
 msgstr "folytassa a küldést amíg nem sikerül"
 
 #: sendProfile.py:89
-msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr "ez egy önműködő ellenőrzés, csak akkor fut, ha a „smolt” szolgáltatást elindították"
+msgid ""
+"this is an automated checkin, will only run if the \"smolt\" service has "
+"been started"
+msgstr ""
+"ez egy önműködő ellenőrzés, csak akkor fut, ha a „smolt” szolgáltatást "
+"elindították"
 
 #: sendProfile.py:94
 msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr "csak ismert hibajegyzék után kutassa e gépet, ne küldjön profilt."
 
 #: sendProfile.py:99
-#, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "csak ismert hibajegyzék után kutassa e gépet, ne küldjön profilt."
+msgstr "nem vizsgálja a gépet ismert hibák után kutatva, csak küldi a profilt."
 
 #: sendProfile.py:108
 msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
-msgstr ""
+msgstr "Küldje e profilt Bodhihoz is és Fedora fejlesztéshez is."
 
 #: sendProfile.py:113
 msgid "Request a new public UUID"
-msgstr ""
+msgstr "Új nyilvános UUID kérés"
 
 #: sendProfile.py:117
 msgid "HTTP proxy"
-msgstr ""
+msgstr "HTTP átjátszó"
 
 #: sendProfile.py:134
-msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "Smolt beállítva bejelentkezésre, de bejelentkezés letiltva (tipp: service smolt start)"
+msgid ""
+"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+"Smolt beállítva bejelentkezésre, de bejelentkezés letiltva (tipp: service "
+"smolt start)"
 
 #: sendProfile.py:144
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
-msgstr ""
+msgstr "Sikerült!  Az ön új nyilvános UUID-je: %s"
 
 #: sendProfile.py:164
 msgid "Send this information to the Smolt server? (y/n)"
@@ -138,117 +147,140 @@ msgid "Registration Failed, Try again"
 msgstr "Sikertelen regisztráció. Próbálja újra!"
 
 #: sendProfile.py:210
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
-msgstr "A profil megtekintéséhez ld: %s"
+msgstr ""
+"A profil megosztásához: \n"
+"\t%s (nyilvános)"
 
 #: sendProfile.py:214
-#, fuzzy, python-format
+#, python-format
 msgid "\tAdmin Password: %s"
-msgstr "Jelszó:"
+msgstr "\tAdmin jelszó: %s"
 
 #: sendProfile.py:217
-msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgid ""
+"No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr ""
+"Nincs nyilvános UUID!  Kérem futtasson újra „-n” kapcsolóval, hogy csináljak "
+"új nyilvános UUID-t."
 
 #: smoltGui.py:39
 msgid "Smolt"
-msgstr ""
+msgstr "Smolt"
 
 #: smoltGui.py:44
-#, fuzzy
 msgid "&File"
-msgstr "_Fájl"
+msgstr "&Fájl"
 
 #: smoltGui.py:45
-#, fuzzy
 msgid "&Help"
-msgstr "_Súgó"
+msgstr "&Súgó"
 
 #: smoltGui.py:48
-#, fuzzy
 msgid "&Send Profile"
-msgstr "Profil _küldése"
+msgstr "&Profil küldése"
 
 #: smoltGui.py:49
-#, fuzzy
 msgid "&My Smolt Page"
-msgstr "_Saját Smolt lap"
+msgstr "Saját S&molt lap"
 
 #: smoltGui.py:50
 msgid "&Exit"
-msgstr ""
+msgstr "&Kilépés"
 
 #: smoltGui.py:51
-#, fuzzy
 msgid "Show &Privacy Policy"
-msgstr "S_zemélyes adatok szabályzat megjelenítése"
+msgstr "S&zemélyes adatok szabályzat megjelenítése"
 
 #: smoltGui.py:52
-#, fuzzy
 msgid "&About"
-msgstr "Né_vjegy"
+msgstr "Né&vjegy"
 
 #: smoltGui.py:53
-#, fuzzy
 msgid "About &Qt"
-msgstr "Né_vjegy"
+msgstr "&Qt Névjegy"
 
 #: smoltGui.py:67
 msgid "Main Tool Bar"
-msgstr ""
+msgstr "Fő eszköztár"
 
 #: smoltGui.py:98
 msgid "Profile Sent"
-msgstr ""
+msgstr "Profil elküldve"
 
 #: smoltGui.py:99
-#, fuzzy, python-format
+#, python-format
 msgid ""
-"The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
+"The data was successfully sent. If you need to refer to your hardware "
+"profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
-"Az adatokat sikerült elküldeni. Ha utalni kell az ön hardverprofiljára egy hibabejelentésben, az ön UUID-je:\n"
+"Az adatokat sikerült elküldeni. Ha utalni kell az ön hardverprofiljára egy "
+"hibabejelentésben, az ön UUID-je:\n"
 "%s\n"
 "eltárolva %s fájlban"
 
 #: smoltGui.py:104
-#, fuzzy
 msgid "Error"
-msgstr "Hiba:"
+msgstr "Hiba"
 
 #: smoltGui.py:105
 msgid "An error occurred while sending the data to the server."
 msgstr "Hiba történt az adatok kiszolgálóra küldésekor."
 
 #: smoltGui.py:122
-#, fuzzy
 msgid "Privacy Policy"
-msgstr "S_zemélyes adatok szabályzat megjelenítése"
+msgstr "S_zemélyes adatok szabályzat"
 
 #: smoltGui.py:136
 msgid "<h3>Smolt Qt</h3>Version 0.1.1<br/>"
-msgstr ""
+msgstr "<h3>Smolt Qt</h3> 0.1.1<br/>"
 
 #: smoltGui.py:137
-msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
+msgid ""
+"<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
+"\tto a Smoon server.<br/>"
 msgstr ""
+"<br/>Smolt Qt egy Smolt grafikus ügyfél Smolt gép profilok elküldésére \t\t\t"
+"\tegy Smoon szolgálóra.<br/>"
 
 #: smoltGui.py:140
-msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
+msgid ""
+"<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t"
+"\tsystem that does a hardware scan against a machine and sends the results \t"
+"\t\t\tto a public Fedora Project turbogears server. The sends are anonymous "
+"\t\t\t\tand should not contain any private information other than the "
+"physical \t\t\t\thardware information and basic OS info.<br/>"
 msgstr ""
+"<b>Smolt:</b><br/>A smolt gépelemző egy szolgáló-ügyfél \t\t\t\trendszer ami "
+"megvizsgálja a gépet, és elküldi az eredményt \t\t\t\tegy nyilvános Fedora "
+"Terv turbogears szolgálónak. A küldés névtelen \t\t\t\tés nem kellene "
+"tartalmaznia semmilyen személyes adatot a \t\t\t\tgép összetételén, és az "
+"alapvető operációs rendszer adatokon kívül.<br/>"
 
 #: smoltGui.py:146
-msgid "<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+msgid ""
+"<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
 msgstr ""
+"<b>Szerzők:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:148
 #, python-format
-msgid "%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; \t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU General \t\t\t\tPublic License as published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
+msgid ""
+"%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; "
+"\t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU "
+"General \t\t\t\tPublic License as published by the Free Software Foundation; "
+"either version 3 \t\t\t\tof the License, or (at your option) any later "
+"version."
 msgstr ""
+"%s<br/>%s<br/>%s<br/><br/><b>Engedély:</b><br/>E program szabad szoftver. \t"
+"\t\t\tTerjeszthetik és megváltoztathatják a GNU általános nyilvános \t\t\t"
+"\tengedélye szerint, ahogy azt a Szabad Szoftver Alapítvány kiadta \t\t\t"
+"\tvagy a 3. vagy bármely újabb változatban."
 
 #: smolt.py:364
 #, python-format
@@ -270,18 +302,20 @@ msgstr ""
 #: smolt.py:503
 #, python-format
 msgid "\tYour pub_uuid file  could not be cached: %s\n"
-msgstr ""
+msgstr "\tA pub_uuid fájlt  nem lehetett betárazni: %s\n"
 
 #: smolt.py:504
 msgid ""
 "\tMaybe re-run as root?\n"
 "\n"
 msgstr ""
+"\tTalán egy újrafuttatás rendszergazdaként?\n"
+"\n"
 
 #: smolt.py:513
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr ""
+msgstr "\tA rendszergazda kulcsot  nem lehetett betárazni: %s\n"
 
 #: smolt.py:524 smolt.py:566 smolt.py:596
 #, python-format
@@ -294,12 +328,12 @@ msgstr "Hibás változat. A kiszolgáló képtelen az ügyfelet kezelni"
 
 #: smolt.py:538
 msgid "Something went wrong fetching a token"
-msgstr ""
+msgstr "Valami rosszul sült el a kulcs beszerzésekor"
 
 #: smolt.py:575
-#, fuzzy, python-format
+#, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "Hiba történt az adatok kiszolgálóra küldésekor."
+msgstr "Hiba történt a szolgálóhoz csatlakozván: %s"
 
 #: smolt.py:617
 msgid "Devices"
@@ -307,7 +341,7 @@ msgstr "Eszközök"
 
 #: smolt.py:624
 msgid "\tFilesystem Information"
-msgstr ""
+msgstr "\tFájlrendszer ismertető"
 
 #: smolt.py:636
 msgid "UUID"
@@ -343,16 +377,15 @@ msgstr "CPU modell"
 
 #: smolt.py:644
 msgid "CPU Stepping"
-msgstr ""
+msgstr "CPU lépés"
 
 #: smolt.py:645
 msgid "CPU Family"
-msgstr ""
+msgstr "CPU család"
 
 #: smolt.py:646
-#, fuzzy
 msgid "CPU Model Num"
-msgstr "CPU modell"
+msgstr "CPU modell szám"
 
 #: smolt.py:647
 msgid "Number of CPUs"
@@ -391,9 +424,8 @@ msgid "SELinux Enabled"
 msgstr "SELinux engedélyezve"
 
 #: smolt.py:656
-#, fuzzy
 msgid "SELinux Policy"
-msgstr "SELinux kényszerít"
+msgstr "SELinux szabályzat"
 
 #: smolt.py:657
 msgid "SELinux Enforce"
@@ -414,7 +446,7 @@ msgstr "Nem lehet az UUID-t menteni, folytatás…\n"
 #: smolt.py:1113
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
-msgstr ""
+msgstr "Nem lehetett UUID fájlt csinálni: %s\n"
 
 #: smolt.py:1116
 msgid "Unable to determine UUID of system!\n"
@@ -429,8 +461,14 @@ msgid "Hardware Profile"
 msgstr "Hardver profil"
 
 #: smoltFirstBoot.py:55
-msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "Biztosan nem szeretne profilt küldeni? A profil beküldése mint tájékozódás, a fejlesztéseink értékes forrása, és segít bajok megoldásában, amik felmerülhetnek az ön hardverével."
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr ""
+"Biztosan nem szeretne profilt küldeni? A profil beküldése mint tájékozódás, "
+"a fejlesztéseink értékes forrása, és segít bajok megoldásában, amik "
+"felmerülhetnek az ön hardverével."
 
 #: smoltFirstBoot.py:63
 msgid "_Reconsider sending"
@@ -441,16 +479,26 @@ msgid "_No, do not send."
 msgstr "_Ne küldje!"
 
 #: smoltFirstBoot.py:91
-msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt a a Fedora Terv hardver profilozója. Az ön profiljának beküldése egy nagyszerű módja annak, hogy visszaadjanak a közösségnek, hiszen e tájékoztatást használják, hogy a népszerű hardverekre és platformokra összpontosíthassák az erőfeszítéseket. A beküldés névtelen. A profil beküldésével havi frissítés lehetséges."
+msgid ""
+"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
+"profile is a great way to give back to the community as this information is "
+"used to help focus our efforts on popular hardware and platforms.  "
+"Submissions are anonymous.  Sending your profile will enable a monthly "
+"update."
+msgstr ""
+"Smolt a a Fedora Terv hardver profilozója. Az ön profiljának beküldése egy "
+"nagyszerű módja annak, hogy visszaadjanak a közösségnek, hiszen e "
+"tájékoztatást használják, hogy a népszerű hardverekre és platformokra "
+"összpontosíthassák az erőfeszítéseket. A beküldés névtelen. A profil "
+"beküldésével havi frissítés lehetséges."
 
 #: smoltFirstBoot.py:117
 msgid "_Participate in KernelOOPS"
-msgstr ""
+msgstr "_Részvétel KernelOOPS-ban"
 
 #: smoltFirstBoot.py:118
 msgid "Submit profile link to _Bodhi"
-msgstr ""
+msgstr "Profil hivatkozás elküldése _Bodhinak"
 
 #: smoltFirstBoot.py:120
 msgid "_Send Profile"
@@ -487,29 +535,37 @@ msgstr "Leírás"
 #: privacypolicy.py:3
 msgid ""
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a "
+"submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"the submission is anonymous.  If at any point in time a user wants to "
+"delete\n"
 "their profile from the database they need only run\n"
 "\n"
 "    smoltDeleteProfile\n"
 "\n"
-"The information sent to the smolt database server should be considered public\n"
-"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"The information sent to the smolt database server should be considered "
+"public\n"
+"in that anyone can view the statistics, data and share machine profiles.  "
+"In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"attention.  As such, not only will this information be shared with 3rd "
+"parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.\n"
 "\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and they\n"
+"server first.  This is the only place IP addresses are being logged and "
+"they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
-"the smolt database.  These logs are private and will not be available to the\n"
+"the smolt database.  These logs are private and will not be available to "
+"the\n"
 "general public.\n"
 "\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team at\n"
+"questions about this policy should contact the Fedora Infrastructure Team "
+"at\n"
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
@@ -521,9 +577,12 @@ msgstr ""
 "\n"
 "    smoltDeleteProfile\n"
 "\n"
-"A smolt adatbázis kiszolgálóra beküldött információ nyilvánosnak tekintendő,\n"
-"azaz bárki megnézheti a statisztikákat, adatokat és megoszthat gép profilokat.\n"
-"Smoltot igyekeztek úgy kialakítani, hogy felkeltse a hardver eladók és mások\n"
+"A smolt adatbázis kiszolgálóra beküldött információ nyilvánosnak "
+"tekintendő,\n"
+"azaz bárki megnézheti a statisztikákat, adatokat és megoszthat gép "
+"profilokat.\n"
+"Smoltot igyekeztek úgy kialakítani, hogy felkeltse a hardver eladók és "
+"mások\n"
 "figyelmét. Ily módon nem csak információkat oszt meg másokkal, de használni\n"
 "fogjuk smoltot, hogy jobb támogatást nyerjünk a nyílt forrású vezérlőknek,\n"
 "illetve általában a jobb felhasználói támogatásért.\n"
@@ -538,35 +597,36 @@ msgstr ""
 "E szabályzattal elégedetlen használók egyszerűen ne használják smoltot!\n"
 "Akinek kérdése van a szabályzatot illetően, lépjen kapcsolatba a Fedora\n"
 "Infrastruktúra Csapattal az admin [at] fedoraproject.org címen! Különben a\n"
-"használók bármikor törölhetik a profiljukat „smoltDeleteProfile” paranccsal.\n"
+"használók bármikor törölhetik a profiljukat „smoltDeleteProfile” "
+"paranccsal.\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr ""
+msgstr "Jelenlegi eladó/modell helyezés"
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr ""
+msgstr "Helyezetlen/ismeretlen"
 
 #: scan.py:46
 msgid "Non-working"
-msgstr ""
+msgstr "Nem működő"
 
 #: scan.py:47
 msgid "Partially-working"
-msgstr ""
+msgstr "Részben működő"
 
 #: scan.py:48
 msgid "Requires 3rd party drivers"
-msgstr ""
+msgstr "Külsős vezérlőket igényel"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr ""
+msgstr "Működik, további beállítást igényel"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr ""
+msgstr "Működik állítgatás nélkül"
 
 #: scan.py:58
 #, python-format
@@ -574,24 +634,20 @@ msgid "Scanning %s for known errata.\n"
 msgstr "%s kutatása ismert hibajegyzékért.\n"
 
 #: scan.py:88
-#, fuzzy
 msgid "\tErrata Found!"
-msgstr "Van hibajegyzék!"
+msgstr "\tVan hibajegyzék!"
 
 #: scan.py:91
-#, fuzzy
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "Nincs hibajegyzék. Ha baj van e géppel, kérem menjen "
+msgstr "\tNincs hibajegyzék. Ha baj van e géppel, kérem menjen "
 
 #: scan.py:92
-#, fuzzy
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "az ön profiljába és teremtsen egy wiki oldalt az eszköznek a többiek"
+msgstr "\taz ön profiljába, és csináljon egy wiki oldalt az eszköznek, "
 
 #: scan.py:93
-#, fuzzy
 msgid "\tbenefit"
-msgstr "hasznára"
+msgstr "\thogy másoknak is hasznára váljék"
 
 #~ msgid "_Quit"
 #~ msgstr "_Kilépés"
@@ -624,17 +680,32 @@ msgstr "hasznára"
 #~ msgstr "Szerzői jog © 2007 Mike McGrath"
 
 #~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
 #~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
 #~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program; if not, write to the Free Software Foundation, Inc., "
+#~ "675 Mass Ave, Cambridge, MA 02139, USA."
 #~ msgstr ""
-#~ "Ez egy szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software Foundation által kiadott GNU General Public License második (vagy bármely későbbi) változatában foglaltak alapján.\n"
+#~ "Ez egy szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software "
+#~ "Foundation által kiadott GNU General Public License második (vagy bármely "
+#~ "későbbi) változatában foglaltak alapján.\n"
 #~ "\n"
-#~ "Ezt a programot abban a reményben terjesztjük, hogy hasznos lesz, de nem vállalunk SEMMIFÉLE GARANCIÁT, még olyan értelemben sem, hogy a program alkalmas-e a KÖZREADÁSRA vagy EGY BIZONYOS FELADAT ELVÉGZÉSÉRE. További részletekért tanulmányozza a GNU GPL engedélyt.\n"
+#~ "Ezt a programot abban a reményben terjesztjük, hogy hasznos lesz, de nem "
+#~ "vállalunk SEMMIFÉLE GARANCIÁT, még olyan értelemben sem, hogy a program "
+#~ "alkalmas-e a KÖZREADÁSRA vagy EGY BIZONYOS FELADAT ELVÉGZÉSÉRE. További "
+#~ "részletekért tanulmányozza a GNU GPL engedélyt.\n"
 #~ "\n"
-#~ "A programhoz a GNU General Public License egy példánya is jár, ha nem kapta meg, írjon a Free Software Foundation Inc.-nek. Levélcímük: 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+#~ "A programhoz a GNU General Public License egy példánya is jár, ha nem "
+#~ "kapta meg, írjon a Free Software Foundation Inc.-nek. Levélcímük: 51 "
+#~ "Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
 
 #~ msgid "Communication with server failed"
 #~ msgstr "Kommunikáció a kiszolgálóval sikertelen"
