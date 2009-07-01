@@ -26,6 +26,8 @@ except ImportError:
 import re
 import sets
 import os
+from globaloverlaydictobject import GlobalOverlayDict, read_overlay_xml
+import ConfigParser
 
 class GentooSystemConfig:
     def __init__(self):
@@ -176,15 +178,47 @@ class GentooSystemConfig:
         self.infered['NUMBER_OF_LOCAL_GLOBAL_USE_FLAGS'] = local_global_count
 
     def _fill_overlays(self):
-        def is_private(overlay_location):
-            # TODO use %{storage} from /etc/layman/layman.cfg?
-            return not overlay_location.startswith('/usr/local/portage/layman/')
-        def overlay_name(overlay_location):
-            # TODO look up from file instead?
-            return overlay_location.replace('/usr/local/portage/layman/', '')
-        self.infered['OVERLAYS'] = [overlay_name(e) for e in
+        # read layman config
+        layman_config = ConfigParser.ConfigParser()
+        layman_config.read('/etc/layman/layman.cfg')
+        layman_storage_path = layman_config.get('MAIN', 'storage')
+        if not layman_storage_path.endswith('/'):
+            layman_storage_path = layman_storage_path + '/'
+        layman_installed_list_file = layman_config.get('MAIN', 'local_list')
+        global_overlay_dict = GlobalOverlayDict().create()
+        available_installed_overlay_dict = \
+                read_overlay_xml(layman_installed_list_file)
+        enabled_installed_overlays = \
                 portage.settings['PORTDIR_OVERLAY'].split(' ')
-                if not is_private(e)]
+
+        def overlay_name(overlay_location):
+            return overlay_location.split('/')[-1]
+
+        url_prefix_pattern = re.compile('^[a-zA-Z+]+://')
+        def normalize_repo_url(url):
+            res = url
+            res = re.sub(url_prefix_pattern, 'xxxxx://', res)
+            res = res.replace('://overlays.gentoo.org/svn/',
+                    '://overlays.gentoo.org/')
+            return res
+
+        def same_repository(a, b):
+            return normalize_repo_url(a) == normalize_repo_url(b)
+
+        def is_global(overlay_location):
+            name = overlay_name(overlay_location)
+            return overlay_location.startswith(layman_storage_path) and \
+                    same_repository(
+                        available_installed_overlay_dict[name],
+                        global_overlay_dict[name])
+
+        global_overlays = [overlay_name(e) for e in
+                enabled_installed_overlays if is_global(e)]
+
+        self.infered['OVERLAYS'] = global_overlays
+        self.infered['NUMBER_OF_PUBLIC_OVERLAYS'] = len(global_overlays)
+        self.infered['NUMBER_OF_PRIVATE_OVERLAYS'] = \
+                len(enabled_installed_overlays) - len(global_overlays)
 
 if __name__ == '__main__':
     gentoo = GentooSystemConfig()
