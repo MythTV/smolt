@@ -48,11 +48,15 @@ ${ET(ratingwidget.display(update="rating",
             <tr><th>Public UUID</th><td><a href="/client/show/?uuid=${host_object.pub_uuid}">${host_object.pub_uuid}</a></td></tr>
             <tr><th>Operating System:</th><td><a href="${getOSWikiLink(host_object.os)}">${host_object.os}</a></td></tr>
             <tr><th>Platform:</th><td>${host_object.platform}</td></tr>
-            <tr><th>Bogomips:</th><td>${host_object.bogomips}</td></tr>
-            <tr><th>CPU Speed:</th><td>${host_object.cpu_speed}</td></tr>
-            <tr><th>System Memory:</th><td>${host_object.system_memory}</td></tr>
             <tr><th>CPUVendor:</th><td>${host_object.cpu_vendor}</td></tr>
+            <tr><th>CPU Model:</th><td>${host_object.cpu_model}</td></tr>
+            <tr><th>CPU Speed:</th><td>${host_object.cpu_speed}</td></tr>
+            <tr><th>CPU Family:</th><td>${host_object.cpu_family}</td></tr>
+            <tr><th>CPU Model Num:</th><td>${host_object.cpu_model_num}</td></tr>
+            <tr><th>CPU Stepping:</th><td>${host_object.cpu_stepping}</td></tr>
+            <tr><th>Bogomips:</th><td>${host_object.bogomips}</td></tr>
             <tr><th>Number of CPUs:</th><td>${host_object.num_cpus}</td></tr>
+            <tr><th>System Memory:</th><td>${host_object.system_memory}</td></tr>
             <tr><th>Language:</th><td>${host_object.language}</td></tr>
             <tr><th>Default Runlevel:</th><td>${host_object.default_runlevel}</td></tr>
             <tr><th>System Vendor:</th><td>${host_object.vendor}</td></tr>
