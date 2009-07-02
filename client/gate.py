@@ -45,7 +45,7 @@ class _Gate:
                 ConfigParser.NoOptionError,
                 ConfigParser.NoSectionError):
             # TODO warn about error?
-            # Deny if in doubt
+            # Allow if in doubt - backwards compat
             return True
 
     def process(self, data_set, value_if_granted, value_else):
