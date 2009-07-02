@@ -301,10 +301,10 @@ class Client(object):
 
         for device_sql_id in orig_devices:
             bad_host_link = session.query(HostLink)\
-                .select_by(device_id=device_sql_id,
-                           host_link_id=host_sql.id)
-            if bad_host_link and len(bad_host_link):
-                session.delete(bad_host_link[0])
+              .filter(and_(HostLink.device_id==device_sql_id,
+              HostLink.host_link_id==host_sql.id))
+            if bad_host_link and bad_host_link > 0:
+               session.delete(bad_host_link[0])
         session.flush()
 
         map(session.delete, host_sql.file_systems)
