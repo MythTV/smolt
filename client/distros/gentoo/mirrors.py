@@ -33,7 +33,8 @@ class Mirrors:
         self._sync_url = self._get_sync_url()
 
     def _collect_used_mirror_urls(self):
-        return [e for e in portage.settings['GENTOO_MIRRORS'].split(' ') if e != '']
+        return [e for e in
+            portage.settings['GENTOO_MIRRORS'].split(' ') if e != '']
 
     def _get_sync_url(self):
         sync_url = portage.settings['SYNC']
@@ -47,7 +48,9 @@ class Mirrors:
         return sync_url
 
     def _collect_known_mirror_urls(self):
-        sync_file = SyncFile('http://www.gentoo.org/main/en/mirrors.xml?passthru=1', 'mirrors.xml')
+        sync_file = SyncFile(
+            'http://www.gentoo.org/main/en/mirrors.xml?passthru=1',
+            'mirrors.xml')
         file = open(sync_file.path(), 'r')
         parser = MirrorParser()
         try:
