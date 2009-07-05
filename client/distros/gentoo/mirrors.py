@@ -17,6 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 import sets
+import urlparse
 import portage
 from tools.mirrorparser import MirrorParser
 from tools.syncfile import SyncFile
@@ -29,17 +30,21 @@ class Mirrors:
                 url in self._collect_known_mirror_urls()]
         self._total_count = len(all_urls)
         self._secret_count = self._total_count - self.known_count()
-        sync_url = self._get_sync_url()
-        if sync_url in self._collect_known_sync_urls():
-            self._sync_url = sync_url
-        else:
-            self._sync_url = 'WITHHELD'
+        self._sync_url = self._get_sync_url()
 
     def _collect_used_mirror_urls(self):
         return [e for e in portage.settings['GENTOO_MIRRORS'].split(' ') if e != '']
 
     def _get_sync_url(self):
-        return portage.settings['SYNC']
+        sync_url = portage.settings['SYNC']
+        if (sync_url == None) or (sync_url.isspace()):
+            sync_url = '<using non-rsync tree>'
+        else:
+            parsed = urlparse.urlparse(sync_url)
+            if (parsed.hostname == None) or \
+                    not parsed.hostname.endswith('gentoo.org'):
+                sync_url = 'WITHHELD'
+        return sync_url
 
     def _collect_known_mirror_urls(self):
         sync_file = SyncFile('http://www.gentoo.org/main/en/mirrors.xml?passthru=1', 'mirrors.xml')
@@ -52,19 +57,6 @@ class Mirrors:
         parser.close()
         file.close()
         return set([url for url, description in parser.lines])
-
-    def _collect_known_sync_urls(self):
-        # TODO refactor app-portage/mirrorselect, use list from there
-        # and make it a dependency
-        sync_dict = [('rsync://rsync.gentoo.org/gentoo-portage', 'Default'),
-            ('rsync://rsync.namerica.gentoo.org/gentoo-portage',
-                'North America'),
-            ('rsync://rsync.samerica.gentoo.org/gentoo-portage',
-                'South America'),
-            ('rsync://rsync.europe.gentoo.org/gentoo-portage', 'Europe'),
-            ('rsync://rsync.asia.gentoo.org/gentoo-portage', 'Asia'),
-            ('rsync://rsync.au.gentoo.org/gentoo-portage', 'Australia')]
-        return set(k for k, v in sync_dict)
 
     def get_mirrors(self):
         return self._mirror_urls
