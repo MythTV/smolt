@@ -23,7 +23,7 @@ class TrivialScalars:
         self._trivial_scalars = {}
         for k in ('ARCH', 'CHOST', 'USERLAND', 'KERNEL', 'USE_ORDER',
                 'PORTAGE_FETCH_CHECKSUM_TRY_MIRRORS',
-                'PORTAGE_ECLASS_WARNING_ENABLE', 'SYNC'):
+                'PORTAGE_ECLASS_WARNING_ENABLE'):
             self._trivial_scalars[k] = portage.settings[k].strip()
 
     def get(self):
