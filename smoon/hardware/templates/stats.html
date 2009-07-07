@@ -240,8 +240,8 @@
        <div class="tabbertab"><h2>${_("Filesystems")}</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='filesystems in stat["filesystems"]'>
-                    <th align="right">${filesystems.fs_type}</th>
-                    <td align="center">${filesystems.cnt}</td>
+                    <th align="right">${filesystems[0]}</th>
+                    <td align="center">${filesystems[1]}</td>
                     <!--<td><strong>${'%.1f' % (float(filesystems.cnt) / float(stat["total_fs"]) * 100) } %</strong></td>
                     <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(filesystems.cnt) / float(stat["total_fs"]) * 100 }'><div id="bar"></div></td><td></td></tr></table></td>-->
                 </tr>

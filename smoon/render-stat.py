@@ -490,7 +490,8 @@ stats['registered_devices'] = session.query(ComputerLogicalDevice).count()
 
 if not  template_config['filesystem'] == [] :
     print '====================== filesystems ======================'
-    stats['filesystems'] = session.query(FileSys).all()
+    #stats['filesystems'] = session.query(FileSys).all()
+    stats['filesystems'] = select([FileSystem.fs_type, func.count(FileSystem.fs_type).label('cnt')], FileSystem.host_id == Host.id).where(Host.last_modified > (date.today() - timedelta(days=90))).group_by(FileSystem.fs_type).order_by(desc(func.count(FileSystem.fs_type))).execute().fetchall()
     stats['total_fs'] = session.query(FileSys).count()
     if not stats['total_fs']:
         stats['total_fs'] = 1
