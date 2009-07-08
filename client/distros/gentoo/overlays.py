@@ -22,7 +22,7 @@ import re
 from tools.syncfile import SyncFile
 from tools.overlayparser import OverlayParser
 
-class Overlays:
+class _Overlays:
     def __init__(self):
         self._fill_overlays()
 
@@ -106,6 +106,18 @@ class Overlays:
         print 'Total: ' + str(self.total_count())
         print '  Known: ' + str(self.known_count())
         print '  Secret: ' + str(self.secret_count())
+
+
+_overlays_instance = None
+def Overlays():
+    """
+    Simple singleton wrapper around _Overlays class
+    """
+    global _overlays_instance
+    if _overlays_instance == None:
+        _overlays_instance = _Overlays()
+    return _overlays_instance
+
 
 if __name__ == '__main__':
     overlays = Overlays()
