@@ -19,7 +19,7 @@
 import sets
 import urlparse
 import portage
-from tools.mirrorparser import MirrorParser
+from mirrorselect.mirrorparser3 import MirrorParser3, MIRRORS_3_XML
 from tools.syncfile import SyncFile
 
 class Mirrors:
@@ -49,17 +49,16 @@ class Mirrors:
 
     def _collect_known_mirror_urls(self):
         sync_file = SyncFile(
-            'http://www.gentoo.org/main/en/mirrors.xml?passthru=1',
-            'mirrors.xml')
+            MIRRORS_3_XML,
+            'mirrors3.xml')
         file = open(sync_file.path(), 'r')
-        parser = MirrorParser()
+        parser = MirrorParser3()
         try:
-            parser.feed(file.read())
+            parser.parse(file.read())
         except EnvironmentError:
             pass
-        parser.close()
         file.close()
-        return set([url for url, description in parser.lines])
+        return set(parser.uris())
 
     def get_mirrors(self):
         return self._mirror_urls
