@@ -74,16 +74,22 @@ class Overlays:
                         available_installed_overlay_dict[name],
                         global_overlay_dict[name])
 
-        global_overlays = [overlay_name(e) for e in
+        global_overlay_paths = [e for e in
                 enabled_installed_overlays if is_global(e)]
+        global_overlay_names = [overlay_name(e) for e in
+                global_overlay_paths]
 
-        self._overlays = global_overlays
+        self._overlay_paths = global_overlay_paths
+        self._overlay_names = global_overlay_names
         self._total_count = len(enabled_installed_overlays)
         self._secret_count = \
-                len(enabled_installed_overlays) - len(global_overlays)
+                len(enabled_installed_overlays) - len(global_overlay_names)
 
-    def get(self):
-        return self._overlays
+    def get_names(self):
+        return self._overlay_names
+
+    def get_paths(self):
+        return self._overlay_paths
 
     def total_count(self):
         return self._total_count
@@ -92,13 +98,14 @@ class Overlays:
         return self._secret_count
 
     def known_count(self):
-        return len(self._overlays)
+        return len(self._overlay_names)
 
     def dump(self):
-        print 'Overlays: ' + str(self.get())
+        print 'Names: ' + str(self.get_names())
+        print 'Paths: ' + str(self.get_paths())
         print 'Total: ' + str(self.total_count())
-        print 'Known: ' + str(self.known_count())
-        print 'Secret: ' + str(self.secret_count())
+        print '  Known: ' + str(self.known_count())
+        print '  Secret: ' + str(self.secret_count())
 
 if __name__ == '__main__':
     overlays = Overlays()
