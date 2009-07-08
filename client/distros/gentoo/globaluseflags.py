@@ -18,6 +18,7 @@
 
 import portage
 import re
+import sets
 from tools.maintreedir import main_tree_dir
 
 class GlobalUseFlags:
@@ -82,8 +83,8 @@ class GlobalUseFlags:
                     return False
             except KeyError:
                 return False
-        self._global_use_flags = [e for e in non_expand_use_flags
-                if is_non_private(e)]
+        self._global_use_flags = set([e for e in non_expand_use_flags
+                if is_non_private(e)])
         self._secret_count = \
                 self._total_count - len(self._global_use_flags)
 
@@ -111,6 +112,9 @@ class GlobalUseFlags:
 
     def known_count_local_global(self):
         return self._local_global_count
+
+    def is_known(self, flag):
+        return flag in self._global_use_flags
 
     def dump(self):
         print 'Global use flags: ' + str(self.get())
