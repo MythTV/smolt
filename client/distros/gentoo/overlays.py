@@ -94,15 +94,9 @@ class _Overlays:
     def known_count(self):
         return len(self._overlay_names)
 
-    def is_secret_package(self, cpv):
-        try:
-            cat, pkg, _, _ = catpkgsplit(cpv)
-        except TypeError:
-            # version missing
-            cat, pkg = cpv.split('/')
-            pkg = pkg.split(':')[0]
-        cat_pkg = "%s/%s" % (cat, pkg)
-        return not self._dbapi.cp_list(cat_pkg)
+    def is_secret_package(self, atom):
+        cp = portage.dep_getkey(atom)
+        return not self._dbapi.cp_list(cp)
 
     def dump(self):
         print 'Names: ' + str(self.get_names())
