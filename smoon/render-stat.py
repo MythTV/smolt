@@ -468,6 +468,12 @@ if not  template_config['cpu'] == [] :
                                                     Host.last_modified > (now))).count()))
 
 
+
+#    stats['bogomips'].append((withheld_label,
+#                            session.query(Host).filter(and_(
+#                                                    Host.bogomips==0,
+#                                                    Host.last_modified > (now))).count()))
+
 stats['languagetot'] = stats['total_hosts']
 
 print 'number of cpus'
@@ -477,13 +483,19 @@ stats['num_cpus'] = handle_withheld_elem(
 
 
 print '====================== bogomips count ======================'
-stats['bogomips_total'] = session.query(func.sum(Host.bogomips * Host.num_cpus)).filter(Host.bogomips > 0).first()
+conn = select([func.sum(Host.bogomips * Host.num_cpus)]).where(Host.bogomips > 0).limit(1).execute()
+stats['bogomips_total'] = conn.fetchone()
+conn.close()
 
 print '====================== cpu speed total ======================'
-stats['cpu_speed_total'] = session.query(func.sum(Host.cpu_speed * Host.num_cpus)).filter(Host.cpu_speed > 0).first()
+conn = select([func.sum(Host.cpu_speed * Host.num_cpus)]).where(Host.cpu_speed > 0).limit(1).execute()
+stats['cpu_speed_total'] = conn.fetchone()
+conn.close()
 
 print '====================== cpus total ======================'
-stats['cpus_total'] = session.query(func.sum(Host.num_cpus)).first()
+conn = select([func.sum(Host.num_cpus)]).limit(1).execute()
+stats['cpus_total'] = conn.fetchone()
+conn.close()
 
 print '====================== registered devices ======================'
 stats['registered_devices'] = session.query(ComputerLogicalDevice).count()
