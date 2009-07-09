@@ -18,6 +18,7 @@
 
 import portage
 import re
+import os
 import sets
 from tools.maintreedir import main_tree_dir
 
@@ -27,7 +28,7 @@ class GlobalUseFlags:
 
     def _registered_global_use_flags(self):
         try:
-            f = open('%s/profiles/use.desc' % main_tree_dir(), 'r')
+            f = open(os.path.join(main_tree_dir(), 'profiles', 'use.desc'), 'r')
             lines = [re.sub('^([^ ]+) - .*\\n', '\\1', l) for l in
                     f.readlines() if re.match('^[^ ]+ - ', l)]
             f.close()
@@ -37,7 +38,8 @@ class GlobalUseFlags:
 
     def _registered_local_use_flags(self):
         try:
-            f = open('%s/profiles/use.local.desc' % main_tree_dir(), 'r')
+            f = open(os.path.join(main_tree_dir(), 'profiles',
+                'use.local.desc'), 'r')
             lines = [re.sub('^[^ :]+:([^ ]+) - .*\\n', '\\1', l) for l in
                     f.readlines() if re.match('^[^ :]+:[^ ]+ - ', l)]
             f.close()
