@@ -21,8 +21,7 @@ import portage
 class TrivialVectors:
     def __init__(self):
         self._trivial_scalars = {}
-        for k in ('ACCEPT_KEYWORDS', 'VIDEO_CARDS', 'ALSA_CARDS',
-                'FEATURES', 'LINGUAS'):
+        for k in ('ACCEPT_KEYWORDS', 'FEATURES'):
             self._trivial_scalars[k] = portage.settings[k].split(' ')
 
     def get(self):

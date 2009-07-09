@@ -47,58 +47,53 @@ class GlobalUseFlags:
         except IOError:
             return set()
 
+    def _expanded_use_flags(self):
+        use_flags = []
+        expand_desc_dir = os.path.join(main_tree_dir(), 'profiles', 'desc')
+        try:
+            expand_list = os.listdir(expand_desc_dir)
+        except OSError:
+            pass
+        else:
+            for desc_filename in expand_list:
+                if not desc_filename.endswith('.desc'):
+                    continue
+                use_prefix = desc_filename[:-5].lower() + '_'
+                for line in portage.grabfile(os.path.join(
+                        expand_desc_dir, desc_filename)):
+                    x = line.split()
+                    if x:
+                        use_flags.append(use_prefix + x[0])
+        return set(use_flags)
+
+    def _auto_use_flags(self):
+        return set(portage.grabfile(os.path.join(main_tree_dir(), 'profiles',
+            'arch.list')))
+
     def _fill_use_flags(self):
-        # Obtain all USE_EXPAND values:
-        # for i in $(grep -h '^\(# *\)\?[^ ]\+=' /etc/make.{conf,globals} \
-        #     $(find /usr/portage/profiles/ -name make.defaults) \
-        #   | sed -e 's|^# *||' | grep USE_EXPAND \
-        #   | sed -e 's|^USE_EXPAND\(_HIDDEN\)\?="||' -e 's|"$||') ; do \
-        #   echo $i ; done | sed 's|^-||' | sort -u
-
-        # Filter out USE_EXPAND stuff, e.g. kernel_linux, userland_gnu, ...
-        use_expand = [e.lower() + "_" for e in
-                portage.settings['USE_EXPAND'].split(' ')
-                if not e.startswith('-')]
-        arch = portage.settings['ARCH']
-        def is_expanded(use_flag):
-            if use_flag == arch:
-                return True
-            for prefix in use_expand:
-                if use_flag.startswith(prefix):
-                    return True
-            return False
-        non_expand_use_flags = \
-                [e for e in portage.settings['USE'].split(' ')
-                if not is_expanded(e)]
+        active_use_flags = \
+                [e.lstrip("+") for e in portage.settings['USE'].split(' ')]
         self._total_count = \
-                len(non_expand_use_flags)
+                len(active_use_flags)
 
-        # Filter our private use flags
+        # Filter our secret use flags
         registered_global_use_flags = self._registered_global_use_flags()
-        non_private_space = registered_global_use_flags.union(
-                self._registered_local_use_flags())
-        def is_non_private(x):
+        non_secret_space = registered_global_use_flags.union(
+                self._registered_local_use_flags()).union(
+                self._expanded_use_flags()).union(
+                self._auto_use_flags())
+        def is_non_secret(x):
             try:
-                if x in non_private_space:
+                if (x in non_secret_space) or ("-" + x in non_secret_space):
                     return True
                 else:
                     return False
             except KeyError:
                 return False
-        self._global_use_flags = set([e for e in non_expand_use_flags
-                if is_non_private(e)])
+        self._global_use_flags = set([e for e in active_use_flags
+                if is_non_secret(e)])
         self._secret_count = \
                 self._total_count - len(self._global_use_flags)
-
-        # Partition into global and local, prefer global in doubt
-        # Check against global global set is faster as it's much smaller
-        self._global_global_count = 0
-        self._local_global_count = 0
-        for use_flag in self._global_use_flags:
-            if use_flag in registered_global_use_flags:
-                self._global_global_count = self._global_global_count + 1
-            else:
-                self._local_global_count = self._local_global_count + 1
 
     def get(self):
         return self._global_use_flags
@@ -109,21 +104,17 @@ class GlobalUseFlags:
     def secret_count(self):
         return self._secret_count
 
-    def known_count_global_global(self):
-        return self._global_global_count
-
-    def known_count_local_global(self):
-        return self._local_global_count
+    def known_count(self):
+        return self.total_count() - self.secret_count()
 
     def is_known(self, flag):
         return flag in self._global_use_flags
 
     def dump(self):
-        print 'Global use flags: ' + str(self.get())
+        print 'Global use flags: ' + str(sorted(self.get()))
         print 'Total: ' + str(self.total_count())
-        print 'Known global global: ' + str(self.known_count_global_global())
-        print 'Known local global: ' + str(self.known_count_local_global())
-        print 'Secret: ' + str(self.secret_count())
+        print '  Known: ' + str(self.known_count())
+        print '  Secret: ' + str(self.secret_count())
 
 if __name__ == '__main__':
     globaluseflags = GlobalUseFlags()
