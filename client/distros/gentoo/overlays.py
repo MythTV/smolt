@@ -18,7 +18,9 @@
 
 import ConfigParser
 import portage
+from portage.const import REPO_NAME_LOC
 import re
+import os
 from portage import config
 from portage.versions import catpkgsplit
 from portage.dbapi.porttree import portdbapi
@@ -62,7 +64,11 @@ class _Overlays:
                 portage.settings['PORTDIR_OVERLAY'].split(' ')
 
         def overlay_name(overlay_location):
-            return overlay_location.split('/')[-1]
+            repo_name_file = os.path.join(overlay_location, REPO_NAME_LOC)
+            file = open(repo_name_file, 'r')
+            name = file.readline().strip()
+            file.close()
+            return name
 
         url_prefix_pattern = re.compile('^[a-zA-Z+]+://')
         def normalize_repo_url(url):
@@ -76,7 +82,10 @@ class _Overlays:
             return normalize_repo_url(a) == normalize_repo_url(b)
 
         def is_global(overlay_location):
-            name = overlay_name(overlay_location)
+            try:
+                name = overlay_name(overlay_location)
+            except:
+                return False
             return overlay_location.startswith(layman_storage_path) and \
                     same_repository(
                         available_installed_overlay_dict[name],
