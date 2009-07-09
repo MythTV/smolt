@@ -19,12 +19,20 @@
 import ConfigParser
 import portage
 import re
+from portage import config
+from portage.versions import catpkgsplit
+from portage.dbapi.porttree import portdbapi
+from tools.maintreedir import main_tree_dir
 from tools.syncfile import SyncFile
 from tools.overlayparser import OverlayParser
 
 class _Overlays:
     def __init__(self):
         self._fill_overlays()
+        tree_config = config()
+        tree_config['PORTDIR_OVERLAY'] = ' '.join(self.get_paths())
+        tree_config['PORTDIR'] = main_tree_dir()
+        self._dbapi = portdbapi(main_tree_dir(), tree_config)
 
     def _parse_overlay_meta(self, filename):
         parser = OverlayParser()
@@ -99,6 +107,16 @@ class _Overlays:
 
     def known_count(self):
         return len(self._overlay_names)
+
+    def is_secret_package(self, cpv):
+        try:
+            cat, pkg, _, _ = catpkgsplit(cpv)
+        except TypeError:
+            # version missing
+            cat, pkg = cpv.split('/')
+            pkg = pkg.split(':')[0]
+        cat_pkg = "%s/%s" % (cat, pkg)
+        return not self._dbapi.cp_list(cat_pkg)
 
     def dump(self):
         print 'Names: ' + str(self.get_names())
