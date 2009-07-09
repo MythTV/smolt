@@ -50,16 +50,7 @@ class _Overlays:
         return self._parse_overlay_meta(sync_file.path())
 
     def _fill_overlays(self):
-        # read layman config
-        layman_config = ConfigParser.ConfigParser()
-        layman_config.read('/etc/layman/layman.cfg')
-        layman_storage_path = layman_config.get('MAIN', 'storage')
-        if not layman_storage_path.endswith('/'):
-            layman_storage_path = layman_storage_path + '/'
-        layman_installed_list_file = layman_config.get('MAIN', 'local_list')
-        global_overlay_dict = self._get_known_overlay_map()
-        available_installed_overlay_dict = \
-                self._parse_overlay_meta(layman_installed_list_file)
+        non_secret_overlay_dict = self._get_known_overlay_map()
         enabled_installed_overlays = \
                 portage.settings['PORTDIR_OVERLAY'].split(' ')
 
@@ -70,37 +61,23 @@ class _Overlays:
             file.close()
             return name
 
-        url_prefix_pattern = re.compile('^[a-zA-Z+]+://')
-        def normalize_repo_url(url):
-            res = url
-            res = re.sub(url_prefix_pattern, 'xxxxx://', res)
-            res = res.replace('://overlays.gentoo.org/svn/',
-                    '://overlays.gentoo.org/')
-            return res
-
-        def same_repository(a, b):
-            return normalize_repo_url(a) == normalize_repo_url(b)
-
-        def is_global(overlay_location):
+        def is_non_secret(overlay_location):
             try:
                 name = overlay_name(overlay_location)
             except:
                 return False
-            return overlay_location.startswith(layman_storage_path) and \
-                    same_repository(
-                        available_installed_overlay_dict[name],
-                        global_overlay_dict[name])
+            return (name in non_secret_overlay_dict)
 
-        global_overlay_paths = [e for e in
-                enabled_installed_overlays if is_global(e)]
-        global_overlay_names = [overlay_name(e) for e in
-                global_overlay_paths]
+        non_secret_overlay_paths = [e for e in
+                enabled_installed_overlays if is_non_secret(e)]
+        non_secret_overlay_names = [overlay_name(e) for e in
+                non_secret_overlay_paths]
 
-        self._overlay_paths = global_overlay_paths
-        self._overlay_names = global_overlay_names
+        self._overlay_paths = non_secret_overlay_paths
+        self._overlay_names = non_secret_overlay_names
         self._total_count = len(enabled_installed_overlays)
         self._secret_count = \
-                len(enabled_installed_overlays) - len(global_overlay_names)
+                len(enabled_installed_overlays) - len(non_secret_overlay_names)
 
     def get_names(self):
         return self._overlay_names
