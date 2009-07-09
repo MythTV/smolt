@@ -190,7 +190,11 @@ class Client(object):
             host_sql = Host()
             host_sql.uuid = host_dict["uuid"]
             host_sql.pub_uuid = generate_uuid(public=True)
-        host_sql.os = host_dict['os']
+        # Fix lsb vs release error in F11.
+        if host_dict['os'] == 'Fedora 11 Leonidas':
+            host_sql.os = 'Fedora release 11 (Leonidas)'
+        else:
+            host_sql.os = host_dict['os']
         host_sql.default_runlevel = host_dict['default_runlevel']
         host_sql.language = host_dict['language']
         host_sql.platform = host_dict['platform']
