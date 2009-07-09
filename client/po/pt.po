@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-22 13:41-0500\n"
-"PO-Revision-Date: 2009-07-09 08:50+0100\n"
+"PO-Revision-Date: 2009-07-09 10:28+0100\n"
 "Last-Translator: João Diogo Ferreira <jdiogo2003@netcabo.pt>\n"
 "Language-Team: Português <fedora-trans-pt@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -241,7 +241,6 @@ msgid "An error occurred while sending the data to the server."
 msgstr "Ocorreu um erro enquanto o perfil era enviado para o servidor."
 
 #: smoltGui.py:122
-#, fuzzy
 msgid "Privacy Policy"
 msgstr "Política de Privacidade"
 
@@ -310,11 +309,12 @@ msgid "\tYour pub_uuid file  could not be cached: %s\n"
 msgstr ""
 
 #: smolt.py:504
-#, fuzzy
 msgid ""
 "\tMaybe re-run as root?\n"
 "\n"
-msgstr "\tTente executar como root?"
+msgstr ""
+"\tTente executar como root?\n"
+"\n"
 
 #: smolt.py:513
 #, python-format
@@ -335,7 +335,7 @@ msgid "Something went wrong fetching a token"
 msgstr ""
 
 #: smolt.py:575
-#, fuzzy, python-format
+#, python-format
 msgid "An error has occured while contacting the server: %s"
 msgstr "Ocorreu um erro ao contactar o servidor: %s"
 
@@ -431,9 +431,8 @@ msgid "SELinux Enabled"
 msgstr "SELinux Activo"
 
 #: smolt.py:656
-#, fuzzy
 msgid "SELinux Policy"
-msgstr "SELinux Obrigatório"
+msgstr "Política do SELinux"
 
 #: smolt.py:657
 msgid "SELinux Enforce"
@@ -614,28 +613,29 @@ msgstr ""
 "utilizando o comando \"smoltDeleteProfile\"\n"
 
 #: scan.py:41
+#, fuzzy
 msgid "Current rating for vendor/model."
-msgstr ""
+msgstr "Classificação para o vendedor/modelo"
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr ""
+msgstr "Não classificado ou desconhecido"
 
 #: scan.py:46
 msgid "Non-working"
-msgstr ""
+msgstr "Não funciona"
 
 #: scan.py:47
 msgid "Partially-working"
-msgstr ""
+msgstr "Funciona parcialmente"
 
 #: scan.py:48
 msgid "Requires 3rd party drivers"
-msgstr ""
+msgstr "Precisa de controladores de terceiros"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr ""
+msgstr "Funciona, mas precisa de configuração adicional"
 
 #: scan.py:50
 msgid "Works out of the box"
@@ -655,13 +655,14 @@ msgstr "Errata encontrada!"
 #, fuzzy
 msgid "\tNo errata found, if this machine is having issues please go to"
 msgstr ""
-"Errata não encontrada. Se esta máquina está com problemas, por favor, vá a"
+"\tErrata não encontrada. Se esta máquina está com problemas, por favor, vá a"
 
 #: scan.py:92
 #, fuzzy
 msgid "\tyour profile and create a wiki page for the device so others can"
 msgstr ""
-"o seu perfil e crie uma página wiki para o dispositivo para que outros possam"
+"\to seu perfil e crie uma página wiki para o dispositivo para que outros "
+"possam"
 
 #: scan.py:93
 #, fuzzy
