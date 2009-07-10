@@ -22,7 +22,7 @@ from portage.versions import catpkgsplit
 from overlays import Overlays
 from globaluseflags import GlobalUseFlags
 from worldset import WorldSet
-from packagestar import PackageMask, PackageUnmask
+from packagestar import PackageMask, PackageUnmask, ProfilePackageMask
 
 class InstalledPackages:
     def __init__(self):
@@ -70,7 +70,10 @@ class InstalledPackages:
         keyword_status = self._keyword_status(ARCH, ACCEPT_KEYWORDS, KEYWORDS)
 
         unmasked = PackageUnmask().hits(cpv)
-        masked = unmasked and PackageMask().hits(cpv)
+        # A package that is (1) installed and (2) not unmasked
+        # cannot be masked so we skip the next line's checks
+        masked = unmasked and (PackageMask().hits(cpv) or \
+            ProfilePackageMask().hits(cpv))
 
         # World set test
         if SLOT != '0':

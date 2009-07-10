@@ -25,29 +25,33 @@ class _PackageStar:
     def __init__(self):
         pass
 
-    def _init(self, section):
+    def _init(self, section, privacy_filter):
         self._section = section
+        self._privacy_filter = privacy_filter
         self._collect()
+
+    def _locations(self):
+        return [os.path.join(
+            portage.settings["PORTAGE_CONFIGROOT"],
+            portage.USER_CONFIG_PATH.lstrip(os.path.sep))]
 
     def _collect(self):
         self._cp_to_atoms = defaultdict(list)
         self._total_count = 0
         self._secret_count = 0
-        abs_user_config = os.path.join(
-            portage.settings["PORTAGE_CONFIGROOT"],
-            portage.USER_CONFIG_PATH.lstrip(os.path.sep))
-        for x in portage.grabfile_package(
-                os.path.join(abs_user_config, self._section), recursive = 1):
-            self._total_count = self._total_count + 1
-            cp = portage.dep_getkey(x)
-            if Overlays().is_secret_package(cp):
-                self._secret_count = self._secret_count + 1
-                continue
-            merge_with = set([x])
-            if cp in self._cp_to_atoms:
-                self._cp_to_atoms[cp] = self._cp_to_atoms[cp].union(merge_with)
-            else:
-                self._cp_to_atoms[cp] = merge_with
+        for location in self._locations():
+            for x in portage.grabfile_package(
+                    os.path.join(location, self._section), recursive = 1):
+                self._total_count = self._total_count + 1
+                cp = portage.dep_getkey(x)
+                if self._privacy_filter and Overlays().is_secret_package(cp):
+                    self._secret_count = self._secret_count + 1
+                    continue
+                merge_with = set([x])
+                if cp in self._cp_to_atoms:
+                    self._cp_to_atoms[cp] = self._cp_to_atoms[cp].union(merge_with)
+                else:
+                    self._cp_to_atoms[cp] = merge_with
 
     def total_count(self):
         return self._total_count
@@ -80,13 +84,28 @@ class _PackageStar:
         print '    Secret: ' + str(self.secret_count())
         print
 
+
 class _PackageMask(_PackageStar):
     def __init__(self):
-        self._init('package.mask')
+        self._init('package.mask', privacy_filter=True)
+
 
 class _PackageUnmask(_PackageStar):
     def __init__(self):
-        self._init('package.unmask')
+        self._init('package.unmask', privacy_filter=True)
+
+
+class _ProfilePackageMask(_PackageStar):
+    def __init__(self):
+        self._init('package.mask', privacy_filter=False)
+
+    def _locations(self):
+        main_tree_profiles = [os.path.join(portage.settings["PORTDIR"],
+            "profiles")] + portage.settings.profiles # TODO break potential
+        overlay_profiles = [os.path.join(e, "profiles") for e in \
+            portage.settings["PORTDIR_OVERLAY"].split()]
+        return[e for e in main_tree_profiles + overlay_profiles if \
+            os.path.isdir(e)]
 
 
 _package_unmask_instance = None
@@ -111,8 +130,21 @@ def PackageMask():
     return _package_mask_instance
 
 
+_profile_package_mask_instance = None
+def ProfilePackageMask():
+    """
+    Simple singleton wrapper around _ProfilePackageMask class
+    """
+    global _profile_package_mask_instance
+    if _profile_package_mask_instance == None:
+        _profile_package_mask_instance = _ProfilePackageMask()
+    return _profile_package_mask_instance
+
+
 if __name__ == '__main__':
     package_mask = PackageMask()
     package_mask.dump()
     package_unmask = PackageUnmask()
     package_unmask.dump()
+    profile_package_mask = ProfilePackageMask()
+    profile_package_mask.dump()
