@@ -16,33 +16,103 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
+import portage
 from portage.dbapi.vartree import vartree
 from portage.versions import catpkgsplit
 from overlays import Overlays
 from globaluseflags import GlobalUseFlags
+from worldset import WorldSet
+from packagestar import PackageMask, PackageUnmask
 
 class InstalledPackages:
     def __init__(self):
         self._cpv_flag_list = []
         var_tree = vartree()
         installed_cpvs = var_tree.getallcpv()
+        self._total_count = 0
+        self._secret_count = 0
         for cpv in installed_cpvs:
+            self._total_count = self._total_count + 1
             if Overlays().is_secret_package(cpv):
+                self._secret_count = self._secret_count + 1
                 continue
-            use, iuse = var_tree.dbapi.aux_get(cpv, ["USE", "IUSE"])
-            use_flags = GlobalUseFlags()
-            flags = set(e for e in use.split() if use_flags.is_known(e)) & \
-                set(x.lstrip("+-") for x in iuse.split() if use_flags.is_known(x))
-            self._cpv_flag_list.append(self._make_package_info(cpv, flags))
+            added = self._process(var_tree, cpv)
+            if not added:
+                self._secret_count = self._secret_count + 1
 
-    def _make_package_info(self, cpv, flags):
+    def _keyword_status(self, ARCH, ACCEPT_KEYWORDS, KEYWORDS):
+        k = set(KEYWORDS.split(' '))
+        if ARCH in k:
+            return ''
+        TILDE_ARCH = '~' + ARCH
+        if TILDE_ARCH in k:
+            ak = set(ACCEPT_KEYWORDS.split(' '))
+            if TILDE_ARCH in ak:
+                return ''
+            else:
+                return '~arch'
+        else:
+            return '**'
+
+    def _process(self, var_tree, cpv):
         cat, pkg, ver, rev = catpkgsplit(cpv)
-        return ["%s/%s" % (cat, pkg), "%s-%s" % (ver, rev), sorted(flags)]
+        package_name = "%s/%s" % (cat, pkg)
+        version_revision = "%s-%s" % (ver, rev)
+
+        SLOT, KEYWORDS, repository, IUSE, USE = \
+            var_tree.dbapi.aux_get(cpv, ['SLOT', 'KEYWORDS', 'repository',
+            'IUSE', 'USE'])
+        if Overlays().is_secret_overlay_name(repository):
+            return False
+
+        ACCEPT_KEYWORDS = portage.settings['ACCEPT_KEYWORDS']
+        ARCH = portage.settings['ARCH']
+        keyword_status = self._keyword_status(ARCH, ACCEPT_KEYWORDS, KEYWORDS)
+
+        unmasked = PackageUnmask().hits(cpv)
+        masked = unmasked and PackageMask().hits(cpv)
+
+        # World set test
+        if SLOT != '0':
+            world_set_test = '%s/%s:%s' % (cat, pkg, SLOT)
+        else:
+            world_set_test = '%s/%s' % (cat, pkg)
+        is_in_world = world_set_test in WorldSet().get()
+
+        # Use flags
+        use_flags = GlobalUseFlags()
+        flags = set(e for e in USE.split() if use_flags.is_known(e)) & \
+            set(x.lstrip("+-") for x in IUSE.split() if use_flags.is_known(x))
+        entry = [package_name, version_revision, SLOT, keyword_status,
+            masked, unmasked, is_in_world, repository, sorted(flags)]
+        self._cpv_flag_list.append(entry)
+        return True
+
+    def total_count(self):
+        return self._total_count
+
+    def secret_count(self):
+        return self._secret_count
+
+    def known_count(self):
+        return len(self._cpv_flag_list)
 
     def dump(self):
         print 'Packages:'
         for list in self._cpv_flag_list:
-            print list
+            package_name, version_revision, SLOT, keyword_status, \
+                masked, unmasked, is_in_world, repository, sorted_flags_list = \
+                list
+            tags = [e for e in [
+                masked and 'MASKED' or '',
+                unmasked and 'UNMASKED' or '',
+                is_in_world and 'WORLD' or ''] if e]
+            print [package_name, version_revision, SLOT, keyword_status,
+                tags, repository, sorted_flags_list]
+        print
+        print 'Total: ' + str(self.total_count())
+        print '  Known: ' + str(self.known_count())
+        print '  Secret: ' + str(self.secret_count())
 
 if __name__ == '__main__':
     installed_packages = InstalledPackages()
