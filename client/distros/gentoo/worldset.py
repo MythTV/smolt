@@ -20,7 +20,7 @@ import os
 from portage.const import WORLD_FILE
 from overlays import Overlays
 
-class WorldSet:
+class _WorldSet:
     def __init__(self):
         self._collect()
 
@@ -30,12 +30,22 @@ class WorldSet:
         file = open(world_file, 'r')
         atoms = [line.rstrip("\r\n") for line in file]
         self._total_count = len(atoms)
-        self._cps = [e for e in atoms if not Overlays().is_secret_package(e)]
+        self._cps = set([e for e in atoms if not Overlays().is_secret_package(e)])
         self._secret_count = self._total_count - len(self._cps)
         file.close()
 
     def get(self):
+        """
+        Returns a set of <cat-pkg> and <cat-pkg-slot> atoms
+        """
         return self._cps
+
+    def contains(self, cat, pkg, slot):
+        if slot in (None, '', '0'):
+            world_set_test = '%s/%s' % (cat, pkg)
+        else:
+            world_set_test = '%s/%s:%s' % (cat, pkg, slot)
+        return world_set_test in self._cps
 
     def total_count(self):
         return self._total_count
@@ -53,6 +63,18 @@ class WorldSet:
         print 'Total: ' + str(self.total_count())
         print '  Known: ' + str(self.known_count())
         print '  Secret: ' + str(self.secret_count())
+
+
+_world_set_instance = None
+def WorldSet():
+    """
+    Simple singleton wrapper around _Overlays class
+    """
+    global _world_set_instance
+    if _world_set_instance == None:
+        _world_set_instance = _WorldSet()
+    return _world_set_instance
+
 
 if __name__ == '__main__':
     worldset = WorldSet()
