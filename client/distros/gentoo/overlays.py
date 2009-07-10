@@ -98,6 +98,11 @@ class _Overlays:
         cp = portage.dep_getkey(atom)
         return not self._dbapi.cp_list(cp)
 
+    def is_secret_overlay_name(self, overlay_name):
+        if overlay_name in ('gentoo', 'funtoo'):
+            return False
+        return not overlay_name in self._overlay_names
+
     def dump(self):
         print 'Names: ' + str(self.get_names())
         print 'Paths: ' + str(self.get_paths())
