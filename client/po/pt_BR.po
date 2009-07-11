@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-22 13:41-0500\n"
-"PO-Revision-Date: 2009-07-09 23:25-0300\n"
+"PO-Revision-Date: 2009-07-11 20:32-0300\n"
 "Last-Translator: Igor Pires Soares <igor@projetofedora.org>\n"
 "Language-Team: Brazilian Portuguese <fedora-trans-pt_br@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,39 +21,44 @@ msgstr ""
 "X-Poedit-Language: Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
 
-#: deleteProfile.py:36 smolt.py:362
+#: deleteProfile.py:36
+#: smolt.py:362
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Mensagem do servidor: \"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:44
+#: deleteProfile.py:46
+#: sendProfile.py:44
 msgid "enable debug information"
 msgstr "habilitar informações de depuração"
 
-#: deleteProfile.py:51 sendProfile.py:49
+#: deleteProfile.py:51
+#: sendProfile.py:49
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "especificar a URL do servidor (padrão \"%default\")"
 
-#: deleteProfile.py:56 sendProfile.py:64
+#: deleteProfile.py:56
+#: sendProfile.py:64
 msgid "print information only, do not send"
 msgstr "apenas imprimir informações, não enviá-las"
 
-#: deleteProfile.py:61 sendProfile.py:79
+#: deleteProfile.py:61
+#: sendProfile.py:79
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "especificar agente de usuário HTTP (padrão \"%default\")"
 
-#: deleteProfile.py:66 sendProfile.py:84
+#: deleteProfile.py:66
+#: sendProfile.py:84
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr ""
-"especificar tempo de espera HTTP em segundos (padrão %default segundos)"
+msgstr "especificar tempo de espera HTTP em segundos (padrão %default segundos)"
 
-#: deleteProfile.py:70 sendProfile.py:103
+#: deleteProfile.py:70
+#: sendProfile.py:103
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr ""
-"Especifique qual UUID usar, útil principalmente para depuração e testes."
+msgstr "Especifique qual UUID usar, útil principalmente para depuração e testes."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -69,7 +74,7 @@ msgstr "(opcional) Registro no sistema de contas do Fedora (FAS)"
 
 #: sendProfile.py:59
 msgid "password, will prompt if not specified"
-msgstr "senha, será alertado se não especificar"
+msgstr "senha, será pedida se não for especificada"
 
 #: sendProfile.py:69
 msgid "don't prompt to send, just send"
@@ -80,58 +85,48 @@ msgid "continue to send until success"
 msgstr "continuar o envio até que seja finalizado"
 
 #: sendProfile.py:89
-msgid ""
-"this is an automated checkin, will only run if the \"smolt\" service has "
-"been started"
-msgstr ""
-"esta é uma verificação automática, somente será executada se o serviço do "
-"Smolt for iniciado"
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgstr "esta é uma verificação automática, somente será executada se o serviço \"smolt\" for iniciado"
 
 #: sendProfile.py:94
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr ""
-"somente analisar esta máquina para saber se há alguma errata de hardware, "
-"não enviar o perfil."
+msgstr "somente analisar esta máquina para saber se há alguma errata de hardware, não enviar o perfil."
 
 #: sendProfile.py:99
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr ""
-"Não escanear essa máquina para conhecer erros de hardware, apenas submeter o "
-"perfil."
+msgstr "Não analisar essa máquina para saber se há erratas de hardware, apenas submeter o perfil."
 
 #: sendProfile.py:108
 msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
-msgstr "Submeta esse perfil para Bodhi assim como para o Fedora Develompmnent"
+msgstr "Submeter esse perfil para o Bodhi também, para o desenvolvimento do Fedora"
 
 #: sendProfile.py:113
 msgid "Request a new public UUID"
-msgstr "Requisitar uma nova UUID pública."
+msgstr "Requisitar um novo UUID público."
 
 #: sendProfile.py:117
 msgid "HTTP proxy"
 msgstr "Proxy HTTP"
 
 #: sendProfile.py:134
-msgid ""
-"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr ""
-"O Smolt está configurado para fazer verificações, mas elas estão "
-"desabilitadas (dica: service smolt start)"
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr "O Smolt está configurado para fazer verificações, mas elas estão desabilitadas (dica: service smolt start)"
 
 #: sendProfile.py:144
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
-msgstr "Sucesso!  Sua nova UUID pública é: %s"
+msgstr "Sucesso! Seu novo UUID público é: %s"
 
 #: sendProfile.py:164
 msgid "Send this information to the Smolt server? (y/n)"
-msgstr "Enviar estas informações para o servidor do Smolt? (y/n)"
+msgstr "Enviar estas informações para o servidor do Smolt? (s/n)"
 
 #: sendProfile.py:165
 msgid "y"
-msgstr "y"
+msgstr "s"
 
-#: sendProfile.py:166 sendProfile.py:169
+#: sendProfile.py:166
+#: sendProfile.py:169
 msgid "Exiting..."
 msgstr "Saindo..."
 
@@ -158,19 +153,16 @@ msgid ""
 "\t%s (public)"
 msgstr ""
 "Para compartilhar o seu perfil: \n"
-"\t%s(public)"
+"\t%s (public)"
 
 #: sendProfile.py:214
 #, python-format
 msgid "\tAdmin Password: %s"
-msgstr "Senha de Administrador: %s"
+msgstr "\tSenha de administrador: %s"
 
 #: sendProfile.py:217
-msgid ""
-"No Public UUID found!  Please re-run with -n to generate a new public uuid"
-msgstr ""
-"Nenhuma UUID pública encontrada!  Por favor re-execute com -n para gerar uma "
-"nova UUID pública."
+msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgstr "Nenhum UUID público encontrado! Por favor, re-execute com -n para gerar um novo UUID público"
 
 #: smoltGui.py:39
 msgid "Smolt"
@@ -206,7 +198,7 @@ msgstr "&Sobre"
 
 #: smoltGui.py:53
 msgid "About &Qt"
-msgstr "&Sobre"
+msgstr "Sobre &Qt"
 
 #: smoltGui.py:67
 msgid "Main Tool Bar"
@@ -219,13 +211,11 @@ msgstr "Perfil enviado"
 #: smoltGui.py:99
 #, python-format
 msgid ""
-"The data was successfully sent. If you need to refer to your hardware "
-"profile for a bug report your UUID is \n"
+"The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
-"Os dados foram enviados com sucesso. Se você precisar recorrer ao seu perfil "
-"de hardware para registrar um erro, o seu UUID é\n"
+"Os dados foram enviados com sucesso. Se você precisar recorrer ao seu perfil de hardware para registrar um erro, o seu UUID é\n"
 "%s\n"
 "gravado em %s"
 
@@ -246,46 +236,21 @@ msgid "<h3>Smolt Qt</h3>Version 0.1.1<br/>"
 msgstr "<h3>Smolt Qt</h3>Versão 0.1.1<br/>"
 
 #: smoltGui.py:137
-msgid ""
-"<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
-"\tto a Smoon server.<br/>"
-msgstr ""
-"<br/>Smolt Qt é uma GUI para o Smolt client para submeter perfis de hardware "
-"do Smolt \t\t\t\tpara um servidor do Smoon.<br/>"
+msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
+msgstr "<br/>O Smolt Qt é uma interface gráfica cliente do Smolt para submeter perfis de hardware \t\t\t\tpara um servidor Smoon.<br/>"
 
 #: smoltGui.py:140
-msgid ""
-"<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t"
-"\tsystem that does a hardware scan against a machine and sends the results \t"
-"\t\t\tto a public Fedora Project turbogears server. The sends are anonymous "
-"\t\t\t\tand should not contain any private information other than the "
-"physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr ""
-"<b>Sobre o Smolt:</b><br/> \t\t\t\tsystem that does a hardware scan against "
-"a machine and sends the results \t\t\t\tto a public Fedora Project "
-"turbogears server. The sends are anonymous \t\t\t\tand should not contain "
-"any private information other than the physical \t\t\t\thardware information "
-"and basic OS info.<br/>"
+msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
+msgstr "<b>Sobre o Smolt:</b><br/>O verificador de perfis de hardware smolt é um \t\t\t\tsistema cliente-servidor que faz a análise do hardware de uma máquina e envia os resultados \t\t\t\tpara um servidor turbogears público do Projeto Fedora. Os envios são anônimos \t\t\t\te não devem conter qualquer informação privada além de informações físicas do \t\t\t\thardware e informações básicas do SO.<br/>"
 
 #: smoltGui.py:146
-msgid ""
-"<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
-msgstr ""
-"<b>Autores:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+msgid "<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+msgstr "<b>Autores:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:148
 #, python-format
-msgid ""
-"%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; "
-"\t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU "
-"General \t\t\t\tPublic License as published by the Free Software Foundation; "
-"either version 3 \t\t\t\tof the License, or (at your option) any later "
-"version."
-msgstr ""
-"%s<br/>%s<br/>%s<br/><br/><b>Licença:</b><br/>Esse programa é livre; \t\t\t"
-"\tVocê pode redistribuir ou modificar sob os termos da GNU Licença. \t\t\t"
-"\tpública geral como publicada pela Free Software Foundation; na versão 3 \t"
-"\t\t\tda licença ou (por sua escolha) qualquer versão mais recente."
+msgid "%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; \t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU General \t\t\t\tPublic License as published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
+msgstr "%s<br/>%s<br/>%s<br/><br/><b>Licença:</b><br/>Esse programa é um software livre; \t\t\t\tVocê pode redistribuí-lo ou modificá-lo sob os termos da Licença \t\t\t\tPública Geral GNU como publicada pela Free Software Foundation; na versão 3 \t\t\t\tda licença ou (a sua escolha) qualquer versão mais recente."
 
 #: smolt.py:364
 #, python-format
@@ -294,7 +259,7 @@ msgstr "Não foi possível contatar o servidor: %s"
 
 #: smolt.py:407
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr "Não foi possível se ligar ao dbus. O dbus está em execução?"
+msgstr "Não foi possível vincular ao dbus. O dbus está em execução?"
 
 #: smolt.py:413
 msgid ""
@@ -307,7 +272,7 @@ msgstr ""
 #: smolt.py:503
 #, python-format
 msgid "\tYour pub_uuid file  could not be cached: %s\n"
-msgstr "\tSeu arquivo pub_uuid não pode ser colocado em cache: %s\n"
+msgstr "\tO seu arquivo pub_uuid não pôde ser gravado no cache: %s\n"
 
 #: smolt.py:504
 msgid ""
@@ -320,16 +285,19 @@ msgstr ""
 #: smolt.py:513
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr "\tSeu token de administrador  não pode ser colocado em cache: %s\n"
+msgstr "\tO seu token de administrador não pôde ser colocado em cache: %s\n"
 
-#: smolt.py:524 smolt.py:566 smolt.py:596
+#: smolt.py:524
+#: smolt.py:566
+#: smolt.py:596
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Erro ao contatar o servidor: %s"
 
-#: smolt.py:533 smolt.py:582
+#: smolt.py:533
+#: smolt.py:582
 msgid "Wrong version, server incapable of handling your client"
-msgstr "Versão errada, servidor incapaz de manipular seu cliente"
+msgstr "Versão errada, servidor incapaz de manipular o seu cliente"
 
 #: smolt.py:538
 msgid "Something went wrong fetching a token"
@@ -338,7 +306,7 @@ msgstr "Algo deu errado ao buscar um token"
 #: smolt.py:575
 #, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "Ocorreu um erro ao contactar o servidor:%s"
+msgstr "Ocorreu um erro ao contactar o servidor: %s"
 
 #: smolt.py:617
 msgid "Devices"
@@ -346,7 +314,7 @@ msgstr "Dispositivos"
 
 #: smolt.py:624
 msgid "\tFilesystem Information"
-msgstr "\tInformação do sistema de arquivos"
+msgstr "\tInformações do sistema de arquivos"
 
 #: smolt.py:636
 msgid "UUID"
@@ -382,11 +350,11 @@ msgstr "Modelo da CPU"
 
 #: smolt.py:644
 msgid "CPU Stepping"
-msgstr "Intensificação da CPU"
+msgstr "Versão da CPU"
 
 #: smolt.py:645
 msgid "CPU Family"
-msgstr "Familia da CPU"
+msgstr "Família da CPU"
 
 #: smolt.py:646
 msgid "CPU Model Num"
@@ -434,13 +402,15 @@ msgstr "Politica do SELinux"
 
 #: smolt.py:657
 msgid "SELinux Enforce"
-msgstr "SELinux reforçado"
+msgstr "Modo de reforço do SELinux"
 
-#: smolt.py:1093 scan.py:101
+#: smolt.py:1093
+#: scan.py:101
 msgid "Error:"
 msgstr "Erro:"
 
-#: smolt.py:1095 scan.py:103
+#: smolt.py:1095
+#: scan.py:103
 msgid "Hint:"
 msgstr "Dica:"
 
@@ -451,7 +421,7 @@ msgstr "Não foi possível salvar o UUID, continuando...\n"
 #: smolt.py:1113
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
-msgstr "Seu arquivo UUID não pode ser criado:%s\n"
+msgstr "O seu arquivo UUID não pôde ser criado: %s\n"
 
 #: smolt.py:1116
 msgid "Unable to determine UUID of system!\n"
@@ -461,19 +431,14 @@ msgstr "Não foi possível determinar o UUID do sistema!\n"
 msgid "Cannot Determine Runlevel"
 msgstr "Não foi possível determinar o nível de execução"
 
-#: smoltFirstBoot.py:37 smoltFirstBoot.py:38
+#: smoltFirstBoot.py:37
+#: smoltFirstBoot.py:38
 msgid "Hardware Profile"
-msgstr "Perfil de Hardware"
+msgstr "Perfil de hardware"
 
 #: smoltFirstBoot.py:55
-msgid ""
-"Are you sure you wouldn't like to send the profile?  Submitting your profile "
-"is a valuable source of information for our development and can help "
-"troubleshoot issues that may come up with your hardware."
-msgstr ""
-"Você tem certeza de que não deseja enviar o perfil? O envio dele é uma fonte "
-"valiosa de informações para o nosso desenvolvimento e pode ajudar na solução "
-"de problemas que podem acontecer com o seu hardware."
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr "Você tem certeza de que não deseja enviar o perfil? O envio dele é uma fonte valiosa de informações para o nosso desenvolvimento e pode ajudar na solução de problemas que podem acontecer com o seu hardware."
 
 #: smoltFirstBoot.py:63
 msgid "_Reconsider sending"
@@ -484,26 +449,16 @@ msgid "_No, do not send."
 msgstr "_Não, não enviar."
 
 #: smoltFirstBoot.py:91
-msgid ""
-"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
-"profile is a great way to give back to the community as this information is "
-"used to help focus our efforts on popular hardware and platforms.  "
-"Submissions are anonymous.  Sending your profile will enable a monthly "
-"update."
-msgstr ""
-"O Smolt é um detector de perfis de hardware para o Projeto Fedora. Enviar o "
-"seu perfil é uma ótima maneira de dar um retorno à comunidade, uma vez que "
-"estas informações serão utilizadas para nos ajudar a focar esforços em "
-"hardwares e plataformas mais populares. O envio é anônimo. O encaminhamento "
-"do seu perfil habilitará uma atualização mensal."
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr "O Smolt é um detector de perfis de hardware para o Projeto Fedora. Enviar o seu perfil é uma ótima maneira de dar um retorno à comunidade, uma vez que estas informações serão utilizadas para nos ajudar a focar esforços em hardwares e plataformas mais populares. O envio é anônimo. O encaminhamento do seu perfil habilitará uma atualização mensal."
 
 #: smoltFirstBoot.py:117
 msgid "_Participate in KernelOOPS"
-msgstr "_Participação no  KernelOOPS"
+msgstr "_Participar no KernelOOPS"
 
 #: smoltFirstBoot.py:118
 msgid "Submit profile link to _Bodhi"
-msgstr "Submeta um link de perfil para _Bodhi"
+msgstr "Enviar um link do perfil para o _Bodhi"
 
 #: smoltFirstBoot.py:120
 msgid "_Send Profile"
@@ -540,99 +495,76 @@ msgstr "Descrição"
 #: privacypolicy.py:3
 msgid ""
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a "
-"submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to "
-"delete\n"
+"the submission is anonymous.  If at any point in time a user wants to delete\n"
 "their profile from the database they need only run\n"
 "\n"
 "    smoltDeleteProfile\n"
 "\n"
-"The information sent to the smolt database server should be considered "
-"public\n"
-"in that anyone can view the statistics, data and share machine profiles.  "
-"In \n"
+"The information sent to the smolt database server should be considered public\n"
+"in that anyone can view the statistics, data and share machine profiles.  In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd "
-"parties,\n"
+"attention.  As such, not only will this information be shared with 3rd parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.\n"
 "\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and "
-"they\n"
+"server first.  This is the only place IP addresses are being logged and they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
-"the smolt database.  These logs are private and will not be available to "
-"the\n"
+"the smolt database.  These logs are private and will not be available to the\n"
 "general public.\n"
 "\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team "
-"at\n"
+"questions about this policy should contact the Fedora Infrastructure Team at\n"
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
-"O Smolt irá enviar somente informações básicas do sistema operacional e "
-"hardware\n"
-"para o servidor smolt do Fedora (smoon). O único vínculo da base de dados "
-"com as máquinas emitentes é o UUID. Contanto que o emitente não forneça este "
-"UUID\n"
+"O Smolt irá enviar somente informações básicas do sistema operacional e do hardware\n"
+"para o servidor smolt do Fedora (smoon). O único vínculo da base de dados com as máquinas emitentes é o UUID. Contanto que o emitente não forneça este UUID,\n"
 "a submissão é anônima. Se a qualquer momento o usuário quiser excluir\n"
 "seu perfil da base de dados, ele somente precisará executar\n"
 "\n"
 "    smoltDeleteProfile\n"
 "\n"
-"A informação enviada para a base de dados do servidor deve ser considerada "
-"pública\n"
-"onde qualquer um possa ver as estatísticas, dados e compartilhar perfis de "
-"máquinas.\n"
-"De qualquer maneira, o smolt é projetado para obter a atenção de fabricantes "
-"de hardware\n"
-"e da parte de terceiros. Contudo, estas informações não serão compartilhadas "
-"somente\n"
-"com terceiros, nós usaremos o smolt como uma força para alavancar e obter "
-"um \n"
+"A informação enviada para a base de dados do servidor deve ser considerada pública\n"
+"onde qualquer um possa ver as estatísticas, dados e compartilhar perfis de máquinas.\n"
+"De qualquer maneira, o smolt é projetado para obter a atenção de fabricantes de hardware\n"
+"e da parte de terceiros. Contudo, estas informações não serão compartilhadas somente\n"
+"com terceiros, nós usaremos o smolt como uma força para alavancar e obter um \n"
 "melhor suporte para drivers de código aberto e em geral.\n"
 "\n"
-"Log de IP: Na instalação do smolt do Fedora todo o tráfego passa através de "
-"um servidor\n"
-"proxy antes. Este é o único local onde os endereços IPs são registrados e "
-"eles permanecem\n"
-"no servidor por um período de 4 semanas, que nesse caso é o tempo de rotação "
-"para remoção\n"
-"desses logs. O Projeto Fedora não agrega endereços IP na base de dados do "
-"smolt. Estes logs\n"
+"Log de IP: Na instalação do smolt do Fedora todo o tráfego passa através de um servidor\n"
+"proxy antes. Este é o único local onde os endereços IPs são registrados e eles permanecem\n"
+"no servidor por um período de 4 semanas, que nesse caso é o tempo de rotação para remoção\n"
+"desses logs. O Projeto Fedora não agrega endereços IP na base de dados do smolt. Estes logs\n"
 "são privados e não serão disponibilizados para o publico em geral.\n"
 "\n"
-"Usuários descontentes com esta política devem simplesmente não usar o smolt. "
-"Usuários com\n"
-"dúvidas sobre está política devem contatar o Time de Infra-estrutura do "
-"Fedora em\n"
-"admin [at] fedoraproject.org. Lembre-se também que usuários podem excluir "
-"seus perfis\n"
+"Usuários descontentes com esta política devem simplesmente não usar o smolt. Usuários com\n"
+"dúvidas sobre está política devem contatar o Time de Infraestrutura do Fedora em\n"
+"admin [at] fedoraproject.org. Lembre-se também que os usuários podem excluir seus perfis\n"
 "a qualquer momento usando o \"smoltDeleteProfile\" \n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr "Avaliação atual para fabricante/modelo"
+msgstr "Avaliação atual para fabricante/modelo."
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr "Não-classificado/desconhecido"
+msgstr "Não avaliado/desconhecido"
 
 #: scan.py:46
 msgid "Non-working"
-msgstr "Não está funcionando"
+msgstr "Não funciona"
 
 #: scan.py:47
 msgid "Partially-working"
-msgstr "Funcionando parcialmente"
+msgstr "Funciona parcialmente"
 
 #: scan.py:48
 msgid "Requires 3rd party drivers"
-msgstr "Requer drivers 3D"
+msgstr "Requer drivers de terceiros"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
@@ -640,7 +572,7 @@ msgstr "Funciona, necessita de configuração adicional"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr "Trabalhos fora de casa"
+msgstr "Funciona sem configurações adicionais"
 
 #: scan.py:58
 #, python-format
@@ -649,57 +581,43 @@ msgstr "Analisando %s para encontrar erratas.\n"
 
 #: scan.py:88
 msgid "\tErrata Found!"
-msgstr "Errata encontrada!"
+msgstr "\tErrata encontrada!"
 
 #: scan.py:91
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr ""
-"Nenhuma errata encontrada, se esta máquina estiver com problemas por favor "
-"visite"
+msgstr "\tNenhuma errata encontrada, se esta máquina estiver com problemas por favor visite"
 
 #: scan.py:92
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr ""
-"o seu perfil e crie uma página wiki para o dispositivo, de forma que outros "
-"possam se"
+msgstr "\to seu perfil e crie uma página wiki para o dispositivo, de forma que outros possam se"
 
 #: scan.py:93
 msgid "\tbenefit"
-msgstr "beneficiar"
+msgstr "\tbeneficiar"
 
 #~ msgid "_Quit"
 #~ msgstr "_Sair"
-
 #~ msgid "Quit the program without sending your hardware profile to the server"
 #~ msgstr "Sai do programa sem enviar o seu perfil de hardware para o servidor"
-
 #~ msgid "_Send"
 #~ msgstr "_Enviar"
-
 #~ msgid "Send your hardware profile to the server."
 #~ msgstr "Envia o seu perfil de hardware para o servidor."
-
 #~ msgid "Show the Smolt privacy policy."
 #~ msgstr "Mostra a política de privacidade do Smolt."
-
 #~ msgid "Take me to my smolt profile page"
 #~ msgstr "Leve-me a minha página de perfil do Smolt"
-
 #~ msgid "Smolt Privacy Policy"
 #~ msgstr "Política de privacidade do Smolt"
-
 #~ msgid "translator-credits"
 #~ msgstr ""
 #~ "Igor Pires Soares <igor@projetofedora.org>\n"
 #~ "Diego Búrigo Zacarão <diegobz@projetofedora.org>\n"
 #~ "Rodrigo Padula de Oliveira <rodrigopadula@projetofedora.org>"
-
 #~ msgid "Fedora hardware profiler."
 #~ msgstr "Perfil de hardware do Fedora"
-
 #~ msgid "Copyright © 2007 Mike McGrath"
 #~ msgstr "Copyright © 2007 Mike McGrath"
-
 #~ msgid ""
 #~ "This program is free software; you can redistribute it and/or modify it "
 #~ "under the terms of the GNU General Public License as published by the "
@@ -729,6 +647,6 @@ msgstr "beneficiar"
 #~ "General Public License) junto com o este programa; caso contrário, "
 #~ "escreva para a Free Software Foundation, Inc., 675 Mass Ave, Cambridge, "
 #~ "MA 02139, USA."
-
 #~ msgid "Communication with server failed"
 #~ msgstr "A comunicação com o servidor falhou"
+
