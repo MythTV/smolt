@@ -32,7 +32,7 @@ class _Overlays:
     def __init__(self):
         self._fill_overlays()
         tree_config = config()
-        tree_config['PORTDIR_OVERLAY'] = ' '.join(self.get_paths())
+        tree_config['PORTDIR_OVERLAY'] = ' '.join(self.get_active_paths())
         tree_config['PORTDIR'] = main_tree_dir()
         self._dbapi = portdbapi(main_tree_dir(), tree_config)
 
@@ -50,7 +50,7 @@ class _Overlays:
         return self._parse_overlay_meta(sync_file.path())
 
     def _fill_overlays(self):
-        non_secret_overlay_dict = self._get_known_overlay_map()
+        self._global_overlays_dict = self._get_known_overlay_map()
         enabled_installed_overlays = \
                 portage.settings['PORTDIR_OVERLAY'].split(' ')
 
@@ -66,24 +66,24 @@ class _Overlays:
                 name = overlay_name(overlay_location)
             except:
                 return False
-            return (name in non_secret_overlay_dict)
+            return (name in self._global_overlays_dict)
 
-        non_secret_overlay_paths = [e for e in
+        non_secret_active_overlay_paths = [e for e in
                 enabled_installed_overlays if is_non_secret(e)]
-        non_secret_overlay_names = [overlay_name(e) for e in
-                non_secret_overlay_paths]
+        non_secret_active_overlay_names = [overlay_name(e) for e in
+                non_secret_active_overlay_paths]
 
-        self._overlay_paths = non_secret_overlay_paths
-        self._overlay_names = non_secret_overlay_names
+        self._active_overlay_paths = non_secret_active_overlay_paths
+        self._active_overlay_names = non_secret_active_overlay_names
         self._total_count = len(enabled_installed_overlays)
         self._secret_count = \
-                len(enabled_installed_overlays) - len(non_secret_overlay_names)
+                len(enabled_installed_overlays) - len(non_secret_active_overlay_names)
 
-    def get_names(self):
-        return self._overlay_names
+    def get_active_names(self):
+        return self._active_overlay_names
 
-    def get_paths(self):
-        return self._overlay_paths
+    def get_active_paths(self):
+        return self._active_overlay_paths
 
     def total_count(self):
         return self._total_count
@@ -92,26 +92,32 @@ class _Overlays:
         return self._secret_count
 
     def known_count(self):
-        return len(self._overlay_names)
+        return len(self._active_overlay_names)
 
     def is_secret_package(self, atom):
         cp = portage.dep_getkey(atom)
         return not self._dbapi.cp_list(cp)
 
     def is_secret_overlay_name(self, overlay_name):
+        # Non-overlay trees
         if overlay_name in ('gentoo', 'funtoo', 'gentoo_prefix'):
             return False
-        return not overlay_name in self._overlay_names
+
+        # repo_name/layman-global mismatch workarounds
+        if overlay_name in ('majeru', 'proaudio'):
+            return False
+
+        return not overlay_name in self._global_overlays_dict
 
     def dump(self):
-        print 'Overlays:'
+        print 'Active overlays:'
         print '  Names:'
-        print self.get_names()
+        print self.get_active_names()
         print '  Paths:'
-        print self.get_paths()
-        print '    Total: ' + str(self.total_count())
-        print '      Known: ' + str(self.known_count())
-        print '      Secret: ' + str(self.secret_count())
+        print self.get_active_paths()
+        print '  Total: ' + str(self.total_count())
+        print '    Known: ' + str(self.known_count())
+        print '    Secret: ' + str(self.secret_count())
         print
 
 
