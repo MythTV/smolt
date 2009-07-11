@@ -28,8 +28,10 @@ class TrivialVectors:
         return self._trivial_scalars
 
     def dump(self):
+        print 'Trivial vectors:'
         for k, v in self._trivial_scalars.items():
-            print '%s: %s' % (k, v)
+            print '  %s: %s' % (k, v)
+        print
 
 if __name__ == '__main__':
     TrivialVectors = TrivialVectors()

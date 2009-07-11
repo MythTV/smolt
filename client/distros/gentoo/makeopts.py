@@ -39,6 +39,7 @@ class MakeOpts:
 
     def dump(self):
         print 'MAKEOPTS: ' + str(self.get())
+        print
 
 if __name__ == '__main__':
     MakeOpts = MakeOpts()

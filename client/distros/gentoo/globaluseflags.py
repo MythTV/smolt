@@ -111,10 +111,12 @@ class GlobalUseFlags:
         return flag in self._global_use_flags
 
     def dump(self):
-        print 'Global use flags: ' + str(sorted(self.get()))
-        print 'Total: ' + str(self.total_count())
-        print '  Known: ' + str(self.known_count())
-        print '  Secret: ' + str(self.secret_count())
+        print 'Global use flags:'
+        print sorted(self.get())
+        print '  Total: ' + str(self.total_count())
+        print '    Known: ' + str(self.known_count())
+        print '    Secret: ' + str(self.secret_count())
+        print
 
 if __name__ == '__main__':
     globaluseflags = GlobalUseFlags()

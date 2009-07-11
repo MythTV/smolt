@@ -63,6 +63,7 @@ class _WorldSet:
         print 'Total: ' + str(self.total_count())
         print '  Known: ' + str(self.known_count())
         print '  Secret: ' + str(self.secret_count())
+        print
 
 
 _world_set_instance = None

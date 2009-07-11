@@ -52,9 +52,11 @@ class CompileFlags:
         return self._ldflags
 
     def dump(self):
-        print 'CFLAGS: ' + str(self.get_cflags())
-        print 'CXXFLAGS: ' + str(self.get_cxxflags())
-        print 'LDFLAGS: ' + str(self.get_ldflags())
+        print 'Compile flags:'
+        print '  CFLAGS: ' + str(self.get_cflags())
+        print '  CXXFLAGS: ' + str(self.get_cxxflags())
+        print '  LDFLAGS: ' + str(self.get_ldflags())
+        print
 
 if __name__ == '__main__':
     compileflags = CompileFlags()

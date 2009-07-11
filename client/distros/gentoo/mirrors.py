@@ -75,13 +75,15 @@ class Mirrors:
 
     def known_count(self):
         return len(self._mirror_urls)
-    
+
     def dump(self):
         print 'SYNC: ' + str(self.get_sync())
-        print 'GENTOO_MIRRORS: ' + str(self.get_mirrors())
+        print 'GENTOO_MIRRORS:'
+        print self.get_mirrors()
         print '  Total: ' + str(self.total_count())
-        print '  Known: ' + str(self.known_count())
-        print '  Secret: ' + str(self.secret_count())
+        print '    Known: ' + str(self.known_count())
+        print '    Secret: ' + str(self.secret_count())
+        print
 
 if __name__ == '__main__':
     mirrors = Mirrors()

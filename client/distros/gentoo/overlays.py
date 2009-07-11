@@ -104,11 +104,15 @@ class _Overlays:
         return not overlay_name in self._overlay_names
 
     def dump(self):
-        print 'Names: ' + str(self.get_names())
-        print 'Paths: ' + str(self.get_paths())
-        print 'Total: ' + str(self.total_count())
-        print '  Known: ' + str(self.known_count())
-        print '  Secret: ' + str(self.secret_count())
+        print 'Overlays:'
+        print '  Names:'
+        print self.get_names()
+        print '  Paths:'
+        print self.get_paths()
+        print '    Total: ' + str(self.total_count())
+        print '      Known: ' + str(self.known_count())
+        print '      Secret: ' + str(self.secret_count())
+        print
 
 
 _overlays_instance = None

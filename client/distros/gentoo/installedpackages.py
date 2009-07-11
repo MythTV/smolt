@@ -121,9 +121,10 @@ class InstalledPackages:
             print [package_name, version_revision, SLOT, keyword_status,
                 tags, repository, sorted_flags_list]
         print
-        print 'Total: ' + str(self.total_count())
-        print '  Known: ' + str(self.known_count())
-        print '  Secret: ' + str(self.secret_count())
+        print '  Total: ' + str(self.total_count())
+        print '    Known: ' + str(self.known_count())
+        print '    Secret: ' + str(self.secret_count())
+        print
 
 if __name__ == '__main__':
     installed_packages = InstalledPackages(debug=True)

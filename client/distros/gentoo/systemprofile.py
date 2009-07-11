@@ -49,7 +49,8 @@ class SystemProfile:
         return self._profile
 
     def dump(self):
-        print "Profile: " +  self._profile
+        print 'System profile: ' + self._profile
+        print
 
 if __name__ == '__main__':
     systemprofile = SystemProfile()
