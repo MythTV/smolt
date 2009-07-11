@@ -99,7 +99,7 @@ class _Overlays:
         return not self._dbapi.cp_list(cp)
 
     def is_secret_overlay_name(self, overlay_name):
-        if overlay_name in ('gentoo', 'funtoo'):
+        if overlay_name in ('gentoo', 'funtoo', 'gentoo_prefix'):
             return False
         return not overlay_name in self._overlay_names
 
