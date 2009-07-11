@@ -26,9 +26,8 @@ class SystemProfile:
         self._profile = self._filter(self._get_profile())
 
     def _get_profile(self):
-        return os.path.realpath(
-                portage.settings.profile_path).replace(
-                '%s/profiles/' % main_tree_dir(), '')
+        # expand make.profile symlink
+        return os.path.realpath(portage.settings.profile_path)
 
     def _collect_known_profiles(self):
         # TODO extract to parser class?
@@ -41,10 +40,10 @@ class SystemProfile:
 
     def _filter(self, profile):
         known_profiles_set = self._collect_known_profiles()
-        if profile in known_profiles_set:
-            return profile
-        else:
-            return '<private profile>'
+        for p in known_profiles_set:
+            if profile.endswith('/' + p):
+                return p
+        return '<private profile>'
 
     def get(self):
         return self._profile
