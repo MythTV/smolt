@@ -57,7 +57,10 @@ class InstalledPackages:
     def _process(self, var_tree, cpv):
         cat, pkg, ver, rev = catpkgsplit(cpv)
         package_name = "%s/%s" % (cat, pkg)
-        version_revision = "%s-%s" % (ver, rev)
+        if rev == 'r0':
+            version_revision = ver
+        else:
+            version_revision = "%s-%s" % (ver, rev)
 
         SLOT, KEYWORDS, repository, IUSE, USE = \
             var_tree.dbapi.aux_get(cpv, ['SLOT', 'KEYWORDS', 'repository',
