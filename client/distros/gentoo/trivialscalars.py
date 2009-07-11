@@ -21,9 +21,7 @@ import portage
 class TrivialScalars:
     def __init__(self):
         self._trivial_scalars = {}
-        for k in ('ARCH', 'CHOST', 'USERLAND', 'KERNEL', 'USE_ORDER',
-                'PORTAGE_FETCH_CHECKSUM_TRY_MIRRORS',
-                'PORTAGE_ECLASS_WARNING_ENABLE'):
+        for k in ('ARCH', 'CHOST', 'USE_ORDER',
             self._trivial_scalars[k] = portage.settings[k].strip()
 
     def get(self):
