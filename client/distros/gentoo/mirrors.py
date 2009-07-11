@@ -42,8 +42,9 @@ class Mirrors:
             sync_url = '<using non-rsync tree>'
         else:
             parsed = urlparse.urlparse(sync_url)
-            if (parsed.hostname == None) or \
-                    not parsed.hostname.endswith('gentoo.org'):
+            if (parsed.hostname == None) or not (\
+                    parsed.hostname.endswith('gentoo.org') or \
+                    parsed.hostname.endswith('prefix.freens.org')):
                 sync_url = 'WITHHELD'
         return sync_url
 
