@@ -17,6 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 import sys
+import os
 from gentoo.compileflags import CompileFlags
 from gentoo.globaluseflags import GlobalUseFlags
 from gentoo.installedpackages import InstalledPackages
@@ -30,9 +31,11 @@ from gentoo.trivialvectors import TrivialVectors
 
 def stage(text):
     print 'Processing %s' % (text)
-    sys.stdout.flush()
 
 if __name__ == '__main__':
+    # Enable auto-flushing for stdout
+    sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
+
     stage('global use flags')
     global_use_flags = GlobalUseFlags()
 
