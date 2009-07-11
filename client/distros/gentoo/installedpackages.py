@@ -25,7 +25,7 @@ from worldset import WorldSet
 from packagestar import PackageMask, PackageUnmask, ProfilePackageMask
 
 class InstalledPackages:
-    def __init__(self):
+    def __init__(self, debug=False):
         self._cpv_flag_list = []
         var_tree = vartree()
         installed_cpvs = var_tree.getallcpv()
@@ -34,9 +34,11 @@ class InstalledPackages:
         for cpv in installed_cpvs:
             self._total_count = self._total_count + 1
             if Overlays().is_secret_package(cpv):
+                if debug:
+                    print 'cpv "%s" a secret package' % (cpv)
                 self._secret_count = self._secret_count + 1
                 continue
-            added = self._process(var_tree, cpv)
+            added = self._process(var_tree, cpv, debug=debug)
             if not added:
                 self._secret_count = self._secret_count + 1
 
@@ -54,7 +56,7 @@ class InstalledPackages:
         else:
             return '**'
 
-    def _process(self, var_tree, cpv):
+    def _process(self, var_tree, cpv, debug=False):
         cat, pkg, ver, rev = catpkgsplit(cpv)
         package_name = "%s/%s" % (cat, pkg)
         if rev == 'r0':
@@ -65,8 +67,11 @@ class InstalledPackages:
         SLOT, KEYWORDS, repository, IUSE, USE = \
             var_tree.dbapi.aux_get(cpv, ['SLOT', 'KEYWORDS', 'repository',
             'IUSE', 'USE'])
-        if Overlays().is_secret_overlay_name(repository):
-            return False
+        if repository and Overlays().is_secret_overlay_name(repository):
+            if debug:
+                print 'repository "%s" secret for cpv "%s", stripping' % \
+                    (repository, cpv)
+            repository = ''
 
         ACCEPT_KEYWORDS = portage.settings['ACCEPT_KEYWORDS']
         ARCH = portage.settings['ARCH']
@@ -121,5 +126,5 @@ class InstalledPackages:
         print '  Secret: ' + str(self.secret_count())
 
 if __name__ == '__main__':
-    installed_packages = InstalledPackages()
+    installed_packages = InstalledPackages(debug=True)
     installed_packages.dump()
