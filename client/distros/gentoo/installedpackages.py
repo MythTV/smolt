@@ -33,11 +33,6 @@ class InstalledPackages:
         self._secret_count = 0
         for cpv in installed_cpvs:
             self._total_count = self._total_count + 1
-            if Overlays().is_secret_package(cpv):
-                if debug:
-                    print 'cpv "%s" a secret package' % (cpv)
-                self._secret_count = self._secret_count + 1
-                continue
             added = self._process(var_tree, cpv, debug=debug)
             if not added:
                 self._secret_count = self._secret_count + 1
@@ -67,11 +62,37 @@ class InstalledPackages:
         SLOT, KEYWORDS, repository, IUSE, USE = \
             var_tree.dbapi.aux_get(cpv, ['SLOT', 'KEYWORDS', 'repository',
             'IUSE', 'USE'])
-        if repository and Overlays().is_secret_overlay_name(repository):
+
+        secret_package = Overlays().is_secret_package(cpv)
+        if debug and secret_package:
+            print '  cpv "%s" belongs to a secret package' % (cpv)
+
+        from_secret_overlay = repository and \
+            Overlays().is_secret_overlay_name(repository)
+        if from_secret_overlay:
             if debug:
-                print 'repository "%s" secret for cpv "%s", stripping' % \
+                print '  repository "%s" is secret for cpv "%s", stripping' % \
                     (repository, cpv)
             repository = ''
+
+        """
+        Notes on the line of code after:
+
+        -   We collect secret packages iff they come from a non-secret
+            overlay, because that means they were in the before and are
+            actually not secret.  An example would be media-sounds/xmms
+
+        -   We collect packages from secret overlays iff the package also
+            exists in a non-secret overlay.  An example would be that
+            you posted your ebuild to bugs.gentoo.org and somebody added
+            it to the tree in the meantime.
+
+        Conclusion:  'and' is wanted below, not 'or'
+        """
+        if secret_package and from_secret_overlay:
+            if debug:
+                print '  --> skipping cpv "%s"' % (cpv)
+            return False
 
         ACCEPT_KEYWORDS = portage.settings['ACCEPT_KEYWORDS']
         ARCH = portage.settings['ARCH']
