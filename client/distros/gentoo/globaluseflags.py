@@ -19,8 +19,12 @@
 import portage
 import re
 import os
-import sets
 from tools.maintreedir import main_tree_dir
+
+try:
+    set
+except NameError:
+    from sets import Set as set  # Python 2.3 fallback
 
 class GlobalUseFlags:
     def __init__(self):

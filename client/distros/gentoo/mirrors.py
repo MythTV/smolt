@@ -16,11 +16,15 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
-import sets
 import urlparse
 import portage
 from mirrorselect.mirrorparser3 import MirrorParser3, MIRRORS_3_XML
 from tools.syncfile import SyncFile
+
+try:
+    set
+except NameError:
+    from sets import Set as set  # Python 2.3 fallback
 
 class Mirrors:
     def __init__(self):
