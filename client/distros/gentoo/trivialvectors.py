@@ -21,8 +21,17 @@ import portage
 class TrivialVectors:
     def __init__(self):
         self._trivial_scalars = {}
-        for k in ('ACCEPT_KEYWORDS', 'FEATURES'):
+        for k in ('FEATURES',):
             self._trivial_scalars[k] = portage.settings[k].split(' ')
+
+        self._trivial_scalars['ACCEPT_KEYWORDS'] = \
+            self._accept_keywords()
+
+    def _accept_keywords(self):
+        # Let '~arch' kill 'arch' so we don't get both
+        list = portage.settings['ACCEPT_KEYWORDS'].split(' ')
+        unstable = set(e for e in list if e.startswith('~'))
+        return [e for e in list if not ('~' + e) in unstable]
 
     def get(self):
         return self._trivial_scalars
