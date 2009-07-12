@@ -31,8 +31,8 @@ class _WorldSet:
         file = open(world_file, 'r')
         atoms = [line.rstrip("\r\n") for line in file]
         self._total_count = len(atoms)
-        self._cps = set([e for e in atoms if not Overlays().is_secret_package(e)])
-        self._secret_count = self._total_count - len(self._cps)
+        self._cps = set([e for e in atoms if not Overlays().is_private_package(e)])
+        self._private_count = self._total_count - len(self._cps)
         file.close()
 
     def get(self):
@@ -51,11 +51,11 @@ class _WorldSet:
     def total_count(self):
         return self._total_count
 
-    def secret_count(self):
-        return self._secret_count
+    def private_count(self):
+        return self._private_count
 
     def known_count(self):
-        return self.total_count() - self.secret_count()
+        return self.total_count() - self.private_count()
 
     def dump(self):
         print 'World:'
@@ -63,7 +63,7 @@ class _WorldSet:
             print i
         print 'Total: ' + str(self.total_count())
         print '  Known: ' + str(self.known_count())
-        print '  Secret: ' + str(self.secret_count())
+        print '  Private: ' + str(self.private_count())
         print
 
 

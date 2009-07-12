@@ -29,7 +29,7 @@ class Mirrors:
                 all_urls if
                 url in self._collect_known_mirror_urls()]
         self._total_count = len(all_urls)
-        self._secret_count = self._total_count - self.known_count()
+        self._private_count = self._total_count - self.known_count()
         self._sync_url = self._get_sync_url()
 
     def _collect_used_mirror_urls(self):
@@ -70,8 +70,8 @@ class Mirrors:
     def total_count(self):
         return self._total_count
 
-    def secret_count(self):
-        return self._secret_count
+    def private_count(self):
+        return self._private_count
 
     def known_count(self):
         return len(self._mirror_urls)
@@ -82,7 +82,7 @@ class Mirrors:
         print self.get_mirrors()
         print '  Total: ' + str(self.total_count())
         print '    Known: ' + str(self.known_count())
-        print '    Secret: ' + str(self.secret_count())
+        print '    Private: ' + str(self.private_count())
         print
 
 if __name__ == '__main__':

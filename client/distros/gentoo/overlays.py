@@ -61,23 +61,23 @@ class _Overlays:
             file.close()
             return name
 
-        def is_non_secret(overlay_location):
+        def is_non_private(overlay_location):
             try:
                 name = overlay_name(overlay_location)
             except:
                 return False
             return (name in self._global_overlays_dict)
 
-        non_secret_active_overlay_paths = [e for e in
-                enabled_installed_overlays if is_non_secret(e)]
-        non_secret_active_overlay_names = [overlay_name(e) for e in
-                non_secret_active_overlay_paths]
+        non_private_active_overlay_paths = [e for e in
+                enabled_installed_overlays if is_non_private(e)]
+        non_private_active_overlay_names = [overlay_name(e) for e in
+                non_private_active_overlay_paths]
 
-        self._active_overlay_paths = non_secret_active_overlay_paths
-        self._active_overlay_names = non_secret_active_overlay_names
+        self._active_overlay_paths = non_private_active_overlay_paths
+        self._active_overlay_names = non_private_active_overlay_names
         self._total_count = len(enabled_installed_overlays)
-        self._secret_count = \
-                len(enabled_installed_overlays) - len(non_secret_active_overlay_names)
+        self._private_count = \
+                len(enabled_installed_overlays) - len(non_private_active_overlay_names)
 
     def get_active_names(self):
         return self._active_overlay_names
@@ -88,17 +88,17 @@ class _Overlays:
     def total_count(self):
         return self._total_count
 
-    def secret_count(self):
-        return self._secret_count
+    def private_count(self):
+        return self._private_count
 
     def known_count(self):
         return len(self._active_overlay_names)
 
-    def is_secret_package(self, atom):
+    def is_private_package(self, atom):
         cp = portage.dep_getkey(atom)
         return not self._dbapi.cp_list(cp)
 
-    def is_secret_overlay_name(self, overlay_name):
+    def is_private_overlay_name(self, overlay_name):
         # Non-overlay trees
         if overlay_name in ('gentoo', 'funtoo', 'gentoo_prefix'):
             return False
@@ -117,7 +117,7 @@ class _Overlays:
         print self.get_active_paths()
         print '  Total: ' + str(self.total_count())
         print '    Known: ' + str(self.known_count())
-        print '    Secret: ' + str(self.secret_count())
+        print '    Private: ' + str(self.private_count())
         print
 
 

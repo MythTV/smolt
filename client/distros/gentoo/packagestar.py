@@ -38,14 +38,14 @@ class _PackageStar:
     def _collect(self):
         self._cp_to_atoms = defaultdict(list)
         self._total_count = 0
-        self._secret_count = 0
+        self._private_count = 0
         for location in self._locations():
             for x in portage.grabfile_package(
                     os.path.join(location, self._section), recursive = 1):
                 self._total_count = self._total_count + 1
                 cp = portage.dep_getkey(x)
-                if self._privacy_filter and Overlays().is_secret_package(cp):
-                    self._secret_count = self._secret_count + 1
+                if self._privacy_filter and Overlays().is_private_package(cp):
+                    self._private_count = self._private_count + 1
                     continue
                 merge_with = set([x])
                 if cp in self._cp_to_atoms:
@@ -56,11 +56,11 @@ class _PackageStar:
     def total_count(self):
         return self._total_count
 
-    def secret_count(self):
-        return self._secret_count
+    def private_count(self):
+        return self._private_count
 
     def known_count(self):
-        return self.total_count() - self.secret_count()
+        return self.total_count() - self.private_count()
 
     def hits(self, cpv):
         cp = portage.dep_getkey(cpv)
@@ -81,7 +81,7 @@ class _PackageStar:
         print
         print '  Total: ' + str(self.total_count())
         print '    Known: ' + str(self.known_count())
-        print '    Secret: ' + str(self.secret_count())
+        print '    Private: ' + str(self.private_count())
         print
 
 

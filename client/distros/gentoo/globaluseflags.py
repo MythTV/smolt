@@ -76,23 +76,23 @@ class GlobalUseFlags:
         self._total_count = \
                 len(active_use_flags)
 
-        # Filter our secret use flags
+        # Filter our private use flags
         registered_global_use_flags = self._registered_global_use_flags()
-        non_secret_space = registered_global_use_flags.union(
+        non_private_space = registered_global_use_flags.union(
                 self._registered_local_use_flags()).union(
                 self._expanded_use_flags()).union(
                 self._auto_use_flags())
-        def is_non_secret(x):
+        def is_non_private(x):
             try:
-                if (x in non_secret_space) or ("-" + x in non_secret_space):
+                if (x in non_private_space) or ("-" + x in non_private_space):
                     return True
                 else:
                     return False
             except KeyError:
                 return False
         self._global_use_flags = set([e for e in active_use_flags
-                if is_non_secret(e)])
-        self._secret_count = \
+                if is_non_private(e)])
+        self._private_count = \
                 self._total_count - len(self._global_use_flags)
 
     def get(self):
@@ -101,11 +101,11 @@ class GlobalUseFlags:
     def total_count(self):
         return self._total_count
 
-    def secret_count(self):
-        return self._secret_count
+    def private_count(self):
+        return self._private_count
 
     def known_count(self):
-        return self.total_count() - self.secret_count()
+        return self.total_count() - self.private_count()
 
     def is_known(self, flag):
         return flag in self._global_use_flags
@@ -115,7 +115,7 @@ class GlobalUseFlags:
         print sorted(self.get())
         print '  Total: ' + str(self.total_count())
         print '    Known: ' + str(self.known_count())
-        print '    Secret: ' + str(self.secret_count())
+        print '    Private: ' + str(self.private_count())
         print
 
 if __name__ == '__main__':

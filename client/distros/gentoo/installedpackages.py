@@ -30,12 +30,12 @@ class InstalledPackages:
         var_tree = vartree()
         installed_cpvs = var_tree.getallcpv()
         self._total_count = 0
-        self._secret_count = 0
+        self._private_count = 0
         for cpv in installed_cpvs:
             self._total_count = self._total_count + 1
             added = self._process(var_tree, cpv, debug=debug)
             if not added:
-                self._secret_count = self._secret_count + 1
+                self._private_count = self._private_count + 1
 
     def _keyword_status(self, ARCH, ACCEPT_KEYWORDS, KEYWORDS):
         k = set(KEYWORDS.split(' '))
@@ -63,33 +63,33 @@ class InstalledPackages:
             var_tree.dbapi.aux_get(cpv, ['SLOT', 'KEYWORDS', 'repository',
             'IUSE', 'USE'])
 
-        secret_package = Overlays().is_secret_package(cpv)
-        if debug and secret_package:
-            print '  cpv "%s" belongs to a secret package' % (cpv)
+        private_package = Overlays().is_private_package(cpv)
+        if debug and private_package:
+            print '  cpv "%s" belongs to a private package' % (cpv)
 
-        from_secret_overlay = repository and \
-            Overlays().is_secret_overlay_name(repository)
-        if from_secret_overlay:
+        from_private_overlay = repository and \
+            Overlays().is_private_overlay_name(repository)
+        if from_private_overlay:
             if debug:
-                print '  repository "%s" is secret for cpv "%s", stripping' % \
+                print '  repository "%s" is private for cpv "%s", stripping' % \
                     (repository, cpv)
             repository = ''
 
         """
         Notes on the line of code after:
 
-        -   We collect secret packages iff they come from a non-secret
+        -   We collect private packages iff they come from a non-private
             overlay, because that means they were in the before and are
-            actually not secret.  An example would be media-sounds/xmms
+            actually not private.  An example would be media-sounds/xmms
 
-        -   We collect packages from secret overlays iff the package also
-            exists in a non-secret overlay.  An example would be that
+        -   We collect packages from private overlays iff the package also
+            exists in a non-private overlay.  An example would be that
             you posted your ebuild to bugs.gentoo.org and somebody added
             it to the tree in the meantime.
 
         Conclusion:  'and' is wanted below, not 'or'
         """
-        if secret_package and from_secret_overlay:
+        if private_package and from_private_overlay:
             if debug:
                 print '  --> skipping cpv "%s"' % (cpv)
             return False
@@ -123,8 +123,8 @@ class InstalledPackages:
     def total_count(self):
         return self._total_count
 
-    def secret_count(self):
-        return self._secret_count
+    def private_count(self):
+        return self._private_count
 
     def known_count(self):
         return len(self._cpv_flag_list)
@@ -144,7 +144,7 @@ class InstalledPackages:
         print
         print '  Total: ' + str(self.total_count())
         print '    Known: ' + str(self.known_count())
-        print '    Secret: ' + str(self.secret_count())
+        print '    Private: ' + str(self.private_count())
         print
 
 if __name__ == '__main__':
