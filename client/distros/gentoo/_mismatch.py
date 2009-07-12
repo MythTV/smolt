@@ -20,6 +20,7 @@ from tools.syncfile import SyncFile
 from tools.overlayparser import OverlayParser
 import ConfigParser
 import os
+import sys
 
 layman_config = ConfigParser.ConfigParser()
 layman_config.read('/etc/layman/layman.cfg')
@@ -35,17 +36,30 @@ file = open(sync_file.path(), 'r')
 parser.parse(file.read())
 file.close()
 
+legend_printed = False
 for i in parser.get().keys():
     layman_global_name = i
-    filename = os.path.join(layman_storage_path, layman_global_name,
-            'profiles', 'repo_name')
+    overlay_folder = os.path.join(layman_storage_path, layman_global_name)
+    if not os.path.exists(overlay_folder):
+        sys.stderr.write('ERROR: Overlay "%s" not found\n' % layman_global_name)
+        continue
+    filename = os.path.join(overlay_folder, 'profiles', 'repo_name')
+    if not os.path.exists(filename):
+        sys.stderr.write('ERROR: Overlay "%s" lacks repo_name entry\n' % \
+            layman_global_name)
+        continue
     try:
         file = open(filename, 'r')
         repo_name = file.readline().rstrip('\n\r')
         file.close()
     except IOError:
-        print '  error accessing file "%s"' % filename
         continue
     if layman_global_name != repo_name:
-        print 'MISMATCH "%s" (layman-global) versus "%s" (repo_name)"' % \
-            (layman_global_name, repo_name)
+        if not legend_printed:
+            sys.stderr.write('Format:\n')
+            sys.stderr.write('    "<repo_name>",  # <layman-global.txt>\n')
+            sys.stderr.write('\n')
+            sys.stderr.write('Entries:\n')
+            legend_printed = True
+        print '    "%s",  # %s' % \
+            (repo_name, layman_global_name)
