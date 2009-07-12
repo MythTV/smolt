@@ -17,6 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 import os
+import portage
 from portage.const import WORLD_FILE
 from overlays import Overlays
 
@@ -25,8 +26,8 @@ class _WorldSet:
         self._collect()
 
     def _collect(self):
-        root = '/' # TODO
-        world_file = os.path.join(root, WORLD_FILE)
+        config_root = portage.settings["PORTAGE_CONFIGROOT"]
+        world_file = os.path.join(config_root, WORLD_FILE)
         file = open(world_file, 'r')
         atoms = [line.rstrip("\r\n") for line in file]
         self._total_count = len(atoms)
