@@ -28,6 +28,42 @@ from tools.maintreedir import main_tree_dir
 from tools.syncfile import SyncFile
 from tools.overlayparser import OverlayParser
 
+
+_MAIN_TREE_WHITELIST = (
+    "gentoo",
+    "funtoo",
+    "gentoo_prefix",
+)
+
+_REPO_NAME_MISMATCH_WHITELIST = (
+    "bangert-ebuilds",  # bangert
+    "china",  # gentoo-china
+    "dev-jokey",  # jokey
+    "digital-trauma.de",  # trauma
+    "Falco's git overlay",  # falco
+    "gcj-overlay",  # java-gcj-overlay
+    "geki-overlay",  # openoffice-geki
+    "gentoo-haskell",  # haskell
+    "gentoo-lisp-overlay",  # lisp
+    "kde4-experimental",  # kde
+    "kde",  # kde-testing
+    "leio-personal",  # leio
+    "maekke's overlay",  # maekke
+    "majeru",  # oss-overlay
+    "mpd-portage",  # mpd
+    "ogo-lu_zero",  # lu_zero
+    "pcsx2-overlay",  # pcsx2
+    "proaudio",  # pro-audio
+    "scarabeus_local_overlay",  # scarabeus
+    "soor",  # soor-overlay
+    "steev_github",  # steev
+    "suka's dev overlay - experimental stuff of all sorts",  # suka
+    "tante_overlay",  # tante
+    "vdr-xine-overlay",  # vdr-xine
+    "webapp-experimental",  # webapps-experimental
+)
+
+
 class _Overlays:
     def __init__(self):
         self._fill_overlays()
@@ -99,12 +135,10 @@ class _Overlays:
         return not self._dbapi.cp_list(cp)
 
     def is_private_overlay_name(self, overlay_name):
-        # Non-overlay trees
-        if overlay_name in ('gentoo', 'funtoo', 'gentoo_prefix'):
+        if overlay_name in _MAIN_TREE_WHITELIST:
             return False
 
-        # repo_name/layman-global mismatch workarounds
-        if overlay_name in ('majeru', 'proaudio'):
+        if overlay_name in _REPO_NAME_MISMATCH_WHITELIST:
             return False
 
         return not overlay_name in self._global_overlays_dict
