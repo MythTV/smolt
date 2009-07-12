@@ -28,7 +28,7 @@ class InstalledPackages:
     def __init__(self, debug=False):
         self._cpv_flag_list = []
         var_tree = vartree()
-        installed_cpvs = var_tree.getallcpv()
+        installed_cpvs = var_tree.getallcpv()  # TODO upstream plans rename?
         self._total_count = 0
         self._private_count = 0
         for cpv in installed_cpvs:
