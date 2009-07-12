@@ -65,7 +65,7 @@ class InstalledPackages:
 
         private_package = Overlays().is_private_package(cpv)
         if debug and private_package:
-            print '  cpv "%s" belongs to a private package' % (cpv)
+            print '  cpv "%s" not found in non-private trees' % (cpv)
 
         from_private_overlay = repository and \
             Overlays().is_private_overlay_name(repository)
@@ -79,8 +79,8 @@ class InstalledPackages:
         Notes on the line of code after:
 
         -   We collect private packages iff they come from a non-private
-            overlay, because that means they were in the before and are
-            actually not private.  An example would be media-sounds/xmms
+            overlay, because that means they were in there before and are
+            actually not private.  An example would be media-sound/xmms.
 
         -   We collect packages from private overlays iff the package also
             exists in a non-private overlay.  An example would be that
@@ -91,7 +91,7 @@ class InstalledPackages:
         """
         if private_package and from_private_overlay:
             if debug:
-                print '  --> skipping cpv "%s"' % (cpv)
+                print '  --> skipping private cpv "%s"' % (cpv)
             return False
 
         ACCEPT_KEYWORDS = portage.settings['ACCEPT_KEYWORDS']
