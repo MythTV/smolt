@@ -29,24 +29,24 @@ class _WorldSet:
         config_root = portage.settings["PORTAGE_CONFIGROOT"]
         world_file = os.path.join(config_root, WORLD_FILE)
         file = open(world_file, 'r')
-        atoms = [line.rstrip("\r\n") for line in file]
-        self._total_count = len(atoms)
-        self._cps = set([e for e in atoms if not Overlays().is_private_package(e)])
-        self._private_count = self._total_count - len(self._cps)
+        self._all_cps = [line.rstrip("\r\n") for line in file]
+        self._total_count = len(self._all_cps)
+        self._known_cps = set([e for e in self._all_cps if not Overlays().is_private_package(e)])
+        self._private_count = self._total_count - len(self._known_cps)
         file.close()
 
     def get(self):
         """
         Returns a set of <cat-pkg> and <cat-pkg-slot> atoms
         """
-        return self._cps
+        return self._known_cps
 
     def contains(self, cat, pkg, slot):
         if slot in (None, '', '0'):
             world_set_test = '%s/%s' % (cat, pkg)
         else:
             world_set_test = '%s/%s:%s' % (cat, pkg, slot)
-        return world_set_test in self._cps
+        return world_set_test in self._all_cps
 
     def total_count(self):
         return self._total_count
@@ -59,7 +59,7 @@ class _WorldSet:
 
     def dump(self):
         print 'World:'
-        for i in self._cps:
+        for i in self._known_cps:
             print i
         print 'Total: ' + str(self.total_count())
         print '  Known: ' + str(self.known_count())
