@@ -21,14 +21,16 @@ import portage
 from mirrorselect.mirrorparser3 import MirrorParser3, MIRRORS_3_XML
 from tools.syncfile import SyncFile
 
-_EXTRA_DISTFILES_MIRRORS = (
-    "http://distfiles.gentoo.org",
-)
-
 try:
     set
 except NameError:
     from sets import Set as set  # Python 2.3 fallback
+
+
+_EXTRA_DISTFILES_MIRRORS = (
+    "http://distfiles.gentoo.org",
+)
+
 
 class Mirrors:
     def __init__(self):
