@@ -77,7 +77,7 @@ class Reports(object):
                 Host.system, Host.vendor).order_by(desc(\
                 func.count(Host.rating))).limit(500).execute().fetchall()
         pub_uuids = select([Host.pub_uuid, Host.rating], and_(Host.pub_uuid!='', or_(Host.system.like('''%%%s%%''' % profile), Host.vendor.\
-                like('''%%%s%%''' % profile)))).limit(1000).execute().fetchall()
+                like('''%%%s%%''' % profile)))).limit(500).execute().fetchall()
         return dict(found=found, pub_uuids=pub_uuids)
 
     @expose(template='hardware.templates.report_search_devices')
@@ -88,7 +88,7 @@ class Reports(object):
     def view_devices(self, *args, **keys):
         device = keys['device']
         d = select([ComputerLogicalDevice.id, ComputerLogicalDevice.description],
-            ComputerLogicalDevice.description.like('''%%%s%%''' % device)).limit(1000).alias('d')
+            ComputerLogicalDevice.description.like('''%%%s%%''' % device)).limit(500).alias('d')
         found = select ([HostLink.rating, func.count(HostLink.rating).label('cnt'),
             d.c.description], HostLink.device_id == d.c.id).group_by(HostLink.rating,
             d.c.description).order_by(desc('cnt')).execute().fetchall()
@@ -97,7 +97,7 @@ class Reports(object):
     @expose(template='hardware.templates.report_view_device')
     def view_device(self, device, *args, **keys):
         d = select([ComputerLogicalDevice.id, ComputerLogicalDevice.vendor_id, ComputerLogicalDevice.device_id, ComputerLogicalDevice.subsys_vendor_id, ComputerLogicalDevice.subsys_device_id, ComputerLogicalDevice.description],
-            ComputerLogicalDevice.description == '''%s''' % device).limit(1000).alias('d')
+            ComputerLogicalDevice.description == '''%s''' % device).limit(500).alias('d')
         found = select ([HostLink.rating, func.count(HostLink.rating).label('cnt'),
             d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id], HostLink.device_id == d.c.id).group_by(HostLink.rating,
             d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id).order_by(desc('cnt')).execute().fetchall()
