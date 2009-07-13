@@ -21,6 +21,10 @@ import portage
 from mirrorselect.mirrorparser3 import MirrorParser3, MIRRORS_3_XML
 from tools.syncfile import SyncFile
 
+_EXTRA_DISTFILES_MIRRORS = (
+    "http://distfiles.gentoo.org",
+)
+
 try:
     set
 except NameError:
@@ -37,7 +41,7 @@ class Mirrors:
         self._sync_url = self._get_sync_url()
 
     def _collect_used_mirror_urls(self):
-        return [e for e in
+        return [e.rstrip('/') for e in
             portage.settings['GENTOO_MIRRORS'].split(' ') if e != '']
 
     def _get_sync_url(self):
@@ -63,7 +67,8 @@ class Mirrors:
         except EnvironmentError:
             pass
         file.close()
-        return set(parser.uris())
+        normalized_mirror_urls = [e.rstrip('/') for e in parser.uris()]
+        return set(normalized_mirror_urls).union(set(_EXTRA_DISTFILES_MIRRORS))
 
     def get_mirrors(self):
         return self._mirror_urls
