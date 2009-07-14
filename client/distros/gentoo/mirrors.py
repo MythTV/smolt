@@ -32,18 +32,22 @@ _EXTRA_DISTFILES_MIRRORS = (
 )
 
 
+def normalize_url(url):
+    return url.rstrip('/')
+
+
 class Mirrors:
     def __init__(self):
         all_urls = self._collect_used_mirror_urls()
         self._mirror_urls = [url for url in
                 all_urls if
-                url in self._collect_known_mirror_urls()]
+                normalize_url(url) in self._collect_known_mirror_urls()]
         self._total_count = len(all_urls)
         self._private_count = self._total_count - self.known_count()
         self._sync_url = self._get_sync_url()
 
     def _collect_used_mirror_urls(self):
-        return [e.rstrip('/') for e in
+        return [e for e in \
             portage.settings['GENTOO_MIRRORS'].split(' ') if e != '']
 
     def _get_sync_url(self):
@@ -69,7 +73,7 @@ class Mirrors:
         except EnvironmentError:
             pass
         file.close()
-        normalized_mirror_urls = [e.rstrip('/') for e in parser.uris()]
+        normalized_mirror_urls = [normalize_url(e) for e in parser.uris()]
         return set(normalized_mirror_urls).union(set(_EXTRA_DISTFILES_MIRRORS))
 
     def get_mirrors(self):
