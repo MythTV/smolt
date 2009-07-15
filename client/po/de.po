@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: smolt.master.de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-22 13:41-0500\n"
-"PO-Revision-Date: 2009-07-05 07:16+0100\n"
+"PO-Revision-Date: 2009-07-15 20:48+0100\n"
 "Last-Translator: Martin Zehetmayer <angrox@idle.at>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "HTTP-Zeitüberschreitung in Sekunden angeben (Standard: %default Sekunde
 #: sendProfile.py:103
 #, fuzzy
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr "Geben Sie an, welche UUID Sie benutzen möchten (praktisch zum Testenund für die Fehlersuche)."
+msgstr "Geben Sie an, welche UUID Sie benutzen möchten (praktisch zum Testen und für die Fehlersuche)."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -191,7 +191,7 @@ msgstr "_Meine Smolt-Seite"
 
 #: smoltGui.py:50
 msgid "&Exit"
-msgstr ""
+msgstr "_Ende"
 
 #: smoltGui.py:51
 #, fuzzy
@@ -256,7 +256,7 @@ msgstr ""
 
 #: smoltGui.py:146
 msgid "<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
-msgstr ""
+msgstr "<b>Autor(en):</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:148
 #, python-format
@@ -283,7 +283,7 @@ msgstr ""
 #: smolt.py:503
 #, python-format
 msgid "\tYour pub_uuid file  could not be cached: %s\n"
-msgstr ""
+msgstr "\tDie Datei pub_uuid konnte nicht zwischengespeichert werden: %s\n"
 
 #: smolt.py:504
 msgid ""
@@ -315,9 +315,9 @@ msgid "Something went wrong fetching a token"
 msgstr ""
 
 #: smolt.py:575
-#, fuzzy, python-format
+#, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "Während des Sendens der Daten ist ein Fehler aufgetreten."
+msgstr "Während des Sendens der Daten ist ein Fehler aufgetreten: %s"
 
 #: smolt.py:617
 msgid "Devices"
@@ -368,7 +368,6 @@ msgid "CPU Family"
 msgstr "CPU Familie"
 
 #: smolt.py:646
-#, fuzzy
 msgid "CPU Model Num"
 msgstr "CPU-Modell"
 
@@ -471,7 +470,7 @@ msgstr ""
 
 #: smoltFirstBoot.py:118
 msgid "Submit profile link to _Bodhi"
-msgstr ""
+msgstr "Profil an _Bodhi übertragen"
 
 #: smoltFirstBoot.py:120
 msgid "_Send Profile"
@@ -570,7 +569,7 @@ msgstr ""
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr ""
+msgstr "Unbekannt"
 
 #: scan.py:46
 msgid "Non-working"
