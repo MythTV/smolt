@@ -19,7 +19,7 @@
 from collections import defaultdict
 import os
 import portage
-from overlays import Overlays
+from packageprivacy import is_private_package_atom
 
 class _PackageStar:
     def __init__(self):
@@ -36,7 +36,8 @@ class _PackageStar:
             portage.USER_CONFIG_PATH.lstrip(os.path.sep))]
 
     def _collect(self):
-        self._cp_to_atoms = defaultdict(list)
+        self._non_private_cp_to_atoms = defaultdict(list)
+        self._private_cp_to_atoms = defaultdict(list)
         self._total_count = 0
         self._private_count = 0
         for location in self._locations():
@@ -44,14 +45,17 @@ class _PackageStar:
                     os.path.join(location, self._section), recursive = 1):
                 self._total_count = self._total_count + 1
                 cp = portage.dep_getkey(x)
-                if self._privacy_filter and Overlays().is_private_package(cp):
+                if self._privacy_filter and is_private_package_atom(cp):
                     self._private_count = self._private_count + 1
-                    continue
-                merge_with = set([x])
-                if cp in self._cp_to_atoms:
-                    self._cp_to_atoms[cp] = self._cp_to_atoms[cp].union(merge_with)
+                    dict_ref = self._private_cp_to_atoms
                 else:
-                    self._cp_to_atoms[cp] = merge_with
+                    dict_ref = self._non_private_cp_to_atoms
+
+                merge_with = set([x])
+                if cp in dict_ref:
+                    dict_ref[cp] = dict_ref[cp].union(merge_with)
+                else:
+                    dict_ref[cp] = merge_with
 
     def total_count(self):
         return self._total_count
@@ -62,21 +66,27 @@ class _PackageStar:
     def known_count(self):
         return self.total_count() - self.private_count()
 
-    def hits(self, cpv):
+    def _hits(self, cpv, dict_ref):
         cp = portage.dep_getkey(cpv)
-        if cp not in self._cp_to_atoms:
+        if cp not in dict_ref:
             return False
         test_atom = '=' + cpv
-        for a in self._cp_to_atoms[cp]:
+        for a in dict_ref[cp]:
             if portage.dep.get_operator(a) == None:
                 return True
             elif not not portage.dep.match_from_list(test_atom, [a]):
                 return True
         return False
 
+    def hits(self, cpv):
+        for dict_ref in (self._non_private_cp_to_atoms, self._private_cp_to_atoms):
+            if self._hits(cpv, dict_ref):
+                return True
+        return False
+
     def dump(self):
         print '%s:' % (self._section)
-        for k, v in self._cp_to_atoms.items():
+        for k, v in self._non_private_cp_to_atoms.items():
             print '  %s: %s' % (k, v)
         print
         print '  Total: ' + str(self.total_count())

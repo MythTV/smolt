@@ -50,8 +50,4 @@ class SyncFile:
         return True
 
     def _sync(self):
-        remote_file = urllib.urlopen(self.remote_location)
-        local_file = open(self.local_location, 'w')
-        local_file.write(remote_file.read())
-        remote_file.close()
-        local_file.close()
+        urllib.urlretrieve(self.remote_location, self.local_location)

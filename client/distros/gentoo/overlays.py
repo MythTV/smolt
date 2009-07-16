@@ -130,11 +130,14 @@ class _Overlays:
     def known_count(self):
         return len(self._active_overlay_names)
 
-    def is_private_package(self, atom):
+    def is_private_package_atom(self, atom):
         cp = portage.dep_getkey(atom)
         return not self._dbapi.cp_list(cp)
 
     def is_private_overlay_name(self, overlay_name):
+        if not overlay_name:
+            return True
+
         if overlay_name in _MAIN_TREE_WHITELIST:
             return False
 

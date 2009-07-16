@@ -19,7 +19,7 @@
 import os
 import portage
 from portage.const import WORLD_FILE
-from overlays import Overlays
+from packageprivacy import is_private_package_atom
 
 class _WorldSet:
     def __init__(self):
@@ -31,7 +31,8 @@ class _WorldSet:
         file = open(world_file, 'r')
         self._all_cps = [line.rstrip("\r\n") for line in file]
         self._total_count = len(self._all_cps)
-        self._known_cps = set([e for e in self._all_cps if not Overlays().is_private_package(e)])
+        self._known_cps = set([e for e in self._all_cps if \
+            not is_private_package_atom('=' + e)])
         self._private_count = self._total_count - len(self._known_cps)
         file.close()
 
@@ -70,7 +71,7 @@ class _WorldSet:
 _world_set_instance = None
 def WorldSet():
     """
-    Simple singleton wrapper around _Overlays class
+    Simple singleton wrapper around _WorldSet class
     """
     global _world_set_instance
     if _world_set_instance == None:

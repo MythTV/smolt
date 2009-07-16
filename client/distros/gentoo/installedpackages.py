@@ -23,6 +23,7 @@ from overlays import Overlays
 from globaluseflags import GlobalUseFlags
 from worldset import WorldSet
 from packagestar import PackageMask, PackageUnmask, ProfilePackageMask
+from packageprivacy import is_private_package_atom
 
 class InstalledPackages:
     def __init__(self, debug=False):
@@ -63,36 +64,12 @@ class InstalledPackages:
             var_tree.dbapi.aux_get(cpv, ['SLOT', 'KEYWORDS', 'repository',
             'IUSE', 'USE'])
 
-        private_package = Overlays().is_private_package(cpv)
-        if debug and private_package:
-            print '  cpv "%s" not found in non-private trees' % (cpv)
-
-        from_private_overlay = repository and \
-            Overlays().is_private_overlay_name(repository)
-        if from_private_overlay:
-            if debug:
-                print '  repository "%s" is private for cpv "%s", stripping' % \
-                    (repository, cpv)
-            repository = ''
-
-        """
-        Notes on the line of code after:
-
-        -   We collect private packages iff they come from a non-private
-            overlay, because that means they were in there before and are
-            actually not private.  An example would be media-sound/xmms.
-
-        -   We collect packages from private overlays iff the package also
-            exists in a non-private overlay.  An example would be that
-            you posted your ebuild to bugs.gentoo.org and somebody added
-            it to the tree in the meantime.
-
-        Conclusion:  'and' is wanted below, not 'or'
-        """
-        if private_package and from_private_overlay:
-            if debug:
-                print '  --> skipping private cpv "%s"' % (cpv)
+        # Perform privacy check and filtering
+        installed_from = [repository, ]
+        if is_private_package_atom('=' + cpv, installed_from=installed_from,
+                debug=debug):
             return False
+        repository = installed_from[0]
 
         ACCEPT_KEYWORDS = portage.settings['ACCEPT_KEYWORDS']
         ARCH = portage.settings['ARCH']
@@ -130,7 +107,7 @@ class InstalledPackages:
         return len(self._cpv_flag_list)
 
     def dump(self):
-        print 'Packages:'
+        print 'Installed packages:'
         for list in self._cpv_flag_list:
             package_name, version_revision, SLOT, keyword_status, \
                 masked, unmasked, is_in_world, repository, sorted_flags_list = \

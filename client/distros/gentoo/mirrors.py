@@ -72,7 +72,10 @@ class Mirrors:
             parser.parse(file.read())
         except EnvironmentError:
             pass
-        file.close()
+        except:
+            return set()
+        finally:
+            file.close()
         normalized_mirror_urls = [normalize_url(e) for e in parser.uris()]
         return set(normalized_mirror_urls).union(set(_EXTRA_DISTFILES_MIRRORS))
 
