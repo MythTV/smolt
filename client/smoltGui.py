@@ -21,14 +21,14 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from urlparse import urljoin
  
-#sys.path.append('/home/carlos/devel/smolt/qt')
- 
 from i18n import _
 import smolt
 import gui
 import privacypolicy
 from optparse import OptionParser
 from gate import GateFromConfig
+
+CLIENT_PATH = '/usr/share/smolt/client/'
 
 class SmoltGui(QMainWindow):
  
@@ -39,7 +39,7 @@ class SmoltGui(QMainWindow):
 		self.profile = smolt.Hardware()
 		self.resize(500, 600)
 		self.setWindowTitle(_('Smolt'))
-		self.setWindowIcon(QIcon('icons/smolt.png'))
+		self.setWindowIcon(QIcon(CLIENT_PATH + 'icons/smolt.png'))
  
 		''' Menu Bar '''
 		self.menuBar = self.menuBar()
@@ -47,11 +47,11 @@ class SmoltGui(QMainWindow):
 		self.helpMenu = self.menuBar.addMenu(_('&Help'))
  
 		''' Actions '''
-		self.sendAction= QAction(QIcon('icons/mail-message-new.png'), _('&Send Profile'), self)
-		self.mySmoltPageAction = QAction(QIcon('icons/go-home.png'), _('&My Smolt Page'), self)
-		self.exitAction = QAction(QIcon('icons/application-exit.png'), _('&Exit'), self)
-		self.showPPAction = QAction(QIcon('icons/dialog-information.png'), _('Show &Privacy Policy'), self)
-		self.aboutAction = QAction(QIcon('icons/smolt.png'), _('&About'), self)
+		self.sendAction= QAction(QIcon(CLIENT_PATH + 'icons/send-profile.png'), _('&Send Profile'), self)
+		self.mySmoltPageAction = QAction(QIcon(CLIENT_PATH + 'icons/home.png'), _('&My Smolt Page'), self)
+		self.exitAction = QAction(QIcon(CLIENT_PATH + 'icons/exit.png'), _('&Exit'), self)
+		self.showPPAction = QAction(QIcon(CLIENT_PATH + 'icons/privacy.png'), _('Show &Privacy Policy'), self)
+		self.aboutAction = QAction(QIcon(CLIENT_PATH + 'icons/smolt.png'), _('&About'), self)
 		self.aboutQtAction = QAction(_("About &Qt"), self)
  
 		''' Fill Menus '''
@@ -133,7 +133,7 @@ class SmoltGui(QMainWindow):
 		layout = QGridLayout(about)
  
 		label = QLabel(self)
-		label.setPixmap(QPixmap("icons/smolt.png"))
+		label.setPixmap(QPixmap(CLIENT_PATH + "icons/smolt.png"))
  
 		title = QString(_("<h3>Smolt Qt</h3>Version 0.1.1<br/>"))
 		title.append(_("<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \
