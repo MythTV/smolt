@@ -42,6 +42,8 @@ from urlparse import urlparse
 from urllib import urlencode
 import urllib
 import simplejson
+from simplejson import JSONEncoder
+import datetime
 
 import config
 from fs_util import get_fslist
@@ -515,6 +517,15 @@ class Hardware:
 
 
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies):
+        def serialize(object, human=False):
+            if human:
+                indent = 2
+                sort_keys = True
+            else:
+                indent = None
+                sort_keys = False
+            return JSONEncoder(indent=indent, sort_keys=sort_keys).encode(object)
+
         reset_resolver()
         grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout, proxies=proxies)
         #first find out the server desired protocol
@@ -549,12 +560,14 @@ class Hardware:
 
         debug('smoon server URL: %s' % smoonURL)
 
+        serialized_host_obj_machine = serialize(send_host_obj, human=False)
+        serialized_host_obj_human = serialize(send_host_obj, human=True)
         send_host_str = ('uuid=%s&host=' + \
-                         simplejson.dumps(send_host_obj) + \
+                         serialized_host_obj_machine + \
                          '&token=%s&smolt_protocol=%s') % \
                          (self.host.UUID, tok, smoltProtocol)
 
-        debug('sendHostStr: %s' % simplejson.dumps(send_host_obj))
+        debug('sendHostStr: %s' % serialized_host_obj_machine)
         debug('Sending Host')
 
         try:
@@ -566,6 +579,18 @@ class Hardware:
             error(_('Error contacting Server: %s') % e)
             return (1, None, None)
         else:
+            try:
+                logdir = '/var/tmp/smolt'
+                if not os.path.exists(logdir):
+                    os.mkdir(logdir)
+                t = datetime.datetime.today()
+                basename = '%04d-%02d-%02d-%02d-%02d-%02d.json' % \
+                    (t.year, t.month, t.hour, t.day, t.minute, t.second)
+                file = open(os.path.join(logdir, basename), 'w')
+                file.write(serialized_host_obj_human)
+                file.close()
+            except:
+                pass
             pub_uuid = serverMessage(o.read())
             o.close()
 
