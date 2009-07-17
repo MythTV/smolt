@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # smolt - Fedora hardware profiler
 #
 # Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
@@ -44,8 +45,8 @@ class _Gate:
                 ConfigParser.NoOptionError,
                 ConfigParser.NoSectionError):
             # TODO warn about error?
-            # Deny if in doubt
-            return False
+            # Allow if in doubt - backwards compat
+            return True
 
     def process(self, data_set, value_if_granted, value_else):
         if self.grants(data_set):

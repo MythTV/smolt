@@ -190,7 +190,11 @@ class Client(object):
             host_sql = Host()
             host_sql.uuid = host_dict["uuid"]
             host_sql.pub_uuid = generate_uuid(public=True)
-        host_sql.os = host_dict['os']
+        # Fix lsb vs release error in F11.
+        if host_dict['os'] == 'Fedora 11 Leonidas':
+            host_sql.os = 'Fedora release 11 (Leonidas)'
+        else:
+            host_sql.os = host_dict['os']
         host_sql.default_runlevel = host_dict['default_runlevel']
         host_sql.language = host_dict['language']
         host_sql.platform = host_dict['platform']
@@ -301,10 +305,10 @@ class Client(object):
 
         for device_sql_id in orig_devices:
             bad_host_link = session.query(HostLink)\
-                .select_by(device_id=device_sql_id,
-                           host_link_id=host_sql.id)
-            if bad_host_link and len(bad_host_link):
-                session.delete(bad_host_link[0])
+              .filter(and_(HostLink.device_id==device_sql_id,
+              HostLink.host_link_id==host_sql.id))
+            if bad_host_link and bad_host_link > 0:
+               session.delete(bad_host_link[0])
         session.flush()
 
         map(session.delete, host_sql.file_systems)

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-03 15:35-0500\n"
+"POT-Creation-Date: 2009-06-22 13:41-0500\n"
 "PO-Revision-Date: 2007-04-08 20:21+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <translation-team-ms@lists.sourceforge.net>\n"
@@ -15,379 +15,478 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: deleteProfile.py:36 smolt.py:263
+#: deleteProfile.py:36 smolt.py:362
 #, fuzzy, python-format
 msgid "Server Message: \"%s\""
 msgstr "Mesej Init"
 
-#: deleteProfile.py:46 sendProfile.py:43
+#: deleteProfile.py:46 sendProfile.py:44
 #, fuzzy
 msgid "enable debug information"
 msgstr "Membaca maklumat pakej..."
 
-#: deleteProfile.py:51 sendProfile.py:48
+#: deleteProfile.py:51 sendProfile.py:49
 #, fuzzy, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "pelayan admin kerberos default"
 
-#: deleteProfile.py:56 sendProfile.py:63
+#: deleteProfile.py:56 sendProfile.py:64
 msgid "print information only, do not send"
 msgstr ""
 
-#: deleteProfile.py:61 sendProfile.py:78
+#: deleteProfile.py:61 sendProfile.py:79
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr ""
 
-#: deleteProfile.py:66 sendProfile.py:83
+#: deleteProfile.py:66 sendProfile.py:84
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr ""
 
-#: deleteProfile.py:84
+#: deleteProfile.py:70 sendProfile.py:103
+msgid "specify which uuid to use, useful for debugging and testing mostly."
+msgstr ""
+
+#: deleteProfile.py:89
 #, fuzzy
 msgid "Error contacting Server:"
 msgstr "Ralat Dalaman Pelayan"
 
-#: deleteProfile.py:92
+#: deleteProfile.py:97
 msgid "Profile removed, please verify at"
 msgstr ""
 
-#: sendProfile.py:53
+#: sendProfile.py:54
 msgid "(optional) Fedora Account System registration"
 msgstr ""
 
-#: sendProfile.py:58
+#: sendProfile.py:59
 msgid "password, will prompt if not specified"
 msgstr ""
 
-#: sendProfile.py:68
+#: sendProfile.py:69
 msgid "don't prompt to send, just send"
 msgstr ""
 
-#: sendProfile.py:73
+#: sendProfile.py:74
 msgid "continue to send until success"
 msgstr ""
 
-#: sendProfile.py:88
+#: sendProfile.py:89
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr ""
 
-#: sendProfile.py:93
+#: sendProfile.py:94
 msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr ""
 
+#: sendProfile.py:99
+msgid "do not scan this machine for know hardware errata, only submit profile."
+msgstr ""
+
 #: sendProfile.py:108
+msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
+msgstr ""
+
+#: sendProfile.py:113
+msgid "Request a new public UUID"
+msgstr ""
+
+#: sendProfile.py:117
+msgid "HTTP proxy"
+msgstr ""
+
+#: sendProfile.py:134
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr ""
 
-#: sendProfile.py:115 scan.py:51
-msgid "Error:"
-msgstr "Ralat:"
+#: sendProfile.py:144
+#, python-format
+msgid "Success!  Your new public UUID is: %s"
+msgstr ""
 
-#: sendProfile.py:117 scan.py:53
-#, fuzzy
-msgid "Hint:"
-msgstr "Bayangan yang ada"
-
-#: sendProfile.py:132
+#: sendProfile.py:164
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr ""
 
-#: sendProfile.py:133
+#: sendProfile.py:165
 msgid "y"
 msgstr "y"
 
-#: sendProfile.py:134 sendProfile.py:137
+#: sendProfile.py:166 sendProfile.py:169
 #, fuzzy
 msgid "Exiting..."
 msgstr "Hadmasa Tamat! Keluar..."
 
-#: sendProfile.py:144
+#: sendProfile.py:180
 #, fuzzy
 msgid "Retry Enabled - Retrying"
 msgstr "Denyhosts dihidupkan."
 
-#: sendProfile.py:148
+#: sendProfile.py:189
 #, fuzzy
 msgid "Could not send - Exiting"
 msgstr "Rangkaian tidak dikonfigurasikan - keluar"
 
-#: sendProfile.py:153
+#: sendProfile.py:194
 msgid "Password:"
 msgstr ""
 
-#: sendProfile.py:158
+#: sendProfile.py:199
 msgid "Registration Failed, Try again"
 msgstr ""
 
-#: sendProfile.py:164
-#, python-format
-msgid "To view your profile visit: %s"
-msgstr ""
-
-#: smoltGui.py:74
-msgid "_Quit"
-msgstr "_Keluar"
-
-#: smoltGui.py:74
-msgid "Quit the program without sending your hardware profile to the server"
-msgstr ""
-
-#: smoltGui.py:75
-msgid "_Send"
-msgstr "_Hantar"
-
-#: smoltGui.py:75
-msgid "Send your hardware profile to the server."
-msgstr ""
-
-#: smoltGui.py:76
-msgid "Show _Privacy Policy"
-msgstr "_Papar Polisi Persendirian"
-
-#: smoltGui.py:76
-msgid "Show the Smolt privacy policy."
-msgstr ""
-
-#: smoltGui.py:77
-msgid "_About"
-msgstr "_Perihal"
-
-#: smoltGui.py:78
-msgid "_File"
-msgstr ""
-
-#: smoltGui.py:79
-msgid "_Help"
-msgstr ""
-
-#: smoltGui.py:80
-msgid "_My Smolt Page"
-msgstr ""
-
-#: smoltGui.py:80
-msgid "Take me to my smolt profile page"
-msgstr ""
-
-#: smoltGui.py:145
-msgid "An error occurred while sending the data to the server."
-msgstr ""
-
-#: smoltGui.py:152
+#: sendProfile.py:210
 #, python-format
 msgid ""
-"The data was successfully sent.  If you need to refer to your hardware profile for a bug report your UUID is \n"
+"To share your profile: \n"
+"\t%s (public)"
+msgstr ""
+
+#: sendProfile.py:214
+#, python-format
+msgid "\tAdmin Password: %s"
+msgstr ""
+
+#: sendProfile.py:217
+msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgstr ""
+
+#: smoltGui.py:39
+msgid "Smolt"
+msgstr ""
+
+#: smoltGui.py:44
+msgid "&File"
+msgstr ""
+
+#: smoltGui.py:45
+msgid "&Help"
+msgstr ""
+
+#: smoltGui.py:48
+#, fuzzy
+msgid "&Send Profile"
+msgstr "Profil aktif: %s"
+
+#: smoltGui.py:49
+msgid "&My Smolt Page"
+msgstr ""
+
+#: smoltGui.py:50
+msgid "&Exit"
+msgstr ""
+
+#: smoltGui.py:51
+#, fuzzy
+msgid "Show &Privacy Policy"
+msgstr "_Papar Polisi Persendirian"
+
+#: smoltGui.py:52
+#, fuzzy
+msgid "&About"
+msgstr "_Perihal"
+
+#: smoltGui.py:53
+#, fuzzy
+msgid "About &Qt"
+msgstr "_Perihal"
+
+#: smoltGui.py:67
+msgid "Main Tool Bar"
+msgstr ""
+
+#: smoltGui.py:98
+msgid "Profile Sent"
+msgstr ""
+
+#: smoltGui.py:99
+#, python-format
+msgid ""
+"The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
 
-#: smoltGui.py:166
-msgid "Smolt Privacy Policy"
-msgstr "Polisi Persendirian Smolt"
-
-#: smoltGui.py:209
-msgid "translator-credits"
-msgstr ""
-
-#: smoltGui.py:210
+#: smoltGui.py:104
 #, fuzzy
-msgid "Fedora hardware profiler."
-msgstr "Profil Perkakasan"
+msgid "Error"
+msgstr "Ralat:"
 
-#: smoltGui.py:211
-msgid "Copyright © 2007 Mike McGrath"
+#: smoltGui.py:105
+msgid "An error occurred while sending the data to the server."
 msgstr ""
 
-#: smoltGui.py:213
-msgid ""
-"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+#: smoltGui.py:122
+#, fuzzy
+msgid "Privacy Policy"
+msgstr "_Papar Polisi Persendirian"
+
+#: smoltGui.py:136
+msgid "<h3>Smolt Qt</h3>Version 0.1.1<br/>"
 msgstr ""
 
-#: smolt.py:265
+#: smoltGui.py:137
+msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
+msgstr ""
+
+#: smoltGui.py:140
+msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
+msgstr ""
+
+#: smoltGui.py:146
+msgid "<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+msgstr ""
+
+#: smoltGui.py:148
+#, python-format
+msgid "%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; \t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU General \t\t\t\tPublic License as published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
+msgstr ""
+
+#: smolt.py:364
 #, fuzzy, python-format
 msgid "Could not contact server: %s"
 msgstr "tidak dapat mengikat ke pelayan LDAP"
 
-#: smolt.py:296
+#: smolt.py:407
 #, fuzzy
 msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "tidak dapat mengikat ke pelayan LDAP"
 
-#: smolt.py:302
+#: smolt.py:413
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
 msgstr ""
 
-#: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
+#: smolt.py:503
+#, python-format
+msgid "\tYour pub_uuid file  could not be cached: %s\n"
+msgstr ""
+
+#: smolt.py:504
+msgid ""
+"\tMaybe re-run as root?\n"
+"\n"
+msgstr ""
+
+#: smolt.py:513
+#, python-format
+msgid "\tYour admin token  could not be cached: %s\n"
+msgstr ""
+
+#: smolt.py:524 smolt.py:566 smolt.py:596
 #, fuzzy, python-format
 msgid "Error contacting Server: %s"
 msgstr "Ralat Dalaman Pelayan"
 
-#: smolt.py:436
+#: smolt.py:533 smolt.py:582
 msgid "Wrong version, server incapable of handling your client"
 msgstr ""
 
-#: smolt.py:452
-#, fuzzy
-msgid "Communication with server failed"
-msgstr "Terdapat ralat komunikasi dengan pelayan: %s"
+#: smolt.py:538
+msgid "Something went wrong fetching a token"
+msgstr ""
 
-#: smolt.py:526
+#: smolt.py:575
+#, fuzzy, python-format
+msgid "An error has occured while contacting the server: %s"
+msgstr "Ralat Dalaman Pelayan"
+
+#: smolt.py:617
 msgid "Devices"
 msgstr "Peranti"
 
-#: smolt.py:537
+#: smolt.py:624
+msgid "\tFilesystem Information"
+msgstr ""
+
+#: smolt.py:636
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:538
+#: smolt.py:637
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:539
+#: smolt.py:638
 #, fuzzy
 msgid "Default run level"
 msgstr "tidak dapat menentukan run level sekarang\n"
 
-#: smolt.py:540
+#: smolt.py:639
 msgid "Language"
 msgstr "Bahasa"
 
-#: smolt.py:541
+#: smolt.py:640
 msgid "Platform"
 msgstr "Platform"
 
-#: smolt.py:542
+#: smolt.py:641
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:543
+#: smolt.py:642
 #, fuzzy
 msgid "CPU Vendor"
 msgstr "Model CPU:"
 
-#: smolt.py:544
+#: smolt.py:643
 #, fuzzy
 msgid "CPU Model"
 msgstr "Model CPU:"
 
-#: smolt.py:545
+#: smolt.py:644
+msgid "CPU Stepping"
+msgstr ""
+
+#: smolt.py:645
+msgid "CPU Family"
+msgstr ""
+
+#: smolt.py:646
+#, fuzzy
+msgid "CPU Model Num"
+msgstr "Model CPU:"
+
+#: smolt.py:647
 #, fuzzy
 msgid "Number of CPUs"
 msgstr "Numbor peranti"
 
-#: smolt.py:546
+#: smolt.py:648
 #, fuzzy
 msgid "CPU Speed"
 msgstr "Kelajuan CPU:"
 
-#: smolt.py:547
+#: smolt.py:649
 #, fuzzy
 msgid "System Memory"
 msgstr "Memori Rendah"
 
-#: smolt.py:548
+#: smolt.py:650
 #, fuzzy
 msgid "System Swap"
 msgstr "Tambah Swap"
 
-#: smolt.py:549
+#: smolt.py:651
 msgid "Vendor"
 msgstr "Pengeluar"
 
-#: smolt.py:550
+#: smolt.py:652
 msgid "System"
 msgstr "Sistem"
 
-#: smolt.py:551
+#: smolt.py:653
 #, fuzzy
 msgid "Form factor"
 msgstr "Bentuk asas:"
 
-#: smolt.py:552
+#: smolt.py:654
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smolt.py:553
+#: smolt.py:655
 msgid "SELinux Enabled"
 msgstr ""
 
-#: smolt.py:554
+#: smolt.py:656
+msgid "SELinux Policy"
+msgstr ""
+
+#: smolt.py:657
 msgid "SELinux Enforce"
 msgstr ""
 
-#: smolt.py:990
+#: smolt.py:1093 scan.py:101
+msgid "Error:"
+msgstr "Ralat:"
+
+#: smolt.py:1095 scan.py:103
+#, fuzzy
+msgid "Hint:"
+msgstr "Bayangan yang ada"
+
+#: smolt.py:1112
 msgid "Unable to save UUID, continuing...\n"
 msgstr ""
 
-#: smolt.py:992
+#: smolt.py:1113
+#, python-format
+msgid "Your UUID file could not be created: %s\n"
+msgstr ""
+
+#: smolt.py:1116
 msgid "Unable to determine UUID of system!\n"
 msgstr ""
 
-#: software.py:43
+#: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr ""
 
-#: smoltFirstBoot.py:31 smoltFirstBoot.py:41
+#: smoltFirstBoot.py:37 smoltFirstBoot.py:38
 #, fuzzy
 msgid "Hardware Profile"
 msgstr "Profil Perkakasan"
 
-#: smoltFirstBoot.py:57
-msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr ""
-
-#: smoltFirstBoot.py:76
-#, fuzzy
-msgid "_Send Profile"
-msgstr "Profil aktif: %s"
-
-#: smoltFirstBoot.py:77
-#, fuzzy
-msgid "D_o not send profile"
-msgstr "Profil \"%s\" tidak dapat dipadam!"
-
-#: smoltFirstBoot.py:95
+#: smoltFirstBoot.py:55
 msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
 msgstr ""
 
-#: smoltFirstBoot.py:103
+#: smoltFirstBoot.py:63
 #, fuzzy
 msgid "_Reconsider sending"
 msgstr "Menghantar stat..."
 
-#: smoltFirstBoot.py:104
+#: smoltFirstBoot.py:64
 #, fuzzy
 msgid "_No, do not send."
 msgstr "Jangan hantar soaljawab ini"
 
-#: gui.py:56
+#: smoltFirstBoot.py:91
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr ""
+
+#: smoltFirstBoot.py:117
+msgid "_Participate in KernelOOPS"
+msgstr ""
+
+#: smoltFirstBoot.py:118
+msgid "Submit profile link to _Bodhi"
+msgstr ""
+
+#: smoltFirstBoot.py:120
+#, fuzzy
+msgid "_Send Profile"
+msgstr "Profil aktif: %s"
+
+#: smoltFirstBoot.py:121
+#, fuzzy
+msgid "D_o not send profile"
+msgstr "Profil \"%s\" tidak dapat dipadam!"
+
+#: gui.py:43
 msgid "Label"
 msgstr "Label"
 
-#: gui.py:62
+#: gui.py:44
 msgid "Data"
 msgstr "Data"
 
-#: gui.py:100
+#: gui.py:73
 msgid "Bus"
 msgstr ""
 
-#: gui.py:107
+#: gui.py:74
 msgid "Driver"
 msgstr "Jurupacu"
 
-#: gui.py:114
+#: gui.py:75
 msgid "Type"
 msgstr "Jenis"
 
-#: gui.py:121
+#: gui.py:76
 msgid "Description"
 msgstr "Huraian"
 
@@ -421,26 +520,71 @@ msgid ""
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
 
-#: scan.py:16
+#: scan.py:41
+msgid "Current rating for vendor/model."
+msgstr ""
+
+#: scan.py:45
+msgid "Unrated/Unknown"
+msgstr ""
+
+#: scan.py:46
+msgid "Non-working"
+msgstr ""
+
+#: scan.py:47
+msgid "Partially-working"
+msgstr ""
+
+#: scan.py:48
+msgid "Requires 3rd party drivers"
+msgstr ""
+
+#: scan.py:49
+msgid "Works, needs additional configuration"
+msgstr ""
+
+#: scan.py:50
+msgid "Works out of the box"
+msgstr ""
+
+#: scan.py:58
 #, python-format
 msgid "Scanning %s for known errata.\n"
 msgstr ""
 
-#: scan.py:39
-msgid "Errata Found!"
+#: scan.py:88
+msgid "\tErrata Found!"
 msgstr ""
 
-#: scan.py:42
-msgid "No errata found, if this machine is having issues please go to"
+#: scan.py:91
+msgid "\tNo errata found, if this machine is having issues please go to"
 msgstr ""
 
-#: scan.py:43
-msgid "your profile and create a wiki page for the device so others can"
+#: scan.py:92
+msgid "\tyour profile and create a wiki page for the device so others can"
 msgstr ""
 
-#: scan.py:44
-msgid "benefit"
+#: scan.py:93
+msgid "\tbenefit"
 msgstr ""
+
+#~ msgid "_Quit"
+#~ msgstr "_Keluar"
+
+#~ msgid "_Send"
+#~ msgstr "_Hantar"
+
+#~ msgid "Smolt Privacy Policy"
+#~ msgstr "Polisi Persendirian Smolt"
+
+#, fuzzy
+#~ msgid "Fedora hardware profiler."
+#~ msgstr "Profil Perkakasan"
+
+#, fuzzy
+#~ msgid "Communication with server failed"
+#~ msgstr "Terdapat ralat komunikasi dengan pelayan: %s"
 
 #, fuzzy
 #~ msgid "Device ID"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-03 15:35-0500\n"
-"PO-Revision-Date: 2009-05-15 13:41+0200\n"
+"POT-Creation-Date: 2009-06-22 13:41-0500\n"
+"PO-Revision-Date: 2009-06-23 14:44+0200\n"
 "Last-Translator: Kris Thomsen <lakristho@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -16,59 +16,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: deleteProfile.py:36 smolt.py:263
+#: deleteProfile.py:36 smolt.py:362
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Serverbesked: \"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:43
+#: deleteProfile.py:46 sendProfile.py:44
 msgid "enable debug information"
 msgstr "aktivér fejlsøgningsinformation"
 
-#: deleteProfile.py:51 sendProfile.py:48
+#: deleteProfile.py:51 sendProfile.py:49
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "angiv serverens URL (standard \"%default\")"
 
-#: deleteProfile.py:56 sendProfile.py:63
+#: deleteProfile.py:56 sendProfile.py:64
 msgid "print information only, do not send"
 msgstr "udskriv kun information, undlad at sende"
 
-#: deleteProfile.py:61 sendProfile.py:78
+#: deleteProfile.py:61 sendProfile.py:79
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "angiv HTTP-brugeragent (standard \"%default\")"
 
-#: deleteProfile.py:66 sendProfile.py:83
+#: deleteProfile.py:66 sendProfile.py:84
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "angiv HTTP-udløb i sekunder (standard %default sekunder)"
 
-#: deleteProfile.py:84
+#: deleteProfile.py:70 sendProfile.py:103
+msgid "specify which uuid to use, useful for debugging and testing mostly."
+msgstr "angiv hvilket UUID der skal bruges, mest brugbar til fejlsøgning og afprøvning."
+
+#: deleteProfile.py:89
 msgid "Error contacting Server:"
 msgstr "Kunne ikke kontakte server:"
 
-#: deleteProfile.py:92
+#: deleteProfile.py:97
 msgid "Profile removed, please verify at"
 msgstr "Profil fjernet, godkend venligst på"
 
-#: sendProfile.py:53
+#: sendProfile.py:54
 msgid "(optional) Fedora Account System registration"
 msgstr "(valgfri) Registration af Fedorakontosystem"
 
-#: sendProfile.py:58
+#: sendProfile.py:59
 msgid "password, will prompt if not specified"
 msgstr "adgangskode, vil fortælle dig hvis den ikke er angivet"
 
-#: sendProfile.py:68
+#: sendProfile.py:69
 msgid "don't prompt to send, just send"
 msgstr "fortæl mig ikke at den sendes, bare send"
 
-#: sendProfile.py:73
+#: sendProfile.py:74
 msgid "continue to send until success"
 msgstr "bliv ved med at sende indtil det lykkedes"
 
-#: sendProfile.py:88
+#: sendProfile.py:89
 msgid ""
 "this is an automated checkin, will only run if the \"smolt\" service has "
 "been started"
@@ -76,179 +80,212 @@ msgstr ""
 "dette er et automatiseret tjek ind, kører kun hvis \"smolt\"-tjenesten er "
 "blevet startet"
 
-#: sendProfile.py:93
+#: sendProfile.py:94
 msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr "skan kun denne maskine for kendte hardwarefejl, send ikke profil."
 
+#: sendProfile.py:99
+msgid "do not scan this machine for know hardware errata, only submit profile."
+msgstr "skan ikke denne maskine for kendte hardwarefejl, send kun profil."
+
 #: sendProfile.py:108
+msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
+msgstr "Send også denne profil til Bodhi, til udvikling af Fedora"
+
+#: sendProfile.py:113
+msgid "Request a new public UUID"
+msgstr "Spørg efter et nyt offentligt UUID"
+
+#: sendProfile.py:117
+msgid "HTTP proxy"
+msgstr "HTTP proxy"
+
+#: sendProfile.py:134
 msgid ""
 "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr ""
 "Smolt er sat til at tjekke ind, men at tjekke ind er deaktiveret (tip: "
 "\"service smolt start\")"
 
-#: sendProfile.py:115 scan.py:51
-msgid "Error:"
-msgstr "Fejl:"
+#: sendProfile.py:144
+#, python-format
+msgid "Success!  Your new public UUID is: %s"
+msgstr "Succes!  Dit nye offentlige UUID er: %s"
 
-#: sendProfile.py:117 scan.py:53
-msgid "Hint:"
-msgstr "Tip:"
-
-#: sendProfile.py:132
+#: sendProfile.py:164
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr "Send denne information til Smolt-serveren? (y/n)"
 
-#: sendProfile.py:133
+#: sendProfile.py:165
 msgid "y"
 msgstr "y"
 
-#: sendProfile.py:134 sendProfile.py:137
+#: sendProfile.py:166 sendProfile.py:169
 msgid "Exiting..."
 msgstr "Afslutter..."
 
-#: sendProfile.py:144
+#: sendProfile.py:180
 msgid "Retry Enabled - Retrying"
 msgstr "Prøv at aktivere igen - Prøver igen"
 
-#: sendProfile.py:148
+#: sendProfile.py:189
 msgid "Could not send - Exiting"
 msgstr "Kunne ikke sende - Afslutter"
 
-#: sendProfile.py:153
+#: sendProfile.py:194
 msgid "Password:"
 msgstr "Adgangskode:"
 
-#: sendProfile.py:158
+#: sendProfile.py:199
 msgid "Registration Failed, Try again"
 msgstr "Registrering mislykkedes, prøv igen"
 
-#: sendProfile.py:164
-#, python-format
-msgid "To view your profile visit: %s"
-msgstr "For at se din profil, besøg: %s"
-
-#: smoltGui.py:74
-msgid "_Quit"
-msgstr "_Afslut"
-
-#: smoltGui.py:74
-msgid "Quit the program without sending your hardware profile to the server"
-msgstr "Afslut programmet uden at sende din hardwareprofil til serveren"
-
-#: smoltGui.py:75
-msgid "_Send"
-msgstr "_Send"
-
-#: smoltGui.py:75
-msgid "Send your hardware profile to the server."
-msgstr "Send din hardwareprofil til serveren."
-
-#: smoltGui.py:76
-msgid "Show _Privacy Policy"
-msgstr "Vis politik for _personlige oplysninger"
-
-#: smoltGui.py:76
-msgid "Show the Smolt privacy policy."
-msgstr "Vis Smolt-politik for personlige oplysninger."
-
-#: smoltGui.py:77
-msgid "_About"
-msgstr "_Om"
-
-#: smoltGui.py:78
-msgid "_File"
-msgstr "_Fil"
-
-#: smoltGui.py:79
-msgid "_Help"
-msgstr "_Hjælp"
-
-#: smoltGui.py:80
-msgid "_My Smolt Page"
-msgstr "_Min Smolt-side"
-
-#: smoltGui.py:80
-msgid "Take me to my smolt profile page"
-msgstr "Tag mig til min smolt-profilside"
-
-#: smoltGui.py:145
-msgid "An error occurred while sending the data to the server."
-msgstr "Der opstod en fejl under afsending af data til serveren."
-
-#: smoltGui.py:152
+#: sendProfile.py:210
 #, python-format
 msgid ""
-"The data was successfully sent.  If you need to refer to your hardware "
+"To share your profile: \n"
+"\t%s (public)"
+msgstr ""
+"For at dele din profil: \n"
+"\t%s (offentlig)"
+
+#: sendProfile.py:214
+#, python-format
+msgid "\tAdmin Password: %s"
+msgstr "\tAdministratoradgangskode: %s"
+
+#: sendProfile.py:217
+msgid ""
+"No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgstr ""
+"Intet offentligt UUID fundet!  Kør venligst igen med -n for at generere et nyt offentligt UUID"
+
+#: smoltGui.py:39
+msgid "Smolt"
+msgstr "Smolt"
+
+#: smoltGui.py:44
+msgid "&File"
+msgstr "&Fil"
+
+#: smoltGui.py:45
+msgid "&Help"
+msgstr "&Hjælp"
+
+#: smoltGui.py:48
+msgid "&Send Profile"
+msgstr "&Send profil"
+
+#: smoltGui.py:49
+msgid "&My Smolt Page"
+msgstr "&Min Smolt-side"
+
+#: smoltGui.py:50
+msgid "&Exit"
+msgstr "&Afslut"
+
+#: smoltGui.py:51
+msgid "Show &Privacy Policy"
+msgstr "Vis regler for &personlige oplysninger"
+
+#: smoltGui.py:52
+msgid "&About"
+msgstr "&Om"
+
+#: smoltGui.py:53
+msgid "About &Qt"
+msgstr "Om &Qt"
+
+#: smoltGui.py:67
+msgid "Main Tool Bar"
+msgstr "Hovedværktøjslinje"
+
+#: smoltGui.py:98
+msgid "Profile Sent"
+msgstr "Profil sendt"
+
+#: smoltGui.py:99
+#, python-format
+msgid ""
+"The data was successfully sent. If you need to refer to your hardware "
 "profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
 "Dataene blev sendt med succes. Hvis du har brug for at referere til din "
 "hardwareprofil til en fejlrapport er dit UUID \n"
-"\"%s\"\n"
-"gemt i \"%s\""
+"%s\n"
+"gemt i %s"
 
-#: smoltGui.py:166
-msgid "Smolt Privacy Policy"
-msgstr "Smolt politik for personlige oplysninger"
+#: smoltGui.py:104
+msgid "Error"
+msgstr "Fejl"
 
-#: smoltGui.py:209
-msgid "translator-credits"
-msgstr ""
-"Kris Thomsen\n"
-"\n"
-"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
-"Mere info: http://www.dansk-gruppen.dk"
+#: smoltGui.py:105
+msgid "An error occurred while sending the data to the server."
+msgstr "Der opstod en fejl under afsending af data til serveren."
 
-#: smoltGui.py:210
-msgid "Fedora hardware profiler."
-msgstr "Fedora-hardwareprofileringsprogram."
+#: smoltGui.py:122
+msgid "Privacy Policy"
+msgstr "Regler for personlige oplysninger"
 
-#: smoltGui.py:211
-msgid "Copyright © 2007 Mike McGrath"
-msgstr "Ophavsret © 2007 Mike McGrath"
+#: smoltGui.py:136
+msgid "<h3>Smolt Qt</h3>Version 0.1.1<br/>"
+msgstr "<h3>Smolt Qt</h3>Version 0.1.1<br/>"
 
-#: smoltGui.py:213
+#: smoltGui.py:137
 msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
-"Ave, Cambridge, MA 02139, USA."
+"<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
+"\tto a Smoon server.<br/>"
 msgstr ""
-"Dette program er fri software. Du kan redistribuere og/eller modificere det "
-"under de betingelserne som er angivet i GNU General Public License, som er "
-"udgivet af Free Software Foundation. Enten version 2 af licensen eller "
-"(efter eget valg) enhver senere version.\n"
-"\n"
-"Dette program distribueres i håb om at det vil vise sig nyttigt, men UDEN "
-"NOGEN FORM FOR GARANTI, uden selv de underforståede garantier omkring "
-"SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligere detaljer kan "
-"læses i GNU General Public License.\n"
-"\n"
-"Du skulle have modtaget en kopi af GNU General Public License sammen med "
-"dette program. Hvis ikke, så skriv til Free software Foundation, Inc., 675 "
-"Mass Ave, Cambridge, MA 02139, USA."
+"<br/>Smolt Qt er en Smolt GUI-klient til at sende Smolt-hardwareprofiler \t\t\t"
+"\ttil en Smoon-server.<br/>"
 
-#: smolt.py:265
+#: smoltGui.py:140
+msgid ""
+"<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t"
+"\tsystem that does a hardware scan against a machine and sends the results \t"
+"\t\t\tto a public Fedora Project turbogears server. The sends are anonymous "
+"\t\t\t\tand should not contain any private information other than the "
+"physical \t\t\t\thardware information and basic OS info.<br/>"
+msgstr ""
+"<b>Om Smolt:</b><br/>Smolt hardwareprofileringsprogrammet er et server-klient-\t\t\t"
+"\tsystem der laver en skanning af hardwaren i maskinen og sender resultaterne \t"
+"\t\t\ttil en offentlig Fedoraprojekt turbogears-server. Afsendelserne er anonyme "
+"\t\t\t\tog burde ikke indeholde privat information udover den fysiske "
+"\t\t\t\thardware information og grundlæggende information om operativsystemet.<br/>"
+
+#: smoltGui.py:146
+msgid ""
+"<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+msgstr ""
+"<b>Forfattere:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+
+#: smoltGui.py:148
+#, python-format
+msgid ""
+"%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; "
+"\t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU "
+"General \t\t\t\tPublic License as published by the Free Software Foundation; "
+"either version 3 \t\t\t\tof the License, or (at your option) any later "
+"version."
+msgstr ""
+"%s<br/>%s<br/>%s<br/><br/><b>Licens:</b><br/>Dette program er fri software; "
+"\t\t\t\tdu kan redistribuere og/eller modificere det under betingelserne som "
+"er angivet i GNU General \t\t\t\tPublic License, som er udgivet af Free "
+"Software Foundation; enten version 3 \t\t\t\taf licensen eller (efter eget valg) "
+"enhver senere version."
+
+#: smolt.py:364
 #, python-format
 msgid "Could not contact server: %s"
 msgstr "Kunne ikke kontakte server: %s"
 
-#: smolt.py:296
+#: smolt.py:407
 msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "Kunne ikke forbinde til dbus. Kører dbus?"
 
-#: smolt.py:302
+#: smolt.py:413
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
@@ -256,113 +293,186 @@ msgstr ""
 "Kunne ikke forbinde til hal, kører den?\n"
 "Kør \"service haldeamon start\" som administrator (root)"
 
-#: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
+#: smolt.py:503
+#, python-format
+msgid "\tYour pub_uuid file  could not be cached: %s\n"
+msgstr "\tDin pub_uuid-fil kunne ikke blive gemt i cachen: %s\n"
+
+#: smolt.py:504
+msgid ""
+"\tMaybe re-run as root?\n"
+"\n"
+msgstr ""
+"\tKør eventuelt igen som administrator (root)?\n"
+"\n"
+
+#: smolt.py:513
+#, python-format
+msgid "\tYour admin token  could not be cached: %s\n"
+msgstr "\tDit administratorsymbol kunne ikke gemmes i cachen: %s\n"
+
+#: smolt.py:524 smolt.py:566 smolt.py:596
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Kunne ikke kontakte server: %s"
 
-#: smolt.py:436
+#: smolt.py:533 smolt.py:582
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
-"Forkert version, serveren er ikke i stand til at arbejde med din klient"
+msgstr "Forkert version, serveren er ikke i stand til at håndtere din klient"
 
-#: smolt.py:452
-msgid "Communication with server failed"
-msgstr "Kunne ikke kommunikere med server"
+#: smolt.py:538
+msgid "Something went wrong fetching a token"
+msgstr "Noget gik galt under hentning af symbol"
 
-#: smolt.py:526
+#: smolt.py:575
+#, python-format
+msgid "An error has occured while contacting the server: %s"
+msgstr "Der opstod en fejl da der skulle oprettes kontakt til serveren: %s"
+
+#: smolt.py:617
 msgid "Devices"
 msgstr "Enheder"
 
-#: smolt.py:537
+#: smolt.py:624
+msgid "\tFilesystem Information"
+msgstr "\tInformation om filsystem"
+
+#: smolt.py:636
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:538
+#: smolt.py:637
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:539
+#: smolt.py:638
 msgid "Default run level"
 msgstr "Standard kørselsniveau"
 
-#: smolt.py:540
+#: smolt.py:639
 msgid "Language"
 msgstr "Sprog"
 
-#: smolt.py:541
+#: smolt.py:640
 msgid "Platform"
 msgstr "Platform"
 
-#: smolt.py:542
+#: smolt.py:641
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:543
+#: smolt.py:642
 msgid "CPU Vendor"
 msgstr "Processorproducent"
 
-#: smolt.py:544
+#: smolt.py:643
 msgid "CPU Model"
 msgstr "Processormodel"
 
-#: smolt.py:545
+#: smolt.py:644
+msgid "CPU Stepping"
+msgstr "Processormodelserie"
+
+#: smolt.py:645
+msgid "CPU Family"
+msgstr "Processorfamilie"
+
+#: smolt.py:646
+msgid "CPU Model Num"
+msgstr "Processormodelnummer"
+
+#: smolt.py:647
 msgid "Number of CPUs"
 msgstr "Antal af processorer"
 
-#: smolt.py:546
+#: smolt.py:648
 msgid "CPU Speed"
 msgstr "Processor hastighed"
 
-#: smolt.py:547
+#: smolt.py:649
 msgid "System Memory"
 msgstr "Systemhukommelse"
 
-#: smolt.py:548
+#: smolt.py:650
 msgid "System Swap"
 msgstr "Systemswap"
 
-#: smolt.py:549
+#: smolt.py:651
 msgid "Vendor"
 msgstr "Producent"
 
-#: smolt.py:550
+#: smolt.py:652
 msgid "System"
 msgstr "System"
 
-#: smolt.py:551
+#: smolt.py:653
 msgid "Form factor"
 msgstr "Formfaktor"
 
-#: smolt.py:552
+#: smolt.py:654
 msgid "Kernel"
 msgstr "Kerne"
 
-#: smolt.py:553
+#: smolt.py:655
 msgid "SELinux Enabled"
 msgstr "SELinux aktiveret"
 
-#: smolt.py:554
+#: smolt.py:656
+msgid "SELinux Policy"
+msgstr "SELinux regelsæt"
+
+#: smolt.py:657
 msgid "SELinux Enforce"
 msgstr "SELinux fremtvunget"
 
-#: smolt.py:990
+#: smolt.py:1093 scan.py:101
+msgid "Error:"
+msgstr "Fejl:"
+
+#: smolt.py:1095 scan.py:103
+msgid "Hint:"
+msgstr "Tip:"
+
+#: smolt.py:1112
 msgid "Unable to save UUID, continuing...\n"
 msgstr "Kunne ikke gemme UUID, fortsætter...\n"
 
-#: smolt.py:992
+#: smolt.py:1113
+#, python-format
+msgid "Your UUID file could not be created: %s\n"
+msgstr "Din UUID-fil kunne ikke oprettes: %s\n"
+
+#: smolt.py:1116
 msgid "Unable to determine UUID of system!\n"
 msgstr "Kunne ikke bestemme systemets UUID!\n"
 
-#: software.py:43
+#: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "Kan ikke bestemme kørselsniveau"
 
-#: smoltFirstBoot.py:31 smoltFirstBoot.py:41
+#: smoltFirstBoot.py:37 smoltFirstBoot.py:38
 msgid "Hardware Profile"
 msgstr "Hardwareprofil"
 
-#: smoltFirstBoot.py:57
+#: smoltFirstBoot.py:55
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr ""
+"Er du sikker på at du ikke vil sende profilen? Indsendelsen af din profil er "
+"en værdifuld informationskilde til vores udvikling og kan hjælpe med at løse "
+"problemer der måtte opstå med dit hardware."
+
+#: smoltFirstBoot.py:63
+msgid "_Reconsider sending"
+msgstr "_Genovervej afsendelse"
+
+#: smoltFirstBoot.py:64
+msgid "_No, do not send."
+msgstr "_Nej, send ikke."
+
+#: smoltFirstBoot.py:91
 msgid ""
 "Smolt is a hardware profiler for The Fedora Project.  Submitting your "
 "profile is a great way to give back to the community as this information is "
@@ -376,53 +486,43 @@ msgstr ""
 "og platforme. Indsendelsen er anonym. Indsending af din profil vil aktivere "
 "en månedlig opdatering."
 
-#: smoltFirstBoot.py:76
+#: smoltFirstBoot.py:117
+msgid "_Participate in KernelOOPS"
+msgstr "_Deltag i KernelOOPS"
+
+#: smoltFirstBoot.py:118
+msgid "Submit profile link to _Bodhi"
+msgstr "Send profillink til _Bodhi"
+
+#: smoltFirstBoot.py:120
 msgid "_Send Profile"
 msgstr "_Send profil"
 
-#: smoltFirstBoot.py:77
+#: smoltFirstBoot.py:121
 msgid "D_o not send profile"
 msgstr "_Undlad at sende profil"
 
-#: smoltFirstBoot.py:95
-msgid ""
-"Are you sure you wouldn't like to send the profile?  Submitting your profile "
-"is a valuable source of information for our development and can help "
-"troubleshoot issues that may come up with your hardware."
-msgstr ""
-"Er du sikker på at du ikke vil sende profilen? Indsendelsen af din profil er "
-"en værdifuld informationskilde til vores udvikling og kan hjælpe med at løse "
-"problemer der måtte opstå med dit hardware."
-
-#: smoltFirstBoot.py:103
-msgid "_Reconsider sending"
-msgstr "_Genovervej afsendelse"
-
-#: smoltFirstBoot.py:104
-msgid "_No, do not send."
-msgstr "_Nej, send ikke."
-
-#: gui.py:56
+#: gui.py:43
 msgid "Label"
 msgstr "Mærkat"
 
-#: gui.py:62
+#: gui.py:44
 msgid "Data"
 msgstr "Data"
 
-#: gui.py:100
+#: gui.py:73
 msgid "Bus"
 msgstr "Bus"
 
-#: gui.py:107
+#: gui.py:74
 msgid "Driver"
 msgstr "Driver"
 
-#: gui.py:114
+#: gui.py:75
 msgid "Type"
 msgstr "Type"
 
-#: gui.py:121
+#: gui.py:76
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -499,24 +599,117 @@ msgstr ""
 "admin [at] fedoraproject.org  Husk også at brugere kan slette deres profiler "
 "til hver entid ved at bruge \"smoltDeleteProfile\"\n"
 
-#: scan.py:16
+#: scan.py:41
+msgid "Current rating for vendor/model."
+msgstr "Nuværende vurdering af producent/model."
+
+#: scan.py:45
+msgid "Unrated/Unknown"
+msgstr "Ikke vurderet/ukendt"
+
+#: scan.py:46
+msgid "Non-working"
+msgstr "Virker ikke"
+
+#: scan.py:47
+msgid "Partially-working"
+msgstr "Virker delvist"
+
+#: scan.py:48
+msgid "Requires 3rd party drivers"
+msgstr "Kræver 3. partsdrivere"
+
+#: scan.py:49
+msgid "Works, needs additional configuration"
+msgstr "Virker, behøver ekstra opsætning"
+
+#: scan.py:50
+msgid "Works out of the box"
+msgstr "Virker ud af æsken"
+
+#: scan.py:58
 #, python-format
 msgid "Scanning %s for known errata.\n"
 msgstr "Skanner \"%s\" for kendte fejl.\n"
 
-#: scan.py:39
-msgid "Errata Found!"
-msgstr "Fejl fundet!"
+#: scan.py:88
+msgid "\tErrata Found!"
+msgstr "\tFejl fundet!"
 
-#: scan.py:42
-msgid "No errata found, if this machine is having issues please go to"
-msgstr ""
-"Ingen fejl fundet, hvis denne maskine har problemer, skal du venligst gå til"
+#: scan.py:91
+msgid "\tNo errata found, if this machine is having issues please go to"
+msgstr "\tIngen fejl fundet, hvis denne maskine har problemer, skal du venligst gå til"
 
-#: scan.py:43
-msgid "your profile and create a wiki page for the device so others can"
-msgstr "din profil og oprette en wikiside om enheden, så andre kan"
+#: scan.py:92
+msgid "\tyour profile and create a wiki page for the device so others can"
+msgstr "\tdin profil og oprette en wikiside om enheden, så andre kan"
 
-#: scan.py:44
-msgid "benefit"
-msgstr "drage nytte af det"
+#: scan.py:93
+msgid "\tbenefit"
+msgstr "\tdrage nytte af det"
+
+#~ msgid "_Quit"
+#~ msgstr "_Afslut"
+
+#~ msgid "Quit the program without sending your hardware profile to the server"
+#~ msgstr "Afslut programmet uden at sende din hardwareprofil til serveren"
+
+#~ msgid "_Send"
+#~ msgstr "_Send"
+
+#~ msgid "Send your hardware profile to the server."
+#~ msgstr "Send din hardwareprofil til serveren."
+
+#~ msgid "Show the Smolt privacy policy."
+#~ msgstr "Vis Smolt-politik for personlige oplysninger."
+
+#~ msgid "Take me to my smolt profile page"
+#~ msgstr "Tag mig til min smolt-profilside"
+
+#~ msgid "Smolt Privacy Policy"
+#~ msgstr "Smolt politik for personlige oplysninger"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Kris Thomsen\n"
+#~ "\n"
+#~ "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
+#~ "Mere info: http://www.dansk-gruppen.dk"
+
+#~ msgid "Fedora hardware profiler."
+#~ msgstr "Fedora-hardwareprofileringsprogram."
+
+#~ msgid "Copyright © 2007 Mike McGrath"
+#~ msgstr "Ophavsret © 2007 Mike McGrath"
+
+#~ msgid ""
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
+#~ "\n"
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
+#~ "\n"
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program; if not, write to the Free Software Foundation, Inc., "
+#~ "675 Mass Ave, Cambridge, MA 02139, USA."
+#~ msgstr ""
+#~ "Dette program er fri software. Du kan redistribuere og/eller modificere "
+#~ "det under de betingelserne som er angivet i GNU General Public License, "
+#~ "som er udgivet af Free Software Foundation. Enten version 2 af licensen "
+#~ "eller (efter eget valg) enhver senere version.\n"
+#~ "\n"
+#~ "Dette program distribueres i håb om at det vil vise sig nyttigt, men UDEN "
+#~ "NOGEN FORM FOR GARANTI, uden selv de underforståede garantier omkring "
+#~ "SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligere detaljer kan "
+#~ "læses i GNU General Public License.\n"
+#~ "\n"
+#~ "Du skulle have modtaget en kopi af GNU General Public License sammen med "
+#~ "dette program. Hvis ikke, så skriv til Free software Foundation, Inc., "
+#~ "675 Mass Ave, Cambridge, MA 02139, USA."
+
+#~ msgid "Communication with server failed"
+#~ msgstr "Kunne ikke kommunikere med server"

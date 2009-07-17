@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt-master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-03 15:35-0500\n"
+"POT-Creation-Date: 2009-06-22 13:41-0500\n"
 "PO-Revision-Date: 2008-03-28 11:17+0530\n"
 "Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
 "Language-Team: Telugu <en@li.org>\n"
@@ -15,233 +15,251 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"\n"
 "\n"
 
-#: deleteProfile.py:36 smolt.py:263
+#: deleteProfile.py:36 smolt.py:362
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "సేవిక సందేశము: \"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:43
+#: deleteProfile.py:46 sendProfile.py:44
 msgid "enable debug information"
 msgstr "డీబగ్ సమాచారాన్ని చేతనం చేయుము"
 
-#: deleteProfile.py:51 sendProfile.py:48
+#: deleteProfile.py:51 sendProfile.py:49
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "సేవిక యొక్క URL ను తెలుపుము (అప్రమేయం \"%default\")"
 
-#: deleteProfile.py:56 sendProfile.py:63
+#: deleteProfile.py:56 sendProfile.py:64
 msgid "print information only, do not send"
 msgstr "సమాచారాన్ని మాత్రమే ముద్రించుము, పంపవద్దు"
 
-#: deleteProfile.py:61 sendProfile.py:78
+#: deleteProfile.py:61 sendProfile.py:79
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "HTTP వినియోగదారి ప్రతినిధిని తెలుపుము (అప్రమేయం \"%default\")"
 
-#: deleteProfile.py:66 sendProfile.py:83
+#: deleteProfile.py:66 sendProfile.py:84
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "HTTP సమయనియమితిని సెకనులలో తెలుపుము (అప్రమేయం %default సెకనులు)"
 
-#: deleteProfile.py:84
+#: deleteProfile.py:70 sendProfile.py:103
+msgid "specify which uuid to use, useful for debugging and testing mostly."
+msgstr ""
+
+#: deleteProfile.py:89
 msgid "Error contacting Server:"
 msgstr "సేవికను సంప్రదించుటలో దోషము:"
 
-#: deleteProfile.py:92
+#: deleteProfile.py:97
 msgid "Profile removed, please verify at"
 msgstr "ప్రొఫైల్ తీసివేయబడినది, దయచేసి వద్ద నిర్ధారించుము"
 
-#: sendProfile.py:53
+#: sendProfile.py:54
 msgid "(optional) Fedora Account System registration"
 msgstr "(ఐచ్చిక) Fedora ఖాతా సిస్టమ్ నమోదికరణ"
 
-#: sendProfile.py:58
+#: sendProfile.py:59
 msgid "password, will prompt if not specified"
 msgstr "సంకేతపదము, తెలుపకపోతే అడుగుతుంది"
 
-#: sendProfile.py:68
+#: sendProfile.py:69
 msgid "don't prompt to send, just send"
 msgstr "పంపుటకు అడుగవద్దు, పంపుము"
 
-#: sendProfile.py:73
+#: sendProfile.py:74
 msgid "continue to send until success"
 msgstr "సఫలమగునంత వరకు పంపుట కొనసాగించుము"
 
-#: sendProfile.py:88
-msgid ""
-"this is an automated checkin, will only run if the \"smolt\" service has "
-"been started"
+#: sendProfile.py:89
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "ఇది స్వయంచాలక చెక్ఇన్, \"smolt\" సేవ ప్రారంభమైవుంటేనే ఇది నడుస్తుంది"
 
-#: sendProfile.py:93
+#: sendProfile.py:94
 msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr "ఈ మిషన్‌ను తెలిసిన హార్డ్‍‌వేర్ ఎర్రాటా కొరకు మాత్రమే స్కాన్ చేస్తుంది, ప్రొఫైల్‌ను పంపవద్దు."
 
+#: sendProfile.py:99
+#, fuzzy
+msgid "do not scan this machine for know hardware errata, only submit profile."
+msgstr "ఈ మిషన్‌ను తెలిసిన హార్డ్‍‌వేర్ ఎర్రాటా కొరకు మాత్రమే స్కాన్ చేస్తుంది, ప్రొఫైల్‌ను పంపవద్దు."
+
 #: sendProfile.py:108
+msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
+msgstr ""
+
+#: sendProfile.py:113
+msgid "Request a new public UUID"
+msgstr ""
+
+#: sendProfile.py:117
+msgid "HTTP proxy"
+msgstr ""
+
+#: sendProfile.py:134
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt చెక్ఇన్‌కు అమర్చబడినవి అయితే చెక్ఇన్స్‍ అచేతనం చేయబడినవి (హింట్: సేవ స్మాల్ట్‍ ప్రారంభమైంది)"
 
-#: sendProfile.py:115 scan.py:51
-msgid "Error:"
-msgstr "దోషము:"
+#: sendProfile.py:144
+#, python-format
+msgid "Success!  Your new public UUID is: %s"
+msgstr ""
 
-#: sendProfile.py:117 scan.py:53
-msgid "Hint:"
-msgstr "హింట్:"
-
-#: sendProfile.py:132
+#: sendProfile.py:164
 msgid "Send this information to the Smolt server? (y/n)"
 msgstr "ఈ సమాచారాన్ని స్మాల్ట్‍ సేవికకు పంపాలా? (y/n)"
 
-#: sendProfile.py:133
+#: sendProfile.py:165
 msgid "y"
 msgstr "y"
 
-#: sendProfile.py:134 sendProfile.py:137
+#: sendProfile.py:166 sendProfile.py:169
 msgid "Exiting..."
 msgstr "బయటకువస్తోంది..."
 
-#: sendProfile.py:144
+#: sendProfile.py:180
 msgid "Retry Enabled - Retrying"
 msgstr "పునఃప్రయత్నం చేతనంచేయబడింది - పునఃప్రయత్నిస్తోంది"
 
-#: sendProfile.py:148
+#: sendProfile.py:189
 msgid "Could not send - Exiting"
 msgstr "పంప లేకపోయింది - బయటకువస్తోంది"
 
-#: sendProfile.py:153
+#: sendProfile.py:194
 msgid "Password:"
 msgstr "సంకేతపదము:"
 
-#: sendProfile.py:158
+#: sendProfile.py:199
 msgid "Registration Failed, Try again"
 msgstr "నమోదికరణ విఫలమైంది, మరలా ప్రయత్నించు"
 
-#: sendProfile.py:164
-#, python-format
-msgid "To view your profile visit: %s"
+#: sendProfile.py:210
+#, fuzzy, python-format
+msgid ""
+"To share your profile: \n"
+"\t%s (public)"
 msgstr "మీ ప్రోఫైల్‌ను దర్శించుటకు ఇక్కడ దర్శించండి: %s"
 
-#: smoltGui.py:74
-msgid "_Quit"
-msgstr "నిష్క్రమిస్తోంది(_Q)"
+#: sendProfile.py:214
+#, fuzzy, python-format
+msgid "\tAdmin Password: %s"
+msgstr "సంకేతపదము:"
 
-#: smoltGui.py:74
-msgid "Quit the program without sending your hardware profile to the server"
-msgstr "మీ హార్డ్‍‌వేర్ ప్రోఫైల్‌ను సేవికకు పంపకుండా ప్రోగ్రామ్‌నుండి నిష్క్రమించు"
+#: sendProfile.py:217
+msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgstr ""
 
-#: smoltGui.py:75
-msgid "_Send"
-msgstr "పంపుము(_S)"
+#: smoltGui.py:39
+msgid "Smolt"
+msgstr ""
 
-#: smoltGui.py:75
-msgid "Send your hardware profile to the server."
-msgstr "మీ హార్డ్‍‌వేర్ ప్రోఫైల్‌ను సేవికకు పంపుము."
-
-#: smoltGui.py:76
-msgid "Show _Privacy Policy"
-msgstr "ప్రైవసీ విధానాన్ని చూపుము(_P)"
-
-#: smoltGui.py:76
-msgid "Show the Smolt privacy policy."
-msgstr "స్మాల్ట్‍ ప్రైవసీ విధానాన్ని చూపుము."
-
-#: smoltGui.py:77
-msgid "_About"
-msgstr "గురించి(_A)"
-
-#: smoltGui.py:78
-msgid "_File"
+#: smoltGui.py:44
+#, fuzzy
+msgid "&File"
 msgstr "దస్త్రము(_F)"
 
-#: smoltGui.py:79
-msgid "_Help"
+#: smoltGui.py:45
+#, fuzzy
+msgid "&Help"
 msgstr "సహాయం(_H)"
 
-#: smoltGui.py:80
-msgid "_My Smolt Page"
+#: smoltGui.py:48
+#, fuzzy
+msgid "&Send Profile"
+msgstr "ప్రొఫైల్‌ను పంపుము(_S)"
+
+#: smoltGui.py:49
+#, fuzzy
+msgid "&My Smolt Page"
 msgstr "నా స్మాల్ట్‍ పుట(_M)"
 
-#: smoltGui.py:80
-msgid "Take me to my smolt profile page"
-msgstr "నన్ను నా స్మాల్ట్‍ ప్రొఫైల్ పుటకు తీసుకోనివెళ్ళు"
+#: smoltGui.py:50
+msgid "&Exit"
+msgstr ""
 
-#: smoltGui.py:145
-msgid "An error occurred while sending the data to the server."
-msgstr "డాటాను సేవికకు పంపుతున్నప్పుడు ఒక దోషము ఎదురైంది."
+#: smoltGui.py:51
+#, fuzzy
+msgid "Show &Privacy Policy"
+msgstr "ప్రైవసీ విధానాన్ని చూపుము(_P)"
 
-#: smoltGui.py:152
-#, python-format
+#: smoltGui.py:52
+#, fuzzy
+msgid "&About"
+msgstr "గురించి(_A)"
+
+#: smoltGui.py:53
+#, fuzzy
+msgid "About &Qt"
+msgstr "గురించి(_A)"
+
+#: smoltGui.py:67
+msgid "Main Tool Bar"
+msgstr ""
+
+#: smoltGui.py:98
+msgid "Profile Sent"
+msgstr ""
+
+#: smoltGui.py:99
+#, fuzzy, python-format
 msgid ""
-"The data was successfully sent.  If you need to refer to your hardware "
-"profile for a bug report your UUID is \n"
+"The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
 "stored in %s"
 msgstr ""
-"డాటా సమర్ధవంతంగా పంపబడింది.  బగ్ నివేదికకొరకు మీరు మీ హార్డ్‍‌వేర్ ప్రోఫైల్ "
-"చూడవలసివస్తే మీ UUID \n"
+"డాటా సమర్ధవంతంగా పంపబడింది.  బగ్ నివేదికకొరకు మీరు మీ హార్డ్‍‌వేర్ ప్రోఫైల్ చూడవలసివస్తే మీ UUID \n"
 "%s\n"
 "%s నందు నిల్వవుంది"
 
-#: smoltGui.py:166
-msgid "Smolt Privacy Policy"
-msgstr "స్మాల్ట్‍ ప్రైవసీ విధానం"
+#: smoltGui.py:104
+#, fuzzy
+msgid "Error"
+msgstr "దోషము:"
 
-#: smoltGui.py:209
-msgid "translator-credits"
-msgstr "కృష్ణబాబు <kkrothap@redhat.com> 2008"
+#: smoltGui.py:105
+msgid "An error occurred while sending the data to the server."
+msgstr "డాటాను సేవికకు పంపుతున్నప్పుడు ఒక దోషము ఎదురైంది."
 
-#: smoltGui.py:210
-msgid "Fedora hardware profiler."
-msgstr "Fedora హార్డ్‍‌వేర్ ప్రొఫైల్."
+#: smoltGui.py:122
+#, fuzzy
+msgid "Privacy Policy"
+msgstr "ప్రైవసీ విధానాన్ని చూపుము(_P)"
 
-#: smoltGui.py:211
-msgid "Copyright © 2007 Mike McGrath"
-msgstr "కాపీరైట్ © 2007 Mike McGrath"
-
-#: smoltGui.py:213
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
-"Ave, Cambridge, MA 02139, USA."
+#: smoltGui.py:136
+msgid "<h3>Smolt Qt</h3>Version 0.1.1<br/>"
 msgstr ""
-"ఈ ప్రోగ్రామ్ ఉచిత సాఫ్టువేర్; ఉచిత సాఫ్టువేర్ సంస్థ తరుపున ప్రచురితమైన"
-"GNU జనరల్ పబ్లిక్ లైసెన్సు కు లోబడి దీనిని మీరు పునఃపంపిణి మరియు/లేదా"
-"సవరణ చేయవచ్చు; మీరు అనుసరించవలిసినది లైసెన్సు యొక్క వర్షన్ 2, లేదా"
-"(మీ ఐచ్చికం వద్ద) దాని తరువాతి వర్షన్ కాని.\n"
-"\n"
-"ఈ ప్రోగ్రామ్ అది ఉపయోగపడుతుందనే నమ్మకం తో పంపిణీ చేయబడింది,"
-"అయితే ఏ హామి లేదు; వ్యాపారసంబంధితంగా కాని లేదా ప్రతిపాదిత ప్రయోజనం కొరకు"
-"కాని హామీ లేదు. అధికవివరములకొరకు GNU జనరల్ పబ్లిక్ లైసెన్సు ను"
-"చూడండి.\n"
-"\n"
-"ఈ ప్రోగ్రామ్ తో మీరు GNU జనరల్ పబ్లిక్ లైసెన్సు నకలు ను పొంది ఉంటారు;"
-"పొందకపోతే, Free Software Foundation, Inc., 675 Mass Ave, "
-"Cambridge, MA 02139, USA కు వ్రాయండి."
 
-#: smolt.py:265
+#: smoltGui.py:137
+msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
+msgstr ""
+
+#: smoltGui.py:140
+msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
+msgstr ""
+
+#: smoltGui.py:146
+msgid "<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+msgstr ""
+
+#: smoltGui.py:148
+#, python-format
+msgid "%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; \t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU General \t\t\t\tPublic License as published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
+msgstr ""
+
+#: smolt.py:364
 #, python-format
 msgid "Could not contact server: %s"
 msgstr "సేవికను సంప్రదించలేదు: %s"
 
-#: smolt.py:296
+#: smolt.py:407
 msgid "Could not bind to dbus.  Is dbus running?"
 msgstr "dbus కు బందనం కాలేకపోయింది.  dbus నడుస్తోందా?"
 
-#: smolt.py:302
+#: smolt.py:413
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
@@ -249,263 +267,374 @@ msgstr ""
 "హాల్‌కు అనుసంధానం కాలేకపోయింది, అది నడుస్తోందా?\n"
 "\"service haldaemon start\" ను రూట్‌లా నడుపుము"
 
-#: smolt.py:338 smolt.py:427 smolt.py:488 smolt.py:505
+#: smolt.py:503
+#, python-format
+msgid "\tYour pub_uuid file  could not be cached: %s\n"
+msgstr ""
+
+#: smolt.py:504
+msgid ""
+"\tMaybe re-run as root?\n"
+"\n"
+msgstr ""
+
+#: smolt.py:513
+#, python-format
+msgid "\tYour admin token  could not be cached: %s\n"
+msgstr ""
+
+#: smolt.py:524 smolt.py:566 smolt.py:596
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "సేవికను సంప్రదించుటలో దోషము: %s"
 
-#: smolt.py:436
+#: smolt.py:533 smolt.py:582
 msgid "Wrong version, server incapable of handling your client"
 msgstr "సరికాని వర్షన్, మీ కక్షిదారిని సంభాలించుటలో సేవిక అసమర్ధత"
 
-#: smolt.py:452
-msgid "Communication with server failed"
-msgstr "సేవికతో సంప్రదింపు విఫలమైంది"
+#: smolt.py:538
+msgid "Something went wrong fetching a token"
+msgstr ""
 
-#: smolt.py:526
+#: smolt.py:575
+#, fuzzy, python-format
+msgid "An error has occured while contacting the server: %s"
+msgstr "డాటాను సేవికకు పంపుతున్నప్పుడు ఒక దోషము ఎదురైంది."
+
+#: smolt.py:617
 msgid "Devices"
 msgstr "పరికరములు"
 
-#: smolt.py:537
+#: smolt.py:624
+msgid "\tFilesystem Information"
+msgstr ""
+
+#: smolt.py:636
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:538
+#: smolt.py:637
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:539
+#: smolt.py:638
 msgid "Default run level"
 msgstr "అప్రమేయ నడుపుదల స్థాయి"
 
-#: smolt.py:540
+#: smolt.py:639
 msgid "Language"
 msgstr "భాష"
 
-#: smolt.py:541
+#: smolt.py:640
 msgid "Platform"
 msgstr "ప్లాట్‌ఫాం"
 
-#: smolt.py:542
+#: smolt.py:641
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:543
+#: smolt.py:642
 msgid "CPU Vendor"
 msgstr "CPU అమ్మకందారు"
 
-#: smolt.py:544
+#: smolt.py:643
 msgid "CPU Model"
 msgstr "CPU రీతి"
 
-#: smolt.py:545
+#: smolt.py:644
+msgid "CPU Stepping"
+msgstr ""
+
+#: smolt.py:645
+msgid "CPU Family"
+msgstr ""
+
+#: smolt.py:646
+#, fuzzy
+msgid "CPU Model Num"
+msgstr "CPU రీతి"
+
+#: smolt.py:647
 msgid "Number of CPUs"
 msgstr "CPU ల సంఖ్య"
 
-#: smolt.py:546
+#: smolt.py:648
 msgid "CPU Speed"
 msgstr "CPU వేగము"
 
-#: smolt.py:547
+#: smolt.py:649
 msgid "System Memory"
 msgstr "సిస్టమ్ మెమోరి"
 
-#: smolt.py:548
+#: smolt.py:650
 msgid "System Swap"
 msgstr "సిస్టమ్ స్వాప్"
 
-#: smolt.py:549
+#: smolt.py:651
 msgid "Vendor"
 msgstr "అమ్మకందారు"
 
-#: smolt.py:550
+#: smolt.py:652
 msgid "System"
 msgstr "సిస్టమ్"
 
-#: smolt.py:551
+#: smolt.py:653
 msgid "Form factor"
 msgstr "ఫాక్టర్ నుండి"
 
-#: smolt.py:552
+#: smolt.py:654
 msgid "Kernel"
 msgstr "కెర్నల్"
 
-#: smolt.py:553
+#: smolt.py:655
 msgid "SELinux Enabled"
 msgstr "SELinux చేతనంచేయబడిన"
 
-#: smolt.py:554
+#: smolt.py:656
+#, fuzzy
+msgid "SELinux Policy"
+msgstr "SELinux బలవంతము"
+
+#: smolt.py:657
 msgid "SELinux Enforce"
 msgstr "SELinux బలవంతము"
 
-#: smolt.py:990
+#: smolt.py:1093 scan.py:101
+msgid "Error:"
+msgstr "దోషము:"
+
+#: smolt.py:1095 scan.py:103
+msgid "Hint:"
+msgstr "హింట్:"
+
+#: smolt.py:1112
 msgid "Unable to save UUID, continuing...\n"
 msgstr "UUID ను దాయ లేకపోయింది, కొనసాగించుచున్నది...\n"
 
-#: smolt.py:992
+#: smolt.py:1113
+#, python-format
+msgid "Your UUID file could not be created: %s\n"
+msgstr ""
+
+#: smolt.py:1116
 msgid "Unable to determine UUID of system!\n"
 msgstr "సిస్టమ్ యొక్క UUID ను నిర్ధారించ లేకపోయింది!\n"
 
-#: software.py:43
+#: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "నడుపుదలస్థాయిని నిర్ధారించలేక పోయింది"
 
-#: smoltFirstBoot.py:31 smoltFirstBoot.py:41
+#: smoltFirstBoot.py:37 smoltFirstBoot.py:38
 msgid "Hardware Profile"
 msgstr "హార్డ్‍‌వేర్ ప్రోఫైల్"
 
-#: smoltFirstBoot.py:57
-msgid ""
-"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
-"profile is a great way to give back to the community as this information is "
-"used to help focus our efforts on popular hardware and platforms.  "
-"Submissions are anonymous.  Sending your profile will enable a monthly "
-"update."
-msgstr ""
-"Fedora ప్రోజక్టుకు స్మాల్ట్‍ ఒక హార్డ్‍‌వేర్ ప్రోఫైలర్.  మీ ప్రొఫైల్‌ను సంఘంకు ఈ సమాచారంలా "
-"సమర్పించుట గొప్పమార్గం అది మా యత్నాలను పేరోందిన హార్డ్‍‌వేర్ మరియు ప్లాట్‌ఫాంలపై "
-"దృష్టీకరించునట్లు చేస్తుంది.  సమర్పణలు అనామధేయంగా.  మీప్రోఫైల్‌ను పంపుట నెలసరి "
-"నవీకరణను చేతనం చేస్తుంది."
+#: smoltFirstBoot.py:55
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr "మీరు ఖచ్చితంగా ప్రొఫైల్‌ను పంపుటకు ఇష్టపడుట లేదా?  మీ ప్రొఫైల్‌ను సమర్పించుట మా అభివృద్దికి విలువైన సమాచార వనరు మరియు మీ హార్డ్‍‌వేర్‌తో వచ్చు సమస్యలను పరిష్కరించుటకు సహాయ పడగలము."
 
-#: smoltFirstBoot.py:76
-msgid "_Send Profile"
-msgstr "ప్రొఫైల్‌ను పంపుము(_S)"
-
-#: smoltFirstBoot.py:77
-msgid "D_o not send profile"
-msgstr "ప్రొఫైల్‌ను పంపవద్దు(_o)"
-
-#: smoltFirstBoot.py:95
-msgid ""
-"Are you sure you wouldn't like to send the profile?  Submitting your profile "
-"is a valuable source of information for our development and can help "
-"troubleshoot issues that may come up with your hardware."
-msgstr ""
-"మీరు ఖచ్చితంగా ప్రొఫైల్‌ను పంపుటకు ఇష్టపడుట లేదా?  మీ ప్రొఫైల్‌ను సమర్పించుట మా "
-"అభివృద్దికి విలువైన సమాచార వనరు మరియు మీ హార్డ్‍‌వేర్‌తో వచ్చు సమస్యలను "
-"పరిష్కరించుటకు సహాయ పడగలము."
-
-#: smoltFirstBoot.py:103
+#: smoltFirstBoot.py:63
 msgid "_Reconsider sending"
 msgstr "పంపుట తిరిగియోచించుము(_R)"
 
-#: smoltFirstBoot.py:104
+#: smoltFirstBoot.py:64
 msgid "_No, do not send."
 msgstr "వద్దు, పంప వద్దు.(_N)"
 
-#: gui.py:56
+#: smoltFirstBoot.py:91
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr "Fedora ప్రోజక్టుకు స్మాల్ట్‍ ఒక హార్డ్‍‌వేర్ ప్రోఫైలర్.  మీ ప్రొఫైల్‌ను సంఘంకు ఈ సమాచారంలా సమర్పించుట గొప్పమార్గం అది మా యత్నాలను పేరోందిన హార్డ్‍‌వేర్ మరియు ప్లాట్‌ఫాంలపై దృష్టీకరించునట్లు చేస్తుంది.  సమర్పణలు అనామధేయంగా.  మీప్రోఫైల్‌ను పంపుట నెలసరి నవీకరణను చేతనం చేస్తుంది."
+
+#: smoltFirstBoot.py:117
+msgid "_Participate in KernelOOPS"
+msgstr ""
+
+#: smoltFirstBoot.py:118
+msgid "Submit profile link to _Bodhi"
+msgstr ""
+
+#: smoltFirstBoot.py:120
+msgid "_Send Profile"
+msgstr "ప్రొఫైల్‌ను పంపుము(_S)"
+
+#: smoltFirstBoot.py:121
+msgid "D_o not send profile"
+msgstr "ప్రొఫైల్‌ను పంపవద్దు(_o)"
+
+#: gui.py:43
 msgid "Label"
 msgstr "లేబుల్"
 
-#: gui.py:62
+#: gui.py:44
 msgid "Data"
 msgstr "డాటా"
 
-#: gui.py:100
+#: gui.py:73
 msgid "Bus"
 msgstr "బస్"
 
-#: gui.py:107
+#: gui.py:74
 msgid "Driver"
 msgstr "డ్రైవర్"
 
-#: gui.py:114
+#: gui.py:75
 msgid "Type"
 msgstr "రకము"
 
-#: gui.py:121
+#: gui.py:76
 msgid "Description"
 msgstr "వివరణము"
 
 #: privacypolicy.py:3
 msgid ""
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a "
-"submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to "
-"delete\n"
+"the submission is anonymous.  If at any point in time a user wants to delete\n"
 "their profile from the database they need only run\n"
 "\n"
 "    smoltDeleteProfile\n"
 "\n"
-"The information sent to the smolt database server should be considered "
-"public\n"
-"in that anyone can view the statistics, data and share machine profiles.  "
-"In \n"
+"The information sent to the smolt database server should be considered public\n"
+"in that anyone can view the statistics, data and share machine profiles.  In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd "
-"parties,\n"
+"attention.  As such, not only will this information be shared with 3rd parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.\n"
 "\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and "
-"they\n"
+"server first.  This is the only place IP addresses are being logged and they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
-"the smolt database.  These logs are private and will not be available to "
-"the\n"
+"the smolt database.  These logs are private and will not be available to the\n"
 "general public.\n"
 "\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team "
-"at\n"
+"questions about this policy should contact the Fedora Infrastructure Team at\n"
 "admin [at] fedoraproject.org  Also remember that users can delete their\n"
 "profiles at any time using \"smoltDeleteProfile\"\n"
 msgstr ""
 "Fedora smolt server (smoon) కు స్మాల్ట్‍ హార్డ్‍‌వేర్ మరియు ప్రాధమిక ఆపరేటింగ్ సిస్టమ్ సమాచారాన్ని\n"
 "మాత్రమే పంపుతుంది.  డాటాబేస్ నుండి సమర్పకులకు ఏకైక బందము.\n"
 "మిషన్ UUID అవుతుంది.  సమర్పకుడు ఈ UUID ఇవ్వనంతకాలము సమర్పణ అనామధేయంగా\n"
-"జరుగుతుంది.  సమయం లోపల వినియోగదారి వారియొక్క ప్రొఫైల్‌ను డాటాబేస్‌నుండి"
-"తొలగించాలి\n"
+"జరుగుతుంది.  సమయం లోపల వినియోగదారి వారియొక్క ప్రొఫైల్‌ను డాటాబేస్‌నుండితొలగించాలి\n"
 "అనుకుంటే వారు దీనిని నడుపవలసివుంటుంది\n"
 "\n"
 "    smoltDeleteProfile  నడుపాలి\n"
 "\n"
-"స్మాల్ట్‍ డాటాబేస్‌ సేవికకు పంపిన సమాచారం సార్వజనీయంగా "
-"తీసుకోబడుతుంది\n"
-"దానినందు ఎవరైనా గణాంకాలను దర్శించవచ్చు, డాటా మరియు భాగస్వామ్య మిషన్.  "
-"చాలా\n"
+"స్మాల్ట్‍ డాటాబేస్‌ సేవికకు పంపిన సమాచారం సార్వజనీయంగా తీసుకోబడుతుంది\n"
+"దానినందు ఎవరైనా గణాంకాలను దర్శించవచ్చు, డాటా మరియు భాగస్వామ్య మిషన్.  చాలా\n"
 "మార్గాలలో స్మాల్ట్‍ అమ్మకందారుల మరియు ఇతర 3వ వ్యక్తి ప్రమేయంను పొందునట్లు \n"
-"రూపీకరించబడింది.  అలా, ఈ సమాచారం 3వ వ్యక్తుల ద్వారా మాత్రమే కాక "
-"మేము స్మాల్ట్‍‌ను,\n"
+"రూపీకరించబడింది.  అలా, ఈ సమాచారం 3వ వ్యక్తుల ద్వారా మాత్రమే కాక మేము స్మాల్ట్‍‌ను,\n"
 "బహిర్గత వనరు యొక్క డ్రైవర్స్‍‌కు మంచి మద్దతును పొందుటకు మరియు\n"
 "సాదారణంగా మంచి మద్దతును పొందుటకు ఉపయోగిస్తాము.\n"
 "\n"
 "IP లాగింగ్:  ఫెడోరా యొక్క స్మాల్ట్‍ సంస్థాపనలో మొత్త వెబ్ రద్దీ మొదట ప్రాక్సీ సేవికగుండా\n"
-"వెళుతుంది.  IP చిరునామాలు లాగ్అయ్యే స్థలము ఇదే మరియు"
-"అవి\n"
+"వెళుతుంది.  IP చిరునామాలు లాగ్అయ్యే స్థలము ఇదే మరియుఅవి\n"
 "4 వారాల కాలప్రమాణంకు సేవికనందు ఉంటాయి అప్పటికి లాగ్ పునరావృతం\n"
 "ఈ లాగ్‌లను తీసివేస్తుంది.  Fedora ప్రోజెక్ట్‍ ip చిరునామాలను స్మాల్ట్‍ ‍డాటాబేస్‌నందు\n"
-"సగటు చేయదు.  ఈ లాగ్‌లు వ్యక్తిగతం మరియు సాదారణ ప్రజలకు "
-"అందుబాటు\n"
+"సగటు చేయదు.  ఈ లాగ్‌లు వ్యక్తిగతం మరియు సాదారణ ప్రజలకు అందుబాటు\n"
 "కావు.\n"
 "\n"
 "ఈ విధానంతో సంతోషంగాలేని వినియోగదారులు స్మాల్ట్‍‌ను ఉపయోగించవద్దు.  ఈ విధానంతో\n"
-"సదేహాలు వున్న వినియోగదారులు Fedora నిర్మాణ సమితిని "
-"దీనివద్ద\n"
+"సదేహాలు వున్న వినియోగదారులు Fedora నిర్మాణ సమితిని దీనివద్ద\n"
 "admin [at] fedoraproject.org సంప్రదించండి మరియు వినియోగదారులు వారి ప్రొఫైల్స్‍‌ను\n"
 "ఏ సమయంలోనైనా \"smoltDeleteProfile\" ఉపయోగించి తొలగించవచ్చునని మరవద్దు\n"
 
-#: scan.py:16
+#: scan.py:41
+msgid "Current rating for vendor/model."
+msgstr ""
+
+#: scan.py:45
+msgid "Unrated/Unknown"
+msgstr ""
+
+#: scan.py:46
+msgid "Non-working"
+msgstr ""
+
+#: scan.py:47
+msgid "Partially-working"
+msgstr ""
+
+#: scan.py:48
+msgid "Requires 3rd party drivers"
+msgstr ""
+
+#: scan.py:49
+msgid "Works, needs additional configuration"
+msgstr ""
+
+#: scan.py:50
+msgid "Works out of the box"
+msgstr ""
+
+#: scan.py:58
 #, python-format
 msgid "Scanning %s for known errata.\n"
 msgstr "తెలిసిన ఎర్రాటా కొరకు %sను సంగ్రహిస్తోంది చేస్తోంది.\n"
 
-#: scan.py:39
-msgid "Errata Found!"
+#: scan.py:88
+#, fuzzy
+msgid "\tErrata Found!"
 msgstr "ఎర్రాటా కనుగొనబడింది!"
 
-#: scan.py:42
-msgid "No errata found, if this machine is having issues please go to"
+#: scan.py:91
+#, fuzzy
+msgid "\tNo errata found, if this machine is having issues please go to"
 msgstr "ఏ ఎర్రాటా కనుగొనబడలేదు, ఈ మిషన్ సమస్యలను కలిగివుంటే దయచేసి ఇక్కడ కు వెళ్ళండి"
 
-#: scan.py:43
-msgid "your profile and create a wiki page for the device so others can"
+#: scan.py:92
+#, fuzzy
+msgid "\tyour profile and create a wiki page for the device so others can"
 msgstr "పరికరం కొరకు మీ ప్రోఫైల్ మరియు వికి పుటను సృష్టించండి అలా ఇతరులు పొందగలరు"
 
-#: scan.py:44
-msgid "benefit"
+#: scan.py:93
+#, fuzzy
+msgid "\tbenefit"
 msgstr "ప్రయోజనాన్ని"
 
+#~ msgid "_Quit"
+#~ msgstr "నిష్క్రమిస్తోంది(_Q)"
+
+#~ msgid "Quit the program without sending your hardware profile to the server"
+#~ msgstr "మీ హార్డ్‍‌వేర్ ప్రోఫైల్‌ను సేవికకు పంపకుండా ప్రోగ్రామ్‌నుండి నిష్క్రమించు"
+
+#~ msgid "_Send"
+#~ msgstr "పంపుము(_S)"
+
+#~ msgid "Send your hardware profile to the server."
+#~ msgstr "మీ హార్డ్‍‌వేర్ ప్రోఫైల్‌ను సేవికకు పంపుము."
+
+#~ msgid "Show the Smolt privacy policy."
+#~ msgstr "స్మాల్ట్‍ ప్రైవసీ విధానాన్ని చూపుము."
+
+#~ msgid "Take me to my smolt profile page"
+#~ msgstr "నన్ను నా స్మాల్ట్‍ ప్రొఫైల్ పుటకు తీసుకోనివెళ్ళు"
+
+#~ msgid "Smolt Privacy Policy"
+#~ msgstr "స్మాల్ట్‍ ప్రైవసీ విధానం"
+
+#~ msgid "translator-credits"
+#~ msgstr "కృష్ణబాబు <kkrothap@redhat.com> 2008"
+
+#~ msgid "Fedora hardware profiler."
+#~ msgstr "Fedora హార్డ్‍‌వేర్ ప్రొఫైల్."
+
+#~ msgid "Copyright © 2007 Mike McGrath"
+#~ msgstr "కాపీరైట్ © 2007 Mike McGrath"
+
+#~ msgid ""
+#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+#~ "\n"
+#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+#~ "\n"
+#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+#~ msgstr ""
+#~ "ఈ ప్రోగ్రామ్ ఉచిత సాఫ్టువేర్; ఉచిత సాఫ్టువేర్ సంస్థ తరుపున ప్రచురితమైనGNU జనరల్ పబ్లిక్ లైసెన్సు కు లోబడి దీనిని మీరు పునఃపంపిణి మరియు/లేదాసవరణ చేయవచ్చు; మీరు అనుసరించవలిసినది లైసెన్సు యొక్క వర్షన్ 2, లేదా(మీ ఐచ్చికం వద్ద) దాని తరువాతి వర్షన్ కాని.\n"
+#~ "\n"
+#~ "ఈ ప్రోగ్రామ్ అది ఉపయోగపడుతుందనే నమ్మకం తో పంపిణీ చేయబడింది,అయితే ఏ హామి లేదు; వ్యాపారసంబంధితంగా కాని లేదా ప్రతిపాదిత ప్రయోజనం కొరకుకాని హామీ లేదు. అధికవివరములకొరకు GNU జనరల్ పబ్లిక్ లైసెన్సు నుచూడండి.\n"
+#~ "\n"
+#~ "ఈ ప్రోగ్రామ్ తో మీరు GNU జనరల్ పబ్లిక్ లైసెన్సు నకలు ను పొంది ఉంటారు;పొందకపోతే, Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA కు వ్రాయండి."
+
+#~ msgid "Communication with server failed"
+#~ msgstr "సేవికతో సంప్రదింపు విఫలమైంది"
