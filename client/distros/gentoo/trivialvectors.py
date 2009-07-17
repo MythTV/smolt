@@ -20,11 +20,11 @@ import portage
 
 class TrivialVectors:
     def __init__(self):
-        self._trivial_scalars = {}
+        self._trivial_vectors = {}
         for k in ('FEATURES',):
-            self._trivial_scalars[k] = portage.settings[k].split(' ')
+            self._trivial_vectors[k] = portage.settings[k].split(' ')
 
-        self._trivial_scalars['ACCEPT_KEYWORDS'] = \
+        self._trivial_vectors['ACCEPT_KEYWORDS'] = \
             self._accept_keywords()
 
     def _accept_keywords(self):
@@ -34,14 +34,14 @@ class TrivialVectors:
         return [e for e in list if not ('~' + e) in unstable]
 
     def get(self):
-        return self._trivial_scalars
+        return self._trivial_vectors
 
     def serialize(self):
-        return self._trivial_scalars
+        return self._trivial_vectors
 
     def dump(self):
         print 'Trivial vectors:'
-        for k, v in self._trivial_scalars.items():
+        for k, v in self._trivial_vectors.items():
             print '  %s: %s' % (k, v)
         print
 
