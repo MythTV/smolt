@@ -33,7 +33,7 @@ from installedpackages import InstalledPackages
 def stage(text):
     print 'Processing %s' % (text)
 
-if __name__ == '__main__':
+def main():
     # Enable auto-flushing for stdout
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
 
@@ -62,7 +62,9 @@ if __name__ == '__main__':
     trivial_vectors = TrivialVectors()
 
     stage('installed packages (takes some time)')
-    installed_packages = InstalledPackages(debug=True)
+    def cb_enter(cpv, i, count):
+        print '[% 3d%%] %s' % (i * 100 / count, cpv)
+    installed_packages = InstalledPackages(debug=True, cb_enter=cb_enter)
 
     # Body
     gentoo_body = {}
@@ -88,3 +90,6 @@ if __name__ == '__main__':
 
     gentoo = [gentoo_head, gentoo_body]
     print JSONEncoder(indent=2, sort_keys=True).encode(gentoo)
+
+if __name__ == '__main__':
+    main()

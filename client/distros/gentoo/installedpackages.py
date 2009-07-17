@@ -26,17 +26,25 @@ from packagestar import PackageMask, PackageUnmask, ProfilePackageMask
 from packageprivacy import is_private_package_atom
 
 class InstalledPackages:
-    def __init__(self, debug=False):
+    def __init__(self, debug=False,
+            cb_enter=None, cb_done=None):
         self._cpv_flag_list = []
         var_tree = vartree()
         installed_cpvs = var_tree.getallcpv()  # TODO upstream plans rename?
-        self._total_count = 0
+        self._total_count = len(installed_cpvs)
         self._private_count = 0
+        i = 0
         for cpv in installed_cpvs:
-            self._total_count = self._total_count + 1
-            added = self._process(var_tree, cpv, debug=debug)
-            if not added:
+            i = i + 1
+            if cb_enter:
+                cb_enter(cpv, i, self._total_count)
+            entry = self._process(var_tree, cpv, debug=debug)
+            if entry:
+                self._cpv_flag_list.append(entry)
+            else:
                 self._private_count = self._private_count + 1
+        if cb_done:
+            cb_done()
 
     def _keyword_status(self, ARCH, ACCEPT_KEYWORDS, KEYWORDS):
         k = set(KEYWORDS.split(' '))
@@ -68,7 +76,7 @@ class InstalledPackages:
         installed_from = [repository, ]
         if is_private_package_atom('=' + cpv, installed_from=installed_from,
                 debug=debug):
-            return False
+            return None
         repository = installed_from[0]
 
         ACCEPT_KEYWORDS = portage.settings['ACCEPT_KEYWORDS']
@@ -94,8 +102,7 @@ class InstalledPackages:
             set(x.lstrip("+-") for x in IUSE.split() if use_flags.is_known(x))
         entry = [package_name, version_revision, SLOT, keyword_status,
             masked, unmasked, is_in_world, repository, sorted(flags)]
-        self._cpv_flag_list.append(entry)
-        return True
+        return entry
 
     def total_count(self):
         return self._total_count
@@ -128,5 +135,8 @@ class InstalledPackages:
         print
 
 if __name__ == '__main__':
-    installed_packages = InstalledPackages(debug=True)
+    def cb_enter(cpv, i, count):
+        print '[%s/%s] %s' % (i, count, cpv)
+
+    installed_packages = InstalledPackages(debug=True, cb_enter=cb_enter)
     installed_packages.dump()
