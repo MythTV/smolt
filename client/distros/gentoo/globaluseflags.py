@@ -26,7 +26,7 @@ try:
 except NameError:
     from sets import Set as set  # Python 2.3 fallback
 
-class GlobalUseFlags:
+class _GlobalUseFlags:
     def __init__(self):
         self._fill_use_flags()
 
@@ -129,6 +129,18 @@ class GlobalUseFlags:
         print '    Private: ' + str(self.private_count())
         print
 
+
+_global_use_flags_instance = None
+def GlobalUseFlags():
+    """
+    Simple singleton wrapper around _GlobalUseFlags class
+    """
+    global _global_use_flags_instance
+    if _global_use_flags_instance == None:
+        _global_use_flags_instance = _GlobalUseFlags()
+    return _global_use_flags_instance
+
+
 if __name__ == '__main__':
-    globaluseflags = GlobalUseFlags()
-    globaluseflags.dump()
+    global_use_flags = GlobalUseFlags()
+    global_use_flags.dump()
