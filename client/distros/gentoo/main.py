@@ -66,8 +66,8 @@ def main():
         print '[% 3d%%] %s' % (i * 100 / count, cpv)
     installed_packages = InstalledPackages(debug=True, cb_enter=cb_enter)
 
-    # Body
     gentoo_body = {}
+    gentoo_body['protocol'] = '1.0'
     gentoo_body['global_use_flags'] = global_use_flags.serialize()
     gentoo_body['compile_flags'] = compile_flags.serialize()
     gentoo_body['mirrors'] = mirrors.serialize()
@@ -81,15 +81,7 @@ def main():
                 raise Exception('Unintended key collision')
             gentoo_body[key] = v
     gentoo_body['installed_packages'] = installed_packages.serialize()
-
-    # Head
-    gentoo_head = {
-        'distro':'gentoo',
-        'protocol':'1.0',
-    }
-
-    gentoo = [gentoo_head, gentoo_body]
-    print JSONEncoder(indent=2, sort_keys=True).encode(gentoo)
+    print JSONEncoder(indent=2, sort_keys=True).encode(gentoo_body)
 
 if __name__ == '__main__':
     main()
