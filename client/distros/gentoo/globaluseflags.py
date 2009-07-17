@@ -31,21 +31,25 @@ class GlobalUseFlags:
         self._fill_use_flags()
 
     def _registered_global_use_flags(self):
+        global_line_sub = re.compile('^([^ ]+) - .*\\n')
+        global_line_filter = re.compile('^[^ ]+ - ')
         try:
             f = open(os.path.join(main_tree_dir(), 'profiles', 'use.desc'), 'r')
-            lines = [re.sub('^([^ ]+) - .*\\n', '\\1', l) for l in
-                    f.readlines() if re.match('^[^ ]+ - ', l)]
+            lines = [global_line_sub.sub('\\1', l) for l in
+                    f.readlines() if global_line_filter.match(l)]
             f.close()
             return set(lines)
         except IOError:
             return set()
 
     def _registered_local_use_flags(self):
+        local_line_sub = re.compile('^[^ :]+:([^ ]+) - .*\\n')
+        local_line_filter = re.compile('^[^ :]+:[^ ]+ - ')
         try:
             f = open(os.path.join(main_tree_dir(), 'profiles',
                 'use.local.desc'), 'r')
-            lines = [re.sub('^[^ :]+:([^ ]+) - .*\\n', '\\1', l) for l in
-                    f.readlines() if re.match('^[^ :]+:[^ ]+ - ', l)]
+            lines = [local_line_sub.sub('\\1', l) for l in
+                    f.readlines() if local_line_filter.match(l)]
             f.close()
             return set(lines)
         except IOError:
