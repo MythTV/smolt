@@ -585,7 +585,7 @@ class Hardware:
                     os.mkdir(logdir)
                 t = datetime.datetime.today()
                 basename = '%04d-%02d-%02d-%02d-%02d-%02d.json' % \
-                    (t.year, t.month, t.hour, t.day, t.minute, t.second)
+                    (t.year, t.month, t.day, t.hour, t.minute, t.second)
                 file = open(os.path.join(logdir, basename), 'w')
                 file.write(serialized_host_obj_human)
                 file.close()
