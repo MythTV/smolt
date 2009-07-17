@@ -36,6 +36,9 @@ class TrivialVectors:
     def get(self):
         return self._trivial_scalars
 
+    def serialize(self):
+        return self._trivial_scalars
+
     def dump(self):
         print 'Trivial vectors:'
         for k, v in self._trivial_scalars.items():

@@ -114,6 +114,9 @@ class GlobalUseFlags:
     def is_known(self, flag):
         return flag in self._global_use_flags
 
+    def serialize(self):
+        return sorted(self._global_use_flags)
+
     def dump(self):
         print 'Global use flags:'
         print sorted(self.get())

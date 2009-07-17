@@ -37,6 +37,9 @@ class MakeOpts:
     def get(self):
         return self._makeopts
 
+    def serialize(self):
+        return self._makeopts
+
     def dump(self):
         print 'MAKEOPTS: ' + str(self.get())
         print

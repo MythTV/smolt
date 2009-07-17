@@ -84,6 +84,12 @@ class _PackageStar:
                 return True
         return False
 
+    def serialize(self):
+        res = {}
+        for cp, atoms in self._non_private_cp_to_atoms.items():
+            res[cp] = sorted(atoms)
+        return res
+
     def dump(self):
         print '%s:' % (self._section)
         for k, v in self._non_private_cp_to_atoms.items():

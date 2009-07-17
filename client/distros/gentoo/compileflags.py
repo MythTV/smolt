@@ -18,6 +18,7 @@
 
 import re
 import portage
+from makeopts import MakeOpts
 
 SHORT_PARA_PATTERN = '-[XxAloDUubVIG]\\s+\\S+|-[^-]\\S+'
 LONG_PARA_PATTERN = '--param\\s+\\S+=\\S+|--\\S+|--\\S+=\\S+'
@@ -50,6 +51,15 @@ class CompileFlags:
 
     def get_ldflags(self):
         return self._ldflags
+
+    def serialize(self):
+        res = {
+            'CFLAGS':self._cflags,
+            'CXXFLAGS':self._cxxflags,
+            'LDFLAGS':self._ldflags,
+            'MAKEOPTS':MakeOpts().serialize(),
+        }
+        return res
 
     def dump(self):
         print 'Compile flags:'

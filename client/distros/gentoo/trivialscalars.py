@@ -27,6 +27,9 @@ class TrivialScalars:
     def get(self):
         return self._trivial_scalars
 
+    def serialize(self):
+        return self._trivial_scalars
+
     def dump(self):
         print 'Trivial scalars:'
         for k, v in self._trivial_scalars.items():

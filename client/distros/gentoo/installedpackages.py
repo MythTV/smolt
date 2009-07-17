@@ -106,6 +106,9 @@ class InstalledPackages:
     def known_count(self):
         return len(self._cpv_flag_list)
 
+    def serialize(self):
+        return self._cpv_flag_list
+
     def dump(self):
         print 'Installed packages:'
         for list in self._cpv_flag_list:

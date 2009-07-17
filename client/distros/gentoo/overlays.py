@@ -146,6 +146,9 @@ class _Overlays:
 
         return not overlay_name in self._global_overlays_dict
 
+    def serialize(self):
+        return sorted(set(self._active_overlay_names))
+
     def dump(self):
         print 'Active overlays:'
         print '  Names:'

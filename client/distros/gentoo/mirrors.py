@@ -94,6 +94,13 @@ class Mirrors:
     def known_count(self):
         return len(self._mirror_urls)
 
+    def serialize(self):
+        res = {
+            'sync':self.get_sync(),
+            'distfiles':self.get_mirrors(),
+        }
+        return res
+
     def dump(self):
         print 'SYNC: ' + str(self.get_sync())
         print 'GENTOO_MIRRORS:'
