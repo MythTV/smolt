@@ -16,7 +16,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
-from gentoo.main import main
+class Distro:
+    def name(self):
+        raise Exception('Distro has no name assigned.')
 
-if __name__ == '__main__':
-    main()
+    def detected(self, debug=False):
+        return False
+
+    def gather(self, debug=False):
+        return {}

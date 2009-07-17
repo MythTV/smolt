@@ -16,72 +16,105 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
-from simplejson import JSONEncoder
-
-import sys
 import os
-from globaluseflags import GlobalUseFlags
-from compileflags import CompileFlags
-from mirrors import Mirrors
-from overlays import Overlays
-from packagestar import PackageMask
-from systemprofile import SystemProfile
-from trivialscalars import TrivialScalars
-from trivialvectors import TrivialVectors
-from installedpackages import InstalledPackages
-
-def stage(text):
-    print 'Processing %s' % (text)
-
-def main():
-    # Enable auto-flushing for stdout
-    sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
-
-    stage('global use flags')
-    global_use_flags = GlobalUseFlags()
-
-    stage('compile flags')
-    compile_flags = CompileFlags()
-
-    stage('mirrors')
-    mirrors = Mirrors()
-
-    stage('overlays')
-    overlays = Overlays()
-
-    stage('package.mask entries')
-    user_package_mask = PackageMask()
-
-    stage('system profile')
-    system_profile = SystemProfile()
-
-    stage('trivial scalars')
-    trivial_scalars = TrivialScalars()
-
-    stage('trivial vectors')
-    trivial_vectors = TrivialVectors()
-
-    stage('installed packages (takes some time)')
-    def cb_enter(cpv, i, count):
-        print '[% 3d%%] %s' % (i * 100 / count, cpv)
-    installed_packages = InstalledPackages(debug=True, cb_enter=cb_enter)
-
-    gentoo_body = {}
-    gentoo_body['protocol'] = '1.0'
-    gentoo_body['global_use_flags'] = global_use_flags.serialize()
-    gentoo_body['compile_flags'] = compile_flags.serialize()
-    gentoo_body['mirrors'] = mirrors.serialize()
-    gentoo_body['overlays'] = overlays.serialize()
-    gentoo_body['user_package_mask'] = user_package_mask.serialize()
-    gentoo_body['system_profile'] = system_profile.serialize()
-    for container in (trivial_scalars, trivial_vectors):
-        for k, v in container.serialize().items():
-            key = k.lower()
-            if key in gentoo_body:
-                raise Exception('Unintended key collision')
-            gentoo_body[key] = v
-    gentoo_body['installed_packages'] = installed_packages.serialize()
-    print JSONEncoder(indent=2, sort_keys=True).encode(gentoo_body)
 
 if __name__ == '__main__':
-    main()
+    import sys
+    sys.path.append(os.path.join('..', '..'))
+from distros.distro import Distro
+
+class _Gentoo(Distro):
+    def name(self):
+        return 'gentoo'
+
+    def detected(self, debug=False):
+        """
+        Returns True if we run on top of Gentoo, else False.
+        """
+        return os.path.exists('/etc/gentoo-release')
+
+    def gather(self, debug=False):
+        def _stage(text):
+            print 'Processing %s' % (text)
+        # Local imports to not pull missing dependencies in
+        # on non-Gentoo machines.
+        from globaluseflags import GlobalUseFlags
+        from compileflags import CompileFlags
+        from mirrors import Mirrors
+        from overlays import Overlays
+        from packagestar import PackageMask
+        from systemprofile import SystemProfile
+        from trivialscalars import TrivialScalars
+        from trivialvectors import TrivialVectors
+        from installedpackages import InstalledPackages
+
+        _stage('global use flags')
+        global_use_flags = GlobalUseFlags()
+
+        _stage('compile flags')
+        compile_flags = CompileFlags()
+
+        _stage('mirrors')
+        mirrors = Mirrors()
+
+        _stage('overlays')
+        overlays = Overlays()
+
+        _stage('package.mask entries')
+        user_package_mask = PackageMask()
+
+        _stage('system profile')
+        system_profile = SystemProfile()
+
+        _stage('trivial scalars')
+        trivial_scalars = TrivialScalars()
+
+        _stage('trivial vectors')
+        trivial_vectors = TrivialVectors()
+
+        _stage('installed packages (takes some time)')
+        if debug:
+            def cb_enter(cpv, i, count):
+                print '[% 3d%%] %s' % (i * 100 / count, cpv)
+        else:
+            def cb_enter(*_):
+                pass
+        installed_packages = InstalledPackages(debug, cb_enter=cb_enter)
+
+        machine_data = {}
+        machine_data['protocol'] = '1.0'
+        machine_data['global_use_flags'] = global_use_flags.serialize()
+        machine_data['compile_flags'] = compile_flags.serialize()
+        machine_data['mirrors'] = mirrors.serialize()
+        machine_data['overlays'] = overlays.serialize()
+        machine_data['user_package_mask'] = user_package_mask.serialize()
+        machine_data['system_profile'] = system_profile.serialize()
+        for container in (trivial_scalars, trivial_vectors):
+            for k, v in container.serialize().items():
+                key = k.lower()
+                if key in machine_data:
+                    raise Exception('Unintended key collision')
+                machine_data[key] = v
+        machine_data['installed_packages'] = installed_packages.serialize()
+        return machine_data
+
+
+_gentoo_instance = None
+def Gentoo():
+    """
+    Simple singleton wrapper around _Gentoo class
+    """
+    global _gentoo_instance
+    if _gentoo_instance == None:
+        _gentoo_instance = _Gentoo()
+    return _gentoo_instance
+
+
+if __name__ == '__main__':
+    # Enable auto-flushing for stdout
+    import sys
+    sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
+
+    from simplejson import JSONEncoder
+    print JSONEncoder(indent=2, sort_keys=True).encode(
+        Gentoo().gather(debug=True))
