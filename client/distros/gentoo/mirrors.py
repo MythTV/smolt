@@ -16,6 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
+import re
 import urlparse
 import portage
 from mirrorselect.mirrorparser3 import MirrorParser3, MIRRORS_3_XML
@@ -27,21 +28,28 @@ except NameError:
     from sets import Set as set  # Python 2.3 fallback
 
 
-_EXTRA_DISTFILES_MIRRORS = (
-    "http://distfiles.gentoo.org",
+_EXTRA_DISTFILES_MIRRORS_WHITELIST = (
+    "http://distfiles.gentoo.org",  # main mirror, not in mirrors3.xml
+    "http://www.ibiblio.org/pub/Linux/distributions/gentoo",  # www != distro
 )
+_SCHEME_REGEX = re.compile('^[a-zA-Z][a-zA-Z0-9+.-]*:')
 
 
-def normalize_url(url):
-    return url.rstrip('/')
+def _normalize_url(url):
+    return _SCHEME_REGEX.sub('xxxxx:', url).rstrip('/')
 
 
 class Mirrors:
-    def __init__(self):
+    def __init__(self, debug=False):
         all_urls = self._collect_used_mirror_urls()
         self._mirror_urls = [url for url in
                 all_urls if
-                normalize_url(url) in self._collect_known_mirror_urls()]
+                _normalize_url(url) in self._collect_known_mirror_urls()]
+        if debug:
+            private_mirrors = [url for url in all_urls if
+                _normalize_url(url) not in self._collect_known_mirror_urls()]
+            for i in private_mirrors:
+                print '  distfiles mirror "%s" is private' % (i)
         self._total_count = len(all_urls)
         self._private_count = self._total_count - self.known_count()
         self._sync_url = self._get_sync_url()
@@ -59,6 +67,8 @@ class Mirrors:
             if (parsed.hostname == None) or not (\
                     parsed.hostname.endswith('gentoo.org') or \
                     parsed.hostname.endswith('prefix.freens.org')):
+                if debug:
+                    print '  rsync mirror "%s" is private' % (sync_url)
                 sync_url = 'WITHHELD'
         return sync_url
 
@@ -76,8 +86,10 @@ class Mirrors:
             return set()
         finally:
             file.close()
-        normalized_mirror_urls = [normalize_url(e) for e in parser.uris()]
-        return set(normalized_mirror_urls).union(set(_EXTRA_DISTFILES_MIRRORS))
+        known_mirror_urls = [_normalize_url(e) for e in parser.uris()]
+        extra_mirror_urls = [_normalize_url(e) for e in \
+            _EXTRA_DISTFILES_MIRRORS_WHITELIST]
+        return set(known_mirror_urls + extra_mirror_urls)
 
     def get_mirrors(self):
         return self._mirror_urls
@@ -111,5 +123,5 @@ class Mirrors:
         print
 
 if __name__ == '__main__':
-    mirrors = Mirrors()
+    mirrors = Mirrors(debug=True)
     mirrors.dump()

@@ -55,7 +55,7 @@ class _Gentoo(Distro):
         compile_flags = CompileFlags()
 
         _stage('mirrors')
-        mirrors = Mirrors()
+        mirrors = Mirrors(debug=debug)
 
         _stage('overlays')
         overlays = Overlays()
@@ -79,7 +79,7 @@ class _Gentoo(Distro):
         else:
             def cb_enter(*_):
                 pass
-        installed_packages = InstalledPackages(debug, cb_enter=cb_enter)
+        installed_packages = InstalledPackages(debug=debug, cb_enter=cb_enter)
 
         machine_data = {}
         machine_data['protocol'] = '1.0'
