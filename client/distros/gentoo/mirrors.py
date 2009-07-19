@@ -52,13 +52,13 @@ class Mirrors:
                 print '  distfiles mirror "%s" is private' % (i)
         self._total_count = len(all_urls)
         self._private_count = self._total_count - self.known_count()
-        self._sync_url = self._get_sync_url()
+        self._sync_url = self._get_sync_url(debug=debug)
 
     def _collect_used_mirror_urls(self):
         return [e for e in \
             portage.settings['GENTOO_MIRRORS'].split(' ') if e != '']
 
-    def _get_sync_url(self):
+    def _get_sync_url(self, debug=False):
         sync_url = portage.settings['SYNC']
         if (sync_url == None) or (sync_url.isspace()):
             sync_url = '<using non-rsync tree>'
@@ -68,7 +68,7 @@ class Mirrors:
                     parsed.hostname.endswith('gentoo.org') or \
                     parsed.hostname.endswith('prefix.freens.org')):
                 if debug:
-                    print '  rsync mirror "%s" is private' % (sync_url)
+                    print '  sync mirror "%s" is private' % (sync_url)
                 sync_url = 'WITHHELD'
         return sync_url
 
