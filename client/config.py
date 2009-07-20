@@ -39,6 +39,8 @@ OS = os_detect.get_os_info()
 ##For SuSE
 #try:
 #    OS = file('/etc/SuSE-release').read().split('\n')[0].strip()
+#    reOS = re.compile('\(\w*\)$')
+#    OS = reOS.sub( '', OS ).strip()
 #except IOError:
 #    OS = "It's a Lizard man!, It changes Colours!"
 #
