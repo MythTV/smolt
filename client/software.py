@@ -20,7 +20,7 @@ import os
 import commands
 import re
 import sys
-import smolt
+import smolt_config
 from gate import Gate
 
 def read_lsb_release():
@@ -45,5 +45,13 @@ def read_runlevel():
     return defaultRunlevel.strip()
 
 def read_os():
-    return smolt.get_config_attr("OS", "Calvin and Hobbes")
+    return smolt_config.get_config_attr("OS", "Calvin and Hobbes")
 
+if __name__ == '__main__':
+    dict = {
+        'LSB release':read_lsb_release(),
+        'Run level':read_runlevel(),
+        'OS':read_os(),
+    }
+    for k, v in dict.items():
+        print '%s: "%s"' % (k, v)

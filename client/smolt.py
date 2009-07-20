@@ -46,6 +46,7 @@ from simplejson import JSONEncoder
 import datetime
 
 import config
+from smolt_config import get_config_attr
 from fs_util import get_fslist
 
 from gate import Gate
@@ -54,12 +55,6 @@ WITHHELD_MAGIC_STRING = 'WITHHELD'
 SELINUX_ENABLED = 1
 SELINUX_DISABLED = 0
 SELINUX_WITHHELD = -1
-
-def get_config_attr(attr, default=""):
-    if hasattr(config, attr):
-        return getattr(config, attr)
-    else:
-        return default
 
 fs_types = get_config_attr("FS_TYPES", ["ext2", "ext3", "xfs", "reiserfs"])
 fs_mounts = dict.fromkeys(get_config_attr("FS_MOUNTS", ["/", "/home", "/etc", "/var", "/boot"]), True)
