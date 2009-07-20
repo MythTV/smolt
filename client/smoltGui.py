@@ -98,14 +98,18 @@ class SmoltGui(QMainWindow):
 			retvalue, pub_uuid, admin = self.profile.send(smoonURL=smolt.smoonURL)
 			url = urljoin(smolt.smoonURL, '/show?uuid=%s' % pub_uuid)
 			finishMessage = QMessageBox(QMessageBox.Information, _('Profile Sent'),
-					_('The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n%s\nstored in %s') \
-						% (url, smolt.get_config_attr("HW_UUID", "/etc/smolt/hw-uuid")),
+					_('<b>The data was successfully sent!</b><br/><br/> \
+						If you need to refer to your hardware profile for a bug report your UUID is<br/> \
+						%s<br/> \
+						(admin password: %s) stored in %s') \
+						% (url, admin, smolt.get_config_attr("HW_UUID", "/etc/smolt/hw-uuid")),
 					QMessageBox.NoButton, self)
 			success = True
 		except TypeError:
 			finishMessage = QMessageBox(QMessageBox.Warning, _('Error'),
 					_('An error occurred while sending the data to the server.'),
 					QMessageBox.Ok, self)
+			success = False
  
 		finishMessage.exec_()
 		if success is True:

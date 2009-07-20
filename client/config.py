@@ -1,5 +1,5 @@
 
-import os
+import os,re
 import commands
 import os_detect
 
