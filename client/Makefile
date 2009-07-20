@@ -2,7 +2,7 @@ PO_FILES=$(wildcard po/*.po)
 MO_FILES=$(patsubst %.po,%.mo,$(PO_FILES))
 PY_FILES=fs_util.py deleteProfile.py haldump.py __init__.py sendProfile.py smoltGui.py smolt.py software.py smoltFirstBoot.py gui.py privacypolicy.py scan.py
 DIRED_MO_FILES=$(patsubst po/%.mo,mo/%/LC_MESSAGES/$(NAME).mo,$(MO_FILES))
-CLIENT_FILES=gate.py os_detect.py fs_util.py deleteProfile.py gui.py haldump.py i18n.py privacypolicy.py sendProfile.py smolt.py smoltGui.py software.py scan.py
+CLIENT_FILES=gate.py os_detect.py fs_util.py deleteProfile.py gui.py haldump.py i18n.py privacypolicy.py sendProfile.py smolt.py smoltGui.py software.py scan.py simplejson
 
 
 NAME=smolt
@@ -46,6 +46,16 @@ install-main: move-mo
 	install -D -m 0644 icons/smolt.png $(DATADIR)/$(NAME)/client/icons/smolt.png
 	cp -adv $(CLIENT_FILES) $(DATADIR)/$(NAME)/client/
 	
+	mkdir -p $(DATADIR)/icons/hicolor/16x16/apps/
+	mkdir -p $(DATADIR)/icons/hicolor/22x22/apps/
+	mkdir -p $(DATADIR)/icons/hicolor/24x24/apps/
+	mkdir -p $(DATADIR)/icons/hicolor/32x32/apps/
+	
+	cp ./icons/smolt-icon-16.png $(DATADIR)/icons/hicolor/16x16/apps/smolt.png
+	cp ./icons/smolt-icon-22.png $(DATADIR)/icons/hicolor/22x22/apps/smolt.png
+	cp ./icons/smolt-icon-24.png $(DATADIR)/icons/hicolor/24x24/apps/smolt.png
+	cp ./icons/smolt-icon-32.png $(DATADIR)/icons/hicolor/32x32/apps/smolt.png
+	
 	mkdir -p $(DATADIR)/$(NAME)/doc
 	install -p -m 0644 ../doc/PrivacyPolicy $(DATADIR)/$(NAME)/doc
 	
@@ -56,12 +66,14 @@ install-main: move-mo
 	ln -sf $(DATADIR)/$(NAME)/client/sendProfile.py $(BINDIR)/smoltSendProfile
 	ln -sf $(DATADIR)/$(NAME)/client/deleteProfile.py $(BINDIR)/smoltDeleteProfile
 	ln -sf $(DATADIR)/$(NAME)/client/smoltGui.py $(BINDIR)/smoltGui
+	ln -sf $(SMOLTCONFIGDIR)/config.py $(DATADIR)/$(NAME)/client/config.py
 	
 	chmod +x $(DATADIR)/$(NAME)/client/*Profile.py
 	chmod +x $(DATADIR)/$(NAME)/client/smoltGui.py
 	
-	desktop-file-install --vendor='fedora' --dir=$(DATADIR)/applications ./smolt.desktop
-	
+	mkdir -p $(DATADIR)/applications
+	cp smolt.desktop $(DATADIR)/applications/
+
 move-mo: $(DIRED_MO_FILES)
 	
 $(DIRED_MO_FILES): mo/%/LC_MESSAGES/$(NAME).mo: po/%.mo
