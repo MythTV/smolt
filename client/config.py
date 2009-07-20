@@ -33,6 +33,8 @@ OS = os_detect.get_os_info()
 #For Redhat
 #try:
 #    OS = file('/etc/redhat-release').read().strip()
+#    reOS = re.compile('\(\w*\)$')
+#    OS = reOS.sub( '', OS ).strip()
 #except IOError:
 #    OS = "Shadowman!"
 
