@@ -364,8 +364,8 @@ class Client(object):
 
     @expose()
     def pub_uuid(self, uuid):
-        host = session.query(Host).filter_by(uuid=uuid).one()
-        return dict(pub_uuid=host.pub_uuid)
+        pub_uuid=select([Host.pub_uuid], Host.uuid==uuid).execute().fetchone()[0]
+        return dict(pub_uuid=pub_uuid)
 
     def new_pub_uuid(self, uuid):
         #TODO
