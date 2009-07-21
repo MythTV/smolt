@@ -497,8 +497,8 @@ class Hardware:
         try:
             file(pub_uuid_file, 'w').write(pub_uuid)
         except Exception, e:
-            sys.stderr.write(_('\tYour pub_uuid file  could not be cached: %s\n' % e))
-            sys.stderr.write(_('\tMaybe re-run as root?\n\n'))
+            sys.stderr.write(_('\tYour pub_uuid file  could not be written, likely because you are not root.\n'))
+            sys.stderr.write(_('\tThis is safe to ignore, or you can re-run as root?\n\n'))
         return
 
     def write_admin_token(self,smoonURL,admin,admin_token_file):
