@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
  
 # Copyright (C) 2009 Carlos Gonçalves <mail@cgoncalves.info>
+# Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,12 +24,53 @@ from urlparse import urljoin
  
 from i18n import _
 import smolt
+import smolt_config
 import gui
 import privacypolicy
 from optparse import OptionParser
 from gate import GateFromConfig
+import time
+
+debug = False
 
 CLIENT_PATH = '/usr/share/smolt/client/'
+class GatherThread(QThread):
+	def __init__(self, parent=None):
+		self.hardware = None
+		self.error_message = None
+		QThread.__init__(self, parent)
+
+	def run(self):
+		if debug:
+			time.sleep(5)
+		try:
+			self.hardware = smolt.Hardware()
+			self.emit(SIGNAL('profile_ready()'))
+		except smolt.SystemBusError, e:
+			self.error_message = e.message
+			self.emit(SIGNAL('system_bus_error()'))
+
+class SubmitThread(QThread):
+	def __init__(self, hardware, parent=None):
+		self.hardware = hardware
+		QThread.__init__(self, parent)
+
+	def run(self):
+		try:
+			time_before = time.time()
+			retvalue, self.pub_uuid, self.admin = \
+				self.hardware.send(smoonURL=smolt.smoonURL)
+			time_after = time.time()
+			duration_seconds = time_after - time_before
+			if retvalue == 0:
+				print 'Submission took %d seconds' % duration_seconds
+				self.emit(SIGNAL('submission_completed()'))
+			else:
+				print 'Submission failed after %d seconds' % duration_seconds
+				self.emit(SIGNAL('submission_failed()'))
+		except TypeError:
+			self.emit(SIGNAL('submission_failed()'))
+
 
 class SmoltGui(QMainWindow):
  
@@ -36,7 +78,6 @@ class SmoltGui(QMainWindow):
  
 		''' Main Window '''
 		QMainWindow.__init__(self)
-		self.profile = smolt.Hardware()
 		self.resize(500, 600)
 		self.setWindowTitle(_('Smolt'))
 		self.setWindowIcon(QIcon(CLIENT_PATH + 'icons/smolt.png'))
@@ -77,8 +118,10 @@ class SmoltGui(QMainWindow):
 		''' Central Widget '''
 		self.central = QWidget(self)
 		self.mainLayout = QGridLayout()
-		self.mainLayout.addWidget(gui.HostTable(self.profile).get())
-		self.mainLayout.addWidget(gui.DeviceTable(self.profile).get())
+		self.host_table = gui.HostTable()
+		self.mainLayout.addWidget(self.host_table.get())
+		self.device_table = gui.DeviceTable()
+		self.mainLayout.addWidget(self.device_table.get())
 		self.central.setLayout(self.mainLayout)
 		self.setCentralWidget(self.central)
  
@@ -89,31 +132,98 @@ class SmoltGui(QMainWindow):
 		self.connect(self.showPPAction, SIGNAL('triggered()'), self.showPP)
 		self.connect(self.aboutAction, SIGNAL('triggered()'), self.about)
 		self.connect(self.aboutQtAction, SIGNAL("triggered()"), qApp, SLOT("aboutQt()"))
- 
+
+		self._gather_data()
+
+	def _on_gathering_completed(self):
+		self.time_line.stop()
+		self.time_line = None
+		self.progress_dialog.setValue(100)
+		self.progress_dialog = None
+
+	def _on_profile_ready(self):
+		self._on_gathering_completed()
+		self.host_table.set_profile(self._gather_thread.hardware)
+		self.device_table.set_profile(self._gather_thread.hardware)
+
+	def _on_system_bus_error(self):
+		self._on_gathering_completed()
+		QMessageBox(QMessageBox.Critical, _('Error'),
+				self._gather_thread.error_message,
+				QMessageBox.Ok, self).exec_()
+		QCoreApplication.exit(1)
+
+	def _setup_progress_dialog(self, label=None, force_show=True):
+		self.progress_dialog = QProgressDialog(label, '', 0, 100, self);
+		self.progress_dialog.setCancelButton(None)
+		self.progress_dialog.setWindowTitle('Smolt')
+		self.progress_dialog.setWindowModality(Qt.WindowModal);
+		self.progress_dialog.setValue(0)
+		if force_show:
+			self.progress_dialog.forceShow()
+		else:
+			self.progress_dialog.setMinimumDuration(1)
+
+	def _setup_progress_animation(self, duration_seconds):
+		self.time_line = QTimeLine(duration_seconds)
+		self.time_line.setUpdateInterval(500)
+		self.time_line.setFrameRange(0, 99)
+		self.time_line.setCurveShape(QTimeLine.EaseOutCurve)
+		self.connect(self.time_line, SIGNAL('frameChanged(int)'), \
+			self.progress_dialog, SLOT('setValue(int)'))
+		self.time_line.start()
+
+	def _gather_data(self):
+		self._setup_progress_dialog(label='Gathering data...', force_show=False)
+		# TODO get live progress instead?
+		self._setup_progress_animation(5000)
+
+		self._gather_thread = GatherThread()
+		self.connect(self._gather_thread, SIGNAL("profile_ready()"), \
+			self._on_profile_ready)
+		self.connect(self._gather_thread, SIGNAL("system_bus_error()"), \
+			self._on_system_bus_error)
+		self._gather_thread.start()
+
 	def sendProfile(self):
- 
-		''' Send the profile to the smolt server '''
-		try:
-			retvalue, pub_uuid, admin = self.profile.send(smoonURL=smolt.smoonURL)
-			url = urljoin(smolt.smoonURL, '/show?uuid=%s' % pub_uuid)
-			finishMessage = QMessageBox(QMessageBox.Information, _('Profile Sent'),
-					_('<b>The data was successfully sent!</b><br/><br/> \
-						If you need to refer to your hardware profile for a bug report your UUID is<br/> \
-						%s<br/> \
-						(admin password: %s) stored in %s') \
-						% (url, admin, smolt.get_config_attr("HW_UUID", "/etc/smolt/hw-uuid")),
-					QMessageBox.NoButton, self)
-			success = True
-		except TypeError:
-			finishMessage = QMessageBox(QMessageBox.Warning, _('Error'),
-					_('An error occurred while sending the data to the server.'),
-					QMessageBox.Ok, self)
-			success = False
- 
-		finishMessage.exec_()
-		if success is True:
-			QDesktopServices.openUrl(QUrl(url))
- 
+		self._setup_progress_dialog(label='Sending profile...', force_show=True)
+		# TODO take size of data to submit into account?
+		self._setup_progress_animation(smolt.timeout * 1000)
+
+		self._submit_thread = SubmitThread(self._gather_thread.hardware)
+		self.connect(self._submit_thread, SIGNAL('submission_failed()'), \
+			self._on_submission_failed)
+		self.connect(self._submit_thread, SIGNAL('submission_completed()'), \
+			self._on_submission_completed)
+		self._submit_thread.start()
+
+	def _tear_progress_down(self, success=False):
+		self.time_line.stop()
+		self.time_line = None
+		if success:
+			self.progress_dialog.setValue(100)
+		else:
+			self.progress_dialog.cancel()
+		self.progress_dialog = None
+
+	def _on_submission_failed(self):
+		self._tear_progress_down(success=False)
+		QMessageBox(QMessageBox.Critical, _('Error'),
+				_('An error occurred while sending the data to the server.'),
+				QMessageBox.Ok, self).exec_()
+
+	def _on_submission_completed(self):
+		self._tear_progress_down(success=True)
+		url = smolt.get_profile_link(smolt.smoonURL, self._submit_thread.pub_uuid)
+		QMessageBox(QMessageBox.Information, _('Profile Sent'),
+				_('The data was successfully sent. If you need to refer to ' + \
+				'your hardware profile for a bug report ' + \
+				'your UUID is \n%s\nstored in %s') \
+					% (url, smolt_config.get_config_attr("HW_UUID", "/etc/smolt/hw-uuid")),
+				QMessageBox.NoButton, self).exec_()
+
+		QDesktopServices.openUrl(QUrl(url))
+
 	def openSmoltPage(self):
  
 		''' Open My Smolt Page '''
