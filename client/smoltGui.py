@@ -117,8 +117,8 @@ class SmoltGui(QMainWindow):
 	def openSmoltPage(self):
  
 		''' Open My Smolt Page '''
-		retvalue, pub_uuid, admin = self.profile.send(smoonURL=smolt.smoonURL)
-	        QDesktopServices.openUrl(QUrl(urljoin(smolt.smoonURL, '/show?uuid=%s' % pub_uuid)))
+		url = smolt.get_profile_link(smolt.smoonURL, smolt.getUUID())
+		QDesktopServices.openUrl(QUrl(url))
  
 	def showPP(self):
  
