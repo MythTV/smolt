@@ -93,7 +93,6 @@ class SmoltGui(QMainWindow):
 	def sendProfile(self):
  
 		''' Send the profile to the smolt server '''
-		import smolt
 		try:
 			retvalue, pub_uuid, admin = self.profile.send(smoonURL=smolt.smoonURL)
 			url = urljoin(smolt.smoonURL, '/show?uuid=%s' % pub_uuid)
@@ -118,7 +117,6 @@ class SmoltGui(QMainWindow):
 	def openSmoltPage(self):
  
 		''' Open My Smolt Page '''
-		import smolt
 		retvalue, pub_uuid, admin = self.profile.send(smoonURL=smolt.smoonURL)
 	        QDesktopServices.openUrl(QUrl(urljoin(smolt.smoonURL, '/show?uuid=%s' % pub_uuid)))
  
@@ -184,6 +182,6 @@ if __name__ == '__main__':
     # NOTE: Run "python smoltGui.py --foo -- --one --two"
     # to set args passed to Qt to ['--one', '--two']
     app = QApplication([dollar_zero_backup] + args)
-    smolt = SmoltGui()
-    smolt.show()
+    smolt_gui = SmoltGui()
+    smolt_gui.show()
     sys.exit(app.exec_())
