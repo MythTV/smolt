@@ -18,6 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
  
 import sys
+import os
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from urlparse import urljoin
@@ -33,7 +34,11 @@ import time
 
 debug = False
 
-CLIENT_PATH = '/usr/share/smolt/client/'
+if os.path.exists(os.path.join(sys.path[0], 'Makefile')):
+	CLIENT_PATH = sys.path[0] + '/'
+else:
+	CLIENT_PATH = '/usr/share/smolt/client/'
+
 class GatherThread(QThread):
 	def __init__(self, parent=None):
 		self.hardware = None
