@@ -395,6 +395,13 @@ class UUIDError(Exception):
     def __str__(self):
         return str(self.message)
 
+class PubUUIDError(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return str(self.message)
+
 class Hardware:
     devices = {}
     def __init__(self):
@@ -1136,3 +1143,15 @@ def getUUID():
             sys.stderr.write(_('Unable to determine UUID of system!\n'))
             raise UUIDError, 'Could not determine UUID of system!\n'
     return UUID
+
+def getPubUUID(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+	grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout, proxies=proxies)
+	try:
+		o = grabber.urlopen(urljoin(smoonURL + "/", '/client/pub_uuid/%s' % getUUID()))
+		pudict = simplejson.loads(o.read())
+		o.close()
+		return pudict["pub_uuid"]
+	except Exception, e:
+		error(_('Error determining public UUID: %s') % e)
+		sys.stderr.write(_('Unable to determine Public UUID!\n'))
+		raise PubUUIDError, 'Could not determine Public UUID!\n'
