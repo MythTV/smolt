@@ -19,7 +19,7 @@
 import os
 from stat import *
 import conf
-import urllib
+import urllib2
 from datetime import date, datetime
 
 MAX_AGE_IN_SECONDS = 5 * 60
@@ -50,4 +50,12 @@ class SyncFile:
         return True
 
     def _sync(self):
-        urllib.urlretrieve(self.remote_location, self.local_location)
+        opener = urllib2.build_opener()
+        try:
+            remote_file = opener.open(self.remote_location)
+            local_file = open(self.local_location, 'w')
+            local_file.write(remote_file.read())
+            local_file.close()
+            remote_file.close()
+        except urllib2.HTTPError:
+            pass
