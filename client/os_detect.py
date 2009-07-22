@@ -1,5 +1,5 @@
 import os
-from subprocess import *
+import subprocess
 from UserDict import UserDict
 
 class odict(UserDict):
@@ -97,23 +97,21 @@ def get_os_info():
     executable = 'lsb_release'
     #executable = 'lsb_do_not_run_me'
 
-    params = ' --id --codename --release --short'
+    params = ['--id', '--codename', '--release', '--short']
     for path in os.environ['PATH'].split(':'):
       full_path_to_executable = os.path.join(path, executable)
       if os.path.exists(full_path_to_executable):
-        command = executable + params
+        command = [full_path_to_executable] + params
         try:
-          child = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, close_fds=True)
+          child = subprocess.Popen(command, stdout=subprocess.PIPE, close_fds=True)
         except OSError:
           print "Warning: Could not run "+executable+", using alternate method."
           break # parse files instead
-        child.wait()
+        (stdoutdata, stderrdata) = child.communicate()
         if child.returncode != 0:
           print "Warning: an error occurred trying to run "+executable+", using alternate method."
           break # parse files instead
-        output = child.stdout.readline().strip()
-        child.stdout.close()
-        child.stdin.close()
+        output = stdoutdata.strip()
         return output
     # lsb_release executable not available, so parse files
     for distro_name in distro_info.keys():
