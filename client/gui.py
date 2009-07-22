@@ -25,6 +25,40 @@ from PyQt4.QtCore import *
  
 from i18n import _
 import smolt
+
+class MainTabWidget(QTabWidget):
+
+	def __init__(self, generalTab=None, distroTab=None):
+		QTabWidget.__init__(self)
+
+		if generalTab != None:
+			self.addTab(generalTab, _('General'))
+		if distroTab != None:
+			self.addTab(distroTab, _('Distribution'))
+
+
+class GeneralTab(QWidget):
+
+	def __init__(self, hostTable, deviceTable):
+		QWidget.__init__(self)
+		self.generalLayout = QGridLayout()
+		self.generalLayout.addWidget(hostTable.get())
+		self.generalLayout.addWidget(deviceTable.get())
+		self.setLayout(self.generalLayout)
+
+	def addWidget(self, widget):
+		self.generalLayout.addWidget(widget)
+
+class DistroTab(QWidget):
+
+		def __init__(self):
+			QWidget.__init__(self)
+			self.distroLayout = QGridLayout()
+			self.setLayout(self.distroLayout)
+
+		def addWidget(self, widget):
+			self.distroLayout.addWidget(widget)
+
  
 class HostTable:
 
