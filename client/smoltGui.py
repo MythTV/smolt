@@ -234,7 +234,7 @@ class SmoltGui(QMainWindow):
 	def openSmoltPage(self):
  
 		''' Open My Smolt Page '''
-		url = smolt.get_profile_link(smolt.smoonURL, smolt.getUUID())
+		url = smolt.get_profile_link(smolt.smoonURL, smolt.getPubUUID())
 		QDesktopServices.openUrl(QUrl(url))
  
 	def showPP(self):
