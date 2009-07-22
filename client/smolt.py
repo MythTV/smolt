@@ -1125,7 +1125,11 @@ def get_profile():
 def get_profile_link(smoonURL, pub_uuid):
     return urljoin(smoonURL, '/client/show/%s' % pub_uuid)
 
+hw_uuid = None
 def getUUID():
+    global hw_uuid
+    if hw_uuid != None:
+        return hw_uuid
 
     try:
         UUID = file(hw_uuid_file).read().strip()
@@ -1141,6 +1145,7 @@ def getUUID():
         except IOError:
             sys.stderr.write(_('Unable to determine UUID of system!\n'))
             raise UUIDError, 'Could not determine UUID of system!\n'
+    hw_uuid = UUID
     return UUID
 
 def getPubUUID(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
