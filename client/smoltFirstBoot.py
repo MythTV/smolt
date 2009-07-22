@@ -5,6 +5,7 @@ import gobject
 import sys
 import rhpl.iconv
 import os
+import subprocess
 import commands
 
 from firstboot.config import *
@@ -47,8 +48,8 @@ class moduleClass(Module):
 
             # You'd think I know better than this.
             # So would I.
-            result = os.system('/sbin/chkconfig smolt on')
-            result = os.system('/usr/bin/smoltSendProfile -r -a &')
+            result = subprocess.call(['/sbin/chkconfig', 'smolt', 'on'])
+            result = subprocess.Popen(['/usr/bin/smoltSendProfile', '-r', '-a'])
             return RESULT_SUCCESS
         else:
             dlg = gtk.MessageDialog(None, 0, gtk.MESSAGE_QUESTION, gtk.BUTTONS_NONE,
@@ -109,7 +110,8 @@ class moduleClass(Module):
             s.close()
             d.close()
             
-        for line in os.popen('/usr/bin/smoltSendProfile -p', 'r'):
+        for line in subprocess.Popen(['/usr/bin/smoltSendProfile', '-p'],
+            stdout=subprocess.PIPE).stdout:
             text_buffer.insert(iter, line)
 
         text_view.set_buffer(text_buffer)
