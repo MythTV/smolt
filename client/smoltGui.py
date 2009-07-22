@@ -220,14 +220,16 @@ class SmoltGui(QMainWindow):
 	def _on_submission_completed(self):
 		self._tear_progress_down(success=True)
 		url = smolt.get_profile_link(smolt.smoonURL, self._submit_thread.pub_uuid)
+		admin_password = self._submit_thread.admin
 		QMessageBox(QMessageBox.Information, _('Profile Sent'),
-				_('The data was successfully sent. If you need to refer to ' + \
-				'your hardware profile for a bug report ' + \
-				'your UUID is \n%s\nstored in %s') \
-					% (url, smolt_config.get_config_attr("HW_UUID", "/etc/smolt/hw-uuid")),
+				_('<b>Your profile was sent successfully!</b><br>\
+				<br>\
+				Your profiles is available online at:<br>\
+				<a href="%(url)s">%(url)s</a><br>\
+				<br>\
+				Your profile admin password is:<br><i>%(password)s</i>') % \
+					{'url':url, 'password':admin_password},
 				QMessageBox.NoButton, self).exec_()
-
-		QDesktopServices.openUrl(QUrl(url))
 
 	def openSmoltPage(self):
  
