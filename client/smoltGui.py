@@ -252,7 +252,7 @@ class SmoltGui(QMainWindow):
 		layout = QGridLayout(about)
  
 		label = QLabel(self)
-		label.setPixmap(QPixmap(CLIENT_PATH + "icons/smolt.png"))
+		label.setPixmap(QPixmap(os.path.join(CLIENT_PATH, 'icons' , 'smolt.png')))
  
 		title = QString(_("<h3>Smolt Qt</h3>Version 0.1.1<br/>"))
 		title.append(_("<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \
@@ -266,10 +266,16 @@ class SmoltGui(QMainWindow):
  
 		authors = _("<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;")
  
-		lbl = QLabel(_("%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; \
-				you can redistribute it and/or modify it under the terms of the GNU General \
-				Public License as published by the Free Software Foundation; either version 3 \
-				of the License, or (at your option) any later version.") % (title, description, authors))
+		lbl = QLabel(_("%(title)s<br>\
+				%(description)s<br>\
+				%(authors)s<br>\
+				<br>\
+				<b>License:</b><br>\
+				This program is free software; you can redistribute it and/or \
+				modify it under the terms of the GNU General Public License \
+				as published by the Free Software Foundation; either version 3 \
+				of the License, or (at your option) any later version.") % \
+				{'title':title, 'description':description, 'authors':authors})
  
 		lbl.setWordWrap(True)
 		lbl.setOpenExternalLinks(True)

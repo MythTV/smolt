@@ -37,6 +37,9 @@ class _UuidDb:
 
     def _flush(self):
         try:
+            smolt_user_config_dir = os.path.expanduser('~/.smolt/')
+            if not os.path.exists(smolt_user_config_dir):
+                os.mkdir(smolt_user_config_dir, 0700)
             f = open(self._database_filename, 'w')
             self._config.write(f)
             f.close()

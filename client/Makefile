@@ -1,8 +1,7 @@
 PO_FILES=$(wildcard po/*.po)
 MO_FILES=$(patsubst %.po,%.mo,$(PO_FILES))
-PY_FILES=fs_util.py deleteProfile.py haldump.py __init__.py sendProfile.py smoltGui.py smolt.py software.py smoltFirstBoot.py gui.py privacypolicy.py scan.py
+CLIENT_PY_FILES=$(wildcard *.py)
 DIRED_MO_FILES=$(patsubst po/%.mo,mo/%/LC_MESSAGES/$(NAME).mo,$(MO_FILES))
-CLIENT_FILES=gate.py os_detect.py fs_util.py deleteProfile.py gui.py haldump.py i18n.py privacypolicy.py sendProfile.py smolt.py smoltGui.py software.py scan.py simplejson
 
 
 NAME=smolt
@@ -19,7 +18,7 @@ DATADIR=$(PREFIX)/share
 
 all: po/smolt.pot $(MO_FILES)
 
-po/smolt.pot: $(PY_FILES)
+po/smolt.pot: $(CLIENT_PY_FILES)
 	xgettext -d smolt -o po/smolt.pot $^
 
 %.po: po/smolt.pot
@@ -44,7 +43,7 @@ install-main: move-mo
 	install -D -m 0644 icons/privacy.png $(DATADIR)/$(NAME)/client/icons/privacy.png
 	install -D -m 0644 icons/send-profile.png $(DATADIR)/$(NAME)/client/icons/send-profile.png
 	install -D -m 0644 icons/smolt.png $(DATADIR)/$(NAME)/client/icons/smolt.png
-	cp -adv $(CLIENT_FILES) $(DATADIR)/$(NAME)/client/
+	cp -adv $(CLIENT_PY_FILES) $(DATADIR)/$(NAME)/client/
 	
 	mkdir -p $(DATADIR)/icons/hicolor/16x16/apps/
 	mkdir -p $(DATADIR)/icons/hicolor/22x22/apps/

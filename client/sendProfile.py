@@ -207,7 +207,7 @@ if opts.userName:
 
     if profile.register(userName=opts.userName, password=password, user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
         print _('Registration Failed, Try again')
-if not opts.submitOnly:
+if not opts.submitOnly and not opts.checkin:
     scan(profile, opts.smoonURL)
     try:
         rating(profile, opts.smoonURL)
