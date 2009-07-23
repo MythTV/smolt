@@ -266,10 +266,16 @@ class SmoltGui(QMainWindow):
  
 		authors = _("<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;")
  
-		lbl = QLabel(_("%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; \
-				you can redistribute it and/or modify it under the terms of the GNU General \
-				Public License as published by the Free Software Foundation; either version 3 \
-				of the License, or (at your option) any later version.") % (title, description, authors))
+		lbl = QLabel(_("%(title)s<br>\
+				%(description)s<br>\
+				%(authors)s<br>\
+				<br>\
+				<b>License:</b><br>\
+				This program is free software; you can redistribute it and/or \
+				modify it under the terms of the GNU General Public License \
+				as published by the Free Software Foundation; either version 3 \
+				of the License, or (at your option) any later version.") % \
+				{'title':title, 'description':description, 'authors':authors})
  
 		lbl.setWordWrap(True)
 		lbl.setOpenExternalLinks(True)
