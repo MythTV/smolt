@@ -51,6 +51,7 @@ from fs_util import get_fslist
 
 from gate import Gate
 from uuiddb import UuidDb
+import logging
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 SELINUX_ENABLED = 1
@@ -427,6 +428,18 @@ class Hardware:
 
         self.fss = get_file_systems()
 
+        self.distro_specific = self.get_distro_specific_data()
+
+    def get_distro_specific_data(self):
+        dist_dict = {}
+        import distros.all
+        for d in distros.all.get():
+            name = d.name()
+            if d.detected():
+                logging.info('Distro "%s" detected' % (name))
+                dist_dict[name] = d.gather(debug=True)
+        return dist_dict
+
     def get_properties_for_udi (self, udi):
         dev = self.dbus_get_interface(self.systemBus, 'org.freedesktop.Hal',
                                       udi, 'org.freedesktop.Hal.Device')
@@ -494,7 +507,8 @@ class Hardware:
                 'formfactor' :      self.host.formfactor,
                 'selinux_enabled':  self.host.selinux_enabled,
                 'selinux_policy':   self.host.selinux_policy,
-                'selinux_enforce':  self.host.selinux_enforce}
+                'selinux_enforce':  self.host.selinux_enforce,
+                'distro_specific':  self.distro_specific}
 
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
