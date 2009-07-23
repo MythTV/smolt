@@ -583,7 +583,7 @@ class Hardware:
             try:
                 logdir = '/var/tmp/smolt'
                 if not os.path.exists(logdir):
-                    os.mkdir(logdir)
+                    os.mkdir(logdir, 0777)
                 t = datetime.datetime.today()
                 basename = '%04d-%02d-%02d-%02d-%02d-%02d.json' % \
                     (t.year, t.month, t.day, t.hour, t.minute, t.second)
