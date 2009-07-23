@@ -507,8 +507,7 @@ class Hardware:
                 'formfactor' :      self.host.formfactor,
                 'selinux_enabled':  self.host.selinux_enabled,
                 'selinux_policy':   self.host.selinux_policy,
-                'selinux_enforce':  self.host.selinux_enforce,
-                'distro_specific':  self.distro_specific}
+                'selinux_enforce':  self.host.selinux_enforce}
 
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
@@ -530,6 +529,13 @@ class Hardware:
             sys.stderr.write(_('\tYour admin token  could not be cached: %s\n' % e))
         return
 
+    def get_submission_data(self, prefered_protocol=None):
+        send_host_obj = self.get_sendable_host(prefered_protocol)
+        send_host_obj['devices'] = self.get_sendable_devices(prefered_protocol)
+        send_host_obj['fss'] = self.get_sendable_fss(prefered_protocol)
+        send_host_obj['smolt_protocol'] = prefered_protocol
+        send_host_obj['distro_specific'] = self.distro_specific
+        return send_host_obj
 
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies):
         def serialize(object, human=False):
@@ -565,13 +571,8 @@ class Hardware:
         finally:
             token.close()
 
-        send_host_obj = self.get_sendable_host(prefered_protocol)
-        my_devices = self.get_sendable_devices(prefered_protocol)
-        my_fss = self.get_sendable_fss(prefered_protocol)
+        send_host_obj = self.get_submission_data(prefered_protocol)
 
-        send_host_obj['devices'] = my_devices
-        send_host_obj['fss'] = my_fss
-        send_host_obj['smolt_protocol'] = prefered_protocol
 
         debug('smoon server URL: %s' % smoonURL)
 
