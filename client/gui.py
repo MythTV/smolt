@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
  
 # Copyright (C) 2009 Carlos Gonçalves <mail@cgoncalves.info>
+# Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,9 +27,9 @@ from i18n import _
 import smolt
  
 class HostTable:
- 
-	def __init__(self, profile):
-		self.profile = profile
+
+	def __init__(self):
+		self.profile = None
 		self.host_table = None
  
 	def get(self):
@@ -38,10 +39,15 @@ class HostTable:
 			self.host_table.setAlternatingRowColors(True)
 			self.host_table.setSortingEnabled(True)
  
-			model = QStandardItemModel(0, 2, self.host_table)
-			model.setHeaderData(0, Qt.Horizontal, QVariant(_('Label')))
-			model.setHeaderData(1, Qt.Horizontal, QVariant(_('Data')))
- 
+			self.set_profile(None)
+		return self.host_table
+
+	def set_profile(self, profile):
+		self.profile = profile
+		model = QStandardItemModel(0, 2, self.host_table)
+		model.setHeaderData(0, Qt.Horizontal, QVariant(_('Label')))
+		model.setHeaderData(1, Qt.Horizontal, QVariant(_('Data')))
+		if self.profile:
 			for label, data in self.profile.hostIter():
 				model.insertRow(0)
 				label = QStandardItem(str(label))
@@ -50,15 +56,13 @@ class HostTable:
 				data.setEditable(False)
 				model.setItem(0, 0, label)
 				model.setItem(0, 1, data)
- 
-			self.host_table.setModel(model)
- 
-		return self.host_table
- 
+		self.host_table.setModel(model)
+
+
 class DeviceTable:
- 
-	def __init__(self, profile):
-		self.profile = profile
+
+	def __init__(self):
+		self.profile = None
 		self.device_table = None
  
 	def get(self):
@@ -67,14 +71,20 @@ class DeviceTable:
 			self.device_table.setRootIsDecorated(False)
 			self.device_table.setAlternatingRowColors(True)
 			self.device_table.setSortingEnabled(True)
- 
-			model = QStandardItemModel(0, 4, self.device_table)
-			model.setHeaderData(0, Qt.Horizontal, QVariant(_('Bus')))
-			model.setHeaderData(1, Qt.Horizontal, QVariant(_('Driver')))
-			model.setHeaderData(2, Qt.Horizontal, QVariant(_('Type')))
-			model.setHeaderData(3, Qt.Horizontal, QVariant(_('Description')))
- 
-			for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.profile.deviceIter():
+
+			self.set_profile(None)
+		return self.device_table
+
+	def set_profile(self, profile):
+		self.profile = profile
+		model = QStandardItemModel(0, 4, self.device_table)
+		model.setHeaderData(0, Qt.Horizontal, QVariant(_('Bus')))
+		model.setHeaderData(1, Qt.Horizontal, QVariant(_('Driver')))
+		model.setHeaderData(2, Qt.Horizontal, QVariant(_('Type')))
+		model.setHeaderData(3, Qt.Horizontal, QVariant(_('Description')))
+		if self.profile:
+			for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, \
+					Driver, Type, Description in self.profile.deviceIter():
 				model.insertRow(0)
  
 				bus = QStandardItem(str(Bus))
@@ -90,8 +100,4 @@ class DeviceTable:
 				model.setItem(0, 1, driver)
 				model.setItem(0, 2, type)
 				model.setItem(0, 3, description)
- 
-			self.device_table.setModel(model)
- 
-		return self.device_table
-
+		self.device_table.setModel(model)
