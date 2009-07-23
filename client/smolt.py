@@ -50,6 +50,7 @@ from smolt_config import get_config_attr
 from fs_util import get_fslist
 
 from gate import Gate
+from uuiddb import UuidDb
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 SELINUX_ENABLED = 1
@@ -395,6 +396,13 @@ class UUIDError(Exception):
     def __str__(self):
         return str(self.message)
 
+class PubUUIDError(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return str(self.message)
+
 class Hardware:
     devices = {}
     def __init__(self):
@@ -493,12 +501,10 @@ class Hardware:
 
     def write_pub_uuid(self,smoonURL,pub_uuid,pub_uuid_file):
         smoonURLparsed=urlparse(smoonURL)
-        pub_uuid_file += ("-"+smoonURLparsed.hostname)
         try:
-            file(pub_uuid_file, 'w').write(pub_uuid)
+            UuidDb().set_pub_uuid(getUUID(), smoonURLparsed.hostname, pub_uuid)
         except Exception, e:
-            sys.stderr.write(_('\tYour pub_uuid file  could not be written, likely because you are not root.\n'))
-            sys.stderr.write(_('\tThis is safe to ignore, or you can re-run as root?\n\n'))
+            sys.stderr.write(_('\tYour pub_uuid could not be written.\n\n'))
         return
 
     def write_admin_token(self,smoonURL,admin,admin_token_file):
@@ -588,6 +594,7 @@ class Hardware:
                 pass
             pub_uuid = serverMessage(o.read())
             o.close()
+            self.write_pub_uuid(smoonURL,pub_uuid,pub_uuid_file)
 
             try:
                 admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
@@ -605,7 +612,6 @@ class Hardware:
 
             if  not admin_token_file == '' :
                 self.write_admin_token(smoonURL,admin,admin_token_file)
-            self.write_pub_uuid(smoonURL,pub_uuid,pub_uuid_file)
         return (0, pub_uuid, admin)
 
     def regenerate_pub_uuid(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
@@ -1119,7 +1125,11 @@ def get_profile():
 def get_profile_link(smoonURL, pub_uuid):
     return urljoin(smoonURL, '/client/show/%s' % pub_uuid)
 
+hw_uuid = None
 def getUUID():
+    global hw_uuid
+    if hw_uuid != None:
+        return hw_uuid
 
     try:
         UUID = file(hw_uuid_file).read().strip()
@@ -1135,4 +1145,23 @@ def getUUID():
         except IOError:
             sys.stderr.write(_('Unable to determine UUID of system!\n'))
             raise UUIDError, 'Could not determine UUID of system!\n'
+    hw_uuid = UUID
     return UUID
+
+def getPubUUID(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
+	smoonURLparsed=urlparse(smoonURL)
+	res = UuidDb().get_pub_uuid(getUUID(), smoonURLparsed.hostname)
+	if res:
+		return res
+
+	grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout, proxies=proxies)
+	try:
+		o = grabber.urlopen(urljoin(smoonURL + "/", '/client/pub_uuid/%s' % getUUID()))
+		pudict = simplejson.loads(o.read())
+		o.close()
+		UuidDb().set_pub_uuid(getUUID(), smoonURLparsed.hostname, pudict["pub_uuid"])
+		return pudict["pub_uuid"]
+	except Exception, e:
+		error(_('Error determining public UUID: %s') % e)
+		sys.stderr.write(_('Unable to determine Public UUID!\n'))
+		raise PubUUIDError, 'Could not determine Public UUID!\n'
