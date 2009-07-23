@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 from UserDict import UserDict
 
@@ -72,7 +73,6 @@ distro_info['Mandriva Linux']= '/etc/mandriva-release'
 distro_info['Slackware Linux']= '/etc/slackware-release'
 distro_info['Solaris/Sparc']= '/etc/release'
 distro_info['Sun JDS']= '/etc/sun-release'
-distro_info['Novell SUSE Linux']= '/etc/SuSE-release'
 distro_info['PLD Linux']= '/etc/pld-release'
 distro_info['SUSE Linux']= '/etc/SuSE-release'
 distro_info['Yellow Dog Linux']= '/etc/yellowdog-release'
@@ -129,4 +129,8 @@ def get_os_info():
           text = distro_name
         elif path_to_file.endswith('lfs-release'):
           text = distro_name + ' ' + text
+        elif path_to_file.endswith('SuSE-release'):
+          text = file(path_to_file).read().split('\n')[0].strip()
+          retext = re.compile('\(\w*\)$')
+          text = retext.sub( '', text ).strip()
         return text
