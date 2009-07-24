@@ -61,6 +61,7 @@ _REPO_NAME_MISMATCH_WHITELIST = (
     "tante_overlay",  # tante
     "vdr-xine-overlay",  # vdr-xine
     "webapp-experimental",  # webapps-experimental
+    "x-njw-gentoo-local",  # njw
 )
 
 
