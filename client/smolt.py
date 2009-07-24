@@ -65,7 +65,6 @@ fs_t_filter = get_config_attr("FS_T_FILTER", False)
 smoonURL = get_config_attr("SMOON_URL", "http://smolts.org/")
 secure = get_config_attr("SECURE", 0)
 hw_uuid_file = get_config_attr("HW_UUID", "/etc/smolt/hw-uuid")
-pub_uuid_file = get_config_attr("PUB_UUID", "/etc/smolt/pub-uuid")
 admin_token_file = get_config_attr("ADMIN_TOKEN", '' )
 
 smoltProtocol = '0.97'
@@ -499,7 +498,7 @@ class _Hardware:
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
 
-    def write_pub_uuid(self,smoonURL,pub_uuid,pub_uuid_file):
+    def write_pub_uuid(self,smoonURL,pub_uuid):
         smoonURLparsed=urlparse(smoonURL)
         try:
             UuidDb().set_pub_uuid(getUUID(), smoonURLparsed.hostname, pub_uuid)
@@ -594,7 +593,7 @@ class _Hardware:
                 pass
             pub_uuid = serverMessage(o.read())
             o.close()
-            self.write_pub_uuid(smoonURL,pub_uuid,pub_uuid_file)
+            self.write_pub_uuid(smoonURL,pub_uuid)
 
             try:
                 admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
@@ -622,7 +621,7 @@ class _Hardware:
             error(_('Error contacting Server: %s') % e)
             sys.exit(0)
         pub_uuid = simplejson.loads(new_uuid.read())['pub_uuid']
-        self.write_pub_uuid(smoonURL,pub_uuid,pub_uuid_file)
+        self.write_pub_uuid(smoonURL,pub_uuid)
         return pub_uuid
 
 
