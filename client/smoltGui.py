@@ -272,11 +272,11 @@ class SmoltGui(QMainWindow):
 		title.append(_("<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \
 				to a Smoon server.<br/>"))
  
-		description = _("<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \
+		description = QString(_("<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \
 				system that does a hardware scan against a machine and sends the results \
 				to a public Fedora Project turbogears server. The sends are anonymous \
 				and should not contain any private information other than the physical \
-				hardware information and basic OS info.<br/>")
+				hardware information and basic OS info.<br/>"))
  
 		authors = _("<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;")
  

@@ -1,6 +1,24 @@
-from sys import argv
-from os import chown
-from os import chmod
+# smolt - Fedora hardware profiler
+#
+# Copyright (C) 2007 Yaakov M. Nemoy <loupgaroublond@gmail.com>
+# Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+
+import sys
+import os
 import stat
 from pwd import getpwnam
 from optparse import OptionParser
@@ -38,25 +56,6 @@ parser.add_option('-p', '--public',
 
 (opts, args) = parser.parse_args()
 
-if __name__ == "__main__":
-    try:
-        #this is so horrible, i apologize.
-        if opts.force: raise IOError
-        uuid = file(opts.uuid_file).read().strip()
-    except IOError:
-        try:
-            uuid=generate_uuid(opts.public)
-            file(opts.uuid_file, 'w').write(uuid)
-            if opts.secure:
-                chown(opts.uuid_file, getpwnam('smolt')[2], -1)
-                chmod(opts.uuid_file, stat.S_IRUSR \
-                                      ^ stat.S_IWUSR \
-                                      ^ stat.S_IRGRP \
-                                      ^ stat.S_IWGRP)
-        except IOError:
-            sys.stderr.write('Unable to determine UUID of system!\n')
-            sys.exit(1)
-            
 def generate_uuid(public=False):
     try:
         uuid = file('/proc/sys/kernel/random/uuid').read().strip()
@@ -64,4 +63,27 @@ def generate_uuid(public=False):
             uuid = "pub_" + uuid
         return uuid
     except IOError:
-        raise UUIDError("Cannot generate UUID")
+        raise UUIDError("Could not generate UUID.")
+
+if __name__ == "__main__":
+    try:
+        #this is so horrible, i apologize.
+        if opts.force: raise IOError
+        uuid = file(opts.uuid_file).read().strip()
+    except IOError:
+        try:
+            uuid_dir = os.path.dirname(opts.uuid_file)
+            if not os.path.exists(uuid_dir):
+                os.makedirs(uuid_dir, 0755)
+            uuid=generate_uuid(opts.public)
+            file(opts.uuid_file, 'w').write(uuid)
+            if opts.secure:
+                os.chown(opts.uuid_file, getpwnam('smolt')[2], -1)
+                os.chmod(opts.uuid_file, stat.S_IRUSR \
+                                      ^ stat.S_IWUSR \
+                                      ^ stat.S_IRGRP \
+                                      ^ stat.S_IWGRP)
+        except IOError:
+            sys.stderr.write('Could not store UUID.\n')
+            sys.exit(1)
+
