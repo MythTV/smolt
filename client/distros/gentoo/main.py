@@ -25,7 +25,7 @@ from distros.distro import Distro
 
 class _Gentoo(Distro):
     def name(self):
-        return 'gentoo'
+        return 'Gentoo'
 
     def detected(self, debug=False):
         """

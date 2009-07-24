@@ -17,11 +17,21 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 class Distro:
+    def _raise_abstract(self):
+        raise Exception('Function must be overwritten.')
+
     def name(self):
-        raise Exception('Distro has no name assigned.')
+        self._raise_abstract()
 
     def detected(self, debug=False):
         return False
 
     def gather(self, debug=False):
-        return {}
+        pass
+
+    def data(self):
+        self._raise_abstract()
+
+    def html(self):
+        self._raise_abstract()
+
