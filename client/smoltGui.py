@@ -131,7 +131,7 @@ class SmoltGui(QMainWindow):
 
 		# TODO check if is distro compatible.
 		self.distroTab = gui.DistroTab()
-		self.distroInfo = QPlainTextEdit()
+		self.distroInfo = QTextBrowser()
 		self.distroInfo.setReadOnly(True)
 		self.distroTab.addWidget(self.distroInfo)
 
@@ -160,7 +160,10 @@ class SmoltGui(QMainWindow):
 		self._on_gathering_completed()
 		self.host_table.set_profile(self._gather_thread.hardware)
 		self.device_table.set_profile(self._gather_thread.hardware)
-		# TODO set self.distroInfo text, if distro compatible
+		self.distro_document = QTextDocument()
+		self.distro_document.setHtml(\
+			self._gather_thread.hardware.get_distro_specific_html())
+		self.distroInfo.setDocument(self.distro_document)
 
 	def _on_system_bus_error(self):
 		self._on_gathering_completed()

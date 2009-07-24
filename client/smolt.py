@@ -437,7 +437,8 @@ class _Hardware:
             name = d.name()
             if d.detected():
                 logging.info('Distro "%s" detected' % (name))
-                dist_dict[name] = d.gather(debug=True)
+                d.gather(debug=True)
+                dist_dict[name] = {'data':d.data(), 'html':d.html()}
         return dist_dict
 
     def get_properties_for_udi (self, udi):
@@ -534,8 +535,15 @@ class _Hardware:
         send_host_obj['devices'] = self.get_sendable_devices(prefered_protocol)
         send_host_obj['fss'] = self.get_sendable_fss(prefered_protocol)
         send_host_obj['smolt_protocol'] = prefered_protocol
-        send_host_obj['distro_specific'] = self.distro_specific
+        send_host_obj['distro_specific'] = self.distro_specific['data']
         return send_host_obj
+
+    def get_distro_specific_html(self):
+        lines = []
+        for k, v in self.distro_specific.items():
+            lines.append('<h1>%s</h1>' % k.title())
+            lines.append(v['html'])
+        return '\n'.join(lines)
 
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies):
         def serialize(object, human=False):
