@@ -404,7 +404,7 @@ class PubUUIDError(Exception):
     def __str__(self):
         return str(self.message)
 
-class Hardware:
+class _Hardware:
     devices = {}
     def __init__(self):
         try:
@@ -715,6 +715,16 @@ class Hardware:
             else:
                 if not ignoreDevice(self.devices[device]):
                     yield VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description
+
+
+_hardware_instance = None
+def Hardware():
+    """Simple singleton wrapper with lazy initialization"""
+    global _hardware_instance
+    if _hardware_instance == None:
+        _hardware_instance = _Hardware()
+    return _hardware_instance
+
 
 # From RHN Client Tools
 
