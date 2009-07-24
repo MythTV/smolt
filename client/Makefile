@@ -1,6 +1,7 @@
 PO_FILES=$(wildcard po/*.po)
 MO_FILES=$(patsubst %.po,%.mo,$(PO_FILES))
-CLIENT_PY_FILES=$(wildcard *.py)
+# echo PY_FILES=$(ls -1 *.py | grep -v '^\(create_monthly\|getLink\|haldump\|hammer_add\|makeuuid\|starhscale\).py$' | sort)
+PY_FILES=config.py deleteProfile.py fs_util.py gate.py gui.py i18n.py __init__.py os_detect.py privacypolicy.py scan.py sendProfile.py smolt_config.py smoltFirstBoot.py smoltGui.py smolt.py software.py uuiddb.py
 DIRED_MO_FILES=$(patsubst po/%.mo,mo/%/LC_MESSAGES/$(NAME).mo,$(MO_FILES))
 
 
@@ -18,7 +19,7 @@ DATADIR=$(PREFIX)/share
 
 all: po/smolt.pot $(MO_FILES)
 
-po/smolt.pot: $(CLIENT_PY_FILES)
+po/smolt.pot: $(PY_FILES)
 	xgettext -d smolt -o po/smolt.pot $^
 
 %.po: po/smolt.pot
@@ -43,7 +44,7 @@ install-main: move-mo
 	install -D -m 0644 icons/privacy.png $(DATADIR)/$(NAME)/client/icons/privacy.png
 	install -D -m 0644 icons/send-profile.png $(DATADIR)/$(NAME)/client/icons/send-profile.png
 	install -D -m 0644 icons/smolt.png $(DATADIR)/$(NAME)/client/icons/smolt.png
-	cp -adv $(CLIENT_PY_FILES) $(DATADIR)/$(NAME)/client/
+	cp -adv $(PY_FILES) $(DATADIR)/$(NAME)/client/
 	
 	mkdir -p $(DATADIR)/icons/hicolor/16x16/apps/
 	mkdir -p $(DATADIR)/icons/hicolor/22x22/apps/

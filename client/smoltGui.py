@@ -85,7 +85,7 @@ class SmoltGui(QMainWindow):
 		QMainWindow.__init__(self)
 		self.resize(500, 600)
 		self.setWindowTitle(_('Smolt'))
-		self.setWindowIcon(QIcon(CLIENT_PATH + 'icons/smolt.png'))
+		self.setWindowIcon(QIcon(os.path.join(CLIENT_PATH, 'icons', 'smolt.png')))
  
 		''' Menu Bar '''
 		self.menuBar = self.menuBar()
@@ -93,11 +93,11 @@ class SmoltGui(QMainWindow):
 		self.helpMenu = self.menuBar.addMenu(_('&Help'))
  
 		''' Actions '''
-		self.sendAction= QAction(QIcon(CLIENT_PATH + 'icons/send-profile.png'), _('&Send Profile'), self)
-		self.mySmoltPageAction = QAction(QIcon(CLIENT_PATH + 'icons/home.png'), _('&My Smolt Page'), self)
-		self.exitAction = QAction(QIcon(CLIENT_PATH + 'icons/exit.png'), _('&Exit'), self)
-		self.showPPAction = QAction(QIcon(CLIENT_PATH + 'icons/privacy.png'), _('Show &Privacy Policy'), self)
-		self.aboutAction = QAction(QIcon(CLIENT_PATH + 'icons/smolt.png'), _('&About'), self)
+		self.sendAction= QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'send-profile.png')), _('&Send Profile'), self)
+		self.mySmoltPageAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'home.png')), _('&My Smolt Page'), self)
+		self.exitAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'exit.png')), _('&Exit'), self)
+		self.showPPAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'privacy.png')), _('Show &Privacy Policy'), self)
+		self.aboutAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'smolt.png')), _('&About'), self)
 		self.aboutQtAction = QAction(_("About &Qt"), self)
  
 		''' Fill Menus '''
