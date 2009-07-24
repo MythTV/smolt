@@ -535,7 +535,12 @@ class _Hardware:
         send_host_obj['devices'] = self.get_sendable_devices(prefered_protocol)
         send_host_obj['fss'] = self.get_sendable_fss(prefered_protocol)
         send_host_obj['smolt_protocol'] = prefered_protocol
-        send_host_obj['distro_specific'] = self.distro_specific['data']
+
+        dist_data_dict = {}
+        for k, v in self.distro_specific.items():
+            dist_data_dict[k] = v['data']
+        send_host_obj['distro_specific'] = dist_data_dict
+
         return send_host_obj
 
     def get_distro_specific_html(self):
