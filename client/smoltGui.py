@@ -129,7 +129,6 @@ class SmoltGui(QMainWindow):
 		self.device_table = gui.DeviceTable()
 		self.generalTab = gui.GeneralTab(self.host_table, self.device_table)
 
-		# TODO check if is distro compatible.
 		self.distroTab = gui.DistroTab()
 		self.distroInfo = QTextBrowser()
 		self.distroInfo.setReadOnly(True)

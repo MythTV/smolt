@@ -540,9 +540,12 @@ class _Hardware:
 
     def get_distro_specific_html(self):
         lines = []
-        for k, v in self.distro_specific.items():
-            lines.append('<h1>%s</h1>' % k.title())
-            lines.append(v['html'])
+        if not self.distro_specific:
+            lines.append(_('No distribution-specific data yet'))
+        else:
+            for k, v in self.distro_specific.items():
+                lines.append('<h1>%s</h1>' % k.title())
+                lines.append(v['html'])
         return '\n'.join(lines)
 
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies):
