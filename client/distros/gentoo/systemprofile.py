@@ -48,9 +48,6 @@ class SystemProfile:
     def get(self):
         return self._profile
 
-    def serialize(self):
-        return self._profile
-
     def dump(self):
         print 'System profile: ' + self._profile
         print

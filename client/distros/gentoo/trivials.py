@@ -17,6 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 import portage
+from systemprofile import SystemProfile
 
 class Trivials:
     def __init__(self):
@@ -26,6 +27,9 @@ class Trivials:
         for k in ('ARCH', 'CHOST'):
             self._trivial_scalars[k] = portage.settings[k].strip()
             self._trivials[k] = self._trivial_scalars[k]
+
+        self._trivial_scalars['system_profile'] = SystemProfile().get()
+        self._trivials['system_profile'] = self._trivial_scalars['system_profile']
 
         self._trivial_vectors = {}
         for k in ('FEATURES',):

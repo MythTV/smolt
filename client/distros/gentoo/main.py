@@ -62,9 +62,6 @@ class _Gentoo(Distro):
         _stage('package.mask entries')
         user_package_mask = PackageMask()
 
-        _stage('system profile')
-        system_profile = SystemProfile()
-
         _stage('trivials')
         trivials = Trivials()
 
