@@ -90,6 +90,32 @@ class _PackageStar:
             res[cp] = sorted(atoms)
         return res
 
+    def dump_html(self, lines):
+        lines.append('<h2>%s</h2>' % self._section)
+        lines.append('<table border="1" cellspacing="1" cellpadding="4">')
+        lines.append('<tr>')
+        for i in ('Package', 'Atoms'):
+            lines.append('<th>%s</th>' % i)
+        lines.append('</tr>')
+        for k, v in sorted(self.serialize().items()):
+            atom_count = len(v)
+            if atom_count > 1:
+                lines.append('<tr>')
+                lines.append('<td rowspan="%d">%s</td>' % (atom_count, k))
+                lines.append('<td>%s</td>' % v[0])
+                lines.append('</tr>')
+                for i in range(2, atom_count):
+                    lines.append('<tr>')
+                    lines.append('<td>%s</td>' % v[i - 1])
+                    lines.append('</tr>')
+            else:
+                lines.append('<tr>')
+                lines.append('<td>%s</td>' % k)
+                lines.append('<td>%s</td>' % v[0])
+                lines.append('</tr>')
+                rowspan = ''
+        lines.append('</table>')
+
     def dump(self):
         print '%s:' % (self._section)
         for k, v in self._non_private_cp_to_atoms.items():

@@ -121,6 +121,12 @@ class _GlobalUseFlags:
     def serialize(self):
         return sorted(self._global_use_flags)
 
+    def dump_html(self, lines):
+        lines.append('<h2>Global use flags</h2>')
+        lines.append('<p>')
+        lines.append(', '.join(sorted(self._global_use_flags)))
+        lines.append('</p>')
+
     def dump(self):
         print 'Global use flags:'
         print sorted(self.get())

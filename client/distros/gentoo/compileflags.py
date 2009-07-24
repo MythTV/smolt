@@ -61,6 +61,15 @@ class CompileFlags:
         }
         return res
 
+    def dump_html(self, lines):
+        lines.append('<h2>Compile flags</h2>')
+        for group, values in sorted(self.serialize().items()):
+            lines.append('<h3>%s</h3>' % group)
+            lines.append('<ul>')
+            for v in values:
+                lines.append('<li>%s</li>' % v)
+            lines.append('</ul>')
+
     def dump(self):
         print 'Compile flags:'
         print '  CFLAGS: ' + str(self.get_cflags())

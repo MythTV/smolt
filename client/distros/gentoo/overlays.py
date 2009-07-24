@@ -150,6 +150,13 @@ class _Overlays:
     def serialize(self):
         return sorted(set(self._active_overlay_names))
 
+    def dump_html(self, lines):
+        lines.append('<h2>Overlays</h2>')
+        lines.append('<ul>')
+        for name in self.serialize():
+            lines.append('<li><a href="http://gentoo-overlays.zugaina.org/%(name)s/">%(name)s</a></li>' % {'name':name})
+        lines.append('</ul>')
+
     def dump(self):
         print 'Active overlays:'
         print '  Names:'

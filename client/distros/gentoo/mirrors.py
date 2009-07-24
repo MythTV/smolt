@@ -113,6 +113,20 @@ class Mirrors:
         }
         return res
 
+    def dump_html(self, lines):
+        lines.append('<h2>Mirrors</h2>')
+
+        lines.append('<h3>Sync</h3>')
+        lines.append('<ul>')
+        lines.append('<li>%s</li>' % self.get_sync())
+        lines.append('</ul>')
+
+        lines.append('<h3>Distfiles</h3>')
+        lines.append('<ul>')
+        for url in self.get_mirrors():
+            lines.append('<li><a href="%(url)s">%(url)s</a></li>' % {'url':url})
+        lines.append('</ul>')
+
     def dump(self):
         print 'SYNC: ' + str(self.get_sync())
         print 'GENTOO_MIRRORS:'

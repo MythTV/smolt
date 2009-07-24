@@ -75,21 +75,44 @@ class _Gentoo(Distro):
         installed_packages = InstalledPackages(debug=debug, cb_enter=cb_enter)
 
         machine_data = {}
+        lines = []
         machine_data['protocol'] = '1.0'
-        machine_data['global_use_flags'] = global_use_flags.serialize()
+
+        trivials.dump_html(lines)
+
         machine_data['compile_flags'] = compile_flags.serialize()
+        compile_flags.dump_html(lines)
+
         machine_data['mirrors'] = mirrors.serialize()
+        mirrors.dump_html(lines)
+
         machine_data['overlays'] = overlays.serialize()
+        overlays.dump_html(lines)
+
         machine_data['user_package_mask'] = user_package_mask.serialize()
-        machine_data['system_profile'] = system_profile.serialize()
+        user_package_mask.dump_html(lines)
+
+        machine_data['global_use_flags'] = global_use_flags.serialize()
+        global_use_flags.dump_html(lines)
+
+        machine_data['installed_packages'] = installed_packages.serialize()
+        installed_packages.dump_html(lines)
+
         for container in (trivials, ):
             for k, v in container.serialize().items():
                 key = k.lower()
                 if key in machine_data:
                     raise Exception('Unintended key collision')
                 machine_data[key] = v
-        machine_data['installed_packages'] = installed_packages.serialize()
-        return machine_data
+
+        self._data = machine_data
+        self._html = '\n'.join(lines)
+
+    def data(self):
+        return self._data
+
+    def html(self):
+        return self._html
 
 
 _gentoo_instance = None

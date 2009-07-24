@@ -116,6 +116,38 @@ class InstalledPackages:
     def serialize(self):
         return self._cpv_flag_list
 
+    def dump_html(self, lines):
+        lines.append('<h2>Installed packages</h2>')
+        lines.append('<table border="1" cellspacing="1" cellpadding="4">')
+        lines.append('<tr>')
+        for i in ('Package', 'Version', 'Slot', 'Keyword', 'Masked', 'Unmasked', 'World', 'Tree', 'Use flags'):
+            lines.append('<th>%s</th>' % i)
+        lines.append('</tr>')
+        for list in self._cpv_flag_list:
+            package_name, version_revision, SLOT, keyword_status, \
+                masked, unmasked, is_in_world, repository, sorted_flags_list = \
+                list
+
+            lines.append('<tr>')
+            for i in (package_name, version_revision):
+                lines.append('<td>%s</td>' % i)
+            for i in (SLOT, ):
+                if i == '0':  # Hide default slot
+                    v = ''
+                else:
+                    v = i
+                lines.append('<td>%s</td>' % v)
+            for i in (keyword_status, ):
+                lines.append('<td>%s</td>' % i)
+            for i in (masked, unmasked, is_in_world):
+                v = i and 'X' or '&nbsp;'  # Hide False
+                lines.append('<td>%s</td>' % v)
+            for i in (repository, ):
+                lines.append('<td>%s</td>' % i)
+            lines.append('<td>%s</td>' % ', '.join(sorted_flags_list))
+            lines.append('</tr>')
+        lines.append('</table>')
+
     def dump(self):
         print 'Installed packages:'
         for list in self._cpv_flag_list:

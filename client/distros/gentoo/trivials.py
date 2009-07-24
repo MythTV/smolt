@@ -50,6 +50,24 @@ class Trivials:
     def serialize(self):
         return self._trivials
 
+    def dump_html(self, lines):
+        lines.append('<h2>General</h2>')
+        for k in sorted(('ARCH', 'CHOST', 'ACCEPT_KEYWORDS')):
+            v = self._trivials[k]
+            lines.append('<dl>')
+            lines.append('<dt>%s</dt>' % k)
+            if type(v).__name__ == 'list':
+                lines.append('<dd>%s</dd>' % ', '.join(v))
+            else:
+                lines.append('<dd>%s</dd>' % v)
+            lines.append('</dl>')
+
+        lines.append('<h2>Features</h2>')
+        lines.append('<ul>')
+        for i in sorted(self._trivials['FEATURES']):
+            lines.append('<li>%s</li>' % i)
+        lines.append('</ul>')
+
     def dump(self):
         print 'Trivial scalars:'
         for k, v in self._trivial_scalars.items():
