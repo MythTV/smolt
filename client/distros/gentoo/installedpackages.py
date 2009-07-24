@@ -34,7 +34,7 @@ class InstalledPackages:
         self._total_count = len(installed_cpvs)
         self._private_count = 0
         i = 0
-        for cpv in installed_cpvs:
+        for cpv in sorted(installed_cpvs):
             i = i + 1
             if cb_enter:
                 cb_enter(cpv, i, self._total_count)
