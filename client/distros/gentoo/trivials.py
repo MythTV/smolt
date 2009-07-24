@@ -18,14 +18,24 @@
 
 import portage
 
-class TrivialVectors:
+class Trivials:
     def __init__(self):
+        self._trivials = {}
+
+        self._trivial_scalars = {}
+        for k in ('ARCH', 'CHOST'):
+            self._trivial_scalars[k] = portage.settings[k].strip()
+            self._trivials[k] = self._trivial_scalars[k]
+
         self._trivial_vectors = {}
         for k in ('FEATURES',):
             self._trivial_vectors[k] = portage.settings[k].split(' ')
+            self._trivials[k] = self._trivial_vectors[k]
 
         self._trivial_vectors['ACCEPT_KEYWORDS'] = \
             self._accept_keywords()
+        self._trivials['ACCEPT_KEYWORDS'] = \
+            self._trivial_vectors['ACCEPT_KEYWORDS']
 
     def _accept_keywords(self):
         # Let '~arch' kill 'arch' so we don't get both
@@ -33,18 +43,18 @@ class TrivialVectors:
         unstable = set(e for e in list if e.startswith('~'))
         return [e for e in list if not ('~' + e) in unstable]
 
-    def get(self):
-        return self._trivial_vectors
-
     def serialize(self):
-        return self._trivial_vectors
+        return self._trivials
 
     def dump(self):
+        print 'Trivial scalars:'
+        for k, v in self._trivial_scalars.items():
+            print '  %s: %s' % (k, v)
         print 'Trivial vectors:'
         for k, v in self._trivial_vectors.items():
             print '  %s: %s' % (k, v)
         print
 
 if __name__ == '__main__':
-    TrivialVectors = TrivialVectors()
-    TrivialVectors.dump()
+    trivials = Trivials()
+    trivials.dump()

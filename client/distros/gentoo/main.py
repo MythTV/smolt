@@ -44,8 +44,7 @@ class _Gentoo(Distro):
         from overlays import Overlays
         from packagestar import PackageMask
         from systemprofile import SystemProfile
-        from trivialscalars import TrivialScalars
-        from trivialvectors import TrivialVectors
+        from trivials import Trivials
         from installedpackages import InstalledPackages
 
         _stage('global use flags')
@@ -66,11 +65,8 @@ class _Gentoo(Distro):
         _stage('system profile')
         system_profile = SystemProfile()
 
-        _stage('trivial scalars')
-        trivial_scalars = TrivialScalars()
-
-        _stage('trivial vectors')
-        trivial_vectors = TrivialVectors()
+        _stage('trivials')
+        trivials = Trivials()
 
         _stage('installed packages (takes some time)')
         if debug:
@@ -89,7 +85,7 @@ class _Gentoo(Distro):
         machine_data['overlays'] = overlays.serialize()
         machine_data['user_package_mask'] = user_package_mask.serialize()
         machine_data['system_profile'] = system_profile.serialize()
-        for container in (trivial_scalars, trivial_vectors):
+        for container in (trivials, ):
             for k, v in container.serialize().items():
                 key = k.lower()
                 if key in machine_data:
