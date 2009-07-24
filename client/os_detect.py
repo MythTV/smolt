@@ -111,7 +111,7 @@ def get_os_info():
         if child.returncode != 0:
           print "Warning: an error occurred trying to run "+executable+", using alternate method."
           break # parse files instead
-        output = stdoutdata.strip()
+        output = stdoutdata.strip().replace('\n', ' ')
         return output
     # lsb_release executable not available, so parse files
     for distro_name in distro_info.keys():
