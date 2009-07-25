@@ -20,6 +20,11 @@ import re
 import portage
 from makeopts import MakeOpts
 
+import os
+import sys
+sys.path.append(os.path.join(sys.path[0], '..', '..'))
+import distros.shared.html as html
+
 SHORT_PARA_PATTERN = '-[XxAloDUubVIG]\\s+\\S+|-[^-]\\S+'
 LONG_PARA_PATTERN = '--param\\s+\\S+=\\S+|--\\S+|--\\S+=\\S+'
 PARA_PATTERN = re.compile('(%s|%s)\\b' % (SHORT_PARA_PATTERN, LONG_PARA_PATTERN))
@@ -64,10 +69,10 @@ class CompileFlags:
     def dump_html(self, lines):
         lines.append('<h2>Compile flags</h2>')
         for group, values in sorted(self.serialize().items()):
-            lines.append('<h3>%s</h3>' % group)
+            lines.append('<h3>%s</h3>' % html.escape(group))
             lines.append('<ul>')
             for v in values:
-                lines.append('<li>%s</li>' % v)
+                lines.append('<li>%s</li>' % html.escape(v))
             lines.append('</ul>')
 
     def dump(self):

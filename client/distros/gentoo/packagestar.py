@@ -21,6 +21,10 @@ import os
 import portage
 from packageprivacy import is_private_package_atom
 
+import sys
+sys.path.append(os.path.join(sys.path[0], '..', '..'))
+import distros.shared.html as html
+
 class _PackageStar:
     def __init__(self):
         pass
@@ -91,11 +95,11 @@ class _PackageStar:
         return res
 
     def dump_html(self, lines):
-        lines.append('<h2>%s</h2>' % self._section)
+        lines.append('<h2>%s</h2>' % html.escape(self._section))
         lines.append('<ul>')
         for atoms in self.serialize().values():
             for v in atoms:
-                lines.append('<li>%s</li>' % v)
+                lines.append('<li>%s</li>' % html.escape(v))
         lines.append('</ul>')
 
     def dump(self):

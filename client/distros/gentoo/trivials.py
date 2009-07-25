@@ -19,6 +19,11 @@
 import portage
 from systemprofile import SystemProfile
 
+import os
+import sys
+sys.path.append(os.path.join(sys.path[0], '..', '..'))
+import distros.shared.html as html
+
 class Trivials:
     def __init__(self):
         self._trivials = {}
@@ -55,17 +60,17 @@ class Trivials:
         for k in sorted(('ARCH', 'CHOST', 'ACCEPT_KEYWORDS')):
             v = self._trivials[k]
             lines.append('<dl>')
-            lines.append('<dt>%s</dt>' % k)
+            lines.append('<dt>%s</dt>' % html.escape(k))
             if type(v).__name__ == 'list':
-                lines.append('<dd>%s</dd>' % ', '.join(v))
+                lines.append('<dd>%s</dd>' % html.escape(', '.join(v)))
             else:
-                lines.append('<dd>%s</dd>' % v)
+                lines.append('<dd>%s</dd>' % html.escape(v))
             lines.append('</dl>')
 
         lines.append('<h2>Features</h2>')
         lines.append('<ul>')
         for i in sorted(self._trivials['FEATURES']):
-            lines.append('<li>%s</li>' % i)
+            lines.append('<li>%s</li>' % html.escape(i))
         lines.append('</ul>')
 
     def dump(self):

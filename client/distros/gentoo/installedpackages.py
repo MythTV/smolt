@@ -25,6 +25,11 @@ from worldset import WorldSet
 from packagestar import PackageMask, PackageUnmask, ProfilePackageMask
 from packageprivacy import is_private_package_atom
 
+import os
+import sys
+sys.path.append(os.path.join(sys.path[0], '..', '..'))
+import distros.shared.html as html
+
 class InstalledPackages:
     def __init__(self, debug=False,
             cb_enter=None, cb_done=None):
@@ -130,21 +135,21 @@ class InstalledPackages:
 
             lines.append('<tr>')
             for i in (package_name, version_revision):
-                lines.append('<td>%s</td>' % i)
+                lines.append('<td>%s</td>' % html.escape(i))
             for i in (SLOT, ):
                 if i == '0':  # Hide default slot
                     v = ''
                 else:
                     v = i
-                lines.append('<td>%s</td>' % v)
+                lines.append('<td>%s</td>' % html.escape(v))
             for i in (keyword_status, ):
-                lines.append('<td>%s</td>' % i)
+                lines.append('<td>%s</td>' % html.escape(i))
             for i in (masked, unmasked, is_in_world):
                 v = i and 'X' or '&nbsp;'  # Hide False
                 lines.append('<td>%s</td>' % v)
             for i in (repository, ):
-                lines.append('<td>%s</td>' % i)
-            lines.append('<td>%s</td>' % ', '.join(sorted_flags_list))
+                lines.append('<td>%s</td>' % html.escape(i))
+            lines.append('<td>%s</td>' % html.escape(', '.join(sorted_flags_list)))
             lines.append('</tr>')
         lines.append('</table>')
 

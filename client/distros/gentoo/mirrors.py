@@ -22,6 +22,11 @@ import portage
 from mirrorselect.mirrorparser3 import MirrorParser3, MIRRORS_3_XML
 from tools.syncfile import SyncFile
 
+import os
+import sys
+sys.path.append(os.path.join(sys.path[0], '..', '..'))
+import distros.shared.html as html
+
 try:
     set
 except NameError:
@@ -118,13 +123,13 @@ class Mirrors:
 
         lines.append('<h3>Sync</h3>')
         lines.append('<ul>')
-        lines.append('<li>%s</li>' % self.get_sync())
+        lines.append('<li>%s</li>' % html.escape(self.get_sync()))
         lines.append('</ul>')
 
         lines.append('<h3>Distfiles</h3>')
         lines.append('<ul>')
         for url in self.get_mirrors():
-            lines.append('<li><a href="%(url)s">%(url)s</a></li>' % {'url':url})
+            lines.append('<li><a href="%(url)s">%(url)s</a></li>' % {'url':html.escape(url)})
         lines.append('</ul>')
 
     def dump(self):

@@ -21,6 +21,11 @@ import re
 import os
 from tools.maintreedir import main_tree_dir
 
+import os
+import sys
+sys.path.append(os.path.join(sys.path[0], '..', '..'))
+import distros.shared.html as html
+
 try:
     set
 except NameError:
@@ -124,7 +129,7 @@ class _GlobalUseFlags:
     def dump_html(self, lines):
         lines.append('<h2>Global use flags</h2>')
         lines.append('<p>')
-        lines.append(', '.join(sorted(self._global_use_flags)))
+        lines.append(html.escape(', '.join(sorted(self._global_use_flags))))
         lines.append('</p>')
 
     def dump(self):

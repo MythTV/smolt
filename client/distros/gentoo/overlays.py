@@ -28,6 +28,9 @@ from tools.maintreedir import main_tree_dir
 from tools.syncfile import SyncFile
 from tools.overlayparser import OverlayParser
 
+import sys
+sys.path.append(os.path.join(sys.path[0], '..', '..'))
+import distros.shared.html as html
 
 _MAIN_TREE_WHITELIST = (
     "gentoo",
@@ -154,7 +157,7 @@ class _Overlays:
         lines.append('<h2>Overlays</h2>')
         lines.append('<ul>')
         for name in self.serialize():
-            lines.append('<li><a href="http://gentoo-overlays.zugaina.org/%(name)s/">%(name)s</a></li>' % {'name':name})
+            lines.append('<li><a href="http://gentoo-overlays.zugaina.org/%(name)s/">%(name)s</a></li>' % {'name':html.escape(name)})
         lines.append('</ul>')
 
     def dump(self):
