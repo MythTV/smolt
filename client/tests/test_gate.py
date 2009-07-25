@@ -19,9 +19,11 @@
 from gate import GateFromConfig
 import unittest
 import ConfigParser
+import os
+import sys
 
 def _wrap_gate():
-    return GateFromConfig('tests/test.cfg')
+    return GateFromConfig(os.path.join(sys.path[0], 'test.cfg'))
 
 class TestGate(unittest.TestCase):
 
