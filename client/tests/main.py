@@ -20,8 +20,9 @@ import sys
 import os
 import unittest
 
-sys.path.append('../')
+parent_dir = os.path.join(sys.path[0], '../')
+sys.path.append(parent_dir)
 from test_gate import *
 
-os.chdir('../')
+os.chdir(parent_dir)
 unittest.main()

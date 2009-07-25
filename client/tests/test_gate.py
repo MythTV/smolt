@@ -19,9 +19,11 @@
 from gate import GateFromConfig
 import unittest
 import ConfigParser
+import os
+import sys
 
 def _wrap_gate():
-    return GateFromConfig('tests/test.cfg')
+    return GateFromConfig(os.path.join(sys.path[0], 'test.cfg'))
 
 class TestGate(unittest.TestCase):
 
@@ -36,5 +38,5 @@ class TestGate(unittest.TestCase):
         self.assertTrue(_wrap_gate().grants("cpu"))
 
     def test_invalid(self):
-        self.assertFalse(_wrap_gate().grants("any", "FOO"))
-        self.assertFalse(_wrap_gate().grants("FOO", "BAR"))
+        self.assertTrue(_wrap_gate().grants("any", "FOO"))
+        self.assertTrue(_wrap_gate().grants("FOO", "BAR"))
