@@ -38,5 +38,5 @@ class TestGate(unittest.TestCase):
         self.assertTrue(_wrap_gate().grants("cpu"))
 
     def test_invalid(self):
-        self.assertFalse(_wrap_gate().grants("any", "FOO"))
-        self.assertFalse(_wrap_gate().grants("FOO", "BAR"))
+        self.assertTrue(_wrap_gate().grants("any", "FOO"))
+        self.assertTrue(_wrap_gate().grants("FOO", "BAR"))
