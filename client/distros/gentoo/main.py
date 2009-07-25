@@ -131,6 +131,7 @@ if __name__ == '__main__':
     import sys
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
 
+    Gentoo().gather(debug=True)
     from simplejson import JSONEncoder
     print JSONEncoder(indent=2, sort_keys=True).encode(
-        Gentoo().gather(debug=True))
+        Gentoo().data())
