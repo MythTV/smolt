@@ -433,11 +433,11 @@ class _Hardware:
         dist_dict = {}
         import distros.all
         for d in distros.all.get():
-            name = d.name()
+            key = d.key()
             if d.detected():
-                logging.info('Distro "%s" detected' % (name))
+                logging.info('Distro "%s" detected' % (key))
                 d.gather(debug=True)
-                dist_dict[name] = {'data':d.data(), 'html':d.html()}
+                dist_dict[key] = {'data':d.data(), 'html':d.html()}
         return dist_dict
 
     def get_properties_for_udi (self, udi):
@@ -548,7 +548,6 @@ class _Hardware:
             lines.append(_('No distribution-specific data yet'))
         else:
             for k, v in self.distro_specific.items():
-                lines.append('<h1>%s</h1>' % k.title())
                 lines.append(v['html'])
         return '\n'.join(lines)
 

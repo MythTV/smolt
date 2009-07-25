@@ -24,8 +24,8 @@ if __name__ == '__main__':
 from distros.distro import Distro
 
 class _Gentoo(Distro):
-    def name(self):
-        return 'Gentoo'
+    def key(self):
+        return 'gentoo'
 
     def detected(self, debug=False):
         """
@@ -76,6 +76,7 @@ class _Gentoo(Distro):
 
         machine_data = {}
         lines = []
+        lines.append('<h1>Gentoo</h1>')
         machine_data['protocol'] = '1.0'
 
         trivials.dump_html(lines)

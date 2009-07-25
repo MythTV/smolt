@@ -20,7 +20,7 @@ class Distro:
     def _raise_abstract(self):
         raise Exception('Function must be overwritten.')
 
-    def name(self):
+    def key(self):
         self._raise_abstract()
 
     def detected(self, debug=False):
@@ -34,4 +34,3 @@ class Distro:
 
     def html(self):
         self._raise_abstract()
-
