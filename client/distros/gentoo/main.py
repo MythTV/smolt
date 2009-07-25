@@ -20,7 +20,7 @@ import os
 
 if __name__ == '__main__':
     import sys
-    sys.path.append(os.path.join('..', '..'))
+    sys.path.append(os.path.join(sys.path[0], '..', '..'))
 from distros.distro import Distro
 
 class _Gentoo(Distro):
