@@ -132,6 +132,7 @@ class SmoltGui(QMainWindow):
 		self.distroTab = gui.DistroTab()
 		self.distroInfo = QTextBrowser()
 		self.distroInfo.setReadOnly(True)
+		self.distroInfo.setOpenExternalLinks(True)
 		self.distroTab.addWidget(self.distroInfo)
 
 		self.mainTabWidget = gui.MainTabWidget(self.generalTab, self.distroTab)
