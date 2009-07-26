@@ -266,7 +266,7 @@ class SmoltGui(QMainWindow):
 		label = QLabel(self)
 		label.setPixmap(QPixmap(os.path.join(CLIENT_PATH, 'icons' , 'smolt.png')))
  
-		title = QString(_("<h3>Smolt Qt</h3>Version 0.1.1<br/>"))
+		title = QString(_("<h3>Smolt Qt</h3>Version %(version)s<br/>") % {'version':smolt.clientVersion})
 		title.append(_("<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \
 				to a Smoon server.<br/>"))
  
