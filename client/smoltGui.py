@@ -114,7 +114,7 @@ class SmoltGui(QMainWindow):
 		''' Tool Bar '''
 		self.toolBar = self.addToolBar(_('Main Tool Bar'))
 		self.toolBar.setIconSize(QSize(24, 24))
-		self.toolBar.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
+		self.toolBar.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
 		self.toolBar.addAction(self.sendAction)
 		self.toolBar.addAction(self.mySmoltPageAction)
 		self.toolBar.addAction(self.showPPAction)
