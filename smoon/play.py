@@ -13,54 +13,9 @@ machine_id = 3
 # =========================================================
 import sqlalchemy
 print sqlalchemy.__version__
-from sqlalchemy import Table, Column, Integer, CHAR, ForeignKey, UniqueConstraint, MetaData, create_engine
-from sqlalchemy.orm import sessionmaker, eagerload, mapper, relation
-
-# =========================================================
-# Schema
-# =========================================================
-
-metadata = MetaData()
-
-
-# =========================================================
-# gentoo_use_flag_pool
-# =========================================================
-gentoo_use_flag_pool_table = Table('gentoo_use_flag_pool', metadata,
-    Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('name', CHAR(255), unique=True),
-)
-
-class GentooUseFlagString(object):
-    def __init__(self, name):
-        self.name = name
-
-mapper(GentooUseFlagString, gentoo_use_flag_pool_table)
-
-
-# =========================================================
-# gentoo_global_use_flags
-# =========================================================
-gentoo_global_use_flags_table = Table('gentoo_global_use_flags', metadata,
-    Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('machine_id', Integer),
-    Column('use_flag_id', Integer, ForeignKey('gentoo_use_flag_pool.id')),
-    UniqueConstraint('machine_id', 'use_flag_id'),
-)
-
-class GentooGlobalUseFlag(object):
-    # use_flag = relation(GentooUseFlagString)
-
-    def __init__(self, machine_id, use_flag_id):
-        self.machine_id = machine_id
-        self.use_flag_id = use_flag_id
-
-mapper(GentooGlobalUseFlag, gentoo_global_use_flags_table,
-    properties={
-        'use_flag':relation(GentooUseFlagString),
-    }
-)
-
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, eagerload
+from playmodel import *
 
 # =========================================================
 # Setup
