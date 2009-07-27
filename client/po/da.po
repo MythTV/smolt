@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-22 13:41-0500\n"
-"PO-Revision-Date: 2009-06-23 14:44+0200\n"
+"PO-Revision-Date: 2009-07-27 23:01+0200\n"
 "Last-Translator: Kris Thomsen <lakristho@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,9 @@ msgstr "angiv HTTP-udløb i sekunder (standard %default sekunder)"
 
 #: deleteProfile.py:70 sendProfile.py:103
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr "angiv hvilket UUID der skal bruges, mest brugbar til fejlsøgning og afprøvning."
+msgstr ""
+"angiv hvilket UUID der skal bruges, mest brugbar til fejlsøgning og "
+"afprøvning."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -158,7 +160,8 @@ msgstr "\tAdministratoradgangskode: %s"
 msgid ""
 "No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr ""
-"Intet offentligt UUID fundet!  Kør venligst igen med -n for at generere et nyt offentligt UUID"
+"Intet offentligt UUID fundet!  Kør venligst igen med -n for at generere et "
+"nyt offentligt UUID"
 
 #: smoltGui.py:39
 msgid "Smolt"
@@ -238,8 +241,8 @@ msgid ""
 "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
 "\tto a Smoon server.<br/>"
 msgstr ""
-"<br/>Smolt Qt er en Smolt GUI-klient til at sende Smolt-hardwareprofiler \t\t\t"
-"\ttil en Smoon-server.<br/>"
+"<br/>Smolt Qt er en Smolt GUI-klient til at sende Smolt-hardwareprofiler \t\t"
+"\t\ttil en Smoon-server.<br/>"
 
 #: smoltGui.py:140
 msgid ""
@@ -249,11 +252,12 @@ msgid ""
 "\t\t\t\tand should not contain any private information other than the "
 "physical \t\t\t\thardware information and basic OS info.<br/>"
 msgstr ""
-"<b>Om Smolt:</b><br/>Smolt hardwareprofileringsprogrammet er et server-klient-\t\t\t"
-"\tsystem der laver en skanning af hardwaren i maskinen og sender resultaterne \t"
-"\t\t\ttil en offentlig Fedoraprojekt turbogears-server. Afsendelserne er anonyme "
-"\t\t\t\tog burde ikke indeholde privat information udover den fysiske "
-"\t\t\t\thardware information og grundlæggende information om operativsystemet.<br/>"
+"<b>Om Smolt:</b><br/>Smolt hardwareprofileringsprogrammet er et server-"
+"klient-\t\t\t\tsystem der laver en skanning af hardwaren i maskinen og "
+"sender resultaterne \t\t\t\ttil en offentlig Fedoraprojekt turbogears-"
+"server. Afsendelserne er anonyme \t\t\t\tog burde ikke indeholde privat "
+"information udover den fysiske \t\t\t\thardware information og grundlæggende "
+"information om operativsystemet.<br/>"
 
 #: smoltGui.py:146
 msgid ""
@@ -273,8 +277,8 @@ msgstr ""
 "%s<br/>%s<br/>%s<br/><br/><b>Licens:</b><br/>Dette program er fri software; "
 "\t\t\t\tdu kan redistribuere og/eller modificere det under betingelserne som "
 "er angivet i GNU General \t\t\t\tPublic License, som er udgivet af Free "
-"Software Foundation; enten version 3 \t\t\t\taf licensen eller (efter eget valg) "
-"enhver senere version."
+"Software Foundation; enten version 3 \t\t\t\taf licensen eller (efter eget "
+"valg) enhver senere version."
 
 #: smolt.py:364
 #, python-format
@@ -387,7 +391,7 @@ msgstr "Antal af processorer"
 
 #: smolt.py:648
 msgid "CPU Speed"
-msgstr "Processor hastighed"
+msgstr "Processorhastighed"
 
 #: smolt.py:649
 msgid "System Memory"
@@ -638,7 +642,9 @@ msgstr "\tFejl fundet!"
 
 #: scan.py:91
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "\tIngen fejl fundet, hvis denne maskine har problemer, skal du venligst gå til"
+msgstr ""
+"\tIngen fejl fundet, hvis denne maskine har problemer, skal du venligst gå "
+"til"
 
 #: scan.py:92
 msgid "\tyour profile and create a wiki page for the device so others can"
