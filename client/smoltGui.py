@@ -255,7 +255,7 @@ class SmoltGui(QMainWindow):
  
 		''' Show Privacy Policy '''
 		self.privacyPolicy = QMessageBox(QMessageBox.NoIcon, _('Privacy Policy'),
-					privacypolicy.PRIVACY_POLICY, QMessageBox.Close, self)
+					QString(privacypolicy.PRIVACY_POLICY), QMessageBox.Close, self)
 		self.privacyPolicy.exec_()
  
 	def about(self):
