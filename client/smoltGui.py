@@ -83,7 +83,7 @@ class SmoltGui(QMainWindow):
  
 		''' Main Window '''
 		QMainWindow.__init__(self)
-		self.resize(500, 600)
+		self.setMinimumSize(500, 600)
 		self.setWindowTitle(_('Smolt'))
 		self.setWindowIcon(QIcon(os.path.join(CLIENT_PATH, 'icons', 'smolt.png')))
  
@@ -146,6 +146,8 @@ class SmoltGui(QMainWindow):
 		self.connect(self.showPPAction, SIGNAL('triggered()'), self.showPP)
 		self.connect(self.aboutAction, SIGNAL('triggered()'), self.about)
 		self.connect(self.aboutQtAction, SIGNAL("triggered()"), qApp, SLOT("aboutQt()"))
+
+		self.adjustSize()
 
 		self._gather_data()
 
