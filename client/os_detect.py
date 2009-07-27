@@ -94,26 +94,7 @@ def get_os_info():
       os.sys.getwindowsversion()[1] ]
     return 'Windows' + ' ' + win_version
   elif os.name =='posix':
-    executable = 'lsb_release'
-    #executable = 'lsb_do_not_run_me'
-
-    params = ['--id', '--codename', '--release', '--short']
-    for path in os.environ['PATH'].split(':'):
-      full_path_to_executable = os.path.join(path, executable)
-      if os.path.exists(full_path_to_executable):
-        command = [full_path_to_executable] + params
-        try:
-          child = subprocess.Popen(command, stdout=subprocess.PIPE, close_fds=True)
-        except OSError:
-          print "Warning: Could not run "+executable+", using alternate method."
-          break # parse files instead
-        (stdoutdata, stderrdata) = child.communicate()
-        if child.returncode != 0:
-          print "Warning: an error occurred trying to run "+executable+", using alternate method."
-          break # parse files instead
-        output = stdoutdata.strip().replace('\n', ' ')
-        return output
-    # lsb_release executable not available, so parse files
+    # parse files first and if distro not found run lsb_release executable
     for distro_name in distro_info.keys():
       path_to_file = distro_info[distro_name]
      # print path_to_file
@@ -134,3 +115,23 @@ def get_os_info():
           retext = re.compile('\(\w*\)$')
           text = retext.sub( '', text ).strip()
         return text
+
+    executable = 'lsb_release'
+    #executable = 'lsb_do_not_run_me'
+
+    params = ['--id', '--codename', '--release', '--short']
+    for path in os.environ['PATH'].split(':'):
+      full_path_to_executable = os.path.join(path, executable)
+      if os.path.exists(full_path_to_executable):
+        command = [full_path_to_executable] + params
+        try:
+          child = subprocess.Popen(command, stdout=subprocess.PIPE, close_fds=True)
+        except OSError:
+          print "Warning: Could not run "+executable+", using alternate method."
+          break # parse files instead
+        (stdoutdata, stderrdata) = child.communicate()
+        if child.returncode != 0:
+          print "Warning: an error occurred trying to run "+executable+", using alternate method."
+          break # parse files instead
+        output = stdoutdata.strip().replace('\n', ' ')
+        return output
