@@ -32,9 +32,9 @@ class MainTabWidget(QTabWidget):
 		QTabWidget.__init__(self)
 
 		if generalTab != None:
-			self.addTab(generalTab, _('General'))
+			self.addTab(generalTab, unicode(_('General'), 'UTF-8'))
 		if distroTab != None:
-			self.addTab(distroTab, _('Distribution'))
+			self.addTab(distroTab, unicode(_('Distribution'), 'UTF-8'))
 
 
 class GeneralTab(QWidget):
@@ -79,12 +79,12 @@ class HostTable:
 	def set_profile(self, profile):
 		self.profile = profile
 		model = QStandardItemModel(0, 2, self.host_table)
-		model.setHeaderData(0, Qt.Horizontal, QVariant(_('Label')))
-		model.setHeaderData(1, Qt.Horizontal, QVariant(_('Data')))
+		model.setHeaderData(0, Qt.Horizontal, QVariant(unicode(_('Label'), 'UTF-8')))
+		model.setHeaderData(1, Qt.Horizontal, QVariant(unicode(_('Data'), 'UTF-8')))
 		if self.profile:
 			for label, data in self.profile.hostIter():
 				model.insertRow(0)
-				label = QStandardItem(str(label))
+				label = QStandardItem(unicode(label, 'UTF-8'))
 				label.setEditable(False)
 				data = QStandardItem(str(data))
 				data.setEditable(False)
@@ -112,10 +112,10 @@ class DeviceTable:
 	def set_profile(self, profile):
 		self.profile = profile
 		model = QStandardItemModel(0, 4, self.device_table)
-		model.setHeaderData(0, Qt.Horizontal, QVariant(_('Bus')))
-		model.setHeaderData(1, Qt.Horizontal, QVariant(_('Driver')))
-		model.setHeaderData(2, Qt.Horizontal, QVariant(_('Type')))
-		model.setHeaderData(3, Qt.Horizontal, QVariant(_('Description')))
+		model.setHeaderData(0, Qt.Horizontal, QVariant(unicode(_('Bus'), 'UTF-8')))
+		model.setHeaderData(1, Qt.Horizontal, QVariant(unicode(_('Driver'), 'UTF-8')))
+		model.setHeaderData(2, Qt.Horizontal, QVariant(unicode(_('Type'), 'UTF-8')))
+		model.setHeaderData(3, Qt.Horizontal, QVariant(unicode(_('Description'), 'UTF-8')))
 		if self.profile:
 			for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, \
 					Driver, Type, Description in self.profile.deviceIter():

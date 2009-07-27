@@ -84,21 +84,21 @@ class SmoltGui(QMainWindow):
 		''' Main Window '''
 		QMainWindow.__init__(self)
 		self.setMinimumSize(500, 600)
-		self.setWindowTitle(_('Smolt'))
+		self.setWindowTitle(unicode(_('Smolt'), 'UTF-8'))
 		self.setWindowIcon(QIcon(os.path.join(CLIENT_PATH, 'icons', 'smolt.png')))
  
 		''' Menu Bar '''
 		self.menuBar = self.menuBar()
-		self.fileMenu = self.menuBar.addMenu(_('&File'))
-		self.helpMenu = self.menuBar.addMenu(_('&Help'))
+		self.fileMenu = self.menuBar.addMenu(unicode(_('&File'), 'UTF-8'))
+		self.helpMenu = self.menuBar.addMenu(unicode(_('&Help'), 'UTF-8'))
  
 		''' Actions '''
-		self.sendAction= QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'send-profile.png')), _('&Send Profile'), self)
-		self.mySmoltPageAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'home.png')), _('&My Smolt Page'), self)
-		self.exitAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'exit.png')), _('&Exit'), self)
-		self.showPPAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'privacy.png')), _('Show &Privacy Policy'), self)
-		self.aboutAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'smolt.png')), _('&About'), self)
-		self.aboutQtAction = QAction(_("About &Qt"), self)
+		self.sendAction= QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'send-profile.png')), unicode(_('&Send Profile'), 'UTF-8'), self)
+		self.mySmoltPageAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'home.png')), unicode(_('&My Smolt Page'), 'UTF-8'), self)
+		self.exitAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'exit.png')), unicode(_('&Exit'), 'UTF-8'), self)
+		self.showPPAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'privacy.png')), unicode(_('Show &Privacy Policy'), 'UTF-8'), self)
+		self.aboutAction = QAction(QIcon(os.path.join(CLIENT_PATH, 'icons', 'smolt.png')), unicode(_('&About'), 'UTF-8'), self)
+		self.aboutQtAction = QAction(unicode(_("About &Qt"), 'UTF-8'), self)
  
 		''' Fill Menus '''
 		self.fileMenu.addAction(self.sendAction)
@@ -112,7 +112,7 @@ class SmoltGui(QMainWindow):
 		self.helpMenu.addAction(self.aboutQtAction)
  
 		''' Tool Bar '''
-		self.toolBar = self.addToolBar(_('Main Tool Bar'))
+		self.toolBar = self.addToolBar(unicode(_('Main Tool Bar'), 'UTF-8'))
 		self.toolBar.setIconSize(QSize(24, 24))
 		self.toolBar.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
 		self.toolBar.addAction(self.sendAction)
@@ -162,12 +162,12 @@ class SmoltGui(QMainWindow):
 		self.host_table.set_profile(self._gather_thread.hardware)
 		self.device_table.set_profile(self._gather_thread.hardware)
 		self.distro_document = QTextDocument()
-		self.distro_document.setHtml(_('No distribution-specific data yet'))
+		self.distro_document.setHtml(unicode(_('No distribution-specific data yet'), 'UTF-8'))
 		self.distroInfo.setDocument(self.distro_document)
 
 	def _on_system_bus_error(self):
 		self._on_gathering_completed()
-		QMessageBox(QMessageBox.Critical, _('Error'),
+		QMessageBox(QMessageBox.Critical, unicode(_('Error'), 'UTF-8'),
 				self._gather_thread.error_message,
 				QMessageBox.Ok, self).exec_()
 		QCoreApplication.exit(1)
@@ -227,21 +227,21 @@ class SmoltGui(QMainWindow):
 
 	def _on_submission_failed(self):
 		self._tear_progress_down(success=False)
-		QMessageBox(QMessageBox.Critical, _('Error'),
-				_('An error occurred while sending the data to the server.'),
+		QMessageBox(QMessageBox.Critical, unicode(_('Error', 'UTF-8')),
+				unicode(_('An error occurred while sending the data to the server.', 'UTF-8')),
 				QMessageBox.Ok, self).exec_()
 
 	def _on_submission_completed(self):
 		self._tear_progress_down(success=True)
 		url = smolt.get_profile_link(smolt.smoonURL, self._submit_thread.pub_uuid)
 		admin_password = self._submit_thread.admin
-		QMessageBox(QMessageBox.Information, _('Profile Sent'),
-				_('<b>Your profile was sent successfully!</b><br>\
+		QMessageBox(QMessageBox.Information, unicode(_('Profile Sent'), 'UTF-8'),
+				unicode(_('<b>Your profile was sent successfully!</b><br>\
 				<br>\
 				Your profiles is available online at:<br>\
 				<a href="%(url)s">%(url)s</a><br>\
 				<br>\
-				Your profile admin password is:<br><i>%(password)s</i>') % \
+				Your profile admin password is:<br><i>%(password)s</i>'), 'UTF-8') % \
 					{'url':url, 'password':admin_password},
 				QMessageBox.NoButton, self).exec_()
 
@@ -254,8 +254,8 @@ class SmoltGui(QMainWindow):
 	def showPP(self):
  
 		''' Show Privacy Policy '''
-		self.privacyPolicy = QMessageBox(QMessageBox.NoIcon, _('Privacy Policy'),
-					QString(privacypolicy.PRIVACY_POLICY), QMessageBox.Close, self)
+		self.privacyPolicy = QMessageBox(QMessageBox.NoIcon, unicode(_('Privacy Policy'), 'UTF-8'),
+					QString(unicode(privacypolicy.PRIVACY_POLICY, 'UTF-8')), QMessageBox.Close, self)
 		self.privacyPolicy.exec_()
  
 	def about(self):
@@ -268,19 +268,19 @@ class SmoltGui(QMainWindow):
 		label = QLabel(self)
 		label.setPixmap(QPixmap(os.path.join(CLIENT_PATH, 'icons' , 'smolt.png')))
  
-		title = QString(_("<h3>Smolt Qt</h3>Version %(version)s<br/>") % {'version':smolt.clientVersion})
-		title.append(_("<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \
-				to a Smoon server.<br/>"))
+		title = QString(unicode(_("<h3>Smolt Qt</h3>Version %(version)s<br/>"), 'UTF-8') % {'version':smolt.clientVersion})
+		title.append(unicode(_("<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \
+				to a Smoon server.<br/>"), 'UTF-8'))
  
-		description = QString(_("<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \
+		description = QString(unicode(_("<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \
 				system that does a hardware scan against a machine and sends the results \
 				to a public Fedora Project turbogears server. The sends are anonymous \
 				and should not contain any private information other than the physical \
-				hardware information and basic OS info.<br/>"))
+				hardware information and basic OS info.<br/>"), 'UTF-8'))
  
-		authors = _("<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;")
+		authors = unicode(_("<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"), 'UTF-8')
  
-		lbl = QLabel(_("%(title)s<br>\
+		lbl = QLabel(unicode(_("%(title)s<br>\
 				%(description)s<br>\
 				%(authors)s<br>\
 				<br>\
@@ -288,7 +288,7 @@ class SmoltGui(QMainWindow):
 				This program is free software; you can redistribute it and/or \
 				modify it under the terms of the GNU General Public License \
 				as published by the Free Software Foundation; either version 3 \
-				of the License, or (at your option) any later version.") % \
+				of the License, or (at your option) any later version."), 'UTF-8') % \
 				{'title':title, 'description':description, 'authors':authors})
  
 		lbl.setWordWrap(True)
@@ -311,7 +311,7 @@ if __name__ == '__main__':
                     dest = 'the_only_config_file',
                     default = None,
                     metavar = 'file.cfg',
-                    help = _('specify the location of the (only) config file to use'))
+                    help = unicode(_('specify the location of the (only) config file to use'), 'UTF-8'))
     (opts, args) = parser.parse_args()
     if opts.the_only_config_file != None:
         GateFromConfig(opts.the_only_config_file)
