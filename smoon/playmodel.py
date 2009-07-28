@@ -117,7 +117,7 @@ def _pool_table_name(middle):
 def _pool_table_instance(middle):
     return '_gentoo_%s_pool_table' % middle.rstrip('s')
 
-def _pool_class_name(middle):
+def pool_class_name(middle):
     return 'Gentoo%sString' % middle.title().replace('_', '')
 
 def _rel_table_name(middle):
@@ -126,8 +126,8 @@ def _rel_table_name(middle):
 def _rel_table_instance(middle):
     return '_gentoo_%s_rel_table' % middle.rstrip('s')
 
-def _rel_class_name(middle):
-    return 'Gentoo%s' % middle.rstrip('s').title().replace('_', '')
+def rel_class_name(middle):
+    return 'Gentoo%sRel' % middle.rstrip('s').title().replace('_', '')
 
 def _foreign_key_column(middle):
     return '%s_id' % middle.rstrip('s')
@@ -140,7 +140,7 @@ for job in _pool_table_jobs:
     details = {
         'table_name':_pool_table_name(thing),
         'table_var_name':_pool_table_instance(thing),
-        'class_name':_pool_class_name(thing),
+        'class_name':pool_class_name(thing),
         'col_type':col_type,
     }
     logging.debug('Generating table "%(table_name)s" and related class "%(class_name)s"...' % details)
@@ -159,10 +159,10 @@ for job in _rel_table_jobs:
     details = {
         'table_name':_rel_table_name(thing),
         'table_var_name':_rel_table_instance(thing),
-        'class_name':_rel_class_name(thing),
+        'class_name':rel_class_name(thing),
         'foreign_key_table':_pool_table_name(foreign),
         'foreign_key_column':_foreign_key_column(foreign),
-        'foreign_key_class':_pool_class_name(foreign),
+        'foreign_key_class':pool_class_name(foreign),
         'relation_name':foreign,
     }
     logging.debug('Generating table "%(table_name)s" and related class "%(class_name)s"...' % details)
