@@ -67,7 +67,7 @@ secure = get_config_attr("SECURE", 0)
 hw_uuid_file = get_config_attr("HW_UUID", "/etc/smolt/hw-uuid")
 admin_token_file = get_config_attr("ADMIN_TOKEN", '' )
 
-clientVersion = '1.3.1'
+clientVersion = '1.3.2'
 smoltProtocol = '0.97'
 supported_protocols = ['0.97',]
 user_agent = 'smolt/%s' % smoltProtocol
