@@ -17,7 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 import logging
-from sqlalchemy import Table, Column, Integer, CHAR, ForeignKey, UniqueConstraint, MetaData
+from sqlalchemy import Table, Column, Integer, BOOLEAN, CHAR, ForeignKey, UniqueConstraint, MetaData
 from sqlalchemy.orm import mapper, relation
 metadata = MetaData()
 
@@ -34,6 +34,7 @@ _pool_table_jobs = [
     {'thing':'mirror', 'col_type':'CHAR(255)'},
     {'thing':'package', 'col_type':'CHAR(255)'},
     {'thing':'repository', 'col_type':'CHAR(127)'},
+    {'thing':'slot', 'col_type':'CHAR(127)'},
     {'thing':'system_profile', 'col_type':'CHAR(255)'},
     {'thing':'use_flag', 'col_type':'CHAR(127)'},
     {'thing':'version', 'col_type':'CHAR(127)'},
@@ -53,6 +54,7 @@ _rel_table_jobs = [
     {'thing':'makeopts', 'foreign':'makeopt', 'vector':True},
     {'thing':'overlays', 'foreign':'repository', 'vector':True},
     {'thing':'system_profile', 'foreign':'system_profile', 'vector':False},
+    {'thing':'package_mask', 'foreign':'atom', 'vector':True},
 ]
 
 
@@ -174,3 +176,57 @@ for job in _rel_table_jobs:
     print program
     print "========================="
     exec(program)
+
+
+_gentoo_installed_packages_rel = Table('gentoo_installed_packages_rel', metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('machine_id', Integer),
+    Column('package_id', Integer, ForeignKey('%s.id' % 'gentoo_package_pool')),
+    Column('slot_id', Integer, ForeignKey('%s.id' % 'gentoo_slot_pool')),
+    UniqueConstraint('machine_id', 'package_id', 'slot_id'),
+)
+
+class GentooInstalledPackagesRel(object):
+    def __init__(self, machine_id, package_id, slot_id):
+        self.machine_id = machine_id
+        self.package_id = package_id
+        self.slot_id = slot_id
+
+mapper(GentooInstalledPackagesRel, _gentoo_installed_packages_rel)
+
+
+_gentoo_installed_package_properties_rel_table = Table('gentoo_installed_package_properties_rel', metadata,
+    Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages_rel'), primary_key=True, autoincrement=False),
+    Column('version_id', Integer, ForeignKey('%s.id' % 'gentoo_version_pool')),
+    # TODO insert keyword status here
+    Column('masked', BOOLEAN),
+    Column('unmasked', BOOLEAN),
+    Column('world', BOOLEAN),
+    Column('repository_id', Integer, ForeignKey('%s.id' % 'gentoo_repository_pool')),
+)
+
+class GentooInstalledPackagePropertiesRel(object):
+    def __init__(self, install_id, version_id, masked, unmasked, world, repository_id):
+        self.install_id = install_id
+        self.version_id = version_id
+        self.masked = masked
+        self.unmasked = unmasked
+        self.world = world
+        self.repository_id = repository_id
+
+mapper(GentooInstalledPackagePropertiesRel, _gentoo_installed_package_properties_rel_table)
+
+
+_gentoo_installed_package_use_flag_rel_table = Table('gentoo_installed_package_use_flag_rel', metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages_rel')),
+    Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool')),
+    UniqueConstraint('install_id', 'use_flag_id'),
+)
+
+class GentooInstalledPackageUseFlagRel(object):
+    def __init__(self, install_id, use_flag_id):
+        self.install_id = install_id
+        self.use_flag_id = use_flag_id
+
+mapper(GentooInstalledPackageUseFlagRel, _gentoo_installed_package_use_flag_rel_table)
