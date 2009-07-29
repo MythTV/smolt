@@ -54,7 +54,6 @@ _rel_table_jobs = [
     {'thing':'makeopts', 'foreign':'makeopt', 'vector':True},
     {'thing':'overlays', 'foreign':'repository', 'vector':True},
     {'thing':'system_profile', 'foreign':'system_profile', 'vector':False},
-    {'thing':'package_mask', 'foreign':'atom', 'vector':True},
 ]
 
 
@@ -244,5 +243,27 @@ mapper(GentooInstalledPackagesRel, _gentoo_installed_packages_rel,
         'slot':relation(GentooSlotString),
         'properties':relation(GentooInstalledPackagePropertiesRel, cascade="all, delete, delete-orphan"),
         'use_flags':relation(GentooInstalledPackageUseFlagRel, cascade="all, delete, delete-orphan"),
+    }
+)
+
+
+_gentoo_package_mask_rel_table = Table('gentoo_package_mask_rel', metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('machine_id', Integer),
+    Column('package_id', Integer, ForeignKey('%s.id' % 'gentoo_package_pool')),
+    Column('atom_id', Integer, ForeignKey('%s.id' % 'gentoo_atom_pool')),
+    UniqueConstraint('machine_id', 'atom_id'),
+)
+
+class GentooPackageMaskRel(object):
+    def __init__(self, machine_id, package_id, atom_id):
+        self.machine_id = machine_id
+        self.package_id = package_id
+        self.atom_id = atom_id
+
+mapper(GentooPackageMaskRel, _gentoo_package_mask_rel_table,
+    properties={
+        'package':relation(GentooPackageString),
+        'atom':relation(GentooAtomString),
     }
 )

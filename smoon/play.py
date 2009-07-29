@@ -177,12 +177,62 @@ except sqlalchemy.orm.exc.NoResultFound:
     session.add(%(new_object_name)s)
 """
 
-lookup_or_add_jobs = (
-    {'thing':'slot', },
-    {'thing':'package', },
-    {'thing':'version', },
-    {'thing':'repository', },
-)
+
+try:
+    package_mask = data['user_package_mask']
+except KeyError:
+    package_mask = {}
+current_package_mask_set = set()
+for package, atoms in package_mask.items():
+    for i in atoms:
+        key = (package, i)
+        current_package_mask_set.add(key)
+
+old_package_mask_rel_objects = session.query(\
+        GentooPackageMaskRel).options(\
+            eagerload('package'), \
+            eagerload('atom')).\
+        filter_by(machine_id=machine_id).all()
+old_package_mask_dict = {}
+for e in old_package_mask_rel_objects:
+    key = (e.package.name, e.atom.name)
+    old_package_mask_dict[key] = e
+old_package_mask_set = set(old_package_mask_dict.keys())
+
+# Calculate diff
+mask_entries_to_add = current_package_mask_set - old_package_mask_set
+mask_entries_to_remove = old_package_mask_set - current_package_mask_set
+
+# Resolve diff
+for i in mask_entries_to_remove:
+    session.delete(old_package_mask_dict[i])
+for i in mask_entries_to_add:
+    package, atom = i
+    lookup_or_add_jobs = (
+        {'thing':'atom', },
+        {'thing':'package', },
+    )
+
+    for job in lookup_or_add_jobs:
+        thing = job['thing']
+        details = {
+            'class_name':pool_class_name(thing),
+            'source_var_name':thing,
+            'new_object_name':'%s_pool_object' % thing
+        }
+
+        program = LOOKUP_OR_ADD_TEMPLATE % details
+        print "========================="
+        print program
+        print "========================="
+        exec(program)
+
+    session.flush()
+    package_id = package_pool_object.id
+    atom_id = atom_pool_object.id
+
+    mask_rel_object = GentooPackageMaskRel(machine_id, package_id, atom_id)
+    session.add(mask_rel_object)
 
 
 # Find old entries
@@ -224,6 +274,13 @@ for key in installs_to_add:
     package, version, slot, keyword_status, \
             masked, unmasked, world, repository, \
             use_flags = current_install_dict[key]
+
+    lookup_or_add_jobs = (
+        {'thing':'slot', },
+        {'thing':'package', },
+        {'thing':'version', },
+        {'thing':'repository', },
+    )
 
     for job in lookup_or_add_jobs:
         thing = job['thing']
