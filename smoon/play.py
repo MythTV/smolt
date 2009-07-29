@@ -263,11 +263,13 @@ for key in installs_to_add:
     repository_id = repository_pool_object.id
 
     # Relate use flags
+    install_object.use_flags = []
     for v in use_flag_dict.values():
         use_flag_id = v.id
-        session.add(GentooInstalledPackageUseFlagRel(install_id, use_flag_id))
+        use_flag_rel_object = GentooInstalledPackageUseFlagRel(install_id, use_flag_id)
+        install_object.use_flags.append(use_flag_rel_object)
 
     # Add properties
-    session.add(GentooInstalledPackagePropertiesRel(install_id, version_id, masked, unmasked, world, repository_id))
+    install_object.properties = [GentooInstalledPackagePropertiesRel(install_id, version_id, masked, unmasked, world, repository_id), ]
 
 session.flush()
