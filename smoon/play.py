@@ -61,29 +61,30 @@ _SCALAR_DIFF_TEMPLATE = """
 try:
     %(current_name)s = %(tree_location)s
 except KeyError:
-    raise # TODO
-%(old_name)s = None
+    %(current_name)s = None
+
 try:
     %(old_name)s = session.query(%(rel_class_name)s).options(eagerload('%(relation_name)s')).filter_by(machine_id=machine_id).one()
     old_value = %(old_name)s.%(relation_name)s.name
 except sqlalchemy.orm.exc.NoResultFound:
+    %(old_name)s = None
     old_value = None
 
 # Calculate diff
-current_value = %(current_name)s
-if current_value != old_value:
+if %(current_name)s != old_value:
     # Resolve diff
     if %(old_name)s:
         print 'DEL', old_value
         session.delete(%(old_name)s)
-    try:
-        pool_object = session.query(%(pool_class_name)s).filter_by(name=current_value).one()
-    except sqlalchemy.orm.exc.NoResultFound:
-        pool_object = %(pool_class_name)s(current_value)
-        session.add(pool_object)
-        session.flush()
-    print 'ADD', pool_object.name
-    session.add(%(rel_class_name)s(machine_id, pool_object.id))
+    if %(current_name)s:
+        try:
+            pool_object = session.query(%(pool_class_name)s).filter_by(name=%(current_name)s).one()
+        except sqlalchemy.orm.exc.NoResultFound:
+            pool_object = %(pool_class_name)s(%(current_name)s)
+            session.add(pool_object)
+            session.flush()
+        print 'ADD', pool_object.name
+        session.add(%(rel_class_name)s(machine_id, pool_object.id))
 session.flush()
 """
 
@@ -92,7 +93,7 @@ _VECTOR_DIFF_TEMPLATE = """
 try:
     %(current_name)s = %(tree_location)s
 except KeyError:
-    raise # TODO
+    %(current_name)s = []
 %(old_name)s = session.query(%(rel_class_name)s).options(eagerload('%(relation_name)s')).filter_by(machine_id=machine_id).all()
 
 # Calculate diff
@@ -198,8 +199,12 @@ for e in old_installed_package_rel_objects:
     old_install_set.add(key)
 
 # Find current entries
+try:
+    installed_packages = data['installed_packages']
+except KeyError:
+    installed_packages = []
 current_install_dict = {}
-for e in data['installed_packages']:
+for e in installed_packages:
     package, version, slot, keyword_status, masked, unmasked, \
             world, repository, use_flags = e
     key = (package, slot)
