@@ -192,8 +192,6 @@ class GentooInstalledPackagesRel(object):
         self.package_id = package_id
         self.slot_id = slot_id
 
-mapper(GentooInstalledPackagesRel, _gentoo_installed_packages_rel)
-
 
 _gentoo_installed_package_properties_rel_table = Table('gentoo_installed_package_properties_rel', metadata,
     Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages_rel'), primary_key=True, autoincrement=False),
@@ -214,7 +212,11 @@ class GentooInstalledPackagePropertiesRel(object):
         self.world = world
         self.repository_id = repository_id
 
-mapper(GentooInstalledPackagePropertiesRel, _gentoo_installed_package_properties_rel_table)
+mapper(GentooInstalledPackagePropertiesRel, _gentoo_installed_package_properties_rel_table,
+    properties={
+        'install':relation(GentooInstalledPackagesRel),
+    }
+)
 
 
 _gentoo_installed_package_use_flag_rel_table = Table('gentoo_installed_package_use_flag_rel', metadata,
@@ -229,4 +231,18 @@ class GentooInstalledPackageUseFlagRel(object):
         self.install_id = install_id
         self.use_flag_id = use_flag_id
 
-mapper(GentooInstalledPackageUseFlagRel, _gentoo_installed_package_use_flag_rel_table)
+mapper(GentooInstalledPackageUseFlagRel, _gentoo_installed_package_use_flag_rel_table,
+    properties={
+        'install':relation(GentooInstalledPackagesRel),
+    }
+)
+
+
+mapper(GentooInstalledPackagesRel, _gentoo_installed_packages_rel,
+    properties={
+        'package':relation(GentooPackageString),
+        'slot':relation(GentooSlotString),
+        'properties':relation(GentooInstalledPackagePropertiesRel, cascade="all, delete, delete-orphan"),
+        'use_flags':relation(GentooInstalledPackageUseFlagRel, cascade="all, delete, delete-orphan"),
+    }
+)

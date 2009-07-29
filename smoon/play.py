@@ -72,7 +72,7 @@ except sqlalchemy.orm.exc.NoResultFound:
 # Calculate diff
 current_value = %(current_name)s
 if current_value != old_value:
-    # Apply diff
+    # Resolve diff
     if %(old_name)s:
         print 'DEL', old_value
         session.delete(%(old_name)s)
@@ -101,7 +101,7 @@ current_set = set(%(current_name)s)
 strings_to_add = current_set - old_set
 strings_to_remove = old_set - current_set
 
-# Apply diff
+# Resolve diff
 for i in strings_to_add:
     try:
         pool_object = session.query(%(pool_class_name)s).filter_by(name=i).one()
@@ -166,3 +166,103 @@ for job in diff_jobs:
     print program
     print "========================="
     exec(program)
+
+
+LOOKUP_OR_ADD_TEMPLATE = """
+try:
+    %(new_object_name)s = session.query(%(class_name)s).filter_by(name=%(source_var_name)s).one()
+except sqlalchemy.orm.exc.NoResultFound:
+    %(new_object_name)s = %(class_name)s(%(source_var_name)s)
+    session.add(%(new_object_name)s)
+"""
+
+lookup_or_add_jobs = (
+    {'thing':'slot', },
+    {'thing':'package', },
+    {'thing':'version', },
+    {'thing':'repository', },
+)
+
+
+# Find old entries
+old_installed_package_rel_objects = session.query(\
+        GentooInstalledPackagesRel).options(\
+            eagerload('use_flags'), \
+            eagerload('properties'), \
+            eagerload('slot'), \
+            eagerload('package')).\
+        filter_by(machine_id=machine_id).all()
+old_install_set = set()
+for e in old_installed_package_rel_objects:
+    key = (e.package.name, e.slot.name)
+    old_install_set.add(key)
+
+# Find current entries
+current_install_dict = {}
+for e in data['installed_packages']:
+    package, version, slot, keyword_status, masked, unmasked, \
+            world, repository, use_flags = e
+    key = (package, slot)
+    current_install_dict[key] = e
+current_install_key_set = set(current_install_dict.keys()) 
+
+# Calculate diff
+installs_to_add = current_install_key_set - old_install_set
+installs_to_remove = old_install_set - current_install_key_set
+
+# Resolve diff
+for e in old_installed_package_rel_objects:
+    key = (e.package.name, e.slot.name)
+    if key in installs_to_remove:
+        session.delete(e)
+for key in installs_to_add:
+    package, version, slot, keyword_status, \
+            masked, unmasked, world, repository, \
+            use_flags = current_install_dict[key]
+
+    for job in lookup_or_add_jobs:
+        thing = job['thing']
+        details = {
+            'class_name':pool_class_name(thing),
+            'source_var_name':thing,
+            'new_object_name':'%s_pool_object' % thing
+        }
+
+        program = LOOKUP_OR_ADD_TEMPLATE % details
+        print "========================="
+        print program
+        print "========================="
+        exec(program)
+
+    session.flush()
+    package_id = package_pool_object.id
+    slot_id = slot_pool_object.id
+
+    # Add install
+    install_object = GentooInstalledPackagesRel(machine_id, package_id, slot_id)
+    session.add(install_object)
+
+    # Lookup/add use flags
+    use_flag_pool_objects = session.query(GentooUseFlagString).filter(GentooUseFlagString.name.in_(use_flags)).all()
+    use_flag_dict = {}
+    for i in use_flag_pool_objects:
+        use_flag_dict[i.name] = i
+    for i in [e for e in use_flags if not e in use_flag_dict]:
+        use_flag_object = GentooUseFlagString(i)
+        use_flag_dict[i] = use_flag_object
+        session.add(use_flag_object)
+
+    session.flush()
+    install_id = install_object.id
+    version_id = version_pool_object.id
+    repository_id = repository_pool_object.id
+
+    # Relate use flags
+    for v in use_flag_dict.values():
+        use_flag_id = v.id
+        session.add(GentooInstalledPackageUseFlagRel(install_id, use_flag_id))
+
+    # Add properties
+    session.add(GentooInstalledPackagePropertiesRel(install_id, version_id, masked, unmasked, world, repository_id))
+
+session.flush()
