@@ -8,6 +8,13 @@ from turbogears import identity
 from datetime import timedelta, date, datetime
 from turbogears.database import mapper
 
+import os
+import sys
+import inspect
+sys.path.append(os.path.join(os.path.dirname(inspect.currentframe().f_code.co_filename), '..', '..'))
+from playmodel import *
+
+
 #ctx = session.context
 
 

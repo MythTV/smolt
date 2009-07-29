@@ -15,6 +15,10 @@ from hardware.model import *
 from hardware.hwdata import DeviceMap
 from hardware.uuid import generate_uuid
 
+import sys
+import inspect
+sys.path.append(os.path.join(os.path.dirname(inspect.currentframe().f_code.co_filename), '..', '..'))
+from play import handle_gentoo_data
 
 import gc
 
@@ -348,6 +352,8 @@ class Client(object):
             map(add_fs, host_dict['fss'])
         except:
             pass
+
+        handle_gentoo_data(session, host_dict, host_sql.id)
 
         return dict(pub_uuid=host_sql.pub_uuid)
 
