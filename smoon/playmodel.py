@@ -22,41 +22,9 @@ from sqlalchemy.orm import mapper, relation
 metadata = MetaData()
 
 
-_pool_table_jobs = [
-    {'thing':'atom', 'col_type':'CHAR(255)'},
-    {'thing':'cflag', 'col_type':'CHAR(255)'},
-    {'thing':'chost', 'col_type':'CHAR(255)'},
-    {'thing':'cxxflag', 'col_type':'CHAR(255)'},
-    {'thing':'feature', 'col_type':'CHAR(127)'},
-    {'thing':'ldflag', 'col_type':'CHAR(255)'},
-    {'thing':'makeopt', 'col_type':'CHAR(255)'},
-    {'thing':'keyword', 'col_type':'CHAR(127)'},
-    {'thing':'mirror', 'col_type':'CHAR(255)'},
-    {'thing':'package', 'col_type':'CHAR(255)'},
-    {'thing':'repository', 'col_type':'CHAR(127)'},
-    {'thing':'slot', 'col_type':'CHAR(127)'},
-    {'thing':'system_profile', 'col_type':'CHAR(255)'},
-    {'thing':'use_flag', 'col_type':'CHAR(127)'},
-    {'thing':'version', 'col_type':'CHAR(127)'},
-]
-
-_rel_table_jobs = [
-    {'thing':'accept_keywords', 'foreign':'keyword', 'vector':True},
-    {'thing':'archs', 'foreign':'keyword', 'vector':False},
-    {'thing':'chosts', 'foreign':'chost', 'vector':False},
-    {'thing':'sync_mirrors', 'foreign':'mirror', 'vector':False},
-    {'thing':'cflags', 'foreign':'cflag', 'vector':True},
-    {'thing':'cxxflags', 'foreign':'cxxflag', 'vector':True},
-    {'thing':'distfiles_mirrors', 'foreign':'mirror', 'vector':True},
-    {'thing':'features', 'foreign':'feature', 'vector':True},
-    {'thing':'global_use_flags', 'foreign':'use_flag', 'vector':True},
-    {'thing':'ldflags', 'foreign':'ldflag', 'vector':True},
-    {'thing':'makeopts', 'foreign':'makeopt', 'vector':True},
-    {'thing':'overlays', 'foreign':'repository', 'vector':True},
-    {'thing':'system_profile', 'foreign':'system_profile', 'vector':False},
-]
-
-
+# ================================================================
+# _POOL_TABLE_TEMPLATE
+# ================================================================
 _POOL_TABLE_TEMPLATE = """
 %(table_var_name)s = Table('%(table_name)s', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
@@ -71,6 +39,9 @@ mapper(%(class_name)s, %(table_var_name)s)
 """
 
 
+# ================================================================
+# _SCALAR_REL_TABLE_TEMPLATE
+# ================================================================
 _SCALAR_REL_TABLE_TEMPLATE = """
 %(table_var_name)s = Table('%(table_name)s', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
@@ -91,6 +62,9 @@ mapper(%(class_name)s, %(table_var_name)s,
 """
 
 
+# ================================================================
+# _VECTOR_REL_TABLE_TEMPLATE
+# ================================================================
 _VECTOR_REL_TABLE_TEMPLATE = """
 %(table_var_name)s = Table('%(table_name)s', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
@@ -110,6 +84,49 @@ mapper(%(class_name)s, %(table_var_name)s,
     }
 )
 """
+
+
+_pool_table_jobs = [
+    {'thing':'atom', 'col_type':'CHAR(255)'},
+    {'thing':'cflag', 'col_type':'CHAR(255)'},
+    {'thing':'chost', 'col_type':'CHAR(255)'},
+    {'thing':'cxxflag', 'col_type':'CHAR(255)'},
+    {'thing':'feature', 'col_type':'CHAR(127)'},
+    {'thing':'ldflag', 'col_type':'CHAR(255)'},
+    {'thing':'makeopt', 'col_type':'CHAR(255)'},
+    {'thing':'keyword', 'col_type':'CHAR(127)'},
+    {'thing':'mirror', 'col_type':'CHAR(255)'},
+    {'thing':'package', 'col_type':'CHAR(255)'},
+    {'thing':'repository', 'col_type':'CHAR(127)'},
+    {'thing':'slot', 'col_type':'CHAR(127)'},
+    {'thing':'system_profile', 'col_type':'CHAR(255)'},
+    {'thing':'use_flag', 'col_type':'CHAR(127)'},
+    {'thing':'version', 'col_type':'CHAR(127)'},
+]
+
+
+_rel_table_jobs = [
+    {'thing':'accept_keywords', 'foreign':'keyword', 'vector':True},
+    {'thing':'archs', 'foreign':'keyword', 'vector':False},
+    {'thing':'chosts', 'foreign':'chost', 'vector':False},
+    {'thing':'sync_mirrors', 'foreign':'mirror', 'vector':False},
+    {'thing':'cflags', 'foreign':'cflag', 'vector':True},
+    {'thing':'cxxflags', 'foreign':'cxxflag', 'vector':True},
+    {'thing':'distfiles_mirrors', 'foreign':'mirror', 'vector':True},
+    {'thing':'features', 'foreign':'feature', 'vector':True},
+    {'thing':'global_use_flags', 'foreign':'use_flag', 'vector':True},
+    {'thing':'ldflags', 'foreign':'ldflag', 'vector':True},
+    {'thing':'makeopts', 'foreign':'makeopt', 'vector':True},
+    {'thing':'overlays', 'foreign':'repository', 'vector':True},
+    {'thing':'system_profile', 'foreign':'system_profile', 'vector':False},
+]
+
+
+def dump_gentoo_python_code(code):
+    return  # TODO
+    print '============================================='
+    print code
+    print '============================================='
 
 
 def _pool_table_name(middle):
@@ -146,9 +163,7 @@ for job in _pool_table_jobs:
     }
     logging.debug('Generating table "%(table_name)s" and related class "%(class_name)s"...' % details)
     program = _POOL_TABLE_TEMPLATE % details
-    print "========================="
-    print program
-    print "========================="
+    dump_gentoo_python_code(program)
     exec(program)
 
 
@@ -171,9 +186,7 @@ for job in _rel_table_jobs:
         program = _VECTOR_REL_TABLE_TEMPLATE % details
     else:
         program = _SCALAR_REL_TABLE_TEMPLATE % details
-    print "========================="
-    print program
-    print "========================="
+    dump_gentoo_python_code(program)
     exec(program)
 
 
