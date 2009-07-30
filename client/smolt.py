@@ -68,6 +68,7 @@ secure = get_config_attr("SECURE", 0)
 hw_uuid_file = get_config_attr("HW_UUID", "/etc/smolt/hw-uuid")
 admin_token_file = get_config_attr("ADMIN_TOKEN", '' )
 
+clientVersion = '1.3.2'
 smoltProtocol = '0.97'
 supported_protocols = ['0.97',]
 user_agent = 'smolt/%s' % smoltProtocol
@@ -608,19 +609,6 @@ class _Hardware:
             error(_('Error contacting Server: %s') % e)
             return (1, None, None)
         else:
-            try:
-                serialized_host_obj_human = serialize(send_host_obj, human=True)
-                logdir = '/var/tmp/smolt/client'
-                if not os.path.exists(logdir):
-                    os.makedirs(logdir, 0777)
-                t = datetime.datetime.today()
-                basename = '%04d-%02d-%02d-%02d-%02d-%02d.json' % \
-                    (t.year, t.month, t.day, t.hour, t.minute, t.second)
-                file = open(os.path.join(logdir, basename), 'w')
-                file.write(serialized_host_obj_human)
-                file.close()
-            except:
-                pass
             pub_uuid = serverMessage(o.read())
             o.close()
             self.write_pub_uuid(smoonURL,pub_uuid)

@@ -45,9 +45,9 @@
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr><th>${_("Arch")}</th><th>${_("Count")}</th><th>${_("% of total")}</th><th halign="left"> </th></tr>
           <tr py:for='arch in stat["archs"]'>
-            <th align="right">${arch.platform}</th>
-            <td align="center">${arch.cnt}</td>
-            <td><strong>${'%.1f' % (float(arch.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${arch.platform}</th>
+            <td align="right">${arch.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(arch.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(arch.cnt) / total_active_hosts * 100 }'><div width='100%' id="bar"></div></td><td width='${ 100 - (float(arch.cnt) / total_active_hosts * 100) }'></td></tr></table></td>
           </tr>
         </table>
@@ -59,9 +59,9 @@
       <div class="tabbertab"><h2>${_("OS")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='OS in stat["os"]'>
-            <th align="right"><a href="${getOSWikiLink(OS.os)}">${OS.os}</a></th>
-            <td align="center">${OS.cnt}</td>
-            <td><strong>${'%.1f' % (float(OS.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left"><a href="${getOSWikiLink(OS.os)}">${OS.os}</a></th>
+            <td align="right">${OS.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(OS.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(OS.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -72,9 +72,9 @@
       <div class="tabbertab"><h2>${_("Runlevel")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='rl in stat["runlevel"]'>
-            <th align="right">${rl.runlevel}</th>
-            <td align="center">${rl.cnt}</td>
-            <td><strong>${'%.1f' % (float(rl.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${rl.runlevel}</th>
+            <td align="right">${rl.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(rl.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(rl.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -85,9 +85,9 @@
       <div class="tabbertab"><h2>${_("Language")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='lang in stat["language"]'>
-            <th align="right">${lang.language}</th>
-            <td align="center">${lang.cnt}</td>
-            <td><strong>${'%.1f' % (float(lang.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${lang.language}</th>
+            <td align="right">${lang.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(lang.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(lang.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -98,9 +98,9 @@
       <div class="tabbertab"><h2>${_("Vendor")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='vendor in stat["vendors"]'>
-            <th align="right"><a href='/reports/view_profile/${vendor.vendor}'>${vendor.vendor}</a></th>
-            <td align="center">${vendor.cnt}</td>
-            <td><strong>${'%.1f' % (float(vendor.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left"><a href='/reports/view_profile/${vendor.vendor}'>${vendor.vendor}</a></th>
+            <td align="right">${vendor.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(vendor.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(vendor.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -112,9 +112,9 @@
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='system in stat["systems"]'>
             <!-- Temporary solution to a silly problem -->
-            <th align="right"><a href="/reports/view_profile/${system.system.split(' Not')[0].split(' To be')[0].split('System Version')[0]}">${system.system.split(' Not')[0].split(' To be')[0].split('System Version')[0]}</a></th>
-            <td align="center">${system.cnt}</td>
-            <td><strong>${'%.1f' % (float(system.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left"><a href="/reports/view_profile/${system.system.split(' Not')[0].split(' To be')[0].split('System Version')[0]}">${system.system.split(' Not')[0].split(' To be')[0].split('System Version')[0]}</a></th>
+            <td align="right">${system.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(system.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(system.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -125,9 +125,9 @@
       <div class="tabbertab"><h2>${_("RAM")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='mem in stat["sys_mem"]'>
-            <th align="right">${mem[0]}</th>
-            <td align="center">${mem[1]}</td>
-            <td><strong>${'%.1f' % (float(mem[1]) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${mem[0]}</th>
+            <td align="right">${mem[1]}</td>
+            <td align="right"><strong>${'%.1f' % (float(mem[1]) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(mem[1]) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -138,9 +138,9 @@
       <div class="tabbertab"><h2>${_("Swap")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='mem in stat["swap_mem"]'>
-            <th align="right">${mem[0]}</th>
-            <td align="center">${mem[1]}</td>
-            <td><strong>${'%.1f' % (float(mem[1]) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${mem[0]}</th>
+            <td align="right">${mem[1]}</td>
+            <td align="right"><strong>${'%.1f' % (float(mem[1]) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(mem[1]) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -152,30 +152,30 @@
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr><th colspan="4">${_("Speed (MHz)")}</th></tr>
           <tr py:for='cpu_speed in stat["cpu_speed"]'>
-            <th align="right">${cpu_speed[0]}</th>
-            <td align="center">${cpu_speed[1]}</td>
-            <td><strong>${'%.1f' % (float(cpu_speed[1]) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${cpu_speed[0]}</th>
+            <td align="right">${cpu_speed[1]}</td>
+            <td align="right"><strong>${'%.1f' % (float(cpu_speed[1]) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(cpu_speed[1]) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
           <tr><th colspan="4">${_("Number of CPUs")}</th></tr>
           <tr py:for='num_cpus in stat["num_cpus"]'>
-            <th align="right">${num_cpus.num_cpus}</th>
-            <td align="center">${num_cpus.cnt}</td>
-            <td><strong>${'%.1f' % (float(num_cpus.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${num_cpus.num_cpus}</th>
+            <td align="right">${num_cpus.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(num_cpus.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(num_cpus.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
           <tr><th colspan="4">${_("CPU Vendor")}</th></tr>
           <tr py:for='cpu_vendor in stat["cpu_vendor"]'>
-            <th align="right">${cpu_vendor.cpu_vendor}</th>
-            <td align="center">${cpu_vendor.cnt}</td>
-            <td><strong>${'%.1f' % (float(cpu_vendor.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${cpu_vendor.cpu_vendor}</th>
+            <td align="right">${cpu_vendor.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(cpu_vendor.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(cpu_vendor.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
           <tr><th colspan="4">${_("Bogomips")}</th></tr>
           <tr py:for='bogomips in stat["bogomips"]'>
-            <th align="right">${bogomips[0]}</th>
-            <td align="center">${bogomips[1]}</td>
-            <td><strong>${'%.1f' % (float(bogomips[1]) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${bogomips[0]}</th>
+            <td align="right">${bogomips[1]}</td>
+            <td align="right"><strong>${'%.1f' % (float(bogomips[1]) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(bogomips[1]) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -186,9 +186,9 @@
       <div class="tabbertab"><h2>${_("Kernel")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='kernel_version in stat["kernel_version"]'>
-            <th align="right">${kernel_version.kernel_version}</th>
-            <td align="center">${kernel_version.cnt}</td>
-            <td><strong>${'%.1f' % (float(kernel_version.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${kernel_version.kernel_version}</th>
+            <td align="right">${kernel_version.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(kernel_version.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(kernel_version.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -199,9 +199,9 @@
       <div class="tabbertab"><h2>${_("Form Factor")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr py:for='formfactor in stat["formfactor"]'>
-            <th align="right">${formfactor.formfactor}</th>
-            <td align="center">${formfactor.cnt}</td>
-            <td><strong>${'%.1f' % (float(formfactor.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${formfactor.formfactor}</th>
+            <td align="right">${formfactor.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(formfactor.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(formfactor.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -213,23 +213,23 @@
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr><th colspan="4">${_("SELinux Enabled")}</th></tr>
           <tr py:for='enabled in stat["selinux_enabled"]'>
-            <th align="right">${enabled.enabled}</th>
-            <td align="center">${enabled.cnt}</td>
-            <td><strong>${'%.1f' % (float(enabled.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th align="left">${enabled.enabled}</th>
+            <td align="right">${enabled.cnt}</td>
+            <td align="right"><strong>${'%.1f' % (float(enabled.cnt) / total_active_hosts * 100) } %</strong></td>
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(enabled.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
           <tr><th colspan="4">${_("SELinux Enforce")}</th></tr>
           <tr py:for='enforce in stat["selinux_enforce"]'>
-            <th py:if="enforce" align="right">${enforce.enforce}</th>
-            <td py:if="enforce" align="center">${enforce.cnt}</td>
-            <td py:if="enforce"><strong>${'%.1f' % (float(enforce.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th py:if="enforce" align="left">${enforce.enforce}</th>
+            <td py:if="enforce" align="right">${enforce.cnt}</td>
+            <td py:if="enforce" align="right"><strong>${'%.1f' % (float(enforce.cnt) / total_active_hosts * 100) } %</strong></td>
             <td py:if="enforce"><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(enforce.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
           <tr><th colspan="4">${_("SELinux Policy")}</th></tr>
           <tr py:for='policy in stat["selinux_policy"]'>
-            <th py:if="policy" align="right">${policy.policy}</th>
-            <td py:if="policy" align="center">${policy.cnt}</td>
-            <td py:if="policy"><strong>${'%.1f' % (float(policy.cnt) / total_active_hosts * 100) } %</strong></td>
+            <th py:if="policy" align="left">${policy.policy}</th>
+            <td py:if="policy" align="right">${policy.cnt}</td>
+            <td py:if="policy" align="right"><strong>${'%.1f' % (float(policy.cnt) / total_active_hosts * 100) } %</strong></td>
             <td py:if="policy"><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(policy.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
@@ -240,15 +240,15 @@
        <div class="tabbertab"><h2>${_("Filesystems")}</h2>
             <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
                 <tr py:for='filesystems in stat["filesystems"]'>
-                    <th align="right">${filesystems[0]}</th>
-                    <td align="center">${filesystems[1]}</td>
+                    <th align="left">${filesystems[0]}</th>
+                    <td align="right">${filesystems[1]}</td>
                     <!--<td><strong>${'%.1f' % (float(filesystems.cnt) / float(stat["total_fs"]) * 100) } %</strong></td>
                     <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(filesystems.cnt) / float(stat["total_fs"]) * 100 }'><div id="bar"></div></td><td></td></tr></table></td>-->
                 </tr>
                  <tr><th colspan="4">${_("Filesystem size")}</th></tr>
                 <tr py:for='combined_fs_size in stat["combined_fs_size"]'>
-                    <th align="right">${combined_fs_size[0]}</th>
-                    <td align="center">${combined_fs_size[1]}</td>
+                    <th align="left">${combined_fs_size[0]}</th>
+                    <td align="right">${combined_fs_size[1]}</td>
                     <!--<td><strong>${'%.1f' % (float(combined_fs_size[1]) / float(stat["total_fs"]) * 100) } </strong></td>
                     <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ (float(combined_fs_size[1]) / float(stat["total_fs"]) * 100) }'><div id="bar"></div></td><td></td></tr></table></td>-->
                 </tr>

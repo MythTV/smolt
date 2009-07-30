@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
 import simplejson
-from simplejson import JSONEncoder
 
 from turbogears import expose
 from turbogears import exception_handler
@@ -181,22 +179,6 @@ class Client(object):
         self.token.check_token(token, uuid)
 
         host_dict = simplejson.loads(host)
-
-        # Re-serialize to human-friendly JSON and dump
-        try:
-            serialized_host_obj_human = \
-                    JSONEncoder(indent=2, sort_keys=True).encode(host_dict)
-            logdir = '/var/tmp/smolt/server'
-            if not os.path.exists(logdir):
-                os.makedirs(logdir, 0777)
-            t = datetime.today()
-            basename = '%04d-%02d-%02d-%02d-%02d-%02d.json' % \
-                (t.year, t.month, t.day, t.hour, t.minute, t.second)
-            file = open(os.path.join(logdir, basename), 'w')
-            file.write(serialized_host_obj_human)
-            file.close()
-        except:
-            pass
 
         try:
             host_sql = session.query(Host).filter_by(uuid=uuid).one()

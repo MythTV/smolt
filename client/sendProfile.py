@@ -37,7 +37,7 @@ from smolt import get_config_attr
 from scan import scan, rating
 from gate import GateFromConfig
 
-parser = OptionParser(version = smolt.smoltProtocol)
+parser = OptionParser(version = smolt.clientVersion)
 
 parser.add_option('-d', '--debug',
                   dest = 'DEBUG',
