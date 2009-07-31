@@ -307,7 +307,9 @@ def _handle_installed_packages(session, data, machine_id):
             install_object.use_flags.append(use_flag_rel_object)
 
         # Add properties
-        install_object.properties = [GentooInstalledPackagePropertiesRel(install_id, version_id, masked, unmasked, world, repository_id), ]
+        install_object.properties = [GentooInstalledPackagePropertiesRel(\
+                install_id, version_id, keyword_status_code(keyword_status),
+                masked, unmasked, world, repository_id), ]
 
     session.flush()
 

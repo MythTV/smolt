@@ -22,6 +22,23 @@ from sqlalchemy.orm import mapper, relation
 metadata = MetaData()
 
 
+_GENTOO_KEYWORD_STATUS_EMPTY, \
+    _GENTOO_KEYWORD_STATUS_TILDE_ARCH, \
+    _GENTOO_KEYWORD_STATUS_DOUBLE_ASTERISK = range(0, 3)
+
+_keyword_status_map = {
+    '':_GENTOO_KEYWORD_STATUS_EMPTY,
+    '~arch':_GENTOO_KEYWORD_STATUS_TILDE_ARCH,
+    '**':_GENTOO_KEYWORD_STATUS_DOUBLE_ASTERISK,
+}
+
+def keyword_status_code(keyword_status):
+    try:
+        return _keyword_status_map[keyword_status]
+    except KeyError:
+        return _GENTOO_KEYWORD_STATUS_EMPTY
+
+
 # ================================================================
 # _POOL_TABLE_TEMPLATE
 # ================================================================
@@ -208,7 +225,7 @@ class GentooInstalledPackagesRel(object):
 _gentoo_installed_package_properties_rel_table = Table('gentoo_installed_package_properties_rel', metadata,
     Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages_rel'), primary_key=True, autoincrement=False),
     Column('version_id', Integer, ForeignKey('%s.id' % 'gentoo_version_pool')),
-    # TODO insert keyword status here
+    Column('keyword_status', Integer),  # Could be MSEnum, choosing Integer for flexibility
     Column('masked', BOOLEAN),
     Column('unmasked', BOOLEAN),
     Column('world', BOOLEAN),
@@ -216,9 +233,10 @@ _gentoo_installed_package_properties_rel_table = Table('gentoo_installed_package
 )
 
 class GentooInstalledPackagePropertiesRel(object):
-    def __init__(self, install_id, version_id, masked, unmasked, world, repository_id):
+    def __init__(self, install_id, version_id, keyword_status, masked, unmasked, world, repository_id):
         self.install_id = install_id
         self.version_id = version_id
+        self.keyword_status = keyword_status
         self.masked = masked
         self.unmasked = unmasked
         self.world = world
