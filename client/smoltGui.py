@@ -57,7 +57,7 @@ class GatherThread(QThread):
 				self.emit(SIGNAL('smoltPageStatus(PyQt_PyObject)'), False)
 			self.emit(SIGNAL('profile_ready()'))
 		except smolt.SystemBusError, e:
-			self.error_message = e.message
+			self.error_message = e.msg
 			self.emit(SIGNAL('system_bus_error()'))
 
 class SubmitThread(QThread):
