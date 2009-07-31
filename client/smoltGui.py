@@ -227,8 +227,8 @@ class SmoltGui(QMainWindow):
 
 	def _on_submission_failed(self):
 		self._tear_progress_down(success=False)
-		QMessageBox(QMessageBox.Critical, unicode(_('Error', 'UTF-8')),
-				unicode(_('An error occurred while sending the data to the server.', 'UTF-8')),
+		QMessageBox(QMessageBox.Critical, unicode(_('Error'), 'UTF-8'),
+				unicode(_('An error occurred while sending the data to the server.'), 'UTF-8'),
 				QMessageBox.Ok, self).exec_()
 
 	def _on_submission_completed(self):
