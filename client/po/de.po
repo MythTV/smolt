@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: smolt.master.de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-22 13:41-0500\n"
-"PO-Revision-Date: 2009-07-15 20:48+0100\n"
-"Last-Translator: Martin Zehetmayer <angrox@idle.at>\n"
+"PO-Revision-Date: 2009-07-31 13:17+0100\n"
+"Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,9 +58,8 @@ msgstr "HTTP-Zeitüberschreitung in Sekunden angeben (Standard: %default Sekunde
 
 #: deleteProfile.py:70
 #: sendProfile.py:103
-#, fuzzy
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr "Geben Sie an, welche UUID Sie benutzen möchten (praktisch zum Testen und für die Fehlersuche)."
+msgstr "Geben Sie an, welche UUID Sie benutzen möchten, praktisch zum Testen und für die Fehlersuche."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -95,7 +94,6 @@ msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr "durchsuche nur das System für bekannte Hardware-Fehler, sende Profil nicht."
 
 #: sendProfile.py:99
-#, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
 msgstr "durchsuche nur das System für bekannte Hardware-Fehler, sende Profil nicht."
 
@@ -150,16 +148,18 @@ msgid "Registration Failed, Try again"
 msgstr "Registrierung fehlgeschlagen. Bitte erneut versuchen."
 
 #: sendProfile.py:210
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
-msgstr "Ihr Profil könnten Sie betrachten unter: %s"
+msgstr ""
+"Ihr Profil mit anderen teilen:\n"
+"\t%s (öffentlicht)"
 
 #: sendProfile.py:214
-#, fuzzy, python-format
+#, python-format
 msgid "\tAdmin Password: %s"
-msgstr "Passwort:"
+msgstr "\tAdmin-Passwort: %s"
 
 #: sendProfile.py:217
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
@@ -170,46 +170,38 @@ msgid "Smolt"
 msgstr "Smolt"
 
 #: smoltGui.py:44
-#, fuzzy
 msgid "&File"
-msgstr "_Datei"
+msgstr "&Datei"
 
 #: smoltGui.py:45
-#, fuzzy
 msgid "&Help"
-msgstr "_Hilfe"
+msgstr "&Hilfe"
 
 #: smoltGui.py:48
-#, fuzzy
 msgid "&Send Profile"
-msgstr "Profil _senden"
+msgstr "&Profil senden"
 
 #: smoltGui.py:49
-#, fuzzy
 msgid "&My Smolt Page"
-msgstr "_Meine Smolt-Seite"
+msgstr "&Meine Smolt-Seite"
 
 #: smoltGui.py:50
 msgid "&Exit"
 msgstr "_Ende"
 
 #: smoltGui.py:51
-#, fuzzy
 msgid "Show &Privacy Policy"
-msgstr "_Datenschutzrichtlinie anzeigen"
+msgstr "&Datenschutzrichtlinie anzeigen"
 
 #: smoltGui.py:52
-#, fuzzy
 msgid "&About"
-msgstr "_Über"
+msgstr "&Über"
 
 #: smoltGui.py:53
-#, fuzzy
 msgid "About &Qt"
-msgstr "_Über"
+msgstr "Über &QT"
 
 #: smoltGui.py:67
-#, fuzzy
 msgid "Main Tool Bar"
 msgstr "Hauptsymbolleiste"
 
@@ -218,7 +210,7 @@ msgid "Profile Sent"
 msgstr "Profil gesendet"
 
 #: smoltGui.py:99
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
 "%s\n"
@@ -229,18 +221,16 @@ msgstr ""
 "und befindet sich in %s"
 
 #: smoltGui.py:104
-#, fuzzy
 msgid "Error"
-msgstr "Fehler:"
+msgstr "Fehler"
 
 #: smoltGui.py:105
 msgid "An error occurred while sending the data to the server."
 msgstr "Während des Sendens der Daten ist ein Fehler aufgetreten."
 
 #: smoltGui.py:122
-#, fuzzy
 msgid "Privacy Policy"
-msgstr "_Datenschutzrichtlinie anzeigen"
+msgstr "Datenschutzrichtlinie"
 
 #: smoltGui.py:136
 msgid "<h3>Smolt Qt</h3>Version 0.1.1<br/>"
@@ -259,9 +249,9 @@ msgid "<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
 msgstr "<b>Autor(en):</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:148
-#, python-format
+#, fuzzy, python-format
 msgid "%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; \t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU General \t\t\t\tPublic License as published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr ""
+msgstr "%s<br/>%s<br/>%s<br/><br/><b>Lizenz:</b><br/>This program is free software; \t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU General \t\t\t\tPublic License as published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
 
 #: smolt.py:364
 #, python-format
@@ -296,7 +286,7 @@ msgstr ""
 #: smolt.py:513
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr ""
+msgstr "\tIhr Admin-Token wurde nicht zwischengespeichert: %s\n"
 
 #: smolt.py:524
 #: smolt.py:566
@@ -312,7 +302,7 @@ msgstr "Falsche Version, Server kann mit Ihren Client nicht umgehen"
 
 #: smolt.py:538
 msgid "Something went wrong fetching a token"
-msgstr ""
+msgstr "Etwas ging schief beim Beziehen des Token"
 
 #: smolt.py:575
 #, python-format
@@ -408,9 +398,8 @@ msgid "SELinux Enabled"
 msgstr "SELinux aktiviert"
 
 #: smolt.py:656
-#, fuzzy
 msgid "SELinux Policy"
-msgstr "SELinux erzwingen"
+msgstr "SELinux-Richtlinie"
 
 #: smolt.py:657
 msgid "SELinux Enforce"
@@ -466,7 +455,7 @@ msgstr "Smolt ist ein Hardware-Profiler für das Fedora-Projekt. Das Einreichen 
 
 #: smoltFirstBoot.py:117
 msgid "_Participate in KernelOOPS"
-msgstr ""
+msgstr "_Arbeitet mit bei KernelOOPS"
 
 #: smoltFirstBoot.py:118
 msgid "Submit profile link to _Bodhi"
@@ -565,7 +554,7 @@ msgstr ""
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr ""
+msgstr "Aktuelle Bewertung des Herstellers/Modell."
 
 #: scan.py:45
 msgid "Unrated/Unknown"
@@ -597,24 +586,20 @@ msgid "Scanning %s for known errata.\n"
 msgstr "Suche %s nach bekannten Fehlern.\n"
 
 #: scan.py:88
-#, fuzzy
 msgid "\tErrata Found!"
-msgstr "Fehler gefunden!"
+msgstr "\tFehler gefunden!"
 
 #: scan.py:91
-#, fuzzy
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "Keine Fehler gefunden, wenn Sie Probleme mit Ihrem System haben, gehen Sie zu "
+msgstr "\tKeine Fehler gefunden, wenn Sie Probleme mit Ihrem System haben, gehen Sie zu "
 
 #: scan.py:92
-#, fuzzy
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "Ihr Profil und erzeugen Sie eine Wikiseite für das Gerät, so dass andere können"
+msgstr "\tIhr Profil und erzeugen Sie eine Wikiseite für das Gerät, so dass andere können"
 
 #: scan.py:93
-#, fuzzy
 msgid "\tbenefit"
-msgstr "Vorteil"
+msgstr "\tVorteil"
 
 #~ msgid "_Quit"
 #~ msgstr "_Beenden"
