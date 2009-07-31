@@ -388,25 +388,25 @@ def reset_resolver():
 
 class SystemBusError(Exception):
     def __init__(self, message, hint = None):
-        self.message = message
+        self.msg = message
         self.hint = hint
 
     def __str__(self):
-        return str(self.message)
+        return str(self.msg)
 
 class UUIDError(Exception):
     def __init__(self, message):
-        self.message = message
+        self.msg = message
 
     def __str__(self):
-        return str(self.message)
+        return str(self.msg)
 
 class PubUUIDError(Exception):
     def __init__(self, message):
-        self.message = message
+        self.msg = message
 
     def __str__(self):
-        return str(self.message)
+        return str(self.msg)
 
 class _Hardware:
     devices = {}
@@ -1247,7 +1247,7 @@ def get_profile():
     try:
         return Hardware()
     except SystemBusError, e:
-        error(_('Error:') + ' ' + e.message)
+        error(_('Error:') + ' ' + e.msg)
         if e.hint is not None:
             error('\t' + _('Hint:') + ' ' + e.hint)
         sys.exit(8)

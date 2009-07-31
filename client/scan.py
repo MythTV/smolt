@@ -98,7 +98,7 @@ if __name__ == "__main__":
     try:
         profile = smolt.Hardware()
     except smolt.SystemBusError, e:
-        error(_('Error:') + ' ' + e.message)
+        error(_('Error:') + ' ' + e.msg)
         if e.hint is not None:
             error('\t' + _('Hint:') + ' ' + e.hint)
         sys.exit(8)
