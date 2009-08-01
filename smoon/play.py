@@ -126,8 +126,9 @@ def _old_var_name(middle, vector):
 
 def handle_gentoo_data(session, host_dict, machine_id):
     try:
-        data = host_dict['gentoo']
+        data = host_dict['distro_specific']['gentoo']
     except KeyError:
+        logging.debug('No Gentoo-specific data')
         data = {}
 
     _handle_simple_stuff(session, data, machine_id)
@@ -339,6 +340,11 @@ if __name__ == '__main__':
 
     gentoo = Gentoo()
     gentoo.gather()
-    host_dict = {'gentoo':gentoo.data()}
+
+    host_dict = {
+        'distro_specific':{
+            'gentoo':gentoo.data()
+        }
+    }
 
     handle_gentoo_data(session, host_dict, machine_id)
