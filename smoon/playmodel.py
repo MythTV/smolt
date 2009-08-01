@@ -17,9 +17,19 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 import logging
-from sqlalchemy import Table, Column, Integer, BOOLEAN, CHAR, ForeignKey, UniqueConstraint, MetaData
+from sqlalchemy import Table, Column, Integer, BOOLEAN, CHAR, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import mapper, relation
-metadata = MetaData()
+
+
+# Context dependent metadata creation
+import sys
+if 'turbogears' in sys.modules:
+    logging.debug('Turbogears context')
+    from turbogears.database import metadata
+else:
+    logging.debug('Plain SQL alchemy context')
+    from sqlalchemy import MetaData
+    metadata = MetaData()
 
 
 _GENTOO_KEYWORD_STATUS_EMPTY, \
