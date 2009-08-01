@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: smolt.master.de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-22 13:41-0500\n"
-"PO-Revision-Date: 2009-07-31 13:17+0100\n"
+"PO-Revision-Date: 2009-08-01 10:26+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -91,23 +91,23 @@ msgstr "Dies ist ein automatisiertes Check-In und läuft nur bei gestartetem \"s
 
 #: sendProfile.py:94
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "durchsuche nur das System für bekannte Hardware-Fehler, sende Profil nicht."
+msgstr "Nur das System auf bekannte Hardware-Fehler durchsuchen, Profil nicht senden."
 
 #: sendProfile.py:99
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "durchsuche nur das System für bekannte Hardware-Fehler, sende Profil nicht."
+msgstr "Nur das System auf bekannte Hardware-Fehler durchsuchen, Profil nicht senden."
 
 #: sendProfile.py:108
 msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
-msgstr "Übersende dieses Profil auch an Bodhi (Fedora Entwicklung)"
+msgstr "Dieses Profil auch an Bodhi (Fedora Entwicklung) übermitteln"
 
 #: sendProfile.py:113
 msgid "Request a new public UUID"
-msgstr "Fordere neue öffentliche UUID an"
+msgstr "Neue öffentliche UUID anfordern"
 
 #: sendProfile.py:117
 msgid "HTTP proxy"
-msgstr "HTTP proxy"
+msgstr "HTTP-Proxy"
 
 #: sendProfile.py:134
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
@@ -187,7 +187,7 @@ msgstr "&Meine Smolt-Seite"
 
 #: smoltGui.py:50
 msgid "&Exit"
-msgstr "_Ende"
+msgstr "&Beenden"
 
 #: smoltGui.py:51
 msgid "Show &Privacy Policy"
@@ -242,7 +242,7 @@ msgstr "<br/>Smolt Qt ist die graphische Smolt Anwendung um Smolt Hardware \t\t\
 
 #: smoltGui.py:140
 msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr ""
+msgstr "<b>Über Smolt:</b><br/>Der smolt-Hardware-Profiler ist ein Server-Client- \t\t\t\tSystem, welches einen Hardware-Scan macht und die Resultate \t\t\t\tan einen öffentlichen Fedora-Projekt- Turbogears-Server schickt. Die Übertragungen sind anonym \t\t\t\tund enthalten keine privaten, sondern nur physikalische \t\t\t\tHardware-Information und grundlegende Betriebssystem-Informationen.<br/>"
 
 #: smoltGui.py:146
 msgid "<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
@@ -315,7 +315,7 @@ msgstr "Geräte"
 
 #: smolt.py:624
 msgid "\tFilesystem Information"
-msgstr "Dateisysteminformationen"
+msgstr "\tDateisysteminformationen"
 
 #: smolt.py:636
 msgid "UUID"
@@ -417,7 +417,7 @@ msgstr "Tipp:"
 
 #: smolt.py:1112
 msgid "Unable to save UUID, continuing...\n"
-msgstr "UUID konnte nicht gespeichert werden, fahre weiter...\n"
+msgstr "UUID konnte nicht gespeichert werden, weiterfahren ...\n"
 
 #: smolt.py:1113
 #, python-format
@@ -430,7 +430,7 @@ msgstr "System-UUID konnte nicht erkannt werden!\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
-msgstr "Kann Runlevel nicht bestimmen"
+msgstr "Runlevel konnte nicht bestimmen werden"
 
 #: smoltFirstBoot.py:37
 #: smoltFirstBoot.py:38
@@ -455,7 +455,7 @@ msgstr "Smolt ist ein Hardware-Profiler für das Fedora-Projekt. Das Einreichen 
 
 #: smoltFirstBoot.py:117
 msgid "_Participate in KernelOOPS"
-msgstr "_Arbeitet mit bei KernelOOPS"
+msgstr "_Bei KernelOOPS mitarbeiten"
 
 #: smoltFirstBoot.py:118
 msgid "Submit profile link to _Bodhi"
@@ -558,7 +558,7 @@ msgstr "Aktuelle Bewertung des Herstellers/Modell."
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr "Unbekannt"
+msgstr "Nicht bewertet/Unbekannt"
 
 #: scan.py:46
 msgid "Non-working"
@@ -583,7 +583,7 @@ msgstr "Funktioniert sofort (ohne weiteres Zutun)"
 #: scan.py:58
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr "Suche %s nach bekannten Fehlern.\n"
+msgstr "%s nach bekannten Fehlern durchsuchen.\n"
 
 #: scan.py:88
 msgid "\tErrata Found!"
