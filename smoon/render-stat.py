@@ -547,6 +547,19 @@ f = open(fname, "w")
 f.write(out_html)
 f.close()
 
+def do_distro_specific_renderinging():
+    import gentooanalysis
+    import datetime
+    gentoo_data_tree = gentooanalysis.gentoo_data_tree(session)
+    t = engine.load_template('hardware.templates.gentoo')
+    out_html = _process_output(dict(data=gentoo_data_tree), template=t, format='html')
+    fname = "%s/gentoo.html" % (page_path)
+    f = open(fname, "w")
+    f.write(out_html)
+    f.close()
+
+do_distro_specific_renderinging()
+
 # Save some memory
 del out_html
 del stats
