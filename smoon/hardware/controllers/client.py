@@ -124,6 +124,7 @@ class Client(object):
     @expose(template="hardware.templates.delete")
     @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, uuid=''):
+        # TODO also search and clean batch queue?
         try:
             host = session.query(Host).filter_by(uuid=uuid).one()
         except:
@@ -209,6 +210,14 @@ class Client(object):
                         device.rating = int(rating)
                         session.flush([host, device])
                         return dict()
+        return dict()
+
+    @expose()
+    def batch_add_json(self, uuid, host, token, smolt_protocol):
+        self._run_add_json_checks(uuid, host, token, smolt_protocol)
+        job = BatchJob(host, uuid)
+        session.add(job)
+        session.flush()
         return dict()
 
     @expose()

@@ -112,6 +112,15 @@ file_systems = Table('file_systems', metadata,
                      Column('f_ffree', INT),
                      Column('f_fssize', INT))
 
+batch_queue = Table('batch_queue', metadata,
+                    Column('id', Integer,
+                            primary_key=True, autoincrement=True),
+                    Column('arrival', TIMESTAMP,
+                            server_default=text('NOW()')),
+                    Column('data', Text),
+                    Column('hw_uuid', VARCHAR(36),
+                            nullable=False))
+
 
 class Host(object):
     def __init__(self, selinux_enabled=False,
@@ -144,6 +153,12 @@ class HardwareClass(object):
 
 class FileSystem(object):
     pass
+
+class BatchJob(object):
+    def __init__(self, data, hw_uuid):
+        self.data = data
+        self.hw_uuid = hw_uuid
+
 
 mapper(Host, hosts,
        properties=dict(_devices=relation(HostLink,
@@ -180,3 +195,4 @@ mapper(HardwareClass,
 
 mapper(FileSystem, file_systems)
 
+mapper(BatchJob, batch_queue)
