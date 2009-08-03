@@ -17,7 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 import logging
-from sqlalchemy import Table, Column, Integer, BOOLEAN, CHAR, ForeignKey, UniqueConstraint
+from sqlalchemy import Table, Column, Integer, BOOLEAN, SmallInteger, CHAR, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import mapper, relation
 
 
@@ -133,7 +133,6 @@ _pool_table_jobs = [
 
 
 _rel_table_jobs = [
-    {'thing':'accept_keywords', 'foreign':'keyword', 'vector':True},
     {'thing':'archs', 'foreign':'keyword', 'vector':False},
     {'thing':'chosts', 'foreign':'chost', 'vector':False},
     {'thing':'sync_mirrors', 'foreign':'mirror', 'vector':False},
@@ -306,5 +305,26 @@ mapper(GentooPackageMaskRel, _gentoo_package_mask_rel_table,
     properties={
         'package':relation(GentooPackageString),
         'atom':relation(GentooAtomString),
+    }
+)
+
+
+_gentoo_accept_keyword_rel_table = Table('gentoo_accept_keyword_rel', metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('machine_id', Integer),
+    Column('keyword_id', Integer, ForeignKey('%s.id' % 'gentoo_keyword_pool')),
+    Column('stable', SmallInteger),  # Not BOOLEAN here as that denies using func.sum
+    UniqueConstraint('machine_id', 'keyword_id'),
+)
+
+class GentooAcceptKeywordRel(object):
+    def __init__(self, machine_id, keyword_id, stable):
+        self.machine_id = machine_id
+        self.keyword_id = keyword_id
+        self.stable = stable
+
+mapper(GentooAcceptKeywordRel, _gentoo_accept_keyword_rel_table,
+    properties={
+        'keyword':relation(GentooKeywordString),
     }
 )

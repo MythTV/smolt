@@ -102,7 +102,6 @@ except sqlalchemy.orm.exc.NoResultFound:
 
 _DIFF_JOBS = [
     {'thing':'arch', 'foreign':'keyword', 'vector':False, 'tree_location':"data['arch']"},
-    {'thing':'accept_keywords', 'foreign':'keyword', 'vector':True, 'tree_location':"data['accept_keywords']"},
     {'thing':'cflags', 'foreign':'cflag', 'vector':True, 'tree_location':"data['compile_flags']['CFLAGS']"},
     {'thing':'chost', 'foreign':'chost', 'vector':False, 'tree_location':"data['chost']"},
     {'thing':'cxxflags', 'foreign':'cxxflag', 'vector':True, 'tree_location':"data['compile_flags']['CXXFLAGS']"},
@@ -132,6 +131,7 @@ def handle_gentoo_data(session, host_dict, machine_id):
         data = {}
 
     _handle_simple_stuff(session, data, machine_id)
+    _handle_accept_keywords(session, data, machine_id)
     _handle_package_mask(session, data, machine_id)
     _handle_installed_packages(session, data, machine_id)
 
@@ -158,6 +158,49 @@ def _handle_simple_stuff(session, data, machine_id):
         dump_gentoo_python_code(program)
         exec(program)
 
+def _handle_accept_keywords(session, data, machine_id):
+    # Find current entries
+    try:
+        accept_keywords = data['accept_keywords']
+    except KeyError:
+        accept_keywords = {}
+    current_accept_keywords_set = set()
+    for i in accept_keywords:
+        if i.startswith('~'):
+            key = (i.lstrip('~'), False)
+        else:
+            key = (i, True)
+        current_accept_keywords_set.add(key)
+
+    # Find old entries
+    old_accept_keywords_objects = session.query(\
+            GentooAcceptKeywordRel).options(\
+                eagerload('keyword')).\
+            filter_by(machine_id=machine_id).all()
+    old_accept_keywords_dict = {}
+    for i in old_accept_keywords_objects:
+        key = (i.keyword, bool(i.stable))
+        old_accept_keywords_dict[key] = i
+    old_accept_keywords_set = set(old_accept_keywords_dict.keys())
+
+    # Calculate diff
+    mappings_to_add = current_accept_keywords_set - old_accept_keywords_set
+    mappings_to_remove = old_accept_keywords_set - current_accept_keywords_set
+
+    # Resolve diff
+    for i in mappings_to_remove:
+        session.delete(old_accept_keywords_dict[i])
+    for i in mappings_to_add:
+        keyword, stable = i
+        try:
+            pool_object = session.query(GentooKeywordString).filter_by(name=keyword).one()
+        except sqlalchemy.orm.exc.NoResultFound:
+            pool_object = GentooKeywordString(keyword)
+            session.add(pool_object)
+            session.flush()
+        keyword_id = pool_object.id
+        session.add(GentooAcceptKeywordRel(machine_id, keyword_id, stable))
+    session.flush()
 
 def _handle_package_mask(session, data, machine_id):
     # Find current entries
