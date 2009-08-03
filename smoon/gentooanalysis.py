@@ -33,7 +33,7 @@ class GentooReporter:
         self._data = {}
 
     def _relative(self, absolute):
-        return absolute * 100.0 / self.gentoo_machines
+        return round(absolute * 100.0 / self.gentoo_machines, 1)
 
     def _analyze_archs(self):
         # TODO use different type of join?
