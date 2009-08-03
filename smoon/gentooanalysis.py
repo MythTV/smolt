@@ -18,8 +18,9 @@
 
 from playmodel import *
 from playmodel import _gentoo_distfiles_mirror_rel_table, _gentoo_mirror_pool_table
+from playmodel import _gentoo_accept_keyword_rel_table, _gentoo_keyword_pool_table
 import datetime
-from sqlalchemy.sql import func, select, join
+from sqlalchemy.sql import func, select, join, and_
 
 
 _MAX_DISTFILES_MIRRORS = 20
@@ -31,11 +32,59 @@ class GentooReporter:
         self.gentoo_machines = 1
         self._data = {}
 
+    def _relative(self, absolute):
+        return absolute * 100.0 / self.gentoo_machines
+
+    def _analyze_archs(self):
+        # TODO use different type of join?
+        def make_row(absolute_stable, absolute_unstable, absolute_total, label=None):
+            res = {
+                'absolute_stable':absolute_stable,
+                'absolute_unstable':absolute_unstable,
+                'absolute_total':absolute_total,
+                'relative_stable':self._relative(absolute_stable),
+                'relative_unstable':self._relative(absolute_unstable),
+                'relative_total':self._relative(absolute_total),
+            }
+            if label != None:
+                res['label'] = label
+            return res
+
+        columns = [GentooKeywordString.name, func.count(GentooAcceptKeywordRel.machine_id), func.sum(GentooAcceptKeywordRel.stable)]
+        pool_join = _gentoo_accept_keyword_rel_table.join(_gentoo_keyword_pool_table)
+        arch_join_condition = and_(GentooArchRel.keyword_id == GentooAcceptKeywordRel.keyword_id,\
+                GentooArchRel.machine_id == GentooAcceptKeywordRel.machine_id)
+        query = select(columns, from_obj=[pool_join]).where(arch_join_condition).\
+                group_by(GentooArchRel.keyword_id).order_by(\
+                func.count(GentooAcceptKeywordRel.machine_id).desc())
+        total_stable = 0
+        total_unstable = 0
+        total_total = 0
+        final_rows = []
+        for i in query.execute().fetchall():
+            label, total, stable = i
+            stable = long(stable)
+            unstable = total - stable
+            if unstable < 0:
+                unstable = 0
+
+            total_stable = total_stable + stable
+            total_unstable = total_unstable + unstable
+            total_total = total_total + total
+
+            final_rows.append(make_row(total_stable, total_unstable, total_total, label))
+
+        res = {
+            'listed':final_rows,
+            'total':[make_row(total_stable, total_unstable, total_total)],
+        }
+        return res
+
     def _analyze_distfiles_mirrors(self):
         def make_row(absolute, label=None):
             res = {
                 'absolute':absolute,
-                'relative':(absolute * 100.0 / self.gentoo_machines),
+                'relative':self._relative(absolute),
             }
             if label != None:
                 res['label'] = label
@@ -65,10 +114,12 @@ class GentooReporter:
     def gather(self):
         self.gentoo_machines = self.session.query(GentooArchRel).count()
         distfiles_mirrors = self._analyze_distfiles_mirrors()
+        archs = self._analyze_archs()
         data = {
             'generation_time':datetime.datetime.strftime(\
                     datetime.datetime.utcnow(), "%Y-%m-%d %H:%S UTC"),
             'distfiles_mirrors':distfiles_mirrors,
+            'archs':archs,
         }
         self._data = data
 

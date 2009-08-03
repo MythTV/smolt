@@ -247,11 +247,30 @@ div {
 <a name="archs"></a><h2>Archs</h2>
 <div>
     <table>
-        <tr><th class="vert_head">Arch</th><th colspan="2" class="head">Stable</th><th colspan="2" class="head">Unstable</th><th colspan="2" class="head">Total</th></tr>
-        <tr><th class="vert">amd64</th><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">3</td><td class="relative">(XXX %)</td><td class="count">5</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert">x86</th><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">3</td><td class="relative">(XXX %)</td><td class="count">5</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">3</td><td class="relative">(XXX %)</td><td class="count">5</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">3</td><td class="foot_relative">(XXX %)</td><td class="foot_count">5</td><td class="foot_relative">(XXX %)</td></tr>
+        <tr>
+            <th class="vert_head">Arch</th>
+            <th colspan="2" class="head">Stable</th>
+            <th colspan="2" class="head">Unstable</th>
+            <th colspan="2" class="head">Total</th>
+        </tr>
+        <tr py:for="row in data['archs']['listed']">
+            <th class="vert">${row['label']}</th>
+            <td class="count">${row['absolute_stable']}</td>
+            <td class="relative">(${row['relative_stable']} %)</td>
+            <td class="count">${row['absolute_unstable']}</td>
+            <td class="relative">(${row['relative_unstable']} %)</td>
+            <td class="count">${row['absolute_total']}</td>
+            <td class="relative">(${row['relative_total']} %)</td>
+        </tr>
+        <tr py:for="row in data['archs']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot_count">${row['absolute_stable']}</td>
+            <td class="foot_relative">(${row['relative_stable']} %)</td>
+            <td class="foot_count">${row['absolute_unstable']}</td>
+            <td class="foot_relative">(${row['relative_unstable']} %)</td>
+            <td class="foot_count">${row['absolute_total']}</td>
+            <td class="foot_relative">(${row['relative_total']} %)</td>
+        </tr>
     </table>
 </div>
 
