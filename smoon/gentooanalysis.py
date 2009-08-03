@@ -17,8 +17,8 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 from playmodel import *
-from playmodel import _gentoo_distfiles_mirror_rel_table, _gentoo_mirror_pool_table
-from playmodel import _gentoo_accept_keyword_rel_table, _gentoo_keyword_pool_table
+from playmodel import _gentoo_distfiles_mirrors_rel_table, _gentoo_mirror_pool_table
+from playmodel import _gentoo_accept_keywords_rel_table, _gentoo_keyword_pool_table
 import datetime
 from sqlalchemy.sql import func, select, join, and_
 
@@ -51,7 +51,7 @@ class GentooReporter:
             return res
 
         columns = [GentooKeywordString.name, func.count(GentooAcceptKeywordRel.machine_id), func.sum(GentooAcceptKeywordRel.stable)]
-        pool_join = _gentoo_accept_keyword_rel_table.join(_gentoo_keyword_pool_table)
+        pool_join = _gentoo_accept_keywords_rel_table.join(_gentoo_keyword_pool_table)
         arch_join_condition = and_(GentooArchRel.keyword_id == GentooAcceptKeywordRel.keyword_id,\
                 GentooArchRel.machine_id == GentooAcceptKeywordRel.machine_id)
         query = select(columns, from_obj=[pool_join]).where(arch_join_condition).\
@@ -90,7 +90,7 @@ class GentooReporter:
                 res['label'] = label
             return res
 
-        mirror_join = _gentoo_distfiles_mirror_rel_table.join(_gentoo_mirror_pool_table)
+        mirror_join = _gentoo_distfiles_mirrors_rel_table.join(_gentoo_mirror_pool_table)
         total_mirror_entry_count = self.session.query(GentooDistfilesMirrorRel).count()
         query = select([GentooMirrorString.name, func.count(GentooDistfilesMirrorRel.machine_id)], \
                 from_obj=[mirror_join]).group_by(GentooDistfilesMirrorRel.mirror_id).order_by(\

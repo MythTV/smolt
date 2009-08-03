@@ -101,26 +101,22 @@ except sqlalchemy.orm.exc.NoResultFound:
 
 
 _DIFF_JOBS = [
-    {'thing':'arch', 'foreign':'keyword', 'vector':False, 'tree_location':"data['arch']"},
-    {'thing':'cflags', 'foreign':'cflag', 'vector':True, 'tree_location':"data['compile_flags']['CFLAGS']"},
-    {'thing':'chost', 'foreign':'chost', 'vector':False, 'tree_location':"data['chost']"},
-    {'thing':'cxxflags', 'foreign':'cxxflag', 'vector':True, 'tree_location':"data['compile_flags']['CXXFLAGS']"},
-    {'thing':'distfiles_mirrors', 'foreign':'mirror', 'vector':True, 'tree_location':"data['mirrors']['distfiles']"},
-    {'thing':'features', 'foreign':'feature', 'vector':True, 'tree_location':"data['features']"},
-    {'thing':'global_use_flags', 'foreign':'use_flag', 'vector':True, 'tree_location':"data['global_use_flags']"},
-    {'thing':'ldflags', 'foreign':'ldflag', 'vector':True, 'tree_location':"data['compile_flags']['LDFLAGS']"},
-    {'thing':'makeopts', 'foreign':'makeopt', 'vector':True, 'tree_location':"data['compile_flags']['MAKEOPTS']"},
-    {'thing':'overlays', 'foreign':'repository', 'vector':True, 'tree_location':"data['overlays']"},
-    {'thing':'sync_mirror', 'foreign':'mirror', 'vector':False, 'tree_location':"data['mirrors']['sync']"},
-    {'thing':'system_profile', 'foreign':'system_profile', 'vector':False, 'tree_location':"data['system_profile']"},
+    {'thing':'arch', 'foreign':'keyword', 'vector_flag':False, 'tree_location':"data['arch']"},
+    {'thing':'chost', 'foreign':'chost', 'vector_flag':False, 'tree_location':"data['chost']"},
+    {'thing':'distfiles_mirror', 'foreign':'mirror', 'vector_flag':True, 'tree_location':"data['mirrors']['distfiles']"},
+    {'thing':'feature', 'foreign':'feature', 'vector_flag':True, 'tree_location':"data['features']"},
+    {'thing':'global_use_flag', 'foreign':'use_flag', 'vector_flag':True, 'tree_location':"data['global_use_flags']"},
+    {'thing':'overlay', 'foreign':'repository', 'vector_flag':True, 'tree_location':"data['overlays']"},
+    {'thing':'sync_mirror', 'foreign':'mirror', 'vector_flag':False, 'tree_location':"data['mirrors']['sync']"},
+    {'thing':'system_profile', 'foreign':'system_profile', 'vector_flag':False, 'tree_location':"data['system_profile']"},
 ]
 
 
-def _current_var_name(middle, vector):
-    return 'current_%s_string%s' % (middle.rstrip('s'), vector and 's' or '')
+def _current_var_name(middle, vector_flag):
+    return 'current_%s_string%s' % (middle.rstrip('s'), numerus(vector_flag))
 
-def _old_var_name(middle, vector):
-    return 'old_%s_object%s' % (middle.rstrip('s'), vector and 's' or '')
+def _old_var_name(middle, vector_flag):
+    return 'old_%s_object%s' % (middle.rstrip('s'), numerus(vector_flag))
 
 
 def handle_gentoo_data(session, host_dict, machine_id):
@@ -131,6 +127,7 @@ def handle_gentoo_data(session, host_dict, machine_id):
         data = {}
 
     _handle_simple_stuff(session, data, machine_id)
+    _handle_compile_flags(session, data, machine_id)
     _handle_accept_keywords(session, data, machine_id)
     _handle_package_mask(session, data, machine_id)
     _handle_installed_packages(session, data, machine_id)
@@ -141,17 +138,17 @@ def _handle_simple_stuff(session, data, machine_id):
         foreign = job['foreign']
         thing = job['thing']
         tree_location = job['tree_location']
-        vector = job['vector']
+        vector_flag = job['vector_flag']
         details = {
-            'pool_class_name':pool_class_name(foreign),
+            'pool_class_name':pool_class_name(foreign, vector_flag=False),
             'rel_class_name':rel_class_name(thing),
             'relation_name':foreign,
             'tree_location':tree_location,
-            'current_name':_current_var_name(thing, vector),
-            'old_name':_old_var_name(thing, vector),
+            'current_name':_current_var_name(thing, vector_flag),
+            'old_name':_old_var_name(thing, vector_flag),
         }
 
-        if vector:
+        if vector_flag:
             program = _VECTOR_DIFF_TEMPLATE % details
         else:
             program = _SCALAR_DIFF_TEMPLATE % details
@@ -202,6 +199,53 @@ def _handle_accept_keywords(session, data, machine_id):
         session.add(GentooAcceptKeywordRel(machine_id, keyword_id, stable))
     session.flush()
 
+
+def _handle_compile_flags(session, data, machine_id):
+    for call_flag_class in ('CFLAGS', 'CXXFLAGS', 'LDFLAGS', 'MAKEOPTS'):
+        try:
+            call_flag_class_object = session.query(GentooCallFlagClassString).filter_by(name=call_flag_class).one()
+        except sqlalchemy.orm.exc.NoResultFound:
+            call_flag_class_object = GentooCallFlagClassString(call_flag_class)
+            session.add(call_flag_class_object)
+            session.flush()
+        call_flag_class_id = call_flag_class_object.id
+
+        # Find current entries
+        try:
+            current_call_flag_list = data['compile_flags'][call_flag_class]
+        except KeyError:
+            current_call_flag_list = []
+
+        # Find old entries
+        old_call_flag_objects = session.query(GentooCallFlagRel).options(\
+                eagerload('call_flag')).\
+            filter_by(machine_id=machine_id, call_flag_class_id=call_flag_class_id).all()
+
+        # Re-construct call flag list
+        old_call_flag_list = [a.call_flag.name for a in sorted(\
+                [e for e in old_call_flag_objects], key=lambda x: x.position)]
+
+        # Consistent data?
+        if len(old_call_flag_list) != len(old_call_flag_objects):
+            old_call_flag_list = None
+
+        # Calculate diff
+        if cmp(current_call_flag_list, old_call_flag_list) != 0:
+            # Resolve diff
+            for e in old_call_flag_objects:
+                session.delete(e)
+            for position, call_flag in enumerate(current_call_flag_list):
+                try:
+                    call_flag_object = session.query(GentooCallFlagString).filter_by(name=call_flag).one()
+                except sqlalchemy.orm.exc.NoResultFound:
+                    call_flag_object = GentooCallFlagString(call_flag)
+                    session.add(call_flag_object)
+                    session.flush()
+                call_flag_id = call_flag_object.id
+                session.add(GentooCallFlagRel(machine_id, call_flag_class_id, call_flag_id, position))
+            session.flush()
+
+
 def _handle_package_mask(session, data, machine_id):
     # Find current entries
     try:
@@ -243,7 +287,7 @@ def _handle_package_mask(session, data, machine_id):
         for job in lookup_or_add_jobs:
             thing = job['thing']
             details = {
-                'class_name':pool_class_name(thing),
+                'class_name':pool_class_name(thing, vector_flag=False),
                 'source_var_name':thing,
                 'new_object_name':'%s_pool_object' % thing
             }
@@ -311,7 +355,7 @@ def _handle_installed_packages(session, data, machine_id):
         for job in lookup_or_add_jobs:
             thing = job['thing']
             details = {
-                'class_name':pool_class_name(thing),
+                'class_name':pool_class_name(thing, vector_flag=False),
                 'source_var_name':thing,
                 'new_object_name':'%s_pool_object' % thing
             }

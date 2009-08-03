@@ -115,12 +115,10 @@ mapper(%(class_name)s, %(table_var_name)s,
 
 _pool_table_jobs = [
     {'thing':'atom', 'col_type':'CHAR(255)'},
-    {'thing':'cflag', 'col_type':'CHAR(255)'},
+    {'thing':'call_flag', 'col_type':'CHAR(255)'},
+    {'thing':'call_flag_class', 'col_type':'CHAR(255)'},
     {'thing':'chost', 'col_type':'CHAR(255)'},
-    {'thing':'cxxflag', 'col_type':'CHAR(255)'},
     {'thing':'feature', 'col_type':'CHAR(127)'},
-    {'thing':'ldflag', 'col_type':'CHAR(255)'},
-    {'thing':'makeopt', 'col_type':'CHAR(255)'},
     {'thing':'keyword', 'col_type':'CHAR(127)'},
     {'thing':'mirror', 'col_type':'CHAR(255)'},
     {'thing':'package', 'col_type':'CHAR(255)'},
@@ -133,48 +131,51 @@ _pool_table_jobs = [
 
 
 _rel_table_jobs = [
-    {'thing':'archs', 'foreign':'keyword', 'vector':False},
-    {'thing':'chosts', 'foreign':'chost', 'vector':False},
-    {'thing':'sync_mirrors', 'foreign':'mirror', 'vector':False},
-    {'thing':'cflags', 'foreign':'cflag', 'vector':True},
-    {'thing':'cxxflags', 'foreign':'cxxflag', 'vector':True},
-    {'thing':'distfiles_mirrors', 'foreign':'mirror', 'vector':True},
-    {'thing':'features', 'foreign':'feature', 'vector':True},
-    {'thing':'global_use_flags', 'foreign':'use_flag', 'vector':True},
-    {'thing':'ldflags', 'foreign':'ldflag', 'vector':True},
-    {'thing':'makeopts', 'foreign':'makeopt', 'vector':True},
-    {'thing':'overlays', 'foreign':'repository', 'vector':True},
-    {'thing':'system_profile', 'foreign':'system_profile', 'vector':False},
+    {'thing':'arch', 'foreign':'keyword', 'vector_flag':False},
+    {'thing':'chost', 'foreign':'chost', 'vector_flag':False},
+    {'thing':'sync_mirror', 'foreign':'mirror', 'vector_flag':False},
+    {'thing':'distfiles_mirror', 'foreign':'mirror', 'vector_flag':True},
+    {'thing':'feature', 'foreign':'feature', 'vector_flag':True},
+    {'thing':'global_use_flag', 'foreign':'use_flag', 'vector_flag':True},
+    {'thing':'overlay', 'foreign':'repository', 'vector_flag':True},
+    {'thing':'system_profile', 'foreign':'system_profile', 'vector_flag':False},
 ]
 
 
 def dump_gentoo_python_code(code):
     return  # TODO
     print '============================================='
-    print code
+    for i, v in enumerate(code.split('\n')):
+        print '% 5d  %s' % (i + 1, v)
     print '============================================='
 
 
+def numerus(vector_flag):
+    if vector_flag:
+        return 's'
+    else:
+        return ''
+
 def _pool_table_name(middle):
-    return 'gentoo_%s_pool' % middle.rstrip('s')
+    return 'gentoo_%s_pool' % middle
 
-def _pool_table_instance(middle):
-    return '_gentoo_%s_pool_table' % middle.rstrip('s')
+def _pool_table_instance(middle, vector_flag=False):
+    return '_gentoo_%s%s_pool_table' % (middle, numerus(vector_flag))
 
-def pool_class_name(middle):
+def pool_class_name(middle, vector_flag=False):
     return 'Gentoo%sString' % middle.title().replace('_', '')
 
-def _rel_table_name(middle):
-    return 'gentoo_%s_rel' % middle.rstrip('s')
+def _rel_table_name(middle, vector_flag=False):
+    return 'gentoo_%s%s_rel' % (middle, numerus(vector_flag))
 
-def _rel_table_instance(middle):
-    return '_gentoo_%s_rel_table' % middle.rstrip('s')
+def _rel_table_instance(middle, vector_flag=False):
+    return '_gentoo_%s%s_rel_table' % (middle, numerus(vector_flag))
 
 def rel_class_name(middle):
-    return 'Gentoo%sRel' % middle.rstrip('s').title().replace('_', '')
+    return 'Gentoo%sRel' % middle.title().replace('_', '')
 
 def _foreign_key_column(middle):
-    return '%s_id' % middle.rstrip('s')
+    return '%s_id' % middle
 
 
 # Create pool tables
@@ -197,18 +198,18 @@ for job in _pool_table_jobs:
 for job in _rel_table_jobs:
     thing = job['thing']
     foreign = job['foreign']
-    vector = job['vector']
+    vector_flag = job['vector_flag']
     details = {
-        'table_name':_rel_table_name(thing),
-        'table_var_name':_rel_table_instance(thing),
+        'table_name':_rel_table_name(thing, vector_flag),
+        'table_var_name':_rel_table_instance(thing, vector_flag),
         'class_name':rel_class_name(thing),
         'foreign_key_table':_pool_table_name(foreign),
         'foreign_key_column':_foreign_key_column(foreign),
-        'foreign_key_class':pool_class_name(foreign),
+        'foreign_key_class':pool_class_name(foreign, vector_flag),
         'relation_name':foreign,
     }
     logging.debug('Generating table "%(table_name)s" and related class "%(class_name)s"...' % details)
-    if vector:
+    if vector_flag:
         program = _VECTOR_REL_TABLE_TEMPLATE % details
     else:
         program = _SCALAR_REL_TABLE_TEMPLATE % details
@@ -309,7 +310,7 @@ mapper(GentooPackageMaskRel, _gentoo_package_mask_rel_table,
 )
 
 
-_gentoo_accept_keyword_rel_table = Table('gentoo_accept_keyword_rel', metadata,
+_gentoo_accept_keywords_rel_table = Table('gentoo_accept_keyword_rel', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('machine_id', Integer),
     Column('keyword_id', Integer, ForeignKey('%s.id' % 'gentoo_keyword_pool')),
@@ -323,8 +324,31 @@ class GentooAcceptKeywordRel(object):
         self.keyword_id = keyword_id
         self.stable = stable
 
-mapper(GentooAcceptKeywordRel, _gentoo_accept_keyword_rel_table,
+mapper(GentooAcceptKeywordRel, _gentoo_accept_keywords_rel_table,
     properties={
         'keyword':relation(GentooKeywordString),
+    }
+)
+
+
+_gentoo_call_flag_rel_table = Table('gentoo_call_flag_rel', metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('machine_id', Integer),
+    Column('call_flag_class_id', Integer, ForeignKey('%s.id' % 'gentoo_call_flag_class_pool')),
+    Column('call_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_call_flag_pool')),
+    Column('position', SmallInteger),
+    UniqueConstraint('machine_id', 'call_flag_class_id', 'call_flag_id', 'position'),
+)
+
+class GentooCallFlagRel(object):
+    def __init__(self, machine_id, call_flag_class_id, call_flag_id, position):
+        self.machine_id = machine_id
+        self.call_flag_class_id = call_flag_class_id
+        self.call_flag_id = call_flag_id
+        self.position = position
+
+mapper(GentooCallFlagRel, _gentoo_call_flag_rel_table,
+    properties={
+        'call_flag':relation(GentooCallFlagString),
     }
 )
