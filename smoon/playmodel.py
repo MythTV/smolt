@@ -116,7 +116,7 @@ mapper(%(class_name)s, %(table_var_name)s,
 _pool_table_jobs = [
     {'thing':'atom', 'col_type':'CHAR(255)'},
     {'thing':'call_flag', 'col_type':'CHAR(255)'},
-    {'thing':'call_flag_class', 'col_type':'CHAR(255)'},
+    {'thing':'call_flag_class', 'col_type':'CHAR(127)'},
     {'thing':'chost', 'col_type':'CHAR(255)'},
     {'thing':'feature', 'col_type':'CHAR(127)'},
     {'thing':'keyword', 'col_type':'CHAR(127)'},
