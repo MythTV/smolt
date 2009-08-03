@@ -374,7 +374,7 @@ div {
         <table>
             <tr><th class="vert_head">Mirror</th><th colspan="2" class="head">Popularity</th></tr>
             <tr py:for="row in data['distfiles_mirrors']['listed']">
-                <th class="vert"><a href="${row['url']}">${row['url']}</a></th>
+                <th class="vert"><a href="${row['label']}">${row['label']}</a></th>
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>

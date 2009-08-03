@@ -26,13 +26,13 @@ _MAX_DISTFILES_MIRRORS = 20
 
 
 def _analyze_distfiles_mirrors(session, gentoo_machines):
-    def make_row(absolute, url=None):
+    def make_row(absolute, label=None):
         res = {
             'absolute':absolute,
             'relative':(absolute * 100.0 / gentoo_machines),
         }
-        if url != None:
-            res['url'] = url
+        if label != None:
+            res['label'] = label
         return res
 
     mirror_join = _gentoo_distfiles_mirror_rel_table.join(_gentoo_mirror_pool_table)
@@ -43,9 +43,9 @@ def _analyze_distfiles_mirrors(session, gentoo_machines):
     final_rows = []
     others = total_mirror_entry_count
     for i in query.execute().fetchall():
-        url, absolute = i
+        label, absolute = i
         others = others - absolute
-        final_rows.append(make_row(absolute, url))
+        final_rows.append(make_row(absolute, label))
     if others < 0:
         others = 0
 
