@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-22 13:41-0500\n"
-"PO-Revision-Date: 2009-07-25 13:35+0200\n"
+"PO-Revision-Date: 2009-08-03 13:35+0200\n"
 "Last-Translator: Gerard Sánchez Gil <gsanchezgil@gmail.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -173,7 +173,7 @@ msgstr ""
 "\t%s (públic)"
 
 #: sendProfile.py:214
-#, c-format
+#, python-format
 msgid "\tAdmin Password: %s"
 msgstr "\tContrasenya d'administrador: %s"
 
@@ -181,8 +181,8 @@ msgstr "\tContrasenya d'administrador: %s"
 msgid ""
 "No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr ""
-"No s'ha trobat l'uuid públic. Si us plau, executeu de nou amb l'opció -n per a "
-"generar un nou uuid públic."
+"No s'ha trobat l'uuid públic. Si us plau, executeu de nou amb l'opció -n per "
+"a generar un nou uuid públic."
 
 #: smoltGui.py:39
 msgid "Smolt"
@@ -262,8 +262,8 @@ msgid ""
 "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
 "\tto a Smoon server.<br/>"
 msgstr ""
-"<br/>L'Smolt Qt és una interfície gràfica per a enviar perfils \t\t\t"
-"\ta un servidor Smoon.<br/>"
+"<br/>L'Smolt Qt és una interfície gràfica per a enviar perfils \t\t\t\ta un "
+"servidor Smoon.<br/>"
 
 #: smoltGui.py:140
 msgid ""
@@ -275,9 +275,9 @@ msgid ""
 msgstr ""
 "<b>Quant a l'Smolt:</b><br/>l'Smolt és una aplicació per a la recol·lecció "
 "d'informació del seu maquinari (perfil) per a classificar-la en el servidor "
-"turbogears del Projecte Fedora. Els enviaments són anònims i "
-"no contenen cap tipus d'informació privada més que la informació bàsica del "
-"maquinari i del SO.<br/>"
+"turbogears del Projecte Fedora. Els enviaments són anònims i no contenen cap "
+"tipus d'informació privada més que la informació bàsica del maquinari i del "
+"SO.<br/>"
 
 #: smoltGui.py:146
 msgid ""
@@ -332,8 +332,8 @@ msgstr ""
 
 #: smolt.py:513
 #, python-format
-msgid "\tYour admin token could not be cached: %s\n"
-msgstr "\tNo s'ha pogut memoritzar el seu testimoni d'administració: %s\n"
+msgid "\tYour admin token  could not be cached: %s\n"
+msgstr "\tNo s'ha pogut memoritzar el vostre testimoni d'administració: %s\n"
 
 #: smolt.py:524 smolt.py:566 smolt.py:596
 #, python-format
