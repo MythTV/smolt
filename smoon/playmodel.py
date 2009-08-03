@@ -352,3 +352,13 @@ mapper(GentooCallFlagRel, _gentoo_call_flag_rel_table,
         'call_flag':relation(GentooCallFlagString),
     }
 )
+
+
+if __name__ == '__main__':
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker
+    CONNECTION = 'sqlite:///:memory:'
+    ECHO = True
+    engine = create_engine(CONNECTION, echo=ECHO)
+    session = sessionmaker(bind=engine)()
+    metadata.create_all(engine)
