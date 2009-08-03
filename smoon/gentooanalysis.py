@@ -111,13 +111,51 @@ class GentooReporter:
         }
         return res
 
+    # TODO testing
+    def _explain_time_delta(self, d):
+        def numerus(number):
+            if number == 1:
+                return ''
+            else:
+                return 's'
+
+        def format_seconds(s):
+            return '%d second%s' % (seconds, numerus(seconds))
+
+        words = []
+        if d.days > 0:
+            words.append('%d day%s' % (d.days, numerus(d.days)))
+        seconds = d.seconds
+        hours = seconds / 3600
+        seconds = seconds - 3600 * hours
+        minutes = seconds / 60
+        seconds = seconds - 60 * minutes
+        if hours > 0:
+            words.append('%d hour%s' % (hours, numerus(hours)))
+        if minutes > 0:
+            words.append('%d minute%s' % (minutes, numerus(minutes)))
+
+        if words:
+            words.append(format_seconds(seconds))
+            return ', '.join(words[:-1]) + ' and ' + words[-1]
+        else:
+            if seconds == 0:
+                return 'less than 1 second'
+            else:
+                return format_seconds(seconds)
+
     def gather(self):
+        report_begun = datetime.datetime.utcnow()
         self.gentoo_machines = self.session.query(GentooArchRel).count()
         distfiles_mirrors = self._analyze_distfiles_mirrors()
         archs = self._analyze_archs()
+        report_finished = datetime.datetime.utcnow()
+        generation_duration = self._explain_time_delta(\
+                report_finished - report_begun)
         data = {
             'generation_time':datetime.datetime.strftime(\
-                    datetime.datetime.utcnow(), "%Y-%m-%d %H:%S UTC"),
+                    report_finished, "%Y-%m-%d %H:%S UTC"),
+            'generation_duration':generation_duration,
             'distfiles_mirrors':distfiles_mirrors,
             'archs':archs,
         }
