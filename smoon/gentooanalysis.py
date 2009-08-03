@@ -25,47 +25,58 @@ from sqlalchemy.sql import func, select, join
 _MAX_DISTFILES_MIRRORS = 20
 
 
-def _analyze_distfiles_mirrors(session, gentoo_machines):
-    def make_row(absolute, label=None):
+class GentooReporter:
+    def __init__(self, session):
+        self.session = session
+        self.gentoo_machines = 1
+        self._data = {}
+
+    def _analyze_distfiles_mirrors(self):
+        def make_row(absolute, label=None):
+            res = {
+                'absolute':absolute,
+                'relative':(absolute * 100.0 / self.gentoo_machines),
+            }
+            if label != None:
+                res['label'] = label
+            return res
+
+        mirror_join = _gentoo_distfiles_mirror_rel_table.join(_gentoo_mirror_pool_table)
+        total_mirror_entry_count = self.session.query(GentooDistfilesMirrorRel).count()
+        query = select([GentooMirrorString.name, func.count(GentooDistfilesMirrorRel.machine_id)], \
+                from_obj=[mirror_join]).group_by(GentooDistfilesMirrorRel.mirror_id).order_by(\
+                func.count(GentooDistfilesMirrorRel.machine_id).desc()).limit(_MAX_DISTFILES_MIRRORS)
+        final_rows = []
+        others = total_mirror_entry_count
+        for i in query.execute().fetchall():
+            label, absolute = i
+            others = others - absolute
+            final_rows.append(make_row(absolute, label))
+        if others < 0:
+            others = 0
+
         res = {
-            'absolute':absolute,
-            'relative':(absolute * 100.0 / gentoo_machines),
+            'listed':final_rows,
+            'others':[make_row(others)],
+            'total':[make_row(total_mirror_entry_count)],
         }
-        if label != None:
-            res['label'] = label
         return res
 
-    mirror_join = _gentoo_distfiles_mirror_rel_table.join(_gentoo_mirror_pool_table)
-    total_mirror_entry_count = session.query(GentooDistfilesMirrorRel).count()
-    query = select([GentooMirrorString.name, func.count(GentooDistfilesMirrorRel.machine_id)], \
-            from_obj=[mirror_join]).group_by(GentooDistfilesMirrorRel.mirror_id).order_by(\
-            func.count(GentooDistfilesMirrorRel.machine_id).desc()).limit(_MAX_DISTFILES_MIRRORS)
-    final_rows = []
-    others = total_mirror_entry_count
-    for i in query.execute().fetchall():
-        label, absolute = i
-        others = others - absolute
-        final_rows.append(make_row(absolute, label))
-    if others < 0:
-        others = 0
+    def gather(self):
+        self.gentoo_machines = self.session.query(GentooArchRel).count()
+        distfiles_mirrors = self._analyze_distfiles_mirrors()
+        data = {
+            'generation_time':datetime.datetime.strftime(\
+                    datetime.datetime.utcnow(), "%Y-%m-%d %H:%S UTC"),
+            'distfiles_mirrors':distfiles_mirrors,
+        }
+        self._data = data
 
-    res = {
-        'listed':final_rows,
-        'others':[make_row(others)],
-        'total':[make_row(total_mirror_entry_count)],
-    }
-    return res
+    def data(self):
+        return self._data
 
 
 def gentoo_data_tree(session):
-    gentoo_machines = session.query(GentooArchRel).count()
-    distfiles_mirrors = _analyze_distfiles_mirrors(session, gentoo_machines)
-
-    # TODO more
-
-    data = {
-        'generation_time':datetime.datetime.strftime(\
-                datetime.datetime.utcnow(), "%Y-%m-%d %H:%S UTC"),
-        'distfiles_mirrors':distfiles_mirrors,
-    }
-    return data
+    gentoo_reporter = GentooReporter(session)
+    gentoo_reporter.gather()
+    return gentoo_reporter.data()
