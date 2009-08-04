@@ -80,7 +80,7 @@ class GentooReporter:
         }
         return res
 
-    def _analyze_distfiles_mirrors(self):
+    def _analyze_simple_stuff(self):
         def make_row(absolute, label=None):
             res = {
                 'absolute':absolute,
@@ -90,25 +90,45 @@ class GentooReporter:
                 res['label'] = label
             return res
 
-        mirror_join = _gentoo_distfiles_mirrors_rel_table.join(_gentoo_mirror_pool_table)
-        total_mirror_entry_count = self.session.query(GentooDistfilesMirrorRel).count()
-        query = select([GentooMirrorString.name, func.count(GentooDistfilesMirrorRel.machine_id)], \
-                from_obj=[mirror_join]).group_by(GentooDistfilesMirrorRel.mirror_id).order_by(\
-                func.count(GentooDistfilesMirrorRel.machine_id).desc()).limit(_MAX_DISTFILES_MIRRORS)
-        final_rows = []
-        others = total_mirror_entry_count
-        for i in query.execute().fetchall():
-            label, absolute = i
-            others = others - absolute
-            final_rows.append(make_row(absolute, label))
-        if others < 0:
-            others = 0
+        jobs = [
+            {'_SECTION':'distfiles_mirrors',
+                '_POOL_TABLE_OBJECT':_gentoo_mirror_pool_table,
+                '_REL_TABLE_OBJECT':_gentoo_distfiles_mirrors_rel_table,
+                '_REL_CLASS_OBJECT':GentooDistfilesMirrorRel,
+                '_POOL_CLASS_OBJECT':GentooMirrorString,
+                '_DISPLAY_LIMIT':_MAX_DISTFILES_MIRRORS,
+                '_FOREIGN_COLUMN_NAME':'mirror_id'},
+        ]
 
-        res = {
-            'listed':final_rows,
-            'others':[make_row(others)],
-            'total':[make_row(total_mirror_entry_count)],
-        }
+        res = {}
+        for j in jobs:
+            _SECTION = j['_SECTION']
+            _POOL_TABLE_OBJECT = j['_POOL_TABLE_OBJECT']
+            _REL_TABLE_OBJECT = j['_REL_TABLE_OBJECT']
+            _REL_CLASS_OBJECT = j['_REL_CLASS_OBJECT']
+            _POOL_CLASS_OBJECT = j['_POOL_CLASS_OBJECT']
+            _DISPLAY_LIMIT = j['_DISPLAY_LIMIT']
+            _FOREIGN_COLUMN_NAME = j['_FOREIGN_COLUMN_NAME']
+
+            pool_join = _REL_TABLE_OBJECT.join(_POOL_TABLE_OBJECT)
+            total_entry_count = self.session.query(_REL_CLASS_OBJECT).count()
+            query = select([_POOL_CLASS_OBJECT.name, func.count(_REL_CLASS_OBJECT.machine_id)], \
+                    from_obj=[pool_join]).group_by(getattr(_REL_CLASS_OBJECT, _FOREIGN_COLUMN_NAME)).order_by(\
+                    func.count(_REL_CLASS_OBJECT.machine_id).desc(), _POOL_CLASS_OBJECT.name).limit(_DISPLAY_LIMIT)
+            final_rows = []
+            others = total_entry_count
+            for i in query.execute().fetchall():
+                label, absolute = i
+                others = others - absolute
+                final_rows.append(make_row(absolute, label))
+            if others < 0:
+                others = 0
+
+            res[_SECTION] = {
+                'listed':final_rows,
+                'others':[make_row(others)],
+                'total':[make_row(total_entry_count)],
+            }
         return res
 
     # TODO testing
@@ -147,7 +167,7 @@ class GentooReporter:
     def gather(self):
         report_begun = datetime.datetime.utcnow()
         self.gentoo_machines = self.session.query(GentooArchRel).count()
-        distfiles_mirrors = self._analyze_distfiles_mirrors()
+        simple_stuff = self._analyze_simple_stuff()
         archs = self._analyze_archs()
         report_finished = datetime.datetime.utcnow()
         generation_duration = self._explain_time_delta(\
@@ -156,9 +176,12 @@ class GentooReporter:
             'generation_time':datetime.datetime.strftime(\
                     report_finished, "%Y-%m-%d %H:%S UTC"),
             'generation_duration':generation_duration,
-            'distfiles_mirrors':distfiles_mirrors,
             'archs':archs,
         }
+        for k, v in simple_stuff.items():
+            if k in data:
+                raise Exception('Fatal key collision')
+            data[k] = v
         self._data = data
 
     def data(self):
