@@ -72,7 +72,7 @@ mapper(%(class_name)s, %(table_var_name)s)
 _SCALAR_REL_TABLE_TEMPLATE = """
 %(table_var_name)s = Table('%(table_name)s', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('machine_id', Integer, primary_key=True),
+    Column('machine_id', Integer, unique=True),
     Column('%(foreign_key_column)s', Integer, ForeignKey('%(foreign_key_table)s.id')),
 )
 
