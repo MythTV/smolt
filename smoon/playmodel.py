@@ -233,7 +233,8 @@ class GentooInstalledPackagesRel(object):
 
 
 _gentoo_installed_package_properties_rel_table = Table('gentoo_installed_package_properties_rel', metadata,
-    Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages_rel'), primary_key=True, autoincrement=False),
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages_rel'), unique=True),
     Column('version_id', Integer, ForeignKey('%s.id' % 'gentoo_version_pool')),
     Column('keyword_status', Integer),  # Could be MSEnum, choosing Integer for flexibility
     Column('masked', BOOLEAN),
