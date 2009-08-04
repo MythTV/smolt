@@ -210,6 +210,7 @@ div {
 <div>
     <ul>
         <li><a href="#archs">Archs</a><span class="section_comment">(ARCH, ACCEPT_KEYWORDS)</span></li>
+        <li><a href="#chosts">Chosts</a><span class="section_comment">(CHOSTS)</span></li>
         <li>
             <a href="#compile_flags">Compile flags</a>
             <ul>
@@ -280,6 +281,34 @@ div {
 </div>
 
 
+<a name="chosts"></a><h2>Chosts</h2>
+<div>
+    <table>
+        <tr>
+            <th class="vert_head">Chost</th>
+            <th colspan="2" class="head">Popularity</th>
+        </tr>
+        <tr py:for="row in data['chost']['listed']">
+            <th class="vert">${row['label']}</th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        <py:if test="data['chost']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['chost']['others']">
+            <th class="vert"><span class="group_item">others</span></th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:for="row in data['chost']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot_count">${row['absolute']}</td>
+            <td class="foot_relative">(${row['relative']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
 <a name="compile_flags"></a><h2>Compile flags</h2>
 <div>
     <a name="compile_flags_cflags"></a><h3>CFLAGS</h3>
@@ -325,34 +354,85 @@ div {
 
 
 <a name="features"></a><h2>Features</h2>
-<div class="todo">
+<div>
     <table>
-        <tr><th class="vert_head">XXXXXX</th><th colspan="2" class="head">Popularity</th></tr>
-        <tr><th class="vert">XXXXXXXXXXXXX</th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+        <tr>
+            <th class="vert_head">Feature</th>
+            <th colspan="2" class="head">Popularity</th>
+        </tr>
+        <tr py:for="row in data['features']['listed']">
+            <th class="vert">${row['label']}</th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        <py:if test="data['features']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['features']['others']">
+            <th class="vert"><span class="group_item">others</span></th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:for="row in data['features']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot_count">${row['absolute']}</td>
+            <td class="foot_relative">(${row['relative']} %)</td>
+        </tr>
     </table>
 </div>
 
 
 <a name="global_use_flags"></a><h2>Global use flags</h2>
-<div class="todo">
+<div>
     <table>
-        <tr><th class="vert_head">XXXXXX</th><th colspan="2" class="head">Popularity</th></tr>
-        <tr><th class="vert">XXXXXXXXXXXXX</th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+        <tr>
+            <th class="vert_head">Use flag</th>
+            <th colspan="2" class="head">Popularity</th>
+        </tr>
+        <tr py:for="row in data['global_use_flags']['listed']">
+            <th class="vert">${row['label']}</th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        <py:if test="data['global_use_flags']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['global_use_flags']['others']">
+            <th class="vert"><span class="group_item">others</span></th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:for="row in data['global_use_flags']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot_count">${row['absolute']}</td>
+            <td class="foot_relative">(${row['relative']} %)</td>
+        </tr>
     </table>
 </div>
 
 
 <a name="system_profiles"></a><h2>System profiles</h2>
-<div class="todo">
+<div>
     <table>
-        <tr><th class="vert_head">XXXXXX</th><th colspan="2" class="head">Popularity</th></tr>
-        <tr><th class="vert">XXXXXXXXXXXXX</th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+        <tr>
+            <th class="vert_head">Profile</th>
+            <th colspan="2" class="head">Popularity</th>
+        </tr>
+        <tr py:for="row in data['system_profile']['listed']">
+            <th class="vert">${row['label']}</th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        <py:if test="data['system_profile']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['system_profile']['others']">
+            <th class="vert"><span class="group_item">others</span></th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:for="row in data['system_profile']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot_count">${row['absolute']}</td>
+            <td class="foot_relative">(${row['relative']} %)</td>
+        </tr>
     </table>
 </div>
 
@@ -383,20 +463,39 @@ div {
 <a name="mirrors"></a><h2>Mirrors</h2>
 <div>
     <a name="mirrors_sync"></a><h3>Package tree mirrors</h3>
-    <div class="todo">
+    <div>
         <table>
-            <tr><th class="vert_head">Mirror</th><th colspan="2" class="head">Popularity</th></tr>
-            <tr><th class="vert"><a href="ftp://mirror.csclub.uwaterloo.ca/gentoo-distfiles/">ftp://mirror.csclub.uwaterloo.ca/gentoo-distfiles/</a></th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert"><a href="http://distro.ibiblio.org/pub/linux/distributions/gentoo/">http://distro.ibiblio.org/pub/linux/distributions/gentoo/</a></th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+            <tr>
+                <th class="vert_head">Mirror</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['sync_mirror']['listed']">
+                <th class="vert">${row['label']}</th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['sync_mirror']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['sync_mirror']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['sync_mirror']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
         </table>
     </div>
 
     <a name="mirrors_distfiles"></a><h3>Distfiles mirrors</h3>
     <div>
         <table>
-            <tr><th class="vert_head">Mirror</th><th colspan="2" class="head">Popularity</th></tr>
+            <tr>
+                <th class="vert_head">Mirror</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
             <tr py:for="row in data['distfiles_mirrors']['listed']">
                 <th class="vert"><a href="${row['label']}">${row['label']}</a></th>
                 <td class="count">${row['absolute']}</td>

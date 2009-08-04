@@ -19,11 +19,21 @@
 from playmodel import *
 from playmodel import _gentoo_distfiles_mirrors_rel_table, _gentoo_mirror_pool_table
 from playmodel import _gentoo_accept_keywords_rel_table, _gentoo_keyword_pool_table
+from playmodel import _gentoo_features_rel_table, _gentoo_feature_pool_table
+from playmodel import _gentoo_global_use_flags_rel_table, _gentoo_use_flag_pool_table
+from playmodel import _gentoo_sync_mirror_rel_table, _gentoo_mirror_pool_table
+from playmodel import _gentoo_system_profile_rel_table, _gentoo_system_profile_pool_table
+from playmodel import _gentoo_chost_rel_table, _gentoo_chost_pool_table
 import datetime
 from sqlalchemy.sql import func, select, join, and_
 
 
-_MAX_DISTFILES_MIRRORS = 20
+_MAX_DISTFILES_MIRRORS = 30
+_MAX_FEATURES = 30
+_MAX_GLOBAL_USE_FLAGS = 100
+_MAX_SYNC_MIRRORS = 30
+_MAX_SYSTEM_PROFILE = 30
+_MAX_CHOST = 30
 
 
 class GentooReporter:
@@ -32,8 +42,8 @@ class GentooReporter:
         self.gentoo_machines = 1
         self._data = {}
 
-    def _relative(self, absolute):
-        return round(absolute * 100.0 / self.gentoo_machines, 1)
+    def _relative(self, absolute, post_dot_digits=1):
+        return round(absolute * 100.0 / self.gentoo_machines, post_dot_digits)
 
     def _analyze_archs(self):
         # TODO use different type of join?
@@ -81,10 +91,10 @@ class GentooReporter:
         return res
 
     def _analyze_simple_stuff(self):
-        def make_row(absolute, label=None):
+        def make_row(absolute, post_dot_digits, label=None):
             res = {
                 'absolute':absolute,
-                'relative':self._relative(absolute),
+                'relative':self._relative(absolute, post_dot_digits),
             }
             if label != None:
                 res['label'] = label
@@ -98,6 +108,41 @@ class GentooReporter:
                 '_POOL_CLASS_OBJECT':GentooMirrorString,
                 '_DISPLAY_LIMIT':_MAX_DISTFILES_MIRRORS,
                 '_FOREIGN_COLUMN_NAME':'mirror_id'},
+            {'_SECTION':'features',
+                '_POOL_TABLE_OBJECT':_gentoo_feature_pool_table,
+                '_REL_TABLE_OBJECT':_gentoo_features_rel_table,
+                '_REL_CLASS_OBJECT':GentooFeatureRel,
+                '_POOL_CLASS_OBJECT':GentooFeatureString,
+                '_DISPLAY_LIMIT':_MAX_FEATURES,
+                '_FOREIGN_COLUMN_NAME':'feature_id'},
+            {'_SECTION':'global_use_flags',
+                '_POOL_TABLE_OBJECT':_gentoo_use_flag_pool_table,
+                '_REL_TABLE_OBJECT':_gentoo_global_use_flags_rel_table,
+                '_REL_CLASS_OBJECT':GentooGlobalUseFlagRel,
+                '_POOL_CLASS_OBJECT':GentooUseFlagString,
+                '_DISPLAY_LIMIT':_MAX_GLOBAL_USE_FLAGS,
+                '_FOREIGN_COLUMN_NAME':'use_flag_id'},
+            {'_SECTION':'sync_mirror',
+                '_POOL_TABLE_OBJECT':_gentoo_mirror_pool_table,
+                '_REL_TABLE_OBJECT':_gentoo_sync_mirror_rel_table,
+                '_REL_CLASS_OBJECT':GentooSyncMirrorRel,
+                '_POOL_CLASS_OBJECT':GentooMirrorString,
+                '_DISPLAY_LIMIT':_MAX_SYNC_MIRRORS,
+                '_FOREIGN_COLUMN_NAME':'mirror_id'},
+            {'_SECTION':'system_profile',
+                '_POOL_TABLE_OBJECT':_gentoo_system_profile_pool_table,
+                '_REL_TABLE_OBJECT':_gentoo_system_profile_rel_table,
+                '_REL_CLASS_OBJECT':GentooSystemProfileRel,
+                '_POOL_CLASS_OBJECT':GentooSystemProfileString,
+                '_DISPLAY_LIMIT':_MAX_SYSTEM_PROFILE,
+                '_FOREIGN_COLUMN_NAME':'system_profile_id'},
+            {'_SECTION':'chost',
+                '_POOL_TABLE_OBJECT':_gentoo_chost_pool_table,
+                '_REL_TABLE_OBJECT':_gentoo_chost_rel_table,
+                '_REL_CLASS_OBJECT':GentooChostRel,
+                '_POOL_CLASS_OBJECT':GentooChostString,
+                '_DISPLAY_LIMIT':_MAX_CHOST,
+                '_FOREIGN_COLUMN_NAME':'chost_id'},
         ]
 
         res = {}
@@ -115,19 +160,24 @@ class GentooReporter:
             query = select([_POOL_CLASS_OBJECT.name, func.count(_REL_CLASS_OBJECT.machine_id)], \
                     from_obj=[pool_join]).group_by(getattr(_REL_CLASS_OBJECT, _FOREIGN_COLUMN_NAME)).order_by(\
                     func.count(_REL_CLASS_OBJECT.machine_id).desc(), _POOL_CLASS_OBJECT.name).limit(_DISPLAY_LIMIT)
+            if _DISPLAY_LIMIT >= 50:
+                post_dot_digits = 2
+            else:
+                post_dot_digits = 1
+
             final_rows = []
             others = total_entry_count
             for i in query.execute().fetchall():
                 label, absolute = i
                 others = others - absolute
-                final_rows.append(make_row(absolute, label))
+                final_rows.append(make_row(absolute, post_dot_digits, label))
             if others < 0:
                 others = 0
 
             res[_SECTION] = {
                 'listed':final_rows,
-                'others':[make_row(others)],
-                'total':[make_row(total_entry_count)],
+                'others':[make_row(others, post_dot_digits)],
+                'total':[make_row(total_entry_count, post_dot_digits)],
             }
         return res
 
