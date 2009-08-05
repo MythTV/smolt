@@ -17,7 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 import logging
-from sqlalchemy import Table, Column, Integer, BOOLEAN, SmallInteger, CHAR, ForeignKey, UniqueConstraint
+from sqlalchemy import Table, Column, Integer, BOOLEAN, SmallInteger, String, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import mapper, relation
 
 
@@ -55,6 +55,7 @@ def keyword_status_code(keyword_status):
 _POOL_TABLE_TEMPLATE = """
 %(table_var_name)s = Table('%(table_name)s', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
+    # TODO add index to name column and make sure it's actually working
     Column('name', %(col_type)s, unique=True),
 )
 
@@ -114,19 +115,19 @@ mapper(%(class_name)s, %(table_var_name)s,
 
 
 _pool_table_jobs = [
-    {'thing':'atom', 'col_type':'CHAR(255)'},
-    {'thing':'call_flag', 'col_type':'CHAR(255)'},
-    {'thing':'call_flag_class', 'col_type':'CHAR(127)'},
-    {'thing':'chost', 'col_type':'CHAR(255)'},
-    {'thing':'feature', 'col_type':'CHAR(127)'},
-    {'thing':'keyword', 'col_type':'CHAR(127)'},
-    {'thing':'mirror', 'col_type':'CHAR(255)'},
-    {'thing':'package', 'col_type':'CHAR(255)'},
-    {'thing':'repository', 'col_type':'CHAR(127)'},
-    {'thing':'slot', 'col_type':'CHAR(127)'},
-    {'thing':'system_profile', 'col_type':'CHAR(255)'},
-    {'thing':'use_flag', 'col_type':'CHAR(127)'},
-    {'thing':'version', 'col_type':'CHAR(127)'},
+    {'thing':'atom', 'col_type':'String(255)'},
+    {'thing':'call_flag', 'col_type':'String(255)'},
+    {'thing':'call_flag_class', 'col_type':'String(127)'},
+    {'thing':'chost', 'col_type':'String(255)'},
+    {'thing':'feature', 'col_type':'String(127)'},
+    {'thing':'keyword', 'col_type':'String(127)'},
+    {'thing':'mirror', 'col_type':'String(255)'},
+    {'thing':'package', 'col_type':'String(255)'},
+    {'thing':'repository', 'col_type':'String(127)'},
+    {'thing':'slot', 'col_type':'String(127)'},
+    {'thing':'system_profile', 'col_type':'String(255)'},
+    {'thing':'use_flag', 'col_type':'String(127)'},
+    {'thing':'version', 'col_type':'String(127)'},
 ]
 
 
