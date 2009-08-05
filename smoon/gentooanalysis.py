@@ -17,13 +17,13 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 from playmodel import *
-from playmodel import _gentoo_distfiles_mirrors_rel_table, _gentoo_mirror_pool_table
-from playmodel import _gentoo_accept_keywords_rel_table, _gentoo_keyword_pool_table
-from playmodel import _gentoo_features_rel_table, _gentoo_feature_pool_table
-from playmodel import _gentoo_global_use_flags_rel_table, _gentoo_use_flag_pool_table
-from playmodel import _gentoo_sync_mirror_rel_table, _gentoo_mirror_pool_table
-from playmodel import _gentoo_system_profile_rel_table, _gentoo_system_profile_pool_table
-from playmodel import _gentoo_chost_rel_table, _gentoo_chost_pool_table
+from playmodel import _gentoo_distfiles_mirrors_table, _gentoo_mirror_pool_table
+from playmodel import _gentoo_accept_keywords_table, _gentoo_keyword_pool_table
+from playmodel import _gentoo_features_table, _gentoo_feature_pool_table
+from playmodel import _gentoo_global_use_flags_table, _gentoo_use_flag_pool_table
+from playmodel import _gentoo_sync_mirror_table, _gentoo_mirror_pool_table
+from playmodel import _gentoo_system_profile_table, _gentoo_system_profile_pool_table
+from playmodel import _gentoo_chost_table, _gentoo_chost_pool_table
 import datetime
 from sqlalchemy.sql import func, select, join, and_
 
@@ -61,7 +61,7 @@ class GentooReporter:
             return res
 
         columns = [GentooKeywordString.name, func.count(GentooAcceptKeywordRel.machine_id), func.sum(GentooAcceptKeywordRel.stable)]
-        pool_join = _gentoo_accept_keywords_rel_table.join(_gentoo_keyword_pool_table)
+        pool_join = _gentoo_accept_keywords_table.join(_gentoo_keyword_pool_table)
         arch_join_condition = and_(GentooArchRel.keyword_id == GentooAcceptKeywordRel.keyword_id,\
                 GentooArchRel.machine_id == GentooAcceptKeywordRel.machine_id)
         query = select(columns, from_obj=[pool_join]).where(arch_join_condition).\
@@ -103,42 +103,42 @@ class GentooReporter:
         jobs = [
             {'_SECTION':'distfiles_mirrors',
                 '_POOL_TABLE_OBJECT':_gentoo_mirror_pool_table,
-                '_REL_TABLE_OBJECT':_gentoo_distfiles_mirrors_rel_table,
+                '_REL_TABLE_OBJECT':_gentoo_distfiles_mirrors_table,
                 '_REL_CLASS_OBJECT':GentooDistfilesMirrorRel,
                 '_POOL_CLASS_OBJECT':GentooMirrorString,
                 '_DISPLAY_LIMIT':_MAX_DISTFILES_MIRRORS,
                 '_FOREIGN_COLUMN_NAME':'mirror_id'},
             {'_SECTION':'features',
                 '_POOL_TABLE_OBJECT':_gentoo_feature_pool_table,
-                '_REL_TABLE_OBJECT':_gentoo_features_rel_table,
+                '_REL_TABLE_OBJECT':_gentoo_features_table,
                 '_REL_CLASS_OBJECT':GentooFeatureRel,
                 '_POOL_CLASS_OBJECT':GentooFeatureString,
                 '_DISPLAY_LIMIT':_MAX_FEATURES,
                 '_FOREIGN_COLUMN_NAME':'feature_id'},
             {'_SECTION':'global_use_flags',
                 '_POOL_TABLE_OBJECT':_gentoo_use_flag_pool_table,
-                '_REL_TABLE_OBJECT':_gentoo_global_use_flags_rel_table,
+                '_REL_TABLE_OBJECT':_gentoo_global_use_flags_table,
                 '_REL_CLASS_OBJECT':GentooGlobalUseFlagRel,
                 '_POOL_CLASS_OBJECT':GentooUseFlagString,
                 '_DISPLAY_LIMIT':_MAX_GLOBAL_USE_FLAGS,
                 '_FOREIGN_COLUMN_NAME':'use_flag_id'},
             {'_SECTION':'sync_mirror',
                 '_POOL_TABLE_OBJECT':_gentoo_mirror_pool_table,
-                '_REL_TABLE_OBJECT':_gentoo_sync_mirror_rel_table,
+                '_REL_TABLE_OBJECT':_gentoo_sync_mirror_table,
                 '_REL_CLASS_OBJECT':GentooSyncMirrorRel,
                 '_POOL_CLASS_OBJECT':GentooMirrorString,
                 '_DISPLAY_LIMIT':_MAX_SYNC_MIRRORS,
                 '_FOREIGN_COLUMN_NAME':'mirror_id'},
             {'_SECTION':'system_profile',
                 '_POOL_TABLE_OBJECT':_gentoo_system_profile_pool_table,
-                '_REL_TABLE_OBJECT':_gentoo_system_profile_rel_table,
+                '_REL_TABLE_OBJECT':_gentoo_system_profile_table,
                 '_REL_CLASS_OBJECT':GentooSystemProfileRel,
                 '_POOL_CLASS_OBJECT':GentooSystemProfileString,
                 '_DISPLAY_LIMIT':_MAX_SYSTEM_PROFILE,
                 '_FOREIGN_COLUMN_NAME':'system_profile_id'},
             {'_SECTION':'chost',
                 '_POOL_TABLE_OBJECT':_gentoo_chost_pool_table,
-                '_REL_TABLE_OBJECT':_gentoo_chost_rel_table,
+                '_REL_TABLE_OBJECT':_gentoo_chost_table,
                 '_REL_CLASS_OBJECT':GentooChostRel,
                 '_POOL_CLASS_OBJECT':GentooChostString,
                 '_DISPLAY_LIMIT':_MAX_CHOST,

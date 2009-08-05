@@ -166,10 +166,10 @@ def pool_class_name(middle, vector_flag=False):
     return 'Gentoo%sString' % middle.title().replace('_', '')
 
 def _rel_table_name(middle, vector_flag=False):
-    return 'gentoo_%s%s_rel' % (middle, numerus(vector_flag))
+    return 'gentoo_%s%s' % (middle, numerus(vector_flag))
 
 def _rel_table_instance(middle, vector_flag=False):
-    return '_gentoo_%s%s_rel_table' % (middle, numerus(vector_flag))
+    return '_gentoo_%s%s_table' % (middle, numerus(vector_flag))
 
 def rel_class_name(middle):
     return 'Gentoo%sRel' % middle.title().replace('_', '')
@@ -217,7 +217,7 @@ for job in _rel_table_jobs:
     exec(program)
 
 
-_gentoo_installed_packages_rel = Table('gentoo_installed_packages_rel', metadata,
+_gentoo_installed_packages_table = Table('gentoo_installed_packages', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('machine_id', Integer),
     Column('package_id', Integer, ForeignKey('%s.id' % 'gentoo_package_pool')),
@@ -232,9 +232,9 @@ class GentooInstalledPackagesRel(object):
         self.slot_id = slot_id
 
 
-_gentoo_installed_package_properties_rel_table = Table('gentoo_installed_package_properties_rel', metadata,
+_gentoo_installed_package_properties_table = Table('gentoo_installed_package_properties', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages_rel'), unique=True),
+    Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages'), unique=True),
     Column('version_id', Integer, ForeignKey('%s.id' % 'gentoo_version_pool')),
     Column('keyword_status', Integer),  # Could be MSEnum, choosing Integer for flexibility
     Column('masked', BOOLEAN),
@@ -253,16 +253,16 @@ class GentooInstalledPackagePropertiesRel(object):
         self.world = world
         self.repository_id = repository_id
 
-mapper(GentooInstalledPackagePropertiesRel, _gentoo_installed_package_properties_rel_table,
+mapper(GentooInstalledPackagePropertiesRel, _gentoo_installed_package_properties_table,
     properties={
         'install':relation(GentooInstalledPackagesRel),
     }
 )
 
 
-_gentoo_installed_package_use_flag_rel_table = Table('gentoo_installed_package_use_flag_rel', metadata,
+_gentoo_installed_package_use_flag_table = Table('gentoo_installed_package_use_flag', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages_rel')),
+    Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages')),
     Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool')),
     UniqueConstraint('install_id', 'use_flag_id'),
 )
@@ -272,14 +272,14 @@ class GentooInstalledPackageUseFlagRel(object):
         self.install_id = install_id
         self.use_flag_id = use_flag_id
 
-mapper(GentooInstalledPackageUseFlagRel, _gentoo_installed_package_use_flag_rel_table,
+mapper(GentooInstalledPackageUseFlagRel, _gentoo_installed_package_use_flag_table,
     properties={
         'install':relation(GentooInstalledPackagesRel),
     }
 )
 
 
-mapper(GentooInstalledPackagesRel, _gentoo_installed_packages_rel,
+mapper(GentooInstalledPackagesRel, _gentoo_installed_packages_table,
     properties={
         'package':relation(GentooPackageString),
         'slot':relation(GentooSlotString),
@@ -289,7 +289,7 @@ mapper(GentooInstalledPackagesRel, _gentoo_installed_packages_rel,
 )
 
 
-_gentoo_package_mask_rel_table = Table('gentoo_package_mask_rel', metadata,
+_gentoo_package_mask_table = Table('gentoo_package_mask', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('machine_id', Integer),
     Column('package_id', Integer, ForeignKey('%s.id' % 'gentoo_package_pool')),
@@ -303,7 +303,7 @@ class GentooPackageMaskRel(object):
         self.package_id = package_id
         self.atom_id = atom_id
 
-mapper(GentooPackageMaskRel, _gentoo_package_mask_rel_table,
+mapper(GentooPackageMaskRel, _gentoo_package_mask_table,
     properties={
         'package':relation(GentooPackageString),
         'atom':relation(GentooAtomString),
@@ -311,7 +311,7 @@ mapper(GentooPackageMaskRel, _gentoo_package_mask_rel_table,
 )
 
 
-_gentoo_accept_keywords_rel_table = Table('gentoo_accept_keyword_rel', metadata,
+_gentoo_accept_keywords_table = Table('gentoo_accept_keyword', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('machine_id', Integer),
     Column('keyword_id', Integer, ForeignKey('%s.id' % 'gentoo_keyword_pool')),
@@ -325,14 +325,14 @@ class GentooAcceptKeywordRel(object):
         self.keyword_id = keyword_id
         self.stable = stable
 
-mapper(GentooAcceptKeywordRel, _gentoo_accept_keywords_rel_table,
+mapper(GentooAcceptKeywordRel, _gentoo_accept_keywords_table,
     properties={
         'keyword':relation(GentooKeywordString),
     }
 )
 
 
-_gentoo_call_flag_rel_table = Table('gentoo_call_flag_rel', metadata,
+_gentoo_call_flag_table = Table('gentoo_call_flag', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('machine_id', Integer),
     Column('call_flag_class_id', Integer, ForeignKey('%s.id' % 'gentoo_call_flag_class_pool')),
@@ -348,7 +348,7 @@ class GentooCallFlagRel(object):
         self.call_flag_id = call_flag_id
         self.position = position
 
-mapper(GentooCallFlagRel, _gentoo_call_flag_rel_table,
+mapper(GentooCallFlagRel, _gentoo_call_flag_table,
     properties={
         'call_flag':relation(GentooCallFlagString),
     }
