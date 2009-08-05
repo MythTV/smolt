@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: system-config-display\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-14 11:36-0400\n"
+"POT-Creation-Date: 2009-08-05 19:52+0200\n"
 "PO-Revision-Date: 2009-03-27 01:18+0100\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: catalan <fedora@softcatala.org>\n"
@@ -40,398 +40,823 @@ msgstr ""
 "#-#-#-#-#  ca.po (ca)  #-#-#-#-#\n"
 "#-#-#-#-#  ca.po (system-config-display)  #-#-#-#-#\n"
 
-#: ../src/xConfigDialog.py:60
+#: deleteProfile.py:36 smolt.py:360
 #, python-format
-msgid "%s with %s"
-msgstr "%s amb %s"
-
-#: ../src/xConfigDialog.py:433
-msgid "Configure..."
-msgstr "Configura...."
-
-#: ../src/xConfigDialog.py:493
-#, python-format
-msgid "%s (autoconfigured)"
-msgstr "%s (autoconfigurada)"
-
-#: ../src/xConfigDialog.py:648
-msgid "(autoconfigured)"
-msgstr "(autoconfigurada)"
-
-#: ../src/xconf.py:56
-msgid "Display"
-msgstr "Pantalla"
-
-#: ../src/xconf.py:57
-msgid "Configure resolution and colors"
-msgstr "Configura la resolució i els colors"
-
-#: ../src/xconf.py:68
-msgid ""
-"Display settings changed\n"
-"\n"
+msgid "Server Message: \"%s\""
 msgstr ""
-"Paràmetres modificats de la pantalla\n"
-"\n"
 
-#: ../src/xconf.py:70
-msgid ""
-"You need to log out and restart the X server for the changes to take "
-"effect.\n"
-msgstr "Sortiu i reinicieu el servidor X perquè s'apliquin els canvis.\n"
-
-#: ../src/xconf.py:72
-#, python-format
-msgid "Configuration was written to %s, original configuration saved as %s.\n"
+#: deleteProfile.py:46 sendProfile.py:46
+msgid "enable debug information"
 msgstr ""
-"S'ha escrit la configuració a %s, la configuració original s'ha anomenat i "
-"desat a %s.\n"
 
-#: ../src/xconf.py:74
+#: deleteProfile.py:51 sendProfile.py:56
 #, python-format
-msgid "Configuration was written to %s.\n"
-msgstr "S'ha escrit la configuració a %s.\n"
-
-#: ../src/xconf.py:76
-msgid ""
-"\n"
-"Note: The file /etc/X11/XF86Config-4 has been deprecated and we now always "
-"use /etc/X11/xorg.conf. The XF86Config-4 file has been saved as XF86Config-4."
-"deprecated."
+msgid "specify the URL of the server (default \"%default\")"
 msgstr ""
-"\n"
-"Nota: El fitxer /etc/X11/XF86Config-4 ha quedat en desús i ara sempre "
-"s'utilitza /etc/X11/XF86Config. El fitxer XF86Config-4 s'ha desat com a "
-"XF86Config-4.deprecated."
 
-#: ../src/xconf.py:86
+#: deleteProfile.py:56 sendProfile.py:71
+msgid "print information only, do not send"
+msgstr ""
+
+#: deleteProfile.py:61 sendProfile.py:86
 #, python-format
-msgid "Writing temporary config file to %s"
-msgstr "S'està escrivint el fitxer de configuració temporal a %s"
+msgid "specify HTTP user agent (default \"%default\")"
+msgstr ""
 
-#: ../src/xconf.py:89
-msgid "Trying to start X server"
-msgstr "S'està intentant inciar el servidor X"
-
-#: ../src/xconf.py:98
+#: deleteProfile.py:66 sendProfile.py:91
 #, python-format
-msgid "error opening %s\n"
-msgstr "Error en obrir %s\n"
+msgid "specify HTTP timeout in seconds (default %default seconds)"
+msgstr ""
 
-#: ../src/xconf.py:124 ../src/xconf.py:149
-msgid "X SERVER FAILED"
-msgstr "El servidor X no respon"
+#: deleteProfile.py:70 sendProfile.py:110
+msgid "specify which uuid to use, useful for debugging and testing mostly."
+msgstr ""
 
-#: ../src/xconf.py:130
-#, python-format
-msgid "Waiting for X server to start...log located in %s\n"
-msgstr "S'està esperant que s'iniciï X... el registre és a %s\n"
+#: deleteProfile.py:89
+msgid "Error contacting Server:"
+msgstr ""
 
-#: ../src/xconf.py:163
-msgid "X server started successfully."
-msgstr "El servidor X s'ha inciat amb correctament."
+#: deleteProfile.py:97
+msgid "Profile removed, please verify at"
+msgstr ""
 
-#: ../src/xconf.py:221
+#: gui.py:35
 #, fuzzy
-msgid ""
-"Usage: system-config-display [OPTIONS]\n"
-"Options:\n"
-"  -h, --help        display this help and exit\n"
-"  -v, --verbose     display what the program is doing more verbosely\n"
-"  -o, --output=     the filename of the config file to be output\n"
-"      --reconfig    don't base configuration on existing config files\n"
-"      --noui        don't show the gui, implicit when using --set options\n"
-"      --forceui     force the ui to be shown, needed when using --set "
-"options\n"
-"                    to change some setting, but you still want to show the "
-"ui\n"
-"      --set-<key>=  change the value of a specific configuration key.\n"
-"\n"
-"        currently supported keys are:\n"
-"\n"
-"        resolution  the screen resolution used\n"
-"        depth       the color depth in bits\n"
-"                    most drivers support 8, 15, 16 and 24\n"
-"        driver      the graphics card driver to use\n"
-"        vsync       monitor vertical sync rates allowed (in Hz)\n"
-"        hsync       monitor horizontal sync rates allowed (in kHz)\n"
-"                    \n"
+msgid "General"
+msgstr "Genèric"
+
+#: gui.py:37
+msgid "Distribution"
 msgstr ""
-"Sintaxi: system-config-display [OPCIONS]\n"
-"Opcions:\n"
-" -h, --help        visualitza aquesta ajuda i surt\n"
-" -v, --verbose     visualitza què fa el programa amb més detall\n"
-" -o, --output=     el nom del fitxer de configuració que ha de sortir\n"
-"     --reconfig    no basa la configuració en fitxers de configuració "
-"existents\n"
-"     --noui        no mostra la gui, implícita en utilitzar l'opció --set\n"
-"     --forceui     fa que es mostri la gui, és implícita en utilitzar les\n"
-"                   opcions --set per a modificar alguns paràmetres, però "
-"per\n"
-"                   si tot i així encara voleu visualitzar la gui\n"
-"     --set-<key>=  canvia el valor d'una clau de configuració específica.\n"
-"\n"
-"     les claus permeses actualment són:\n"
-"\n"
-"     resolution    la resolució de pantalla utilitzada\n"
-"     depth         la profunditat de colors en bits\n"
-"                   la majoria de controladors permeten 8, 15, 16 i 24\n"
-"     driver        el controlador de la targeta gràfica que s'ha "
-"d'utilitzar\n"
-"     vsync         velocitats de sincronització vertical del monitor\n"
-"                   permeses (en Hz)\n"
-"     hsync         velocitats de sincronització horitzontal del monitor\n"
-"                   permeses (en Hz)\n"
-"     videoram      la quantitat de memòria de vídeo en kilobytes,\n"
-"                   0 significa prova\n"
-"                   \n"
 
-#: ../src/xconf.py:310
+#: gui.py:82
+msgid "Label"
+msgstr ""
+
+#: gui.py:83
+msgid "Data"
+msgstr ""
+
+#: gui.py:115
+msgid "Bus"
+msgstr ""
+
+#: gui.py:116
+msgid "Driver"
+msgstr ""
+
+#: gui.py:117
+msgid "Type"
+msgstr ""
+
+#: gui.py:118
+msgid "Description"
+msgstr ""
+
+#: privacypolicy.py:3
 #, python-format
-msgid "Read configuration file %s"
-msgstr "Llegeix el fitxer de configuració %s"
+msgid ""
+"<span></span>\n"
+"Smolt will only send hardware and basic operating system information to the\n"
+"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"machine is the UUID.  As long as the submitter does not give out this UUID\n"
+"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"his/her profile from the database they need only run<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"The information sent to the smolt database server should be considered public\n"
+"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
+"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"we will be using smolt as leverage to gain better support for open source\n"
+"drivers and better support in general.<br>\n"
+"<br>\n"
+"IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
+"server first.  This is the only place IP addresses are being logged and they\n"
+"are kept on that server for a period of 4 weeks at which time log rotation\n"
+"removes these logs.  The Fedora Project does not aggregate IP addresses in\n"
+"the smolt database.  These logs are private and will not be available to the\n"
+"general public.<br>\n"
+"<br>\n"
+"Users unhappy with this policy should simply not use smolt.  Users with\n"
+"questions about this policy should contact the Fedora Infrastructure Team at\n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can delete their\n"
+"profiles at any time using<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"Thanks for participating and for your interest in our privacy policy.\n"
+msgstr ""
 
-#: ../src/xconf.py:312
-msgid "Could not find existing X configuration"
+#: scan.py:41
+msgid "Current rating for vendor/model."
+msgstr ""
+
+#: scan.py:45
+msgid "Unrated/Unknown"
+msgstr ""
+
+#: scan.py:46
+msgid "Non-working"
+msgstr ""
+
+#: scan.py:47
+msgid "Partially-working"
+msgstr ""
+
+#: scan.py:48
+msgid "Requires 3rd party drivers"
+msgstr ""
+
+#: scan.py:49
+#, fuzzy
+msgid "Works, needs additional configuration"
+msgstr "S'està escrivint la configuració a %s"
+
+#: scan.py:50
+msgid "Works out of the box"
+msgstr ""
+
+#: scan.py:58
+#, python-format
+msgid "Scanning %s for known errata.\n"
+msgstr ""
+
+#: scan.py:88
+msgid "\tErrata Found!"
+msgstr ""
+
+#: scan.py:91
+msgid "\tNo errata found, if this machine is having issues please go to"
+msgstr ""
+
+#: scan.py:92
+msgid "\tyour profile and create a wiki page for the device so others can"
+msgstr ""
+
+#: scan.py:93
+msgid "\tbenefit"
+msgstr ""
+
+#: scan.py:101 smolt.py:1116
+msgid "Error:"
+msgstr ""
+
+#: scan.py:103 smolt.py:1118
+msgid "Hint:"
+msgstr ""
+
+#: sendProfile.py:51 smoltGui.py:327
+msgid "specify the location of the (only) config file to use"
+msgstr ""
+
+#: sendProfile.py:61
+msgid "(optional) Fedora Account System registration"
+msgstr ""
+
+#: sendProfile.py:66
+msgid "password, will prompt if not specified"
+msgstr ""
+
+#: sendProfile.py:76
+msgid "don't prompt to send, just send"
+msgstr ""
+
+#: sendProfile.py:81
+msgid "continue to send until success"
+msgstr ""
+
+#: sendProfile.py:96
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgstr ""
+
+#: sendProfile.py:101
+msgid "only scan this machine for known hardware errata, do not send profile."
+msgstr ""
+
+#: sendProfile.py:106
+msgid "do not scan this machine for know hardware errata, only submit profile."
+msgstr ""
+
+#: sendProfile.py:120
+msgid "Request a new public UUID"
+msgstr ""
+
+#: sendProfile.py:124
+msgid "HTTP proxy"
+msgstr ""
+
+#: sendProfile.py:144
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+
+#: sendProfile.py:154
+#, python-format
+msgid "Success!  Your new public UUID is: %s"
+msgstr ""
+
+#: sendProfile.py:174
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr ""
+
+#: sendProfile.py:175
+msgid "y"
+msgstr ""
+
+#: sendProfile.py:176 sendProfile.py:179
+msgid "Exiting..."
+msgstr ""
+
+#: sendProfile.py:190
+msgid "Retry Enabled - Retrying"
+msgstr ""
+
+#: sendProfile.py:199
+#, fuzzy
+msgid "Could not send - Exiting"
 msgstr "No s'ha trobat la configuració d'X existent"
 
-#: ../src/xconf.py:318
-#, python-format
-msgid "Trying with card: %s"
-msgstr "S'està provant amb la targeta: %s"
+#: sendProfile.py:204
+msgid "Password:"
+msgstr ""
 
-#: ../src/xconf.py:349
+#: sendProfile.py:209
+msgid "Registration Failed, Try again"
+msgstr ""
+
+#: sendProfile.py:220
 #, python-format
-msgid "Couldn't start X server on card %d"
+msgid ""
+"To share your profile: \n"
+"\t%s (public)"
+msgstr ""
+
+#: sendProfile.py:224
+#, python-format
+msgid "\tAdmin Password: %s"
+msgstr ""
+
+#: sendProfile.py:227
+msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgstr ""
+
+#: smoltFirstBoot.py:38 smoltFirstBoot.py:39
+#, fuzzy
+msgid "Hardware Profile"
+msgstr "_Maquinari"
+
+#: smoltFirstBoot.py:56
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr ""
+
+#: smoltFirstBoot.py:64
+msgid "_Reconsider sending"
+msgstr ""
+
+#: smoltFirstBoot.py:65
+msgid "_No, do not send."
+msgstr ""
+
+#: smoltFirstBoot.py:92
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr ""
+
+#: smoltFirstBoot.py:119
+msgid "_Participate in KernelOOPS"
+msgstr ""
+
+#: smoltFirstBoot.py:120
+msgid "Submit profile link to _Bodhi"
+msgstr ""
+
+#: smoltFirstBoot.py:122
+msgid "_Send Profile"
+msgstr ""
+
+#: smoltFirstBoot.py:123
+msgid "D_o not send profile"
+msgstr ""
+
+#: smoltGui.py:92
+msgid "Smolt"
+msgstr ""
+
+#: smoltGui.py:97
+msgid "&File"
+msgstr ""
+
+#: smoltGui.py:98
+msgid "&Help"
+msgstr ""
+
+#: smoltGui.py:101
+msgid "&Send Profile"
+msgstr ""
+
+#: smoltGui.py:102
+msgid "&My Smolt Page"
+msgstr ""
+
+#: smoltGui.py:103
+msgid "&Exit"
+msgstr ""
+
+#: smoltGui.py:104
+msgid "Show &Privacy Policy"
+msgstr ""
+
+#: smoltGui.py:105
+msgid "&About"
+msgstr ""
+
+#: smoltGui.py:106
+msgid "About &Qt"
+msgstr ""
+
+#: smoltGui.py:120
+msgid "Main Tool Bar"
+msgstr ""
+
+#: smoltGui.py:170
+msgid "No distribution-specific data yet"
+msgstr ""
+
+#: smoltGui.py:175 smoltGui.py:238
+msgid "Error"
+msgstr ""
+
+#: smoltGui.py:239
+msgid "An error occurred while sending the data to the server."
+msgstr ""
+
+#: smoltGui.py:246
+msgid "Profile Sent"
+msgstr ""
+
+#: smoltGui.py:247
+#, python-format
+msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
+msgstr ""
+
+#: smoltGui.py:270
+msgid "Privacy Policy"
+msgstr ""
+
+#: smoltGui.py:284
+#, python-format
+msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
+msgstr ""
+
+#: smoltGui.py:285
+msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
+msgstr ""
+
+#: smoltGui.py:288
+msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
+msgstr ""
+
+#: smoltGui.py:294
+msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
+msgstr ""
+
+#: smoltGui.py:296
+#, python-format
+msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
+msgstr ""
+
+#: smolt.py:362
+#, fuzzy, python-format
+msgid "Could not contact server: %s"
 msgstr "No s'ha pogut iniciar el servidor X en la targeta %d"
 
-#  X not already running.  Try to bring up a server.
-#: ../src/xconf.py:354
-msgid "Error, failed to start X server."
-msgstr "S'ha produït un error, no es pot iniciar el servidor X."
-
-#: ../src/xconf.py:357
-msgid ""
-"Couldn't start X server with old config, trying with a fresh configuration"
+#: smolt.py:412
+msgid "Could not bind to dbus.  Is dbus running?"
 msgstr ""
-"No s'ha pogut iniciar el servidor X amb la configuració antiga, s'està "
-"intentant amb una configuració nova"
+
+#: smolt.py:418
+msgid ""
+"Could not connect to hal, is it running?\n"
+"Run \"service haldaemon start\" as root"
+msgstr ""
+
+#: smolt.py:507
+msgid ""
+"\tYour pub_uuid could not be written.\n"
+"\n"
+msgstr ""
+
+#: smolt.py:516
+#, python-format
+msgid "\tYour admin token  could not be cached: %s\n"
+msgstr ""
+
+#: smolt.py:536 smolt.py:579 smolt.py:609
+#, python-format
+msgid "Error contacting Server: %s"
+msgstr ""
+
+#: smolt.py:545 smolt.py:596
+msgid "Wrong version, server incapable of handling your client"
+msgstr ""
+
+#: smolt.py:550
+msgid "Something went wrong fetching a token"
+msgstr ""
+
+#: smolt.py:589
+#, python-format
+msgid "An error has occured while contacting the server: %s"
+msgstr ""
+
+#: smolt.py:630
+msgid "Devices"
+msgstr ""
+
+#: smolt.py:637
+msgid "\tFilesystem Information"
+msgstr ""
+
+#: smolt.py:649
+msgid "UUID"
+msgstr ""
+
+#: smolt.py:650
+msgid "OS"
+msgstr ""
+
+#: smolt.py:651
+msgid "Default run level"
+msgstr ""
+
+#: smolt.py:652
+msgid "Language"
+msgstr ""
+
+#: smolt.py:653
+msgid "Platform"
+msgstr ""
+
+#: smolt.py:654
+msgid "BogoMIPS"
+msgstr ""
+
+#: smolt.py:655
+msgid "CPU Vendor"
+msgstr ""
+
+#: smolt.py:656
+msgid "CPU Model"
+msgstr ""
+
+#: smolt.py:657
+msgid "CPU Stepping"
+msgstr ""
+
+#: smolt.py:658
+msgid "CPU Family"
+msgstr ""
+
+#: smolt.py:659
+msgid "CPU Model Num"
+msgstr ""
+
+#: smolt.py:660
+msgid "Number of CPUs"
+msgstr ""
+
+#: smolt.py:661
+msgid "CPU Speed"
+msgstr ""
+
+#: smolt.py:662
+msgid "System Memory"
+msgstr ""
+
+#: smolt.py:663
+msgid "System Swap"
+msgstr ""
+
+#: smolt.py:664
+msgid "Vendor"
+msgstr ""
+
+#: smolt.py:665
+#, fuzzy
+msgid "System"
+msgstr "Sistemes amb ratolí"
+
+#: smolt.py:666
+msgid "Form factor"
+msgstr ""
+
+#: smolt.py:667
+msgid "Kernel"
+msgstr ""
+
+#: smolt.py:668
+msgid "SELinux Enabled"
+msgstr ""
+
+#: smolt.py:669
+msgid "SELinux Policy"
+msgstr ""
+
+#: smolt.py:670
+msgid "SELinux Enforce"
+msgstr ""
+
+#: smolt.py:1139
+msgid "Unable to save UUID, continuing...\n"
+msgstr ""
+
+#: smolt.py:1140
+#, python-format
+msgid "Your UUID file could not be created: %s\n"
+msgstr ""
+
+#: smolt.py:1143
+msgid "Unable to determine UUID of system!\n"
+msgstr ""
+
+#: smolt.py:1162
+#, python-format
+msgid "Error determining public UUID: %s"
+msgstr ""
+
+#: smolt.py:1163
+msgid "Unable to determine Public UUID!\n"
+msgstr ""
+
+#: software.py:44
+msgid "Cannot Determine Runlevel"
+msgstr ""
+
+#~ msgid "%s with %s"
+#~ msgstr "%s amb %s"
+
+#~ msgid "Configure..."
+#~ msgstr "Configura...."
+
+#~ msgid "%s (autoconfigured)"
+#~ msgstr "%s (autoconfigurada)"
+
+#~ msgid "(autoconfigured)"
+#~ msgstr "(autoconfigurada)"
+
+#~ msgid "Display"
+#~ msgstr "Pantalla"
+
+#~ msgid "Configure resolution and colors"
+#~ msgstr "Configura la resolució i els colors"
+
+#~ msgid ""
+#~ "Display settings changed\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Paràmetres modificats de la pantalla\n"
+#~ "\n"
+
+#~ msgid "You need to log out and restart the X server for the changes to take effect.\n"
+#~ msgstr "Sortiu i reinicieu el servidor X perquè s'apliquin els canvis.\n"
+
+#~ msgid "Configuration was written to %s, original configuration saved as %s.\n"
+#~ msgstr "S'ha escrit la configuració a %s, la configuració original s'ha anomenat i desat a %s.\n"
+
+#~ msgid "Configuration was written to %s.\n"
+#~ msgstr "S'ha escrit la configuració a %s.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Note: The file /etc/X11/XF86Config-4 has been deprecated and we now always use /etc/X11/xorg.conf. The XF86Config-4 file has been saved as XF86Config-4.deprecated."
+#~ msgstr ""
+#~ "\n"
+#~ "Nota: El fitxer /etc/X11/XF86Config-4 ha quedat en desús i ara sempre s'utilitza /etc/X11/XF86Config. El fitxer XF86Config-4 s'ha desat com a XF86Config-4.deprecated."
+
+#~ msgid "Writing temporary config file to %s"
+#~ msgstr "S'està escrivint el fitxer de configuració temporal a %s"
+
+#~ msgid "Trying to start X server"
+#~ msgstr "S'està intentant inciar el servidor X"
+
+#~ msgid "error opening %s\n"
+#~ msgstr "Error en obrir %s\n"
+
+#~ msgid "X SERVER FAILED"
+#~ msgstr "El servidor X no respon"
+
+#~ msgid "Waiting for X server to start...log located in %s\n"
+#~ msgstr "S'està esperant que s'iniciï X... el registre és a %s\n"
+
+#~ msgid "X server started successfully."
+#~ msgstr "El servidor X s'ha inciat amb correctament."
+
+#, fuzzy
+#~ msgid ""
+#~ "Usage: system-config-display [OPTIONS]\n"
+#~ "Options:\n"
+#~ "  -h, --help        display this help and exit\n"
+#~ "  -v, --verbose     display what the program is doing more verbosely\n"
+#~ "  -o, --output=     the filename of the config file to be output\n"
+#~ "      --reconfig    don't base configuration on existing config files\n"
+#~ "      --noui        don't show the gui, implicit when using --set options\n"
+#~ "      --forceui     force the ui to be shown, needed when using --set options\n"
+#~ "                    to change some setting, but you still want to show the ui\n"
+#~ "      --set-<key>=  change the value of a specific configuration key.\n"
+#~ "\n"
+#~ "        currently supported keys are:\n"
+#~ "\n"
+#~ "        resolution  the screen resolution used\n"
+#~ "        depth       the color depth in bits\n"
+#~ "                    most drivers support 8, 15, 16 and 24\n"
+#~ "        driver      the graphics card driver to use\n"
+#~ "        vsync       monitor vertical sync rates allowed (in Hz)\n"
+#~ "        hsync       monitor horizontal sync rates allowed (in kHz)\n"
+#~ "                    \n"
+#~ msgstr ""
+#~ "Sintaxi: system-config-display [OPCIONS]\n"
+#~ "Opcions:\n"
+#~ " -h, --help        visualitza aquesta ajuda i surt\n"
+#~ " -v, --verbose     visualitza què fa el programa amb més detall\n"
+#~ " -o, --output=     el nom del fitxer de configuració que ha de sortir\n"
+#~ "     --reconfig    no basa la configuració en fitxers de configuració existents\n"
+#~ "     --noui        no mostra la gui, implícita en utilitzar l'opció --set\n"
+#~ "     --forceui     fa que es mostri la gui, és implícita en utilitzar les\n"
+#~ "                   opcions --set per a modificar alguns paràmetres, però per\n"
+#~ "                   si tot i així encara voleu visualitzar la gui\n"
+#~ "     --set-<key>=  canvia el valor d'una clau de configuració específica.\n"
+#~ "\n"
+#~ "     les claus permeses actualment són:\n"
+#~ "\n"
+#~ "     resolution    la resolució de pantalla utilitzada\n"
+#~ "     depth         la profunditat de colors en bits\n"
+#~ "                   la majoria de controladors permeten 8, 15, 16 i 24\n"
+#~ "     driver        el controlador de la targeta gràfica que s'ha d'utilitzar\n"
+#~ "     vsync         velocitats de sincronització vertical del monitor\n"
+#~ "                   permeses (en Hz)\n"
+#~ "     hsync         velocitats de sincronització horitzontal del monitor\n"
+#~ "                   permeses (en Hz)\n"
+#~ "     videoram      la quantitat de memòria de vídeo en kilobytes,\n"
+#~ "                   0 significa prova\n"
+#~ "                   \n"
+
+#~ msgid "Read configuration file %s"
+#~ msgstr "Llegeix el fitxer de configuració %s"
+
+#~ msgid "Trying with card: %s"
+#~ msgstr "S'està provant amb la targeta: %s"
+
+#  X not already running.  Try to bring up a server.
+#~ msgid "Error, failed to start X server."
+#~ msgstr "S'ha produït un error, no es pot iniciar el servidor X."
+
+#~ msgid "Couldn't start X server with old config, trying with a fresh configuration"
+#~ msgstr "No s'ha pogut iniciar el servidor X amb la configuració antiga, s'està intentant amb una configuració nova"
 
 #  if we had to start an X server, make it look half-way decent.
 #  Call xsri to set the background to something nice
 #  Work around bug in pygtk where it sets LC_NUMERIC
 #  TODO: try to import gtk+, on fail, try to start new X
-#: ../src/xconf.py:396
-msgid "Moving /etc/X11/XF86Config-4 to /etc/X11/XF86Config-4.deprecated"
-msgstr "S'està movent /etc/X11/XF86Config-4 a /etc/X11/XF86Config-4.deprecated"
+#~ msgid "Moving /etc/X11/XF86Config-4 to /etc/X11/XF86Config-4.deprecated"
+#~ msgstr "S'està movent /etc/X11/XF86Config-4 a /etc/X11/XF86Config-4.deprecated"
 
-#: ../src/xconf.py:403
-#, python-format
-msgid "Backing up %s to %s"
-msgstr "S'està fent una còpia de seguretat de %s a %s"
+#~ msgid "Backing up %s to %s"
+#~ msgstr "S'està fent una còpia de seguretat de %s a %s"
 
-#: ../src/xconf.py:409
-#, python-format
-msgid "Writing configuration to %s"
-msgstr "S'està escrivint la configuració a %s"
+#~ msgid "Removing old /etc/X11/X"
+#~ msgstr "S'està eliminant l'anterior /etc/X11/X "
 
-#: ../src/xconf.py:414
-msgid "Removing old /etc/X11/X"
-msgstr "S'està eliminant l'anterior /etc/X11/X "
-
-#: ../src/xconf.py:419
-msgid "Creating /etc/X11/X symlink"
-msgstr "S'està creant l'enllaç simbòlic /etc/X11/X "
+#~ msgid "Creating /etc/X11/X symlink"
+#~ msgstr "S'està creant l'enllaç simbòlic /etc/X11/X "
 
 #  Tell gdm to restart the server when the user logs out
 #  Otherwise the xserver won't re-read the config file
-#: ../src/xconf.py:430
-msgid "Kicking gdm"
-msgstr "S'està reiniciant el gdm"
+#~ msgid "Kicking gdm"
+#~ msgstr "S'està reiniciant el gdm"
 
-#: ../src/xhwstate.py:139
-msgid "Probing monitor"
-msgstr "S'està provant el monitor"
+#~ msgid "Probing monitor"
+#~ msgstr "S'està provant el monitor"
 
-#: ../src/xhwstate.py:147
-msgid "Probing videocard"
-msgstr "S'està provant la targeta de vídeo"
+#~ msgid "Probing videocard"
+#~ msgstr "S'està provant la targeta de vídeo"
 
-#: ../src/xserver.py:116
-msgid "Attempting to start native X server"
-msgstr "S'està intentant inicialitzar el servidor d'X"
+#~ msgid "Attempting to start native X server"
+#~ msgstr "S'està intentant inicialitzar el servidor d'X"
 
-#: ../src/xserver.py:122
-msgid "Attempting to start VESA X server"
-msgstr "S'està intentant inicialitzar el servidor d'X VESA"
+#~ msgid "Attempting to start VESA X server"
+#~ msgstr "S'està intentant inicialitzar el servidor d'X VESA"
 
-#: ../src/xserver.py:131
-msgid "Attempting to start frame buffer X server"
-msgstr "S'està intentant inicialitzar el frame buffer del servidor d'X"
+#~ msgid "Attempting to start frame buffer X server"
+#~ msgstr "S'està intentant inicialitzar el frame buffer del servidor d'X"
 
-#: ../src/xserver.py:183
-msgid " X server started successfully."
-msgstr " el servidor d'X s'ha inicialitzat correctament."
+#~ msgid " X server started successfully."
+#~ msgstr " el servidor d'X s'ha inicialitzat correctament."
 
 #  * Translatable strings file generated by Glade.
 #  * Add this file to your project's POTFILES.in.
 #  * DO NOT compile it as part of your application.
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
-#: system-config-display.gladestrings:7
-msgid "Display Settings"
-msgstr "Paràmetres de la pantalla"
+#~ msgid "Display Settings"
+#~ msgstr "Paràmetres de la pantalla"
 
-#: system-config-display.gladestrings:8
-msgid "Please select the resolution and color depth that you wish to use:"
-msgstr ""
-"Seleccioneu la resolució i la profunditat de color que desitgeu utilizar: "
+#~ msgid "Please select the resolution and color depth that you wish to use:"
+#~ msgstr "Seleccioneu la resolució i la profunditat de color que desitgeu utilizar: "
 
-#: system-config-display.gladestrings:9
-msgid "IIyama Vision Master Pro 502 with NVIDIA Rage Mobility"
-msgstr "IIyama Vision Master Pro 502 amb NVIDIA Rage Mobility"
+#~ msgid "IIyama Vision Master Pro 502 with NVIDIA Rage Mobility"
+#~ msgstr "IIyama Vision Master Pro 502 amb NVIDIA Rage Mobility"
 
-#: system-config-display.gladestrings:10
-msgid "_Color Depth:"
-msgstr "Profunditat de _color:"
+#~ msgid "_Color Depth:"
+#~ msgstr "Profunditat de _color:"
 
-#: system-config-display.gladestrings:11
-msgid "_Resolution:"
-msgstr "_Resolució:"
+#~ msgid "_Resolution:"
+#~ msgstr "_Resolució:"
 
-#: system-config-display.gladestrings:12 system-config-display.gladestrings:32
-msgid "Millions of Colors"
-msgstr "Milions de colors"
+#~ msgid "Millions of Colors"
+#~ msgstr "Milions de colors"
 
-#: system-config-display.gladestrings:13 system-config-display.gladestrings:33
-msgid "Thousands of Colors"
-msgstr "Milers de colors"
+#~ msgid "Thousands of Colors"
+#~ msgstr "Milers de colors"
 
-#: system-config-display.gladestrings:14
-msgid "_Settings"
-msgstr "_Paràmetres"
+#~ msgid "_Settings"
+#~ msgstr "_Paràmetres"
 
-#: system-config-display.gladestrings:15
-msgid "<b>Monitor Type</b>:"
-msgstr "<b>Tipus de monitor</b>:"
+#~ msgid "<b>Monitor Type</b>:"
+#~ msgstr "<b>Tipus de monitor</b>:"
 
-#: system-config-display.gladestrings:16
-msgid "Sample Monitor Type"
-msgstr "Tipus de monitor mostra"
+#~ msgid "Sample Monitor Type"
+#~ msgstr "Tipus de monitor mostra"
 
 # Nota: la "_C" s'utilitza en el diàleg per a "_Cancel·la" (josep)
-#: system-config-display.gladestrings:17 system-config-display.gladestrings:20
-#: system-config-display.gladestrings:30
-msgid "_Configure..."
-msgstr "Confi_gura...."
+#~ msgid "_Configure..."
+#~ msgstr "Confi_gura...."
 
-#: system-config-display.gladestrings:18
-msgid "<b>Video Card</b>:"
-msgstr "<b>Targeta de vídeo</b>:"
+#~ msgid "<b>Video Card</b>:"
+#~ msgstr "<b>Targeta de vídeo</b>:"
 
-#: system-config-display.gladestrings:19
-msgid "Sample Videocard Type"
-msgstr "Tipus de targeta de vídeo de mostra"
+#~ msgid "Sample Videocard Type"
+#~ msgstr "Tipus de targeta de vídeo de mostra"
 
-#: system-config-display.gladestrings:21
-msgid "_Hardware"
-msgstr "_Maquinari"
+#~ msgid "_Use dual head"
+#~ msgstr "_Utilitza dues sortides de vídeo"
 
-#: system-config-display.gladestrings:22
-msgid "_Use dual head"
-msgstr "_Utilitza dues sortides de vídeo"
+#~ msgid "<b>Second Monitor Type</b>:"
+#~ msgstr "<b>Segon tipus de monitor</b>:"
 
-#: system-config-display.gladestrings:23
-msgid "<b>Second Monitor Type</b>:"
-msgstr "<b>Segon tipus de monitor</b>:"
+#~ msgid "<b>Desktop _layout</b>:"
+#~ msgstr "<b>Disposició de l'_escriptori</b>:"
 
-#: system-config-display.gladestrings:24
-msgid "<b>Desktop _layout</b>:"
-msgstr "<b>Disposició de l'_escriptori</b>:"
+#~ msgid "Individual Desktops"
+#~ msgstr "Escriptoris individuals"
 
-#: system-config-display.gladestrings:25
-msgid "Individual Desktops"
-msgstr "Escriptoris individuals"
+#~ msgid "Spanning Desktops"
+#~ msgstr "Escriptori compartit"
 
-#: system-config-display.gladestrings:26
-msgid "Spanning Desktops"
-msgstr "Escriptori compartit"
+#~ msgid "<b>_Second Video Card</b>:"
+#~ msgstr "<b>_Segona targeta de vídeo</b>:"
 
-#: system-config-display.gladestrings:27
-msgid "<b>_Second Video Card</b>:"
-msgstr "<b>_Segona targeta de vídeo</b>:"
+#~ msgid "<b>_Resolution</b>:"
+#~ msgstr "<b>_Resolució</b>:"
 
-#: system-config-display.gladestrings:28
-msgid "<b>_Resolution</b>:"
-msgstr "<b>_Resolució</b>:"
+#~ msgid "No monitor selected"
+#~ msgstr "No s'ha seleccionat cap monitor"
 
-#: system-config-display.gladestrings:29
-msgid "No monitor selected"
-msgstr "No s'ha seleccionat cap monitor"
+#~ msgid "<b>Color _Depth</b>:"
+#~ msgstr "<b>Pr_ofunditat de color</b>:"
 
-#: system-config-display.gladestrings:31
-msgid "<b>Color _Depth</b>:"
-msgstr "<b>Pr_ofunditat de color</b>:"
+#~ msgid "_Dual head"
+#~ msgstr "_Dues sortides de vídeo"
 
-#: system-config-display.gladestrings:34
-msgid "_Dual head"
-msgstr "_Dues sortides de vídeo"
+#~ msgid "Video Card"
+#~ msgstr "Targeta de vídeo"
 
-#: system-config-display.gladestrings:35
-msgid "Video Card"
-msgstr "Targeta de vídeo"
+#~ msgid "<span weight=\"bold\" size=\"larger\">Please select the model of your video card.</span>"
+#~ msgstr "<span weight=\"bold\" size=\"larger\">Seleccioneu el model de la vostra targeta de vídeo.</span>"
 
-#: system-config-display.gladestrings:36
-msgid ""
-"<span weight=\"bold\" size=\"larger\">Please select the model of your video "
-"card.</span>"
-msgstr ""
-"<span weight=\"bold\" size=\"larger\">Seleccioneu el model de la vostra "
-"targeta de vídeo.</span>"
+#~ msgid "Custom _memory size"
+#~ msgstr "Mida de la _memòria personalitzada"
 
-#: system-config-display.gladestrings:37
-msgid "Custom _memory size"
-msgstr "Mida de la _memòria personalitzada"
+#~ msgid "_Reset to default"
+#~ msgstr "_Reinicia a predeterminat"
 
-#: system-config-display.gladestrings:38 system-config-display.gladestrings:44
-msgid "_Reset to default"
-msgstr "_Reinicia a predeterminat"
+#~ msgid "Monitor "
+#~ msgstr "Monitor "
 
-#: system-config-display.gladestrings:39
-msgid "Monitor "
-msgstr "Monitor "
+#~ msgid "<span size=\"larger\" weight=\"bold\" >Please select the model of your monitor.</span>"
+#~ msgstr "<span size=\"larger\" weight=\"bold\"> Seleccioneu el model del vostre monitor.</span>"
 
-#: system-config-display.gladestrings:40
-msgid ""
-"<span size=\"larger\" weight=\"bold\" >Please select the model of your "
-"monitor.</span>"
-msgstr ""
-"<span size=\"larger\" weight=\"bold\"> Seleccioneu el model del vostre "
-"monitor.</span>"
+#~ msgid "<b>_Horizontal Sync Range:</b>"
+#~ msgstr "<b>Velocitat de sincronització _horitzontal:</b>"
 
-#: system-config-display.gladestrings:41
-msgid "<b>_Horizontal Sync Range:</b>"
-msgstr "<b>Velocitat de sincronització _horitzontal:</b>"
+#~ msgid "<b>Vertical _Refresh Rate:</b>"
+#~ msgstr "<b>Velocitat d'actualizació _vertical:</b>"
 
-#: system-config-display.gladestrings:42
-msgid "<b>Vertical _Refresh Rate:</b>"
-msgstr "<b>Velocitat d'actualizació _vertical:</b>"
-
-#: system-config-display.gladestrings:43
-msgid "Show all _available monitors"
-msgstr "Mostra _tots els monitors disponibles"
+#~ msgid "Show all _available monitors"
+#~ msgstr "Mostra _tots els monitors disponibles"
 
 #~ msgid "ASCII"
 #~ msgstr "ASCII"
 
 #~ msgid "MieMouse (serial)"
 #~ msgstr "MieMouse (sèrie)"
-
-#~ msgid "Generic"
-#~ msgstr "Genèric"
 
 #~ msgid "2 Button Mouse (serial)"
 #~ msgstr "Ratolí de 2 botons (sèrie)"
@@ -495,9 +920,6 @@ msgstr "Mostra _tots els monitors disponibles"
 
 #~ msgid "IntelliMouse (serial)"
 #~ msgstr "IntelliMouse (sèrie)"
-
-#~ msgid "Mouse Systems"
-#~ msgstr "Sistemes amb ratolí"
 
 #~ msgid "Mouse (serial)"
 #~ msgstr "Ratolí (sèrie)"

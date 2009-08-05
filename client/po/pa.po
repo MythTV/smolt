@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pa\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-22 13:41-0500\n"
+"POT-Creation-Date: 2009-08-05 19:52+0200\n"
 "PO-Revision-Date: 2008-03-25 16:41+0530\n"
 "Last-Translator: Jaswinder Singh <jsingh@redhat.com>\n"
 "Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
@@ -18,35 +18,35 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: deleteProfile.py:36 smolt.py:362
+#: deleteProfile.py:36 smolt.py:360
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "ਸਰਵਰ ਸੁਨੇਹਾ: \"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:44
+#: deleteProfile.py:46 sendProfile.py:46
 msgid "enable debug information"
 msgstr "ਡੀਬੱਗ ਜਾਣਕਾਰੀ ਚਾਲੂ"
 
-#: deleteProfile.py:51 sendProfile.py:49
+#: deleteProfile.py:51 sendProfile.py:56
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "ਸਰਵਰ ਦਾ URL ਦਿਓ (ਮੂਲ \"%default\")"
 
-#: deleteProfile.py:56 sendProfile.py:64
+#: deleteProfile.py:56 sendProfile.py:71
 msgid "print information only, do not send"
 msgstr "ਸਿਰਫ਼ ਜਾਣਕਾਰੀ ਛਾਪੋ, ਭੇਜੋ ਨਾ"
 
-#: deleteProfile.py:61 sendProfile.py:79
+#: deleteProfile.py:61 sendProfile.py:86
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "HTTP ਉਪਭੋਗੀ ਏਜੰਟ ਦਿਓ (ਮੂਲ \"%default\")"
 
-#: deleteProfile.py:66 sendProfile.py:84
+#: deleteProfile.py:66 sendProfile.py:91
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "ਸਕਿੰਟਾਂ ਵਿੱਚ HTTP ਟਾਈਮ-ਆਊਟ ਦਿਓ (ਮੂਲ %default ਸਕਿੰਟ)"
 
-#: deleteProfile.py:70 sendProfile.py:103
+#: deleteProfile.py:70 sendProfile.py:110
 msgid "specify which uuid to use, useful for debugging and testing mostly."
 msgstr ""
 
@@ -58,459 +58,74 @@ msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਕਰਨ ਦੌਰਾਨ ਗਲ�
 msgid "Profile removed, please verify at"
 msgstr "ਪ੍ਰੋਫਾਇਲ ਹਿਲਾਇਆ ਗਿਆ, ਜਾਂਚ ਕਰੋ ਜੀ"
 
-#: sendProfile.py:54
-msgid "(optional) Fedora Account System registration"
-msgstr "(ਚੋਣਵਾਂ) ਫੇਡੋਰਾ ਅਕਾਊਂਟ ਸਿਸਟਮ ਰਜਿਸਟਰੇਸ਼ਨ"
-
-#: sendProfile.py:59
-msgid "password, will prompt if not specified"
-msgstr "ਪਾਸਵਰਡ, ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਜੇ ਨਹੀਂ ਦਿੱਤਾ ਤਾਂ"
-
-#: sendProfile.py:69
-msgid "don't prompt to send, just send"
-msgstr "ਭੇਜਣ ਲਈ ਪੁੱਛੋ ਨਾ, ਬੱਸ ਭੇਜ ਦਿਓ"
-
-#: sendProfile.py:74
-msgid "continue to send until success"
-msgstr "ਭੇਜਣਾ ਜਾਰੀ ਰੱਖੋ ਜਦੋਂ ਤੱਕ ਸਫਲ ਨਹੀਂ ਹੁੰਦਾ"
-
-#: sendProfile.py:89
-msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr "ਇਹ ਇੱਕ ਸਵੈਚਾਲਤ ਜਾਂਚ ਹੈ, ਸਿਰਫ ਉਦੋਂ ਚੱਲੇਗੀ ਜੇ \"smolt\" ਸਰਵਿਸ ਚਾਲੂ ਕੀਤੀ ਹੈ"
-
-#: sendProfile.py:94
-msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "ਜਾਣੂ ਹਾਰਡਵੇਅਰ ਇਰੱਟਾ ਲਈ ਸਿਰਫ ਇਸ ਮਸ਼ੀਨ ਦੀ ਜਾਂਚ ਕਰੋ, ਪਰੋਫਾਈਲ ਨਾ ਭੇਜੋ।"
-
-#: sendProfile.py:99
+#: gui.py:35
 #, fuzzy
-msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "ਜਾਣੂ ਹਾਰਡਵੇਅਰ ਇਰੱਟਾ ਲਈ ਸਿਰਫ ਇਸ ਮਸ਼ੀਨ ਦੀ ਜਾਂਚ ਕਰੋ, ਪਰੋਫਾਈਲ ਨਾ ਭੇਜੋ।"
-
-#: sendProfile.py:108
-msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
-msgstr ""
-
-#: sendProfile.py:113
-msgid "Request a new public UUID"
-msgstr ""
-
-#: sendProfile.py:117
-msgid "HTTP proxy"
-msgstr ""
-
-#: sendProfile.py:134
-msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "Smolt ਨੂੰ ਜਾਂਚ ਲਈ ਨਿਰਧਾਰਤ ਕੀਤਾ ਗਿਆ ਹੈ ਪਰ ਜਾਂਚ ਅਯੋਗ ਕੀਤੀ ਗਈ ਹੈ (ਸੰਕੇਤ: service smolt start)"
-
-#: sendProfile.py:144
-#, python-format
-msgid "Success!  Your new public UUID is: %s"
-msgstr ""
-
-#: sendProfile.py:164
-msgid "Send this information to the Smolt server? (y/n)"
-msgstr "ਕੀ ਸਮੋਲਟ ਸਰਵਰ ਨੂੰ ਇਹ ਜਾਣਕਾਰੀ ਭੇਜਣੀ ਹੈ? (y/n)"
-
-#: sendProfile.py:165
-msgid "y"
-msgstr "y"
-
-#: sendProfile.py:166 sendProfile.py:169
-msgid "Exiting..."
-msgstr "ਬੰਦ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
-
-#: sendProfile.py:180
-msgid "Retry Enabled - Retrying"
-msgstr "ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਯੋਗ ਕੀਤੀ ਹੈ - ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਹੋ ਰਹੀ ਹੈ"
-
-#: sendProfile.py:189
-msgid "Could not send - Exiting"
-msgstr "ਭੇਜੀ ਨਹੀਂ ਜਾ ਸਕੀ - ਬੰਦ ਕੀਤਾ ਜਾਂਦਾ ਹੈ"
-
-#: sendProfile.py:194
-msgid "Password:"
-msgstr "ਪਾਸਵਰਡ:"
-
-#: sendProfile.py:199
-msgid "Registration Failed, Try again"
-msgstr "ਰਜਿਸਟਰੇਸ਼ਨ ਫੇਲ ਹੋਈ, ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
-
-#: sendProfile.py:210
-#, fuzzy, python-format
-msgid ""
-"To share your profile: \n"
-"\t%s (public)"
-msgstr "ਆਪਣਾ ਪਰੋਫਾਈਲ ਵੇਖਣ ਲਈ ਇਹ ਵੇਖੋ: %s"
-
-#: sendProfile.py:214
-#, fuzzy, python-format
-msgid "\tAdmin Password: %s"
-msgstr "ਪਾਸਵਰਡ:"
-
-#: sendProfile.py:217
-msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
-msgstr ""
-
-#: smoltGui.py:39
-msgid "Smolt"
-msgstr ""
-
-#: smoltGui.py:44
-#, fuzzy
-msgid "&File"
-msgstr "ਫਾਇਲ(_F)"
-
-#: smoltGui.py:45
-#, fuzzy
-msgid "&Help"
-msgstr "ਸਹਾਇਤਾ(_H)"
-
-#: smoltGui.py:48
-#, fuzzy
-msgid "&Send Profile"
-msgstr "ਪ੍ਰੋਫਾਇਲ ਭੇਜੋ(_S)"
-
-#: smoltGui.py:49
-#, fuzzy
-msgid "&My Smolt Page"
-msgstr "ਮੇਰੀ Smolt ਸਫਾ(_M)"
-
-#: smoltGui.py:50
-msgid "&Exit"
-msgstr ""
-
-#: smoltGui.py:51
-#, fuzzy
-msgid "Show &Privacy Policy"
-msgstr "ਗੋਪਨੀਅਤਾ ਪਾਲਿਸੀ ਵੇਖਾਓ(_P)"
-
-#: smoltGui.py:52
-#, fuzzy
-msgid "&About"
-msgstr "ਇਸ ਬਾਰੇ(_A)"
-
-#: smoltGui.py:53
-#, fuzzy
-msgid "About &Qt"
-msgstr "ਇਸ ਬਾਰੇ(_A)"
-
-#: smoltGui.py:67
-msgid "Main Tool Bar"
-msgstr ""
-
-#: smoltGui.py:98
-msgid "Profile Sent"
-msgstr ""
-
-#: smoltGui.py:99
-#, fuzzy, python-format
-msgid ""
-"The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
-"%s\n"
-"stored in %s"
-msgstr ""
-"ਡਾਟਾ ਸਫਲਤਾਪੂਰਕ ਭੇਜਿਆ ਗਿਆ ਹੈ।  ਜੇ ਤੁਹਾਨੂ  ਬੱਗ ਰਿਪੋਰਟ ਲਈ ਆਪਣਾ ਹਾਰਡਵੇਅਰ ਪਰੋਫਾਈਲ ਭੇਜਣ ਦੀ ਲੋੜ ਹੈ ਤਾਂ ਤੁਹਾਡੇ UUID \n"
-"%s ਨੂੰ\n"
-"%s ਵਿੱਚ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ"
-
-#: smoltGui.py:104
-#, fuzzy
-msgid "Error"
-msgstr "ਗਲਤੀ:"
-
-#: smoltGui.py:105
-msgid "An error occurred while sending the data to the server."
-msgstr "ਸਰਵਰ ਨੂੰ ਡਾਟਾ ਭੇਜਣ ਸਮੇਂ ਗਲਤੀ ਆਈ ਹੈ।"
-
-#: smoltGui.py:122
-#, fuzzy
-msgid "Privacy Policy"
-msgstr "ਗੋਪਨੀਅਤਾ ਪਾਲਿਸੀ ਵੇਖਾਓ(_P)"
-
-#: smoltGui.py:136
-msgid "<h3>Smolt Qt</h3>Version 0.1.1<br/>"
-msgstr ""
-
-#: smoltGui.py:137
-msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
-msgstr ""
-
-#: smoltGui.py:140
-msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr ""
-
-#: smoltGui.py:146
-msgid "<b>Authors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
-msgstr ""
-
-#: smoltGui.py:148
-#, python-format
-msgid "%s<br/>%s<br/>%s<br/><br/><b>License:</b><br/>This program is free software; \t\t\t\tyou can redistribute it and/or modify it under the terms of the GNU General \t\t\t\tPublic License as published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr ""
-
-#: smolt.py:364
-#, python-format
-msgid "Could not contact server: %s"
-msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਨਹੀਂ ਹੋ ਸਕਿਆ: %s"
-
-#: smolt.py:407
-msgid "Could not bind to dbus.  Is dbus running?"
-msgstr "dbus ਨਾਲ ਜੁੜ ਨਹੀਂ ਸਕਿਆ।  ਕੀ dbus ਚੱਲ ਰਿਹਾ ਹੈ?"
-
-#: smolt.py:413
-msgid ""
-"Could not connect to hal, is it running?\n"
-"Run \"service haldaemon start\" as root"
-msgstr ""
-"hal ਨਾਲ ਜੁੜਨ ਨਹੀਂ ਸਕਿਆ, ਕੀ ਇਹ ਚੱਲ ਰਿਹਾ ਹੈ?\n"
-"ਪਰਬੰਧਕ ਦੇ ਤੌਰ ਤੇ \"service haldaemon start\" ਚਲਾਓ"
-
-#: smolt.py:503
-#, python-format
-msgid "\tYour pub_uuid file  could not be cached: %s\n"
-msgstr ""
-
-#: smolt.py:504
-msgid ""
-"\tMaybe re-run as root?\n"
-"\n"
-msgstr ""
-
-#: smolt.py:513
-#, python-format
-msgid "\tYour admin token  could not be cached: %s\n"
-msgstr ""
-
-#: smolt.py:524 smolt.py:566 smolt.py:596
-#, python-format
-msgid "Error contacting Server: %s"
-msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਦੌਰਾਨ ਗਲਤੀ: %s"
-
-#: smolt.py:533 smolt.py:582
-msgid "Wrong version, server incapable of handling your client"
-msgstr "ਗਲਤ ਵਰਜਨ, ਤੁਹਾਡੇ ਕਲਾਂਈਟ ਦੀ ਨਿਗਰਾਨੀ ਕਰਨ ਵਿੱਚ ਸਰਵਰ ਅਸਮਰਥ ਹੈ"
-
-#: smolt.py:538
-msgid "Something went wrong fetching a token"
-msgstr ""
-
-#: smolt.py:575
-#, fuzzy, python-format
-msgid "An error has occured while contacting the server: %s"
-msgstr "ਸਰਵਰ ਨੂੰ ਡਾਟਾ ਭੇਜਣ ਸਮੇਂ ਗਲਤੀ ਆਈ ਹੈ।"
-
-#: smolt.py:617
-msgid "Devices"
-msgstr "ਜੰਤਰ"
-
-#: smolt.py:624
-msgid "\tFilesystem Information"
-msgstr ""
-
-#: smolt.py:636
-msgid "UUID"
-msgstr "UUID"
-
-#: smolt.py:637
-msgid "OS"
-msgstr "OS"
-
-#: smolt.py:638
-msgid "Default run level"
-msgstr "ਮੂਲ ਰਨ ਲੈਵਲ"
-
-#: smolt.py:639
-msgid "Language"
-msgstr "ਭਾਸ਼ਾ"
-
-#: smolt.py:640
-msgid "Platform"
-msgstr "ਪਲੇਟਫਾਰਮ"
-
-#: smolt.py:641
-msgid "BogoMIPS"
-msgstr "BogoMIPS"
-
-#: smolt.py:642
-msgid "CPU Vendor"
-msgstr "CPU ਵਿਕਰੇਤਾ"
-
-#: smolt.py:643
-msgid "CPU Model"
-msgstr "CPU ਮਾਡਲ"
-
-#: smolt.py:644
-msgid "CPU Stepping"
-msgstr ""
-
-#: smolt.py:645
-msgid "CPU Family"
-msgstr ""
-
-#: smolt.py:646
-#, fuzzy
-msgid "CPU Model Num"
-msgstr "CPU ਮਾਡਲ"
-
-#: smolt.py:647
-msgid "Number of CPUs"
-msgstr "CPU ਦੀ ਗਿਣਤੀ"
-
-#: smolt.py:648
-msgid "CPU Speed"
-msgstr "CPU ਗਤੀ"
-
-#: smolt.py:649
-msgid "System Memory"
-msgstr "ਸਿਸਟਮ ਮੈਮੋਰੀ"
-
-#: smolt.py:650
-msgid "System Swap"
-msgstr "ਸਿਸਟਮ ਸਵੈਪ"
-
-#: smolt.py:651
-msgid "Vendor"
-msgstr "ਵਿਕਰੇਤਾ"
-
-#: smolt.py:652
-msgid "System"
-msgstr "ਸਿਸਟਮ"
-
-#: smolt.py:653
-msgid "Form factor"
-msgstr "ਫਾਰਮ ਫੈਕਟਰ"
-
-#: smolt.py:654
-msgid "Kernel"
+msgid "General"
 msgstr "ਕਰਨਲ"
 
-#: smolt.py:655
-msgid "SELinux Enabled"
-msgstr "SELinux ਯੋਗ ਕੀਤਾ"
-
-#: smolt.py:656
+#: gui.py:37
 #, fuzzy
-msgid "SELinux Policy"
-msgstr "SELinux ਮਜਬੂਰ"
+msgid "Distribution"
+msgstr "ਵੇਰਵਾ"
 
-#: smolt.py:657
-msgid "SELinux Enforce"
-msgstr "SELinux ਮਜਬੂਰ"
-
-#: smolt.py:1093 scan.py:101
-msgid "Error:"
-msgstr "ਗਲਤੀ:"
-
-#: smolt.py:1095 scan.py:103
-msgid "Hint:"
-msgstr "ਇਸ਼ਾਰਾ:"
-
-#: smolt.py:1112
-msgid "Unable to save UUID, continuing...\n"
-msgstr "UUID ਨੂੰ ਸੰਭਾਲਣ ਵਿੱਚ ਅਸਮਰਥ, ਜਾਰੀ ਹੈ...\n"
-
-#: smolt.py:1113
-#, python-format
-msgid "Your UUID file could not be created: %s\n"
-msgstr ""
-
-#: smolt.py:1116
-msgid "Unable to determine UUID of system!\n"
-msgstr "ਸਿਸਟਮ ਦਾ UUID ਪਤਾ ਕਰਨ ਵਿੱਚ ਅਸਮਰਥ!\n"
-
-#: software.py:44
-msgid "Cannot Determine Runlevel"
-msgstr "ਰੰਨਲੈਵਲ ਪਤਾ ਨਹੀਂ ਕਰ ਸਕਦਾ"
-
-#: smoltFirstBoot.py:37 smoltFirstBoot.py:38
-msgid "Hardware Profile"
-msgstr "ਹਾਰਡਵੇਅਰ ਪ੍ਰੋਫਾਇਲ"
-
-#: smoltFirstBoot.py:55
-msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਪਰੋਫਾਈਲ ਨਹੀਂ ਭੇਜਣਾ ਚਾਹੁੰਦੇ?  ਤੁਹਾਡੇ ਪਰੋਫਾਈਲ ਭੇਜਣਾ ਸਾਡੇ ਵਿਕਾਸ ਲਈ ਬਹੁਤ ਲਾਭਦਾਇਕ ਜਾਣਕਾਰੀ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਹਾਰਡਵੇਅਰ ਨਾਲ ਆ ਰਹੀਆਂ ਸਮੱਸਿਆਵਾਂ ਦੇ ਨਿਪਟਾਰੇ ਲਈ ਸਹਾਇਤਾ ਕਰ ਸਕਦੀ ਹੈ।"
-
-#: smoltFirstBoot.py:63
-msgid "_Reconsider sending"
-msgstr "ਮੁੜ ਭੇਜਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ(_R)"
-
-#: smoltFirstBoot.py:64
-msgid "_No, do not send."
-msgstr "ਨਹੀਂ, ਨਾ ਭੇਜੋ(_N)।"
-
-#: smoltFirstBoot.py:91
-msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt ਫੇਡੋਰਾ ਪਰੋਜੈਕਟ ਲਈ ਇੱਕ ਹਾਰਡਵੇਅਰ ਪਰੋਫਾਈਲ ਹੈ।  ਆਪਣਾ ਪਰੋਫਾਈਲ ਭੇਜਣਾ ਕਮਿਊਨਿਟੀ ਲਈ ਸਹਿਯੋਗ ਦਾ ਵਧੀਆਂ ਤਰੀਕਾ ਹੈ ਕਿਉਂ ਕਿ ਇਹ ਜਾਣਕਾਰੀ ਹਾਰਡਵੇਅਰ ਅਤੇ ਪਲੇਟਫਾਰਮਾਂ ਲਈ ਚੁੱਕਣ ਵਾਲੇ ਕਦਮਾਂ ਵਿੱਚ ਸਹਿਯੋਗੀ ਹੈ।  ਹਰ ਇੱਕ ਭੇਜ ਸਕਦਾ ਹੈ।  ਤੁਹਾਡਾ ਪਰੋਫਾਈਲ ਭੇਜਣ ਨਾਲ ਮਾਸਿਕ ਅੱਪਡੇਟ ਯੋਗ ਹੋ ਜਾਵੇਗਾ।"
-
-#: smoltFirstBoot.py:117
-msgid "_Participate in KernelOOPS"
-msgstr ""
-
-#: smoltFirstBoot.py:118
-msgid "Submit profile link to _Bodhi"
-msgstr ""
-
-#: smoltFirstBoot.py:120
-msgid "_Send Profile"
-msgstr "ਪ੍ਰੋਫਾਇਲ ਭੇਜੋ(_S)"
-
-#: smoltFirstBoot.py:121
-msgid "D_o not send profile"
-msgstr "ਪ੍ਰੋਫਾਇਲ ਨਾ ਭੇਜੋ(_o)"
-
-#: gui.py:43
+#: gui.py:82
 msgid "Label"
 msgstr "ਲੇਬਲ"
 
-#: gui.py:44
+#: gui.py:83
 msgid "Data"
 msgstr "ਡਾਟਾ"
 
-#: gui.py:73
+#: gui.py:115
 msgid "Bus"
 msgstr "ਬਸ"
 
-#: gui.py:74
+#: gui.py:116
 msgid "Driver"
 msgstr "ਡਰਾਇਵਰ"
 
-#: gui.py:75
+#: gui.py:117
 msgid "Type"
 msgstr "ਕਿਸਮ"
 
-#: gui.py:76
+#: gui.py:118
 msgid "Description"
 msgstr "ਵੇਰਵਾ"
 
 #: privacypolicy.py:3
+#, fuzzy, python-format
 msgid ""
+"<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
 "Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
 "the submission is anonymous.  If at any point in time a user wants to delete\n"
-"their profile from the database they need only run\n"
-"\n"
-"    smoltDeleteProfile\n"
-"\n"
+"his/her profile from the database they need only run<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
 "The information sent to the smolt database server should be considered public\n"
 "in that anyone can view the statistics, data and share machine profiles.  In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
 "attention.  As such, not only will this information be shared with 3rd parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
-"drivers and better support in general.\n"
-"\n"
+"drivers and better support in general.<br>\n"
+"<br>\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
 "server first.  This is the only place IP addresses are being logged and they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
-"removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
+"removes these logs.  The Fedora Project does not aggregate IP addresses in\n"
 "the smolt database.  These logs are private and will not be available to the\n"
-"general public.\n"
-"\n"
+"general public.<br>\n"
+"<br>\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
 "questions about this policy should contact the Fedora Infrastructure Team at\n"
-"admin [at] fedoraproject.org  Also remember that users can delete their\n"
-"profiles at any time using \"smoltDeleteProfile\"\n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can delete their\n"
+"profiles at any time using<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
 "Smolt ਸਿਰਫ ਹਾਰਡਵੇਅਰ ਅਤੇ ਮੁਢਲੀ ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ ਜਾਣਕਾਰੀ ਨੂੰ ਫੇਡੋਰਾ smolt ਸਰਵਰ (smoon)\n"
 "ਤੇ ਭੇਜਦਾ ਹੈ।  ਡਾਟਾਬੇਸ ਤੇ ਭੇਜਣ ਵਾਲੀ ਮਸ਼ੀਨ ਵਿੱਚ ਸੰਬੰਧ ਸਿਰਫ\n"
@@ -591,6 +206,421 @@ msgstr "ਆਪਣੇ ਪਰੋਫਾਈਲ ਤੇ ਜਾਓ ਅਤੇ ਜੰਤ�
 #, fuzzy
 msgid "\tbenefit"
 msgstr "ਫਾਇਦੇ ਲੈ ਸਕੋ"
+
+#: scan.py:101 smolt.py:1116
+msgid "Error:"
+msgstr "ਗਲਤੀ:"
+
+#: scan.py:103 smolt.py:1118
+msgid "Hint:"
+msgstr "ਇਸ਼ਾਰਾ:"
+
+#: sendProfile.py:51 smoltGui.py:327
+msgid "specify the location of the (only) config file to use"
+msgstr ""
+
+#: sendProfile.py:61
+msgid "(optional) Fedora Account System registration"
+msgstr "(ਚੋਣਵਾਂ) ਫੇਡੋਰਾ ਅਕਾਊਂਟ ਸਿਸਟਮ ਰਜਿਸਟਰੇਸ਼ਨ"
+
+#: sendProfile.py:66
+msgid "password, will prompt if not specified"
+msgstr "ਪਾਸਵਰਡ, ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਜੇ ਨਹੀਂ ਦਿੱਤਾ ਤਾਂ"
+
+#: sendProfile.py:76
+msgid "don't prompt to send, just send"
+msgstr "ਭੇਜਣ ਲਈ ਪੁੱਛੋ ਨਾ, ਬੱਸ ਭੇਜ ਦਿਓ"
+
+#: sendProfile.py:81
+msgid "continue to send until success"
+msgstr "ਭੇਜਣਾ ਜਾਰੀ ਰੱਖੋ ਜਦੋਂ ਤੱਕ ਸਫਲ ਨਹੀਂ ਹੁੰਦਾ"
+
+#: sendProfile.py:96
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgstr "ਇਹ ਇੱਕ ਸਵੈਚਾਲਤ ਜਾਂਚ ਹੈ, ਸਿਰਫ ਉਦੋਂ ਚੱਲੇਗੀ ਜੇ \"smolt\" ਸਰਵਿਸ ਚਾਲੂ ਕੀਤੀ ਹੈ"
+
+#: sendProfile.py:101
+msgid "only scan this machine for known hardware errata, do not send profile."
+msgstr "ਜਾਣੂ ਹਾਰਡਵੇਅਰ ਇਰੱਟਾ ਲਈ ਸਿਰਫ ਇਸ ਮਸ਼ੀਨ ਦੀ ਜਾਂਚ ਕਰੋ, ਪਰੋਫਾਈਲ ਨਾ ਭੇਜੋ।"
+
+#: sendProfile.py:106
+#, fuzzy
+msgid "do not scan this machine for know hardware errata, only submit profile."
+msgstr "ਜਾਣੂ ਹਾਰਡਵੇਅਰ ਇਰੱਟਾ ਲਈ ਸਿਰਫ ਇਸ ਮਸ਼ੀਨ ਦੀ ਜਾਂਚ ਕਰੋ, ਪਰੋਫਾਈਲ ਨਾ ਭੇਜੋ।"
+
+#: sendProfile.py:120
+msgid "Request a new public UUID"
+msgstr ""
+
+#: sendProfile.py:124
+msgid "HTTP proxy"
+msgstr ""
+
+#: sendProfile.py:144
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr "Smolt ਨੂੰ ਜਾਂਚ ਲਈ ਨਿਰਧਾਰਤ ਕੀਤਾ ਗਿਆ ਹੈ ਪਰ ਜਾਂਚ ਅਯੋਗ ਕੀਤੀ ਗਈ ਹੈ (ਸੰਕੇਤ: service smolt start)"
+
+#: sendProfile.py:154
+#, python-format
+msgid "Success!  Your new public UUID is: %s"
+msgstr ""
+
+#: sendProfile.py:174
+msgid "Send this information to the Smolt server? (y/n)"
+msgstr "ਕੀ ਸਮੋਲਟ ਸਰਵਰ ਨੂੰ ਇਹ ਜਾਣਕਾਰੀ ਭੇਜਣੀ ਹੈ? (y/n)"
+
+#: sendProfile.py:175
+msgid "y"
+msgstr "y"
+
+#: sendProfile.py:176 sendProfile.py:179
+msgid "Exiting..."
+msgstr "ਬੰਦ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
+
+#: sendProfile.py:190
+msgid "Retry Enabled - Retrying"
+msgstr "ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਯੋਗ ਕੀਤੀ ਹੈ - ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਹੋ ਰਹੀ ਹੈ"
+
+#: sendProfile.py:199
+msgid "Could not send - Exiting"
+msgstr "ਭੇਜੀ ਨਹੀਂ ਜਾ ਸਕੀ - ਬੰਦ ਕੀਤਾ ਜਾਂਦਾ ਹੈ"
+
+#: sendProfile.py:204
+msgid "Password:"
+msgstr "ਪਾਸਵਰਡ:"
+
+#: sendProfile.py:209
+msgid "Registration Failed, Try again"
+msgstr "ਰਜਿਸਟਰੇਸ਼ਨ ਫੇਲ ਹੋਈ, ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
+
+#: sendProfile.py:220
+#, fuzzy, python-format
+msgid ""
+"To share your profile: \n"
+"\t%s (public)"
+msgstr "ਆਪਣਾ ਪਰੋਫਾਈਲ ਵੇਖਣ ਲਈ ਇਹ ਵੇਖੋ: %s"
+
+#: sendProfile.py:224
+#, fuzzy, python-format
+msgid "\tAdmin Password: %s"
+msgstr "ਪਾਸਵਰਡ:"
+
+#: sendProfile.py:227
+msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgstr ""
+
+#: smoltFirstBoot.py:38 smoltFirstBoot.py:39
+msgid "Hardware Profile"
+msgstr "ਹਾਰਡਵੇਅਰ ਪ੍ਰੋਫਾਇਲ"
+
+#: smoltFirstBoot.py:56
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr "ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਪਰੋਫਾਈਲ ਨਹੀਂ ਭੇਜਣਾ ਚਾਹੁੰਦੇ?  ਤੁਹਾਡੇ ਪਰੋਫਾਈਲ ਭੇਜਣਾ ਸਾਡੇ ਵਿਕਾਸ ਲਈ ਬਹੁਤ ਲਾਭਦਾਇਕ ਜਾਣਕਾਰੀ ਹੈ ਅਤੇ ਤੁਹਾਡੇ ਹਾਰਡਵੇਅਰ ਨਾਲ ਆ ਰਹੀਆਂ ਸਮੱਸਿਆਵਾਂ ਦੇ ਨਿਪਟਾਰੇ ਲਈ ਸਹਾਇਤਾ ਕਰ ਸਕਦੀ ਹੈ।"
+
+#: smoltFirstBoot.py:64
+msgid "_Reconsider sending"
+msgstr "ਮੁੜ ਭੇਜਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ(_R)"
+
+#: smoltFirstBoot.py:65
+msgid "_No, do not send."
+msgstr "ਨਹੀਂ, ਨਾ ਭੇਜੋ(_N)।"
+
+#: smoltFirstBoot.py:92
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr "Smolt ਫੇਡੋਰਾ ਪਰੋਜੈਕਟ ਲਈ ਇੱਕ ਹਾਰਡਵੇਅਰ ਪਰੋਫਾਈਲ ਹੈ।  ਆਪਣਾ ਪਰੋਫਾਈਲ ਭੇਜਣਾ ਕਮਿਊਨਿਟੀ ਲਈ ਸਹਿਯੋਗ ਦਾ ਵਧੀਆਂ ਤਰੀਕਾ ਹੈ ਕਿਉਂ ਕਿ ਇਹ ਜਾਣਕਾਰੀ ਹਾਰਡਵੇਅਰ ਅਤੇ ਪਲੇਟਫਾਰਮਾਂ ਲਈ ਚੁੱਕਣ ਵਾਲੇ ਕਦਮਾਂ ਵਿੱਚ ਸਹਿਯੋਗੀ ਹੈ।  ਹਰ ਇੱਕ ਭੇਜ ਸਕਦਾ ਹੈ।  ਤੁਹਾਡਾ ਪਰੋਫਾਈਲ ਭੇਜਣ ਨਾਲ ਮਾਸਿਕ ਅੱਪਡੇਟ ਯੋਗ ਹੋ ਜਾਵੇਗਾ।"
+
+#: smoltFirstBoot.py:119
+msgid "_Participate in KernelOOPS"
+msgstr ""
+
+#: smoltFirstBoot.py:120
+msgid "Submit profile link to _Bodhi"
+msgstr ""
+
+#: smoltFirstBoot.py:122
+msgid "_Send Profile"
+msgstr "ਪ੍ਰੋਫਾਇਲ ਭੇਜੋ(_S)"
+
+#: smoltFirstBoot.py:123
+msgid "D_o not send profile"
+msgstr "ਪ੍ਰੋਫਾਇਲ ਨਾ ਭੇਜੋ(_o)"
+
+#: smoltGui.py:92
+msgid "Smolt"
+msgstr ""
+
+#: smoltGui.py:97
+#, fuzzy
+msgid "&File"
+msgstr "ਫਾਇਲ(_F)"
+
+#: smoltGui.py:98
+#, fuzzy
+msgid "&Help"
+msgstr "ਸਹਾਇਤਾ(_H)"
+
+#: smoltGui.py:101
+#, fuzzy
+msgid "&Send Profile"
+msgstr "ਪ੍ਰੋਫਾਇਲ ਭੇਜੋ(_S)"
+
+#: smoltGui.py:102
+#, fuzzy
+msgid "&My Smolt Page"
+msgstr "ਮੇਰੀ Smolt ਸਫਾ(_M)"
+
+#: smoltGui.py:103
+msgid "&Exit"
+msgstr ""
+
+#: smoltGui.py:104
+#, fuzzy
+msgid "Show &Privacy Policy"
+msgstr "ਗੋਪਨੀਅਤਾ ਪਾਲਿਸੀ ਵੇਖਾਓ(_P)"
+
+#: smoltGui.py:105
+#, fuzzy
+msgid "&About"
+msgstr "ਇਸ ਬਾਰੇ(_A)"
+
+#: smoltGui.py:106
+#, fuzzy
+msgid "About &Qt"
+msgstr "ਇਸ ਬਾਰੇ(_A)"
+
+#: smoltGui.py:120
+msgid "Main Tool Bar"
+msgstr ""
+
+#: smoltGui.py:170
+msgid "No distribution-specific data yet"
+msgstr ""
+
+#: smoltGui.py:175 smoltGui.py:238
+#, fuzzy
+msgid "Error"
+msgstr "ਗਲਤੀ:"
+
+#: smoltGui.py:239
+msgid "An error occurred while sending the data to the server."
+msgstr "ਸਰਵਰ ਨੂੰ ਡਾਟਾ ਭੇਜਣ ਸਮੇਂ ਗਲਤੀ ਆਈ ਹੈ।"
+
+#: smoltGui.py:246
+msgid "Profile Sent"
+msgstr ""
+
+#: smoltGui.py:247
+#, python-format
+msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
+msgstr ""
+
+#: smoltGui.py:270
+#, fuzzy
+msgid "Privacy Policy"
+msgstr "ਗੋਪਨੀਅਤਾ ਪਾਲਿਸੀ ਵੇਖਾਓ(_P)"
+
+#: smoltGui.py:284
+#, python-format
+msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
+msgstr ""
+
+#: smoltGui.py:285
+msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
+msgstr ""
+
+#: smoltGui.py:288
+msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
+msgstr ""
+
+#: smoltGui.py:294
+msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
+msgstr ""
+
+#: smoltGui.py:296
+#, python-format
+msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
+msgstr ""
+
+#: smolt.py:362
+#, python-format
+msgid "Could not contact server: %s"
+msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਨਹੀਂ ਹੋ ਸਕਿਆ: %s"
+
+#: smolt.py:412
+msgid "Could not bind to dbus.  Is dbus running?"
+msgstr "dbus ਨਾਲ ਜੁੜ ਨਹੀਂ ਸਕਿਆ।  ਕੀ dbus ਚੱਲ ਰਿਹਾ ਹੈ?"
+
+#: smolt.py:418
+msgid ""
+"Could not connect to hal, is it running?\n"
+"Run \"service haldaemon start\" as root"
+msgstr ""
+"hal ਨਾਲ ਜੁੜਨ ਨਹੀਂ ਸਕਿਆ, ਕੀ ਇਹ ਚੱਲ ਰਿਹਾ ਹੈ?\n"
+"ਪਰਬੰਧਕ ਦੇ ਤੌਰ ਤੇ \"service haldaemon start\" ਚਲਾਓ"
+
+#: smolt.py:507
+msgid ""
+"\tYour pub_uuid could not be written.\n"
+"\n"
+msgstr ""
+
+#: smolt.py:516
+#, python-format
+msgid "\tYour admin token  could not be cached: %s\n"
+msgstr ""
+
+#: smolt.py:536 smolt.py:579 smolt.py:609
+#, python-format
+msgid "Error contacting Server: %s"
+msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਦੌਰਾਨ ਗਲਤੀ: %s"
+
+#: smolt.py:545 smolt.py:596
+msgid "Wrong version, server incapable of handling your client"
+msgstr "ਗਲਤ ਵਰਜਨ, ਤੁਹਾਡੇ ਕਲਾਂਈਟ ਦੀ ਨਿਗਰਾਨੀ ਕਰਨ ਵਿੱਚ ਸਰਵਰ ਅਸਮਰਥ ਹੈ"
+
+#: smolt.py:550
+msgid "Something went wrong fetching a token"
+msgstr ""
+
+#: smolt.py:589
+#, fuzzy, python-format
+msgid "An error has occured while contacting the server: %s"
+msgstr "ਸਰਵਰ ਨੂੰ ਡਾਟਾ ਭੇਜਣ ਸਮੇਂ ਗਲਤੀ ਆਈ ਹੈ।"
+
+#: smolt.py:630
+msgid "Devices"
+msgstr "ਜੰਤਰ"
+
+#: smolt.py:637
+msgid "\tFilesystem Information"
+msgstr ""
+
+#: smolt.py:649
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:650
+msgid "OS"
+msgstr "OS"
+
+#: smolt.py:651
+msgid "Default run level"
+msgstr "ਮੂਲ ਰਨ ਲੈਵਲ"
+
+#: smolt.py:652
+msgid "Language"
+msgstr "ਭਾਸ਼ਾ"
+
+#: smolt.py:653
+msgid "Platform"
+msgstr "ਪਲੇਟਫਾਰਮ"
+
+#: smolt.py:654
+msgid "BogoMIPS"
+msgstr "BogoMIPS"
+
+#: smolt.py:655
+msgid "CPU Vendor"
+msgstr "CPU ਵਿਕਰੇਤਾ"
+
+#: smolt.py:656
+msgid "CPU Model"
+msgstr "CPU ਮਾਡਲ"
+
+#: smolt.py:657
+msgid "CPU Stepping"
+msgstr ""
+
+#: smolt.py:658
+msgid "CPU Family"
+msgstr ""
+
+#: smolt.py:659
+#, fuzzy
+msgid "CPU Model Num"
+msgstr "CPU ਮਾਡਲ"
+
+#: smolt.py:660
+msgid "Number of CPUs"
+msgstr "CPU ਦੀ ਗਿਣਤੀ"
+
+#: smolt.py:661
+msgid "CPU Speed"
+msgstr "CPU ਗਤੀ"
+
+#: smolt.py:662
+msgid "System Memory"
+msgstr "ਸਿਸਟਮ ਮੈਮੋਰੀ"
+
+#: smolt.py:663
+msgid "System Swap"
+msgstr "ਸਿਸਟਮ ਸਵੈਪ"
+
+#: smolt.py:664
+msgid "Vendor"
+msgstr "ਵਿਕਰੇਤਾ"
+
+#: smolt.py:665
+msgid "System"
+msgstr "ਸਿਸਟਮ"
+
+#: smolt.py:666
+msgid "Form factor"
+msgstr "ਫਾਰਮ ਫੈਕਟਰ"
+
+#: smolt.py:667
+msgid "Kernel"
+msgstr "ਕਰਨਲ"
+
+#: smolt.py:668
+msgid "SELinux Enabled"
+msgstr "SELinux ਯੋਗ ਕੀਤਾ"
+
+#: smolt.py:669
+#, fuzzy
+msgid "SELinux Policy"
+msgstr "SELinux ਮਜਬੂਰ"
+
+#: smolt.py:670
+msgid "SELinux Enforce"
+msgstr "SELinux ਮਜਬੂਰ"
+
+#: smolt.py:1139
+msgid "Unable to save UUID, continuing...\n"
+msgstr "UUID ਨੂੰ ਸੰਭਾਲਣ ਵਿੱਚ ਅਸਮਰਥ, ਜਾਰੀ ਹੈ...\n"
+
+#: smolt.py:1140
+#, python-format
+msgid "Your UUID file could not be created: %s\n"
+msgstr ""
+
+#: smolt.py:1143
+msgid "Unable to determine UUID of system!\n"
+msgstr "ਸਿਸਟਮ ਦਾ UUID ਪਤਾ ਕਰਨ ਵਿੱਚ ਅਸਮਰਥ!\n"
+
+#: smolt.py:1162
+#, python-format
+msgid "Error determining public UUID: %s"
+msgstr ""
+
+#: smolt.py:1163
+#, fuzzy
+msgid "Unable to determine Public UUID!\n"
+msgstr "ਸਿਸਟਮ ਦਾ UUID ਪਤਾ ਕਰਨ ਵਿੱਚ ਅਸਮਰਥ!\n"
+
+#: software.py:44
+msgid "Cannot Determine Runlevel"
+msgstr "ਰੰਨਲੈਵਲ ਪਤਾ ਨਹੀਂ ਕਰ ਸਕਦਾ"
+
+#, fuzzy
+#~ msgid ""
+#~ "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
+#~ "%s\n"
+#~ "stored in %s"
+#~ msgstr ""
+#~ "ਡਾਟਾ ਸਫਲਤਾਪੂਰਕ ਭੇਜਿਆ ਗਿਆ ਹੈ।  ਜੇ ਤੁਹਾਨੂ  ਬੱਗ ਰਿਪੋਰਟ ਲਈ ਆਪਣਾ ਹਾਰਡਵੇਅਰ ਪਰੋਫਾਈਲ ਭੇਜਣ ਦੀ ਲੋੜ ਹੈ ਤਾਂ ਤੁਹਾਡੇ UUID \n"
+#~ "%s ਨੂੰ\n"
+#~ "%s ਵਿੱਚ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ"
 
 #~ msgid "_Quit"
 #~ msgstr "ਬੰਦ ਕਰੋ(_Q)"
