@@ -24,7 +24,9 @@ from playmodel import _gentoo_global_use_flags_table, _gentoo_use_flag_pool_tabl
 from playmodel import _gentoo_sync_mirror_table, _gentoo_mirror_pool_table
 from playmodel import _gentoo_system_profile_table, _gentoo_system_profile_pool_table
 from playmodel import _gentoo_chost_table, _gentoo_chost_pool_table
+from playmodel import _gentoo_call_flag_table, _gentoo_call_flag_pool_table
 import datetime
+import sqlalchemy
 from sqlalchemy.sql import func, select, join, and_
 
 
@@ -34,6 +36,7 @@ _MAX_GLOBAL_USE_FLAGS = 100
 _MAX_SYNC_MIRRORS = 30
 _MAX_SYSTEM_PROFILE = 30
 _MAX_CHOST = 30
+_MAX_CALL_FLAGS = 30
 
 
 class GentooReporter:
@@ -181,6 +184,52 @@ class GentooReporter:
             }
         return res
 
+    def _analyzes_compile_flags(self):
+        def make_row(absolute, post_dot_digits, label=None):
+            res = {
+                'absolute':absolute,
+                'relative':self._relative(absolute, post_dot_digits),
+            }
+            if label != None:
+                res['label'] = label
+            return res
+
+        res = {}
+        for call_flag_class in ('CFLAGS', 'CXXFLAGS', 'LDFLAGS', 'MAKEOPTS'):
+            try:
+                call_flag_class_object = self.session.query(GentooCallFlagClassString).filter_by(name=call_flag_class).one()
+            except sqlalchemy.orm.exc.NoResultFound:
+                # TODO
+                raise
+            call_flag_class_id = call_flag_class_object.id
+
+            pool_join = _gentoo_call_flag_table.join(_gentoo_call_flag_pool_table)
+            total_entry_count = self.session.query(GentooCallFlagRel).filter_by(call_flag_class_id=call_flag_class_id).count()
+            query = select([GentooCallFlagString.name, func.count(GentooCallFlagRel.machine_id)], \
+                    from_obj=[pool_join]).where(GentooCallFlagRel.call_flag_class_id == call_flag_class_id).\
+                    group_by(GentooCallFlagRel.call_flag_id).order_by(\
+                    func.count(GentooCallFlagRel.machine_id).desc(), GentooCallFlagString.name).limit(_MAX_CALL_FLAGS)
+            if _MAX_CALL_FLAGS >= 50:
+                post_dot_digits = 2
+            else:
+                post_dot_digits = 1
+
+            final_rows = []
+            others = total_entry_count
+            for i in query.execute().fetchall():
+                label, absolute = i
+                others = others - absolute
+                final_rows.append(make_row(absolute, post_dot_digits, label))
+            if others < 0:
+                others = 0
+
+            res[call_flag_class] = {
+                'listed':final_rows,
+                'others':[make_row(others, post_dot_digits)],
+                'total':[make_row(total_entry_count, post_dot_digits)],
+            }
+        return res
+
     # TODO testing
     def _explain_time_delta(self, d):
         def numerus(number):
@@ -219,6 +268,7 @@ class GentooReporter:
         self.gentoo_machines = self.session.query(GentooArchRel).count()
         simple_stuff = self._analyze_simple_stuff()
         archs = self._analyze_archs()
+        compile_flags = self._analyzes_compile_flags()
         report_finished = datetime.datetime.utcnow()
         generation_duration = self._explain_time_delta(\
                 report_finished - report_begun)
@@ -227,6 +277,7 @@ class GentooReporter:
                     report_finished, "%Y-%m-%d %H:%S UTC"),
             'generation_duration':generation_duration,
             'archs':archs,
+            'compile_flags':compile_flags,
         }
         for k, v in simple_stuff.items():
             if k in data:

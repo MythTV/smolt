@@ -312,42 +312,110 @@ div {
 <a name="compile_flags"></a><h2>Compile flags</h2>
 <div>
     <a name="compile_flags_cflags"></a><h3>CFLAGS</h3>
-    <div class="todo">
+    <div>
         <table>
-            <tr><th class="vert_head">XXXXXX</th><th colspan="2" class="head">Popularity</th></tr>
-            <tr><th class="vert">XXXXXXXXXXXXX</th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+            <tr>
+                <th class="vert_head">Flag</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['compile_flags']['CFLAGS']['listed']">
+                <th class="vert">${row['label']}</th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['compile_flags']['CFLAGS']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['CFLAGS']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['compile_flags']['CFLAGS']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
         </table>
     </div>
 
     <a name="compile_flags_cxxflags"></a><h3>CXXFLAGS</h3>
-    <div class="todo">
+    <div>
         <table>
-            <tr><th class="vert_head">XXXXXX</th><th colspan="2" class="head">Popularity</th></tr>
-            <tr><th class="vert">XXXXXXXXXXXXX</th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+            <tr>
+                <th class="vert_head">Flag</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['compile_flags']['CXXFLAGS']['listed']">
+                <th class="vert">${row['label']}</th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['compile_flags']['CXXFLAGS']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['CXXFLAGS']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['compile_flags']['CXXFLAGS']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
         </table>
     </div>
 
     <a name="compile_flags_ldflags"></a><h3>LDFLAGS</h3>
-    <div class="todo">
+    <div>
         <table>
-            <tr><th class="vert_head">XXXXXX</th><th colspan="2" class="head">Popularity</th></tr>
-            <tr><th class="vert">XXXXXXXXXXXXX</th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+            <tr>
+                <th class="vert_head">Flag</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['compile_flags']['LDFLAGS']['listed']">
+                <th class="vert">${row['label']}</th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['compile_flags']['LDFLAGS']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['LDFLAGS']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['compile_flags']['LDFLAGS']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
         </table>
     </div>
 
     <a name="compile_flags_makeopts"></a><h3>MAKEOPTS</h3>
-    <div class="todo">
+    <div>
         <table>
-            <tr><th class="vert_head">XXXXXX</th><th colspan="2" class="head">Popularity</th></tr>
-            <tr><th class="vert">XXXXXXXXXXXXX</th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+            <tr>
+                <th class="vert_head">Flag</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['compile_flags']['MAKEOPTS']['listed']">
+                <th class="vert">${row['label']}</th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['compile_flags']['MAKEOPTS']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['MAKEOPTS']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['compile_flags']['MAKEOPTS']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
         </table>
     </div>
 </div>
