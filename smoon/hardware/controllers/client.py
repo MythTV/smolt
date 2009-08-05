@@ -181,7 +181,11 @@ class Client(object):
     @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
         self._run_add_json_checks(uuid, host, token, smolt_protocol)
-        return handle_submission(session, uuid, host)
+        res = handle_submission(session, uuid, host)
+        log_entry = BatchJob(host, uuid, added=True)
+        session.add(log_entry)
+        session.flush()
+        return res
 
     @expose()
     def rate_object(self, *args, **kwargs):
@@ -215,7 +219,7 @@ class Client(object):
     @expose()
     def batch_add_json(self, uuid, host, token, smolt_protocol):
         self._run_add_json_checks(uuid, host, token, smolt_protocol)
-        job = BatchJob(host, uuid)
+        job = BatchJob(host, uuid, added=False)
         session.add(job)
         session.flush()
         return dict()

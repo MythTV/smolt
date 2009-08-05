@@ -116,10 +116,12 @@ batch_queue = Table('batch_queue', metadata,
                     Column('id', Integer,
                             primary_key=True, autoincrement=True),
                     Column('arrival', TIMESTAMP,
-                            server_default=text('NOW()')),
-                    Column('data', Text),
+                            nullable=False),
+                    Column('added', Boolean,
+                            nullable=False),
                     Column('hw_uuid', VARCHAR(36),
-                            nullable=False))
+                            nullable=False),
+                    Column('data', Text))
 
 
 class Host(object):
@@ -155,9 +157,11 @@ class FileSystem(object):
     pass
 
 class BatchJob(object):
-    def __init__(self, data, hw_uuid):
+    def __init__(self, data, hw_uuid, added):
         self.data = data
         self.hw_uuid = hw_uuid
+        self.added = added
+        self.arrival = text('NOW()')
 
 
 mapper(Host, hosts,
