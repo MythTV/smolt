@@ -40,35 +40,34 @@ _MAIN_TREE_WHITELIST = (
     "gentoo_prefix",
 )
 
-_REPO_NAME_MISMATCH_WHITELIST = (
-    "bangert-ebuilds",  # bangert
-    "china",  # gentoo-china
-    "dev-jokey",  # jokey
-    "digital-trauma.de",  # trauma
-    "Falco's git overlay",  # falco
-    "gcj-overlay",  # java-gcj-overlay
-    "geki-overlay",  # openoffice-geki
-    "gentoo-haskell",  # haskell
-    "gentoo-lisp-overlay",  # lisp
-    "kde4-experimental",  # kde
-    "kde",  # kde-testing
-    "leio-personal",  # leio
-    "maekke's overlay",  # maekke
-    "majeru",  # oss-overlay
-    "mpd-portage",  # mpd
-    "ogo-lu_zero",  # lu_zero
-    "pcsx2-overlay",  # pcsx2
-    "proaudio",  # pro-audio
-    "scarabeus_local_overlay",  # scarabeus
-    "soor",  # soor-overlay
-    "steev_github",  # steev
-    "suka's dev overlay - experimental stuff of all sorts",  # suka
-    "tante_overlay",  # tante
-    "vdr-xine-overlay",  # vdr-xine
-    "webapp-experimental",  # webapps-experimental
-    "x-njw-gentoo-local",  # njw
-)
-
+_REPO_NAME_RENAME_MAP = {
+    "bangert-ebuilds":"bangert",
+    "china":"gentoo-china",
+    "dev-jokey":"jokey",
+    "digital-trauma.de":"trauma",
+    "Falco's git overlay":"falco",
+    "gcj-overlay":"java-gcj-overlay",
+    "geki-overlay":"openoffice-geki",
+    "gentoo-haskell":"haskell",
+    "gentoo-lisp-overlay":"lisp",
+    "kde4-experimental":"kde4-experimental",  # Keep as is (overlay "kde")
+    "kde":"kde",  # Keep as is (overlay "kde-testing")
+    "leio-personal":"leio",
+    "maekke's overlay":"maekke",
+    "majeru":"oss-overlay",
+    "mpd-portage":"mpd",
+    "ogo-lu_zero":"lu_zero",
+    "pcsx2-overlay":"pcsx2",
+    "proaudio":"pro-audio",
+    "scarabeus_local_overlay":"scarabeus",
+    "soor":"soor-overlay",
+    "steev_github":"steev",
+    "suka's dev overlay - experimental stuff of all sorts":"suka",
+    "tante_overlay":"tante",
+    "vdr-xine-overlay":"vdr-xine",
+    "webapp-experimental":"webapps-experimental",
+    "x-njw-gentoo-local":"njw",
+}
 
 class _Overlays:
     def __init__(self):
@@ -122,10 +121,16 @@ class _Overlays:
                 return False
             return (name in self._global_overlays_dict)
 
+        def fix_repo_name(repo_name):
+            try:
+                return _REPO_NAME_RENAME_MAP[repo_name]
+            except KeyError:
+                return repo_name
+
         non_private_active_overlay_paths = [e for e in
                 enabled_installed_overlays if is_non_private(e)]
-        non_private_active_overlay_names = [overlay_name(e) for e in
-                non_private_active_overlay_paths]
+        non_private_active_overlay_names = [fix_repo_name(overlay_name(e)) \
+                for e in non_private_active_overlay_paths]
 
         self._active_overlay_paths = non_private_active_overlay_paths
         self._active_overlay_names = non_private_active_overlay_names
@@ -159,7 +164,7 @@ class _Overlays:
         if overlay_name in _MAIN_TREE_WHITELIST:
             return False
 
-        if overlay_name in _REPO_NAME_MISMATCH_WHITELIST:
+        if overlay_name in _REPO_NAME_RENAME_MAP:
             return False
 
         return not overlay_name in self._global_overlays_dict
