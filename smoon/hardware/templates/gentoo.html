@@ -223,7 +223,7 @@ div {
         <li><a href="#features">Features</a><span class="section_comment">(FEATURES)</span></li>
         <li><a href="#global_use_flags">Global use flags</a><span class="section_comment">(USE)</span></li>
         <li><a href="#system_profiles">System profiles</a><span class="section_comment">(/etc/make.profile)</span></li>
-        <li class="todo"><a href="#package_mask">User-masked packages</a><span class="section_comment">(/etc/package.mask)</span></li>
+        <li><a href="#package_mask">User-masked packages</a><span class="section_comment">(/etc/portage/package.mask)</span></li>
         <li class="todo"><a href="#overlays">Overlays</a><span class="section_comment">(PORTDIR_OVERLAY)</span></li>
         <li>
             <a href="#mirrors">Mirrors</a>
@@ -506,14 +506,50 @@ div {
 
 
 <a name="package_mask"></a><h2>User-masked packages</h2>
-<div class="todo">
+<div>
     <table>
-        <tr><th class="vert_head">Package</th><th class="head">Responsible atom</th><th colspan="2" class="head">Popularity</th></tr>
-        <tr><th class="vert" rowspan="3" style="vertical-align:top">foo-bar/xmms</th><td><span class="group_item">Total</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr>                                            <td class="group_child_1">=foo-bar/xmms-1.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr>                                            <td class="group_child_1">=foo-bar/xmms-1.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert">foosdsdsd-barsdas/sdfsdsdsd</th><td>=foosdsdsd-barsdas/sdfsdsdsd-1.22222</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert_foot">Total</th><td class="foot">&nbsp;</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+        <tr>
+            <th class="vert_head">Package</th>
+            <th class="head">Responsible atom</th>
+            <th colspan="2" class="head">Popularity</th>
+        </tr>
+<py:for each="row in data['package_mask']['listed']">
+  <py:if test="len(row['details']) == 1">
+        <tr>
+            <th class="vert">${row['package']}</th>
+            <td><span class="group_item">${row['details'][0]['label']}</span></td>
+            <td class="count">${row['any']['absolute']}</td>
+            <td class="relative">(${row['any']['relative']} %)</td>
+        </tr>
+  </py:if>
+  <py:if test="len(row['details']) > 1">
+        <tr>
+            <th class="vert" rowspan="${len(row['details']) + 1}" style="vertical-align:top">${row['package']}</th>
+            <td><span class="group_item">any</span></td>
+            <td class="count">${row['any']['absolute']}</td>
+            <td class="relative">(${row['any']['relative']} %)</td>
+        </tr>
+        <tr py:for="sub_row in row['details']">
+            <td class="group_child_1">${sub_row['label']}</td>
+            <td class="count">${sub_row['absolute']}</td>
+            <td class="relative">(${sub_row['relative']} %)</td>
+        </tr>
+  </py:if>
+</py:for>
+        <py:if test="data['package_mask']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['package_mask']['others']">
+            <th class="vert"><span class="group_item">others</span></th>
+            <td><span></span></td>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:for="row in data['package_mask']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot"><span></span></td>
+            <td class="foot_count">${row['absolute']}</td>
+            <td class="foot_relative">(${row['relative']} %)</td>
+        </tr>
     </table>
 </div>
 

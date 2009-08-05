@@ -25,6 +25,7 @@ from playmodel import _gentoo_sync_mirror_table, _gentoo_mirror_pool_table
 from playmodel import _gentoo_system_profile_table, _gentoo_system_profile_pool_table
 from playmodel import _gentoo_chost_table, _gentoo_chost_pool_table
 from playmodel import _gentoo_call_flag_table, _gentoo_call_flag_pool_table
+from playmodel import _gentoo_package_mask_table, _gentoo_package_pool_table, _gentoo_atom_pool_table
 import datetime
 import sqlalchemy
 from sqlalchemy.sql import func, select, join, and_
@@ -37,6 +38,8 @@ _MAX_SYNC_MIRRORS = 30
 _MAX_SYSTEM_PROFILE = 30
 _MAX_CHOST = 30
 _MAX_CALL_FLAGS = 30
+_MAX_PACKAGE_MASK_ENTRIES = 30
+_MAX_PACKAGE_MASK_SUB_ENTRIES = 5
 
 
 class GentooReporter:
@@ -184,6 +187,82 @@ class GentooReporter:
             }
         return res
 
+    def _analyzes_package_mask(self):
+        def make_row(absolute, post_dot_digits, label=None):
+            res = {
+                'absolute':absolute,
+                'relative':self._relative(absolute, post_dot_digits),
+            }
+            if label != None:
+                res['label'] = label
+            return res
+
+        post_dot_digits = 1
+
+        machine_count_list =  select([func.count(GentooPackageMaskRel.machine_id.distinct())]).group_by(GentooPackageMaskRel.package_id).execute().fetchall()
+        total_entry_count = sum(e[0] for e in machine_count_list)
+        others = total_entry_count
+
+        pool_join = _gentoo_package_mask_table.join(_gentoo_package_pool_table)
+        query = select([
+                    GentooPackageString.name,
+                    GentooPackageMaskRel.package_id,
+                    func.count(GentooPackageMaskRel.atom_id),
+                    func.count(GentooPackageMaskRel.machine_id.distinct())],
+                from_obj=[pool_join]).\
+                group_by(
+                    GentooPackageMaskRel.package_id).\
+                order_by(
+                    func.count(GentooPackageMaskRel.machine_id.distinct()).desc(),
+                    GentooPackageString.name).\
+                limit(_MAX_PACKAGE_MASK_ENTRIES)
+        final_rows = []
+        for package_entry in query.execute().fetchall():
+            package_name, package_id, atom_count, machine_count = package_entry
+            others = others - machine_count
+            row = {}
+            row['package'] = package_name
+            details = []
+            if atom_count > 1:
+                pool_join = _gentoo_package_mask_table.join(_gentoo_atom_pool_table)
+                query = select([
+                            GentooAtomString.name,
+                            func.count(GentooPackageMaskRel.machine_id)],
+                        from_obj=[pool_join]).\
+                        where(
+                            GentooPackageMaskRel.package_id == package_id).\
+                        group_by(GentooPackageMaskRel.atom_id).\
+                        order_by(
+                            func.count(GentooPackageMaskRel.machine_id).desc(),
+                            GentooAtomString.name).\
+                        limit(_MAX_PACKAGE_MASK_SUB_ENTRIES)
+                for atom_entry in query.execute().fetchall():
+                    atom, count = atom_entry
+                    details.append(make_row(count, post_dot_digits, atom))
+            else:
+                pool_join = _gentoo_package_mask_table.join(_gentoo_atom_pool_table)
+                query = select([
+                            GentooAtomString.name],
+                        from_obj=[pool_join]).\
+                        where(
+                            GentooPackageMaskRel.package_id == package_id).\
+                        limit(1)
+                atom_name = query.execute().fetchall()[0][0]
+                details.append(make_row(atom_count, post_dot_digits, atom_name))
+            row['any'] = make_row(machine_count, post_dot_digits)
+            row['details'] = details
+            final_rows.append(row)
+
+        if others < 0:
+            others = 0
+
+        res = {
+            'listed':final_rows,
+            'others':[make_row(others, post_dot_digits)],
+            'total':[make_row(total_entry_count, post_dot_digits)],
+        }
+        return res
+
     def _analyzes_compile_flags(self):
         def make_row(absolute, post_dot_digits, label=None):
             res = {
@@ -265,10 +344,13 @@ class GentooReporter:
 
     def gather(self):
         report_begun = datetime.datetime.utcnow()
+
         self.gentoo_machines = self.session.query(GentooArchRel).count()
         simple_stuff = self._analyze_simple_stuff()
         archs = self._analyze_archs()
         compile_flags = self._analyzes_compile_flags()
+        package_mask = self._analyzes_package_mask()
+
         report_finished = datetime.datetime.utcnow()
         generation_duration = self._explain_time_delta(\
                 report_finished - report_begun)
@@ -278,6 +360,7 @@ class GentooReporter:
             'generation_duration':generation_duration,
             'archs':archs,
             'compile_flags':compile_flags,
+            'package_mask':package_mask,
         }
         for k, v in simple_stuff.items():
             if k in data:
