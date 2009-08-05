@@ -417,7 +417,7 @@ if __name__ == '__main__':
 
     if DROP:
         metadata.drop_all(engine)
-    metadata.create_all(engine)
+    metadata.create_all(engine, checkfirst=(not DROP))
 
     import sys
     import os

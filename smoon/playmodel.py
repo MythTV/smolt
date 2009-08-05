@@ -358,8 +358,13 @@ mapper(GentooCallFlagRel, _gentoo_call_flag_table,
 if __name__ == '__main__':
     from sqlalchemy import create_engine
     from sqlalchemy.orm import sessionmaker
-    CONNECTION = 'sqlite:///:memory:'
+
+    CONNECTION = 'mysql://smoon:smoon@localhost/smoon'
     ECHO = True
+    DROP = True
+
     engine = create_engine(CONNECTION, echo=ECHO)
     session = sessionmaker(bind=engine)()
-    metadata.create_all(engine)
+    if DROP:
+        metadata.drop_all(engine)
+    metadata.create_all(engine, checkfirst=(not DROP))
