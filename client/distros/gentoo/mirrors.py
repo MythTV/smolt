@@ -21,6 +21,8 @@ import urlparse
 import portage
 from mirrorselect.mirrorparser3 import MirrorParser3, MIRRORS_3_XML
 from tools.syncfile import SyncFile
+from xml.parsers.expat import ExpatError
+import logging
 
 import os
 import sys
@@ -81,16 +83,25 @@ class Mirrors:
         sync_file = SyncFile(
             MIRRORS_3_XML,
             'mirrors3.xml')
-        file = open(sync_file.path(), 'r')
-        parser = MirrorParser3()
+
+        # Parse, retry atfer re-sync if errors
         try:
-            parser.parse(file.read())
-        except EnvironmentError:
-            pass
-        except:
+            for retry in (2, 1, 0):
+                file = open(sync_file.path(), 'r')
+                content = file.read()
+                file.close()
+                try:
+                    parser = MirrorParser3()
+                    parser.parse(content)
+                except ExpatError:
+                    if retry > 0:
+                        logging.info('Re-syncing %s due to parse errors' % sync_file.path())
+                        sync_file.sync()
+                    else:
+                        return set()
+        except IOError:
             return set()
-        finally:
-            file.close()
+
         known_mirror_urls = [_normalize_url(e) for e in parser.uris()]
         extra_mirror_urls = [_normalize_url(e) for e in \
             _EXTRA_DISTFILES_MIRRORS_WHITELIST]

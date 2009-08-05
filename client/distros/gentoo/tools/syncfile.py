@@ -33,7 +33,7 @@ class SyncFile:
         self.local_location = resolve_basename(local_basename)
         conf.ensure_user_config_dir_exists()
         if self._sync_needed():
-            self._sync()
+            self.sync()
 
     def path(self):
         return self.local_location
@@ -49,7 +49,7 @@ class SyncFile:
             pass
         return True
 
-    def _sync(self):
+    def sync(self):
         opener = urllib2.build_opener()
         try:
             remote_file = opener.open(self.remote_location)

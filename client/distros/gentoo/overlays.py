@@ -27,6 +27,8 @@ from portage.dbapi.porttree import portdbapi
 from tools.maintreedir import main_tree_dir
 from tools.syncfile import SyncFile
 from tools.overlayparser import OverlayParser
+from xml.parsers.expat import ExpatError
+import logging
 
 import sys
 sys.path.append(os.path.join(sys.path[0], '..', '..'))
@@ -87,7 +89,19 @@ class _Overlays:
         sync_file = SyncFile(
                 'http://www.gentoo.org/proj/en/overlays/layman-global.txt',
                 'layman-global.txt')
-        return self._parse_overlay_meta(sync_file.path())
+
+        # Parse, retry atfer re-sync if errors
+        try:
+            for retry in (2, 1, 0):
+                try:
+                    return self._parse_overlay_meta(sync_file.path())
+                except ExpatError:
+                    if retry > 0:
+                        logging.info('Re-syncing %s due to parse errors' % sync_file.path())
+                        sync_file.sync()
+        except IOError:
+            pass
+        return {}
 
     def _fill_overlays(self):
         self._global_overlays_dict = self._get_known_overlay_map()
