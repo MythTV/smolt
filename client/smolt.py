@@ -626,32 +626,73 @@ class _Hardware:
         return pub_uuid
 
 
+    def get_general_info_excerpt(self):
+        d = {
+            _('OS'):self.host.os,
+            _('Default run level'):self.host.defaultRunlevel,
+            _('Language'):self.host.language,
+        }
+        lines = []
+        for k, v in sorted(d.items()):
+            lines.append('%s: %s' % (k, v))
+        lines.append('...')
+        return '\n'.join(lines)
+
+    def get_devices_info_excerpt(self):
+        lines = []
+        for i, (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description) \
+                in enumerate(self.deviceIter()):
+            if i == 3:
+                break
+            lines.append('(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, \
+                    SubsysDeviceID, Bus, Driver, Type, Description))
+        lines.append('...')
+        return '\n'.join(lines)
+
+    def get_file_system_info_excerpt(self):
+        lines = []
+        lines.append('device mtpt type bsize frsize blocks bfree bavail file ffree favail')
+        for i, v in enumerate(self.fss):
+            if i == 2:
+                break
+            lines.append(str(v))
+        lines.append('...')
+        return '\n'.join(lines)
+
+    def get_distro_info_excerpt(self):
+        return "No data, yet"
+
     def getProfile(self):
         printBuffer = []
 
+        printBuffer.append(_('General'))
+        printBuffer.append('=================================')
         for label, data in self.hostIter():
             try:
-                printBuffer.append('\t%s: %s' % (label, data))
+                printBuffer.append('%s: %s' % (label, data))
             except UnicodeDecodeError:
                 try:
-                    printBuffer.append('\t%s: %s' % (unicode(label, 'utf-8'), data))
+                    printBuffer.append('%s: %s' % (unicode(label, 'utf-8'), data))
                 except UnicodeDecodeError:
-                    printBuffer.append('\t%r: %r' % (label, data))
+                    printBuffer.append('%r: %r' % (label, data))
 
         if self.devices:
             printBuffer.append('')
-            printBuffer.append('\t\t ' + _('Devices'))
-            printBuffer.append('\t\t=================================')
+            printBuffer.append('')
+            printBuffer.append(_('Devices'))
+            printBuffer.append('=================================')
 
             for VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description in self.deviceIter():
-                printBuffer.append('\t\t(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
+                printBuffer.append('(%s:%s:%s:%s) %s, %s, %s, %s' % (VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description))
 
             printBuffer.append('')
-            printBuffer.append(_('\tFilesystem Information'))
-            printBuffer.append('\t\tdevice mtpt type bsize frsize blocks bfree bavail file ffree favail')
-            printBuffer.append('\t\t===================================================================')
+            printBuffer.append('')
+            printBuffer.append(_('Filesystem Information'))
+            printBuffer.append('=================================')
+            printBuffer.append('device mtpt type bsize frsize blocks bfree bavail file ffree favail')
+            printBuffer.append('-------------------------------------------------------------------')
             for fs in self.fss:
-                printBuffer.append(str("\t\t%s" % fs))
+                printBuffer.append(str(fs))
 
             printBuffer.append('')
         return printBuffer
