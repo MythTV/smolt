@@ -20,6 +20,9 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, eagerload
 from playmodel import *
+from hardware.model.model import *
+from hardware.submission import * # handle_submission
+from simplejson import JSONEncoder
 
 
 # ================================================================
@@ -435,17 +438,14 @@ if __name__ == '__main__':
 
     import sys
     import os
-    sys.path.append(os.path.join(sys.path[0], '..', 'client', 'distros'))
+    # sys.path.append(os.path.join(sys.path[0], '..', 'client', 'distros'))
     sys.path.append(os.path.join(sys.path[0], '..', 'client'))
-    from distros.gentoo.main import Gentoo
+    # from distros.gentoo.main import Gentoo
+    import smolt
 
-    gentoo = Gentoo()
-    gentoo.gather()
+    # gentoo = Gentoo()
+    # gentoo.gather()
 
-    host_dict = {
-        'distro_specific':{
-            'gentoo':gentoo.data()
-        }
-    }
-
-    handle_gentoo_data(session, host_dict, machine_id)
+    host_dict = smolt.get_profile().get_submission_data()
+    host_json = JSONEncoder(indent=None, sort_keys=False).encode(host_dict)
+    handle_submission(session, '123456789012345678901234567890123456', host_json)
