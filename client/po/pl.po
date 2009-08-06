@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-05 19:52+0200\n"
-"PO-Revision-Date: 2009-06-22 22:14+0200\n"
+"PO-Revision-Date: 2009-08-06 20:24+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -54,14 +54,12 @@ msgid "Profile removed, please verify at"
 msgstr "Profil został usunięty, sprawdź"
 
 #: gui.py:35
-#, fuzzy
 msgid "General"
-msgstr "Jądro"
+msgstr "Ogólne"
 
 #: gui.py:37
-#, fuzzy
 msgid "Distribution"
-msgstr "Opis"
+msgstr "Dystrybucja"
 
 #: gui.py:82
 msgid "Label"
@@ -88,7 +86,7 @@ msgid "Description"
 msgstr "Opis"
 
 #: privacypolicy.py:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
@@ -122,21 +120,23 @@ msgid ""
 "<br>\n"
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
+"<span></span>\n"
 "Smolt wysyła tylko podstawowe informacje o sprzęcie i systemie operacyjnym\n"
 "do serwera Smolt Fedory (smoon). Jedynym, co łączy bazę danych z komputerem\n"
 "jest UUID. Dopóki nie podasz swojego UUID, wysyłanie jest anonimowe. Jeśli \n"
 "w dowolnym czasie użytkownik zechce usunąć swój profil z bazy danych, musi\n"
-"tylko uruchomić\n"
-"\n"
-"    smoltDeleteProfile\n"
-"\n"
+"tylko uruchomić<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
 "Informacja wysłana do serwera bazy danych Smolta jest publiczna i każdy\n"
 "może przeglądać statystki i dane oraz dzielić się profilami komputerów.\n"
 "Smolt został zaprojektowany, aby zwrócić uwagę producentów sprzętu i innych\n"
 "firm trzecich. Tak więc te informacje nie będą tylko dzielone z firmami\n"
 "trzecimi, ale także będziemy używać Smolta jako dźwigni do uzyskania\n"
-"lepszego wsparcia dla sterowników open source i lepszego wsparcia w ogóle.\n"
-"\n"
+"lepszego wsparcia dla sterowników open source i lepszego wsparcia w\n"
+"ogóle.<br>\n"
+"<br>\n"
 "Logowanie IP: w instalacji Smolta Fedory cały ruch sieciowy przechodzi\n"
 "najpierw przez serwer pośrednika. Jest to jedyne miejsce, gdzie adresy IP\n"
 "są zapisywane w dzienniku i przechowywane na serwerach przez okres czterech\n"
@@ -146,9 +146,13 @@ msgstr ""
 "\n"
 "Użytkownicy, którym nie odpowiada ta polityka nie powinni używać Smolta.\n"
 "Użytkownicy, którzy mają pytania na temat tej polityki powinni skontaktować\n"
-"się z Zespołem infrastruktury Fedory pod admin [at] fedoraproject.org (w\n"
-"języku angielskim). Proszę pamiętać, że użytkownicy mogą zawsze usunąć\n"
-"swoje profile używając \"smoltDeleteProfile\"\n"
+"się z Zespołem infrastruktury Fedory pod <a href=\"mailto:%(mail)s\">%(mail)s</a>\n"
+"(w języku angielskim). Proszę pamiętać, że użytkownicy mogą zawsze usunąć\n"
+"swoje profile używając<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"Dziękujemy za udział i zainteresowanie naszą polityką prywatności.\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
@@ -209,7 +213,7 @@ msgstr "Podpowiedź:"
 
 #: sendProfile.py:51 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr ""
+msgstr "podaj położenie (jedynego) użytego pliku konfiguracji"
 
 #: sendProfile.py:61
 msgid "(optional) Fedora Account System registration"
@@ -380,7 +384,7 @@ msgstr "Główny pasek narzędziowy"
 
 #: smoltGui.py:170
 msgid "No distribution-specific data yet"
-msgstr ""
+msgstr "Brak danych specyficznych dla dystrybucji"
 
 #: smoltGui.py:175 smoltGui.py:238
 msgid "Error"
@@ -397,16 +401,16 @@ msgstr "Wysłano profil"
 #: smoltGui.py:247
 #, python-format
 msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
-msgstr ""
+msgstr "<b>Profil został pomyślnie wysłany!</b><br>\t\t\t\t<br>\t\t\t\tProfile są dostępne online na:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tHasło administratora profilu to:<br><i>%(password)s</i>"
 
 #: smoltGui.py:270
 msgid "Privacy Policy"
 msgstr "Polityka prywatności"
 
 #: smoltGui.py:284
-#, fuzzy, python-format
+#, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
-msgstr "<h3>Smolt Qt</h3>Wersja 0.1.1<br/>"
+msgstr "<h3>Smolt Qt</h3>Version %(version)s<br/>"
 
 #: smoltGui.py:285
 msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
@@ -417,14 +421,13 @@ msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t
 msgstr "<b>O programie Smolt:</b><br/>Profiler sprzętu Smolt jest systemem serwer-klient \t\t\t\t, który wykonuje skanowanie sprzętu komputera i wysyła wyniki \t\t\t\tdo publicznego serwera Projektu Fedora opartego na TurboGears. Wysyłane dane są anonimowe \t\t\t\ti nie powinny zawierać żadnych prywatnych danych, innych niż informacje \t\t\t\to fizycznym sprzęcie i podstawowe informacje o systemie operacyjnym.<br/>"
 
 #: smoltGui.py:294
-#, fuzzy
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
-msgstr "<b>Autorzy:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+msgstr "<b>Autorzy:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:296
-#, fuzzy, python-format
-msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr "%s<br/>%s<br/>%s<br/><br/><b>Licencja:</b><br/>Ten program jest wolnym oprogramowaniem; \t\t\t\tmożna go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej \t\t\t\tLicencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania (Free Software Foundation) - według wersji trzeciej \t\t\t\ttej Licencji lub którejś z późniejszych wersji."
+#, python-format
+msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tNiniejszy program jest wolnym oprogramowaniem; można go rozprowadzać dalej i/lub \t\t\t\tmodyfikować na warunkach Powszechnej Licencji Publicznej GNU, \t\t\t\twydanej przez Fundację Wolnego Oprogramowania (Free Software Foundation) - według wersji trzeciej \t\t\t\ttej Licencji lub którejś z późniejszych wersji."
+msgstr "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>Licencja:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
 
 #: smolt.py:362
 #, python-format
@@ -444,11 +447,12 @@ msgstr ""
 "Wykonaj \"service haldaemon start\" jako root"
 
 #: smolt.py:507
-#, fuzzy
 msgid ""
 "\tYour pub_uuid could not be written.\n"
 "\n"
-msgstr "\tNie można zapisać pliku pub_uuid w pamięci podręcznej: %s\n"
+msgstr ""
+"\tNie można zapisać pliku pub_uuid.\n"
+"\n"
 
 #: smolt.py:516
 #, python-format
@@ -585,32 +589,12 @@ msgstr "Nie można określić UUID systemu!\n"
 #: smolt.py:1162
 #, python-format
 msgid "Error determining public UUID: %s"
-msgstr ""
+msgstr "Błąd podczas ustalania publicznego UUID: %s"
 
 #: smolt.py:1163
-#, fuzzy
 msgid "Unable to determine Public UUID!\n"
-msgstr "Nie można określić UUID systemu!\n"
+msgstr "Nie można określić publicznego UUID!\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "Nie można określić poziomu uruchamiania"
-
-#~ msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
-#~ msgstr "Wyślij ten profil także do Bodhi, dla rozwoju Fedory"
-
-#~ msgid ""
-#~ "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
-#~ "%s\n"
-#~ "stored in %s"
-#~ msgstr ""
-#~ "Pomyślnie wysłano dane. Jeśli potrzebujesz profilu sprzętu dla raportu o błędzie, twój UUID to \n"
-#~ "%s\n"
-#~ "przechowywany w %s"
-
-#~ msgid ""
-#~ "\tMaybe re-run as root?\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\tMoże uruchom ponownie jako root?\n"
-#~ "\n"
