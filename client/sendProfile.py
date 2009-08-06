@@ -26,6 +26,8 @@ from urlparse import urljoin
 import os
 import random
 import getpass
+from tempfile import NamedTemporaryFile
+import subprocess
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -159,25 +161,66 @@ if opts.scanOnly:
     rating(profile, opts.smoonURL)
     sys.exit(0)
 
-for line in profile.getProfile():
-    try:
-        print line
-    except UnicodeEncodeError:
-        pass
-
 if not opts.autoSend:
     if opts.printOnly:
         sys.exit(0)
-    else:
+
+    def inner_indent(text):
+        return ('\n' + 5 * ' ').join(text.split('\n'))
+
+    excerpts = {
+        'general':inner_indent(profile.get_general_info_excerpt()),
+        'devices':inner_indent(profile.get_devices_info_excerpt()),
+        'file_system':inner_indent(profile.get_file_system_info_excerpt()),
+        'distro':inner_indent(profile.get_distro_info_excerpt()),
+    }
+
+    submit = False
+    while not submit:
+        print """Smolt has collected four types of information:
+
+  General
+     %(general)s
+
+  Devices
+     %(devices)s
+
+  File system-related
+     %(file_system)s
+
+  Distribution-specific
+     %(distro)s
+
+Do you want to ..
+  (v)iew details on collected information?
+  (s)end this information to the Smolt server? (or [y] for yes)
+  (q)uit Smolt?  (or [n] for no)
+""" % excerpts
         try:
-            send = raw_input('\n' +
-                             _('Send this information to the Smolt server? (y/n)') + ' ')
-            if send[:1].lower() != _('y'):
-                error(_('Exiting...'))
-                sys.exit(4)
+            choice = raw_input('Your choice (s/v/q/y/n): ').strip()
         except KeyboardInterrupt:
             error(_('Exiting...'))
             sys.exit(4)
+        if choice in ('s', 'y', 'yes'):
+            submit = True
+            print '\n\n'
+        elif choice in ('q', 'n', 'no'):
+            sys.exit(0)
+        elif choice in ('v', ):
+            f = NamedTemporaryFile()
+            for line in profile.getProfile():
+                try:
+                    f.write(line + '\n')
+                except UnicodeEncodeError:
+                    pass
+            f.flush()
+            subprocess.call([os.environ['PAGER'], f.name])
+            f.close()
+            print '\n\n'
+        else:
+            error(_('Exiting...'))
+            sys.exit(4)
+
 
 if opts.retry:
     while 1:
