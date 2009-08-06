@@ -1,52 +1,48 @@
-# translation of smolt.master.sr.po to Serbian
-# Serbian(Latin) translations for smolt
-# Copyright (C) 2007 Red Hat, Inc.
-# This file is distributed under the same license as the smolt package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# Miloš Komarčević <kmilos@gmail.com>, 2007.
-# Igor Miletic <grejigl-gnomeprevod@yahoo.ca>, 2007.
-# Nikola Pajtic <salgeras@gmail.com>, 2008.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt.master.sr\n"
+"Project-Id-Version: smolt-client VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-05 19:52+0200\n"
-"PO-Revision-Date: 2008-02-21 22:23+0100\n"
-"Last-Translator: Nikola Pajtic <salgeras@gmail.com>\n"
-"Language-Team: Serbian\n"
+"PO-Revision-Date: 2008-08-01 13:35:0200\n"
+"Last-Translator: Muayyad Saleh Alsadi <alsadi@ojuba.org>\n"
+"Language-Team: LANGUAGE <ar@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: deleteProfile.py:36 smolt.py:360
 #, python-format
 msgid "Server Message: \"%s\""
-msgstr "Poruka servera: \"%s\""
+msgstr ""
 
 #: deleteProfile.py:46 sendProfile.py:46
 msgid "enable debug information"
-msgstr "uključi podatke za ispravku grešaka"
+msgstr ""
 
 #: deleteProfile.py:51 sendProfile.py:56
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
-msgstr "navedite URL servera (podrazumevano \"%default\")"
+msgstr ""
 
 #: deleteProfile.py:56 sendProfile.py:71
 msgid "print information only, do not send"
-msgstr "samo ispiši podatke, nemoj slati"
+msgstr ""
 
 #: deleteProfile.py:61 sendProfile.py:86
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
-msgstr "navedite HTTP korisničkog agenta (podrazumevano \"%default\")"
+msgstr ""
 
 #: deleteProfile.py:66 sendProfile.py:91
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr "navedite vreme HTTP čekanja u sekundama (podrazumevano %default sekundi)"
+msgstr ""
 
 #: deleteProfile.py:70 sendProfile.py:110
 msgid "specify which uuid to use, useful for debugging and testing mostly."
@@ -54,48 +50,46 @@ msgstr ""
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
-msgstr "Greška pri kontaktiranju servera:"
+msgstr ""
 
 #: deleteProfile.py:97
 msgid "Profile removed, please verify at"
-msgstr "Profil je uklonjen, proverite kod"
+msgstr ""
 
 #: gui.py:35
-#, fuzzy
 msgid "General"
-msgstr "Jezgro"
+msgstr ""
 
 #: gui.py:37
-#, fuzzy
 msgid "Distribution"
-msgstr "Opis"
+msgstr ""
 
 #: gui.py:82
 msgid "Label"
-msgstr "Oznaka"
+msgstr ""
 
 #: gui.py:83
 msgid "Data"
-msgstr "Podaci"
+msgstr ""
 
 #: gui.py:115
 msgid "Bus"
-msgstr "Magistrala"
+msgstr ""
 
 #: gui.py:116
 msgid "Driver"
-msgstr "Upravljački program"
+msgstr ""
 
 #: gui.py:117
 msgid "Type"
-msgstr "Vrsta"
+msgstr ""
 
 #: gui.py:118
 msgid "Description"
-msgstr "Opis"
+msgstr ""
 
 #: privacypolicy.py:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
@@ -129,32 +123,6 @@ msgid ""
 "<br>\n"
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
-"Smolt će poslati samo osnovne podatke o hardveru i operativnom sistemu\n"
-"Fedora smolt serveru (smoon).  Jedina veza od baze podataka ka mašini\n"
-"podnosioca je UUID.  Sve dok podnosilac ne  razdeljuje svoj UUID\n"
-"podneti podaci su anonimni.  Ako u bilo kom trenutku korisnik poželi da\n"
-"obriše svoj profil iz baze podataka samo treba da izvrši\n"
-"\n"
-"    smoltDeleteProfile\n"
-"\n"
-"Podatke poslati serveru smolt baze podataka treba smatrati javnim\n"
-"u vidu da svako može gledati statistiku, podatke i deliti profile mašina. \n"
-"Smolt je na više načina osmišljen da privuče pažnju proizvođačima hardvera i drugim\n"
-"licima sa strane.  U tom smislu, ne da će ovi podaci biti samo podeljeni sa licima sa strane,\n"
-"nego ćemo koristiti smolt kao polugu za ostvarivanje bolje podrške za upravljačke programe\n"
-"otvorenog koda i bolju podršku uopšte.\n"
-"\n"
-"IP zavođenje:  U Fedora smolt instalaciji sav veb saobraćaj prvo prolazi kroz\n"
-"proksi server.  Ovo je jedino mesto gde se IP adrese zavode i one se čuvaju\n"
-"na tom serveru u periodu od 4 nedelje nakon čega obrtaj dnevnika uklanja\n"
-"ove dnevnike.  Fedora projekat ne sakuplja ip adrese u\n"
-"smolt bazi podataka.  Ovi dnevnici su privatni i neće biti dostupni široj\n"
-"javnosti.\n"
-"\n"
-"Korisnici koji nisu zadovoljni ovom polisom jednostavno ne treba da koriste smolt.\n"
-"Korisnici sa pitanjima o ovoj polisi treba da kontaktiraju tim Fedora infrastrukture\n"
-"na admin [na] fedoraproject.org.  Takođe upamtite da korisnici mogu bilo kada da\n"
-"obrišu svoje profile koristeći „smoltDeleteProfile“\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
@@ -187,35 +155,31 @@ msgstr ""
 #: scan.py:58
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr "Skeniranje %s za poznatim greškama.\n"
+msgstr ""
 
 #: scan.py:88
-#, fuzzy
 msgid "\tErrata Found!"
-msgstr "Greška pronađena!"
+msgstr ""
 
 #: scan.py:91
-#, fuzzy
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "Greška nije pronađena, ako ova mašina ima problem, molim, idite na"
+msgstr ""
 
 #: scan.py:92
-#, fuzzy
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "vaš profil i napravite wiki stranicu za uređaj kako bi i ostalima moglo"
+msgstr ""
 
 #: scan.py:93
-#, fuzzy
 msgid "\tbenefit"
-msgstr "koristiti"
+msgstr ""
 
 #: scan.py:101 smolt.py:1116
 msgid "Error:"
-msgstr "Greška:"
+msgstr ""
 
 #: scan.py:103 smolt.py:1118
 msgid "Hint:"
-msgstr "Savet:"
+msgstr ""
 
 #: sendProfile.py:51 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
@@ -223,32 +187,31 @@ msgstr ""
 
 #: sendProfile.py:61
 msgid "(optional) Fedora Account System registration"
-msgstr "(izborno) registracija na Fedora sistemu naloga"
+msgstr ""
 
 #: sendProfile.py:66
 msgid "password, will prompt if not specified"
-msgstr "lozinka, upitaću ako nije navedena"
+msgstr ""
 
 #: sendProfile.py:76
 msgid "don't prompt to send, just send"
-msgstr "nemoj pitati za slanje, samo pošalji"
+msgstr ""
 
 #: sendProfile.py:81
 msgid "continue to send until success"
-msgstr "nastavi da šalješ dok ne uspeš"
+msgstr ""
 
 #: sendProfile.py:96
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr "ovo je samostalno prijavljivanje, radiće samo ako je pokrenut \"smolt\" servis"
+msgstr ""
 
 #: sendProfile.py:101
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "samo skeniraj ovu mašinu za poznate greške hardvera, nemoj slati profil."
+msgstr ""
 
 #: sendProfile.py:106
-#, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "samo skeniraj ovu mašinu za poznate greške hardvera, nemoj slati profil."
+msgstr ""
 
 #: sendProfile.py:120
 msgid "Request a new public UUID"
@@ -260,7 +223,7 @@ msgstr ""
 
 #: sendProfile.py:144
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "Smolt je podešen za prijavljivanje ali je prijavljivanje isključeno (savet: service smolt start)"
+msgstr ""
 
 #: sendProfile.py:154
 #, python-format
@@ -269,43 +232,43 @@ msgstr ""
 
 #: sendProfile.py:174
 msgid "Send this information to the Smolt server? (y/n)"
-msgstr "Poslati ove podatke Smolt serveru? (d/n)"
+msgstr ""
 
 #: sendProfile.py:175
 msgid "y"
-msgstr "d"
+msgstr ""
 
 #: sendProfile.py:176 sendProfile.py:179
 msgid "Exiting..."
-msgstr "Izlazim..."
+msgstr ""
 
 #: sendProfile.py:190
 msgid "Retry Enabled - Retrying"
-msgstr "Ponovno pokušavanje uključeno - Pokušavam ponovo"
+msgstr ""
 
 #: sendProfile.py:199
 msgid "Could not send - Exiting"
-msgstr "Ne mogu da pošaljem - Izlazim"
+msgstr ""
 
 #: sendProfile.py:204
 msgid "Password:"
-msgstr "Lozinka:"
+msgstr ""
 
 #: sendProfile.py:209
 msgid "Registration Failed, Try again"
-msgstr "Registracija nije uspela, pokušajte ponovo"
+msgstr ""
 
 #: sendProfile.py:220
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
-msgstr "Za pregled svog profila posetite: %s"
+msgstr ""
 
 #: sendProfile.py:224
-#, fuzzy, python-format
+#, python-format
 msgid "\tAdmin Password: %s"
-msgstr "Lozinka:"
+msgstr ""
 
 #: sendProfile.py:227
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
@@ -313,23 +276,23 @@ msgstr ""
 
 #: smoltFirstBoot.py:38 smoltFirstBoot.py:39
 msgid "Hardware Profile"
-msgstr "Hardverski profil"
+msgstr "تحليل العتاد hardware"
 
 #: smoltFirstBoot.py:56
 msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "Sigurno ne želite da pošaljete svoj profil?  Podnošenje profila je vredan izvor informacija za naš razvoj i može pomoći u rešavanju problema koje se mogu pojaviti sa vašim hardverom."
+msgstr "هل أنت متأكد أنك لا تريد إرسال التحليل ؟ إرسالك للتحليل يعطي معلومات قيّمة للمطورين تساعدهم في إصطياد المشاكل التي قد تظهر على العتاد الذي تستعمله."
 
 #: smoltFirstBoot.py:64
 msgid "_Reconsider sending"
-msgstr "_Razmislite o slanju"
+msgstr "إ_عادة النظر في الإرسال"
 
 #: smoltFirstBoot.py:65
 msgid "_No, do not send."
-msgstr "_Ne, nemoj poslati."
+msgstr "_لا ترسل."
 
 #: smoltFirstBoot.py:92
 msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt je program za sakupljanje hardverskih profila za Fedora projekat.  Podnošenje profila je sjajan način da pružite nešto nazad zajednici jer se ove informacije koriste da pomognu u fokusiranju našeg napora na popularan hardver i platforme.  Podnošenje je anonimno.  Slanje vašeg profila će uključiti i mesečno osvežavanje."
+msgstr "Smolt هو أداة لتحليل العتاد في مشروع فيدورا. إرسال التحليل طريقة جيدة لترد بها المعروف للمجتمع حيث أن هذه المعلومات تفيدنا في تركيز جهودنا على العتاد والمنصات الأكثر شعبية. يتم التسليم باسم مجهول. إن أرسلته الآن يتم تفعيل تحديث شهري للتحليل."
 
 #: smoltFirstBoot.py:119
 msgid "_Participate in KernelOOPS"
@@ -341,54 +304,48 @@ msgstr ""
 
 #: smoltFirstBoot.py:122
 msgid "_Send Profile"
-msgstr "_Pošalji profil"
+msgstr "إ_رسال التحليل"
 
 #: smoltFirstBoot.py:123
 msgid "D_o not send profile"
-msgstr "N_emoj poslati profil"
+msgstr "_لا ترسل التحليل"
 
 #: smoltGui.py:92
 msgid "Smolt"
 msgstr ""
 
 #: smoltGui.py:97
-#, fuzzy
 msgid "&File"
-msgstr "Da_toteka"
+msgstr ""
 
 #: smoltGui.py:98
-#, fuzzy
 msgid "&Help"
-msgstr "_Pomoć"
+msgstr ""
 
 #: smoltGui.py:101
 #, fuzzy
 msgid "&Send Profile"
-msgstr "_Pošalji profil"
+msgstr "إ_رسال التحليل"
 
 #: smoltGui.py:102
-#, fuzzy
 msgid "&My Smolt Page"
-msgstr "_Moja Smolt stranica"
+msgstr ""
 
 #: smoltGui.py:103
 msgid "&Exit"
 msgstr ""
 
 #: smoltGui.py:104
-#, fuzzy
 msgid "Show &Privacy Policy"
-msgstr "Prikaži polisu _privatnosti"
+msgstr ""
 
 #: smoltGui.py:105
-#, fuzzy
 msgid "&About"
-msgstr "_O programu"
+msgstr ""
 
 #: smoltGui.py:106
-#, fuzzy
 msgid "About &Qt"
-msgstr "_O programu"
+msgstr ""
 
 #: smoltGui.py:120
 msgid "Main Tool Bar"
@@ -399,13 +356,12 @@ msgid "No distribution-specific data yet"
 msgstr ""
 
 #: smoltGui.py:175 smoltGui.py:238
-#, fuzzy
 msgid "Error"
-msgstr "Greška:"
+msgstr ""
 
 #: smoltGui.py:239
 msgid "An error occurred while sending the data to the server."
-msgstr "Došlo je do greške pri slanju podataka na server."
+msgstr ""
 
 #: smoltGui.py:246
 msgid "Profile Sent"
@@ -417,9 +373,8 @@ msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour pr
 msgstr ""
 
 #: smoltGui.py:270
-#, fuzzy
 msgid "Privacy Policy"
-msgstr "Prikaži polisu _privatnosti"
+msgstr ""
 
 #: smoltGui.py:284
 #, python-format
@@ -446,19 +401,17 @@ msgstr ""
 #: smolt.py:362
 #, python-format
 msgid "Could not contact server: %s"
-msgstr "Ne mogu da kontaktiram server: %s"
+msgstr ""
 
 #: smolt.py:412
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr "Ne mogu da se vežem za dbus.  Je li dbus pokrenut?"
+msgstr ""
 
 #: smolt.py:418
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
 msgstr ""
-"Ne mogu da se povežem sa hal-om, da li je pokrenut?\n"
-"Pokrenite \"service haldaemon start\" kao root korisnik"
 
 #: smolt.py:507
 msgid ""
@@ -474,24 +427,24 @@ msgstr ""
 #: smolt.py:536 smolt.py:579 smolt.py:609
 #, python-format
 msgid "Error contacting Server: %s"
-msgstr "Greška pri kontaktiranju servera: %s"
+msgstr ""
 
 #: smolt.py:545 smolt.py:596
 msgid "Wrong version, server incapable of handling your client"
-msgstr "Pogrešna verzija, server ne može da rukuje klijentom"
+msgstr ""
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
 msgstr ""
 
 #: smolt.py:589
-#, fuzzy, python-format
+#, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "Došlo je do greške pri slanju podataka na server."
+msgstr ""
 
 #: smolt.py:630
 msgid "Devices"
-msgstr "Uređaji"
+msgstr ""
 
 #: smolt.py:637
 msgid "\tFilesystem Information"
@@ -499,35 +452,35 @@ msgstr ""
 
 #: smolt.py:649
 msgid "UUID"
-msgstr "UUID"
+msgstr ""
 
 #: smolt.py:650
 msgid "OS"
-msgstr "OS"
+msgstr ""
 
 #: smolt.py:651
 msgid "Default run level"
-msgstr "Podrazumevani izvršni nivo"
+msgstr ""
 
 #: smolt.py:652
 msgid "Language"
-msgstr "Jezik"
+msgstr ""
 
 #: smolt.py:653
 msgid "Platform"
-msgstr "Platforma"
+msgstr ""
 
 #: smolt.py:654
 msgid "BogoMIPS"
-msgstr "BogoMIPS"
+msgstr ""
 
 #: smolt.py:655
 msgid "CPU Vendor"
-msgstr "Proizvođač procesora"
+msgstr ""
 
 #: smolt.py:656
 msgid "CPU Model"
-msgstr "Model procesora"
+msgstr ""
 
 #: smolt.py:657
 msgid "CPU Stepping"
@@ -538,58 +491,56 @@ msgid "CPU Family"
 msgstr ""
 
 #: smolt.py:659
-#, fuzzy
 msgid "CPU Model Num"
-msgstr "Model procesora"
+msgstr ""
 
 #: smolt.py:660
 msgid "Number of CPUs"
-msgstr "Broj procesora"
+msgstr ""
 
 #: smolt.py:661
 msgid "CPU Speed"
-msgstr "Brzina procesora"
+msgstr ""
 
 #: smolt.py:662
 msgid "System Memory"
-msgstr "Memorija sistema"
+msgstr ""
 
 #: smolt.py:663
 msgid "System Swap"
-msgstr "Svap sistema"
+msgstr ""
 
 #: smolt.py:664
 msgid "Vendor"
-msgstr "Proizvođač"
+msgstr ""
 
 #: smolt.py:665
 msgid "System"
-msgstr "Sistem"
+msgstr ""
 
 #: smolt.py:666
 msgid "Form factor"
-msgstr "Fizički oblik"
+msgstr ""
 
 #: smolt.py:667
 msgid "Kernel"
-msgstr "Jezgro"
+msgstr ""
 
 #: smolt.py:668
 msgid "SELinux Enabled"
-msgstr "SELinux uključen"
+msgstr ""
 
 #: smolt.py:669
-#, fuzzy
 msgid "SELinux Policy"
-msgstr "SELinux primoravanje"
+msgstr ""
 
 #: smolt.py:670
 msgid "SELinux Enforce"
-msgstr "SELinux primoravanje"
+msgstr ""
 
 #: smolt.py:1139
 msgid "Unable to save UUID, continuing...\n"
-msgstr "Ne mogu da sačuvam UUID, nastavljam...\n"
+msgstr ""
 
 #: smolt.py:1140
 #, python-format
@@ -598,7 +549,7 @@ msgstr ""
 
 #: smolt.py:1143
 msgid "Unable to determine UUID of system!\n"
-msgstr "Ne mogu da utvrdim UUID sistema!\n"
+msgstr ""
 
 #: smolt.py:1162
 #, python-format
@@ -606,69 +557,9 @@ msgid "Error determining public UUID: %s"
 msgstr ""
 
 #: smolt.py:1163
-#, fuzzy
 msgid "Unable to determine Public UUID!\n"
-msgstr "Ne mogu da utvrdim UUID sistema!\n"
+msgstr ""
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
-msgstr "Ne mogu da utvrdim izvršni nivo"
-
-#, fuzzy
-#~ msgid ""
-#~ "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
-#~ "%s\n"
-#~ "stored in %s"
-#~ msgstr ""
-#~ "Podaci su uspešno poslati.  Ako je potrebno da se pozovete na svoj hardverski profil za izveštaj o grešci, vaš UUID \n"
-#~ "%s\n"
-#~ "je pohranjen u %s"
-
-#~ msgid "_Quit"
-#~ msgstr "_Izađi"
-
-#~ msgid "Quit the program without sending your hardware profile to the server"
-#~ msgstr "Izađi iz programa bez slanja hardverskog profila serveru"
-
-#~ msgid "_Send"
-#~ msgstr "_Pošalji"
-
-#~ msgid "Send your hardware profile to the server."
-#~ msgstr "Pošaljite svoj hardverski profil serveru."
-
-#~ msgid "Show the Smolt privacy policy."
-#~ msgstr "Prikaži Smolt polisu privatnosti."
-
-#~ msgid "Take me to my smolt profile page"
-#~ msgstr "Vodi me na stranicu mog smolt profila"
-
-#~ msgid "Smolt Privacy Policy"
-#~ msgstr "Smolt polisa privatnosti"
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Nikola Pajtić <salgeras@gmail.com>, 2008.\n"
-#~ "Miloš Komarčević <kmilos@gmail.com>, 2007.\n"
-#~ "Igor Miletić <grejigl-gnomeprevod@yahoo.ca>, 2007."
-
-#~ msgid "Fedora hardware profiler."
-#~ msgstr "Fedora izvidnik hardverskog profila."
-
-#~ msgid "Copyright © 2007 Mike McGrath"
-#~ msgstr "Autorska prava 2007 Mike McGrath"
-
-#~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
-#~ msgstr ""
-#~ "Ovaj program je slobodan softver; možete ga razdeljivati i/ili izmenjivati pod uslovima GNU Opšte javne licence kao što je objavila Fondacija slobodnog softvera; ili licencom verzije 2, ili (po vašem izboru) bilo kojom kasnijom verzijom.\n"
-#~ "\n"
-#~ "Ovaj program se razdeljuje u nadi da će biti od koristi, ali BEZ IKAKVE GARANCIJE; čak i bez podrazumevane garancije PRIKLADNOSTI ZA PRODAJU ili PODOBNOSTI ZA POSEBNU NAMENU.  Pogledajte GNU Opštu javnu licencu za više detalja.\n"
-#~ "\n"
-#~ "Trebalo bi da ste primili uzorak GNU Opšte javne licence uz ovaj program; ako niste, pišite Fondacija slobodnog softvera: Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
-
-#~ msgid "Communication with server failed"
-#~ msgstr "Neuspela komunikacija sa serverom"
+msgstr ""
