@@ -73,11 +73,12 @@ for j in jobs:
     try:
         handle_submission(session, j.hw_uuid, j.data)
     except Exception, e:
-        logging.debug('Caught exception: %s' % e.message)
-    if opts.delete_after_addition:
-        session.delete(j)
+        print 'Caught exception: %s' % e.message
     else:
-        j.added = True
+        if opts.delete_after_addition:
+            session.delete(j)
+        else:
+            j.added = True
 session.flush()
 print '===================================================================='
 print '%d jobs processed' % count
