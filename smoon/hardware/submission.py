@@ -21,7 +21,8 @@ import logging
 import simplejson
 from sqlalchemy.exceptions import InvalidRequestError, OperationalError
 from datetime import datetime
-from hardware.model.model import Host, ComputerLogicalDevice
+from hardware.model.model import *
+from hardware.uuid import generate_uuid
 
 def handle_submission(session, uuid, host):
     logging.info('Processing hardware UUID %s' % uuid)
