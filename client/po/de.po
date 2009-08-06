@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: smolt.master.de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-05 19:52+0200\n"
-"PO-Revision-Date: 2009-08-07 00:30+0100\n"
+"PO-Revision-Date: 2009-08-07 00:41+0100\n"
 "Last-Translator: Marcus Nitzschke <kenda@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -444,9 +444,8 @@ msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t
 msgstr "<b>Über Smolt:</b><br/>Der smolt-Hardware-Profiler ist ein Server-Client- \t\t\t\tSystem, welches einen Hardware-Scan macht und die Resultate \t\t\t\tan einen öffentlichen Fedora-Projekt- Turbogears-Server schickt. Die Übertragungen sind anonym \t\t\t\tund enthalten keine privaten, sondern nur physikalische \t\t\t\tHardware-Information und grundlegende Betriebssystem-Informationen.<br/>"
 
 #: smoltGui.py:294
-#, fuzzy
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
-msgstr "<b>Autor(en):</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+msgstr "<b>Autor(en):</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:296
 #, python-format
