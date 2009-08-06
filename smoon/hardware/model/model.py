@@ -2,11 +2,23 @@
 from datetime import datetime
 from sqlalchemy import *
 from sqlalchemy.orm import *
-from turbogears.database import metadata, session
 #from sqlalchemy.ext.assignmapper import assign_mapper
-from turbogears import identity
 from datetime import timedelta, date, datetime
-from turbogears.database import mapper
+
+
+# Context dependent metadata and mapper creation
+import sys
+import logging
+if 'turbogears' in sys.modules:
+    logging.debug('Turbogears context')
+    from turbogears.database import metadata
+    from turbogears.database import mapper
+else:
+    logging.debug('Plain SQL alchemy context')
+    from sqlalchemy.orm import mapper
+    from sqlalchemy import MetaData
+    metadata = MetaData()
+
 
 import os
 import sys

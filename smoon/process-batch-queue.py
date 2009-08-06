@@ -42,6 +42,7 @@ import logging
 from ConfigParser import ConfigParser
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import traceback
 
 from hardware.submission import handle_submission
 from hardware.model.model import BatchJob
@@ -73,7 +74,7 @@ for j in jobs:
     try:
         handle_submission(session, j.hw_uuid, j.data)
     except Exception, e:
-        print 'Caught exception: %s' % e.message
+        traceback.print_tb()
     else:
         if opts.delete_after_addition:
             session.delete(j)
