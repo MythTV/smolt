@@ -103,10 +103,13 @@ class InstalledPackages:
 
         # Use flags
         use_flags = GlobalUseFlags()
-        flags = set(e for e in USE.split() if use_flags.is_known(e)) & \
-            set(x.lstrip("+-") for x in IUSE.split() if use_flags.is_known(x))
+        package_use_set = set(e for e in USE.split() if use_flags.is_known(e))
+        package_iuse_set = set(x.lstrip("+-") for x in IUSE.split() if use_flags.is_known(x))
+        enabled_flags = package_use_set & package_iuse_set
+        disabled_flags = package_iuse_set - package_use_set
+        package_flags = sorted(enabled_flags) + ['-' + e for e in sorted(disabled_flags)]
         entry = [package_name, version_revision, SLOT, keyword_status,
-            masked, unmasked, is_in_world, repository, sorted(flags)]
+            masked, unmasked, is_in_world, repository, package_flags]
         return entry
 
     def total_count(self):

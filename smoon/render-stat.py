@@ -131,7 +131,7 @@ def handle_withheld_elem(list, attrib_to_check, value_to_check_for):
     other_list = [e for e in list if not condition(e)]
     withheld_list = [modify(e) for e in list if condition(e)]
     return other_list + withheld_list
-
+"""
 stats = {}
 # somehow this has to be first, cause it binds us to
 # an sqlalchemy context
@@ -546,7 +546,20 @@ fname = "%s/stats.html" % (page_path)
 f = open(fname, "w")
 f.write(out_html)
 f.close()
+"""
+def do_distro_specific_renderinging():
+    import gentooanalysis
+    import datetime
+    gentoo_data_tree = gentooanalysis.gentoo_data_tree(session)
+    t = engine.load_template('hardware.templates.gentoo')
+    out_html = _process_output(dict(data=gentoo_data_tree), template=t, format='html')
+    fname = "%s/gentoo.html" % (page_path)
+    f = open(fname, "w")
+    f.write(out_html)
+    f.close()
 
+do_distro_specific_renderinging()
+"""
 # Save some memory
 del out_html
 del stats
@@ -585,3 +598,4 @@ f.close()
 # Save some memory
 del devices
 del out_html
+"""

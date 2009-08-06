@@ -90,14 +90,15 @@ class _GlobalUseFlags:
                 len(active_use_flags)
 
         # Filter our private use flags
-        registered_global_use_flags = self._registered_global_use_flags()
-        non_private_space = registered_global_use_flags.union(
+        self._non_private_space = self._registered_global_use_flags().union(
                 self._registered_local_use_flags()).union(
                 self._expanded_use_flags()).union(
                 self._auto_use_flags())
+
         def is_non_private(x):
             try:
-                if (x in non_private_space) or ("-" + x in non_private_space):
+                if (x in self._non_private_space) or \
+                        ("-" + x in self._non_private_space):
                     return True
                 else:
                     return False
@@ -121,7 +122,7 @@ class _GlobalUseFlags:
         return self.total_count() - self.private_count()
 
     def is_known(self, flag):
-        return flag in self._global_use_flags
+        return flag in self._non_private_space
 
     def serialize(self):
         return sorted(self._global_use_flags)

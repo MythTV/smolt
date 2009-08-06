@@ -1,0 +1,528 @@
+<html
+  xmlns:py="http://genshi.edgewall.org/"
+>
+
+<!--
+smolt - Fedora hardware profiler
+
+Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+-->
+
+<head>
+    <title>Gentoo in Numbers</title>
+    <!-- Simple hack to make CSS import work from both ./templates/ and ./static/stats/ -->
+    <link media="screen" href="../static/css/gentoo.css" type="text/css" rel="stylesheet" />
+    <link media="screen" href="../css/gentoo.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+
+<h1>Gentoo in Numbers</h1>
+<div>
+    <p>Stats tracked by <a href="https://fedorahosted.org/smolt/">Smolt</a>, report generated on ${data['generation_time']}</p>
+    <p>Gentoo-related coding by <a href="mailto:sebastian@pipping.org">Sebastian Pipping</a></p>
+</div>
+
+
+<a name="toc"></a><h2>Table of contents</h2>
+<div>
+    <ul>
+        <li><a href="#archs">Archs</a><span class="section_comment">(ARCH, ACCEPT_KEYWORDS)</span></li>
+        <li><a href="#chosts">Chosts</a><span class="section_comment">(CHOST)</span></li>
+        <li>
+            <a href="#compile_flags">Compile flags</a>
+            <ul>
+                <li><a href="#compile_flags_cflags">CFLAGS</a></li>
+                <li><a href="#compile_flags_cxxflags">CXXFLAGS</a></li>
+                <li><a href="#compile_flags_ldflags">LDFLAGS</a></li>
+                <li><a href="#compile_flags_makeopts">MAKEOPTS</a></li>
+            </ul>
+        </li>
+        <li><a href="#features">Features</a><span class="section_comment">(FEATURES)</span></li>
+        <li><a href="#global_use_flags">Global use flags</a><span class="section_comment">(USE)</span></li>
+        <li><a href="#system_profiles">System profiles</a><span class="section_comment">(/etc/make.profile)</span></li>
+        <li><a href="#package_mask">User-masked packages</a><span class="section_comment">(/etc/portage/package.mask)</span></li>
+        <li class="todo"><a href="#overlays">Overlays</a><span class="section_comment">(PORTDIR_OVERLAY)</span></li>
+        <li>
+            <a href="#mirrors">Mirrors</a>
+            <ul>
+                <li><a href="#mirrors_sync">Package tree</a><span class="section_comment">(SYNC)</span></li>
+                <li><a href="#mirrors_distfiles">Distfiles</a><span class="section_comment">(GENTOO_MIRRORS)</span></li>
+            </ul>
+        </li>
+        <li class="todo">
+            <a href="#installed_packages">Installed packages</a><span class="section_comment">(/var/db/pkg/)</span>
+            <ul>
+                <li>
+                    <a href="#installed_packages_most_installed">Most-installed packages</a>
+                    <ul>
+                        <li><a href="#installed_packages_most_installed_world">World-file packages</a></li>
+                        <li><a href="#installed_packages_most_installed_non_world">Non-world-file packages</a></li>
+                    </ul>
+                </li>
+                <li><a href="#installed_packages_most_unmasked">Most-unmasked packages</a></li>
+                <li><a href="#installed_packages_least_installed_main_tree">Least-installed main-tree packages</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+<a name="archs"></a><h2>Archs</h2>
+<div>
+    <table>
+        <tr>
+            <th class="vert_head">Arch</th>
+            <th colspan="2" class="head">Stable</th>
+            <th colspan="2" class="head">Unstable</th>
+            <th colspan="2" class="head">Total</th>
+        </tr>
+        <tr py:for="row in data['archs']['listed']">
+            <th class="vert">${row['label']}</th>
+            <td class="count">${row['absolute_stable']}</td>
+            <td class="relative">(${row['relative_stable']} %)</td>
+            <td class="count">${row['absolute_unstable']}</td>
+            <td class="relative">(${row['relative_unstable']} %)</td>
+            <td class="count">${row['absolute_total']}</td>
+            <td class="relative">(${row['relative_total']} %)</td>
+        </tr>
+        <tr py:for="row in data['archs']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot_count">${row['absolute_stable']}</td>
+            <td class="foot_relative">(${row['relative_stable']} %)</td>
+            <td class="foot_count">${row['absolute_unstable']}</td>
+            <td class="foot_relative">(${row['relative_unstable']} %)</td>
+            <td class="foot_count">${row['absolute_total']}</td>
+            <td class="foot_relative">(${row['relative_total']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
+<a name="chosts"></a><h2>Chosts</h2>
+<div>
+    <table>
+        <tr>
+            <th class="vert_head">Chost</th>
+            <th colspan="2" class="head">Popularity</th>
+        </tr>
+        <tr py:for="row in data['chost']['listed']">
+            <th class="vert">${row['label']}</th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        <py:if test="data['chost']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['chost']['others']">
+            <th class="vert"><span class="group_item">others</span></th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:for="row in data['chost']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot_count">${row['absolute']}</td>
+            <td class="foot_relative">(${row['relative']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
+<a name="compile_flags"></a><h2>Compile flags</h2>
+<div>
+    <a name="compile_flags_cflags"></a><h3>CFLAGS</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="vert_head">Flag</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['compile_flags']['CFLAGS']['listed']">
+                <th class="vert">${row['label']}</th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['compile_flags']['CFLAGS']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['CFLAGS']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['compile_flags']['CFLAGS']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="compile_flags_cxxflags"></a><h3>CXXFLAGS</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="vert_head">Flag</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['compile_flags']['CXXFLAGS']['listed']">
+                <th class="vert">${row['label']}</th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['compile_flags']['CXXFLAGS']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['CXXFLAGS']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['compile_flags']['CXXFLAGS']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="compile_flags_ldflags"></a><h3>LDFLAGS</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="vert_head">Flag</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['compile_flags']['LDFLAGS']['listed']">
+                <th class="vert">${row['label']}</th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['compile_flags']['LDFLAGS']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['LDFLAGS']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['compile_flags']['LDFLAGS']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="compile_flags_makeopts"></a><h3>MAKEOPTS</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="vert_head">Flag</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['compile_flags']['MAKEOPTS']['listed']">
+                <th class="vert">${row['label']}</th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['compile_flags']['MAKEOPTS']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['MAKEOPTS']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['compile_flags']['MAKEOPTS']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<a name="features"></a><h2>Features</h2>
+<div>
+    <table>
+        <tr>
+            <th class="vert_head">Feature</th>
+            <th colspan="2" class="head">Popularity</th>
+        </tr>
+        <tr py:for="row in data['features']['listed']">
+            <th class="vert">${row['label']}</th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        <py:if test="data['features']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['features']['others']">
+            <th class="vert"><span class="group_item">others</span></th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:for="row in data['features']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot_count">${row['absolute']}</td>
+            <td class="foot_relative">(${row['relative']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
+<a name="global_use_flags"></a><h2>Global use flags</h2>
+<div>
+    <table>
+        <tr>
+            <th class="vert_head">Use flag</th>
+            <th colspan="2" class="head">Popularity</th>
+        </tr>
+        <tr py:for="row in data['global_use_flags']['listed']">
+            <th class="vert">${row['label']}</th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        <py:if test="data['global_use_flags']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['global_use_flags']['others']">
+            <th class="vert"><span class="group_item">others</span></th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:for="row in data['global_use_flags']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot_count">${row['absolute']}</td>
+            <td class="foot_relative">(${row['relative']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
+<a name="system_profiles"></a><h2>System profiles</h2>
+<div>
+    <table>
+        <tr>
+            <th class="vert_head">Profile</th>
+            <th colspan="2" class="head">Popularity</th>
+        </tr>
+        <tr py:for="row in data['system_profile']['listed']">
+            <th class="vert">${row['label']}</th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        <py:if test="data['system_profile']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['system_profile']['others']">
+            <th class="vert"><span class="group_item">others</span></th>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:for="row in data['system_profile']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot_count">${row['absolute']}</td>
+            <td class="foot_relative">(${row['relative']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
+<a name="package_mask"></a><h2>User-masked packages</h2>
+<div>
+    <table>
+        <tr>
+            <th class="vert_head">Package</th>
+            <th class="head">Responsible atom</th>
+            <th colspan="2" class="head">Popularity</th>
+        </tr>
+<py:for each="row in data['package_mask']['listed']">
+  <py:if test="len(row['details']) == 1">
+        <tr>
+            <th class="vert">${row['package']}</th>
+            <td><span class="group_item">${row['details'][0]['label']}</span></td>
+            <td class="count">${row['any']['absolute']}</td>
+            <td class="relative">(${row['any']['relative']} %)</td>
+        </tr>
+  </py:if>
+  <py:if test="len(row['details']) > 1">
+        <tr>
+            <th class="vert" rowspan="${len(row['details']) + 1}" style="vertical-align:top">${row['package']}</th>
+            <td><span class="group_item">any</span></td>
+            <td class="count">${row['any']['absolute']}</td>
+            <td class="relative">(${row['any']['relative']} %)</td>
+        </tr>
+        <tr py:for="sub_row in row['details']">
+            <td class="group_child_1">${sub_row['label']}</td>
+            <td class="count">${sub_row['absolute']}</td>
+            <td class="relative">(${sub_row['relative']} %)</td>
+        </tr>
+  </py:if>
+</py:for>
+        <py:if test="data['package_mask']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['package_mask']['others']">
+            <th class="vert"><span class="group_item">others</span></th>
+            <td><span></span></td>
+            <td class="count">${row['absolute']}</td>
+            <td class="relative">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:for="row in data['package_mask']['total']">
+            <th class="vert_foot">Total</th>
+            <td class="foot"><span></span></td>
+            <td class="foot_count">${row['absolute']}</td>
+            <td class="foot_relative">(${row['relative']} %)</td>
+        </tr>
+    </table>
+</div>
+
+<a name="overlays"></a><h2>Overlays</h2>
+<div class="todo">
+    <table>
+        <tr><th class="vert_head">Overlay</th><th colspan="2" class="head">Popularity</th><th colspan="2" class="head">Used packages</th><th colspan="2" class="head">Total installations</th></tr>
+        <tr><th class="vert"><a href="http://gentoo-overlays.zugaina.org/zugaina/">zugaina</a></th><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+        <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+        <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+    </table>
+</div>
+
+
+<a name="mirrors"></a><h2>Mirrors</h2>
+<div>
+    <a name="mirrors_sync"></a><h3>Package tree mirrors</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="vert_head">Mirror</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['sync_mirror']['listed']">
+                <th class="vert">${row['label']}</th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['sync_mirror']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['sync_mirror']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['sync_mirror']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="mirrors_distfiles"></a><h3>Distfiles mirrors</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="vert_head">Mirror</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['distfiles_mirrors']['listed']">
+                <th class="vert"><a href="${row['label']}">${row['label']}</a></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['distfiles_mirrors']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['distfiles_mirrors']['others']">
+                <th class="vert"><span class="group_item">others</span></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:for="row in data['distfiles_mirrors']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<a name="installed_packages"></a><h2>Installed packages</h2>
+<div>
+    <a name="installed_packages_most_installed"></a><h3>Most-installed packages</h3>
+    <div>
+        <a name="installed_packages_most_installed_world"></a><h4>World-file packages</h4>
+        <div class="todo">
+            <table>
+                <tr><th class="vert_head">Package</th><th class="head">Slot</th><th class="head">Version</th><th colspan="2" class="head">Popularity</th></tr>
+                <tr><th class="vert" rowspan="5" style="vertical-align:top">x11-libs/qt</th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr>                                            <td class="group_child_1" rowspan="3" style="vertical-align:top">3</td><td class="group_child_1"><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr>                                                                                                                 <td class="group_child_2">3.3.8-r2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr>                                                                                                                 <td class="group_child_2">3.3.8-r4</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr>                                            <td class="group_child_1">4</td><td class="group_child_1">4.4.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr><th class="vert">dev-util/colormake</th><td>0</td><td>0.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr><th class="vert"><span class="group_item">others</span></th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr><th class="vert_foot">Total</th><td class="foot"><span></span></td><td class="foot"><span></span></td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+            </table>
+        </div>
+
+        <a name="installed_packages_most_installed_non_world"></a><h4>Non-world-file packages</h4>
+        <div class="todo">
+            <table>
+                <tr><th class="vert_head">Package</th><th class="head">Slot</th><th class="head">Version</th><th colspan="2" class="head">Popularity</th></tr>
+                <tr><th class="vert" rowspan="5" style="vertical-align:top">x11-libs/qt</th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr>                                            <td class="group_child_1" rowspan="3" style="vertical-align:top">3</td><td class="group_child_1"><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr>                                                                                                                 <td class="group_child_2">3.3.8-r2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr>                                                                                                                 <td class="group_child_2">3.3.8-r4</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr>                                            <td class="group_child_1">4</td><td class="group_child_1">4.4.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr><th class="vert">dev-util/colormake</th><td>0</td><td>0.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr><th class="vert"><span class="group_item">others</span></th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+                <tr><th class="vert_foot">Total</th><td class="foot"><span></span></td><td class="foot"><span></span></td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <a name="installed_packages_most_unmasked"></a><h3>Most-unmasked packages</h3>
+    <div class="todo">
+        <table>
+            <tr><th class="vert_head">Package</th><th class="head">Slot</th><th class="head">Version</th><th colspan="2" class="head">~arch</th><th colspan="2" class="head">**</th><th colspan="2" class="head">.unmask</th><th colspan="2" class="head">any</th></tr>
+            <tr><th class="vert" rowspan="5" style="vertical-align:top">x11-libs/qt</th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr>                                            <td class="group_child_1" rowspan="3" style="vertical-align:top">3</td><td class="group_child_1"><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr>                                                                            <td class="group_child_2">3.3.8-r2</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr>                                                                            <td class="group_child_2">3.3.8-r4</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr>                                            <td class="group_child_1">4</td><td class="group_child_1">4.4.2</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr><th class="vert">dev-util/colormake</th><td>0</td><td>0.2</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr><th class="vert"><span class="group_item">others</span></th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr><th class="vert_foot">Total</th><td class="foot"><span></span></td><td class="foot"><span></span></td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+        </table>
+    </div>
+
+    <a name="installed_packages_least_installed_main_tree"></a><h3>Least-installed main-tree packages</h3>
+    <div class="todo">
+        <table>
+            <tr><th class="vert_head">Package</th><th class="head">Slot</th><th class="head">Version</th><th colspan="2" class="head">Popularity</th></tr>
+            <tr><th class="vert" rowspan="5" style="vertical-align:top">x11-libs/qt</th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr>                                            <td class="group_child_1" rowspan="3" style="vertical-align:top">3</td><td class="group_child_1"><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr>                                                                                                                 <td class="group_child_2">3.3.8-r2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr>                                                                                                                 <td class="group_child_2">3.3.8-r4</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr>                                            <td class="group_child_1">4</td><td class="group_child_1">4.4.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr><th class="vert">dev-util/colormake</th><td>0</td><td>0.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr><th class="vert"><span class="group_item">others</span></th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
+            <tr><th class="vert_foot">Total</th><td class="foot"><span></span></td><td class="foot"><span></span></td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+        </table>
+    </div>
+</div>
+
+<div>
+    <p>Report generation took ${data['generation_duration']}.</p>
+</div>
+
+</body>
+</html>
