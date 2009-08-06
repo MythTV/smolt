@@ -176,7 +176,7 @@ def _handle_accept_keywords(session, data, machine_id):
             filter_by(machine_id=machine_id).all()
     old_accept_keywords_dict = {}
     for i in old_accept_keywords_objects:
-        key = (i.keyword, bool(i.stable))
+        key = (i.keyword.name, bool(i.stable))
         old_accept_keywords_dict[key] = i
     old_accept_keywords_set = set(old_accept_keywords_dict.keys())
 
@@ -326,7 +326,7 @@ def _handle_installed_packages(session, data, machine_id):
     current_install_dict = {}
     for e in installed_packages:
         package, version, slot, keyword_status, masked, unmasked, \
-                world, repository, use_flags = e
+                world, repository, raw_use_flags = e
         key = (package, slot)
         current_install_dict[key] = e
     current_install_key_set = set(current_install_dict.keys())
@@ -343,7 +343,7 @@ def _handle_installed_packages(session, data, machine_id):
     for key in installs_to_add:
         package, version, slot, keyword_status, \
                 masked, unmasked, world, repository, \
-                use_flags = current_install_dict[key]
+                raw_use_flags = current_install_dict[key]
 
         lookup_or_add_jobs = (
             {'thing':'slot', },
@@ -373,25 +373,39 @@ def _handle_installed_packages(session, data, machine_id):
         session.add(install_object)
 
         # Lookup/add use flags
-        use_flag_pool_objects = session.query(GentooUseFlagString).filter(GentooUseFlagString.name.in_(use_flags)).all()
-        use_flag_dict = {}
-        for i in use_flag_pool_objects:
-            use_flag_dict[i.name] = i
-        for i in [e for e in use_flags if not e in use_flag_dict]:
-            use_flag_object = GentooUseFlagString(i)
-            use_flag_dict[i] = use_flag_object
-            session.add(use_flag_object)
+        package_use_dict = {}
+        for i in [e.strip() for e in raw_use_flags]:
+            if i.startswith('-'):
+                key = i.lstrip('-')
+                enabled = False
+            else:
+                key = i.lstrip('+')
+                enabled = True
+            package_use_dict[key] = {
+                'pool_object':None,
+                'enabled':enabled}
+        positive_use_flags = package_use_dict.keys()
 
+        use_flag_pool_objects = session.query(GentooUseFlagString).filter(GentooUseFlagString.name.in_(positive_use_flags)).all()
+        for i in use_flag_pool_objects:
+            package_use_dict[i.name]['pool_object'] = i
+        for i in [e for e in positive_use_flags if \
+                package_use_dict[e]['pool_object'] == None]:
+            use_flag_object = GentooUseFlagString(i)
+            package_use_dict[i]['pool_object'] = use_flag_object
+            session.add(use_flag_object)
         session.flush()
+
         installed_package_id = install_object.id
         version_id = version_pool_object.id
         repository_id = repository_pool_object.id
 
         # Relate use flags
         install_object.use_flags = []
-        for v in use_flag_dict.values():
-            use_flag_id = v.id
-            use_flag_rel_object = GentooInstalledPackageUseFlagRel(installed_package_id, use_flag_id)
+        for v in package_use_dict.values():
+            use_flag_id = v['pool_object'].id
+            enabled = v['enabled']
+            use_flag_rel_object = GentooInstalledPackageUseFlagRel(installed_package_id, use_flag_id, enabled)
             install_object.use_flags.append(use_flag_rel_object)
 
         # Add properties

@@ -265,13 +265,15 @@ _gentoo_installed_package_use_flag_table = Table('gentoo_installed_package_use_f
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('installed_package_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages')),
     Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool')),
+    Column('enabled', SmallInteger),  # Not BOOLEAN here as that denies using func.sum
     UniqueConstraint('installed_package_id', 'use_flag_id'),
 )
 
 class GentooInstalledPackageUseFlagRel(object):
-    def __init__(self, installed_package_id, use_flag_id):
+    def __init__(self, installed_package_id, use_flag_id, enabled):
         self.installed_package_id = installed_package_id
         self.use_flag_id = use_flag_id
+        self.enabled = enabled
 
 mapper(GentooInstalledPackageUseFlagRel, _gentoo_installed_package_use_flag_table,
     properties={
