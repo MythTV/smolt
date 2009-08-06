@@ -227,7 +227,8 @@ if opts.retry:
         result, pub_uuid, admin = profile.send(user_agent=opts.user_agent,
                               smoonURL=opts.smoonURL,
                               timeout=opts.timeout,
-                              proxies=proxies)
+                              proxies=proxies,
+                              batch=opts.checkin)
         if not result:
             sys.exit(0)
         error(_('Retry Enabled - Retrying'))
@@ -236,7 +237,8 @@ else:
     result, pub_uuid, admin = profile.send(user_agent=opts.user_agent,
                                     smoonURL=opts.smoonURL,
                                     timeout=opts.timeout,
-                                    proxies=proxies)
+                                    proxies=proxies,
+                                    batch=opts.checkin)
 
     if result:
         print _('Could not send - Exiting')
@@ -266,6 +268,6 @@ if pub_uuid:
     if not smolt.secure:
         print _('\tAdmin Password: %s') % admin
 
-else:
+elif not opts.checkin:
     print _('No Public UUID found!  Please re-run with -n to generate a new public uuid')
 
