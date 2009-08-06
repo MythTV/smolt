@@ -121,7 +121,7 @@ batch_queue = Table('batch_queue', metadata,
                             nullable=False),
                     Column('hw_uuid', VARCHAR(36),
                             nullable=False),
-                    Column('data', Text))
+                    Column('data', Text(1000000)))
 
 
 class Host(object):
