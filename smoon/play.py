@@ -176,7 +176,7 @@ def _handle_accept_keywords(session, data, machine_id):
             filter_by(machine_id=machine_id).all()
     old_accept_keywords_dict = {}
     for i in old_accept_keywords_objects:
-        key = (i.keyword, bool(i.stable))
+        key = (i.keyword.name, bool(i.stable))
         old_accept_keywords_dict[key] = i
     old_accept_keywords_set = set(old_accept_keywords_dict.keys())
 
