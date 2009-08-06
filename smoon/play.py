@@ -383,7 +383,7 @@ def _handle_installed_packages(session, data, machine_id):
             session.add(use_flag_object)
 
         session.flush()
-        install_id = install_object.id
+        installed_package_id = install_object.id
         version_id = version_pool_object.id
         repository_id = repository_pool_object.id
 
@@ -391,12 +391,12 @@ def _handle_installed_packages(session, data, machine_id):
         install_object.use_flags = []
         for v in use_flag_dict.values():
             use_flag_id = v.id
-            use_flag_rel_object = GentooInstalledPackageUseFlagRel(install_id, use_flag_id)
+            use_flag_rel_object = GentooInstalledPackageUseFlagRel(installed_package_id, use_flag_id)
             install_object.use_flags.append(use_flag_rel_object)
 
         # Add properties
         install_object.properties = [GentooInstalledPackagePropertiesRel(\
-                install_id, version_id, keyword_status_code(keyword_status),
+                installed_package_id, version_id, keyword_status_code(keyword_status),
                 masked, unmasked, world, repository_id), ]
 
     session.flush()

@@ -235,7 +235,7 @@ class GentooInstalledPackagesRel(object):
 
 _gentoo_installed_package_properties_table = Table('gentoo_installed_package_properties', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages'), unique=True),
+    Column('installed_package_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages'), unique=True),
     Column('version_id', Integer, ForeignKey('%s.id' % 'gentoo_version_pool')),
     Column('keyword_status', Integer),  # Could be MSEnum, choosing Integer for flexibility
     Column('masked', BOOLEAN),
@@ -245,8 +245,8 @@ _gentoo_installed_package_properties_table = Table('gentoo_installed_package_pro
 )
 
 class GentooInstalledPackagePropertiesRel(object):
-    def __init__(self, install_id, version_id, keyword_status, masked, unmasked, world, repository_id):
-        self.install_id = install_id
+    def __init__(self, installed_package_id, version_id, keyword_status, masked, unmasked, world, repository_id):
+        self.installed_package_id = installed_package_id
         self.version_id = version_id
         self.keyword_status = keyword_status
         self.masked = masked
@@ -263,14 +263,14 @@ mapper(GentooInstalledPackagePropertiesRel, _gentoo_installed_package_properties
 
 _gentoo_installed_package_use_flag_table = Table('gentoo_installed_package_use_flag', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('install_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages')),
+    Column('installed_package_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages')),
     Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool')),
-    UniqueConstraint('install_id', 'use_flag_id'),
+    UniqueConstraint('installed_package_id', 'use_flag_id'),
 )
 
 class GentooInstalledPackageUseFlagRel(object):
-    def __init__(self, install_id, use_flag_id):
-        self.install_id = install_id
+    def __init__(self, installed_package_id, use_flag_id):
+        self.installed_package_id = installed_package_id
         self.use_flag_id = use_flag_id
 
 mapper(GentooInstalledPackageUseFlagRel, _gentoo_installed_package_use_flag_table,
