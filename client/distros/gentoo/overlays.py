@@ -179,6 +179,19 @@ class _Overlays:
             lines.append('<li><a href="http://gentoo-overlays.zugaina.org/%(name)s/">%(name)s</a></li>' % {'name':html.escape(name)})
         lines.append('</ul>')
 
+    def dump_rst(self, lines):
+        lines.append('Overlays')
+        lines.append('-----------------------------')
+        for v in sorted(self.get_active_names()):
+            lines.append('- ' + v)
+
+    def _dump(self):
+        lines = []
+        self.dump_rst(lines)
+        print '\n'.join(lines)
+        print
+
+    """
     def dump(self):
         print 'Active overlays:'
         print '  Names:'
@@ -189,6 +202,7 @@ class _Overlays:
         print '    Known: ' + str(self.known_count())
         print '    Private: ' + str(self.private_count())
         print
+    """
 
 
 _overlays_instance = None
@@ -204,4 +218,4 @@ def Overlays():
 
 if __name__ == '__main__':
     overlays = Overlays()
-    overlays.dump()
+    overlays._dump()

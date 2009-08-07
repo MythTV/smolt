@@ -75,29 +75,46 @@ class _Gentoo(Distro):
         installed_packages = InstalledPackages(debug=debug, cb_enter=cb_enter)
 
         machine_data = {}
-        lines = []
-        lines.append('<h1>Gentoo</h1>')
+        html_lines = []
+        rst_lines = []
+        html_lines.append('<h1>Gentoo</h1>')
+        rst_lines.append('Gentoo')
+        rst_lines.append('=================================')
+        rst_lines.append('')
         machine_data['protocol'] = '1.0'
 
-        trivials.dump_html(lines)
+        trivials.dump_html(html_lines)
+        trivials.dump_rst(rst_lines)
+        rst_lines.append('')
 
         machine_data['compile_flags'] = compile_flags.serialize()
-        compile_flags.dump_html(lines)
+        compile_flags.dump_html(html_lines)
+        compile_flags.dump_rst(rst_lines)
+        rst_lines.append('')
 
         machine_data['mirrors'] = mirrors.serialize()
-        mirrors.dump_html(lines)
+        mirrors.dump_html(html_lines)
+        mirrors.dump_rst(rst_lines)
+        rst_lines.append('')
 
         machine_data['overlays'] = overlays.serialize()
-        overlays.dump_html(lines)
+        overlays.dump_html(html_lines)
+        overlays.dump_rst(rst_lines)
+        rst_lines.append('')
 
         machine_data['user_package_mask'] = user_package_mask.serialize()
-        user_package_mask.dump_html(lines)
+        user_package_mask.dump_html(html_lines)
+        user_package_mask.dump_rst(rst_lines)
+        rst_lines.append('')
 
         machine_data['global_use_flags'] = global_use_flags.serialize()
-        global_use_flags.dump_html(lines)
+        global_use_flags.dump_html(html_lines)
+        global_use_flags.dump_rst(rst_lines)
+        rst_lines.append('')
 
         machine_data['installed_packages'] = installed_packages.serialize()
-        installed_packages.dump_html(lines)
+        installed_packages.dump_html(html_lines)
+        installed_packages.dump_rst(rst_lines)
 
         for container in (trivials, ):
             for k, v in container.serialize().items():
@@ -107,13 +124,17 @@ class _Gentoo(Distro):
                 machine_data[key] = v
 
         self._data = machine_data
-        self._html = '\n'.join(lines)
+        self._html = '\n'.join(html_lines)
+        self._rst = '\n'.join(rst_lines)
 
     def data(self):
         return self._data
 
     def html(self):
         return self._html
+
+    def rst(self):
+        return self._rst
 
 
 _gentoo_instance = None
@@ -133,6 +154,9 @@ if __name__ == '__main__':
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
 
     Gentoo().gather(debug=True)
+    """
     from simplejson import JSONEncoder
     print JSONEncoder(indent=2, sort_keys=True).encode(
         Gentoo().data())
+    """
+    print Gentoo().rst()

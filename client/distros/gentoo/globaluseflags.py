@@ -31,6 +31,34 @@ try:
 except NameError:
     from sets import Set as set  # Python 2.3 fallback
 
+
+def _flatten_dict_tree(dict_tree):
+    res = []
+    for k in sorted(dict_tree.keys()):
+        flat = _flatten_dict_tree(dict_tree[k])
+        if not flat:
+            res.append(k)
+        else:
+            if len(flat) > 1:
+                res.append(k + '_' + '{' + ','.join(sorted(flat)) + '}')
+            else:
+                res.append(k + '_' + flat[0])
+    return res
+
+def compress_use_flags(flag_list):
+    dict_tree = {}
+    # Convert to tree
+    for f in flag_list:
+        parts = f.split('_')
+        d = dict_tree
+        for i, v in enumerate(parts):
+            if v not in d:
+                d[v] = {}
+            d = d[v]
+    # Flatten back
+    return _flatten_dict_tree(dict_tree)
+
+
 class _GlobalUseFlags:
     def __init__(self):
         self._fill_use_flags()
@@ -133,6 +161,18 @@ class _GlobalUseFlags:
         lines.append(html.escape(', '.join(sorted(self._global_use_flags))))
         lines.append('</p>')
 
+    def dump_rst(self, lines):
+        lines.append('Global use flags')
+        lines.append('-----------------------------')
+        lines.append('  '.join(compress_use_flags(self._global_use_flags)))
+
+    def _dump(self):
+        lines = []
+        self.dump_rst(lines)
+        print '\n'.join(lines)
+        print
+
+    """
     def dump(self):
         print 'Global use flags:'
         print sorted(self.get())
@@ -140,6 +180,7 @@ class _GlobalUseFlags:
         print '    Known: ' + str(self.known_count())
         print '    Private: ' + str(self.private_count())
         print
+    """
 
 
 _global_use_flags_instance = None
@@ -155,4 +196,4 @@ def GlobalUseFlags():
 
 if __name__ == '__main__':
     global_use_flags = GlobalUseFlags()
-    global_use_flags.dump()
+    global_use_flags._dump()

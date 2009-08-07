@@ -75,16 +75,21 @@ class CompileFlags:
                 lines.append('<li>%s</li>' % html.escape(v))
             lines.append('</ul>')
 
-    def dump(self):
-        print 'Compile flags:'
-        print '  CFLAGS: ' + str(self.get_cflags())
-        print '  CXXFLAGS: ' + str(self.get_cxxflags())
-        print '  LDFLAGS: ' + str(self.get_ldflags())
+    def dump_rst(self, lines):
+        lines.append('Compile flags')
+        lines.append('-----------------------------')
+        for k, v in sorted(self.serialize().items()):
+            lines.append('- %s: %s' % (k, ' '.join(v)))
+
+    def _dump(self):
+        lines = []
+        self.dump_rst(lines)
+        print '\n'.join(lines)
         print
 
 if __name__ == '__main__':
     compileflags = CompileFlags()
-    compileflags.dump()
+    compileflags._dump()
 
 """
 Samples
