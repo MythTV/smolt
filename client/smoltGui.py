@@ -202,7 +202,7 @@ class SmoltGui(QMainWindow):
 	def _gather_data(self):
 		self._setup_progress_dialog(label='Gathering data...', force_show=False)
 		# TODO get live progress instead?
-		self._setup_progress_animation(5000)
+		self._setup_progress_animation(7000)
 
 		self._gather_thread = GatherThread()
 		self.connect(self._gather_thread, SIGNAL("profile_ready()"), \
