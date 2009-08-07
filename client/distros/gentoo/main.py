@@ -123,9 +123,16 @@ class _Gentoo(Distro):
                     raise Exception('Unintended key collision')
                 machine_data[key] = v
 
+        excerpt_lines = []
+        excerpt_lines.append('ACCEPT_KEYWORDS: ' + ' '.join(trivials.serialize()['ACCEPT_KEYWORDS']))
+        excerpt_lines.append('CXXFLAGS: ' + ' '.join(compile_flags.serialize()['CXXFLAGS']))
+        excerpt_lines.append('MAKEOPTS: ' + ' '.join(compile_flags.serialize()['MAKEOPTS']))
+        excerpt_lines.append('...')
+
         self._data = machine_data
         self._html = '\n'.join(html_lines)
         self._rst = '\n'.join(rst_lines)
+        self._excerpt = '\n'.join(excerpt_lines)
 
     def data(self):
         return self._data
@@ -135,6 +142,9 @@ class _Gentoo(Distro):
 
     def rst(self):
         return self._rst
+
+    def rst_excerpt(self):
+        return self._excerpt
 
 
 _gentoo_instance = None
