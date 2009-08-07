@@ -102,6 +102,22 @@ class _PackageStar:
                 lines.append('<li>%s</li>' % html.escape(v))
         lines.append('</ul>')
 
+    def dump_rst(self, lines):
+        lines.append(self._section)
+        len_a = len('-----------------------------')
+        len_b = len(self._section)
+        lines.append('-' * max(len_a, len_b))
+        for atoms in self.serialize().values():
+            for v in atoms:
+                lines.append('- %s' % v)
+
+    def _dump(self):
+        lines = []
+        self.dump_rst(lines)
+        print '\n'.join(lines)
+        print
+
+    """
     def dump(self):
         print '%s:' % (self._section)
         for k, v in self._non_private_cp_to_atoms.items():
@@ -111,6 +127,7 @@ class _PackageStar:
         print '    Known: ' + str(self.known_count())
         print '    Private: ' + str(self.private_count())
         print
+    """
 
 
 class _PackageMask(_PackageStar):
@@ -171,8 +188,10 @@ def ProfilePackageMask():
 
 if __name__ == '__main__':
     package_mask = PackageMask()
-    package_mask.dump()
+    package_mask._dump()
+    """
     package_unmask = PackageUnmask()
-    package_unmask.dump()
+    package_unmask._dump()
     profile_package_mask = ProfilePackageMask()
-    profile_package_mask.dump()
+    profile_package_mask._dump()
+    """

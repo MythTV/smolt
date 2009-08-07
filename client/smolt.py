@@ -439,7 +439,12 @@ class _Hardware:
             if d.detected():
                 logging.info('Distro "%s" detected' % (key))
                 d.gather(debug=True)
-                dist_dict[key] = {'data':d.data(), 'html':d.html()}
+                dist_dict[key] = {
+                    'data':d.data(),
+                    'html':d.html(),
+                    'rst':d.rst(),
+                    'rst_excerpt':d.rst_excerpt(),
+                }
         return dist_dict
 
     def get_properties_for_udi (self, udi):
@@ -690,6 +695,8 @@ class _Hardware:
         return '\n'.join(lines)
 
     def get_distro_info_excerpt(self):
+        for k, v in self.distro_specific.items():
+            return v['rst_excerpt']
         return "No data, yet"
 
     def getProfile(self):
@@ -723,6 +730,11 @@ class _Hardware:
             printBuffer.append('-------------------------------------------------------------------')
             for fs in self.fss:
                 printBuffer.append(str(fs))
+
+            for k, v in self.distro_specific.items():
+                printBuffer.append('')
+                printBuffer.append('')
+                printBuffer.append(v['rst'])
 
             printBuffer.append('')
         return printBuffer

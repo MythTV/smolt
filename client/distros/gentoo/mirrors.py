@@ -143,6 +143,25 @@ class Mirrors:
             lines.append('<li><a href="%(url)s">%(url)s</a></li>' % {'url':html.escape(url)})
         lines.append('</ul>')
 
+    def dump_rst(self, lines):
+        lines.append('Mirrors')
+        lines.append('-----------------------------')
+        lines.append('Package tree')
+        lines.append('`````````````````````')
+        lines.append(self._sync_url)
+        lines.append('')
+        lines.append('Distfiles')
+        lines.append('`````````````````````')
+        for v in sorted(self._mirror_urls):
+            lines.append('- ' + v)
+
+    def _dump(self):
+        lines = []
+        self.dump_rst(lines)
+        print '\n'.join(lines)
+        print
+
+    """
     def dump(self):
         print 'SYNC: ' + str(self.get_sync())
         print 'GENTOO_MIRRORS:'
@@ -151,7 +170,8 @@ class Mirrors:
         print '    Known: ' + str(self.known_count())
         print '    Private: ' + str(self.private_count())
         print
+    """
 
 if __name__ == '__main__':
     mirrors = Mirrors(debug=True)
-    mirrors.dump()
+    mirrors._dump()

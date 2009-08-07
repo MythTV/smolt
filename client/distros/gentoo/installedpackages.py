@@ -20,7 +20,7 @@ import portage
 from portage.dbapi.vartree import vartree
 from portage.versions import catpkgsplit
 from overlays import Overlays
-from globaluseflags import GlobalUseFlags
+from globaluseflags import GlobalUseFlags, compress_use_flags
 from worldset import WorldSet
 from packagestar import PackageMask, PackageUnmask, ProfilePackageMask
 from packageprivacy import is_private_package_atom
@@ -156,6 +156,47 @@ class InstalledPackages:
             lines.append('</tr>')
         lines.append('</table>')
 
+    def dump_rst(self, lines):
+        lines.append('Installed packages')
+        lines.append('-----------------------------')
+        for list in self._cpv_flag_list:
+            package_name, version_revision, SLOT, keyword_status, \
+                masked, unmasked, is_in_world, repository, sorted_flags_list = \
+                list
+
+            lines.append('- %s-%s' % (package_name, version_revision))
+
+            if SLOT != '0':  # Hide default slot
+                lines.append('  - Slot: %s' % (SLOT))
+            if keyword_status:
+                lines.append('  - Keyword status: %s' % keyword_status)
+
+            tag_names = ('masked', 'unmasked', 'world')
+            values = (masked, unmasked, is_in_world)
+            tags = []
+            for i, v in enumerate(values):
+                if v:
+                    tags.append(tag_names[i])
+            if tags:
+                lines.append('  - Tags: %s' % ', '.join(tags))
+
+            if repository:
+                lines.append('  - Repository: %s' % (repository))
+            if sorted_flags_list:
+                flag_list = [x.startswith('-') and x or ('+' + x) for x in compress_use_flags(sorted_flags_list)]
+                if len(flag_list) > 1:
+                    f = '{%s}' % (','.join(flag_list))
+                else:
+                    f = flag_list[0]
+                lines.append('  - Flags: %s' % f)
+
+    def _dump(self):
+        lines = []
+        self.dump_rst(lines)
+        print '\n'.join(lines)
+        print
+
+    """
     def dump(self):
         print 'Installed packages:'
         for list in self._cpv_flag_list:
@@ -173,6 +214,7 @@ class InstalledPackages:
         print '    Known: ' + str(self.known_count())
         print '    Private: ' + str(self.private_count())
         print
+    """
 
 if __name__ == '__main__':
     def cb_enter(cpv, i, count):

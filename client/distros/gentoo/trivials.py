@@ -73,6 +73,31 @@ class Trivials:
             lines.append('<li>%s</li>' % html.escape(i))
         lines.append('</ul>')
 
+    def dump_rst(self, lines):
+        lines.append('General')
+        lines.append('-----------------------------')
+        for k in sorted(('ARCH', 'CHOST', 'ACCEPT_KEYWORDS')):
+            v = self._trivials[k]
+            lines.append(k)
+            if type(v).__name__ == 'list':
+                lines.append('  %s' % ', '.join(v))
+            else:
+                lines.append('  %s' % v)
+            lines.append('')
+
+        lines.append('Features')
+        lines.append('-----------------------------')
+        for i in sorted(self._trivials['FEATURES']):
+            lines.append('- %s' % i)
+
+
+    def _dump(self):
+        lines = []
+        self.dump_rst(lines)
+        print '\n'.join(lines)
+        print
+
+    """
     def dump(self):
         print 'Trivial scalars:'
         for k, v in self._trivial_scalars.items():
@@ -81,7 +106,8 @@ class Trivials:
         for k, v in self._trivial_vectors.items():
             print '  %s: %s' % (k, v)
         print
+    """
 
 if __name__ == '__main__':
     trivials = Trivials()
-    trivials.dump()
+    trivials._dump()
