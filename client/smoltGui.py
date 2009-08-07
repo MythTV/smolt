@@ -319,7 +319,7 @@ class SmoltGui(QMainWindow):
 
 if __name__ == '__main__':
     dollar_zero_backup = sys.argv[0]
-    parser = OptionParser(version = smolt.smoltProtocol)
+    parser = OptionParser(version = smolt.clientVersion)
     parser.add_option('--config',
                     dest = 'the_only_config_file',
                     default = None,
