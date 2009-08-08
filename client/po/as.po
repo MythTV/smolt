@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master.as\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-05 19:52+0200\n"
+"POT-Creation-Date: 2009-08-08 15:06+0200\n"
 "PO-Revision-Date: 2008-01-31 15:25+0530\n"
 "Last-Translator: Amitakhya Phukan <aphukan@fedoraproject.org>\n"
 "Language-Team: Assamese\n"
@@ -23,30 +23,30 @@ msgstr ""
 msgid "Server Message: \"%s\""
 msgstr "সেৱকৰ সম্বাদ: \"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:46
+#: deleteProfile.py:46 sendProfile.py:48
 msgid "enable debug information"
 msgstr "ডিবাগৰ তথ্য সক্ৰীয় কৰক"
 
-#: deleteProfile.py:51 sendProfile.py:56
+#: deleteProfile.py:51 sendProfile.py:58
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "সেৱকৰ URL নিৰ্দ্ধাৰিত কৰক (অবিকল্পিত \"%default\")"
 
-#: deleteProfile.py:56 sendProfile.py:71
+#: deleteProfile.py:56 sendProfile.py:73
 msgid "print information only, do not send"
 msgstr "তথ্য অকল মুদ্ৰণ কৰক, নপঠিয়াব"
 
-#: deleteProfile.py:61 sendProfile.py:86
+#: deleteProfile.py:61 sendProfile.py:88
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "HTTP ব্যৱহাৰকৰোঁতাৰ নিযুক্তক নিৰ্দ্ধাৰিত কৰক (অবিকল্পিত \"%default\")"
 
-#: deleteProfile.py:66 sendProfile.py:91
+#: deleteProfile.py:66 sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "HTTP ৰ বিৰতি ছেকেণ্ডত নিৰ্দ্ধাৰিত কৰক (অবিকল্পিত %default ছেকেণ্ড)"
 
-#: deleteProfile.py:70 sendProfile.py:110
+#: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
 msgstr ""
 
@@ -58,7 +58,7 @@ msgstr "সেৱকক যোগাযোগ কৰোঁতে ভুল:"
 msgid "Profile removed, please verify at"
 msgstr "হ্ৰস্ব ৰচনা আঁতৰুৱা হ'ল, অনুগ্ৰহ কৰি ইয়াত সত্যাখ্যান কৰক"
 
-#: gui.py:35
+#: gui.py:35 sendProfile.py:177 smolt.py:655
 #, fuzzy
 msgid "General"
 msgstr "কাৰ্ণেল"
@@ -207,105 +207,147 @@ msgstr "উল্লিখিত সময় অবধি"
 msgid "\tbenefit"
 msgstr "উপকাৰ"
 
-#: scan.py:101 smolt.py:1116
+#: scan.py:101 smolt.py:1157
 msgid "Error:"
 msgstr "ভুল:"
 
-#: scan.py:103 smolt.py:1118
+#: scan.py:103 smolt.py:1159
 msgid "Hint:"
 msgstr "সঙ্কেত:"
 
-#: sendProfile.py:51 smoltGui.py:327
+#: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
 msgstr ""
 
-#: sendProfile.py:61
+#: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
 msgstr "(বৈকল্পিক) Fedora Account System পঞ্জিকৰণ"
 
-#: sendProfile.py:66
+#: sendProfile.py:68
 msgid "password, will prompt if not specified"
 msgstr "গুপ্তশব্দ, নিৰ্ধাৰণ নকৰিলে প্ৰমপ্ট কৰা হ'ব"
 
-#: sendProfile.py:76
+#: sendProfile.py:78
 msgid "don't prompt to send, just send"
 msgstr "পঠিয়াবলৈ প্ৰ'মপ্ট নকৰিব, এতিয়াই পঠিয়াওক"
 
-#: sendProfile.py:81
+#: sendProfile.py:83
 msgid "continue to send until success"
 msgstr "সফল নোহোৱালৈকে পঠিয়াই থাকক"
 
-#: sendProfile.py:96
+#: sendProfile.py:98
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "এইটো এটা স্বয়ংক্ৰীয় ভাবে কৰা প্ৰৱেশ, \"smolt\" সেৱা আৰম্ভ কৰা হ'লেহে চলিব"
 
-#: sendProfile.py:101
+#: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr "জ্ঞাত যান্ত্ৰিক সামগ্ৰীৰ ইয়াৰাটাৰ বাবে এই প্ৰণালী চাওক, প্ৰফাইল নপথিয়াব ।"
 
-#: sendProfile.py:106
+#: sendProfile.py:108
 #, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
 msgstr "জ্ঞাত যান্ত্ৰিক সামগ্ৰীৰ ইয়াৰাটাৰ বাবে এই প্ৰণালী চাওক, প্ৰফাইল নপথিয়াব ।"
 
-#: sendProfile.py:120
+#: sendProfile.py:122
 msgid "Request a new public UUID"
 msgstr ""
 
-#: sendProfile.py:124
+#: sendProfile.py:126
 msgid "HTTP proxy"
 msgstr ""
 
-#: sendProfile.py:144
+#: sendProfile.py:146
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt ক প্ৰৱেশৰ বাবে নিৰ্দ্ধাৰিত কৰা হৈছে কিন্তু প্ৰৱেশ কৰা নিষ্ক্ৰীয় কৰা হৈছে (সঙ্কেত: service smolt start)"
 
-#: sendProfile.py:154
+#: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
 msgstr ""
 
+#: sendProfile.py:172
+msgid "Smolt has collected four types of information:"
+msgstr ""
+
+#: sendProfile.py:173
+msgid "Do you want to .."
+msgstr ""
+
 #: sendProfile.py:174
-msgid "Send this information to the Smolt server? (y/n)"
-msgstr "Smolt সেৱকলৈ এই তথ্য পঠিয়াওঁ ? (y/n)"
+msgid "(v)iew details on collected information?"
+msgstr ""
 
 #: sendProfile.py:175
-msgid "y"
-msgstr "y"
+#, fuzzy
+msgid "(s)end this information to the Smolt server? (or [y] for yes)"
+msgstr "Smolt সেৱকলৈ এই তথ্য পঠিয়াওঁ ? (y/n)"
 
-#: sendProfile.py:176 sendProfile.py:179
+#: sendProfile.py:176
+msgid "(q)uit Smolt?  (or [n] for no)"
+msgstr ""
+
+#: sendProfile.py:178 smolt.py:669
+msgid "Devices"
+msgstr "যন্ত্ৰসমূহ"
+
+#: sendProfile.py:179
+msgid "File system-related"
+msgstr ""
+
+#: sendProfile.py:180
+#, fuzzy
+msgid "Distribution-specific"
+msgstr "বিৱৰণ"
+
+#: sendProfile.py:213
+msgid "Your choice (s/v/q/y/n): "
+msgstr ""
+
+#: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
 msgstr "বাতিল কৰিছো..."
 
-#: sendProfile.py:190
+#: sendProfile.py:217
+msgid "s|y|yes"
+msgstr ""
+
+#: sendProfile.py:220
+msgid "q|n|no"
+msgstr ""
+
+#: sendProfile.py:222
+msgid "v"
+msgstr ""
+
+#: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
 msgstr "পুনঃ চেষ্টা কৰা সক্ৰীয় কৰা হৈছে - পুনঃ চেষ্টা কৰা হৈছে"
 
-#: sendProfile.py:199
+#: sendProfile.py:255
 msgid "Could not send - Exiting"
 msgstr "পঠিয়াব নোৱাৰিলো - বাতিল কৰিছো"
 
-#: sendProfile.py:204
+#: sendProfile.py:260
 msgid "Password:"
 msgstr "গুপ্তশব্দ:"
 
-#: sendProfile.py:209
+#: sendProfile.py:265
 msgid "Registration Failed, Try again"
 msgstr "নিবন্ধন কৰোঁতে ব্যৰ্থ, পুনৰায় প্ৰচেষ্টা কৰক"
 
-#: sendProfile.py:220
+#: sendProfile.py:276
 #, fuzzy, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
 msgstr "আপোনাৰ হ্ৰস্ব ৰচনা চাব হ'লে চাওক: %s"
 
-#: sendProfile.py:224
+#: sendProfile.py:280
 #, fuzzy, python-format
 msgid "\tAdmin Password: %s"
 msgstr "গুপ্তশব্দ:"
 
-#: sendProfile.py:227
+#: sendProfile.py:283
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr ""
 
@@ -487,123 +529,120 @@ msgstr ""
 msgid "An error has occured while contacting the server: %s"
 msgstr "সাৰ্ভাৰে তথ্য প্ৰেৰণ কৰোঁতে ত্ৰুটি।"
 
-#: smolt.py:630
-msgid "Devices"
-msgstr "যন্ত্ৰসমূহ"
-
-#: smolt.py:637
-msgid "\tFilesystem Information"
-msgstr ""
-
-#: smolt.py:649
-msgid "UUID"
-msgstr "UUID"
-
-#: smolt.py:650
+#: smolt.py:618 smolt.py:691
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:651
+#: smolt.py:619 smolt.py:692
 msgid "Default run level"
 msgstr "অবিকল্পিত চলনাস্তৰ"
 
-#: smolt.py:652
+#: smolt.py:620 smolt.py:693
 msgid "Language"
 msgstr "ভাষা"
 
-#: smolt.py:653
+#: smolt.py:677
+#, fuzzy
+msgid "Filesystem Information"
+msgstr "ডিবাগৰ তথ্য সক্ৰীয় কৰক"
+
+#: smolt.py:690
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:694
 msgid "Platform"
 msgstr "মঞ্চ"
 
-#: smolt.py:654
+#: smolt.py:695
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:655
+#: smolt.py:696
 msgid "CPU Vendor"
 msgstr "CPU ৰ বিক্ৰেতা"
 
-#: smolt.py:656
+#: smolt.py:697
 msgid "CPU Model"
 msgstr "CPU ৰ প্ৰতিৰূপ"
 
-#: smolt.py:657
+#: smolt.py:698
 msgid "CPU Stepping"
 msgstr ""
 
-#: smolt.py:658
+#: smolt.py:699
 msgid "CPU Family"
 msgstr ""
 
-#: smolt.py:659
+#: smolt.py:700
 #, fuzzy
 msgid "CPU Model Num"
 msgstr "CPU ৰ প্ৰতিৰূপ"
 
-#: smolt.py:660
+#: smolt.py:701
 msgid "Number of CPUs"
 msgstr "CPU সমূহৰ সংখ্যা"
 
-#: smolt.py:661
+#: smolt.py:702
 msgid "CPU Speed"
 msgstr "CPU ৰ গতি"
 
-#: smolt.py:662
+#: smolt.py:703
 msgid "System Memory"
 msgstr "ব্যৱস্থাপ্ৰণালীৰ স্মৃতিশক্তি"
 
-#: smolt.py:663
+#: smolt.py:704
 msgid "System Swap"
 msgstr "ব্যৱস্থাপ্ৰণালীৰ শ্বেপ"
 
-#: smolt.py:664
+#: smolt.py:705
 msgid "Vendor"
 msgstr "বিক্ৰেতা"
 
-#: smolt.py:665
+#: smolt.py:706
 msgid "System"
 msgstr "ব্যৱস্থাপ্ৰণালী"
 
-#: smolt.py:666
+#: smolt.py:707
 msgid "Form factor"
 msgstr "আকৃতিৰ গুণনীয়ক"
 
-#: smolt.py:667
+#: smolt.py:708
 msgid "Kernel"
 msgstr "কাৰ্ণেল"
 
-#: smolt.py:668
+#: smolt.py:709
 msgid "SELinux Enabled"
 msgstr "SELinux Enabled"
 
-#: smolt.py:669
+#: smolt.py:710
 #, fuzzy
 msgid "SELinux Policy"
 msgstr "SELinux Enforce"
 
-#: smolt.py:670
+#: smolt.py:711
 msgid "SELinux Enforce"
 msgstr "SELinux Enforce"
 
-#: smolt.py:1139
+#: smolt.py:1180
 msgid "Unable to save UUID, continuing...\n"
 msgstr "UUID সংৰক্ষণ কৰোঁতে ব্যৰ্থ, এগিয়ে যাৱা হবে...\n"
 
-#: smolt.py:1140
+#: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
 msgstr ""
 
-#: smolt.py:1143
+#: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
 msgstr "সিস্টেমেৰ UUID নিৰ্ধাৰণ কৰোঁতে ব্যৰ্থ!\n"
 
-#: smolt.py:1162
+#: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
 msgstr ""
 
-#: smolt.py:1163
+#: smolt.py:1204
 #, fuzzy
 msgid "Unable to determine Public UUID!\n"
 msgstr "সিস্টেমেৰ UUID নিৰ্ধাৰণ কৰোঁতে ব্যৰ্থ!\n"
@@ -611,6 +650,9 @@ msgstr "সিস্টেমেৰ UUID নিৰ্ধাৰণ কৰোঁ�
 #: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "Runlevel নিৰ্ধাৰণ কৰোঁতে ব্যৰ্থ"
+
+#~ msgid "y"
+#~ msgstr "y"
 
 #, fuzzy
 #~ msgid ""
