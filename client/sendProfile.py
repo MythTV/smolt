@@ -227,7 +227,11 @@ if not opts.autoSend:
                 except UnicodeEncodeError:
                     pass
             f.flush()
-            subprocess.call([os.environ['PAGER'], f.name])
+            try:
+                pager_command = os.environ['PAGER']
+            except KeyError:
+                pager_command = '/usr/bin/less'
+            subprocess.call([pager_command, f.name])
             f.close()
             print '\n\n'
         else:
