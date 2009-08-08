@@ -177,7 +177,9 @@ if not opts.autoSend:
 
     submit = False
     while not submit:
-        print """Smolt has collected four types of information:
+        print """\
+=====================================================
+Smolt has collected four types of information:
 
   General
      %(general)s
@@ -191,6 +193,7 @@ if not opts.autoSend:
   Distribution-specific
      %(distro)s
 
+=====================================================
 Do you want to ..
   (v)iew details on collected information?
   (s)end this information to the Smolt server? (or [y] for yes)
