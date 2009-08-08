@@ -137,7 +137,6 @@ _rel_table_jobs = [
     {'thing':'sync_mirror', 'foreign':'mirror', 'vector_flag':False},
     {'thing':'distfiles_mirror', 'foreign':'mirror', 'vector_flag':True},
     {'thing':'feature', 'foreign':'feature', 'vector_flag':True},
-    {'thing':'global_use_flag', 'foreign':'use_flag', 'vector_flag':True},
     {'thing':'overlay', 'foreign':'repository', 'vector_flag':True},
     {'thing':'system_profile', 'foreign':'system_profile', 'vector_flag':False},
 ]
@@ -354,6 +353,27 @@ class GentooCallFlagRel(object):
 mapper(GentooCallFlagRel, _gentoo_call_flag_table,
     properties={
         'call_flag':relation(GentooCallFlagString),
+    }
+)
+
+
+_gentoo_global_use_flags_table = Table('gentoo_global_use_flags', metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('machine_id', Integer),
+    Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool')),
+    Column('enabled', SmallInteger),  # Not BOOLEAN here as that denies using func.sum
+    UniqueConstraint('machine_id', 'use_flag_id'),
+)
+
+class GentooGlobalUseFlagRel(object):
+    def __init__(self, machine_id, use_flag_id, enabled):
+        self.machine_id = machine_id
+        self.use_flag_id = use_flag_id
+        self.enabled = enabled
+
+mapper(GentooGlobalUseFlagRel, _gentoo_global_use_flags_table,
+    properties={
+        'use_flag':relation(GentooUseFlagString),
     }
 )
 

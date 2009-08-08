@@ -108,7 +108,6 @@ _DIFF_JOBS = [
     {'thing':'chost', 'foreign':'chost', 'vector_flag':False, 'tree_location':"data['chost']"},
     {'thing':'distfiles_mirror', 'foreign':'mirror', 'vector_flag':True, 'tree_location':"data['mirrors']['distfiles']"},
     {'thing':'feature', 'foreign':'feature', 'vector_flag':True, 'tree_location':"data['features']"},
-    {'thing':'global_use_flag', 'foreign':'use_flag', 'vector_flag':True, 'tree_location':"data['global_use_flags']"},
     {'thing':'overlay', 'foreign':'repository', 'vector_flag':True, 'tree_location':"data['overlays']"},
     {'thing':'sync_mirror', 'foreign':'mirror', 'vector_flag':False, 'tree_location':"data['mirrors']['sync']"},
     {'thing':'system_profile', 'foreign':'system_profile', 'vector_flag':False, 'tree_location':"data['system_profile']"},
@@ -133,6 +132,7 @@ def handle_gentoo_data(session, host_dict, machine_id):
     _handle_compile_flags(session, data, machine_id)
     _handle_accept_keywords(session, data, machine_id)
     _handle_package_mask(session, data, machine_id)
+    _handle_global_use_flags(session, data, machine_id)
     _handle_installed_packages(session, data, machine_id)
 
 
@@ -305,6 +305,61 @@ def _handle_package_mask(session, data, machine_id):
 
         mask_rel_object = GentooPackageMaskRel(machine_id, package_id, atom_id)
         session.add(mask_rel_object)
+
+
+def _handle_global_use_flags(session, data, machine_id):
+    # Find current entries
+    try:
+        current_raw_global_use_flags = data['global_use_flags']
+    except KeyError:
+        current_raw_global_use_flags = {}
+
+    # Lookup/add use flags
+    current_use_flag_dict = {}
+    for i in [e.strip() for e in current_raw_global_use_flags]:
+        if i.startswith('-'):
+            key = i.lstrip('-')
+            enabled = False
+        else:
+            key = i.lstrip('+')
+            enabled = True
+        current_use_flag_dict[key] = {
+            'pool_object':None,
+            'enabled':enabled}
+    current_positive_use_flags = current_use_flag_dict.keys()
+
+    use_flag_pool_objects = session.query(GentooUseFlagString).filter(\
+            GentooUseFlagString.name.in_(current_positive_use_flags)).all()
+    for i in use_flag_pool_objects:
+        current_use_flag_dict[i.name]['pool_object'] = i
+    for i in [e for e in current_positive_use_flags if \
+            current_use_flag_dict[e]['pool_object'] == None]:
+        use_flag_object = GentooUseFlagString(i)
+        current_use_flag_dict[i]['pool_object'] = use_flag_object
+        session.add(use_flag_object)
+    session.flush()
+
+    current_global_use_flag_set = set()
+    for k, v in current_use_flag_dict.items():
+        current_global_use_flag_set.add((k, v['enabled']))
+
+    # Find old entries
+    old_global_use_flag_objects = session.query(GentooGlobalUseFlagRel).options(\
+                eagerload('use_flag')).filter_by(machine_id=machine_id).all()
+    old_global_use_flag_set = set()
+    for e in old_global_use_flag_objects:
+        old_global_use_flag_set.add((e.use_flag.name, bool(e.enabled)))
+
+    # Calculate diff
+    flags_to_add = current_global_use_flag_set - old_global_use_flag_set
+    flags_to_remove = old_global_use_flag_set - current_global_use_flag_set
+
+    # Resolve diff
+    for (flag, _) in flags_to_remove:
+        session.delete(current_use_flag_dict[flag]['pool_object'])
+    for (flag, enabled) in flags_to_add:
+        use_flag_id = current_use_flag_dict[flag]['pool_object'].id
+        session.add(GentooGlobalUseFlagRel(machine_id, use_flag_id, enabled))
 
 
 def _handle_installed_packages(session, data, machine_id):
