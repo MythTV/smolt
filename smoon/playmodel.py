@@ -361,15 +361,23 @@ _gentoo_global_use_flags_table = Table('gentoo_global_use_flags', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('machine_id', Integer),
     Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool')),
-    Column('enabled', SmallInteger),  # Not BOOLEAN here as that denies using func.sum
+    Column('set_in_profile', SmallInteger),  # Not BOOLEAN here as that denies using func.sum
+    Column('set_in_make_conf', SmallInteger),  # as above
+    Column('enabled_in_profile', SmallInteger),  # as above
+    Column('enabled_in_make_conf', SmallInteger),  # as above
     UniqueConstraint('machine_id', 'use_flag_id'),
 )
 
 class GentooGlobalUseFlagRel(object):
-    def __init__(self, machine_id, use_flag_id, enabled):
+    def __init__(self, machine_id, use_flag_id, \
+            set_in_profile, set_in_make_conf, \
+            enabled_in_profile, enabled_in_make_conf):
         self.machine_id = machine_id
         self.use_flag_id = use_flag_id
-        self.enabled = enabled
+        self.set_in_profile = set_in_profile
+        self.set_in_make_conf = set_in_make_conf
+        self.enabled_in_profile = enabled_in_profile
+        self.enabled_in_make_conf = enabled_in_make_conf
 
 mapper(GentooGlobalUseFlagRel, _gentoo_global_use_flags_table,
     properties={

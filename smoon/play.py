@@ -310,22 +310,45 @@ def _handle_package_mask(session, data, machine_id):
 def _handle_global_use_flags(session, data, machine_id):
     # Find current entries
     try:
-        current_raw_global_use_flags = data['global_use_flags']
+        current_raw_global_use_flags_make_conf = data['global_use_flags']['make.conf']
     except KeyError:
-        current_raw_global_use_flags = {}
+        current_raw_global_use_flags_make_conf = []
+
+    try:
+        current_raw_global_use_flags_profile = data['global_use_flags']['profile']
+    except KeyError:
+        current_raw_global_use_flags_profile = []
 
     # Lookup/add use flags
+    def process_flags(target_dict, source_list, is_profile_list):
+        for i in [e.strip() for e in source_list]:
+            if i.startswith('-'):
+                key = i.lstrip('-')
+                enabled = False
+            else:
+                key = i.lstrip('+')
+                enabled = True
+            if key in target_dict:
+                if is_profile_list:
+                    target_dict[key]['set_in_profile'] = True
+                    target_dict[key]['enabled_in_profile'] = enabled
+                else:
+                    target_dict[key]['set_in_make_conf'] = True
+                    target_dict[key]['enabled_in_make_conf'] = enabled
+            else:
+                target_dict[key] = {'pool_object':None,
+                    'set_in_profile':is_profile_list,
+                    'set_in_make_conf':not is_profile_list,
+                    'enabled_in_profile':is_profile_list and enabled,
+                    'enabled_in_make_conf':not is_profile_list and enabled,
+                }
+
     current_use_flag_dict = {}
-    for i in [e.strip() for e in current_raw_global_use_flags]:
-        if i.startswith('-'):
-            key = i.lstrip('-')
-            enabled = False
-        else:
-            key = i.lstrip('+')
-            enabled = True
-        current_use_flag_dict[key] = {
-            'pool_object':None,
-            'enabled':enabled}
+    process_flags(current_use_flag_dict, \
+            current_raw_global_use_flags_profile, is_profile_list=True)
+    process_flags(current_use_flag_dict, \
+            current_raw_global_use_flags_make_conf, is_profile_list=False)
+
     current_positive_use_flags = current_use_flag_dict.keys()
 
     use_flag_pool_objects = session.query(GentooUseFlagString).filter(\
@@ -341,25 +364,39 @@ def _handle_global_use_flags(session, data, machine_id):
 
     current_global_use_flag_set = set()
     for k, v in current_use_flag_dict.items():
-        current_global_use_flag_set.add((k, v['enabled']))
+        current_global_use_flag_set.add((k,
+                v['set_in_profile'],
+                v['set_in_make_conf'],
+                v['enabled_in_profile'],
+                v['enabled_in_make_conf']))
 
     # Find old entries
     old_global_use_flag_objects = session.query(GentooGlobalUseFlagRel).options(\
                 eagerload('use_flag')).filter_by(machine_id=machine_id).all()
     old_global_use_flag_set = set()
     for e in old_global_use_flag_objects:
-        old_global_use_flag_set.add((e.use_flag.name, bool(e.enabled)))
+        old_global_use_flag_set.add((e.use_flag.name,
+                bool(e.set_in_profile),
+                bool(e.set_in_make_conf),
+                bool(e.enabled_in_profile),
+                bool(e.enabled_in_make_conf)))
 
     # Calculate diff
     flags_to_add = current_global_use_flag_set - old_global_use_flag_set
     flags_to_remove = old_global_use_flag_set - current_global_use_flag_set
 
     # Resolve diff
-    for (flag, _) in flags_to_remove:
+    for e in flags_to_remove:
+        flag = e[0]
         session.delete(current_use_flag_dict[flag]['pool_object'])
-    for (flag, enabled) in flags_to_add:
+    for (flag, set_in_profile, set_in_make_conf, \
+            enabled_in_profile, enabled_in_make_conf) in flags_to_add:
         use_flag_id = current_use_flag_dict[flag]['pool_object'].id
-        session.add(GentooGlobalUseFlagRel(machine_id, use_flag_id, enabled))
+        session.add(GentooGlobalUseFlagRel(machine_id, use_flag_id, \
+                set_in_profile,
+                set_in_make_conf,
+                enabled_in_profile,
+                enabled_in_make_conf))
 
 
 def _handle_installed_packages(session, data, machine_id):
