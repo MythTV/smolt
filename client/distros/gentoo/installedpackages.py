@@ -152,7 +152,11 @@ class InstalledPackages:
                 lines.append('<td>%s</td>' % v)
             for i in (repository, ):
                 lines.append('<td>%s</td>' % html.escape(i))
-            lines.append('<td>%s</td>' % html.escape(', '.join(sorted_flags_list)))
+            final_flag_list = [x.startswith('-') and \
+                    '<s>%s</s>' % html.escape(x.lstrip('-')) or \
+                    html.escape(x) for x in \
+                    compress_use_flags(sorted_flags_list)]
+            lines.append('<td>%s</td>' % ', '.join(final_flag_list))
             lines.append('</tr>')
         lines.append('</table>')
 
@@ -183,12 +187,9 @@ class InstalledPackages:
             if repository:
                 lines.append('  - Repository: %s' % (repository))
             if sorted_flags_list:
-                flag_list = [x.startswith('-') and x or ('+' + x) for x in compress_use_flags(sorted_flags_list)]
-                if len(flag_list) > 1:
-                    f = '{%s}' % (','.join(flag_list))
-                else:
-                    f = flag_list[0]
-                lines.append('  - Flags: %s' % f)
+                final_flag_list = [x.startswith('-') and x or ('+' + x) for x in \
+                        compress_use_flags(sorted_flags_list)]
+                lines.append('  - Use flags: %s' % ', '.join(final_flag_list))
 
     def _dump(self):
         lines = []
@@ -221,4 +222,4 @@ if __name__ == '__main__':
         print '[%s/%s] %s' % (i, count, cpv)
 
     installed_packages = InstalledPackages(debug=True, cb_enter=cb_enter)
-    installed_packages.dump()
+    installed_packages._dump()
