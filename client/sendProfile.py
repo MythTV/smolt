@@ -169,6 +169,16 @@ if not opts.autoSend:
         return ('\n' + 5 * ' ').join(text.split('\n'))
 
     excerpts = {
+        'label_intro':_('Smolt has collected four types of information:'),
+        'label_question':_('Do you want to ..'),
+        'label_question_view':_('(v)iew details on collected information?'),
+        'label_question_send':_('(s)end this information to the Smolt server? (or [y] for yes)'),
+        'label_question_quit':_('(q)uit Smolt?  (or [n] for no)'),
+        'label_general':_('General'),
+        'label_devices':_('Devices'),
+        'label_fs_related':_('File system-related'),
+        'label_distro_specific':_('Distribution-specific'),
+
         'general':inner_indent(profile.get_general_info_excerpt()),
         'devices':inner_indent(profile.get_devices_info_excerpt()),
         'file_system':inner_indent(profile.get_file_system_info_excerpt()),
@@ -179,37 +189,37 @@ if not opts.autoSend:
     while not submit:
         print """\
 =====================================================
-Smolt has collected four types of information:
+%(label_intro)s
 
-  General
+  %(label_general)s
      %(general)s
 
-  Devices
+  %(label_devices)s
      %(devices)s
 
-  File system-related
+  %(label_fs_related)s
      %(file_system)s
 
-  Distribution-specific
+  %(label_distro_specific)s
      %(distro)s
 
 =====================================================
-Do you want to ..
-  (v)iew details on collected information?
-  (s)end this information to the Smolt server? (or [y] for yes)
-  (q)uit Smolt?  (or [n] for no)
+%(label_question)s
+  %(label_question_view)s
+  %(label_question_send)s
+  %(label_question_quit)s
 """ % excerpts
         try:
-            choice = raw_input('Your choice (s/v/q/y/n): ').strip()
+            choice = raw_input(_('Your choice (s/v/q/y/n): ')).strip()
         except KeyboardInterrupt:
             error(_('Exiting...'))
             sys.exit(4)
-        if choice in ('s', 'y', 'yes'):
+        if choice in (_('s|y|yes')).split('|'):
             submit = True
             print '\n\n'
-        elif choice in ('q', 'n', 'no'):
+        elif choice in (_('q|n|no')).split('|'):
             sys.exit(0)
-        elif choice in ('v', ):
+        elif choice in (_('v')).split('|'):
             f = NamedTemporaryFile()
             for line in profile.getProfile():
                 try:
