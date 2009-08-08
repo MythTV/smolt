@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-05 19:52+0200\n"
+"POT-Creation-Date: 2009-08-08 15:06+0200\n"
 "PO-Revision-Date: 2008-04-07 07:44+0900\n"
 "Last-Translator: Makoto Mizukami <mmk9060@aol.com>\n"
 "Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
@@ -21,30 +21,30 @@ msgstr ""
 msgid "Server Message: \"%s\""
 msgstr "サーバーメッセージ: \"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:46
+#: deleteProfile.py:46 sendProfile.py:48
 msgid "enable debug information"
 msgstr "デバグ情報を有効にする"
 
-#: deleteProfile.py:51 sendProfile.py:56
+#: deleteProfile.py:51 sendProfile.py:58
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "サーバーの URL を指定する（デフォルト \"%default\"）"
 
-#: deleteProfile.py:56 sendProfile.py:71
+#: deleteProfile.py:56 sendProfile.py:73
 msgid "print information only, do not send"
 msgstr "情報を表示するのみで、送信しない"
 
-#: deleteProfile.py:61 sendProfile.py:86
+#: deleteProfile.py:61 sendProfile.py:88
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "HTTP ユーザーエージェントを指定する（デフォルト \"%default\"）"
 
-#: deleteProfile.py:66 sendProfile.py:91
+#: deleteProfile.py:66 sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "HTTP タイムアウトを秒数で指定する（デフォルト%default 秒）"
 
-#: deleteProfile.py:70 sendProfile.py:110
+#: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr "エラー連絡用サーバー:"
 msgid "Profile removed, please verify at"
 msgstr "プロフィールの削除を再確認して下さい。"
 
-#: gui.py:35
+#: gui.py:35 sendProfile.py:177 smolt.py:655
 #, fuzzy
 msgid "General"
 msgstr "カーネル"
@@ -186,105 +186,147 @@ msgstr "あなたのプロフィールに行き、そのデバイスの wiki ペ
 msgid "\tbenefit"
 msgstr "情報を有効活用できるようにしてください。"
 
-#: scan.py:101 smolt.py:1116
+#: scan.py:101 smolt.py:1157
 msgid "Error:"
 msgstr "エラー:"
 
-#: scan.py:103 smolt.py:1118
+#: scan.py:103 smolt.py:1159
 msgid "Hint:"
 msgstr "ヒント:"
 
-#: sendProfile.py:51 smoltGui.py:327
+#: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
 msgstr ""
 
-#: sendProfile.py:61
+#: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
 msgstr "(オプション) Fedora Account System の登録"
 
-#: sendProfile.py:66
+#: sendProfile.py:68
 msgid "password, will prompt if not specified"
 msgstr "指定されていないとパスワードが求められます"
 
-#: sendProfile.py:76
+#: sendProfile.py:78
 msgid "don't prompt to send, just send"
 msgstr "送信を催促しないで送信する"
 
-#: sendProfile.py:81
+#: sendProfile.py:83
 msgid "continue to send until success"
 msgstr "達成するまで送信続ける"
 
-#: sendProfile.py:96
+#: sendProfile.py:98
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "自動化のチェックインです。\"smolt\" サービスが開始している時のみ実行されます。"
 
-#: sendProfile.py:101
+#: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr "このマシンに於ける既知のエラッタだけをスキャンし、プロフィールは送信しません。"
 
-#: sendProfile.py:106
+#: sendProfile.py:108
 #, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
 msgstr "このマシンに於ける既知のエラッタだけをスキャンし、プロフィールは送信しません。"
 
-#: sendProfile.py:120
+#: sendProfile.py:122
 msgid "Request a new public UUID"
 msgstr ""
 
-#: sendProfile.py:124
+#: sendProfile.py:126
 msgid "HTTP proxy"
 msgstr ""
 
-#: sendProfile.py:144
+#: sendProfile.py:146
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt にはチェックインの設定がありますが、チェックインは無効になっています（ヒント: service smolt start）"
 
-#: sendProfile.py:154
+#: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
 msgstr ""
 
+#: sendProfile.py:172
+msgid "Smolt has collected four types of information:"
+msgstr ""
+
+#: sendProfile.py:173
+msgid "Do you want to .."
+msgstr ""
+
 #: sendProfile.py:174
-msgid "Send this information to the Smolt server? (y/n)"
-msgstr "この情報を Smolt サーバーに送信しますか？ (y/n)"
+msgid "(v)iew details on collected information?"
+msgstr ""
 
 #: sendProfile.py:175
-msgid "y"
-msgstr "y"
+#, fuzzy
+msgid "(s)end this information to the Smolt server? (or [y] for yes)"
+msgstr "この情報を Smolt サーバーに送信しますか？ (y/n)"
 
-#: sendProfile.py:176 sendProfile.py:179
+#: sendProfile.py:176
+msgid "(q)uit Smolt?  (or [n] for no)"
+msgstr ""
+
+#: sendProfile.py:178 smolt.py:669
+msgid "Devices"
+msgstr "デバイス"
+
+#: sendProfile.py:179
+msgid "File system-related"
+msgstr ""
+
+#: sendProfile.py:180
+#, fuzzy
+msgid "Distribution-specific"
+msgstr "説明"
+
+#: sendProfile.py:213
+msgid "Your choice (s/v/q/y/n): "
+msgstr ""
+
+#: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
 msgstr "終了中..."
 
-#: sendProfile.py:190
+#: sendProfile.py:217
+msgid "s|y|yes"
+msgstr ""
+
+#: sendProfile.py:220
+msgid "q|n|no"
+msgstr ""
+
+#: sendProfile.py:222
+msgid "v"
+msgstr ""
+
+#: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
 msgstr "有効化を再試行 - 再試行中です"
 
-#: sendProfile.py:199
+#: sendProfile.py:255
 msgid "Could not send - Exiting"
 msgstr "送信できませんでした - 終了中"
 
-#: sendProfile.py:204
+#: sendProfile.py:260
 msgid "Password:"
 msgstr "パスワード:"
 
-#: sendProfile.py:209
+#: sendProfile.py:265
 msgid "Registration Failed, Try again"
 msgstr "登録に失敗しました、 やり直してください"
 
-#: sendProfile.py:220
+#: sendProfile.py:276
 #, fuzzy, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
 msgstr "自分のプロフィールを見るには次をご覧下さい: %s"
 
-#: sendProfile.py:224
+#: sendProfile.py:280
 #, fuzzy, python-format
 msgid "\tAdmin Password: %s"
 msgstr "パスワード:"
 
-#: sendProfile.py:227
+#: sendProfile.py:283
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr ""
 
@@ -466,123 +508,120 @@ msgstr ""
 msgid "An error has occured while contacting the server: %s"
 msgstr "データをサーバーに送信する時点でエラーが発生しました。"
 
-#: smolt.py:630
-msgid "Devices"
-msgstr "デバイス"
-
-#: smolt.py:637
-msgid "\tFilesystem Information"
-msgstr ""
-
-#: smolt.py:649
-msgid "UUID"
-msgstr "UUID"
-
-#: smolt.py:650
+#: smolt.py:618 smolt.py:691
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:651
+#: smolt.py:619 smolt.py:692
 msgid "Default run level"
 msgstr "デフォルトランレベル"
 
-#: smolt.py:652
+#: smolt.py:620 smolt.py:693
 msgid "Language"
 msgstr "言語"
 
-#: smolt.py:653
+#: smolt.py:677
+#, fuzzy
+msgid "Filesystem Information"
+msgstr "デバグ情報を有効にする"
+
+#: smolt.py:690
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:694
 msgid "Platform"
 msgstr "プラットフォーム"
 
-#: smolt.py:654
+#: smolt.py:695
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:655
+#: smolt.py:696
 msgid "CPU Vendor"
 msgstr "CPU 製造元"
 
-#: smolt.py:656
+#: smolt.py:697
 msgid "CPU Model"
 msgstr "CPU モデル"
 
-#: smolt.py:657
+#: smolt.py:698
 msgid "CPU Stepping"
 msgstr ""
 
-#: smolt.py:658
+#: smolt.py:699
 msgid "CPU Family"
 msgstr ""
 
-#: smolt.py:659
+#: smolt.py:700
 #, fuzzy
 msgid "CPU Model Num"
 msgstr "CPU モデル"
 
-#: smolt.py:660
+#: smolt.py:701
 msgid "Number of CPUs"
 msgstr "CPU 数量"
 
-#: smolt.py:661
+#: smolt.py:702
 msgid "CPU Speed"
 msgstr "CPU スピード"
 
-#: smolt.py:662
+#: smolt.py:703
 msgid "System Memory"
 msgstr "システムメモリー"
 
-#: smolt.py:663
+#: smolt.py:704
 msgid "System Swap"
 msgstr "システムスワップ"
 
-#: smolt.py:664
+#: smolt.py:705
 msgid "Vendor"
 msgstr "製造元"
 
-#: smolt.py:665
+#: smolt.py:706
 msgid "System"
 msgstr "システム"
 
-#: smolt.py:666
+#: smolt.py:707
 msgid "Form factor"
 msgstr "形式要素"
 
-#: smolt.py:667
+#: smolt.py:708
 msgid "Kernel"
 msgstr "カーネル"
 
-#: smolt.py:668
+#: smolt.py:709
 msgid "SELinux Enabled"
 msgstr "SELinux Enabled"
 
-#: smolt.py:669
+#: smolt.py:710
 #, fuzzy
 msgid "SELinux Policy"
 msgstr "SELinux Enforce"
 
-#: smolt.py:670
+#: smolt.py:711
 msgid "SELinux Enforce"
 msgstr "SELinux Enforce"
 
-#: smolt.py:1139
+#: smolt.py:1180
 msgid "Unable to save UUID, continuing...\n"
 msgstr "UUID を保存できません、 続行しています...\n"
 
-#: smolt.py:1140
+#: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
 msgstr ""
 
-#: smolt.py:1143
+#: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
 msgstr "システムの UUID を確認できません!\n"
 
-#: smolt.py:1162
+#: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
 msgstr ""
 
-#: smolt.py:1163
+#: smolt.py:1204
 #, fuzzy
 msgid "Unable to determine Public UUID!\n"
 msgstr "システムの UUID を確認できません!\n"
@@ -590,6 +629,9 @@ msgstr "システムの UUID を確認できません!\n"
 #: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "ランレベルを確認できません"
+
+#~ msgid "y"
+#~ msgstr "y"
 
 #, fuzzy
 #~ msgid ""
