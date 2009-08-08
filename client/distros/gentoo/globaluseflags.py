@@ -33,21 +33,37 @@ except NameError:
 
 
 def _flatten_dict_tree(dict_tree):
+    def process_compressables(compressables, res):
+        if len(compressables) > 1:
+            res.append((k + '_' + '{' + ','.join(s for (s, d) in compressables) + '}', 1))
+        else:
+            res.append((k + '_' + compressables[0][0], 1))
+
     res = []
     for k in sorted(dict_tree.keys()):
         flat = _flatten_dict_tree(dict_tree[k])
         if not flat:
-            res.append(k)
+            res.append((k, 0))
         else:
             if len(flat) > 1:
-                res.append(k + '_' + '{' + ','.join(sorted(flat)) + '}')
+                compressables = []
+                for (s, d) in sorted(flat):
+                    if d > 0:
+                        if compressables:
+                            process_compressables(compressables, res)
+                            compressables = []
+                        res.append((k + '_' + s, d))
+                    else:
+                        compressables.append((s, d))
+                if compressables:
+                    process_compressables(compressables, res)
             else:
-                res.append(k + '_' + flat[0])
+                res.append((k + '_' + flat[0][0], flat[0][1]))
     return res
 
 def compress_use_flags(flag_list):
-    dict_tree = {}
     # Convert to tree
+    dict_tree = {}
     for f in flag_list:
         parts = f.split('_')
         d = dict_tree
@@ -55,8 +71,9 @@ def compress_use_flags(flag_list):
             if v not in d:
                 d[v] = {}
             d = d[v]
+
     # Flatten back
-    return _flatten_dict_tree(dict_tree)
+    return [s for (s, d) in _flatten_dict_tree(dict_tree)]
 
 
 class _GlobalUseFlags:
