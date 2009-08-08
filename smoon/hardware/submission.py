@@ -146,6 +146,7 @@ def handle_submission(session, uuid, host):
                 class_sql = HardwareClass()
                 class_sql.cls = cls
                 class_sql.class_description = "Fill me in!"
+                session.add(class_sql)
                 device_sql.hardware_class = class_sql
                 session.flush()
 
