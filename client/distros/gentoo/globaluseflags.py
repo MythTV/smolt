@@ -129,10 +129,17 @@ class _GlobalUseFlags:
             'arch.list')))
 
     def _fill_use_flags(self):
-        active_use_flags = \
-                [e.lstrip("+") for e in portage.settings['USE'].split(' ')]
-        self._total_count = \
-                len(active_use_flags)
+        def get_use_flags(section):
+            res = set(portage.settings.configdict[section].get("USE", "").split())
+            use_expand = portage.settings.configdict[section].get("USE_EXPAND", "").split()
+            for expand_var in use_expand:
+                expand_var_values = portage.settings.configdict[section].get(expand_var, "").split()
+                prefix = expand_var.lower()
+                res = res.union(set('%s_%s' % (prefix, e) for e in expand_var_values))
+            return res
+
+        _all_profile_use_flags = get_use_flags('defaults')
+        _all_make_conf_use_flags = get_use_flags('conf')
 
         # Filter our private use flags
         self._non_private_space = self._registered_global_use_flags().union(
@@ -141,63 +148,53 @@ class _GlobalUseFlags:
                 self._auto_use_flags())
 
         def is_non_private(x):
-            try:
-                if (x in self._non_private_space) or \
-                        ("-" + x in self._non_private_space):
-                    return True
-                else:
-                    return False
-            except KeyError:
-                return False
-        self._global_use_flags = set([e for e in active_use_flags
-                if is_non_private(e)])
-        self._private_count = \
-                self._total_count - len(self._global_use_flags)
+            positive = x.lstrip('-')
+            return positive in self._non_private_space
 
-    def get(self):
-        return self._global_use_flags
-
-    def total_count(self):
-        return self._total_count
-
-    def private_count(self):
-        return self._private_count
-
-    def known_count(self):
-        return self.total_count() - self.private_count()
+        self._profile_use_flags = \
+                set(e for e in _all_profile_use_flags if is_non_private(e))
+        self._make_conf_use_flags = \
+                set(e for e in _all_make_conf_use_flags if is_non_private(e))
 
     def is_known(self, flag):
         return flag in self._non_private_space
 
     def serialize(self):
-        return sorted(self._global_use_flags)
+        res = {
+            'profile':sorted(self._profile_use_flags),
+            'make.conf':sorted(self._make_conf_use_flags),
+        }
+        return res
 
     def dump_html(self, lines):
+        serialized = self.serialize()
         lines.append('<h2>Global use flags</h2>')
+        lines.append('<h3>From make.conf</h3>')
         lines.append('<p>')
-        lines.append(html.escape(', '.join(sorted(self._global_use_flags))))
+        lines.append(html.escape(', '.join(compress_use_flags(serialized['make.conf']))))
+        lines.append('</p>')
+        lines.append('<h3>From system profile</h3>')
+        lines.append('<p>')
+        lines.append(html.escape(', '.join(compress_use_flags(serialized['profile']))))
         lines.append('</p>')
 
     def dump_rst(self, lines):
+        serialized = self.serialize()
         lines.append('Global use flags')
         lines.append('-----------------------------')
-        lines.append('  '.join(compress_use_flags(self._global_use_flags)))
+        lines.append('From make.conf')
+        lines.append('`````````````````````')
+        lines.append('  '.join(compress_use_flags(serialized['make.conf'])))
+        lines.append('')
+        lines.append('From system profile')
+        lines.append('`````````````````````')
+        lines.append('  '.join(compress_use_flags(serialized['profile'])))
 
     def _dump(self):
         lines = []
         self.dump_rst(lines)
         print '\n'.join(lines)
         print
-
-    """
-    def dump(self):
-        print 'Global use flags:'
-        print sorted(self.get())
-        print '  Total: ' + str(self.total_count())
-        print '    Known: ' + str(self.known_count())
-        print '    Private: ' + str(self.private_count())
-        print
-    """
 
 
 _global_use_flags_instance = None
