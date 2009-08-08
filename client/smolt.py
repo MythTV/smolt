@@ -44,6 +44,7 @@ import urllib
 import simplejson
 from simplejson import JSONEncoder
 import datetime
+import logging
 
 import config
 from smolt_config import get_config_attr
@@ -557,7 +558,7 @@ class _Hardware:
                 lines.append(v['html'])
         return '\n'.join(lines)
 
-    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies):
+    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies, batch=False):
         def serialize(object, human=False):
             if human:
                 indent = 2
@@ -605,8 +606,16 @@ class _Hardware:
         debug('sendHostStr: %s' % serialized_host_obj_machine)
         debug('Sending Host')
 
+        if batch:
+            entry_point = "/client/batch_add_json"
+            logging.debug('Submitting in asynchronous mode')
+        else:
+            entry_point = "/client/add_json"
+            logging.debug('Submitting in synchronous mode')
+        request_url = urljoin(smoonURL + "/", entry_point, False)
         try:
-            o = grabber.urlopen(urljoin(smoonURL + "/", "/client/add_json", False), data=send_host_str,
+            logging.debug('Sending request to %s' % request_url)
+            o = grabber.urlopen(request_url, data=send_host_str,
                                 http_headers=(
                             ('Content-length', '%i' % len(send_host_str)),
                             ('Content-type', 'application/x-www-form-urlencoded')))
@@ -614,9 +623,13 @@ class _Hardware:
             error(_('Error contacting Server: %s') % e)
             return (1, None, None)
         else:
-            pub_uuid = serverMessage(o.read())
+            server_response = serverMessage(o.read())
+            if batch:
+                pub_uuid = None
+            else:
+                pub_uuid = server_response
+                self.write_pub_uuid(smoonURL, pub_uuid)
             o.close()
-            self.write_pub_uuid(smoonURL,pub_uuid)
 
             try:
                 admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
