@@ -208,18 +208,18 @@ def _handle_accept_keywords(session, data, machine_id):
 
 
 def _handle_compile_flags(session, data, machine_id):
-    for call_flag_class in ('CFLAGS', 'CXXFLAGS', 'LDFLAGS', 'MAKEOPTS'):
+    for call_flag_class_upper in ('CFLAGS', 'CXXFLAGS', 'LDFLAGS', 'MAKEOPTS'):
         try:
-            call_flag_class_object = session.query(GentooCallFlagClassString).filter_by(name=call_flag_class).one()
+            call_flag_class_object = session.query(GentooCallFlagClassString).filter_by(name=call_flag_class_upper).one()
         except sqlalchemy.orm.exc.NoResultFound:
-            call_flag_class_object = GentooCallFlagClassString(call_flag_class)
+            call_flag_class_object = GentooCallFlagClassString(call_flag_class_upper)
             session.add(call_flag_class_object)
             session.flush()
         call_flag_class_id = call_flag_class_object.id
 
         # Find current entries
         try:
-            current_call_flag_list = data['compile_flags'][call_flag_class]
+            current_call_flag_list = data['compile_flags'][call_flag_class_upper.lower()]
         except KeyError:
             current_call_flag_list = []
 
@@ -362,7 +362,7 @@ def _handle_privacy_metrics(session, data, machine_id):
 def _handle_global_use_flags(session, data, machine_id):
     # Find current entries
     try:
-        current_raw_global_use_flags_make_conf = data['global_use_flags']['make.conf']
+        current_raw_global_use_flags_make_conf = data['global_use_flags']['make_conf']
     except KeyError:
         current_raw_global_use_flags_make_conf = []
 

@@ -34,13 +34,14 @@ class Trivials:
         self._trivials = {}
 
         self._trivial_scalars = {}
-        for k in ('ARCH', 'CHOST'):
-            value = portage.settings[k].strip()
+        for upper in ('ARCH', 'CHOST'):
+            value = portage.settings[upper].strip()
+            lower = upper.lower()
             if self._publish_arch_related:
-                self._trivial_scalars[k] = value
+                self._trivial_scalars[lower] = value
             else:
-                self._trivial_scalars[k] = 'WITHHELD'
-            self._trivials[k] = self._trivial_scalars[k]
+                self._trivial_scalars[lower] = 'WITHHELD'
+            self._trivials[lower] = self._trivial_scalars[lower]
 
         if self._publish_system_profile:
             system_profile = SystemProfile().get()
@@ -50,18 +51,19 @@ class Trivials:
         self._trivials['system_profile'] = self._trivial_scalars['system_profile']
 
         self._trivial_vectors = {}
-        for k in ('FEATURES',):
+        for upper in ('FEATURES',):
+            lower = upper.lower()
             if self._publish_features:
-                value = portage.settings[k].split(' ')
+                value = portage.settings[upper].split(' ')
             else:
                 value = ()
-            self._trivial_vectors[k] = value
-            self._trivials[k] = self._trivial_vectors[k]
+            self._trivial_vectors[lower] = value
+            self._trivials[lower] = self._trivial_vectors[lower]
 
-        self._trivial_vectors['ACCEPT_KEYWORDS'] = \
+        self._trivial_vectors['accept_keywords'] = \
             self._accept_keywords()
-        self._trivials['ACCEPT_KEYWORDS'] = \
-            self._trivial_vectors['ACCEPT_KEYWORDS']
+        self._trivials['accept_keywords'] = \
+            self._trivial_vectors['accept_keywords']
 
     def _accept_keywords(self):
         if not self._publish_arch_related:
@@ -84,14 +86,14 @@ class Trivials:
                 self._publish_system_profile and 1 or 0)
         target_dict['features'] = (self._publish_features, \
                 0, \
-                self._publish_features and len(self._trivials['FEATURES']) or 0)
+                self._publish_features and len(self._trivials['features']) or 0)
 
     def dump_html(self, lines):
         lines.append('<h2>General</h2>')
         key_data = {
-            'ARCH':'ARCH',
-            'CHOST':'CHOST',
-            'ACCEPT_KEYWORDS':'ACCEPT_KEYWORDS',
+            'arch':'ARCH',
+            'chost':'CHOST',
+            'accept_keywords':'ACCEPT_KEYWORDS',
             'system_profile':'System Profile',
         }
         for k, label in sorted(key_data.items()):
@@ -106,7 +108,7 @@ class Trivials:
 
         lines.append('<h2>Features</h2>')
         lines.append('<ul>')
-        for i in sorted(self._trivials['FEATURES']):
+        for i in sorted(self._trivials['features']):
             lines.append('<li>%s</li>' % html.escape(i))
         lines.append('</ul>')
 
@@ -114,9 +116,9 @@ class Trivials:
         lines.append('General')
         lines.append('-----------------------------')
         key_data = {
-            'ARCH':'ARCH',
-            'CHOST':'CHOST',
-            'ACCEPT_KEYWORDS':'ACCEPT_KEYWORDS',
+            'arch':'ARCH',
+            'chost':'CHOST',
+            'accept_keywords':'ACCEPT_KEYWORDS',
             'system_profile':'System Profile',
         }
         for k, label in sorted(key_data.items()):
@@ -130,7 +132,7 @@ class Trivials:
 
         lines.append('Features')
         lines.append('-----------------------------')
-        for i in sorted(self._trivials['FEATURES']):
+        for i in sorted(self._trivials['features']):
             lines.append('- %s' % i)
 
 

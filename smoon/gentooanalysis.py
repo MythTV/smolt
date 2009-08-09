@@ -274,9 +274,9 @@ class GentooReporter:
             return res
 
         res = {}
-        for call_flag_class in ('CFLAGS', 'CXXFLAGS', 'LDFLAGS', 'MAKEOPTS'):
+        for call_flag_class_upper in ('CFLAGS', 'CXXFLAGS', 'LDFLAGS', 'MAKEOPTS'):
             try:
-                call_flag_class_object = self.session.query(GentooCallFlagClassString).filter_by(name=call_flag_class).one()
+                call_flag_class_object = self.session.query(GentooCallFlagClassString).filter_by(name=call_flag_class_upper).one()
             except sqlalchemy.orm.exc.NoResultFound:
                 # TODO
                 raise
@@ -302,7 +302,7 @@ class GentooReporter:
             if others < 0:
                 others = 0
 
-            res[call_flag_class] = {
+            res[call_flag_class_upper.lower()] = {
                 'listed':final_rows,
                 'others':[make_row(others, post_dot_digits)],
                 'total':[make_row(total_entry_count, post_dot_digits)],

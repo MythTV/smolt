@@ -150,19 +150,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <th class="vert_head">Flag</th>
                 <th colspan="2" class="head">Popularity</th>
             </tr>
-            <tr py:for="row in data['compile_flags']['CFLAGS']['listed']">
+            <tr py:for="row in data['compile_flags']['cflags']['listed']">
                 <th class="vert">${row['label']}</th>
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
-            <py:if test="data['compile_flags']['CFLAGS']['others'][0]['absolute'] > 0">
-            <tr py:for="row in data['compile_flags']['CFLAGS']['others']">
+            <py:if test="data['compile_flags']['cflags']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['cflags']['others']">
                 <th class="vert"><span class="group_item">others</span></th>
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
             </py:if>
-            <tr py:for="row in data['compile_flags']['CFLAGS']['total']">
+            <tr py:for="row in data['compile_flags']['cflags']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot_count">${row['absolute']}</td>
                 <td class="foot_relative">(${row['relative']} %)</td>
@@ -177,19 +177,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <th class="vert_head">Flag</th>
                 <th colspan="2" class="head">Popularity</th>
             </tr>
-            <tr py:for="row in data['compile_flags']['CXXFLAGS']['listed']">
+            <tr py:for="row in data['compile_flags']['cxxflags']['listed']">
                 <th class="vert">${row['label']}</th>
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
-            <py:if test="data['compile_flags']['CXXFLAGS']['others'][0]['absolute'] > 0">
-            <tr py:for="row in data['compile_flags']['CXXFLAGS']['others']">
+            <py:if test="data['compile_flags']['cxxflags']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['cxxflags']['others']">
                 <th class="vert"><span class="group_item">others</span></th>
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
             </py:if>
-            <tr py:for="row in data['compile_flags']['CXXFLAGS']['total']">
+            <tr py:for="row in data['compile_flags']['cxxflags']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot_count">${row['absolute']}</td>
                 <td class="foot_relative">(${row['relative']} %)</td>
@@ -204,19 +204,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <th class="vert_head">Flag</th>
                 <th colspan="2" class="head">Popularity</th>
             </tr>
-            <tr py:for="row in data['compile_flags']['LDFLAGS']['listed']">
+            <tr py:for="row in data['compile_flags']['ldflags']['listed']">
                 <th class="vert">${row['label']}</th>
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
-            <py:if test="data['compile_flags']['LDFLAGS']['others'][0]['absolute'] > 0">
-            <tr py:for="row in data['compile_flags']['LDFLAGS']['others']">
+            <py:if test="data['compile_flags']['ldflags']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['ldflags']['others']">
                 <th class="vert"><span class="group_item">others</span></th>
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
             </py:if>
-            <tr py:for="row in data['compile_flags']['LDFLAGS']['total']">
+            <tr py:for="row in data['compile_flags']['ldflags']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot_count">${row['absolute']}</td>
                 <td class="foot_relative">(${row['relative']} %)</td>
@@ -231,19 +231,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <th class="vert_head">Flag</th>
                 <th colspan="2" class="head">Popularity</th>
             </tr>
-            <tr py:for="row in data['compile_flags']['MAKEOPTS']['listed']">
+            <tr py:for="row in data['compile_flags']['makeopts']['listed']">
                 <th class="vert">${row['label']}</th>
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
-            <py:if test="data['compile_flags']['MAKEOPTS']['others'][0]['absolute'] > 0">
-            <tr py:for="row in data['compile_flags']['MAKEOPTS']['others']">
+            <py:if test="data['compile_flags']['makeopts']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['compile_flags']['makeopts']['others']">
                 <th class="vert"><span class="group_item">others</span></th>
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
             </py:if>
-            <tr py:for="row in data['compile_flags']['MAKEOPTS']['total']">
+            <tr py:for="row in data['compile_flags']['makeopts']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot_count">${row['absolute']}</td>
                 <td class="foot_relative">(${row['relative']} %)</td>

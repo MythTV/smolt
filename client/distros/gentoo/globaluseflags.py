@@ -183,7 +183,7 @@ class _GlobalUseFlags:
     def serialize(self):
         res = {
             'profile':sorted(self._profile_use_flags),
-            'make.conf':sorted(self._make_conf_use_flags),
+            'make_conf':sorted(self._make_conf_use_flags),
         }
         return res
 
@@ -200,7 +200,7 @@ class _GlobalUseFlags:
         lines.append('<h2>Global use flags</h2>')
         lines.append('<h3>From make.conf</h3>')
         lines.append('<p>')
-        lines.append(html.escape(', '.join(compress_use_flags(serialized['make.conf']))))
+        lines.append(html.escape(', '.join(compress_use_flags(serialized['make_conf']))))
         lines.append('</p>')
         lines.append('<h3>From system profile</h3>')
         lines.append('<p>')
@@ -213,7 +213,7 @@ class _GlobalUseFlags:
         lines.append('-----------------------------')
         lines.append('From make.conf')
         lines.append('`````````````````````')
-        lines.append('  '.join(compress_use_flags(serialized['make.conf'])))
+        lines.append('  '.join(compress_use_flags(serialized['make_conf'])))
         lines.append('')
         lines.append('From system profile')
         lines.append('`````````````````````')

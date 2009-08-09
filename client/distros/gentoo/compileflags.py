@@ -68,10 +68,10 @@ class CompileFlags:
 
     def serialize(self):
         res = {
-            'CFLAGS':self._cflags,
-            'CXXFLAGS':self._cxxflags,
-            'LDFLAGS':self._ldflags,
-            'MAKEOPTS':self._makeopts,
+            'cflags':self._cflags,
+            'cxxflags':self._cxxflags,
+            'ldflags':self._ldflags,
+            'makeopts':self._makeopts,
         }
         return res
 

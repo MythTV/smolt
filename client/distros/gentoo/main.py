@@ -171,9 +171,9 @@ class _Gentoo(Distro):
         self.dump_metrics_rst(rst_lines, metrics_dict)
 
         excerpt_lines = []
-        excerpt_lines.append('ACCEPT_KEYWORDS: ' + ' '.join(trivials.serialize()['ACCEPT_KEYWORDS']))
-        excerpt_lines.append('CXXFLAGS: ' + ' '.join(compile_flags.serialize()['CXXFLAGS']))
-        excerpt_lines.append('MAKEOPTS: ' + ' '.join(compile_flags.serialize()['MAKEOPTS']))
+        excerpt_lines.append('ACCEPT_KEYWORDS: ' + ' '.join(trivials.serialize()['accept_keywords']))
+        excerpt_lines.append('CXXFLAGS: ' + ' '.join(compile_flags.serialize()['cxxflags']))
+        excerpt_lines.append('MAKEOPTS: ' + ' '.join(compile_flags.serialize()['makeopts']))
         excerpt_lines.append('...')
 
         self._data = machine_data
