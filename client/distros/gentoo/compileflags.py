@@ -79,10 +79,10 @@ class CompileFlags:
         def make_entry(count):
             return (self._publish, 0, count)
 
-        target_dict['compile_flags_cflags'] = make_entry(len(self._cflags))
-        target_dict['compile_flags_cxxflags'] = make_entry(len(self._cxxflags))
-        target_dict['compile_flags_ldflags'] = make_entry(len(self._ldflags))
-        target_dict['compile_flags_makeopts'] = make_entry(len(self._makeopts))
+        target_dict['call_flags_cflags'] = make_entry(len(self._cflags))
+        target_dict['call_flags_cxxflags'] = make_entry(len(self._cxxflags))
+        target_dict['call_flags_ldflags'] = make_entry(len(self._ldflags))
+        target_dict['call_flags_makeopts'] = make_entry(len(self._makeopts))
 
     def dump_html(self, lines):
         lines.append('<h2>Compile flags</h2>')

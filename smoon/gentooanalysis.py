@@ -263,7 +263,7 @@ class GentooReporter:
         }
         return res
 
-    def _analyzes_compile_flags(self):
+    def _analyzes_call_flags(self):
         def make_row(absolute, post_dot_digits, label=None):
             res = {
                 'absolute':absolute,
@@ -350,7 +350,7 @@ class GentooReporter:
         self.gentoo_machines = max(1, self.session.query(GentooArchRel).count())
         simple_stuff = self._analyze_simple_stuff()
         archs = self._analyze_archs()
-        compile_flags = self._analyzes_compile_flags()
+        call_flags = self._analyzes_call_flags()
         package_mask = self._analyzes_package_mask()
 
         report_finished = datetime.datetime.utcnow()
@@ -361,7 +361,7 @@ class GentooReporter:
                     report_finished, "%Y-%m-%d %H:%S UTC"),
             'generation_duration':generation_duration,
             'archs':archs,
-            'compile_flags':compile_flags,
+            'call_flags':call_flags,
             'package_mask':package_mask,
         }
         for k, v in simple_stuff.items():

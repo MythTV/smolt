@@ -33,10 +33,10 @@ _PRIVACY_METRICS_COLUMN_HEADERS = ('Data class', 'Publish', \
 
 _DATA_CLASS_LABEL_MAP = {
     'arch_related':'Architecture-related',
-    'compile_flags_cflags':'Compile flags (CFLAGS)',
-    'compile_flags_cxxflags':'Compile flags (CXXFLAGS)',
-    'compile_flags_ldflags':'Compile flags (LDFLAGS)',
-    'compile_flags_makeopts':'Compile flags (MAKEOPTS)',
+    'call_flags_cflags':'Compile flags (CFLAGS)',
+    'call_flags_cxxflags':'Compile flags (CXXFLAGS)',
+    'call_flags_ldflags':'Compile flags (LDFLAGS)',
+    'call_flags_makeopts':'Compile flags (MAKEOPTS)',
     'features':'Features',
     'global_use_flags_make_conf':'Global use flags (make.conf)',
     'global_use_flags_profile':'Global use flags (system profile)',
@@ -123,7 +123,7 @@ class _Gentoo(Distro):
         rst_lines.append('')
         trivials.get_metrics(metrics_dict)
 
-        machine_data['compile_flags'] = compile_flags.serialize()
+        machine_data['call_flags'] = compile_flags.serialize()
         compile_flags.dump_html(html_lines)
         compile_flags.dump_rst(rst_lines)
         rst_lines.append('')

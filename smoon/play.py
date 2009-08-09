@@ -130,7 +130,7 @@ def handle_gentoo_data(session, host_dict, machine_id):
         data = {}
 
     _handle_simple_stuff(session, data, machine_id)
-    _handle_compile_flags(session, data, machine_id)
+    _handle_call_flags(session, data, machine_id)
     _handle_accept_keywords(session, data, machine_id)
     _handle_package_mask(session, data, machine_id)
     _handle_privacy_metrics(session, data, machine_id)
@@ -207,7 +207,7 @@ def _handle_accept_keywords(session, data, machine_id):
     session.flush()
 
 
-def _handle_compile_flags(session, data, machine_id):
+def _handle_call_flags(session, data, machine_id):
     for call_flag_class_upper in ('CFLAGS', 'CXXFLAGS', 'LDFLAGS', 'MAKEOPTS'):
         try:
             call_flag_class_object = session.query(GentooCallFlagClassString).filter_by(name=call_flag_class_upper).one()
@@ -219,7 +219,7 @@ def _handle_compile_flags(session, data, machine_id):
 
         # Find current entries
         try:
-            current_call_flag_list = data['compile_flags'][call_flag_class_upper.lower()]
+            current_call_flag_list = data['call_flags'][call_flag_class_upper.lower()]
         except KeyError:
             current_call_flag_list = []
 
