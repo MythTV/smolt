@@ -53,6 +53,7 @@ from fs_util import get_fslist
 from gate import Gate
 from uuiddb import UuidDb
 import logging
+from logging.handlers import RotatingFileHandler
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 SELINUX_ENABLED = 1
@@ -602,6 +603,33 @@ class _Hardware:
                          serialized_host_obj_machine + \
                          '&token=%s&smolt_protocol=%s') % \
                          (self.host.UUID, tok, smoltProtocol)
+
+
+        # Log-dump submission data
+        log_matrix = {
+            '.json':serialize(send_host_obj, human=True),
+            '-distro.html':self.get_distro_specific_html(),
+            '.rst':'\n'.join(self.getProfile()),
+        }
+        logdir = os.path.expanduser('~/.smolt/')
+        try:
+            if not os.path.exists(logdir):
+                os.mkdir(logdir, 1700)
+
+            for k, v in log_matrix.items():
+                filename = os.path.expanduser(os.path.join(
+                        logdir, 'submission%s' % k))
+                r = RotatingFileHandler(filename, \
+                        maxBytes=1000000, backupCount=9)
+                r.stream.write(v)
+                r.doRollover()
+                r.close()
+                os.remove(filename)
+        except:
+            pass
+        del logdir
+        del log_matrix
+
 
         debug('sendHostStr: %s' % serialized_host_obj_machine)
         debug('Sending Host')
