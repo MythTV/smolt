@@ -227,6 +227,7 @@ if not opts.autoSend:
                 except UnicodeEncodeError:
                     pass
             f.flush()
+            os.chmod(f.name, 0400)
             try:
                 pager_command = os.environ['PAGER']
             except KeyError:

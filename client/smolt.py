@@ -702,6 +702,14 @@ class _Hardware:
     def getProfile(self):
         printBuffer = []
 
+        printBuffer.append('# ' + _('This is a Smolt report shown within your default pager.'))
+        printBuffer.append('# ' + _('Below you can see what data you will submit to the server.'))
+        printBuffer.append('# ' + _('To get back to Smolt exit the pager (try hitting "q").'))
+        printBuffer.append('#')
+        printBuffer.append('# ' + _('NOTE:  Editing this file does not change the data submitted.'))
+        printBuffer.append('')
+        printBuffer.append('')
+
         printBuffer.append(_('General'))
         printBuffer.append('=================================')
         for label, data in self.hostIter():
