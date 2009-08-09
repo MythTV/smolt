@@ -147,7 +147,7 @@ class Mirrors:
 
         lines.append('<h3>Distfiles</h3>')
         lines.append('<ul>')
-        for url in self._mirror_urls:
+        for url in sorted(self._mirror_urls):
             lines.append('<li><a href="%(url)s">%(url)s</a></li>' % {'url':html.escape(url)})
         lines.append('</ul>')
 
