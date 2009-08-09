@@ -56,7 +56,7 @@ _POOL_TABLE_TEMPLATE = """
 %(table_var_name)s = Table('%(table_name)s', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     # TODO add index to name column and make sure it's actually working
-    Column('name', %(col_type)s, unique=True),
+    Column('name', %(col_type)s, unique=True, nullable=False),
 )
 
 class %(class_name)s(object):
@@ -73,8 +73,8 @@ mapper(%(class_name)s, %(table_var_name)s)
 _SCALAR_REL_TABLE_TEMPLATE = """
 %(table_var_name)s = Table('%(table_name)s', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('machine_id', Integer, unique=True),
-    Column('%(foreign_key_column)s', Integer, ForeignKey('%(foreign_key_table)s.id')),
+    Column('machine_id', Integer, unique=True, nullable=False),
+    Column('%(foreign_key_column)s', Integer, ForeignKey('%(foreign_key_table)s.id'), nullable=False),
 )
 
 class %(class_name)s(object):
@@ -96,8 +96,8 @@ mapper(%(class_name)s, %(table_var_name)s,
 _VECTOR_REL_TABLE_TEMPLATE = """
 %(table_var_name)s = Table('%(table_name)s', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('machine_id', Integer),
-    Column('%(foreign_key_column)s', Integer, ForeignKey('%(foreign_key_table)s.id')),
+    Column('machine_id', Integer, nullable=False),
+    Column('%(foreign_key_column)s', Integer, ForeignKey('%(foreign_key_table)s.id'), nullable=False),
     UniqueConstraint('machine_id', '%(foreign_key_column)s'),
 )
 
@@ -220,9 +220,9 @@ for job in _rel_table_jobs:
 
 _gentoo_installed_packages_table = Table('gentoo_installed_packages', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('machine_id', Integer),
-    Column('package_id', Integer, ForeignKey('%s.id' % 'gentoo_package_pool')),
-    Column('slot_id', Integer, ForeignKey('%s.id' % 'gentoo_slot_pool')),
+    Column('machine_id', Integer, nullable=False),
+    Column('package_id', Integer, ForeignKey('%s.id' % 'gentoo_package_pool'), nullable=False),
+    Column('slot_id', Integer, ForeignKey('%s.id' % 'gentoo_slot_pool'), nullable=False),
     UniqueConstraint('machine_id', 'package_id', 'slot_id'),
 )
 
@@ -235,13 +235,13 @@ class GentooInstalledPackagesRel(object):
 
 _gentoo_installed_package_properties_table = Table('gentoo_installed_package_properties', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('installed_package_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages'), unique=True),
-    Column('version_id', Integer, ForeignKey('%s.id' % 'gentoo_version_pool')),
-    Column('keyword_status', Integer),  # Could be MSEnum, choosing Integer for flexibility
-    Column('masked', BOOLEAN),
-    Column('unmasked', BOOLEAN),
-    Column('world', BOOLEAN),
-    Column('repository_id', Integer, ForeignKey('%s.id' % 'gentoo_repository_pool')),
+    Column('installed_package_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages'), unique=True, nullable=False),
+    Column('version_id', Integer, ForeignKey('%s.id' % 'gentoo_version_pool'), nullable=False),
+    Column('keyword_status', Integer, nullable=False),  # Could be MSEnum, choosing Integer for flexibility
+    Column('masked', BOOLEAN, nullable=False),
+    Column('unmasked', BOOLEAN, nullable=False),
+    Column('world', BOOLEAN, nullable=False),
+    Column('repository_id', Integer, ForeignKey('%s.id' % 'gentoo_repository_pool'), nullable=False),
 )
 
 class GentooInstalledPackagePropertiesRel(object):
@@ -263,9 +263,9 @@ mapper(GentooInstalledPackagePropertiesRel, _gentoo_installed_package_properties
 
 _gentoo_installed_package_use_flag_table = Table('gentoo_installed_package_use_flag', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('installed_package_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages')),
-    Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool')),
-    Column('enabled', SmallInteger),  # Not BOOLEAN here as that denies using func.sum
+    Column('installed_package_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages'), nullable=False),
+    Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool'), nullable=False),
+    Column('enabled', SmallInteger, nullable=False),  # Not BOOLEAN here as that denies using func.sum
     UniqueConstraint('installed_package_id', 'use_flag_id'),
 )
 
@@ -294,9 +294,9 @@ mapper(GentooInstalledPackagesRel, _gentoo_installed_packages_table,
 
 _gentoo_package_mask_table = Table('gentoo_package_mask', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('machine_id', Integer),
-    Column('package_id', Integer, ForeignKey('%s.id' % 'gentoo_package_pool')),
-    Column('atom_id', Integer, ForeignKey('%s.id' % 'gentoo_atom_pool')),
+    Column('machine_id', Integer, nullable=False),
+    Column('package_id', Integer, ForeignKey('%s.id' % 'gentoo_package_pool'), nullable=False),
+    Column('atom_id', Integer, ForeignKey('%s.id' % 'gentoo_atom_pool'), nullable=False),
     UniqueConstraint('machine_id', 'atom_id'),
 )
 
@@ -316,9 +316,9 @@ mapper(GentooPackageMaskRel, _gentoo_package_mask_table,
 
 _gentoo_accept_keywords_table = Table('gentoo_accept_keywords', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('machine_id', Integer),
-    Column('keyword_id', Integer, ForeignKey('%s.id' % 'gentoo_keyword_pool')),
-    Column('stable', SmallInteger),  # Not BOOLEAN here as that denies using func.sum
+    Column('machine_id', Integer, nullable=False),
+    Column('keyword_id', Integer, ForeignKey('%s.id' % 'gentoo_keyword_pool'), nullable=False),
+    Column('stable', SmallInteger, nullable=False),  # Not BOOLEAN here as that denies using func.sum
     UniqueConstraint('machine_id', 'keyword_id'),
 )
 
@@ -337,10 +337,10 @@ mapper(GentooAcceptKeywordRel, _gentoo_accept_keywords_table,
 
 _gentoo_call_flags_table = Table('gentoo_call_flags', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('machine_id', Integer),
-    Column('call_flag_class_id', Integer, ForeignKey('%s.id' % 'gentoo_call_flag_class_pool')),
-    Column('call_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_call_flag_pool')),
-    Column('position', SmallInteger),
+    Column('machine_id', Integer, nullable=False),
+    Column('call_flag_class_id', Integer, ForeignKey('%s.id' % 'gentoo_call_flag_class_pool'), nullable=False),
+    Column('call_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_call_flag_pool'), nullable=False),
+    Column('position', SmallInteger, nullable=False),
     UniqueConstraint('machine_id', 'call_flag_class_id', 'call_flag_id', 'position'),
 )
 
@@ -360,12 +360,12 @@ mapper(GentooCallFlagRel, _gentoo_call_flags_table,
 
 _gentoo_global_use_flags_table = Table('gentoo_global_use_flags', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('machine_id', Integer),
-    Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool')),
-    Column('set_in_profile', SmallInteger),  # Not BOOLEAN here as that denies using func.sum
-    Column('set_in_make_conf', SmallInteger),  # as above
-    Column('enabled_in_profile', SmallInteger),  # as above
-    Column('enabled_in_make_conf', SmallInteger),  # as above
+    Column('machine_id', Integer, nullable=False),
+    Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool'), nullable=False),
+    Column('set_in_profile', SmallInteger, nullable=False),  # Not BOOLEAN here as that denies using func.sum
+    Column('set_in_make_conf', SmallInteger, nullable=False),  # as above
+    Column('enabled_in_profile', SmallInteger, nullable=False),  # as above
+    Column('enabled_in_make_conf', SmallInteger, nullable=False),  # as above
     UniqueConstraint('machine_id', 'use_flag_id'),
 )
 
@@ -389,11 +389,11 @@ mapper(GentooGlobalUseFlagRel, _gentoo_global_use_flags_table,
 
 _gentoo_privacy_metric_table = Table('gentoo_privacy_metrics', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('machine_id', Integer),
-    Column('data_class_id', Integer, ForeignKey('%s.id' % 'gentoo_data_class_pool')),
-    Column('revealed', SmallInteger),  # Not BOOLEAN here as that denies using func.sum
-    Column('count_private', Integer),
-    Column('count_non_private', Integer),
+    Column('machine_id', Integer, nullable=False),
+    Column('data_class_id', Integer, ForeignKey('%s.id' % 'gentoo_data_class_pool'), nullable=False),
+    Column('revealed', SmallInteger, nullable=False),  # Not BOOLEAN here as that denies using func.sum
+    Column('count_private', Integer, nullable=False),
+    Column('count_non_private', Integer, nullable=False),
     UniqueConstraint('machine_id', 'data_class_id'),
 )
 
