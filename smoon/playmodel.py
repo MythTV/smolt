@@ -233,7 +233,7 @@ class GentooInstalledPackagesRel(object):
         self.slot_id = slot_id
 
 
-_gentoo_installed_package_properties_table = Table('gentoo_installed_package_properties', metadata,
+_gentoo_installed_package_props_table = Table('gentoo_installed_package_props', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('installed_package_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages'), unique=True, nullable=False),
     Column('version_id', Integer, ForeignKey('%s.id' % 'gentoo_version_pool'), nullable=False),
@@ -254,14 +254,14 @@ class GentooInstalledPackagePropertiesRel(object):
         self.world = world
         self.repo_id = repo_id
 
-mapper(GentooInstalledPackagePropertiesRel, _gentoo_installed_package_properties_table,
+mapper(GentooInstalledPackagePropertiesRel, _gentoo_installed_package_props_table,
     properties={
         'install':relation(GentooInstalledPackagesRel),
     }
 )
 
 
-_gentoo_installed_package_use_flag_table = Table('gentoo_installed_package_use_flag', metadata,
+_gentoo_installed_package_use_flags_table = Table('gentoo_installed_package_use_flags', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('installed_package_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages'), nullable=False),
     Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool'), nullable=False),
@@ -275,7 +275,7 @@ class GentooInstalledPackageUseFlagRel(object):
         self.use_flag_id = use_flag_id
         self.enabled = enabled
 
-mapper(GentooInstalledPackageUseFlagRel, _gentoo_installed_package_use_flag_table,
+mapper(GentooInstalledPackageUseFlagRel, _gentoo_installed_package_use_flags_table,
     properties={
         'install':relation(GentooInstalledPackagesRel),
     }
