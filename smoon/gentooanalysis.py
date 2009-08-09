@@ -275,32 +275,34 @@ class GentooReporter:
 
         res = {}
         for call_flag_class_upper in ('CFLAGS', 'CXXFLAGS', 'LDFLAGS', 'MAKEOPTS'):
+            final_rows = []
             try:
                 call_flag_class_object = self.session.query(GentooCallFlagClassString).filter_by(name=call_flag_class_upper).one()
             except sqlalchemy.orm.exc.NoResultFound:
-                # TODO
-                raise
-            call_flag_class_id = call_flag_class_object.id
-
-            pool_join = _gentoo_call_flags_table.join(_gentoo_call_flag_pool_table)
-            total_entry_count = self.session.query(GentooCallFlagRel).filter_by(call_flag_class_id=call_flag_class_id).count()
-            query = select([GentooCallFlagString.name, func.count(GentooCallFlagRel.machine_id)], \
-                    from_obj=[pool_join]).where(GentooCallFlagRel.call_flag_class_id == call_flag_class_id).\
-                    group_by(GentooCallFlagRel.call_flag_id).order_by(\
-                    func.count(GentooCallFlagRel.machine_id).desc(), GentooCallFlagString.name).limit(_MAX_CALL_FLAGS)
-            if _MAX_CALL_FLAGS >= 50:
-                post_dot_digits = 2
-            else:
-                post_dot_digits = 1
-
-            final_rows = []
-            others = total_entry_count
-            for i in query.execute().fetchall():
-                label, absolute = i
-                others = others - absolute
-                final_rows.append(make_row(absolute, post_dot_digits, label))
-            if others < 0:
+                total_entry_count = 0
                 others = 0
+                post_dot_digits = 1
+            else:
+                call_flag_class_id = call_flag_class_object.id
+
+                pool_join = _gentoo_call_flags_table.join(_gentoo_call_flag_pool_table)
+                total_entry_count = self.session.query(GentooCallFlagRel).filter_by(call_flag_class_id=call_flag_class_id).count()
+                query = select([GentooCallFlagString.name, func.count(GentooCallFlagRel.machine_id)], \
+                        from_obj=[pool_join]).where(GentooCallFlagRel.call_flag_class_id == call_flag_class_id).\
+                        group_by(GentooCallFlagRel.call_flag_id).order_by(\
+                        func.count(GentooCallFlagRel.machine_id).desc(), GentooCallFlagString.name).limit(_MAX_CALL_FLAGS)
+                if _MAX_CALL_FLAGS >= 50:
+                    post_dot_digits = 2
+                else:
+                    post_dot_digits = 1
+
+                others = total_entry_count
+                for i in query.execute().fetchall():
+                    label, absolute = i
+                    others = others - absolute
+                    final_rows.append(make_row(absolute, post_dot_digits, label))
+                if others < 0:
+                    others = 0
 
             res[call_flag_class_upper.lower()] = {
                 'listed':final_rows,
@@ -345,7 +347,7 @@ class GentooReporter:
     def gather(self):
         report_begun = datetime.datetime.utcnow()
 
-        self.gentoo_machines = self.session.query(GentooArchRel).count()
+        self.gentoo_machines = max(1, self.session.query(GentooArchRel).count())
         simple_stuff = self._analyze_simple_stuff()
         archs = self._analyze_archs()
         compile_flags = self._analyzes_compile_flags()
