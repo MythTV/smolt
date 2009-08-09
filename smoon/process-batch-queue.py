@@ -46,6 +46,7 @@ import traceback
 
 from hardware.submission import handle_submission
 from hardware.model.model import BatchJob
+from playmodel import *
 
 
 # first look on the command line for a desired config file,
@@ -65,6 +66,10 @@ CONNECTION = config.get('global', 'sqlalchemy.dburi').\
         lstrip('"\'').rstrip('"\'')
 engine = create_engine(CONNECTION, echo=True)
 session = sessionmaker(bind=engine)()
+
+# Check existing tables, create those missing
+metadata.create_all(engine)
+
 count = session.query(BatchJob).filter_by(added=False).order_by(BatchJob.arrival).count()
 jobs = session.query(BatchJob).filter_by(added=False).order_by(BatchJob.arrival).all()
 for j in jobs:
