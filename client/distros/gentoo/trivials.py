@@ -57,10 +57,16 @@ class Trivials:
 
     def dump_html(self, lines):
         lines.append('<h2>General</h2>')
-        for k in sorted(('ARCH', 'CHOST', 'ACCEPT_KEYWORDS')):
+        key_data = {
+            'ARCH':'ARCH',
+            'CHOST':'CHOST',
+            'ACCEPT_KEYWORDS':'ACCEPT_KEYWORDS',
+            'system_profile':'System Profile',
+        }
+        for k, label in sorted(key_data.items()):
             v = self._trivials[k]
             lines.append('<dl>')
-            lines.append('<dt>%s</dt>' % html.escape(k))
+            lines.append('<dt>%s</dt>' % html.escape(label))
             if type(v).__name__ == 'list':
                 lines.append('<dd>%s</dd>' % html.escape(', '.join(v)))
             else:
@@ -76,9 +82,15 @@ class Trivials:
     def dump_rst(self, lines):
         lines.append('General')
         lines.append('-----------------------------')
-        for k in sorted(('ARCH', 'CHOST', 'ACCEPT_KEYWORDS')):
+        key_data = {
+            'ARCH':'ARCH',
+            'CHOST':'CHOST',
+            'ACCEPT_KEYWORDS':'ACCEPT_KEYWORDS',
+            'system_profile':'System Profile',
+        }
+        for k, label in sorted(key_data.items()):
             v = self._trivials[k]
-            lines.append(k)
+            lines.append(label)
             if type(v).__name__ == 'list':
                 lines.append('  %s' % ', '.join(v))
             else:
