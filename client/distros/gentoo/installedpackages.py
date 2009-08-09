@@ -169,6 +169,12 @@ class InstalledPackages:
                 self._non_private_use_flags)
 
     def dump_html(self, lines):
+        def fix_empty(text):
+            if text == '':
+                return '&nbsp;'
+            else:
+                return text
+
         lines.append('<h2>Installed packages</h2>')
         lines.append('<table border="1" cellspacing="1" cellpadding="4">')
         lines.append('<tr>')
@@ -185,22 +191,22 @@ class InstalledPackages:
                 lines.append('<td>%s</td>' % html.escape(i))
             for i in (SLOT, ):
                 if i == '0':  # Hide default slot
-                    v = ''
+                    v = '&nbsp;'
                 else:
-                    v = i
-                lines.append('<td>%s</td>' % html.escape(v))
+                    v = html.escape(i)
+                lines.append('<td>%s</td>' % v)
             for i in (keyword_status, ):
-                lines.append('<td>%s</td>' % html.escape(i))
+                lines.append('<td>%s</td>' % fix_empty(html.escape(i)))
             for i in (masked, unmasked, is_in_world):
                 v = i and 'X' or '&nbsp;'  # Hide False
                 lines.append('<td>%s</td>' % v)
             for i in (repository, ):
-                lines.append('<td>%s</td>' % html.escape(i))
+                lines.append('<td>%s</td>' % fix_empty(html.escape(i)))
             final_flag_list = [x.startswith('-') and \
                     '<s>%s</s>' % html.escape(x.lstrip('-')) or \
                     html.escape(x) for x in \
                     compress_use_flags(sorted_flags_list)]
-            lines.append('<td>%s</td>' % ', '.join(final_flag_list))
+            lines.append('<td>%s</td>' % fix_empty(', '.join(final_flag_list)))
             lines.append('</tr>')
         lines.append('</table>')
 
