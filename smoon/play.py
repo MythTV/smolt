@@ -416,9 +416,12 @@ def _handle_global_use_flags(session, data, machine_id):
     # Find old entries
     old_global_use_flag_objects = session.query(GentooGlobalUseFlagRel).options(\
                 eagerload('use_flag')).filter_by(machine_id=machine_id).all()
+    old_global_use_flag_dict = {}
     old_global_use_flag_set = set()
     for e in old_global_use_flag_objects:
-        old_global_use_flag_set.add((e.use_flag.name,
+        flag = e.use_flag.name
+        old_global_use_flag_dict[flag] = e
+        old_global_use_flag_set.add((flag,
                 bool(e.set_in_profile),
                 bool(e.set_in_make_conf),
                 bool(e.enabled_in_profile),
@@ -431,7 +434,7 @@ def _handle_global_use_flags(session, data, machine_id):
     # Resolve diff
     for e in flags_to_remove:
         flag = e[0]
-        session.delete(current_use_flag_dict[flag]['pool_object'])
+        session.delete(old_global_use_flag_dict[flag])
     for (flag, set_in_profile, set_in_make_conf, \
             enabled_in_profile, enabled_in_make_conf) in flags_to_add:
         use_flag_id = current_use_flag_dict[flag]['pool_object'].id
