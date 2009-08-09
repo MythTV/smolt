@@ -46,6 +46,7 @@ if %(current_name)s != old_value:
     # Resolve diff
     if %(old_name)s:
         session.delete(%(old_name)s)
+        session.flush()
     if %(current_name)s:
         try:
             pool_object = session.query(%(pool_class_name)s).filter_by(name=%(current_name)s).one()
@@ -191,6 +192,8 @@ def _handle_accept_keywords(session, data, machine_id):
     # Resolve diff
     for i in mappings_to_remove:
         session.delete(old_accept_keywords_dict[i])
+    if mappings_to_remove:
+        session.flush()
     for i in mappings_to_add:
         keyword, stable = i
         try:
@@ -238,6 +241,8 @@ def _handle_compile_flags(session, data, machine_id):
             # Resolve diff
             for e in old_call_flag_objects:
                 session.delete(e)
+            if old_call_flag_objects:
+                session.flush()
             for position, call_flag in enumerate(current_call_flag_list):
                 try:
                     call_flag_object = session.query(GentooCallFlagString).filter_by(name=call_flag).one()
@@ -281,6 +286,8 @@ def _handle_package_mask(session, data, machine_id):
     # Resolve diff
     for i in mask_entries_to_remove:
         session.delete(old_package_mask_dict[i])
+    if mask_entries_to_remove:
+        session.flush()
     for i in mask_entries_to_add:
         package, atom = i
         lookup_or_add_jobs = (
@@ -337,6 +344,8 @@ def _handle_privacy_metrics(session, data, machine_id):
     # Resolve diff
     for i in mappings_to_remove:
         session.delete(old_privacy_metrics_dict[i])
+    if mappings_to_remove:
+        session.flush()
     for i in mappings_to_add:
         data_class, revealed, count_private, count_non_private = i
         try:
@@ -435,6 +444,8 @@ def _handle_global_use_flags(session, data, machine_id):
     for e in flags_to_remove:
         flag = e[0]
         session.delete(old_global_use_flag_dict[flag])
+    if flags_to_remove:
+        session.flush()
     for (flag, set_in_profile, set_in_make_conf, \
             enabled_in_profile, enabled_in_make_conf) in flags_to_add:
         use_flag_id = current_use_flag_dict[flag]['pool_object'].id
@@ -477,10 +488,16 @@ def _handle_installed_packages(session, data, machine_id):
     installs_to_remove = old_install_set - current_install_key_set
 
     # Resolve diff
+    flush_needed = False
     for e in old_installed_package_rel_objects:
         key = (e.package.name, e.slot.name)
         if key in installs_to_remove:
             session.delete(e)
+            flush_needed = True
+    if flush_needed:
+        session.flush()
+    del flush_needed
+
     for key in installs_to_add:
         package, version, slot, keyword_status, \
                 masked, unmasked, world, repository, \
