@@ -109,7 +109,7 @@ _DIFF_JOBS = [
     {'thing':'chost', 'foreign':'chost', 'vector_flag':False, 'tree_location':"data['chost']"},
     {'thing':'distfiles_mirror', 'foreign':'mirror', 'vector_flag':True, 'tree_location':"data['mirrors']['distfiles']"},
     {'thing':'feature', 'foreign':'feature', 'vector_flag':True, 'tree_location':"data['features']"},
-    {'thing':'overlay', 'foreign':'repository', 'vector_flag':True, 'tree_location':"data['overlays']"},
+    {'thing':'repo', 'foreign':'repo', 'vector_flag':True, 'tree_location':"data['repos']"},
     {'thing':'sync_mirror', 'foreign':'mirror', 'vector_flag':False, 'tree_location':"data['mirrors']['sync']"},
     {'thing':'system_profile', 'foreign':'system_profile', 'vector_flag':False, 'tree_location':"data['system_profile']"},
 ]
@@ -478,7 +478,7 @@ def _handle_installed_packages(session, data, machine_id):
     current_install_dict = {}
     for e in installed_packages:
         package, version, slot, keyword_status, masked, unmasked, \
-                world, repository, raw_use_flags = e
+                world, repo, raw_use_flags = e
         key = (package, slot)
         current_install_dict[key] = e
     current_install_key_set = set(current_install_dict.keys())
@@ -500,14 +500,14 @@ def _handle_installed_packages(session, data, machine_id):
 
     for key in installs_to_add:
         package, version, slot, keyword_status, \
-                masked, unmasked, world, repository, \
+                masked, unmasked, world, repo, \
                 raw_use_flags = current_install_dict[key]
 
         lookup_or_add_jobs = (
             {'thing':'slot', },
             {'thing':'package', },
             {'thing':'version', },
-            {'thing':'repository', },
+            {'thing':'repo', },
         )
 
         for job in lookup_or_add_jobs:
@@ -556,7 +556,7 @@ def _handle_installed_packages(session, data, machine_id):
 
         installed_package_id = install_object.id
         version_id = version_pool_object.id
-        repository_id = repository_pool_object.id
+        repo_id = repo_pool_object.id
 
         # Relate use flags
         install_object.use_flags = []
@@ -569,7 +569,7 @@ def _handle_installed_packages(session, data, machine_id):
         # Add properties
         install_object.properties = [GentooInstalledPackagePropertiesRel(\
                 installed_package_id, version_id, keyword_status_code(keyword_status),
-                masked, unmasked, world, repository_id), ]
+                masked, unmasked, world, repo_id), ]
 
     session.flush()
 

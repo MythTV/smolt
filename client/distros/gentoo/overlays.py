@@ -75,7 +75,7 @@ class _Overlays:
         self._publish = Gate().grants('gentoo', 'repositories')
         self._fill_overlays()
         tree_config = config()
-        tree_config['PORTDIR_OVERLAY'] = ' '.join(self.get_active_paths())
+        tree_config['PORTDIR_OVERLAY'] = ' '.join(self._get_active_paths())
         tree_config['PORTDIR'] = main_tree_dir()
         self._dbapi = portdbapi(main_tree_dir(), tree_config)
 
@@ -134,21 +134,24 @@ class _Overlays:
         non_private_active_overlay_names = [fix_repo_name(overlay_name(e)) \
                 for e in non_private_active_overlay_paths]
 
+        # Dirty hack to get the main tree's name in, too
+        main_tree_name = fix_repo_name(overlay_name(main_tree_dir()))
+        enabled_installed_overlays.append(main_tree_name)
+        if not self.is_private_overlay_name(main_tree_name):
+            non_private_active_overlay_names.append(main_tree_name)
+
         self._active_overlay_paths = non_private_active_overlay_paths
         if self._publish:
             self._active_overlay_names = non_private_active_overlay_names
-            self._repositories_count_non_private = len(non_private_active_overlay_names)
-            self._repositories_count_private = len(enabled_installed_overlays) - \
-                    self._repositories_count_non_private
+            self._repo_count_non_private = len(non_private_active_overlay_names)
+            self._repo_count_private = len(enabled_installed_overlays) - \
+                    self._repo_count_non_private
         else:
             self._active_overlay_names = []
-            self._repositories_count_non_private = 0
-            self._repositories_count_private = 0
+            self._repo_count_non_private = 0
+            self._repo_count_private = 0
 
-    def get_active_names(self):
-        return self._active_overlay_names
-
-    def get_active_paths(self):
+    def _get_active_paths(self):
         return self._active_overlay_paths
 
     def is_private_package_atom(self, atom):
@@ -171,21 +174,21 @@ class _Overlays:
         return sorted(set(self._active_overlay_names))
 
     def get_metrics(self, target_dict):
-        target_dict['repositories'] = (self._publish, \
-                self._repositories_count_private, \
-                self._repositories_count_non_private)
+        target_dict['repos'] = (self._publish, \
+                self._repo_count_private, \
+                self._repo_count_non_private)
 
     def dump_html(self, lines):
-        lines.append('<h2>Overlays</h2>')
+        lines.append('<h2>Repositories</h2>')
         lines.append('<ul>')
         for name in self.serialize():
             lines.append('<li><a href="http://gentoo-overlays.zugaina.org/%(name)s/">%(name)s</a></li>' % {'name':html.escape(name)})
         lines.append('</ul>')
 
     def dump_rst(self, lines):
-        lines.append('Overlays')
+        lines.append('Repositories')
         lines.append('-----------------------------')
-        for v in sorted(self.get_active_names()):
+        for v in self.serialize():
             lines.append('- ' + v)
 
     def _dump(self):
@@ -200,7 +203,7 @@ class _Overlays:
         print '  Names:'
         print self.get_active_names()
         print '  Paths:'
-        print self.get_active_paths()
+        print self._get_active_paths()
         print '  Total: ' + str(self.total_count())
         print '    Known: ' + str(self.known_count())
         print '    Private: ' + str(self.private_count())

@@ -36,7 +36,7 @@ class InstalledPackages:
             cb_enter=None, cb_done=None):
         self._publish_installed_packages = Gate().grants('gentoo', 'installed_packages')
         self._publish_installed_packages_use_flags = Gate().grants('gentoo', 'installed_packages_use_flags')
-        self._publish_repositories = Gate().grants('gentoo', 'repositories')
+        self._publish_repos = Gate().grants('gentoo', 'repositories')
 
         self._cpv_flag_list = []
         self._private_count = 0
@@ -89,16 +89,16 @@ class InstalledPackages:
         else:
             version_revision = "%s-%s" % (ver, rev)
 
-        SLOT, KEYWORDS, repository, IUSE, USE = \
-            var_tree.dbapi.aux_get(cpv, ['SLOT', 'KEYWORDS', 'repository',
+        SLOT, KEYWORDS, repo, IUSE, USE = \
+            var_tree.dbapi.aux_get(cpv, ['SLOT', 'KEYWORDS', 'repo',
             'IUSE', 'USE'])
 
         # Perform privacy check and filtering
-        installed_from = [repository, ]
+        installed_from = [repo, ]
         if is_private_package_atom('=' + cpv, installed_from=installed_from,
                 debug=debug):
             return None
-        repository = installed_from[0]
+        repo = installed_from[0]
 
         ACCEPT_KEYWORDS = portage.settings['ACCEPT_KEYWORDS']
         ARCH = portage.settings['ARCH']
@@ -136,11 +136,11 @@ class InstalledPackages:
         else:
             package_flags = tuple()
 
-        if not self._publish_repositories:
-            repository = 'WITHHELD'
+        if not self._publish_repos:
+            repo = 'WITHHELD'
 
         entry = [package_name, version_revision, SLOT, keyword_status,
-            masked, unmasked, is_in_world, repository, package_flags]
+            masked, unmasked, is_in_world, repo, package_flags]
         return entry
 
     def total_count(self):
@@ -183,7 +183,7 @@ class InstalledPackages:
         lines.append('</tr>')
         for list in self._cpv_flag_list:
             package_name, version_revision, SLOT, keyword_status, \
-                masked, unmasked, is_in_world, repository, sorted_flags_list = \
+                masked, unmasked, is_in_world, repo, sorted_flags_list = \
                 list
 
             lines.append('<tr>')
@@ -200,7 +200,7 @@ class InstalledPackages:
             for i in (masked, unmasked, is_in_world):
                 v = i and 'X' or '&nbsp;'  # Hide False
                 lines.append('<td>%s</td>' % v)
-            for i in (repository, ):
+            for i in (repo, ):
                 lines.append('<td>%s</td>' % fix_empty(html.escape(i)))
             final_flag_list = [x.startswith('-') and \
                     '<s>%s</s>' % html.escape(x.lstrip('-')) or \
@@ -215,7 +215,7 @@ class InstalledPackages:
         lines.append('-----------------------------')
         for list in self._cpv_flag_list:
             package_name, version_revision, SLOT, keyword_status, \
-                masked, unmasked, is_in_world, repository, sorted_flags_list = \
+                masked, unmasked, is_in_world, repo, sorted_flags_list = \
                 list
 
             lines.append('- %s-%s' % (package_name, version_revision))
@@ -234,7 +234,7 @@ class InstalledPackages:
             if tags:
                 lines.append('  - Tags: %s' % ', '.join(tags))
 
-            if repository:
+            if repo:
                 lines.append('  - Repository: %s' % (repository))
             if sorted_flags_list:
                 final_flag_list = [x.startswith('-') and x or ('+' + x) for x in \

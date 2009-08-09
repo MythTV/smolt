@@ -45,7 +45,7 @@ _DATA_CLASS_LABEL_MAP = {
     'mirrors_distfiles':'Mirrors: Distfiles',
     'mirrors_sync':'Mirrors: Package tree',
     'package_mask':'Package mask entries',
-    'repositories':'Overlays',
+    'repos':'Repositories',
     'system_profile':'System profile',
 }
 
@@ -135,7 +135,7 @@ class _Gentoo(Distro):
         rst_lines.append('')
         mirrors.get_metrics(metrics_dict)
 
-        machine_data['overlays'] = overlays.serialize()
+        machine_data['repos'] = overlays.serialize()
         overlays.dump_html(html_lines)
         overlays.dump_rst(rst_lines)
         rst_lines.append('')

@@ -124,7 +124,7 @@ _pool_table_jobs = [
     {'thing':'keyword', 'col_type':'String(127)'},
     {'thing':'mirror', 'col_type':'String(255)'},
     {'thing':'package', 'col_type':'String(255)'},
-    {'thing':'repository', 'col_type':'String(127)'},
+    {'thing':'repo', 'col_type':'String(127)'},
     {'thing':'slot', 'col_type':'String(127)'},
     {'thing':'system_profile', 'col_type':'String(255)'},
     {'thing':'use_flag', 'col_type':'String(127)'},
@@ -138,7 +138,7 @@ _rel_table_jobs = [
     {'thing':'sync_mirror', 'foreign':'mirror', 'vector_flag':False},
     {'thing':'distfiles_mirror', 'foreign':'mirror', 'vector_flag':True},
     {'thing':'feature', 'foreign':'feature', 'vector_flag':True},
-    {'thing':'overlay', 'foreign':'repository', 'vector_flag':True},
+    {'thing':'repo', 'foreign':'repo', 'vector_flag':True},
     {'thing':'system_profile', 'foreign':'system_profile', 'vector_flag':False},
 ]
 
@@ -241,18 +241,18 @@ _gentoo_installed_package_properties_table = Table('gentoo_installed_package_pro
     Column('masked', SmallInteger, nullable=False),  # Not BOOLEAN here as that denies using func.sum
     Column('unmasked', SmallInteger, nullable=False),  # as above
     Column('world', SmallInteger, nullable=False),  # as above
-    Column('repository_id', Integer, ForeignKey('%s.id' % 'gentoo_repository_pool'), nullable=False),
+    Column('repo_id', Integer, ForeignKey('%s.id' % 'gentoo_repo_pool'), nullable=False),
 )
 
 class GentooInstalledPackagePropertiesRel(object):
-    def __init__(self, installed_package_id, version_id, keyword_status, masked, unmasked, world, repository_id):
+    def __init__(self, installed_package_id, version_id, keyword_status, masked, unmasked, world, repo_id):
         self.installed_package_id = installed_package_id
         self.version_id = version_id
         self.keyword_status = keyword_status
         self.masked = masked
         self.unmasked = unmasked
         self.world = world
-        self.repository_id = repository_id
+        self.repo_id = repo_id
 
 mapper(GentooInstalledPackagePropertiesRel, _gentoo_installed_package_properties_table,
     properties={
