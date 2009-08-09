@@ -33,6 +33,7 @@ import logging
 import sys
 sys.path.append(os.path.join(sys.path[0], '..', '..'))
 import distros.shared.html as html
+from gate import Gate
 
 _MAIN_TREE_WHITELIST = (
     "gentoo",
@@ -71,6 +72,7 @@ _REPO_NAME_RENAME_MAP = {
 
 class _Overlays:
     def __init__(self):
+        self._publish = Gate().grants('gentoo', 'repositories')
         self._fill_overlays()
         tree_config = config()
         tree_config['PORTDIR_OVERLAY'] = ' '.join(self.get_active_paths())
@@ -133,25 +135,21 @@ class _Overlays:
                 for e in non_private_active_overlay_paths]
 
         self._active_overlay_paths = non_private_active_overlay_paths
-        self._active_overlay_names = non_private_active_overlay_names
-        self._total_count = len(enabled_installed_overlays)
-        self._private_count = \
-                len(enabled_installed_overlays) - len(non_private_active_overlay_names)
+        if self._publish:
+            self._active_overlay_names = non_private_active_overlay_names
+            self._repositories_count_non_private = len(non_private_active_overlay_names)
+            self._repositories_count_private = len(enabled_installed_overlays) - \
+                    self._repositories_count_non_private
+        else:
+            self._active_overlay_names = []
+            self._repositories_count_non_private = 0
+            self._repositories_count_private = 0
 
     def get_active_names(self):
         return self._active_overlay_names
 
     def get_active_paths(self):
         return self._active_overlay_paths
-
-    def total_count(self):
-        return self._total_count
-
-    def private_count(self):
-        return self._private_count
-
-    def known_count(self):
-        return len(self._active_overlay_names)
 
     def is_private_package_atom(self, atom):
         cp = portage.dep_getkey(atom)
@@ -171,6 +169,11 @@ class _Overlays:
 
     def serialize(self):
         return sorted(set(self._active_overlay_names))
+
+    def get_metrics(self, target_dict):
+        target_dict['repositories'] = (self._publish, \
+                self._repositories_count_private, \
+                self._repositories_count_non_private)
 
     def dump_html(self, lines):
         lines.append('<h2>Overlays</h2>')

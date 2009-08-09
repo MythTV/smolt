@@ -28,6 +28,7 @@ import os
 import sys
 sys.path.append(os.path.join(sys.path[0], '..', '..'))
 import distros.shared.html as html
+from gate import Gate
 
 try:
     set
@@ -48,18 +49,32 @@ def _normalize_url(url):
 
 class Mirrors:
     def __init__(self, debug=False):
-        all_urls = self._collect_used_mirror_urls()
-        self._mirror_urls = [url for url in
-                all_urls if
-                _normalize_url(url) in self._collect_known_mirror_urls()]
-        if debug:
-            private_mirrors = [url for url in all_urls if
-                _normalize_url(url) not in self._collect_known_mirror_urls()]
-            for i in private_mirrors:
-                print '  distfiles mirror "%s" is private' % (i)
-        self._total_count = len(all_urls)
-        self._private_count = self._total_count - self.known_count()
-        self._sync_url = self._get_sync_url(debug=debug)
+        self._publish_mirrors_sync = Gate().grants('gentoo', 'mirrors_sync')
+        self._publish_mirrors_distfiles = Gate().grants('gentoo', 'mirrors_distfiles')
+
+        if self._publish_mirrors_distfiles:
+            all_urls = self._collect_used_mirror_urls()
+            self._mirror_urls = [url for url in
+                    all_urls if
+                    _normalize_url(url) in self._collect_known_mirror_urls()]
+            if debug:
+                private_mirrors = [url for url in all_urls if
+                    _normalize_url(url) not in self._collect_known_mirror_urls()]
+                for i in private_mirrors:
+                    print '  distfiles mirror "%s" is private' % (i)
+
+            self._mirrors_distfiles_count_non_private = len(self._mirror_urls)
+            self._mirrors_distfiles_count_private = len(all_urls) - \
+                    self._mirrors_distfiles_count_non_private
+        else:
+            self._mirror_urls = []
+            self._mirrors_distfiles_count_non_private = 0
+            self._mirrors_distfiles_count_private = 0
+
+        if self._publish_mirrors_sync:
+            self._sync_url = self._get_sync_url(debug=debug)
+        else:
+            self._sync_url = 'WITHHELD'
 
     def _collect_used_mirror_urls(self):
         return [e for e in \
@@ -107,39 +122,32 @@ class Mirrors:
             _EXTRA_DISTFILES_MIRRORS_WHITELIST]
         return set(known_mirror_urls + extra_mirror_urls)
 
-    def get_mirrors(self):
-        return self._mirror_urls
-
-    def get_sync(self):
-        return self._sync_url
-
-    def total_count(self):
-        return self._total_count
-
-    def private_count(self):
-        return self._private_count
-
-    def known_count(self):
-        return len(self._mirror_urls)
-
     def serialize(self):
         res = {
-            'sync':self.get_sync(),
-            'distfiles':self.get_mirrors(),
+            'sync':self._sync_url,
+            'distfiles':self._mirror_urls,
         }
         return res
+
+    def get_metrics(self, target_dict):
+        target_dict['mirrors_sync'] = (self._publish_mirrors_sync, \
+                0, \
+                self._publish_mirrors_sync and 1 or 0)
+        target_dict['mirrors_distfiles'] = (self._publish_mirrors_distfiles, \
+                self._mirrors_distfiles_count_private, \
+                self._mirrors_distfiles_count_non_private)
 
     def dump_html(self, lines):
         lines.append('<h2>Mirrors</h2>')
 
         lines.append('<h3>Sync</h3>')
         lines.append('<ul>')
-        lines.append('<li>%s</li>' % html.escape(self.get_sync()))
+        lines.append('<li>%s</li>' % html.escape(self._sync_url))
         lines.append('</ul>')
 
         lines.append('<h3>Distfiles</h3>')
         lines.append('<ul>')
-        for url in self.get_mirrors():
+        for url in self._mirror_urls:
             lines.append('<li><a href="%(url)s">%(url)s</a></li>' % {'url':html.escape(url)})
         lines.append('</ul>')
 
@@ -160,17 +168,6 @@ class Mirrors:
         self.dump_rst(lines)
         print '\n'.join(lines)
         print
-
-    """
-    def dump(self):
-        print 'SYNC: ' + str(self.get_sync())
-        print 'GENTOO_MIRRORS:'
-        print self.get_mirrors()
-        print '  Total: ' + str(self.total_count())
-        print '    Known: ' + str(self.known_count())
-        print '    Private: ' + str(self.private_count())
-        print
-    """
 
 if __name__ == '__main__':
     mirrors = Mirrors(debug=True)

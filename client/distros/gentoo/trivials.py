@@ -23,22 +23,39 @@ import os
 import sys
 sys.path.append(os.path.join(sys.path[0], '..', '..'))
 import distros.shared.html as html
+from gate import Gate
 
 class Trivials:
     def __init__(self):
+        self._publish_arch_related = Gate().grants('gentoo', 'arch_related')
+        self._publish_system_profile = Gate().grants('gentoo', 'system_profile')
+        self._publish_features = Gate().grants('gentoo', 'features')
+
         self._trivials = {}
 
         self._trivial_scalars = {}
         for k in ('ARCH', 'CHOST'):
-            self._trivial_scalars[k] = portage.settings[k].strip()
+            value = portage.settings[k].strip()
+            if self._publish_arch_related:
+                self._trivial_scalars[k] = value
+            else:
+                self._trivial_scalars[k] = 'WITHHELD'
             self._trivials[k] = self._trivial_scalars[k]
 
-        self._trivial_scalars['system_profile'] = SystemProfile().get()
+        if self._publish_system_profile:
+            system_profile = SystemProfile().get()
+        else:
+            system_profile = 'WITHHELD'
+        self._trivial_scalars['system_profile'] = system_profile
         self._trivials['system_profile'] = self._trivial_scalars['system_profile']
 
         self._trivial_vectors = {}
         for k in ('FEATURES',):
-            self._trivial_vectors[k] = portage.settings[k].split(' ')
+            if self._publish_features:
+                value = portage.settings[k].split(' ')
+            else:
+                value = ()
+            self._trivial_vectors[k] = value
             self._trivials[k] = self._trivial_vectors[k]
 
         self._trivial_vectors['ACCEPT_KEYWORDS'] = \
@@ -47,6 +64,9 @@ class Trivials:
             self._trivial_vectors['ACCEPT_KEYWORDS']
 
     def _accept_keywords(self):
+        if not self._publish_arch_related:
+            return []
+
         # Let '~arch' kill 'arch' so we don't get both
         list = portage.settings['ACCEPT_KEYWORDS'].split(' ')
         unstable = set(e for e in list if e.startswith('~'))
@@ -54,6 +74,17 @@ class Trivials:
 
     def serialize(self):
         return self._trivials
+
+    def get_metrics(self, target_dict):
+        target_dict['arch_related'] = (self._publish_arch_related, \
+                0, \
+                self._publish_arch_related and 3 or 0)
+        target_dict['system_profile'] = (self._publish_system_profile, \
+                0, \
+                self._publish_system_profile and 1 or 0)
+        target_dict['features'] = (self._publish_features, \
+                0, \
+                self._publish_features and len(self._trivials['FEATURES']) or 0)
 
     def dump_html(self, lines):
         lines.append('<h2>General</h2>')
@@ -94,7 +125,7 @@ class Trivials:
             if type(v).__name__ == 'list':
                 lines.append('  %s' % ', '.join(v))
             else:
-                lines.append('  %s' % v)
+                lines.append('  %s' % str(v))
             lines.append('')
 
         lines.append('Features')

@@ -119,6 +119,7 @@ _pool_table_jobs = [
     {'thing':'call_flag', 'col_type':'String(255)'},
     {'thing':'call_flag_class', 'col_type':'String(127)'},
     {'thing':'chost', 'col_type':'String(255)'},
+    {'thing':'data_class', 'col_type':'String(255)'},
     {'thing':'feature', 'col_type':'String(127)'},
     {'thing':'keyword', 'col_type':'String(127)'},
     {'thing':'mirror', 'col_type':'String(255)'},
@@ -382,6 +383,31 @@ class GentooGlobalUseFlagRel(object):
 mapper(GentooGlobalUseFlagRel, _gentoo_global_use_flags_table,
     properties={
         'use_flag':relation(GentooUseFlagString),
+    }
+)
+
+
+_gentoo_privacy_metric_table = Table('gentoo_privacy_metrics', metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('machine_id', Integer),
+    Column('data_class_id', Integer, ForeignKey('%s.id' % 'gentoo_data_class_pool')),
+    Column('revealed', SmallInteger),  # Not BOOLEAN here as that denies using func.sum
+    Column('count_private', Integer),
+    Column('count_non_private', Integer),
+    UniqueConstraint('machine_id', 'data_class_id'),
+)
+
+class GentooPrivacyMetricRel(object):
+    def __init__(self, machine_id, data_class_id, revealed, count_private, count_non_private):
+        self.machine_id = machine_id
+        self.data_class_id = data_class_id
+        self.revealed = revealed
+        self.count_private = count_private
+        self.count_non_private = count_non_private
+
+mapper(GentooPrivacyMetricRel, _gentoo_privacy_metric_table,
+    properties={
+        'data_class':relation(GentooDataClassString),
     }
 )
 

@@ -24,14 +24,18 @@ from packageprivacy import is_private_package_atom
 import sys
 sys.path.append(os.path.join(sys.path[0], '..', '..'))
 import distros.shared.html as html
+from gate import Gate
 
 class _PackageStar:
     def __init__(self):
         pass
 
-    def _init(self, section, privacy_filter):
+    def _init(self, section, metrics_key, privacy_filter):
         self._section = section
+        self._metrics_key = metrics_key
         self._privacy_filter = privacy_filter
+
+        self._publish = Gate().grants('gentoo', self._metrics_key)
         self._collect()
 
     def _locations(self):
@@ -90,9 +94,18 @@ class _PackageStar:
 
     def serialize(self):
         res = {}
-        for cp, atoms in self._non_private_cp_to_atoms.items():
-            res[cp] = sorted(atoms)
+        if self._publish:
+            for cp, atoms in self._non_private_cp_to_atoms.items():
+                res[cp] = sorted(atoms)
         return res
+
+    def get_metrics(self, target_dict):
+        if self._publish:
+            target_dict[self._metrics_key] = (True, \
+                    self._private_count, \
+                    self._total_count - self._private_count)
+        else:
+            target_dict[self._metrics_key] = (False, 0, 0)
 
     def dump_html(self, lines):
         lines.append('<h2>%s</h2>' % html.escape(self._section))
@@ -117,32 +130,20 @@ class _PackageStar:
         print '\n'.join(lines)
         print
 
-    """
-    def dump(self):
-        print '%s:' % (self._section)
-        for k, v in self._non_private_cp_to_atoms.items():
-            print '  %s: %s' % (k, v)
-        print
-        print '  Total: ' + str(self.total_count())
-        print '    Known: ' + str(self.known_count())
-        print '    Private: ' + str(self.private_count())
-        print
-    """
-
 
 class _PackageMask(_PackageStar):
     def __init__(self):
-        self._init('package.mask', privacy_filter=True)
+        self._init('package.mask', 'package_mask', privacy_filter=True)
 
 
 class _PackageUnmask(_PackageStar):
     def __init__(self):
-        self._init('package.unmask', privacy_filter=True)
+        self._init('package.unmask', 'package_unmask', privacy_filter=True)
 
 
 class _ProfilePackageMask(_PackageStar):
     def __init__(self):
-        self._init('package.mask', privacy_filter=False)
+        self._init('package.mask', 'profile_package_mask', privacy_filter=False)
 
     def _locations(self):
         main_tree_profiles = [os.path.join(portage.settings["PORTDIR"],

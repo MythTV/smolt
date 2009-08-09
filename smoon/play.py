@@ -132,6 +132,7 @@ def handle_gentoo_data(session, host_dict, machine_id):
     _handle_compile_flags(session, data, machine_id)
     _handle_accept_keywords(session, data, machine_id)
     _handle_package_mask(session, data, machine_id)
+    _handle_privacy_metrics(session, data, machine_id)
     _handle_global_use_flags(session, data, machine_id)
     _handle_installed_packages(session, data, machine_id)
 
@@ -305,6 +306,48 @@ def _handle_package_mask(session, data, machine_id):
 
         mask_rel_object = GentooPackageMaskRel(machine_id, package_id, atom_id)
         session.add(mask_rel_object)
+
+
+def _handle_privacy_metrics(session, data, machine_id):
+    # Find current entries
+    try:
+        privacy_metrics = data['privacy_metrics']
+    except KeyError:
+        privacy_metrics = {}
+    current_privacy_metrics_set = set()
+    for k, v in privacy_metrics.items():
+        key = (k, ) + tuple(v)
+        current_privacy_metrics_set.add(key)
+
+    # Find old entries
+    old_privacy_metrics_objects = session.query(\
+            GentooPrivacyMetricRel).options(\
+                eagerload('data_class')).\
+            filter_by(machine_id=machine_id).all()
+    old_privacy_metrics_dict = {}
+    for i in old_privacy_metrics_objects:
+        key = (i.data_class.name, bool(i.revealed), i.count_private, i.count_non_private)
+        old_privacy_metrics_dict[key] = i
+    old_privacy_metrics_set = set(old_privacy_metrics_dict.keys())
+
+    # Calculate diff
+    mappings_to_add = current_privacy_metrics_set - old_privacy_metrics_set
+    mappings_to_remove = old_privacy_metrics_set - current_privacy_metrics_set
+
+    # Resolve diff
+    for i in mappings_to_remove:
+        session.delete(old_privacy_metrics_dict[i])
+    for i in mappings_to_add:
+        data_class, revealed, count_private, count_non_private = i
+        try:
+            pool_object = session.query(GentooDataClassString).filter_by(name=data_class).one()
+        except sqlalchemy.orm.exc.NoResultFound:
+            pool_object = GentooDataClassString(data_class)
+            session.add(pool_object)
+            session.flush()
+        data_class_id = pool_object.id
+        session.add(GentooPrivacyMetricRel(machine_id, data_class_id, revealed, count_private, count_non_private))
+    session.flush()
 
 
 def _handle_global_use_flags(session, data, machine_id):

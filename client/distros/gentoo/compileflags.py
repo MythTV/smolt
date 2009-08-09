@@ -24,6 +24,7 @@ import os
 import sys
 sys.path.append(os.path.join(sys.path[0], '..', '..'))
 import distros.shared.html as html
+from gate import Gate
 
 SHORT_PARA_PATTERN = '-[XxAloDUubVIG]\\s+\\S+|-[^-]\\S+'
 LONG_PARA_PATTERN = '--param\\s+\\S+=\\S+|--\\S+|--\\S+=\\S+'
@@ -32,9 +33,17 @@ LINKER_FLAG_LIST_PATTERN = re.compile('-Wl,[^,]*,')
 
 class CompileFlags:
     def __init__(self):
-        self._cflags = self._parse(portage.settings['CFLAGS'])
-        self._cxxflags = self._parse(portage.settings['CXXFLAGS'])
-        self._ldflags = self._parse(portage.settings['LDFLAGS'])
+        self._publish = Gate().grants('gentoo', 'compile_flags')
+        if self._publish:
+            self._cflags = self._parse(portage.settings['CFLAGS'])
+            self._cxxflags = self._parse(portage.settings['CXXFLAGS'])
+            self._ldflags = self._parse(portage.settings['LDFLAGS'])
+            self._makeopts = MakeOpts().serialize()
+        else:
+            self._cflags = []
+            self._cxxflags = []
+            self._ldflags = []
+            self._makeopts = []
 
     def _parse(self, flags):
         list = []
@@ -62,9 +71,18 @@ class CompileFlags:
             'CFLAGS':self._cflags,
             'CXXFLAGS':self._cxxflags,
             'LDFLAGS':self._ldflags,
-            'MAKEOPTS':MakeOpts().serialize(),
+            'MAKEOPTS':self._makeopts,
         }
         return res
+
+    def get_metrics(self, target_dict):
+        def make_entry(count):
+            return (self._publish, 0, count)
+
+        target_dict['compile_flags_cflags'] = make_entry(len(self._cflags))
+        target_dict['compile_flags_cxxflags'] = make_entry(len(self._cxxflags))
+        target_dict['compile_flags_ldflags'] = make_entry(len(self._ldflags))
+        target_dict['compile_flags_makeopts'] = make_entry(len(self._makeopts))
 
     def dump_html(self, lines):
         lines.append('<h2>Compile flags</h2>')

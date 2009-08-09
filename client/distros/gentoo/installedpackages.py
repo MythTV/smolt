@@ -29,25 +29,35 @@ import os
 import sys
 sys.path.append(os.path.join(sys.path[0], '..', '..'))
 import distros.shared.html as html
+from gate import Gate
 
 class InstalledPackages:
     def __init__(self, debug=False,
             cb_enter=None, cb_done=None):
+        self._publish_installed_packages = Gate().grants('gentoo', 'installed_packages')
+        self._publish_installed_packages_use_flags = Gate().grants('gentoo', 'installed_packages_use_flags')
+        self._publish_repositories = Gate().grants('gentoo', 'repositories')
+
         self._cpv_flag_list = []
-        var_tree = vartree()
-        installed_cpvs = var_tree.getallcpv()  # TODO upstream plans rename?
-        self._total_count = len(installed_cpvs)
         self._private_count = 0
-        i = 0
-        for cpv in sorted(installed_cpvs):
-            i = i + 1
-            if cb_enter:
-                cb_enter(cpv, i, self._total_count)
-            entry = self._process(var_tree, cpv, debug=debug)
-            if entry:
-                self._cpv_flag_list.append(entry)
-            else:
-                self._private_count = self._private_count + 1
+        self._private_use_flags = 0
+        self._non_private_use_flags = 0
+        if self._publish_installed_packages:
+            var_tree = vartree()
+            installed_cpvs = var_tree.getallcpv()  # TODO upstream plans rename?
+            self._total_count = len(installed_cpvs)
+            i = 0
+            for cpv in sorted(installed_cpvs):
+                i = i + 1
+                if cb_enter:
+                    cb_enter(cpv, i, self._total_count)
+                entry = self._process(var_tree, cpv, debug=debug)
+                if entry:
+                    self._cpv_flag_list.append(entry)
+                else:
+                    self._private_count = self._private_count + 1
+        else:
+            self._total_count = 0
         if cb_done:
             cb_done()
 
@@ -64,6 +74,12 @@ class InstalledPackages:
                 return '~arch'
         else:
             return '**'
+
+    def is_known_use_flag(self, flag):
+        known = GlobalUseFlags().is_known(flag)
+        if not known:
+            print '  skipping private use flag "%s"' % flag
+        return known
 
     def _process(self, var_tree, cpv, debug=False):
         cat, pkg, ver, rev = catpkgsplit(cpv)
@@ -102,12 +118,27 @@ class InstalledPackages:
         is_in_world = world_set_test in WorldSet().get()
 
         # Use flags
-        use_flags = GlobalUseFlags()
-        package_use_set = set(e for e in USE.split() if use_flags.is_known(e))
-        package_iuse_set = set(x.lstrip("+-") for x in IUSE.split() if use_flags.is_known(x))
-        enabled_flags = package_use_set & package_iuse_set
-        disabled_flags = package_iuse_set - package_use_set
-        package_flags = sorted(enabled_flags) + ['-' + e for e in sorted(disabled_flags)]
+        if self._publish_installed_packages_use_flags:
+            iuse_list = tuple(x.lstrip("+-") for x in IUSE.split())
+            count_all = len(set(iuse_list))
+
+            package_use_set = set(filter(self.is_known_use_flag, USE.split()))
+            package_iuse_set = set(filter(self.is_known_use_flag, iuse_list))
+            enabled_flags = package_use_set & package_iuse_set
+            disabled_flags = package_iuse_set - package_use_set
+            package_flags = sorted(enabled_flags) + ['-' + e for e in sorted(disabled_flags)]
+
+            count_non_private = len(package_flags)
+            count_private = count_all - count_non_private
+
+            self._private_use_flags = self._private_use_flags + count_private
+            self._non_private_use_flags = self._non_private_use_flags + count_non_private
+        else:
+            package_flags = tuple()
+
+        if not self._publish_repositories:
+            repository = 'WITHHELD'
+
         entry = [package_name, version_revision, SLOT, keyword_status,
             masked, unmasked, is_in_world, repository, package_flags]
         return entry
@@ -123,6 +154,19 @@ class InstalledPackages:
 
     def serialize(self):
         return self._cpv_flag_list
+
+    def get_metrics(self, target_dict):
+        if self._publish_installed_packages:
+            target_dict['installed_packages'] = (True, \
+                    self._private_count, \
+                    self._total_count - self._private_count)
+        else:
+            target_dict['installed_packages'] = (False, 0, 0)
+
+        target_dict['installed_packages_use_flags'] = \
+                (self._publish_installed_packages_use_flags, \
+                self._private_use_flags, \
+                self._non_private_use_flags)
 
     def dump_html(self, lines):
         lines.append('<h2>Installed packages</h2>')

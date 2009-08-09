@@ -23,6 +23,39 @@ if __name__ == '__main__':
     sys.path.append(os.path.join(sys.path[0], '..', '..'))
 from distros.distro import Distro
 
+import sys
+sys.path.append(os.path.join(sys.path[0], '..', '..'))
+import distros.shared.html as html
+
+
+_PRIVACY_METRICS_COLUMN_HEADERS = ('Data class', 'Publish', \
+        'Count private', 'Count non-private')
+
+_DATA_CLASS_LABEL_MAP = {
+    'arch_related':'Architecture-related',
+    'compile_flags_cflags':'Compile flags (CFLAGS)',
+    'compile_flags_cxxflags':'Compile flags (CXXFLAGS)',
+    'compile_flags_ldflags':'Compile flags (LDFLAGS)',
+    'compile_flags_makeopts':'Compile flags (MAKEOPTS)',
+    'features':'Features',
+    'global_use_flags_make_conf':'Global use flags (make.conf)',
+    'global_use_flags_profile':'Global use flags (system profile)',
+    'installed_packages':'Installed packages: General',
+    'installed_packages_use_flags':'Installed packages: Use flags',
+    'mirrors_distfiles':'Mirrors: Distfiles',
+    'mirrors_sync':'Mirrors: Package tree',
+    'package_mask':'Package mask entries',
+    'repositories':'Overlays',
+    'system_profile':'System profile',
+}
+
+def _data_class_key_to_label(key):
+    try:
+        return _DATA_CLASS_LABEL_MAP[key]
+    except KeyError:
+        return key
+
+
 class _Gentoo(Distro):
     def key(self):
         return 'gentoo'
@@ -77,6 +110,8 @@ class _Gentoo(Distro):
         machine_data = {}
         html_lines = []
         rst_lines = []
+        metrics_dict = {}
+
         html_lines.append('<h1>Gentoo</h1>')
         rst_lines.append('Gentoo')
         rst_lines.append('=================================')
@@ -86,35 +121,42 @@ class _Gentoo(Distro):
         trivials.dump_html(html_lines)
         trivials.dump_rst(rst_lines)
         rst_lines.append('')
+        trivials.get_metrics(metrics_dict)
 
         machine_data['compile_flags'] = compile_flags.serialize()
         compile_flags.dump_html(html_lines)
         compile_flags.dump_rst(rst_lines)
         rst_lines.append('')
+        compile_flags.get_metrics(metrics_dict)
 
         machine_data['mirrors'] = mirrors.serialize()
         mirrors.dump_html(html_lines)
         mirrors.dump_rst(rst_lines)
         rst_lines.append('')
+        mirrors.get_metrics(metrics_dict)
 
         machine_data['overlays'] = overlays.serialize()
         overlays.dump_html(html_lines)
         overlays.dump_rst(rst_lines)
         rst_lines.append('')
+        overlays.get_metrics(metrics_dict)
 
         machine_data['user_package_mask'] = user_package_mask.serialize()
         user_package_mask.dump_html(html_lines)
         user_package_mask.dump_rst(rst_lines)
         rst_lines.append('')
+        user_package_mask.get_metrics(metrics_dict)
 
         machine_data['global_use_flags'] = global_use_flags.serialize()
         global_use_flags.dump_html(html_lines)
         global_use_flags.dump_rst(rst_lines)
         rst_lines.append('')
+        global_use_flags.get_metrics(metrics_dict)
 
         machine_data['installed_packages'] = installed_packages.serialize()
         installed_packages.dump_html(html_lines)
         installed_packages.dump_rst(rst_lines)
+        installed_packages.get_metrics(metrics_dict)
 
         for container in (trivials, ):
             for k, v in container.serialize().items():
@@ -122,6 +164,11 @@ class _Gentoo(Distro):
                 if key in machine_data:
                     raise Exception('Unintended key collision')
                 machine_data[key] = v
+
+        machine_data['privacy_metrics'] = metrics_dict
+        self.dump_metrics_html(html_lines, metrics_dict)
+        rst_lines.append('')
+        self.dump_metrics_rst(rst_lines, metrics_dict)
 
         excerpt_lines = []
         excerpt_lines.append('ACCEPT_KEYWORDS: ' + ' '.join(trivials.serialize()['ACCEPT_KEYWORDS']))
@@ -133,6 +180,82 @@ class _Gentoo(Distro):
         self._html = '\n'.join(html_lines)
         self._rst = '\n'.join(rst_lines)
         self._excerpt = '\n'.join(excerpt_lines)
+
+    def dump_metrics_html(self, lines, metrics_dict):
+        lines.append('<h2>Metrics</h2>')
+        lines.append('Note: This meta data is also included with the submission.')
+
+        lines.append('<table border="1" cellspacing="1" cellpadding="4">')
+        lines.append('<tr>')
+        for i in _PRIVACY_METRICS_COLUMN_HEADERS:
+            lines.append('<th>%s</th>' % html.escape(i))
+        lines.append('</tr>')
+        for k, v in sorted(metrics_dict.items()):
+            lines.append('<tr>')
+            published, count_private, count_non_private = v
+            for i in (_data_class_key_to_label(k), ):
+                lines.append('<td>%s</td>' % html.escape(i))
+            for i in (published, ):
+                lines.append('<td align="center">%s</td>' % (i and 'yes' or 'no'))
+            for i in (count_private, count_non_private):
+                lines.append('<td align="right">%s</td>' % html.escape(str(i)))
+            lines.append('</tr>')
+        lines.append('</table>')
+
+        lines.append('<br>')
+        lines.append('<br>')
+        lines.append('Legend:')
+        lines.append('<ul>')
+        lines.append('<li>Data class: Label of the class of data</li>')
+        lines.append('<li>Publish: Flag if data of this class will be submitted</li>')
+        lines.append('<li>Count private: Number of entries not to be submitted</li>')
+        lines.append('<li>Count non-private: Number of entries to be submitted</li>')
+        lines.append('</ul>')
+
+    def dump_metrics_rst(self, lines, metrics_dict):
+        max_length = [2, 2, 2, 2]
+        def final_values(column_values):
+            res = list(column_values)
+            res[0] = res[0] + ' '
+            res[1] = res[1] and 'yes' or 'no'
+            return tuple(res)
+
+        def measure_line(column_values):
+            for i, v in enumerate(column_values):
+                cur_len = 2 + len(str(v))
+                if cur_len > max_length[i]:
+                    max_length[i] = cur_len
+        def put_seperator(lines):
+            lines.append('+%s+' % '+'.join('-'*e for e in max_length))
+
+        def put_line(lines, column_values):
+            lines.append('|%s|' % '|'.join(\
+                (i >= 2) and \
+                    (' '*(max_length[i] - len(str(v)) - 1) + str(v)) + ' ' \
+                or \
+                    (' ' + (str(v) + ' '*(max_length[i] - len(str(v)) - 1))) \
+                for i, v in enumerate(column_values)))
+
+        lines.append('Metrics')
+        lines.append('-----------------------------')
+        lines.append('Note: This meta data is also included with the submission.')
+        measure_line(_PRIVACY_METRICS_COLUMN_HEADERS)
+        for k, v in metrics_dict.items():
+            published, count_private, count_non_private = v
+            measure_line(final_values((_data_class_key_to_label(k), ) + v))
+        put_seperator(lines)
+        put_line(lines, _PRIVACY_METRICS_COLUMN_HEADERS)
+        for k, v in sorted(metrics_dict.items()):
+            published, count_private, count_non_private = v
+            put_seperator(lines)
+            put_line(lines, final_values((_data_class_key_to_label(k), published, count_private, count_non_private)))
+        put_seperator(lines)
+        lines.append('')
+        lines.append('Legend:')
+        lines.append('- Data class: Label of the class of data')
+        lines.append('- Publish: Flag if data of this class will be submitted')
+        lines.append('- Count private: Number of entries not to be submitted')
+        lines.append('- Count non-private: Number of entries to be submitted')
 
     def data(self):
         return self._data
