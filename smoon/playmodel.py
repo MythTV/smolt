@@ -17,7 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 import logging
-from sqlalchemy import Table, Column, Integer, BOOLEAN, SmallInteger, String, ForeignKey, UniqueConstraint
+from sqlalchemy import Table, Column, Integer, SmallInteger, String, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import mapper, relation
 
 
@@ -238,9 +238,9 @@ _gentoo_installed_package_properties_table = Table('gentoo_installed_package_pro
     Column('installed_package_id', Integer, ForeignKey('%s.id' % 'gentoo_installed_packages'), unique=True, nullable=False),
     Column('version_id', Integer, ForeignKey('%s.id' % 'gentoo_version_pool'), nullable=False),
     Column('keyword_status', Integer, nullable=False),  # Could be MSEnum, choosing Integer for flexibility
-    Column('masked', BOOLEAN, nullable=False),
-    Column('unmasked', BOOLEAN, nullable=False),
-    Column('world', BOOLEAN, nullable=False),
+    Column('masked', SmallInteger, nullable=False),  # Not BOOLEAN here as that denies using func.sum
+    Column('unmasked', SmallInteger, nullable=False),  # as above
+    Column('world', SmallInteger, nullable=False),  # as above
     Column('repository_id', Integer, ForeignKey('%s.id' % 'gentoo_repository_pool'), nullable=False),
 )
 
