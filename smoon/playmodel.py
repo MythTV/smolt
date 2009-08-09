@@ -314,7 +314,7 @@ mapper(GentooPackageMaskRel, _gentoo_package_mask_table,
 )
 
 
-_gentoo_accept_keywords_table = Table('gentoo_accept_keyword', metadata,
+_gentoo_accept_keywords_table = Table('gentoo_accept_keywords', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('machine_id', Integer),
     Column('keyword_id', Integer, ForeignKey('%s.id' % 'gentoo_keyword_pool')),
@@ -335,7 +335,7 @@ mapper(GentooAcceptKeywordRel, _gentoo_accept_keywords_table,
 )
 
 
-_gentoo_call_flag_table = Table('gentoo_call_flag', metadata,
+_gentoo_call_flags_table = Table('gentoo_call_flags', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('machine_id', Integer),
     Column('call_flag_class_id', Integer, ForeignKey('%s.id' % 'gentoo_call_flag_class_pool')),
@@ -351,7 +351,7 @@ class GentooCallFlagRel(object):
         self.call_flag_id = call_flag_id
         self.position = position
 
-mapper(GentooCallFlagRel, _gentoo_call_flag_table,
+mapper(GentooCallFlagRel, _gentoo_call_flags_table,
     properties={
         'call_flag':relation(GentooCallFlagString),
     }

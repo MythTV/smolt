@@ -24,7 +24,7 @@ from playmodel import _gentoo_global_use_flags_table, _gentoo_use_flag_pool_tabl
 from playmodel import _gentoo_sync_mirror_table, _gentoo_mirror_pool_table
 from playmodel import _gentoo_system_profile_table, _gentoo_system_profile_pool_table
 from playmodel import _gentoo_chost_table, _gentoo_chost_pool_table
-from playmodel import _gentoo_call_flag_table, _gentoo_call_flag_pool_table
+from playmodel import _gentoo_call_flags_table, _gentoo_call_flag_pool_table
 from playmodel import _gentoo_package_mask_table, _gentoo_package_pool_table, _gentoo_atom_pool_table
 import datetime
 import sqlalchemy
@@ -282,7 +282,7 @@ class GentooReporter:
                 raise
             call_flag_class_id = call_flag_class_object.id
 
-            pool_join = _gentoo_call_flag_table.join(_gentoo_call_flag_pool_table)
+            pool_join = _gentoo_call_flags_table.join(_gentoo_call_flag_pool_table)
             total_entry_count = self.session.query(GentooCallFlagRel).filter_by(call_flag_class_id=call_flag_class_id).count()
             query = select([GentooCallFlagString.name, func.count(GentooCallFlagRel.machine_id)], \
                     from_obj=[pool_join]).where(GentooCallFlagRel.call_flag_class_id == call_flag_class_id).\
