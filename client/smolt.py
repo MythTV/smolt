@@ -74,7 +74,7 @@ clientVersion = '1.3.2'
 smoltProtocol = '0.97'
 supported_protocols = ['0.97',]
 user_agent = 'smolt/%s' % smoltProtocol
-timeout = 60.0
+timeout = 120.0
 proxies = None
 DEBUG = False
 
