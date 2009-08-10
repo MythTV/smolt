@@ -119,13 +119,6 @@ class GentooReporter:
                 '_POOL_CLASS_OBJECT':GentooFeatureString,
                 '_DISPLAY_LIMIT':_MAX_FEATURES,
                 '_FOREIGN_COLUMN_NAME':'feature_id'},
-            {'_SECTION':'global_use_flags',
-                '_POOL_TABLE_OBJECT':_gentoo_use_flag_pool_table,
-                '_REL_TABLE_OBJECT':_gentoo_global_use_flags_table,
-                '_REL_CLASS_OBJECT':GentooGlobalUseFlagRel,
-                '_POOL_CLASS_OBJECT':GentooUseFlagString,
-                '_DISPLAY_LIMIT':_MAX_GLOBAL_USE_FLAGS,
-                '_FOREIGN_COLUMN_NAME':'use_flag_id'},
             {'_SECTION':'sync_mirror',
                 '_POOL_TABLE_OBJECT':_gentoo_mirror_pool_table,
                 '_REL_TABLE_OBJECT':_gentoo_sync_mirror_table,
@@ -183,6 +176,42 @@ class GentooReporter:
                 'others':[make_row(others, post_dot_digits)],
                 'total':[make_row(total_entry_count, post_dot_digits)],
             }
+        return res
+
+    def _analyze_global_use_flags(self):
+        def make_row(absolute, post_dot_digits, label=None):
+            res = {
+                'absolute':absolute,
+                'relative':self._relative(absolute, post_dot_digits),
+            }
+            if label != None:
+                res['label'] = label
+            return res
+
+        pool_join = _gentoo_global_use_flags_table.join(_gentoo_use_flag_pool_table)
+        total_entry_count = self.session.query(GentooGlobalUseFlagRel).count()
+        query = select([GentooUseFlagString.name, func.count(GentooGlobalUseFlagRel.machine_id)], \
+                from_obj=[pool_join]).group_by(GentooGlobalUseFlagRel.use_flag_id).order_by(\
+                func.count(GentooGlobalUseFlagRel.machine_id).desc(), GentooUseFlagString.name).limit(_MAX_GLOBAL_USE_FLAGS)
+        if _MAX_GLOBAL_USE_FLAGS >= 50:
+            post_dot_digits = 2
+        else:
+            post_dot_digits = 1
+
+        final_rows = []
+        others = total_entry_count
+        for i in query.execute().fetchall():
+            label, absolute = i
+            others = others - absolute
+            final_rows.append(make_row(absolute, post_dot_digits, label))
+        if others < 0:
+            others = 0
+
+        res = {
+            'listed':final_rows,
+            'others':[make_row(others, post_dot_digits)],
+            'total':[make_row(total_entry_count, post_dot_digits)],
+        }
         return res
 
     def _analyzes_package_mask(self):
@@ -349,6 +378,7 @@ class GentooReporter:
         del query
 
         simple_stuff = self._analyze_simple_stuff()
+        global_use_flags = self._analyze_global_use_flags()
         archs = self._analyze_archs()
         call_flags = self._analyzes_call_flags()
         package_mask = self._analyzes_package_mask()
@@ -363,6 +393,7 @@ class GentooReporter:
             'archs':archs,
             'call_flags':call_flags,
             'package_mask':package_mask,
+            'global_use_flags':global_use_flags,
         }
         for k, v in simple_stuff.items():
             if k in data:
