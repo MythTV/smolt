@@ -112,18 +112,21 @@ td.head {
 th.head, th.vert_head {
     border-bottom-style:solid;
     border-bottom-width:thin;
+    padding-top:8px;
 }
 
 /* XXX */
 td.foot, td.foot_count, td.foot_relative {
     border-top-style:solid;
     border-top-width:thin;
+    padding-bottom:8px;
 }
 
 /* XXX */
 th.foot, th.vert_foot {
     border-top-style:solid;
     border-top-width:thin;
+    padding-bottom:8px;
 }
 
 /* XXX */
@@ -149,6 +152,7 @@ td.group_child_2 {
 
 /* XXX */
 th.vert, th.vert_head, th.vert_foot  {
+    padding-left:20px;
     padding-right:20px;
     text-align:left;
 /*
