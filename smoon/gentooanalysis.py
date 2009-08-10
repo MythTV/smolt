@@ -68,10 +68,8 @@ class GentooReporter:
 
         columns = [GentooKeywordString.name, func.count(GentooAcceptKeywordRel.machine_id), func.sum(GentooAcceptKeywordRel.stable)]
         pool_join = _gentoo_accept_keywords_table.join(_gentoo_keyword_pool_table)
-        arch_join_condition = and_(GentooArchRel.keyword_id == GentooAcceptKeywordRel.keyword_id,\
-                GentooArchRel.machine_id == GentooAcceptKeywordRel.machine_id)
-        query = select(columns, from_obj=[pool_join]).where(arch_join_condition).\
-                group_by(GentooArchRel.keyword_id).order_by(\
+        query = select(columns, from_obj=[pool_join]).\
+                group_by(GentooAcceptKeywordRel.keyword_id).order_by(\
                 func.count(GentooAcceptKeywordRel.machine_id).desc())
         total_stable = 0
         total_unstable = 0
@@ -88,7 +86,7 @@ class GentooReporter:
             total_unstable = total_unstable + unstable
             total_total = total_total + total
 
-            final_rows.append(make_row(total_stable, total_unstable, total_total, label))
+            final_rows.append(make_row(stable, unstable, total, label))
 
         res = {
             'listed':final_rows,
