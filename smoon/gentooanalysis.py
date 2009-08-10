@@ -346,8 +346,10 @@ class GentooReporter:
 
     def gather(self):
         report_begun = datetime.datetime.utcnow()
+        query = select([func.count(GentooPrivacyMetricRel.machine_id.distinct())])
+        self.gentoo_machines = max(1, self.session.execute(query).fetchall()[0][0])
+        del query
 
-        self.gentoo_machines = max(1, self.session.query(GentooArchRel).count())
         simple_stuff = self._analyze_simple_stuff()
         archs = self._analyze_archs()
         call_flags = self._analyzes_call_flags()
