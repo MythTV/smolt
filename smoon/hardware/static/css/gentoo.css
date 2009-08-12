@@ -43,6 +43,12 @@ a {
 }
 
 /* XXX */
+th a {
+    color:#000000;
+    font-weight:bold;
+}
+
+/* XXX */
 body, h1, td, th, span, p {
     font-family:serif;
 }

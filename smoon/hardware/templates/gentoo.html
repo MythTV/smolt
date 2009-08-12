@@ -96,7 +96,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <th colspan="2" class="head">Total</th>
         </tr>
         <tr py:for="row in data['archs']['listed']">
-            <th class="vert">${row['label']}</th>
+            <th class="vert"><a href="http://packages.gentoo.org/arch/${row['label']}">${row['label']}</a></th>
             <td class="count">${row['absolute_stable']}</td>
             <td class="relative">(${row['relative_stable']} %)</td>
             <td class="count">${row['absolute_unstable']}</td>
@@ -265,7 +265,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <th colspan="2" class="head">Popularity</th>
         </tr>
         <tr py:for="row in data['features']['listed']">
-            <th class="vert">${row['label']}</th>
+            <th class="vert"><a href="../man/man5/make.conf.5.html#${row['label']}">${row['label']}</a></th>
             <td class="count">${row['absolute']}</td>
             <td class="relative">(${row['relative']} %)</td>
         </tr>
@@ -293,7 +293,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <th colspan="2" class="head">Popularity</th>
         </tr>
         <tr py:for="row in data['global_use_flags']['listed']">
-            <th class="vert">${row['label']}</th>
+            <th class="vert"><a href="http://gpo.zugaina.org/Search?search=&amp;use=${row['label']}">${row['label']}</a></th>
             <td class="count">${row['absolute']}</td>
             <td class="relative">(${row['relative']} %)</td>
         </tr>
@@ -352,7 +352,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 <py:for each="row in data['package_mask']['listed']">
   <py:if test="len(row['details']) == 1">
         <tr>
-            <th class="vert">${row['package']}</th>
+            <th class="vert"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
             <td><span class="group_item">${row['details'][0]['label']}</span></td>
             <td class="count">${row['any']['absolute']}</td>
             <td class="relative">(${row['any']['relative']} %)</td>
@@ -360,7 +360,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
   </py:if>
   <py:if test="len(row['details']) > 1">
         <tr>
-            <th class="vert" rowspan="${len(row['details']) + 1}" style="vertical-align:top">${row['package']}</th>
+            <th class="vert" rowspan="${len(row['details']) + 1}" style="vertical-align:top"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
             <td><span class="group_item">any</span></td>
             <td class="count">${row['any']['absolute']}</td>
             <td class="relative">(${row['any']['relative']} %)</td>

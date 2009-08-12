@@ -1,0 +1,2059 @@
+<?xml version="1.0" encoding="us-ascii"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org" />
+
+  <title>make.conf.5</title>
+  <link media="screen" href="manpage-screen.css" type="text/css"
+  rel="stylesheet" />
+</head>
+
+<body>
+  <a name="top"></a> 
+  <!-- .TH "MAKE.CONF" "5" "Aug 2008" "Portage 2.1.6" "Portage" -->
+  <hr />
+
+  <h1><i>Manual Reference Pages &nbsp;-&nbsp;</i><nobr>MAKE.CONF
+  (5)</nobr></h1>
+  <hr />
+  <!-- .SH "NAME" -->
+   <a name="NAME"></a>
+
+  <h3><a name="NAME">NAME</a></h3>
+
+  <blockquote>
+    make.conf - custom settings for Portage <!-- .SH "SYNOPSIS" -->
+  </blockquote><a name="1"></a>
+
+  <h3><a name="1">SYNOPSIS</a></h3>
+
+  <blockquote>
+    <!-- .B /etc/make.conf -->
+    <b>/etc/make.conf</b> <!-- .SH "DESCRIPTION" -->
+  </blockquote><a name="DESCRIPTION"></a>
+
+  <h3><a name="DESCRIPTION">DESCRIPTION</a></h3>
+
+  <blockquote>
+    This file contains various variables that are used by Portage.
+    Portage will check the currently-defined environment variables
+    first for any settings. If no environment settings are found,
+    Portage then checks /etc/make.conf. If no setting is found in
+    /etc/make.conf, Portage checks /etc/make.globals. If no setting
+    is found there, the profile&#8217;s default setting is grabbed
+    from /etc/make.profile/make.defaults. Please note that all user
+    settings should be made in the environment or in
+    /etc/make.conf, which is intended to be customized by the user.
+    <!-- .br -->
+    <!-- Need break --><br />
+    Exceptions are incremental variables such as USE,
+    CONFIG_PROTECT*, and ACCEPT_KEYWORDS. Incremental variables are
+    propagated down from make.defaults to make.globals to make.conf
+    to the environment settings. Clearing these variables requires
+    a clear-all as in: export USE="-*" <!-- .SH "VARIABLES" -->
+  </blockquote><a name="VARIABLES"></a>
+
+  <h3><a name="VARIABLES">VARIABLES</a></h3>
+
+  <blockquote>
+    <!-- .TP -->
+
+    <table cellpadding="3">
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "ACCEPT_CHOSTS">ACCEPT_CHOSTS</a></b> = <i>[space delimited
+        list of CHOST values]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Specifies acceptable <b><a name="CHOST">CHOST</a></b>
+        values. Regular expression syntax is supported, so it is
+        necessary to escape <b><a name="CHOST">CHOST</a></b>
+        characters if they have special meaning in regular
+        expressions. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to the value of $CHOST. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "ACCEPT_KEYWORDS">ACCEPT_KEYWORDS</a></b> = <i>[space
+        delimited list of KEYWORDS]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Enable testing of ebuilds that have not yet been deemed
+        &#8217;stable&#8217;. Users of the &#8217;x86&#8217;
+        architecture would set this to &#8217;~x86&#8217; while ppc
+        users would set this to &#8217;~ppc&#8217;. This is an
+        incremental variable. Only define a ~arch. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to the value of $ARCH. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%" nowrap="nowrap"><!-- .B CBUILD -->
+        <b><a name="CBUILD">CBUILD</a></b></td>
+
+        <td valign="bottom">This variable is passed by the
+        <i>ebuild scripts</i> to the <i>configure</i> as
+        <i>--build=${CBUILD}</i> only if it is defined. Do not set
+        this yourself unless you know what you are doing. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="CCACHE_DIR">CCACHE_DIR</a></b>
+        = <i>[path]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Defines the location of the ccache working directory.
+        See the <b>ccache</b>(1) man page for more information. 
+        <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to /var/tmp/ccache <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "CCACHE_SIZE">CCACHE_SIZE</a></b> = <i>"size"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This controls the space use limitations for ccache. The
+        default is 2 gigabytes (&#8217;2G&#8217;). Sizes are
+        specified with &#8217;G&#8217;, &#8217;M&#8217;, or
+        &#8217;K&#8217;. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B CFLAGS CXXFLAGS -->
+        <b>CFLAGS CXXFLAGS</b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>
+          Use these variables to set the desired optimization/CPU
+          instruction settings for applications that you compile.
+          Nearly all ebuild files will take advantage of your
+          custom settings, resulting in a Gentoo Linux that is
+          fully customized to your specifications. Please use sane
+          settings as some packages will fail to compile/run if the
+          optimizations are too extreme.
+
+          <p>For more information, see the <i>Invoking GCC</i>
+          section of the gcc manual: <!-- .br -->
+          <!-- Need break --><br />
+          <a href=
+          "http://gcc.gnu.org/onlinedocs">http://gcc.gnu.org/onlinedocs</a>/
+          <!-- .TP --></p>
+        </td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%" nowrap="nowrap"><!-- .B CHOST -->
+        <b><a name="CHOST">CHOST</a></b></td>
+
+        <td valign="bottom">
+          This variable is passed by the <i>ebuild scripts</i> to
+          the <i>configure</i> step as <i>--host=${CHOST}</i>. This
+          way you can force the build-host.
+
+          <p>For more information: <!-- .br -->
+          <!-- Need break --><br />
+          <a href=
+          "http://gcc.gnu.org/onlinedocs/gcc-4.1.1/gcc/Submodel-Options.html">
+          http://gcc.gnu.org/onlinedocs/gcc-4.1.1/gcc/Submodel-Options.html</a>
+          <!-- .br -->
+          <!-- Need break --><br />
+          <a href=
+          "http://gcc.gnu.org/onlinedocs/gcc-3.3/gcc/Submodel-Options.html">
+          http://gcc.gnu.org/onlinedocs/gcc-3.3/gcc/Submodel-Options.html</a>
+          <!-- .br -->
+          <!-- Need break --><br />
+          <a href=
+          "http://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Submodel-Options.html">
+          http://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Submodel-Options.html</a>
+          <!-- .br -->
+          <!-- Need break --><br />
+          <a href=
+          "http://gcc.gnu.org/onlinedocs/gcc-2.95.3/gcc_2.html">http://gcc.gnu.org/onlinedocs/gcc-2.95.3/gcc_2.html</a>
+          <!-- .TP --></p>
+        </td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "CLEAN_DELAY">CLEAN_DELAY</a></b> = <i>integer</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Determines how long the countdown delay will be after
+        running &#8216;emerge clean&#8216;. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to 5 seconds. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "COLLISION_IGNORE">COLLISION_IGNORE</a></b> = <i>[space
+        delimited list of files and/or directories]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable allows the user to disable
+        <i>collision-protect</i> and <i>protect-owned</i> for
+        specific files and/or directories. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to /lib/modules. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "CONFIG_PROTECT">CONFIG_PROTECT</a></b> = <i>[space
+        delimited list of files and/or directories]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>All files and/or directories that are defined here will
+        have "config file protection" enabled for them. See the
+        <b>CONFIGURATION FILES</b> section of <b>emerge</b>(1) for
+        more information. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "CONFIG_PROTECT_MASK">CONFIG_PROTECT_MASK</a></b> =
+        <i>[space delimited list of files and/or
+        directories]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>All files and/or directories that are defined here will
+        have "config file protection" disabled for them. See the
+        <b>CONFIGURATION FILES</b> section of <b>emerge</b>(1) for
+        more information. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B CTARGET -->
+        <b><a name="CTARGET">CTARGET</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable is passed by the <i>ebuild scripts</i> to
+        the <i>configure</i> as <i>--target=${CTARGET}</i> only if
+        it is defined. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="DISTDIR">DISTDIR</a></b> =
+        <i>[path]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>
+          Defines the location of your local source file
+          repository. After packages are built, it is safe to
+          remove any and all files from this directory since they
+          will be automatically fetched on demand for a given
+          build. If you would like to selectively prune obsolete
+          files from this directory, see <b>eclean</b>(1) from the
+          gentoolkit package.
+
+          <p>Use the <b><a name=
+          "PORTAGE_RO_DISTDIRS">PORTAGE_RO_DISTDIRS</a></b>
+          variable to specify one or more read-only directories
+          containing distfiles.</p>
+
+          <p>Note that locations under /usr/portage are not
+          necessarily safe for data storage. See the <b><a name=
+          "PORTDIR">PORTDIR</a></b> documentation for more
+          information. <!-- .br -->
+          <!-- Need break --><br />
+          Defaults to /usr/portage/distfiles. <!-- .TP --></p>
+        </td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B DOC_SYMLINKS_DIR -->
+        <b><a name="DOC_SYMLINKS_DIR">DOC_SYMLINKS_DIR</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>If this variable contains a directory then symlinks to
+        html documentation will be installed into it. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B EBEEP_IGNORE -->
+        <b><a name="EBEEP_IGNORE">EBEEP_IGNORE</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Defines whether or not to ignore audible beeps when
+        displaying important informational messages. This variable
+        is unset by default. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B EMERGE_DEFAULT_OPTS -->
+        <b><a name=
+        "EMERGE_DEFAULT_OPTS">EMERGE_DEFAULT_OPTS</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Options to append to the end of the <b>emerge</b>(1)
+        command line on every invocation. These options will not be
+        appended to the command line if --ignore-default-opts is
+        specified. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B EPAUSE_IGNORE -->
+        <b><a name="EPAUSE_IGNORE">EPAUSE_IGNORE</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Defines whether or not to ignore short pauses that
+        occur when displaying important informational messages.
+        This variable is unset by default. If it is set to any
+        value pauses are ignored. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "EXTRA_ECONF">EXTRA_ECONF</a></b> = <i>[configure options
+        string]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Contains additional options that <b><a name=
+        "econf">econf</a></b> will append to configure script
+        arguments (see <b>ebuild</b>(5)). <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="FEATURES">FEATURES</a></b> =
+        <i>"sandbox ccache"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>
+          Defines actions portage takes by default. This is an
+          incremental variable. Most of these settings are for
+          developer use, but some are available to non-developers
+          as well. The <b><a name="sandbox">sandbox</a></b> feature
+          is very important and should not be disabled by default. 
+          <!-- .RS -->
+          <!-- .TP -->
+
+          <table width="100%" cellpadding="3">
+            <!-- tsb: Defines actions portage takes by default. This is an incremental variable.
+ -->
+
+            <tr>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B assume\-digests -->
+              <b><a name=
+              "assume-digests">assume-digests</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>When commiting work to cvs with
+              <b>repoman</b>(1), assume that all existing SRC_URI
+              digests are correct. This feature also affects digest
+              generation via <b>ebuild</b>(1) and <b>emerge</b>(1)
+              (emerge generates digests only when the <i>digest</i>
+              feature is enabled). Existing digests for files that
+              do not exist in ${DISTDIR} will be automatically
+              assumed even when <i>assume-digests</i> is not
+              enabled. If a file exists in ${DISTDIR} but
+              it&#8217;s size does not match the existing digest,
+              the digest will be regenerated regardless of whether
+              or not <i>assume-digests</i> is enabled. The
+              <b>ebuild</b>(1) <b><a name="digest">digest</a></b>
+              command has a <b><a name="--force">--force</a></b>
+              option that can be used to force regeneration of
+              digests. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B buildpkg -->
+              <b><a name="buildpkg">buildpkg</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Binary packages will be created for all packages
+              that are merged. Also see <b>quickpkg</b>(1) and
+              <b>emerge</b>(1) <b><a name=
+              "--buildpkg">--buildpkg</a></b> and <b><a name=
+              "--buildpkgonly">--buildpkgonly</a></b> options. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B buildsyspkg -->
+              <b><a name="buildsyspkg">buildsyspkg</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Build binary packages for just packages in the
+              system set. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B ccache -->
+              <b><a name="ccache">ccache</a></b></td>
+
+              <td valign="bottom">Enable portage support for the
+              ccache package. If the ccache dir is not present in
+              the user&#8217;s environment, then portage will
+              default to ${PORTAGE_TMPDIR}/ccache. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B collision\-protect -->
+              <b><a name=
+              "collision-protect">collision-protect</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>A QA-feature to ensure that a package
+              doesn&#8217;t overwrite files it doesn&#8217;t own.
+              The <i>COLLISION_IGNORE</i> variable can be used to
+              selectively disable this feature. Also see the
+              related <i>protect-owned</i> feature. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B digest -->
+              <b><a name="digest">digest</a></b></td>
+
+              <td valign="bottom">Autogenerate digests for packages
+              when running the <b>emerge</b>(1) command. If the
+              <i>assume-digests</i> feature is also enabled then
+              existing SRC_URI digests will be reused whenever they
+              are available. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B distcc -->
+              <b><a name="distcc">distcc</a></b></td>
+
+              <td valign="bottom">Enable portage support for the
+              distcc package. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B distlocks -->
+              <b><a name="distlocks">distlocks</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Portage uses lockfiles to ensure competing
+              instances don&#8217;t clobber each other&#8217;s
+              files. This feature is enabled by default but may
+              cause heartache on less intelligent remote
+              filesystems like NFSv2 and some strangely configured
+              Samba server (oplocks off, NFS re-export). A tool
+              /usr/lib/portage/bin/clean_locks exists to help
+              handle lock issues when a problem arises (normally
+              due to a crash or disconnect). <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B fakeroot -->
+              <b><a name="fakeroot">fakeroot</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Enable fakeroot for the install and package
+              phases when a non-root user runs the <b>ebuild</b>(1)
+              command. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B fixpackages -->
+              <b><a name="fixpackages">fixpackages</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Runs the script that will fix the dependencies in
+              all binary packages. This is run whenever packages
+              are moved around in the portage tree. Please note
+              that this can take a lot of time. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B getbinpkg -->
+              <b><a name="getbinpkg">getbinpkg</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Force emerges to always try to fetch files from
+              the <i>PORTAGE_BINHOST</i>. See <b>make.conf</b>(5)
+              for more information. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B installsources -->
+              <b><a name=
+              "installsources">installsources</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Install source code into
+              /usr/src/debug/${CATEGORY}/${PF} (also see
+              <b><a name="splitdebug">splitdebug</a></b>). This
+              feature works only if debugedit is installed and
+              CFLAGS is set to include debug information (such as
+              with the -ggdb flag). <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B keeptemp -->
+              <b><a name="keeptemp">keeptemp</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Do not delete the ${T} directory after the merge
+              process. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B keepwork -->
+              <b><a name="keepwork">keepwork</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Do not delete the ${WORKDIR} directory after the
+              merge process. ${WORKDIR} can then be reused since
+              this feature disables most of the clean phase that
+              runs prior to each build. Due to lack of proper
+              cleanup, this feature can interfere with normal
+              emerge operation and therefore it should not be left
+              enabled for more than a short period of time. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B lmirror -->
+              <b><a name="lmirror">lmirror</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>When <i>mirror</i> is enabled in <b><a name=
+              "FEATURES">FEATURES</a></b>, fetch files even when
+              <i>mirror</i> is also in the <b>ebuild</b>(5)
+              <b><a name="RESTRICT">RESTRICT</a></b> variable. Do
+              <b><a name="NOT">NOT</a></b> use <i>lmirror</i> for
+              clients that need to override <b><a name=
+              "RESTRICT">RESTRICT</a></b> when fetching from a
+              local mirror, but instead use a "local" mirror
+              setting in <i>/etc/portage/mirrors</i>, as described
+              in <b>portage</b>(5). <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B metadata\-transfer -->
+              <b><a name=
+              "metadata-transfer">metadata-transfer</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Automatically perform a metadata transfer when
+              &#8216;emerge --sync&#8216; is run. In versions of
+              portage &gt;=2.1.5, this feature is disabled by
+              default. When metadata-transfer is disabled, metadata
+              cache from the ${PORTDIR}/metadata/cache/ directory
+              will be used directly (if available) and eclasses in
+              ${PORTDIR}/eclass/ must not be modified except by
+              &#8216;emerge --sync&#8216; operations since the
+              cache validation mechanism will not recognize eclass
+              modifications. Normally, this issue only pertains to
+              users of the rsync tree since the cvs tree does not
+              contain a metadata/cache/ directory. Users of the
+              rsync tree who want to modify eclasses should use
+              <b><a name="PORTDIR_OVERLAY">PORTDIR_OVERLAY</a></b>
+              in order for the cache validation mechanism to work
+              correctly. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B mirror -->
+              <b><a name="mirror">mirror</a></b></td>
+
+              <td valign="bottom">Fetch everything in <b><a name=
+              "SRC_URI">SRC_URI</a></b> regardless of <b><a name=
+              "USE">USE</a></b> settings, except do not fetch
+              anything when <i>mirror</i> is in <b><a name=
+              "RESTRICT">RESTRICT</a></b>. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B noauto -->
+              <b><a name="noauto">noauto</a></b></td>
+
+              <td valign="bottom">When utilizing <b>ebuild</b>(1),
+              only run the function requested. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B noclean -->
+              <b><a name="noclean">noclean</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Do not delete the the source and temporary files
+              after the merge process. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B nodoc -->
+              <b><a name="nodoc">nodoc</a></b></td>
+
+              <td valign="bottom">Do not install doc files
+              (/usr/share/doc). <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B noinfo -->
+              <b><a name="noinfo">noinfo</a></b></td>
+
+              <td valign="bottom">Do not install info pages. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B noman -->
+              <b><a name="noman">noman</a></b></td>
+
+              <td valign="bottom">Do not install manpages. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B nostrip -->
+              <b><a name="nostrip">nostrip</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Prevents the stripping of binaries that are
+              merged to the live filesystem. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B notitles -->
+              <b><a name="notitles">notitles</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Disables xterm titlebar updates (which contains
+              status info). <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B parallel\-fetch -->
+              <b><a name=
+              "parallel-fetch">parallel-fetch</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Fetch in the background while compiling. Run
+              &#8216;tail -f /var/log/emerge-fetch.log&#8216; in a
+              terminal to view parallel-fetch progress. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B parse\-eapi\-ebuild\-head -->
+              <b><a name=
+              "parse-eapi-ebuild-head">parse-eapi-ebuild-head</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Parse <b><a name="EAPI">EAPI</a></b> from the
+              head of the ebuild (first 30 lines). This feature is
+              only intended for experimental purposes and should
+              not be enabled under normal circumstances. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B parse\-eapi\-glep\-55 -->
+              <b>parse-eapi-glep-55</b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Parse <b><a name="EAPI">EAPI</a></b> from the
+              file extension of the ebuild. This feature is only
+              intended for experimental purposes and should not be
+              enabled under normal circumstances. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B protect\-owned -->
+              <b><a name="protect-owned">protect-owned</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>This is identical to the <i>collision-protect</i>
+              feature except that files may be overwritten if they
+              are not explicitly listed in the contents of a
+              currently installed package. This is particularly
+              useful on systems that have lots of orphan files that
+              have been left behind by older versions of portage
+              that did not support the <i>unmerge-orphans</i>
+              feature. Like <i>collision-protect</i>, the
+              <i>COLLISION_IGNORE</i> variable can be used to
+              selectively disable this feature. It is recommended
+              to leave either <i>protect-owned</i> or
+              <i>collision-protect</i> enabled at all times, since
+              otherwise file collisions between packages may result
+              in files being overwritten or uninstalled at
+              inappropriate times. If <i>collision-protect</i> is
+              enabled then it takes precedence over
+              <i>protect-owned</i>. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B sandbox -->
+              <b><a name="sandbox">sandbox</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Enable sandbox-ing when running <b>emerge</b>(1)
+              and <b>ebuild</b>(1). <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B sesandbox -->
+              <b><a name="sesandbox">sesandbox</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Enable SELinux sandbox-ing. Do not toggle this
+              <b><a name="FEATURE">FEATURE</a></b> yourself. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B severe -->
+              <b><a name="severe">severe</a></b></td>
+
+              <td valign="bottom">When checking Manifests, only
+              accept ones that have been signed by a key which you
+              trust. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B sfperms -->
+              <b><a name="sfperms">sfperms</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Stands for Smart Filesystem Permissions. Before
+              merging packages to the live filesystem,
+              automatically search for and set permissions on
+              setuid and setgid files. Files that are setuid have
+              the group and other read bits removed while files
+              that are setgid have the other read bit removed. See
+              also <i>suidctl</i> below. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B sign -->
+              <b><a name="sign">sign</a></b></td>
+
+              <td valign="bottom">When commiting work to cvs with
+              <b>repoman</b>(1), sign the Manifest with a GPG key.
+              Read about the <i>PORTAGE_GPG_KEY</i> variable in
+              <b>make.conf</b>(5). <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B skiprocheck -->
+              <b><a name="skiprocheck">skiprocheck</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Skip write access checks on <b><a name=
+              "DISTDIR">DISTDIR</a></b> when fetching files. This
+              is useful when <b><a name=
+              "FETCHCOMMAND">FETCHCOMMAND</a></b> and <b><a name=
+              "RESUMECOMMAND">RESUMECOMMAND</a></b> are used to
+              forward fetch requests to a server that exposes
+              <b><a name="DISTDIR">DISTDIR</a></b> as a read-only
+              NFS share. A read-only <b><a name=
+              "DISTDIR">DISTDIR</a></b> is not compatible with the
+              <i>distlocks</i>, so it is recommended to also add
+              "-distlocks" to <b><a name=
+              "FEATURES">FEATURES</a></b> in order to avoid warning
+              messages that are triggered by this incompatibility. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B splitdebug -->
+              <b><a name="splitdebug">splitdebug</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Prior to stripping ELF etdyn and etexec files,
+              the debugging info is stored for later use by various
+              debuggers. This feature is disabled by <b><a name=
+              "nostrip">nostrip</a></b>. For installation of source
+              code, see <b><a name=
+              "installsources">installsources</a></b>. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B strict -->
+              <b><a name="strict">strict</a></b></td>
+
+              <td valign="bottom">Have portage react strongly to
+              conditions that have the potential to be dangerous
+              (like missing or incorrect digests for ebuilds). 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B stricter -->
+              <b><a name="stricter">stricter</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Have portage react strongly to conditions that
+              may conflict with system security provisions (for
+              example textrels, executable stack). Read about the
+              <i>QA_STRICT_*</i> variables in <b>make.conf</b>(5). 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B suidctl -->
+              <b><a name="suidctl">suidctl</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Before merging packages to the live filesystem,
+              automatically strip setuid bits from any file that is
+              not listed in <i>/etc/portage/suidctl.conf</i>. 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B test -->
+              <b><a name="test">test</a></b></td>
+
+              <td valign="bottom">Run package-specific tests during
+              each merge to help make sure the package compiled
+              properly. See <i>test</i> in <b>ebuild</b>(1) and
+              <i>src_test()</i> in <b>ebuild</b>(5). This feature
+              implies the "test" <b><a name="USE">USE</a></b> flag.
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B test\-fail\-continue -->
+              <b><a name=
+              "test-fail-continue">test-fail-continue</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>If "test" is enabled <b><a name=
+              "FEATURES">FEATURES</a></b> and the test phase of an
+              ebuild fails, continue to execute the remaining
+              phases as if the failure had not occurred. Note that
+              the test phase for a specific package may be disabled
+              by masking the "test" <b><a name="USE">USE</a></b>
+              flag in <b>package.use.mask</b> (see
+              <b>portage</b>(5)). <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B unmerge\-orphans -->
+              <b><a name=
+              "unmerge-orphans">unmerge-orphans</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>If a file is not claimed by another package in
+              the same slot and it is not protected by
+              <i>CONFIG_PROTECT</i>, unmerge it even if the
+              modification time or checksum differs from the file
+              that was originally installed. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B userfetch -->
+              <b><a name="userfetch">userfetch</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>When portage is run as root, drop privileges to
+              portage:portage during the fetching of package
+              sources. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B userpriv -->
+              <b><a name="userpriv">userpriv</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Allow portage to drop root privileges and compile
+              packages as portage:portage without a sandbox (unless
+              <i>usersandbox</i> is also used). <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B usersandbox -->
+              <b><a name="usersandbox">usersandbox</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Enable the sandbox in the compile phase, when
+              running without root privs (<i>userpriv</i>). 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B usersync -->
+              <b><a name="usersync">usersync</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Drop privileges to the owner of <b><a name=
+              "PORTDIR">PORTDIR</a></b> for <b>emerge(1) --sync</b>
+              operations. <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B webrsync-gpg -->
+              <b><a name="webrsync-gpg">webrsync-gpg</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>Enable GPG verification when using
+              <i>emerge-webrsync</i>. <!-- .RE --></td>
+            </tr>
+
+            <tr>
+              <td></td>
+            </tr>
+          </table><!-- .TP -->
+        </td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B FETCHCOMMAND -->
+        <b><a name="FETCHCOMMAND">FETCHCOMMAND</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable contains the command used for fetching
+        package sources from the internet. It must contain the full
+        path to the executable as well as the place-holders
+        \${DISTDIR}, \${FILE} and \${URI}. The command should be
+        written to place the fetched file at \${DISTDIR}/\${FILE}.
+        Also see <b><a name="RESUMECOMMAND">RESUMECOMMAND</a></b>. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "GENTOO_MIRRORS">GENTOO_MIRRORS</a></b> =
+        <i>[URLs]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Insert your space-seperated list of local mirrors here.
+        These locations are used to download files before the ones
+        listed in the <i>ebuild scripts</i>. Merging
+        &#8217;mirrorselect&#8217; can help. Entries in this
+        variable that have no protocol and simply start with a
+        &#8217;/&#8217; path separator may be used to specify
+        mounted filesystem mirrors. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b>http_proxy ftp_proxy</b> =
+        <i>[protocol://host:port]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>These vars are used if the sources must be downloaded
+        from the internet by <b>wget</b>(1). They are only required
+        if you use a proxy server for internet access. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "INSTALL_MASK">INSTALL_MASK</a></b> = <i>[space delimited
+        list of file names]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Use this variable if you want to selectively prevent
+        certain files from being copied into your file system tree.
+        This does not work on symlinks, but only on actual files.
+        Useful if you wish to filter out files like HACKING.gz and
+        TODO.gz. The <b><a name="INSTALL_MASK">INSTALL_MASK</a></b>
+        is processed just before a package is merged. Also
+        supported is a <b><a name=
+        "PKG_INSTALL_MASK">PKG_INSTALL_MASK</a></b> variable that
+        behaves exactly like <b><a name=
+        "INSTALL_MASK">INSTALL_MASK</a></b> except that it is
+        processed just before creation of a binary package. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B MAKEOPTS -->
+        <b><a name="MAKEOPTS">MAKEOPTS</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Use this variable if you want to use parallel make. For
+        example, if you have a dual-processor system, set this
+        variable to "-j2" or "-j3" for enhanced build performance
+        with many packages. Suggested settings are between
+        <i>CPUs+1</i> and <i>2*CPUs+1</i>. In order to avoid excess
+        load, the <b><a name=
+        "--load-average">--load-average</a></b> option is
+        recommended. For more information, see <b>make</b>(1). Also
+        see <b>emerge</b>(1) for information about analogous
+        <b><a name="--jobs">--jobs</a></b> and <b><a name=
+        "--load-average">--load-average</a></b> options. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="NOCOLOR">NOCOLOR</a></b> =
+        <i>["true" | "false"]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Defines if color should be disabled by default. 
+        <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to false. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="PKGDIR">PKGDIR</a></b> =
+        <i>[path]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Defines the location where created .tbz2 binary
+        packages will be stored when the <b>emerge</b>(1)
+        <b><a name="--buildpkg">--buildpkg</a></b> option is
+        enabled. By default, a given package is stored in a
+        subdirectory corresponding to it&#8217;s category. However,
+        for backward compatibility with the layout used by older
+        versions of portage, if the <i>${PKGDIR}/All</i> directory
+        exists then all packages will be stored inside of it and
+        symlinks to the packages will be created in the category
+        subdirectories. Note that locations under /usr/portage are
+        not necessarily safe for data storage. See the <b><a name=
+        "PORTDIR">PORTDIR</a></b> documentation for more
+        information. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to /usr/portage/packages. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B PORT_LOGDIR -->
+        <b><a name="PORT_LOGDIR">PORT_LOGDIR</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable defines the directory in which per-ebuild
+        logs are kept. Logs are created only when this is set. They
+        are stored as ${CATEGORY}:${PF}:YYYYMMDD-HHMMSS.log in the
+        directory specified. If the direcory does not exist, it
+        will be created automatically and group permissions will be
+        applied to it. If the directory already exists, portage
+        will not modify it&#8217;s permissions. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_BINHOST">PORTAGE_BINHOST</a></b> = <i>"<a href=
+        "ftp://login:%3CA%20HREF=">pass@grp.mirror.site</a>/pub/grp/i686/athlon-xp/"&gt;ftp://login:<a href="mailto:pass@grp.mirror.site">pass@grp.mirror.site</a>/pub/grp/i686/athlon-xp/"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This is the host from which portage will grab
+        prebuilt-binary packages. The list is a single entry
+        specifying the full address of the directory serving the
+        tbz2&#8217;s for your system. This is only used when
+        running with the get binary pkg options are given to
+        <b><a name="emerge">emerge</a></b>. Review <b>emerge</b>(1)
+        for more information. For versions of portage less that
+        2.1.6, this variable should point to the &#8217;All&#8217;
+        directory on the host that creates the binary packages and
+        not to the root of the <b><a name="PKGDIR">PKGDIR</a></b>.
+        Starting with portage 2.1.6, it should point to a directory
+        containing a &#8217;Packages&#8217; index file. If
+        ${PORTAGE_BINHOST}/Packages does not exist then portage
+        will attempt to use the older protocol. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_BINHOST_HEADER_URI">PORTAGE_BINHOST_HEADER_URI</a></b>
+        = <i>"<a href=
+        "ftp://login:%3CA%20HREF=">pass@grp.mirror.site</a>/pub/grp/i686/athlon-xp/"&gt;ftp://login:<a href="mailto:pass@grp.mirror.site">pass@grp.mirror.site</a>/pub/grp/i686/athlon-xp/"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable only makes sense on a system that will
+        serve as a binhost and build packages for clients. It
+        defines the URI header field for the package index file
+        which is located at ${PKGDIR}/Packages. Clients that have
+        <b><a name="PORTAGE_BINHOST">PORTAGE_BINHOST</a></b>
+        properly configured will be able to fetch the index and use
+        the URI header field as a base URI for fetching binary
+        packages. If the URI header field is not defined then the
+        client will use it&#8217;s ${PORTAGE_BINHOST} setting as
+        the base URI. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B PORTAGE_BINPKG_TAR_OPTS -->
+        <b><a name=
+        "PORTAGE_BINPKG_TAR_OPTS">PORTAGE_BINPKG_TAR_OPTS</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable contains options to be passed to the tar
+        command for creation of binary packages. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_COMPRESS">PORTAGE_COMPRESS</a></b> =
+        <i>"bzip2"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable contains the command used to compress
+        documentation during the install phase. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_COMPRESS_FLAGS">PORTAGE_COMPRESS_FLAGS</a></b> =
+        <i>"-9"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable contains flags for the <b><a name=
+        "PORTAGE_COMPRESS">PORTAGE_COMPRESS</a></b> command. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%" nowrap="nowrap"><!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_COMPRESS_EXCLUDE_SUFFIXES">PORTAGE_COMPRESS_EXCLUDE_SUFFIXES</a></b>
+        = <i>"gif htm[l]? jp[e]?g pdf png"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable contains a space delimited list of file
+        suffixes for which matching files are excluded when the
+        <b><a name="PORTAGE_COMPRESS">PORTAGE_COMPRESS</a></b>
+        command is called. Regular expressions are supported and
+        the match is performed only against the portion of the file
+        name which follows the last period character. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B PORTAGE_ELOG_CLASSES -->
+        <b><a name=
+        "PORTAGE_ELOG_CLASSES">PORTAGE_ELOG_CLASSES</a></b> 
+        <!-- Consumed .TP -->
+        <br />
+        <!-- .B PORTAGE_ELOG_SYSTEM -->
+        <b><a name=
+        "PORTAGE_ELOG_SYSTEM">PORTAGE_ELOG_SYSTEM</a></b> 
+        <!-- Consumed .TP -->
+        <br />
+        <!-- .B PORTAGE_ELOG_COMMAND -->
+        <b><a name=
+        "PORTAGE_ELOG_COMMAND">PORTAGE_ELOG_COMMAND</a></b> 
+        <!-- Consumed .TP -->
+        <br />
+        <!-- .B PORTAGE_ELOG_MAILURI -->
+        <b><a name=
+        "PORTAGE_ELOG_MAILURI">PORTAGE_ELOG_MAILURI</a></b> 
+        <!-- Consumed .TP -->
+        <br />
+        <!-- .B PORTAGE_ELOG_MAILFROM -->
+        <b><a name=
+        "PORTAGE_ELOG_MAILFROM">PORTAGE_ELOG_MAILFROM</a></b> 
+        <!-- Consumed .TP -->
+        <br />
+        <!-- .B PORTAGE_ELOG_MAILSUBJECT -->
+        <b><a name=
+        "PORTAGE_ELOG_MAILSUBJECT">PORTAGE_ELOG_MAILSUBJECT</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Please see /usr/share/portage/config/make.conf.example
+        for elog documentation. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_FETCH_CHECKSUM_TRY_MIRRORS">PORTAGE_FETCH_CHECKSUM_TRY_MIRRORS</a></b>
+        = <i>5</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Number of mirrors to try when a downloaded file has an
+        incorrect checksum. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_FETCH_RESUME_MIN_SIZE">PORTAGE_FETCH_RESUME_MIN_SIZE</a></b>
+        = <i>350K</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Minimum size of existing file for <b><a name=
+        "RESUMECOMMAND">RESUMECOMMAND</a></b> to be called. Files
+        smaller than this size will be removed and <b><a name=
+        "FETCHCOMMAND">FETCHCOMMAND</a></b> will be called to
+        download the file from the beginning. This is useful for
+        helping to ensure that small garbage files such as html 404
+        pages are properly discarded. The variable should contain
+        an integer number of bytes and may have a suffix such as K,
+        M, or G. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B PORTAGE_GPG_DIR -->
+        <b><a name="PORTAGE_GPG_DIR">PORTAGE_GPG_DIR</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>The <b>gpg</b>(1) home directory that is used by
+        <b>repoman</b>(1) when <b><a name="sign">sign</a></b> is in
+        <b><a name="FEATURES">FEATURES</a></b>. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to $HOME/.gnupg. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B PORTAGE_GPG_KEY -->
+        <b><a name="PORTAGE_GPG_KEY">PORTAGE_GPG_KEY</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>The <b>gpg</b>(1) key used by <b>repoman</b>(1) to sign
+        manifests when <b><a name="sign">sign</a></b> is in
+        <b><a name="FEATURES">FEATURES</a></b>. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_IONICE_COMMAND">PORTAGE_IONICE_COMMAND</a></b> =
+        <i>[ionice command string]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable should contain a command for portage to
+        call in order to adjust the io priority of portage and
+        it&#8217;s subprocesses. The command string should contain
+        a \${PID} place-holder that will be substituted with an
+        integer pid. For example, a value of "ionice -c 3 -p
+        \${PID}" will set idle io priority. For more information
+        about ionice, see <b>ionice</b>(1). This variable is unset
+        by default. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_NICENESS">PORTAGE_NICENESS</a></b> =
+        <i>[number]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>The value of this variable will be added to the current
+        nice level that emerge is running at. In other words, this
+        will not set the nice level, it will increment it. For more
+        information about nice levels and what are acceptable
+        ranges, see <b>nice</b>(1). <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_RO_DISTDIRS">PORTAGE_RO_DISTDIRS</a></b> =
+        <i>[space delimited list of directories]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>When a given file does not exist in <b><a name=
+        "DISTDIR">DISTDIR</a></b>, search for the file in this list
+        of directories. Search order is from left to right. Note
+        that the current implementation works by creating a symlink
+        inside <b><a name="DISTDIR">DISTDIR</a></b>, but that may
+        change in the future. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_RSYNC_INITIAL_TIMEOUT">PORTAGE_RSYNC_INITIAL_TIMEOUT</a></b>
+        = <i>integer</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Used by <b>emerge --sync</b> as a timeout for the
+        initial connection to an rsync server. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to 15 seconds. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_RSYNC_EXTRA_OPTS">PORTAGE_RSYNC_EXTRA_OPTS</a></b>
+        = <i>[rsync options string]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Additional rsync options to be used by <b>emerge
+        --sync</b>. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to no value. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_RSYNC_OPTS">PORTAGE_RSYNC_OPTS</a></b> = <i>[rsync
+        options string]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Default rsync options to be used by <b>emerge
+        --sync</b>. <!-- .br -->
+        <!-- Need break --><br />
+        <b>Don&#8217;t change this unless you know exactly what
+        you&#8217;re doing!</b> <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to "--recursive --links --safe-links --perms
+        --times --compress --force --whole-file --delete --stats
+        --timeout=180 --exclude=&#8217;/distfiles&#8217;
+        --exclude=&#8217;/local&#8217;
+        --exclude=&#8217;/packages&#8217;" <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_RSYNC_RETRIES">PORTAGE_RSYNC_RETRIES</a></b> =
+        <i>[NUMBER]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>The number of times rsync should retry on failed
+        connections before giving up. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to 3. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_TMPDIR">PORTAGE_TMPDIR</a></b> =
+        <i>[path]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Defines the location of the temporary build
+        directories. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to /var/tmp. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTAGE_WORKDIR_MODE">PORTAGE_WORKDIR_MODE</a></b> =
+        <i>"0700"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable controls permissions for <i>WORKDIR</i>
+        (see <b>ebuild</b>(5)). <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="PORTDIR">PORTDIR</a></b> =
+        <i>[path]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Defines the location of the Portage tree. This is the
+        repository for all profile information as well as all
+        ebuilds. If you change this, you must update your
+        /etc/make.profile symlink accordingly. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to /usr/portage. <!-- .br -->
+        <!-- Need break --><br />
+        <b>***Warning***</b> <!-- .br -->
+        <!-- Need break --><br />
+        Data stored inside <b><a name="PORTDIR">PORTDIR</a></b> is
+        in peril of being overwritten or deleted by the emerge
+        --sync command. The default value of <b><a name=
+        "PORTAGE_RSYNC_OPTS">PORTAGE_RSYNC_OPTS</a></b> will
+        protect the default locations of <b><a name=
+        "DISTDIR">DISTDIR</a></b> and <b><a name=
+        "PKGDIR">PKGDIR</a></b>, but users are warned that any
+        other locations inside <b><a name="PORTDIR">PORTDIR</a></b>
+        are not necessarily safe for data storage. You should not
+        put other data (such as overlays) in your <b><a name=
+        "PORTDIR">PORTDIR</a></b><b>. Portage will walk directory
+        structures and may arbitrary add invalid categories as
+        packages. <!-- .TP --></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "PORTDIR_OVERLAY">PORTDIR_OVERLAY</a></b> = <i>"[path]
+        [different-path] [etc...]"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Defines the directories in which user made ebuilds may
+        be stored and not overwriten when &#8216;emerge
+        --sync&#8216; is run. This is a space delimited list of
+        directories. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to no value. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b>QA_STRICT_EXECSTACK =</b>
+        <i>"set"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Set this to cause portage to ignore any
+        <i>QA_EXECSTACK</i> override settings from ebuilds. See
+        also <b>ebuild</b>(5). <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b>QA_STRICT_WX_LOAD =</b>
+        <i>"set"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Set this to cause portage to ignore any
+        <i>QA_WX_LOAD</i> override settings from ebuilds. See also
+        <b>ebuild</b>(5). <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b>QA_STRICT_TEXTRELS =</b>
+        <i>"set"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Set this to cause portage to ignore any
+        <i>QA_TEXTREL</i> override settings from ebuilds. See also
+        <b>ebuild</b>(5). <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b>QA_STRICT_DT_HASH =</b>
+        <i>"set"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Set this to cause portage to ignore any
+        <i>QA_DT_HASH</i> override settings from ebuilds. See also
+        <b>ebuild</b>(5). <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b>QA_STRICT_PRESTRIPPED =</b>
+        <i>"set"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Set this to cause portage to ignore any
+        <i>QA_PRESTRIPPED</i> override settings from ebuilds. See
+        also <b>ebuild</b>(5). <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B RESUMECOMMAND -->
+        <b><a name="RESUMECOMMAND">RESUMECOMMAND</a></b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable contains the command used for resuming
+        package sources that have been partially downloaded. It
+        should be defined using the same format as <b><a name=
+        "FETCHCOMMAND">FETCHCOMMAND</a></b>, and must include any
+        additional option(s) that may be necessary in order to
+        continue a partially downloaded file located at
+        \${DISTDIR}/\${FILE}. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="ROOT">ROOT</a></b> =
+        <i>[path]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Use <b><a name="ROOT">ROOT</a></b> to specify the
+        target root filesystem to be used for merging packages or
+        ebuilds. All <b><a name="RDEPEND">RDEPEND</a></b> and
+        <b><a name="PDEPEND">PDEPEND</a></b> will be installed into
+        <b><a name="ROOT">ROOT</a></b> while all <b><a name=
+        "DEPEND">DEPEND</a></b> will be still be installed into /.
+        Typically, you should set this setting in the environment
+        rather than in <i>/etc/make.conf</i> itself. It&#8217;s
+        commonly used for creating new build images. Make sure you
+        use an absolute path. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to /. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="RPMDIR">RPMDIR</a></b> =
+        <i>[path]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Defines the location where created RPM packages will be
+        stored. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to ${PORTDIR}/rpm. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="SYNC">SYNC</a></b> =
+        <i>[RSYNC]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Insert your preferred rsync mirror here. This rsync
+        server is used to sync the local portage tree when
+        &#8216;emerge --sync&#8216; is run. <!-- .br -->
+        <!-- Need break --><br />
+        Defaults to rsync://rsync.gentoo.org/gentoo-portage 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="USE">USE</a></b> = <i>[space
+        delimited list of USE items]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>This variable contains options that control the build
+        behavior of several packages. More information in
+        <b>ebuild</b>(5). Possible USE values can be found in
+        <i>/usr/portage/profiles/use.desc</i>. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="USE_EXPAND">USE_EXPAND</a></b>
+        = <i>[space delimited list of variable names]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Any variable listed here will be used to augment USE by
+        inserting a new flag for every value in that variable, so
+        USE_EXPAND="FOO" and FOO="bar bla" results in USE="foo_bar
+        foo_bla". <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name=
+        "USE_EXPAND_HIDDEN">USE_EXPAND_HIDDEN</a></b> = <i>[space
+        delimited list of variable names]</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Names of <b><a name="USE_EXPAND">USE_EXPAND</a></b>
+        variables that should not be shown in the verbose merge
+        list output of the <b>emerge</b>(1) command. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><b><a name="USE_ORDER">USE_ORDER</a></b> =
+        <i>"env:pkg:conf:defaults:pkginternal:env.d"</i></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>
+          Determines the precedence of layers in the incremental
+          stacking of the USE variable. Precedence decreases from
+          left to right such that env overrides pkg, pkg overrides
+          conf, and so forth.
+
+          <p><!-- .B ***warning*** -->
+          <b>***warning***</b> <!-- .br -->
+          <!-- Need break --><br />
+          Do not modify this value unless you&#8217;re a developer
+          and you know what you&#8217;re doing. If you change this
+          and something breaks, we will not help you fix it. 
+          <!-- .br -->
+          <!-- .RS -->
+          <!-- .TP --></p>
+
+          <table width="100%" cellpadding="3">
+            <!-- tsb: Do not modify this value unless you&#146;re a developer and you know what
+ -->
+
+            <tr>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B env -->
+              <b><a name="env">env</a></b></td>
+
+              <td valign="bottom">USE from the current environment
+              variables (USE and those listed in USE_EXPAND) 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B pkg -->
+              <b><a name="pkg">pkg</a></b></td>
+
+              <td valign="bottom">Per-package USE from
+              <b>/etc/portage/package.use</b> (see
+              <b>portage</b>(5)) <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B conf -->
+              <b><a name="conf">conf</a></b></td>
+
+              <td valign="bottom">USE from make.conf 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B defaults -->
+              <b><a name="defaults">defaults</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>USE from make.defaults and package.use in the
+              profile (see <b>portage</b>(5)) <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td colspan="2"><!-- .B pkginternal -->
+              <b><a name="pkginternal">pkginternal</a></b></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%">&nbsp;</td>
+
+              <td>USE from <b>ebuild</b>(5) IUSE defaults 
+              <!-- .TP --></td>
+            </tr>
+
+            <tr valign="top">
+              <td width="6%" nowrap="nowrap"><!-- .B env.d -->
+              <b>env.d</b></td>
+
+              <td valign="bottom">USE from the environment
+              variables defined by files in <i>/etc/env.d/</i> 
+              <!-- .RE --></td>
+            </tr>
+
+            <tr>
+              <td></td>
+            </tr>
+          </table>
+
+          <p><!-- .SH "REPORTING BUGS" --></p>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+      </tr>
+    </table>
+  </blockquote><a name=""></a>
+
+  <h3><a name="">REPORTING BUGS</a></h3>
+
+  <blockquote>
+    Please report bugs via <a href=
+    "http://bugs.gentoo.org">http://bugs.gentoo.org</a>/ 
+    <!-- .SH "AUTHORS" -->
+  </blockquote><a name="AUTHORS"></a>
+
+  <h3><a name="AUTHORS">AUTHORS</a></h3>
+
+  <blockquote>
+    <!-- .nf -->
+    <pre>
+Daniel Robbins &lt;<a href=
+"mailto:drobbins@gentoo.org">drobbins@gentoo.org</a>&gt;
+Nicholas Jones &lt;<a href=
+"mailto:carpaski@gentoo.org">carpaski@gentoo.org</a>&gt;
+Mike Frysinger &lt;<a href=
+"mailto:vapier@gentoo.org">vapier@gentoo.org</a>&gt;
+Saleem Abdulrasool &lt;<a href=
+"mailto:compnerd@gentoo.org">compnerd@gentoo.org</a>&gt;
+<!-- .fi -->
+</pre><!-- .SH "FILES" -->
+  </blockquote><a name="FILES"></a>
+
+  <h3><a name="FILES">FILES</a></h3>
+
+  <blockquote>
+    <!-- .TP -->
+
+    <table cellpadding="3">
+      <tr valign="top">
+        <td colspan="2"><!-- .B /etc/make.conf -->
+        <b>/etc/make.conf</b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Contains variables for the build-process and overwrites
+        those in make.defaults. <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B /etc/make.globals -->
+        <b>/etc/make.globals</b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Contains the default variables for the build-process,
+        you should edit <i>/etc/make.conf</i> instead. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B /etc/portage/color.map -->
+        <b>/etc/portage/color.map</b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Contains variables customizing colors. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2"><!-- .B /usr/portage/profiles/use.desc -->
+        <b>/usr/portage/profiles/use.desc</b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Contains a list of all global USE flags. 
+        <!-- .TP --></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2">
+        <!-- .B /usr/portage/profiles/use.local.desc -->
+        <b>/usr/portage/profiles/use.local.desc</b></td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td>Contains a list of all local USE variables. 
+        <!-- .SH "SEE ALSO" --></td>
+      </tr>
+
+      <tr>
+        <td></td>
+      </tr>
+    </table>
+  </blockquote><a name=""></a>
+
+  <h3><a name="">SEE ALSO</a></h3>
+
+  <blockquote>
+    <!-- .BR emerge (1), -->
+    <b>emerge</b>(1), <!-- .BR portage (5), -->
+    <b>portage</b>(5), <!-- .BR ebuild (1), -->
+    <b>ebuild</b>(1), <!-- .BR ebuild (5) -->
+    <b>ebuild</b>(5) <!-- .TP -->
+
+    <table cellpadding="3">
+      <!-- tsb: <B>emerge</B>(1),
+ -->
+
+      <tr>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+      </tr>
+
+      <tr valign="top">
+        <td colspan="2">The <i>/usr/sbin/ebuild.sh</i> script. 
+        <!-- Consumed .TP -->
+        <br />
+        The helper apps in <i>/usr/lib/portage/bin</i>.</td>
+      </tr>
+
+      <tr valign="top">
+        <td width="6%">&nbsp;</td>
+
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+      </tr>
+    </table>
+  </blockquote>
+  <hr />
+
+  <table width="100%">
+    <tr>
+      <td width="33%"><i>Portage 2.1.6</i></td>
+
+      <td width="33%">MAKE.CONF (5)</td>
+
+      <td align="right" width="33%"><i>Aug 2008</i></td>
+    </tr>
+  </table>Generated by man2goodhtml 1.0 through <a href=
+  "http://www.squarebox.co.uk/download/manServer.shtml">manServer
+  1.07</a> from make.conf.5 using man macros.
+</body>
+</html>
