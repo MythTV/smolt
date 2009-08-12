@@ -17,14 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 import os
-
-if __name__ == '__main__':
-    import sys
-    sys.path.append(os.path.join(sys.path[0], '..', '..'))
 from distros.distro import Distro
-
-import sys
-sys.path.append(os.path.join(sys.path[0], '..', '..'))
 import distros.shared.html as html
 
 

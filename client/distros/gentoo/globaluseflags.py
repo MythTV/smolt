@@ -23,7 +23,6 @@ from tools.maintreedir import main_tree_dir
 
 import os
 import sys
-sys.path.append(os.path.join(sys.path[0], '..', '..'))
 import distros.shared.html as html
 from gate import Gate
 

@@ -27,7 +27,6 @@ from packageprivacy import is_private_package_atom
 
 import os
 import sys
-sys.path.append(os.path.join(sys.path[0], '..', '..'))
 import distros.shared.html as html
 from gate import Gate
 

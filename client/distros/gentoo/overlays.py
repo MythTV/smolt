@@ -31,7 +31,6 @@ from xml.parsers.expat import ExpatError
 import logging
 
 import sys
-sys.path.append(os.path.join(sys.path[0], '..', '..'))
 import distros.shared.html as html
 from gate import Gate
 
