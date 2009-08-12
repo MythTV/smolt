@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+PYTHON=python
+if [[ -z ${_SMOLT_SERVER_BASE} ]]; then
+    # _SITE_PACKAGES=$(${PYTHON} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
+    _SMOLT_SERVER_BASE=${_SITE_PACKAGES}/smolt/server
+fi
+
+(
+	echo '#' cd \""${_SMOLT_SERVER_BASE}"\"
+	cd "${_SMOLT_SERVER_BASE}" || {
+		echo "Could not cd into '${_SMOLT_SERVER_BASE}'"
+		exit 1
+	}
+
+	${PYTHON} render-stat.py $* || {
+		# Print environment info
+		{
+			echo
+			echo '#' pwd
+			pwd
+
+			if [[ "${USER}" != root ]]; then
+				echo	
+				echo '#' echo \${USER}
+				echo ${USER}
+			fi
+		} | sed 's|^|  |'
+		exit 1
+	}
+)
