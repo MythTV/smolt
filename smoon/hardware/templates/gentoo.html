@@ -353,7 +353,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
   <py:if test="len(row['details']) == 1">
         <tr>
             <th class="vert"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
-            <td><span class="group_item">${row['details'][0]['label']}</span></td>
+            <td>${row['details'][0]['label']}</td>
             <td class="count">${row['any']['absolute']}</td>
             <td class="relative">(${row['any']['relative']} %)</td>
         </tr>
