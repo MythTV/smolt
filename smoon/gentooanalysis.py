@@ -49,7 +49,8 @@ class GentooReporter:
         self._data = {}
 
     def _relative(self, absolute, post_dot_digits=1):
-        return round(absolute * 100.0 / self.gentoo_machines, post_dot_digits)
+        format = '%%.0%df' % post_dot_digits
+        return format % round(absolute * 100.0 / self.gentoo_machines, post_dot_digits)
 
     def _analyze_archs(self):
         # TODO use different type of join?
