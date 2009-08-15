@@ -89,7 +89,7 @@ class InstalledPackages:
             version_revision = "%s-%s" % (ver, rev)
 
         SLOT, KEYWORDS, repo, IUSE, USE = \
-            var_tree.dbapi.aux_get(cpv, ['SLOT', 'KEYWORDS', 'repo',
+            var_tree.dbapi.aux_get(cpv, ['SLOT', 'KEYWORDS', 'repository',
             'IUSE', 'USE'])
 
         # Perform privacy check and filtering
@@ -234,7 +234,7 @@ class InstalledPackages:
                 lines.append('  - Tags: %s' % ', '.join(tags))
 
             if repo:
-                lines.append('  - Repository: %s' % (repository))
+                lines.append('  - Repository: %s' % (repo))
             if sorted_flags_list:
                 final_flag_list = [x.startswith('-') and x or ('+' + x) for x in \
                         compress_use_flags(sorted_flags_list)]
