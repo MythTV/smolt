@@ -26,6 +26,8 @@ from playmodel import _gentoo_system_profile_table, _gentoo_system_profile_pool_
 from playmodel import _gentoo_chost_table, _gentoo_chost_pool_table
 from playmodel import _gentoo_call_flags_table, _gentoo_call_flag_pool_table
 from playmodel import _gentoo_package_mask_table, _gentoo_package_pool_table, _gentoo_atom_pool_table
+from playmodel import _gentoo_repo_pool_table, _gentoo_repos_table
+from playmodel import _gentoo_installed_packages_table, _gentoo_installed_package_props_table
 import datetime
 import sqlalchemy
 from sqlalchemy.sql import func, select, join, and_
@@ -48,9 +50,9 @@ class GentooReporter:
         self.gentoo_machines = 1
         self._data = {}
 
-    def _relative(self, absolute, post_dot_digits=1):
+    def _relative(self, absolute, hundred, post_dot_digits=1):
         format = '%%.0%df' % post_dot_digits
-        return format % round(absolute * 100.0 / self.gentoo_machines, post_dot_digits)
+        return format % round(absolute * 100.0 / hundred, post_dot_digits)
 
     def _analyze_archs(self):
         # TODO use different type of join?
@@ -59,9 +61,9 @@ class GentooReporter:
                 'absolute_stable':absolute_stable,
                 'absolute_unstable':absolute_unstable,
                 'absolute_total':absolute_total,
-                'relative_stable':self._relative(absolute_stable),
-                'relative_unstable':self._relative(absolute_unstable),
-                'relative_total':self._relative(absolute_total),
+                'relative_stable':self._relative(absolute_stable, self.gentoo_machines),
+                'relative_unstable':self._relative(absolute_unstable, self.gentoo_machines),
+                'relative_total':self._relative(absolute_total, self.gentoo_machines),
             }
             if label != None:
                 res['label'] = label
@@ -95,11 +97,80 @@ class GentooReporter:
         }
         return res
 
+    def _analyzes_repos(self):
+        package_count = select([func.count(GentooInstalledPackagesRel.package_id.distinct())]).execute().fetchall()[0][0]
+        installation_count = select([func.count(GentooInstalledPackagesRel.id)]).execute().fetchall()[0][0]
+
+        def make_row(absolute_popularity, absolute_used_packages, absolute_total_installations, label=None):
+            res = {
+                'absolute_popularity':absolute_popularity,
+                'absolute_used_packages':absolute_used_packages,
+                'absolute_total_installations':absolute_total_installations,
+                'relative_popularity':self._relative(absolute_popularity, self.gentoo_machines),
+                'relative_used_packages':self._relative(absolute_used_packages, package_count),
+                'relative_total_installations':self._relative(absolute_total_installations, installation_count),
+            }
+            if label != None:
+                res['label'] = label
+            return res
+
+        columns = [GentooRepoString.name, GentooRepoRel.repo_id, func.count(GentooRepoRel.machine_id)]
+        pool_join = _gentoo_repos_table.join(_gentoo_repo_pool_table)
+        query = select(columns, from_obj=[pool_join]).\
+                group_by(GentooRepoRel.repo_id).order_by(\
+                func.count(GentooRepoRel.machine_id).desc())
+
+        repo_stats = {}
+        for i in query.execute().fetchall():
+            name, repo_id, machine_count = i
+            repo_stats[repo_id] = { 'name':name,
+                                    'machine_count':machine_count,
+                                    'used_packages':0,
+                                    'total_installations':0}
+
+        install_join = _gentoo_installed_packages_table.join(
+                _gentoo_installed_package_props_table).join(_gentoo_repo_pool_table)
+        install_columns = [ GentooInstalledPackagePropertiesRel.repo_id, \
+                            GentooRepoString.name, \
+                            func.count(GentooInstalledPackagesRel.package_id.distinct()), \
+                            func.count(GentooInstalledPackagesRel.id.distinct())]
+        install_query = select(install_columns, from_obj=[install_join, ]).\
+                group_by(GentooInstalledPackagePropertiesRel.repo_id)
+        for i in install_query.execute().fetchall():
+            repo_id, repo_name, used_packages, total_installations = i
+            if repo_id in repo_stats:
+                repo_stats[repo_id]['used_packages'] = used_packages
+                repo_stats[repo_id]['total_installations'] = total_installations
+            else:
+                repo_stats[repo_id] = { 'name':repo_name,
+                                        'machine_count':0,
+                                        'used_packages':used_packages,
+                                        'total_installations':total_installations}
+
+        total_total_installations = 0
+        final_rows = []
+        for _, v in sorted(repo_stats.items(), key=\
+                lambda (k, v): (v['machine_count'], v['name']), \
+                reverse=True):
+            repo_name = v['name']
+            popularity = v['machine_count']
+            used_packages = v['used_packages']
+            total_installations = v['total_installations']
+
+            final_rows.append(make_row(popularity, used_packages, total_installations, repo_name))
+            total_total_installations = total_total_installations + total_installations
+
+        res = {
+            'listed':final_rows,
+            'total':[make_row(self.gentoo_machines, package_count, total_total_installations)],
+        }
+        return res
+
     def _analyze_simple_stuff(self):
         def make_row(absolute, post_dot_digits, label=None):
             res = {
                 'absolute':absolute,
-                'relative':self._relative(absolute, post_dot_digits),
+                'relative':self._relative(absolute, self.gentoo_machines, post_dot_digits),
             }
             if label != None:
                 res['label'] = label
@@ -183,7 +254,7 @@ class GentooReporter:
         def make_row(absolute, post_dot_digits, label=None):
             res = {
                 'absolute':absolute,
-                'relative':self._relative(absolute, post_dot_digits),
+                'relative':self._relative(absolute, self.gentoo_machines, post_dot_digits),
             }
             if label != None:
                 res['label'] = label
@@ -222,7 +293,7 @@ class GentooReporter:
         def make_row(absolute, post_dot_digits, label=None):
             res = {
                 'absolute':absolute,
-                'relative':self._relative(absolute, post_dot_digits),
+                'relative':self._relative(absolute, self.gentoo_machines, post_dot_digits),
             }
             if label != None:
                 res['label'] = label
@@ -298,7 +369,7 @@ class GentooReporter:
         def make_row(absolute, post_dot_digits, label=None):
             res = {
                 'absolute':absolute,
-                'relative':self._relative(absolute, post_dot_digits),
+                'relative':self._relative(absolute, self.gentoo_machines, post_dot_digits),
             }
             if label != None:
                 res['label'] = label
@@ -386,6 +457,7 @@ class GentooReporter:
         archs = self._analyze_archs()
         call_flags = self._analyzes_call_flags()
         package_mask = self._analyzes_package_mask()
+        repos = self._analyzes_repos()
 
         report_finished = datetime.datetime.utcnow()
         generation_duration = self._explain_time_delta(\
@@ -398,6 +470,7 @@ class GentooReporter:
             'call_flags':call_flags,
             'package_mask':package_mask,
             'global_use_flags':global_use_flags,
+            'repos':repos,
         }
         for k, v in simple_stuff.items():
             if k in data:

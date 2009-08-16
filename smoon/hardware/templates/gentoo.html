@@ -392,12 +392,37 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 <a name="overlays"></a><!-- for backwards compatibility -->
 <a name="repositories"></a><h2>Repositories</h2>
-<div class="todo">
+<div>
     <table>
-        <tr><th class="vert_head">Repository</th><th colspan="2" class="head">Popularity</th><th colspan="2" class="head">Used packages</th><th colspan="2" class="head">Total installations</th></tr>
-        <tr><th class="vert"><a href="http://gentoo-overlays.zugaina.org/zugaina/">zugaina</a></th><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert"><span class="group_item">others</span></th><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-        <tr><th class="vert_foot">Total</th><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+        <tr>
+            <th class="vert_head">Repository</th>
+            <th colspan="2" class="head">Popularity</th>
+            <th colspan="2" class="head">Used packages</th>
+            <th colspan="2" class="head">Total installations</th>
+        </tr>
+        <tr py:for="row in data['repos']['listed']">
+<py:if test="row['label'] != ''">
+            <th class="vert"><a href="http://gentoo-overlays.zugaina.org/${row['label']}/">${row['label']}</a></th>
+</py:if>
+<py:if test="row['label'] == ''">
+            <th class="vert"><span class="group_item">unknown</span></th>
+</py:if>
+            <td class="count">${row['absolute_popularity']}</td>
+            <td class="relative">(${row['relative_popularity']} %)</td>
+            <td class="count">${row['absolute_used_packages']}</td>
+            <td class="relative">(${row['relative_used_packages']} %)</td>
+            <td class="count">${row['absolute_total_installations']}</td>
+            <td class="relative">(${row['relative_total_installations']} %)</td>
+        </tr>
+        <tr py:for="row in data['repos']['total']">
+            <th class="vert_foot">Maximum</th>
+            <td class="foot_count">${row['absolute_popularity']}</td>
+            <td class="foot_relative">(${row['relative_popularity']} %)</td>
+            <td class="foot_count">${row['absolute_used_packages']}</td>
+            <td class="foot_relative">(${row['relative_used_packages']} %)</td>
+            <td class="foot_count">${row['absolute_total_installations']}</td>
+            <td class="foot_relative">(${row['relative_total_installations']} %)</td>
+        </tr>
     </table>
 </div>
 
