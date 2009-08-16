@@ -33,6 +33,11 @@ parser.add_option('--delete',
                   default = False,
                   action = 'store_true',
                   help = 'delete entries after addition (default is marking as added)')
+parser.add_option('--redo',
+                  dest = 'redo',
+                  default = False,
+                  action = 'store_true',
+                  help = 're-process all entries')
 
 (opts, args) = parser.parse_args()
 
@@ -65,16 +70,30 @@ CONNECTION = config.get('global', 'sqlalchemy.dburi').\
         lstrip('"\'').rstrip('"\'')
 engine = create_engine(CONNECTION, echo=True)
 session = sessionmaker(bind=engine)()
-count = session.query(BatchJob).filter_by(added=False).order_by(BatchJob.arrival).count()
-jobs = session.query(BatchJob).filter_by(added=False).order_by(BatchJob.arrival).all()
+
+# Check existing tables, create those missing
+metadata.create_all(engine)
+
+# Build query base
+q = session.query(BatchJob)
+if not opts.redo:
+    q = q.filter_by(added=False)
+q = q.order_by(BatchJob.arrival.asc())
+
+count = q.count()
+jobs = q.all()
+good = 0
+bad = 0
 for j in jobs:
     print '===================================================================='
     print 'Processing job with hardware UUID %s' % j.hw_uuid
     print '===================================================================='
     try:
         handle_submission(session, j.hw_uuid, j.data)
+        good = good + 1
     except Exception, e:
-        traceback.print_tb()
+        traceback.print_tb(sys.exc_info()[2])
+        bad = bad + 1
     else:
         if opts.delete_after_addition:
             session.delete(j)
@@ -83,4 +102,9 @@ for j in jobs:
 session.flush()
 print '===================================================================='
 print '%d jobs processed' % count
+print ''
+print '% 6d good' % good
+print '% 6d bad' % bad
+print '----------------------------------'
+print '% 6d total' % count
 print '===================================================================='
