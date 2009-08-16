@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-05 19:52+0200\n"
-"PO-Revision-Date: 2009-06-24 09:33-0300\n"
+"POT-Creation-Date: 2009-08-08 15:06+0200\n"
+"PO-Revision-Date: 2009-08-13 14:02-0300\n"
 "Last-Translator: Domingo Becker <domingobecker@gmail.com>\n"
 "Language-Team: Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -14,35 +14,42 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: deleteProfile.py:36 smolt.py:360
+#: deleteProfile.py:36
+#: smolt.py:360
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Mensaje del Servidor: \"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:46
+#: deleteProfile.py:46
+#: sendProfile.py:48
 msgid "enable debug information"
 msgstr "habilitar información de depuración"
 
-#: deleteProfile.py:51 sendProfile.py:56
+#: deleteProfile.py:51
+#: sendProfile.py:58
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "especificar la URL del servidor (por defecto \"%default\")"
 
-#: deleteProfile.py:56 sendProfile.py:71
+#: deleteProfile.py:56
+#: sendProfile.py:73
 msgid "print information only, do not send"
 msgstr "solamente imprimir la información, no enviar"
 
-#: deleteProfile.py:61 sendProfile.py:86
+#: deleteProfile.py:61
+#: sendProfile.py:88
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "especificar el agente de usuario HTTP (por defecto \"%default\")"
 
-#: deleteProfile.py:66 sendProfile.py:91
+#: deleteProfile.py:66
+#: sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "especificar el tiempo límite de HTTP en segundos (por defecto %default segundos)"
 
-#: deleteProfile.py:70 sendProfile.py:110
+#: deleteProfile.py:70
+#: sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
 msgstr "especifique qué uuid usar, útil para depurar y probar principalmente."
 
@@ -55,14 +62,14 @@ msgid "Profile removed, please verify at"
 msgstr "Perfil eliminado, por favor verifique en"
 
 #: gui.py:35
-#, fuzzy
+#: sendProfile.py:177
+#: smolt.py:655
 msgid "General"
-msgstr "Kernel"
+msgstr "General"
 
 #: gui.py:37
-#, fuzzy
 msgid "Distribution"
-msgstr "Descripción"
+msgstr "Distribución"
 
 #: gui.py:82
 msgid "Label"
@@ -89,7 +96,7 @@ msgid "Description"
 msgstr "Descripción"
 
 #: privacypolicy.py:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
@@ -127,30 +134,34 @@ msgstr ""
 "al servidor smolt de Fedora (smoon). El único enlace desde la base de datos y\n"
 "los que envían información el el UUID de la máquina. En la medida en que el que\n"
 "envía no libere este UUID, el envío será anónimo. Si en algún momento algún\n"
-"usuario quiere borrar su perfil de la base de datos, solamente debe ejecutar\n"
-"\n"
-"    smoltDeleteProfile\n"
-"\n"
+"usuario quiere borrar su perfil de la base de datos, solamente debe ejecutar<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
 "La información enviada al servidor de base de datos smolt debe considerarse\n"
 "pública en el sentido que cualquiera puede ver las estadísticas, los datos y\n"
 "compartir los perfiles de máquina. En muchas formas, smolt se diseñó para llamar\n"
 "la atención de los vendedores de hardware y de terceros. Como tal, esta\n"
 "información no solamente será compartida con terceros, sino que se usará como\n"
 "palanca para obtener un mejor soporte de controladores de código abierto y un\n"
-"mejor soporte en general.\n"
-"\n"
-"Registrado de IP: en la instalación de smolt en Fedora todo el tráfico web va\n"
-"primero a través de un proxy. Este es el único lugar en donde se guardan las IP\n"
-"y se mantienen en ese servidor por un período de 4 semanas en el que la rotación\n"
+"mejor soporte en general.<br>\n"
+"<br>\n"
+"Registrado de IP: en la instalación de smolt en Fedora todo el tráfico web primero\n"
+"atraviesa un servidor proxy. Este es el único lugar en donde se guardan las IP\n"
+"y se mantienen en ese servidor por un período de 4 semanas, en el que la rotación\n"
 "de logs las eliminará. El Proyecto Fedora no agrega direcciones IP en la base\n"
 "de datos de smolt. Estos logs son privados y no estarán disponibles al público\n"
-"en general.\n"
-"\n"
-"Los usuarios que no estén de acuerdo con esta política, simplemente no usen smolt.\n"
+"en general.<br>\n"
+"<br>\n"
+"Los usuarios que no estén de acuerdo con esta política, simplemente no utilicen smolt.\n"
 "Los usuarios que tengan preguntas acerca de esta política deben contactar al\n"
-"Equipo de Infraestructura de Fedora en admin [en] fedoraproject.org. También\n"
-"recordar que los usuarios pueden borrar sus perfiles en cualquier momento usando\n"
-"\"smoltDeleteProfile\"\n"
+"Equipo de Infraestructura de Fedora en <a href=\"mailto:%(mail)s\">%(mail)s</a>.\n"
+" También hay que recordar que los usuarios pueden borrar sus perfiles en cualquier\n"
+" momento utilizandosando<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"Gracias por participar y por su interés en nuestra política de privacidad.\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
@@ -201,92 +212,137 @@ msgstr "\tsu perfil y cree una página wiki para el dispositivo para que otros p
 msgid "\tbenefit"
 msgstr "\tbeneficiarse"
 
-#: scan.py:101 smolt.py:1116
+#: scan.py:101
+#: smolt.py:1157
 msgid "Error:"
 msgstr "Error:"
 
-#: scan.py:103 smolt.py:1118
+#: scan.py:103
+#: smolt.py:1159
 msgid "Hint:"
 msgstr "Consejo:"
 
-#: sendProfile.py:51 smoltGui.py:327
+#: sendProfile.py:53
+#: smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr ""
+msgstr "especifica la ubicación del (único) archivo de configuración a ser utilizado"
 
-#: sendProfile.py:61
+#: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
 msgstr "(opcional) Registración en el Sistema de Cuentas de Fedora"
 
-#: sendProfile.py:66
+#: sendProfile.py:68
 msgid "password, will prompt if not specified"
 msgstr "contraseña, se preguntará si no la especifica"
 
-#: sendProfile.py:76
+#: sendProfile.py:78
 msgid "don't prompt to send, just send"
 msgstr "no pregunte si va a enviar, simplemente envíe"
 
-#: sendProfile.py:81
+#: sendProfile.py:83
 msgid "continue to send until success"
 msgstr "continúe enviando hasta que tenga éxito"
 
-#: sendProfile.py:96
+#: sendProfile.py:98
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "este es un registro automatizado, se ejecutará sólo si el servicio \"smolt\" ha sido iniciado"
 
-#: sendProfile.py:101
+#: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr "solo buscar en esta máquina el errata de hardware conocido, no enviar el perfil."
 
-#: sendProfile.py:106
+#: sendProfile.py:108
 msgid "do not scan this machine for know hardware errata, only submit profile."
 msgstr "no buscar en esta máquina el errata de hardware conocido, sólo enviar el perfil."
 
-#: sendProfile.py:120
+#: sendProfile.py:122
 msgid "Request a new public UUID"
 msgstr "Pida un nuevo UUID público"
 
-#: sendProfile.py:124
+#: sendProfile.py:126
 msgid "HTTP proxy"
 msgstr "proxy HTTP"
 
-#: sendProfile.py:144
+#: sendProfile.py:146
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt fue configurado para registrarse, pero la registración está deshabilitada (consejo: service smolt start)"
 
-#: sendProfile.py:154
+#: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
 msgstr "¡Exito!  Su UUID público nuevo es: %s"
 
+#: sendProfile.py:172
+msgid "Smolt has collected four types of information:"
+msgstr "Smolt ha recopilado cuatro clases de información:"
+
+#: sendProfile.py:173
+msgid "Do you want to .."
+msgstr "Desea..."
+
 #: sendProfile.py:174
-msgid "Send this information to the Smolt server? (y/n)"
-msgstr "¿Enviar esta información al servidor Smolt? (s/n)"
+msgid "(v)iew details on collected information?"
+msgstr "¿ver detalles acerca de la información recopilada? (v)"
 
 #: sendProfile.py:175
-msgid "y"
-msgstr "s"
+msgid "(s)end this information to the Smolt server? (or [y] for yes)"
+msgstr "¿Enviar esta información al servidor Smolt? (s) o (y)"
 
-#: sendProfile.py:176 sendProfile.py:179
+#: sendProfile.py:176
+msgid "(q)uit Smolt?  (or [n] for no)"
+msgstr "¿Salir de Smolt? (q). En caso contrario: (n)"
+
+#: sendProfile.py:178
+#: smolt.py:669
+msgid "Devices"
+msgstr "Dispositivos"
+
+#: sendProfile.py:179
+msgid "File system-related"
+msgstr "Información relacionada con el sistema de archivos"
+
+#: sendProfile.py:180
+msgid "Distribution-specific"
+msgstr "De la distribución"
+
+#: sendProfile.py:213
+msgid "Your choice (s/v/q/y/n): "
+msgstr "Su elección (s/v/q/y/n):"
+
+#: sendProfile.py:215
+#: sendProfile.py:234
 msgid "Exiting..."
 msgstr "Saliendo..."
 
-#: sendProfile.py:190
+#: sendProfile.py:217
+msgid "s|y|yes"
+msgstr "s|y|si"
+
+#: sendProfile.py:220
+msgid "q|n|no"
+msgstr "q|n|no"
+
+#: sendProfile.py:222
+msgid "v"
+msgstr "v"
+
+#: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
 msgstr "Reintentos Activado - Reintentando"
 
-#: sendProfile.py:199
+#: sendProfile.py:255
 msgid "Could not send - Exiting"
 msgstr "No se pudo enviar - Saliendo"
 
-#: sendProfile.py:204
+#: sendProfile.py:260
 msgid "Password:"
 msgstr "Contraseña:"
 
-#: sendProfile.py:209
+#: sendProfile.py:265
 msgid "Registration Failed, Try again"
 msgstr "La registración falló, Intente nuevamente"
 
-#: sendProfile.py:220
+#: sendProfile.py:276
 #, python-format
 msgid ""
 "To share your profile: \n"
@@ -295,16 +351,17 @@ msgstr ""
 "Para compartir su perfil: \n"
 "\t%s (público)"
 
-#: sendProfile.py:224
+#: sendProfile.py:280
 #, python-format
 msgid "\tAdmin Password: %s"
 msgstr "\tContraseña de Administrador: %s"
 
-#: sendProfile.py:227
+#: sendProfile.py:283
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr "¡No se encontró el UUID Público!  Por favor, vuelva a correr con -n para generar un nuevo uuid público"
 
-#: smoltFirstBoot.py:38 smoltFirstBoot.py:39
+#: smoltFirstBoot.py:38
+#: smoltFirstBoot.py:39
 msgid "Hardware Profile"
 msgstr "Perfil de Hardware"
 
@@ -382,9 +439,10 @@ msgstr "Barra de Herramientas Principal"
 
 #: smoltGui.py:170
 msgid "No distribution-specific data yet"
-msgstr ""
+msgstr "Aún sin datos específicos de la distribución"
 
-#: smoltGui.py:175 smoltGui.py:238
+#: smoltGui.py:175
+#: smoltGui.py:238
 msgid "Error"
 msgstr "Error"
 
@@ -399,16 +457,16 @@ msgstr "Perfil Enviado"
 #: smoltGui.py:247
 #, python-format
 msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
-msgstr ""
+msgstr "<b>¡Su perfil fue enviado correctamente!</b><br>\t\t\t\t<br>\t\t\t\tSus perfiles se encuentran disponibles en:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tSu contraseña de administración de perfil es:<br><i>%(password)s</i>"
 
 #: smoltGui.py:270
 msgid "Privacy Policy"
 msgstr "Política de Privacidad"
 
 #: smoltGui.py:284
-#, fuzzy, python-format
+#, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
-msgstr "<h3>Smolt Qt</h3>Versión 0.1.1<br/>"
+msgstr "<h3>Smolt Qt</h3>Versión %(version)s<br/>"
 
 #: smoltGui.py:285
 msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
@@ -419,14 +477,13 @@ msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t
 msgstr "<b>Acerca de Smolt:</b><br/> El perfilador de hardware smolt es un sistema \t\t\t\tservidor-cliente que examina el hardware de una máquina y envía los \t\t\t\tresultados a un servidor público turbogears de Fedora Project. \t\t\t\tLos envíos son anónimos y no deben contener ninguna información \t\t\t\tprivada más que la información del hardware físico y la info básica \t\t\t\tdel SO.<br/>"
 
 #: smoltGui.py:294
-#, fuzzy
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
-msgstr "<b>Autores:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+msgstr "<b>Autores:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:296
-#, fuzzy, python-format
+#, python-format
 msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr "%s<br/>%s<br/>%s<br/><br/><b>Licencia:</b><br/>Este programa es software libre; \t\t\t\tpuede redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General de GNU\t\t\t\tcomo fue publicada por la Fundación del Software Libre; ya sea en su versión 3 \t\t\t\tde la misma, o (a su opción) cualquier versión posterior."
+msgstr "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>Licencia:</b><br>\t\t\t\tEste programa es software libre; puede redistribuirlo y/o \t\t\t\tmodificarlo bajo los términos de la Licencia Pública General de GNU \t\t\t\tcomo fue publicada por la Fundación del Software Libre; ya sea en la versión 3 \t\t\t\tde la licensia, o (a su opción) cualquier otra versión posterior."
 
 #: smolt.py:362
 #, python-format
@@ -446,23 +503,27 @@ msgstr ""
 "Ejecute \"service haldaemon start\" como root"
 
 #: smolt.py:507
-#, fuzzy
 msgid ""
 "\tYour pub_uuid could not be written.\n"
 "\n"
-msgstr "\tSu archivo pub_uuid no pudo ser cacheado: %s\n"
+msgstr ""
+"\tSu archivo pub_uuid no pudo ser escrito.\n"
+"\n"
 
 #: smolt.py:516
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
 msgstr "\tSu token de admin no pudo ser cacheado: %s\n"
 
-#: smolt.py:536 smolt.py:579 smolt.py:609
+#: smolt.py:536
+#: smolt.py:579
+#: smolt.py:609
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Error al contactar al Servidor: %s"
 
-#: smolt.py:545 smolt.py:596
+#: smolt.py:545
+#: smolt.py:596
 msgid "Wrong version, server incapable of handling your client"
 msgstr "Versión incorrecta, el servidor no pudo manejar su cliente"
 
@@ -475,190 +536,195 @@ msgstr "Algo salió mal al buscar un token"
 msgid "An error has occured while contacting the server: %s"
 msgstr "Un error ocurrió mientras se contactaba al servidor: %s"
 
-#: smolt.py:630
-msgid "Devices"
-msgstr "Dispositivos"
-
-#: smolt.py:637
-msgid "\tFilesystem Information"
-msgstr "\tInformación del Sistema de Archivo"
-
-#: smolt.py:649
-msgid "UUID"
-msgstr "UUID"
-
-#: smolt.py:650
+#: smolt.py:618
+#: smolt.py:691
 msgid "OS"
 msgstr "SO"
 
-#: smolt.py:651
+#: smolt.py:619
+#: smolt.py:692
 msgid "Default run level"
 msgstr "Nivel de ejecución por defecto"
 
-#: smolt.py:652
+#: smolt.py:620
+#: smolt.py:693
 msgid "Language"
 msgstr "Idioma"
 
-#: smolt.py:653
+#: smolt.py:677
+msgid "Filesystem Information"
+msgstr "Información relacionada con el sistema de archivos"
+
+#: smolt.py:690
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:694
 msgid "Platform"
 msgstr "Plataforma"
 
-#: smolt.py:654
+#: smolt.py:695
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:655
+#: smolt.py:696
 msgid "CPU Vendor"
 msgstr "Fabricante de CPU"
 
-#: smolt.py:656
+#: smolt.py:697
 msgid "CPU Model"
 msgstr "Modelo de CPU"
 
-#: smolt.py:657
+#: smolt.py:698
 msgid "CPU Stepping"
 msgstr "Paso del UCP"
 
-#: smolt.py:658
+#: smolt.py:699
 msgid "CPU Family"
 msgstr "Familia de UCP"
 
-#: smolt.py:659
+#: smolt.py:700
 msgid "CPU Model Num"
 msgstr "Número de Modelo de CPU"
 
-#: smolt.py:660
+#: smolt.py:701
 msgid "Number of CPUs"
 msgstr "Número de CPUs"
 
-#: smolt.py:661
+#: smolt.py:702
 msgid "CPU Speed"
 msgstr "Velocidad del CPU"
 
-#: smolt.py:662
+#: smolt.py:703
 msgid "System Memory"
 msgstr "Memoria del Sistema"
 
-#: smolt.py:663
+#: smolt.py:704
 msgid "System Swap"
 msgstr "Intercambio (swap) del Sistema"
 
-#: smolt.py:664
+#: smolt.py:705
 msgid "Vendor"
 msgstr "Vendedor"
 
-#: smolt.py:665
+#: smolt.py:706
 msgid "System"
 msgstr "Sistema"
 
-#: smolt.py:666
+#: smolt.py:707
 msgid "Form factor"
 msgstr "Factor de forma"
 
-#: smolt.py:667
+#: smolt.py:708
 msgid "Kernel"
 msgstr "Kernel"
 
-#: smolt.py:668
+#: smolt.py:709
 msgid "SELinux Enabled"
 msgstr "SELinux Habilitado"
 
-#: smolt.py:669
+#: smolt.py:710
 msgid "SELinux Policy"
 msgstr "Política de SELinux"
 
-#: smolt.py:670
+#: smolt.py:711
 msgid "SELinux Enforce"
 msgstr "SELinux Obligado"
 
-#: smolt.py:1139
+#: smolt.py:1180
 msgid "Unable to save UUID, continuing...\n"
 msgstr "No se pudo guardar UUID, continuando...\n"
 
-#: smolt.py:1140
+#: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
 msgstr "Su archivo UUID no se pudo crear: %s\n"
 
-#: smolt.py:1143
+#: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
 msgstr "¡No se pudo determinar el UUID del sistema!\n"
 
-#: smolt.py:1162
+#: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
-msgstr ""
+msgstr "Error al determinar el UUID público: %s"
 
-#: smolt.py:1163
-#, fuzzy
+#: smolt.py:1204
 msgid "Unable to determine Public UUID!\n"
-msgstr "¡No se pudo determinar el UUID del sistema!\n"
+msgstr "¡No se pudo determinar el UUID Público!\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "No se pudo determinar el nivel de ejecución"
 
+#~ msgid "y"
+#~ msgstr "s"
 #~ msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
 #~ msgstr "Envie este perfil también a Bodhy, para el Desarrollo de Fedora"
-
 #~ msgid ""
-#~ "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
+#~ "The data was successfully sent. If you need to refer to your hardware "
+#~ "profile for a bug report your UUID is \n"
 #~ "%s\n"
 #~ "stored in %s"
 #~ msgstr ""
-#~ "Los datos fueron enviados exitosamente. Si necesita referirse a su perfil de hardware para informar un error, su UUID es \n"
+#~ "Los datos fueron enviados exitosamente. Si necesita referirse a su perfil "
+#~ "de hardware para informar un error, su UUID es \n"
 #~ "%s\n"
 #~ "almacenado en %s"
-
 #~ msgid ""
 #~ "\tMaybe re-run as root?\n"
 #~ "\n"
 #~ msgstr ""
 #~ "\t¿Quizás correr de nuevo como root?\n"
 #~ "\n"
-
 #~ msgid "_Quit"
 #~ msgstr "_Salir"
-
 #~ msgid "Quit the program without sending your hardware profile to the server"
 #~ msgstr "¿Salir del programa sin enviar su perfil de hardware al servidor"
-
 #~ msgid "_Send"
 #~ msgstr "_Enviar"
-
 #~ msgid "Send your hardware profile to the server."
 #~ msgstr "Enviar su perfil de hardware al servidor."
-
 #~ msgid "Show the Smolt privacy policy."
 #~ msgstr "Mostrar la política de privacidad de Smolt."
-
 #~ msgid "Take me to my smolt profile page"
 #~ msgstr "Lléveme a mi página de perfil smolt"
-
 #~ msgid "Smolt Privacy Policy"
 #~ msgstr "Política de Privacidad de Smolt"
-
 #~ msgid "translator-credits"
 #~ msgstr "Domingo Becker <domingobecker@gmail.com>, 2007"
-
 #~ msgid "Fedora hardware profiler."
 #~ msgstr "Perfilador de hardware de Fedora."
-
 #~ msgid "Copyright © 2007 Mike McGrath"
 #~ msgstr "Copyright © 2007 Mike McGrath"
-
 #~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
 #~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
 #~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program; if not, write to the Free Software Foundation, Inc., "
+#~ "675 Mass Ave, Cambridge, MA 02139, USA."
 #~ msgstr ""
-#~ "Este programa es software libre, puede redistribuirlo y/o modificarlo bajo los términos del la Licencia Pública General de GNU como fue publicada por la Fundación de Software Libre, ya sea en su versión 2, o (a su elección) cualquier versión posterior.\n"
+#~ "Este programa es software libre, puede redistribuirlo y/o modificarlo "
+#~ "bajo los términos del la Licencia Pública General de GNU como fue "
+#~ "publicada por la Fundación de Software Libre, ya sea en su versión 2, o "
+#~ "(a su elección) cualquier versión posterior.\n"
 #~ "\n"
-#~ "Este programa se distribuye con la esperanza de que le será útil, pero SIN NINGUNA GARANTÍA, sin siquiera la garantía implícita de MERCANTIBILIDAD o AJUSTE A UN PROPOSITO PARTICULAR. Vea la Licencia Pública General de GNU para más detalles.\n"
+#~ "Este programa se distribuye con la esperanza de que le será útil, pero "
+#~ "SIN NINGUNA GARANTÍA, sin siquiera la garantía implícita de "
+#~ "MERCANTIBILIDAD o AJUSTE A UN PROPOSITO PARTICULAR. Vea la Licencia "
+#~ "Pública General de GNU para más detalles.\n"
 #~ "\n"
-#~ "Debe haber recibido una copia de la Licencia Pública General de GNU, junto con este programa; sino, escriba a la Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
-
+#~ "Debe haber recibido una copia de la Licencia Pública General de GNU, "
+#~ "junto con este programa; sino, escriba a la Free Software Foundation, "
+#~ "Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 #~ msgid "Communication with server failed"
 #~ msgstr "Falló la comunicación con el servidor"
+

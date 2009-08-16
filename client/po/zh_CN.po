@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-05 19:52+0200\n"
+"POT-Creation-Date: 2009-08-08 15:06+0200\n"
 "PO-Revision-Date: 2008-09-15 09:31+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -26,30 +26,30 @@ msgstr ""
 msgid "Server Message: \"%s\""
 msgstr "服务器信息：\"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:46
+#: deleteProfile.py:46 sendProfile.py:48
 msgid "enable debug information"
 msgstr "启用调试信息"
 
-#: deleteProfile.py:51 sendProfile.py:56
+#: deleteProfile.py:51 sendProfile.py:58
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "指定服务器的 URL（缺省为 \"%default\"）"
 
-#: deleteProfile.py:56 sendProfile.py:71
+#: deleteProfile.py:56 sendProfile.py:73
 msgid "print information only, do not send"
 msgstr "只显示信息而不发送信息"
 
-#: deleteProfile.py:61 sendProfile.py:86
+#: deleteProfile.py:61 sendProfile.py:88
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "指定 HTTP 用户代理（缺省为 \"%default\"）"
 
-#: deleteProfile.py:66 sendProfile.py:91
+#: deleteProfile.py:66 sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "指定 HTTP 的超时时间（缺省为 %default 秒）"
 
-#: deleteProfile.py:70 sendProfile.py:110
+#: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
 msgstr ""
 
@@ -61,7 +61,7 @@ msgstr "连接服务器错误："
 msgid "Profile removed, please verify at"
 msgstr "配置文件被删除，请验证"
 
-#: gui.py:35
+#: gui.py:35 sendProfile.py:177 smolt.py:655
 #, fuzzy
 msgid "General"
 msgstr "内核"
@@ -208,105 +208,147 @@ msgstr "您的侧写中并为该设备删除一个 wiki，以方便"
 msgid "\tbenefit"
 msgstr "他人"
 
-#: scan.py:101 smolt.py:1116
+#: scan.py:101 smolt.py:1157
 msgid "Error:"
 msgstr "错误："
 
-#: scan.py:103 smolt.py:1118
+#: scan.py:103 smolt.py:1159
 msgid "Hint:"
 msgstr "提示："
 
-#: sendProfile.py:51 smoltGui.py:327
+#: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
 msgstr ""
 
-#: sendProfile.py:61
+#: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
 msgstr "（可选）Fedora 帐户系统注册"
 
-#: sendProfile.py:66
+#: sendProfile.py:68
 msgid "password, will prompt if not specified"
 msgstr "密码，如未指定会提示"
 
-#: sendProfile.py:76
+#: sendProfile.py:78
 msgid "don't prompt to send, just send"
 msgstr "直接发送而不要提示发送"
 
-#: sendProfile.py:81
+#: sendProfile.py:83
 msgid "continue to send until success"
 msgstr "继续发送直至成功发送"
 
-#: sendProfile.py:96
+#: sendProfile.py:98
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "这是自动的 checkin，只有在 \"smolt\" 服务已经被启动时才会运行。"
 
-#: sendProfile.py:101
+#: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr "只能为未知硬件勘误扫描这台机器，不要发送侧写。"
 
-#: sendProfile.py:106
+#: sendProfile.py:108
 #, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
 msgstr "只能为未知硬件勘误扫描这台机器，不要发送侧写。"
 
-#: sendProfile.py:120
+#: sendProfile.py:122
 msgid "Request a new public UUID"
 msgstr ""
 
-#: sendProfile.py:124
+#: sendProfile.py:126
 msgid "HTTP proxy"
 msgstr ""
 
-#: sendProfile.py:144
+#: sendProfile.py:146
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "设置 Smolt 为 checkin，但 checkin 被禁用（提示：service smolt start）"
 
-#: sendProfile.py:154
+#: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
 msgstr ""
 
+#: sendProfile.py:172
+msgid "Smolt has collected four types of information:"
+msgstr ""
+
+#: sendProfile.py:173
+msgid "Do you want to .."
+msgstr ""
+
 #: sendProfile.py:174
-msgid "Send this information to the Smolt server? (y/n)"
-msgstr "把这个信息发送到 Smolt 服务器吗？（y/n）"
+msgid "(v)iew details on collected information?"
+msgstr ""
 
 #: sendProfile.py:175
-msgid "y"
-msgstr "y"
+#, fuzzy
+msgid "(s)end this information to the Smolt server? (or [y] for yes)"
+msgstr "把这个信息发送到 Smolt 服务器吗？（y/n）"
 
-#: sendProfile.py:176 sendProfile.py:179
+#: sendProfile.py:176
+msgid "(q)uit Smolt?  (or [n] for no)"
+msgstr ""
+
+#: sendProfile.py:178 smolt.py:669
+msgid "Devices"
+msgstr "设备"
+
+#: sendProfile.py:179
+msgid "File system-related"
+msgstr ""
+
+#: sendProfile.py:180
+#, fuzzy
+msgid "Distribution-specific"
+msgstr "描述"
+
+#: sendProfile.py:213
+msgid "Your choice (s/v/q/y/n): "
+msgstr ""
+
+#: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
 msgstr "退出..."
 
-#: sendProfile.py:190
+#: sendProfile.py:217
+msgid "s|y|yes"
+msgstr ""
+
+#: sendProfile.py:220
+msgid "q|n|no"
+msgstr ""
+
+#: sendProfile.py:222
+msgid "v"
+msgstr ""
+
+#: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
 msgstr "启用重试 - 正在重试"
 
-#: sendProfile.py:199
+#: sendProfile.py:255
 msgid "Could not send - Exiting"
 msgstr "不能发送 － 退出"
 
-#: sendProfile.py:204
+#: sendProfile.py:260
 msgid "Password:"
 msgstr "密码："
 
-#: sendProfile.py:209
+#: sendProfile.py:265
 msgid "Registration Failed, Try again"
 msgstr "注册失败，重试"
 
-#: sendProfile.py:220
+#: sendProfile.py:276
 #, fuzzy, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
 msgstr "要查看您的配置文件，可以访问：%s"
 
-#: sendProfile.py:224
+#: sendProfile.py:280
 #, fuzzy, python-format
 msgid "\tAdmin Password: %s"
 msgstr "密码："
 
-#: sendProfile.py:227
+#: sendProfile.py:283
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr ""
 
@@ -488,123 +530,120 @@ msgstr ""
 msgid "An error has occured while contacting the server: %s"
 msgstr "发送数据至服务器时出现错误。"
 
-#: smolt.py:630
-msgid "Devices"
-msgstr "设备"
-
-#: smolt.py:637
-msgid "\tFilesystem Information"
-msgstr ""
-
-#: smolt.py:649
-msgid "UUID"
-msgstr "UUID"
-
-#: smolt.py:650
+#: smolt.py:618 smolt.py:691
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:651
+#: smolt.py:619 smolt.py:692
 msgid "Default run level"
 msgstr "缺省的运行级别"
 
-#: smolt.py:652
+#: smolt.py:620 smolt.py:693
 msgid "Language"
 msgstr "语言"
 
-#: smolt.py:653
+#: smolt.py:677
+#, fuzzy
+msgid "Filesystem Information"
+msgstr "启用调试信息"
+
+#: smolt.py:690
+msgid "UUID"
+msgstr "UUID"
+
+#: smolt.py:694
 msgid "Platform"
 msgstr "平台"
 
-#: smolt.py:654
+#: smolt.py:695
 msgid "BogoMIPS"
 msgstr "BogoMIPS"
 
-#: smolt.py:655
+#: smolt.py:696
 msgid "CPU Vendor"
 msgstr "CPU 供应商"
 
-#: smolt.py:656
+#: smolt.py:697
 msgid "CPU Model"
 msgstr "CPU 型号"
 
-#: smolt.py:657
+#: smolt.py:698
 msgid "CPU Stepping"
 msgstr ""
 
-#: smolt.py:658
+#: smolt.py:699
 msgid "CPU Family"
 msgstr ""
 
-#: smolt.py:659
+#: smolt.py:700
 #, fuzzy
 msgid "CPU Model Num"
 msgstr "CPU 型号"
 
-#: smolt.py:660
+#: smolt.py:701
 msgid "Number of CPUs"
 msgstr "CPU 数量"
 
-#: smolt.py:661
+#: smolt.py:702
 msgid "CPU Speed"
 msgstr "CPU 速度"
 
-#: smolt.py:662
+#: smolt.py:703
 msgid "System Memory"
 msgstr "系统内存"
 
-#: smolt.py:663
+#: smolt.py:704
 msgid "System Swap"
 msgstr "系统交换空间"
 
-#: smolt.py:664
+#: smolt.py:705
 msgid "Vendor"
 msgstr "供应商"
 
-#: smolt.py:665
+#: smolt.py:706
 msgid "System"
 msgstr "系统"
 
-#: smolt.py:666
+#: smolt.py:707
 msgid "Form factor"
 msgstr "Form factor"
 
-#: smolt.py:667
+#: smolt.py:708
 msgid "Kernel"
 msgstr "内核"
 
-#: smolt.py:668
+#: smolt.py:709
 msgid "SELinux Enabled"
 msgstr "启用 SELinux"
 
-#: smolt.py:669
+#: smolt.py:710
 #, fuzzy
 msgid "SELinux Policy"
 msgstr "强制 SELinux"
 
-#: smolt.py:670
+#: smolt.py:711
 msgid "SELinux Enforce"
 msgstr "强制 SELinux"
 
-#: smolt.py:1139
+#: smolt.py:1180
 msgid "Unable to save UUID, continuing...\n"
 msgstr "无法保存 UUID，继续...\n"
 
-#: smolt.py:1140
+#: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
 msgstr ""
 
-#: smolt.py:1143
+#: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
 msgstr "无法确定系统 UUID！\n"
 
-#: smolt.py:1162
+#: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
 msgstr ""
 
-#: smolt.py:1163
+#: smolt.py:1204
 #, fuzzy
 msgid "Unable to determine Public UUID!\n"
 msgstr "无法确定系统 UUID！\n"
@@ -612,6 +651,9 @@ msgstr "无法确定系统 UUID！\n"
 #: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "无法确定运行级别"
+
+#~ msgid "y"
+#~ msgstr "y"
 
 #, fuzzy
 #~ msgid ""
