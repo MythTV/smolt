@@ -60,7 +60,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
         <li><a href="#global_use_flags">Global use flags</a><span class="section_comment">(USE)</span></li>
         <li><a href="#system_profiles">System profiles</a><span class="section_comment">(/etc/make.profile)</span></li>
         <li><a href="#package_mask">User-masked packages</a><span class="section_comment">(/etc/portage/package.mask)</span></li>
-        <li class="todo"><a href="#repositories">Repositories</a><span class="section_comment">(PORTDIR, PORTDIR_OVERLAY)</span></li>
+        <li><a href="#repositories">Repositories</a><span class="section_comment">(PORTDIR, PORTDIR_OVERLAY)</span></li>
         <li>
             <a href="#mirrors">Mirrors</a>
             <ul>
@@ -393,6 +393,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 <a name="overlays"></a><!-- for backwards compatibility -->
 <a name="repositories"></a><h2>Repositories</h2>
 <div>
+    <p>
+        <strong>Note</strong>: Columns <em>Used packages</em> and <em>Total installations</em>
+        in the table below suffer from a bug in previous client code which broke the
+        package-to-repository mapping of at least 19 submissions.
+    </p>
+
     <table>
         <tr>
             <th class="vert_head">Repository</th>
