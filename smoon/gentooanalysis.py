@@ -149,9 +149,17 @@ class GentooReporter:
 
         total_total_installations = 0
         final_rows = []
-        for _, v in sorted(repo_stats.items(), key=\
-                lambda (k, v): (v['machine_count'], v['name']), \
-                reverse=True):
+        def repo_cmp(a, b):
+            res = cmp(a['machine_count'], b['machine_count'])
+            if res != 0:
+                return -res
+            res = cmp(a['name'], b['name'])
+            if res != 0:
+                return res
+            return 0
+
+        for _, v in sorted(repo_stats.items(), cmp=\
+                lambda a, b: repo_cmp(a[1], b[1])):
             repo_name = v['name']
             popularity = v['machine_count']
             used_packages = v['used_packages']
