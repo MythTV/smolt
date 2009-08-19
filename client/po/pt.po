@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-08-18 20:48+0100\n"
+"PO-Revision-Date: 2009-08-19 11:18+0100\n"
 "Last-Translator: Rui Gouveia <rui.gouveia@globaltek.pt>\n"
 "Language-Team: Português <fedora-trans-pt@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgid "Description"
 msgstr "Descrição"
 
 #: privacypolicy.py:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
@@ -134,32 +134,37 @@ msgid ""
 "<br>\n"
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
-"Smolt apenas envia o hardware e informação básica do sistema para o\n"
-"servidor smolt da Fedora (smoon). A única ligação entre a base de dados e a\n"
+"<span></span>\n"
+"O Smolt apenas envia informação básica do hardware e do sistema para o\n"
+"servidor smolt do Fedora (smoon). A única ligação entre a base de dados e a\n"
 "máquina do utilizador é o UUID. Desde que este código seja mantido secreto\n"
 "a submissão é anónima. Se em qualquer altura o utilizador quiser remover o\n"
-"perfil enviado da base de dados, basta executar\n"
-"\n"
-"    smoltDeleteProfile\n"
-"\n"
+"perfil da base de dados, basta executar<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
 "A informação enviada para a base de dados do smolt deve ser considerada pública\n"
 "na medida em que qualquer pessoa pode ver as estatísticas, dados e partilhar os\n"
 "perfis das máquinas. O Smolt foi desenhado para atrair a atenção dos fabricantes de\n"
 "hardware entre outros. Sendo assim, não só esta informação será partilhada com\n"
 "estas entidades, como o smolt será utilizado como argumento para obter melhor\n"
-"suporte para drivers de código aberto, assim como melhor suporte no geral.\n"
-"\n"
-"Log de IP: Todo o tráfego web passa primeiro por um proxy. Este é o único\n"
-"ponto onde o IP dos utilizadores é identificado, ficando neste servidor por um\n"
+"suporte para drivers de código aberto, assim como melhor suporte no geral.<br>\n"
+"<br>\n"
+"Logs de IP: Todo o tráfego web para o smolt passa primeiro por um proxy. Este é o\n"
+"único ponto onde o IP dos utilizadores é identificado, ficando neste servidor por um\n"
 "período de 4 semanas, altura em que a rotação de logs apaga estes logs.\n"
 "O Projecto Fedora não associa o endereço IP aos dados da base de dados.\n"
-"Estes logs são privados e não estão disponíveis para o público em geral.\n"
-"\n"
+"Estes logs são privados e não estão disponíveis para o público em geral.<br>\n"
+"<br>\n"
 "Os utilizadores descontentes com esta politica podem simplesmente não\n"
 "utilizar o smolt. Utilizadores com questões sobre esta politica devem contactar\n"
-"a Equipe de Infraestrutura do Projecto Fedora em admin [at] fedoraproject.org .\n"
-"Além disso, os utilizadores podem remover os seus perfis em qualquer altura\n"
-"utilizando o comando \"smoltDeleteProfile\"\n"
+"a Equipe de Infraestrutura do Projecto Fedora em <a href=\"mailto:%(mail)s\">%(mail)s</a>.\n"
+"Além disso, relembramos, os utilizadores podem remover os seus perfis em qualquer altura\n"
+"utilizando<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"Obrigado por participar e pelo seu interesse na nossa politica de privacidade.\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
@@ -471,18 +476,17 @@ msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\
 msgstr "<br/>O Smolt Qt é um cliente gráfico para enviar perfis de hardware do Smolt para um servidor Smoon.<br/>"
 
 #: smoltGui.py:288
-#, fuzzy
 msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr "<b>Sobre o Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
+msgstr "<b>Sobre o Smolt:</b><br/>O gestor de perfis de hardware é um sistema \t\t\t\tservidor-cliente que faz uma análise a um computador e envia os resultados\t\t\t\tpara um servidor público do Projecto Fedora. Os envios são anónimos \t\t\t\te não devem conter nenhuma informação privada além da informação \t\t\t\tfísica do hardware e informação básica do SO.<br/>"
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 msgstr "<b>Autores:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:296
-#, fuzzy, python-format
+#, python-format
 msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr "%s<br/>%s<br/>%s<br/><b>Licença:</b><br/>Este programa é software livre;\t\t\t\t\t\tvoçê pode redistribui-lo e/ou modifia-lo, desde que sob os termos do GNU General\t\tPublic License, tal como publicado pela Free Software Foundation; tanto na versão 3 \t\t\t\tda Licença, ou (à sua opção) outra versão superior."
+msgstr "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>Licença:</b><br>\t\t\t\tEste programa é software livre; você pode redistribui-lo e/ou \t\t\t\tmodifica-lo, desde que seja sob os termos da GNU General Public License \t\t\t\ttal como publicado pela Free Software Foundation; tanto na versão 3 \t\t\t\tda Licença, ou (à sua escolha) qualquer versão posterior."
 
 #: smolt.py:362
 #, python-format
