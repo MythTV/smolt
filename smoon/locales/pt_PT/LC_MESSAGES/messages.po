@@ -1,0 +1,381 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: smolt.master-smoon.messages\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2008-05-01 22:37-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Rui Gouveia <rui.gouveia@globaltek.pt>\n"
+"Language-Team: pt <fedora-trans-pt@redhat.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: PORTUGAL\n"
+
+#: hardware/controllers/root.py:95
+msgid "The credentials you supplied were not correct or did not grant access to this resource."
+msgstr ""
+
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr ""
+
+#: hardware/controllers/root.py:101
+msgid "Please log in."
+msgstr "Por favor, inicie sessão."
+
+#: hardware/templates/deviceclass.html:9
+#, fuzzy
+msgid "Devices by class ${type}"
+msgstr "Devolve o tipo (classe) do elemento."
+
+#: hardware/templates/deviceclass.html:15
+#, fuzzy
+msgid "Total Count"
+msgstr "Contagem de Reprodução:"
+
+#: hardware/templates/deviceclass.html:19
+#, fuzzy, python-format
+msgid "% hosts detected ${type}"
+msgstr "ignorando bloco do tipo %d\n"
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "Fabricantes"
+
+#: hardware/templates/deviceclass.html:34
+#: hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "Dispositivos"
+
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/show.html:60
+msgid "Device"
+msgstr "Dispositivo"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Bus"
+msgstr "Barramento"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "Controlador"
+
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr "Fabricante"
+
+#: hardware/templates/deviceclass.html:36
+#, fuzzy
+msgid "Sub Vendor"
+msgstr "<small><b>Fornecedor:</b></small>"
+
+#: hardware/templates/deviceclass.html:36
+#, fuzzy
+msgid "Sub Device"
+msgstr "Escolha de Dispositivo"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr "Data Adicionada"
+
+#: hardware/templates/deviceclass.html:36
+#, fuzzy
+msgid "% tot hosts"
+msgstr "Máquinas \"de Confiança\""
+
+#: hardware/templates/devices.html:15
+#: hardware/templates/stats.html:19
+#, fuzzy
+msgid "Total Registered Devices"
+msgstr "Dispositivos de Entrada Adicionais:"
+
+#: hardware/templates/devices.html:19
+#, fuzzy
+msgid "Unique Devices"
+msgstr "Dispositivos de Entrada:"
+
+#: hardware/templates/devices.html:24
+#, fuzzy
+msgid "Raw Devices"
+msgstr "Dispositivos de Entrada:"
+
+#: hardware/templates/devices.html:34
+#, fuzzy
+msgid "Machines / Device"
+msgstr "Escolha de Dispositivo"
+
+#: hardware/templates/devices.html:44
+msgid "Classes"
+msgstr "Classes"
+
+#: hardware/templates/report_search.html:37
+#: hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "Procurar"
+
+#: hardware/templates/report_search.html:38
+#, fuzzy
+msgid "Dataset"
+msgstr "IIM DataSet Desconhecido"
+
+#: hardware/templates/report_search.html:53
+#, fuzzy
+msgid "Result Set"
+msgstr "Definir a Ampliação..."
+
+#: hardware/templates/show.html:8
+#, fuzzy
+msgid "Show Box"
+msgstr "     L           Mostrar/Esconder caixa mensagens"
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr ""
+
+#: hardware/templates/show.html:31
+#, fuzzy
+msgid "Breaks System"
+msgstr "Monitor de Sistema"
+
+#: hardware/templates/show.html:32
+#, fuzzy
+msgid "Doesn't Work"
+msgstr "Telefone do Emprego"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr ""
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr ""
+
+#: hardware/templates/show.html:35
+#, fuzzy
+msgid "Worked out of the box"
+msgstr "Seleccione a caixa de selecção"
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr "Mostrar Toda a Informação"
+
+#: hardware/templates/show.html:39
+#, fuzzy
+msgid "Overall Rating:"
+msgstr "Progresso Geral:"
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr "UUID Público"
+
+#: hardware/templates/show.html:43
+#, fuzzy
+msgid "Operating System"
+msgstr "Foi detectado um problema no sistema operativo"
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr "Plataforma"
+
+#: hardware/templates/show.html:45
+#, fuzzy
+msgid "System Vendor"
+msgstr "<small><b>Fornecedor:</b></small>"
+
+#: hardware/templates/show.html:46
+#, fuzzy
+msgid "System Model"
+msgstr "Modelo de Segurança:"
+
+#: hardware/templates/show.html:47
+#: hardware/templates/stats.html:180
+msgid "Kernel"
+msgstr "Kernel"
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr ""
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr "Última alteração"
+
+#: hardware/templates/show.html:50
+#, fuzzy
+msgid "Admin Password"
+msgstr "Senha em branco."
+
+#: hardware/templates/show.html:60
+msgid "Rating"
+msgstr "Classificação"
+
+#: hardware/templates/show.html:60
+msgid "Class"
+msgstr "Classe"
+
+#: hardware/templates/stats.html:9
+#, fuzzy
+msgid "Stats"
+msgstr "Estado"
+
+#: hardware/templates/stats.html:15
+#, fuzzy
+msgid "Total Registered Hosts"
+msgstr "Anfitriãos Não Correspondentes"
+
+#: hardware/templates/stats.html:23
+#, fuzzy
+msgid "Total bogomips"
+msgstr "Tamanho Total"
+
+#: hardware/templates/stats.html:27
+#, fuzzy
+msgid "Total processors"
+msgstr "Processadores de Texto"
+
+#: hardware/templates/stats.html:31
+#, fuzzy
+msgid "Total MHz"
+msgstr "Tamanho Total"
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr ""
+
+#: hardware/templates/stats.html:40
+msgid "Arch"
+msgstr "Arq."
+
+#: hardware/templates/stats.html:40
+msgid "Count"
+msgstr "Quantidade"
+
+#: hardware/templates/stats.html:40
+#, fuzzy, python-format
+msgid "% of total"
+msgstr "Total:"
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr "SO"
+
+#: hardware/templates/stats.html:66
+msgid "Runlevel"
+msgstr "Nível de Execução"
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr "Língua"
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr "Modelo"
+
+#: hardware/templates/stats.html:119
+#, fuzzy
+msgid "RAM"
+msgstr "DVD-RAM"
+
+#: hardware/templates/stats.html:132
+#, fuzzy
+msgid "Swap"
+msgstr "Memória Virtual"
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr "CPU"
+
+#: hardware/templates/stats.html:147
+#, fuzzy
+msgid "Speed (MHz)"
+msgstr "_Velocidade da ligação:"
+
+#: hardware/templates/stats.html:154
+#, fuzzy
+msgid "Number of CPUs"
+msgstr "Número de cópias"
+
+#: hardware/templates/stats.html:161
+#, fuzzy
+msgid "CPU Vendor"
+msgstr "<small><b>Fornecedor:</b></small>"
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr "Bogomips"
+
+#: hardware/templates/stats.html:193
+#, fuzzy
+msgid "Form Factor"
+msgstr "Factor de zoom: %d:1"
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr "Selinux"
+
+#: hardware/templates/stats.html:208
+msgid "SELinux Enabled"
+msgstr "SELinux Activo"
+
+#: hardware/templates/stats.html:215
+#, fuzzy
+msgid "SELinux Enforce"
+msgstr "SELinux Activo"
+
+#: hardware/templates/stats.html:222
+#, fuzzy
+msgid "SELinux Policy"
+msgstr "Ferramenta de Geração de Políticas do SELinux"
+
+#: hardware/templates/stats.html:234
+msgid "Filesystems"
+msgstr "Sistemas de Ficheiros"
+
+#: hardware/templates/stats.html:242
+msgid "Filesystem size"
+msgstr "Tamanho do sistema de ficheiros"
+
+#: hardware/templates/stats.html:253
+#, fuzzy
+msgid "Myth Role"
+msgstr "Papel da Janela"
+
+#: hardware/templates/stats.html:266
+#, fuzzy
+msgid "Myth Remote"
+msgstr "Início de Sessão Remoto"
+
+#: hardware/templates/stats.html:279
+#, fuzzy
+msgid "Myth  Theme"
+msgstr "_Seleccione um tema:"
+
+#: hardware/templates/welcome.html:12
+#, fuzzy
+msgid "Enter your profile UUID:"
+msgstr "Exportar um perfil do Sistema de Configuração do Compiz"
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr "Estatísticas"
+
+#: hardware/templates/welcome.html:17
+msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+
+#: hardware/templates/welcome.html:19
+#, fuzzy
+msgid "Top Vendor Chart"
+msgstr "Nó raiz do gráfico"
+
+#: hardware/templates/welcome.html:23
+msgid "More info"
+msgstr "Mais informação"
+
+#: hardware/templates/welcome.html:25
+msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+
