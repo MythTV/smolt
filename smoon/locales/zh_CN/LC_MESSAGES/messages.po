@@ -1,4 +1,4 @@
-# translation of smolt.po to Simplified Chinese
+# translation of smolt.master-smoon.messages.po to Simplified Chinese
 # Translations template for hardware.
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
@@ -7,10 +7,10 @@
 # Leah Liu <lliu@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt\n"
+"Project-Id-Version: smolt.master-smoon.messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-18 16:06+1000\n"
+"PO-Revision-Date: 2009-08-19 14:57+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +145,7 @@ msgstr "工作，但需要额外配置"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr ""
+msgstr "即时可用"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
@@ -153,7 +153,7 @@ msgstr "显示所有信息"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr ""
+msgstr "总评级："
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
@@ -286,54 +286,54 @@ msgstr ""
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
-msgstr ""
+msgstr "Selinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "启用 SELinux "
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "强制 SELinux"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr ""
+msgstr "SELinux 策略"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
-msgstr ""
+msgstr "文件系统"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr ""
+msgstr "文件系统大小"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
-msgstr ""
+msgstr "Myth 角色"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr ""
+msgstr "Myth 远程"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr ""
+msgstr "Myth 主题"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr ""
+msgstr "输入您的侧写 UUID："
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
-msgstr ""
+msgstr "统计"
 
 #: hardware/templates/welcome.html:17
 msgid ""
 "For detailed statistics about the devices in the database see <a "
 "href='/static/stats/stats.html'>/stats</a> or <a "
 "href='/static/stats/devices.html'>/devices</a>"
-msgstr ""
+msgstr "有关数据库中这些设备的详细统计请查看 <a href='/static/stats/stats.html'>/stats</a> 或者 <a href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
@@ -341,12 +341,12 @@ msgstr ""
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr ""
+msgstr "更多"
 
 #: hardware/templates/welcome.html:25
 msgid ""
 "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
 "information about specific devices. Usage and other general answers can "
 "also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
+msgstr "<p>有关具体设备的详细信息清浏览并搜索 <a href='/wiki/'>Wiki</a>。用法及其它常规答案请查看 <a href='/wiki/'>Wiki</a>.</p>"
 
