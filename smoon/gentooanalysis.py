@@ -28,6 +28,7 @@ from playmodel import _gentoo_call_flags_table, _gentoo_call_flag_pool_table
 from playmodel import _gentoo_package_mask_table, _gentoo_package_pool_table, _gentoo_atom_pool_table
 from playmodel import _gentoo_repo_pool_table, _gentoo_repos_table
 from playmodel import _gentoo_installed_packages_table, _gentoo_installed_package_props_table
+from playmodel import _gentoo_version_pool_table, _gentoo_slot_pool_table
 import datetime
 import sqlalchemy
 from sqlalchemy.sql import func, select, join, and_
@@ -42,6 +43,9 @@ _MAX_CHOST = 30
 _MAX_CALL_FLAGS = 30
 _MAX_PACKAGE_MASK_ENTRIES = 30
 _MAX_PACKAGE_MASK_SUB_ENTRIES = 5
+_MAX_INSTALLED_PACKAGES = 100
+_MAX_INSTALLED_PACKAGE_SLOTS = 1
+_MAX_INSTALLED_PACKAGE_SLOT_VERSIONS = 1
 
 
 class GentooReporter:
@@ -373,6 +377,98 @@ class GentooReporter:
         }
         return res
 
+    def _analyzes_installed_packages(self):
+        pool_join = _gentoo_installed_packages_table.\
+                join(_gentoo_installed_package_props_table).\
+                join(_gentoo_package_pool_table)
+        query = select([
+                    GentooInstalledPackagesRel.package_id, \
+                    GentooPackageString.name, \
+                    func.count(GentooInstalledPackagesRel.machine_id.distinct())], \
+                from_obj=[pool_join]).\
+                where(
+                    GentooInstalledPackagePropertiesRel.world == 1).\
+                group_by(
+                    GentooInstalledPackagesRel.package_id).\
+                order_by(
+                    func.count(GentooInstalledPackagesRel.machine_id.distinct()).desc(), \
+                    GentooPackageString.name).\
+                limit(_MAX_INSTALLED_PACKAGES)
+
+        # package_ids = set()
+        package_id_order = []
+        package_dict = {}
+        for i in query.execute().fetchall():
+            package_id, package_name, machine_count = i
+
+            package_id_order.append(package_id)
+            package_dict[package_id] = {
+                'name':package_name,
+                'absolute_total':machine_count,
+                'relative_total':None,
+                'slots':{}
+            }
+
+        pool_join = _gentoo_installed_packages_table.\
+                join(_gentoo_installed_package_props_table).\
+                join(_gentoo_version_pool_table).\
+                join(_gentoo_slot_pool_table)
+        query = select([
+                    GentooInstalledPackagesRel.package_id, \
+                    GentooSlotString.name, \
+                    GentooVersionString.name, \
+                    func.count(GentooInstalledPackagesRel.machine_id.distinct())], \
+                from_obj=[pool_join]).\
+                where(
+                    and_(
+                        GentooInstalledPackagesRel.package_id.in_(package_id_order), \
+                        GentooInstalledPackagePropertiesRel.world == 1)).\
+                group_by(
+                    GentooInstalledPackagesRel.package_id, \
+                    GentooInstalledPackagesRel.slot_id, \
+                    GentooInstalledPackagePropertiesRel.version_id)
+        for i in query.execute().fetchall():
+            package_id, slot_name, version_name, machine_count = i
+            if slot_name not in package_dict[package_id]['slots']:
+                package_dict[package_id]['slots'][slot_name] = {
+                    'absolute_total':None,
+                    'relative_total':None,
+                    'versions':{}
+                }
+            package_dict[package_id]['slots'][slot_name]['versions'][version_name] = {
+                'absolute_total':machine_count,
+                'relative_total':None,
+            }
+            # print ', '.join(map(str, i))
+
+        if _MAX_INSTALLED_PACKAGES >= 50:
+            post_dot_digits = 2
+        else:
+            post_dot_digits = 1
+
+        for package_id, package_data in package_dict.items():
+            for slot_name, slot_data in package_data['slots'].items():
+                slot_data['absolute_total'] = 0
+                for version, version_data in slot_data['versions'].items():
+                    slot_data['absolute_total'] = slot_data['absolute_total'] + version_data['absolute_total']
+                    version_data['relative_total'] = self._relative(version_data['absolute_total'], self.gentoo_machines, post_dot_digits)
+                # TODO reduce version rows to _MAX_INSTALLED_PACKAGE_SLOT_VERSIONS here, keep max entries, accumulate others into "others"
+                slot_data['relative_total'] = self._relative(slot_data['absolute_total'], self.gentoo_machines, post_dot_digits)
+            # TODO reduce slot rows to _MAX_INSTALLED_PACKAGE_SLOTS here, keep max entries, accumulate others into "others"
+            package_data['relative_total'] = self._relative(package_data['absolute_total'], self.gentoo_machines, post_dot_digits)
+
+        final_tree = map(package_dict.get, package_id_order)
+        res = {
+            'most_installed_world':{
+                'listed':final_tree,
+                'total':{
+                    'absolute_total':self.gentoo_machines,
+                    'relative_total':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),
+                }
+            }
+        }
+        return res
+
     def _analyzes_call_flags(self):
         def make_row(absolute, post_dot_digits, label=None):
             res = {
@@ -466,6 +562,7 @@ class GentooReporter:
         call_flags = self._analyzes_call_flags()
         package_mask = self._analyzes_package_mask()
         repos = self._analyzes_repos()
+        installed_packages = self._analyzes_installed_packages()
 
         report_finished = datetime.datetime.utcnow()
         generation_duration = self._explain_time_delta(\
@@ -479,6 +576,7 @@ class GentooReporter:
             'package_mask':package_mask,
             'global_use_flags':global_use_flags,
             'repos':repos,
+            'installed_packages':installed_packages,
         }
         for k, v in simple_stuff.items():
             if k in data:
