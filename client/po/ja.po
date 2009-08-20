@@ -525,7 +525,7 @@ msgstr ""
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
-msgstr "<b>作者:</b><br/>Carlos Goncalves &lt;mail@cgoncalves.info&gt;"
+msgstr "<b>作者:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:296
 #, python-format
