@@ -377,7 +377,7 @@ class GentooReporter:
         }
         return res
 
-    def _analyzes_installed_packages(self):
+    def _analyzes_installed_packages_most_installed_world(self, post_dot_digits):
         pool_join = _gentoo_installed_packages_table.\
                 join(_gentoo_installed_package_props_table).\
                 join(_gentoo_package_pool_table)
@@ -441,11 +441,6 @@ class GentooReporter:
             }
             # print ', '.join(map(str, i))
 
-        if _MAX_INSTALLED_PACKAGES >= 50:
-            post_dot_digits = 2
-        else:
-            post_dot_digits = 1
-
         for package_id, package_data in package_dict.items():
             for slot_name, slot_data in package_data['slots'].items():
                 slot_data['absolute_total'] = 0
@@ -457,15 +452,24 @@ class GentooReporter:
             # TODO reduce slot rows to _MAX_INSTALLED_PACKAGE_SLOTS here, keep max entries, accumulate others into "others"
             package_data['relative_total'] = self._relative(package_data['absolute_total'], self.gentoo_machines, post_dot_digits)
 
-        final_tree = map(package_dict.get, package_id_order)
+        return map(package_dict.get, package_id_order)
+
+    def _analyzes_installed_packages(self):
+        if _MAX_INSTALLED_PACKAGES >= 50:
+            post_dot_digits = 2
+        else:
+            post_dot_digits = 1
+
+        most_installed_world = self._analyzes_installed_packages_most_installed_world(post_dot_digits)
+
         res = {
             'most_installed_world':{
-                'listed':final_tree,
+                'listed':most_installed_world,
                 'total':{
                     'absolute_total':self.gentoo_machines,
                     'relative_total':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),
                 }
-            }
+            },
         }
         return res
 
