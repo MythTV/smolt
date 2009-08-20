@@ -409,6 +409,41 @@ class GentooReporter:
                 'slots':{}
             }
 
+        for package_id, package_data in package_dict.items():
+            package_data['relative_total'] = self._relative(package_data['absolute_total'], self.gentoo_machines, post_dot_digits)
+
+        return map(package_dict.get, package_id_order)
+
+    def _analyzes_installed_packages_most_installed_all(self, post_dot_digits):
+        pool_join = _gentoo_installed_packages_table.\
+                join(_gentoo_installed_package_props_table).\
+                join(_gentoo_package_pool_table)
+        query = select([
+                    GentooInstalledPackagesRel.package_id, \
+                    GentooPackageString.name, \
+                    func.count(GentooInstalledPackagesRel.machine_id.distinct())], \
+                from_obj=[pool_join]).\
+                group_by(
+                    GentooInstalledPackagesRel.package_id).\
+                order_by(
+                    func.count(GentooInstalledPackagesRel.machine_id.distinct()).desc(), \
+                    GentooPackageString.name).\
+                limit(_MAX_INSTALLED_PACKAGES)
+
+        # package_ids = set()
+        package_id_order = []
+        package_dict = {}
+        for i in query.execute().fetchall():
+            package_id, package_name, machine_count = i
+
+            package_id_order.append(package_id)
+            package_dict[package_id] = {
+                'name':package_name,
+                'absolute_total':machine_count,
+                'relative_total':None,
+                'slots':{}
+            }
+
         pool_join = _gentoo_installed_packages_table.\
                 join(_gentoo_installed_package_props_table).\
                 join(_gentoo_version_pool_table).\
@@ -420,9 +455,7 @@ class GentooReporter:
                     func.count(GentooInstalledPackagesRel.machine_id.distinct())], \
                 from_obj=[pool_join]).\
                 where(
-                    and_(
-                        GentooInstalledPackagesRel.package_id.in_(package_id_order), \
-                        GentooInstalledPackagePropertiesRel.world == 1)).\
+                    GentooInstalledPackagesRel.package_id.in_(package_id_order)).\
                 group_by(
                     GentooInstalledPackagesRel.package_id, \
                     GentooInstalledPackagesRel.slot_id, \
@@ -461,10 +494,18 @@ class GentooReporter:
             post_dot_digits = 1
 
         most_installed_world = self._analyzes_installed_packages_most_installed_world(post_dot_digits)
+        most_installed_all = self._analyzes_installed_packages_most_installed_all(post_dot_digits)
 
         res = {
             'most_installed_world':{
                 'listed':most_installed_world,
+                'total':{
+                    'absolute_total':self.gentoo_machines,
+                    'relative_total':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),
+                }
+            },
+            'most_installed_all':{
+                'listed':most_installed_all,
                 'total':{
                     'absolute_total':self.gentoo_machines,
                     'relative_total':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),

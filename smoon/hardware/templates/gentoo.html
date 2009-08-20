@@ -74,8 +74,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <li>
                     <a href="#installed_packages_most_installed">Most-installed packages</a>
                     <ul>
-                        <li><a href="#installed_packages_most_installed_world">World-file packages</a></li>
-                        <li class="todo"><a href="#installed_packages_most_installed_non_world">Non-world-file packages</a></li>
+                        <li><a href="#installed_packages_most_installed_world">World-file packages only</a></li>
+                        <li><a href="#installed_packages_most_installed_all">All packages (with details)</a></li>
                     </ul>
                 </li>
                 <li class="todo"><a href="#installed_packages_most_unmasked">Most-unmasked packages</a></li>
@@ -495,7 +495,29 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 <div>
     <a name="installed_packages_most_installed"></a><h3>Most-installed packages</h3>
     <div>
-        <a name="installed_packages_most_installed_world"></a><h4>World-file packages (top ${len(data['installed_packages']['most_installed_world']['listed'])} with details)</h4>
+        <a name="installed_packages_most_installed_world"></a><h4>World-file packages (top ${len(data['installed_packages']['most_installed_world']['listed'])})</h4>
+        <div>
+            <table>
+                <tr>
+                    <th class="vert_head">Package</th>
+                    <th colspan="2" class="head">Popularity</th>
+                </tr>
+<py:for each="row in data['installed_packages']['most_installed_world']['listed']">
+                <tr>
+                    <th class="vert" rowspan="1" style="vertical-align:top">${row['name']}</th>
+                    <td class="count">${row['absolute_total']}</td>
+                    <td class="relative">(${row['relative_total']} %)</td>
+                </tr>
+</py:for>
+                <tr>
+                    <th class="vert_foot">Total</th>
+                    <td class="foot_count">${data['installed_packages']['most_installed_world']['total']['absolute_total']}</td>
+                    <td class="foot_relative">(${data['installed_packages']['most_installed_world']['total']['relative_total']} %)</td>
+                </tr>
+            </table>
+        </div>
+
+        <a name="installed_packages_most_installed_all"></a><h4>All packages (top ${len(data['installed_packages']['most_installed_world']['listed'])} with details)</h4>
         <div>
             <table>
                 <tr>
@@ -504,7 +526,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                     <th class="head">Version</th>
                     <th colspan="2" class="head">Popularity</th>
                 </tr>
-<py:for each="row in data['installed_packages']['most_installed_world']['listed']">
+<py:for each="row in data['installed_packages']['most_installed_all']['listed']">
   <py:if test="len(row['slots']) == 1">
     <py:if test="len(row['slots'].values()[0]['versions']) == 1">
                 <!--! Single slot, single version -->
@@ -573,24 +595,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                     <th class="vert_foot">Total</th>
                     <td class="foot"><span></span></td>
                     <td class="foot"><span></span></td>
-                    <td class="foot_count">${data['installed_packages']['most_installed_world']['total']['absolute_total']}</td>
-                    <td class="foot_relative">(${data['installed_packages']['most_installed_world']['total']['relative_total']} %)</td>
+                    <td class="foot_count">${data['installed_packages']['most_installed_all']['total']['absolute_total']}</td>
+                    <td class="foot_relative">(${data['installed_packages']['most_installed_all']['total']['relative_total']} %)</td>
                 </tr>
-            </table>
-        </div>
-
-        <a name="installed_packages_most_installed_non_world"></a><h4>Non-world-file packages</h4>
-        <div class="todo">
-            <table>
-                <tr><th class="vert_head">Package</th><th class="head">Slot</th><th class="head">Version</th><th colspan="2" class="head">Popularity</th></tr>
-                <tr><th class="vert" rowspan="5" style="vertical-align:top">x11-libs/qt</th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-                <tr>                                            <td class="group_child_1" rowspan="3" style="vertical-align:top">3</td><td class="group_child_1"><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-                <tr>                                                                                                                 <td class="group_child_2">3.3.8-r2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-                <tr>                                                                                                                 <td class="group_child_2">3.3.8-r4</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-                <tr>                                            <td class="group_child_1">4</td><td class="group_child_1">4.4.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-                <tr><th class="vert">dev-util/colormake</th><td>0</td><td>0.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-                <tr><th class="vert"><span class="group_item">others</span></th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-                <tr><th class="vert_foot">Total</th><td class="foot"><span></span></td><td class="foot"><span></span></td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
             </table>
         </div>
     </div>
