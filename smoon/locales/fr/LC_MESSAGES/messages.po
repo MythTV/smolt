@@ -1,4 +1,4 @@
-# Translations template for hardware.
+# Translations template for hardware
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-18 21:51+0100\n"
+"PO-Revision-Date: 2009-08-20 19:41+0100\n"
 "Last-Translator: Michel Duquaine <michelduquaine@gmail.com>\n"
 "Language-Team: fedora-trans-fr <fedora-trans-fr@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -19,19 +19,17 @@ msgstr ""
 
 #: hardware/controllers/root.py:95
 msgid "The credentials you supplied were not correct or did not grant access to this resource."
-msgstr "Les informations d'identification que vous avez fournies ne sont pas correctes ou n'ont pas accès à cette ressource. "
+msgstr "Les informations d'identification que vous avez fournies ne sont pas correctes ou n'ont pas accès à cette ressource."
 
 #: hardware/controllers/root.py:98
-#, fuzzy
 msgid "You must provide your credentials before accessing this resource."
-msgstr "Vous devez fournir vos informations d'identification avant d'accéder à cette ressource. "
+msgstr "Vous devez fournir vos informations d'identification avant d'accéder à cette ressource."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
 msgstr "Connectez-vous s'il vous plaît."
 
 #: hardware/templates/deviceclass.html:9
-#, fuzzy
 msgid "Devices by class ${type}"
 msgstr "Périphériques par classe ${type}"
 
@@ -40,7 +38,6 @@ msgid "Total Count"
 msgstr "Décompte total"
 
 #: hardware/templates/deviceclass.html:19
-#, fuzzy, python-format
 msgid "% hosts detected ${type}"
 msgstr "% hôtes détectés ${type}"
 
@@ -69,26 +66,22 @@ msgstr "Pilote"
 
 #: hardware/templates/deviceclass.html:36
 #: hardware/templates/stats.html:92
-#, fuzzy
 msgid "Vendor"
-msgstr "Fournisseur"
+msgstr "Vendeur"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "Sub Vendor"
-msgstr "Sous fournisseur"
+msgstr "Sous vendeur"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
 msgstr "Sous périphérique"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "Date Added"
 msgstr "Date d'ajout"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "% tot hosts"
 msgstr "% total hôtes"
 
@@ -111,18 +104,19 @@ msgid "Machines / Device"
 msgstr "Machines / Périphérique"
 
 #: hardware/templates/devices.html:44
-#, fuzzy
 msgid "Classes"
 msgstr "Classes"
 
 #: hardware/templates/report_search.html:37
 #: hardware/templates/welcome.html:10
+#, fuzzy
 msgid "Lookup"
-msgstr ""
+msgstr "Lookup"
 
 #: hardware/templates/report_search.html:38
+#, fuzzy
 msgid "Dataset"
-msgstr ""
+msgstr "Série de données"
 
 #: hardware/templates/report_search.html:53
 #, fuzzy
@@ -148,16 +142,15 @@ msgid "Doesn't Work"
 msgstr "Ne fonctionne pas"
 
 #: hardware/templates/show.html:33
+#, fuzzy
 msgid "Requires 3rd Party Drivers"
-msgstr ""
+msgstr "Nécessite des pilotes tiers"
 
 #: hardware/templates/show.html:34
-#, fuzzy
 msgid "Works, but required additional configuration"
 msgstr "Fonctionne mais nécessite une configuration additionnelle"
 
 #: hardware/templates/show.html:35
-#, fuzzy
 msgid "Worked out of the box"
 msgstr "Fonctionne parfaitement"
 
@@ -183,9 +176,8 @@ msgid "Platform"
 msgstr "Plateforme"
 
 #: hardware/templates/show.html:45
-#, fuzzy
 msgid "System Vendor"
-msgstr "<small><b>Fournisseur :</b></small>"
+msgstr "Vendeur système"
 
 #: hardware/templates/show.html:46
 #, fuzzy
@@ -198,8 +190,9 @@ msgid "Kernel"
 msgstr "Noyau"
 
 #: hardware/templates/show.html:48
+#, fuzzy
 msgid "Formfactor"
-msgstr ""
+msgstr "Type d'ordinateur"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
@@ -210,42 +203,34 @@ msgid "Admin Password"
 msgstr "Mot de passe administrateur"
 
 #: hardware/templates/show.html:60
-#, fuzzy
 msgid "Rating"
 msgstr "Classement"
 
 #: hardware/templates/show.html:60
-#, fuzzy
 msgid "Class"
 msgstr "Classe"
 
 #: hardware/templates/stats.html:9
-#, fuzzy
 msgid "Stats"
-msgstr "Statistiques"
+msgstr "statistiques"
 
 #: hardware/templates/stats.html:15
-#, fuzzy
 msgid "Total Registered Hosts"
-msgstr "Hôtes non correspondants"
+msgstr "Nombre total d'hôtes inscrits"
 
 #: hardware/templates/stats.html:23
-#, fuzzy
 msgid "Total bogomips"
-msgstr "Capacité totale :"
+msgstr "Nombre total de BogoMips"
 
 #: hardware/templates/stats.html:27
-#, fuzzy
 msgid "Total processors"
-msgstr "Traitements de texte"
+msgstr "Nombre total de processeurs"
 
 #: hardware/templates/stats.html:31
-#, fuzzy
 msgid "Total MHz"
-msgstr "Capacité totale :"
+msgstr "Total MHz"
 
 #: hardware/templates/stats.html:38
-#, fuzzy
 msgid "Archs"
 msgstr "Architectures"
 
@@ -275,14 +260,12 @@ msgid "Language"
 msgstr "Langage"
 
 #: hardware/templates/stats.html:105
-#, fuzzy
 msgid "Model"
 msgstr "Modèle"
 
 #: hardware/templates/stats.html:119
-#, fuzzy
 msgid "RAM"
-msgstr "DVD-RAM"
+msgstr "RAM"
 
 #: hardware/templates/stats.html:132
 #, fuzzy
@@ -302,7 +285,6 @@ msgid "Number of CPUs"
 msgstr "Nombre de processeurs"
 
 #: hardware/templates/stats.html:161
-#, fuzzy
 msgid "CPU Vendor"
 msgstr "Fabriquant de l'unité central"
 
@@ -341,17 +323,17 @@ msgstr "Taille du système de fichier"
 #: hardware/templates/stats.html:253
 #, fuzzy
 msgid "Myth Role"
-msgstr "Rôle S_ELinux :"
+msgstr "Rôle Myth"
 
 #: hardware/templates/stats.html:266
 #, fuzzy
 msgid "Myth Remote"
-msgstr "Clés distantes"
+msgstr "Myth distant"
 
 #: hardware/templates/stats.html:279
 #, fuzzy
 msgid "Myth  Theme"
-msgstr "_Sélectionner un thème :"
+msgstr "Thème myth"
 
 #: hardware/templates/welcome.html:12
 #, fuzzy
@@ -364,7 +346,7 @@ msgstr "Statistiques"
 
 #: hardware/templates/welcome.html:17
 msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
-msgstr ""
+msgstr "Pour des statistiques détaillées au sujet des périphériques dans la base de données, voir <a href='/static/stats/stats.html'>/stats</a> ou <a href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 #, fuzzy
@@ -376,6 +358,7 @@ msgid "More info"
 msgstr "Plus d'informations"
 
 #: hardware/templates/welcome.html:25
+#, fuzzy
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
+msgstr "<p>Pour de l'information détaillée au sujet de périphériques spécifiques, naviguez et cherchez dans le <a href='/wiki/'>Wiki</a>. L'usage et d'autres réponses générales peuvent également être trouvées sur <a href='/wiki/'>Wiki</a>.</p>"
 
