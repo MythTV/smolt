@@ -139,6 +139,15 @@ def handle_gentoo_data(session, host_dict, machine_id):
 
 
 def _handle_simple_stuff(session, data, machine_id):
+    # Pre-processing
+    try:
+        distfiles_mirror_urls = data['mirrors']['distfiles']
+    except KeyError:
+        pass
+    else:
+        # Ensure trailing slashes
+        distfiles_mirror_urls = [(e.rstrip('/') + '/') for e in distfiles_mirror_urls]
+
     for job in _DIFF_JOBS:
         foreign = job['foreign']
         thing = job['thing']
