@@ -8,11 +8,11 @@ msgstr ""
 "Project-Id-Version: smolt.master-smoon.messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-19 17:21+0100\n"
-"Last-Translator: Sérgio Mesquita <sergiomesquita@cm-porto.pt>\n"
+"PO-Revision-Date: 2009-08-21 01:26+0100\n"
+"Last-Translator: Rui Gouveia <rui.gouveia@globaltek.pt>\n"
 "Language-Team: pt <fedora-trans-pt@redhat.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.1\n"
 "X-Poedit-Language: Portuguese\n"
@@ -20,20 +20,19 @@ msgstr ""
 
 #: hardware/controllers/root.py:95
 msgid "The credentials you supplied were not correct or did not grant access to this resource."
-msgstr ""
+msgstr "As credenciais que forneceu não estavam correctas ou não permitem o acesso a este recurso."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr ""
+msgstr "Tem de fornecer as suas credenciais antes de aceder a a este recurso."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
 msgstr "Inicie sessão."
 
 #: hardware/templates/deviceclass.html:9
-#, fuzzy
 msgid "Devices by class ${type}"
-msgstr "Sem tipo para a classe chamada %s"
+msgstr "Dispositivos por classe ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
@@ -42,7 +41,7 @@ msgstr "Contagem total"
 #: hardware/templates/deviceclass.html:19
 #, fuzzy, python-format
 msgid "% hosts detected ${type}"
-msgstr "  t          Altera o tipo de sistema de arquivos."
+msgstr "% máquinas detectadas ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -81,29 +80,25 @@ msgid "Sub Device"
 msgstr "Sub Dispositivo"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "Date Added"
-msgstr "Data de inclusão"
+msgstr "Data Adicionada"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "% tot hosts"
-msgstr "Máquinas ignoradas"
+msgstr "% tot. máq."
 
 #: hardware/templates/devices.html:15
 #: hardware/templates/stats.html:19
-#, fuzzy
 msgid "Total Registered Devices"
-msgstr "Dispositivos ativos no momento:"
+msgstr "Total Dispositivos Registados"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
 msgstr "Dispositivos únicos"
 
 #: hardware/templates/devices.html:24
-#, fuzzy
 msgid "Raw Devices"
-msgstr "Dispositivos configurados:"
+msgstr "Dispositivos"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
@@ -115,71 +110,60 @@ msgstr "Classes"
 
 #: hardware/templates/report_search.html:37
 #: hardware/templates/welcome.html:10
-#, fuzzy
 msgid "Lookup"
 msgstr "Procurar"
 
 #: hardware/templates/report_search.html:38
-#, fuzzy
 msgid "Dataset"
-msgstr "Conjunto de dados IIM desconhecido"
+msgstr "Conjunto de dados"
 
 #: hardware/templates/report_search.html:53
-#, fuzzy
 msgid "Result Set"
-msgstr "configurar readahead"
+msgstr "Resultados"
 
 #: hardware/templates/show.html:8
-#, fuzzy
 msgid "Show Box"
-msgstr "Desenhos de caixa"
+msgstr "Mostrar Caixa"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr ""
+msgstr "Eu não utilizo isto ou não sei"
 
 #: hardware/templates/show.html:31
-#, fuzzy
 msgid "Breaks System"
-msgstr "Administrador do sistema"
+msgstr "Estraga o sistema"
 
 #: hardware/templates/show.html:32
-#, fuzzy
 msgid "Doesn't Work"
-msgstr "Fa_x do trabalho:"
+msgstr "Não Funciona"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr ""
+msgstr "Precisa de Controladores de Terceiros"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr ""
+msgstr "Funciona, mas necessita de configuração adicional"
 
 #: hardware/templates/show.html:35
-#, fuzzy
 msgid "Worked out of the box"
-msgstr "Entrada de caixa de combinação"
+msgstr "Funciona \"ao sair da caixa\""
 
 #: hardware/templates/show.html:36
-#, fuzzy
 msgid "Show all Information"
-msgstr "Exibir informações de ajuda"
+msgstr "Mostrar toda a informação"
 
 #: hardware/templates/show.html:39
-#, fuzzy
 msgid "Overall Rating:"
-msgstr "<b>Avaliação máxima</b>"
+msgstr "Avaliação Geral:"
 
 #: hardware/templates/show.html:42
-#, fuzzy
 msgid "Public UUID"
-msgstr "UUID do repositório: %s\n"
+msgstr "UUID Público"
 
 #: hardware/templates/show.html:43
-#, fuzzy
 msgid "Operating System"
-msgstr "Sistema operacional"
+msgstr "Sistema operativo"
 
 #: hardware/templates/show.html:44
 msgid "Platform"
@@ -200,7 +184,7 @@ msgstr "Kernel"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr ""
+msgstr "Formfactor"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
@@ -300,9 +284,8 @@ msgid "Bogomips"
 msgstr "BogoMIPS"
 
 #: hardware/templates/stats.html:193
-#, fuzzy
 msgid "Form Factor"
-msgstr "Fator de uso"
+msgstr "\"Form Factor\""
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -329,24 +312,20 @@ msgid "Filesystem size"
 msgstr "Tamanho do sistema de ficheiros"
 
 #: hardware/templates/stats.html:253
-#, fuzzy
 msgid "Myth Role"
-msgstr "Papel do S_ELinux:"
+msgstr "Perfil Myth"
 
 #: hardware/templates/stats.html:266
-#, fuzzy
 msgid "Myth Remote"
-msgstr "Área de trabalho remota"
+msgstr "Myth Remoto"
 
 #: hardware/templates/stats.html:279
-#, fuzzy
 msgid "Myth  Theme"
-msgstr "Do tema"
+msgstr "Tema Myth"
 
 #: hardware/templates/welcome.html:12
-#, fuzzy
 msgid "Enter your profile UUID:"
-msgstr "{Informe sua própria senha)"
+msgstr "Insira o seu UUID de perfil:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
@@ -354,12 +333,11 @@ msgstr "Estatísticas"
 
 #: hardware/templates/welcome.html:17
 msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
-msgstr ""
+msgstr "Para estatísticas detalhadas sobre os dispositivos na base de dados veja <a href='/static/stats/stats.html'>/stats</a> ou <a href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
-#, fuzzy
 msgid "Top Vendor Chart"
-msgstr "Nó raiz do gráfico"
+msgstr "Gráfico de Top de Vendedores"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
@@ -367,5 +345,5 @@ msgstr "Mais informações"
 
 #: hardware/templates/welcome.html:25
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
+msgstr "<p>Navegue e pesquise a <a href='/wiki/'>Wiki</a> para informação detalhada sobre dispositivos específicos. A utilização e outras respostas gerais também podem ser encontradas na <a href='/wiki/'>Wiki</a>.</p>"
 
