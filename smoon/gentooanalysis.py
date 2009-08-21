@@ -31,7 +31,16 @@ from playmodel import _gentoo_installed_packages_table, _gentoo_installed_packag
 from playmodel import _gentoo_version_pool_table, _gentoo_slot_pool_table
 import datetime
 import sqlalchemy
-from sqlalchemy.sql import func, select, join, and_
+from sqlalchemy.sql import func, select, join, and_, text
+
+import sys
+if 'turbogears' in sys.modules:
+    logging.debug('Turbogears context')
+    from turbogears.database import metadata
+else:
+    logging.debug('Plain SQL alchemy context')
+    from sqlalchemy import MetaData
+    metadata = MetaData()
 
 
 _MAX_DISTFILES_MIRRORS = 30
@@ -56,7 +65,7 @@ class GentooReporter:
 
     def _relative(self, absolute, hundred, post_dot_digits=1):
         format = '%%.0%df' % post_dot_digits
-        return format % round(absolute * 100.0 / hundred, post_dot_digits)
+        return format % round(int(absolute) * 100.0 / hundred, post_dot_digits)
 
     def _analyze_archs(self):
         # TODO use different type of join?
@@ -395,7 +404,6 @@ class GentooReporter:
                     GentooPackageString.name).\
                 limit(_MAX_INSTALLED_PACKAGES)
 
-        # package_ids = set()
         package_id_order = []
         package_dict = {}
         for i in query.execute().fetchall():
@@ -430,7 +438,6 @@ class GentooReporter:
                     GentooPackageString.name).\
                 limit(_MAX_INSTALLED_PACKAGES)
 
-        # package_ids = set()
         package_id_order = []
         package_dict = {}
         for i in query.execute().fetchall():
@@ -487,6 +494,152 @@ class GentooReporter:
 
         return map(package_dict.get, package_id_order)
 
+    def _analyzes_installed_packages_most_unmasked(self, post_dot_digits):
+        s = text("""\
+                SELECT
+                gentoo_installed_packages.package_id AS package_id,
+                gentoo_package_pool.name AS package_name,
+                SUM(IF(keyword_status = 1, 1, 0)) AS sum_tilde_arch,
+                SUM(IF(keyword_status = 2, 1, 0)) AS sum_double_asterisk,
+                SUM(unmasked),
+                SUM(IF(keyword_status != 0, 1, unmasked)) AS sum_any
+                FROM gentoo_installed_packages, gentoo_installed_package_props, gentoo_package_pool
+                WHERE
+                gentoo_installed_packages.id = gentoo_installed_package_props.installed_package_id AND
+                gentoo_package_pool.id = gentoo_installed_packages.package_id
+                GROUP BY package_id
+                ORDER BY sum_any DESC, package_name ASC
+                LIMIT %(limit)d\
+                """ % {
+                    'limit':_MAX_INSTALLED_PACKAGES
+                })
+        package_id_order = []
+        package_dict = {}
+        for i in metadata.bind.execute(s).fetchall():
+            package_id, package_name, \
+                    tilde_arch_absolute_total, \
+                    double_asterisk_absolute_total, \
+                    unmask_absolute_total, \
+                    any_absolute_total, \
+                    = i
+
+            package_id_order.append(package_id)
+            package_dict[package_id] = {
+                'name':package_name,
+                'tilde_arch_absolute_total':tilde_arch_absolute_total,
+                'tilde_arch_relative_total':None,
+                'double_asterisk_absolute_total':double_asterisk_absolute_total,
+                'double_asterisk_relative_total':None,
+                'unmask_absolute_total':unmask_absolute_total,
+                'unmask_relative_total':None,
+                'any_absolute_total':any_absolute_total,
+                'any_relative_total':None,
+                'slots':{}
+            }
+
+        s = text("""
+                SELECT
+                    gentoo_installed_packages.package_id AS package_id,
+                    gentoo_slot_pool.name AS slot_name,
+                    gentoo_version_pool.name AS version_name,
+                    SUM(IF(keyword_status = 1, 1, 0)) AS sum_tilde_arch,
+                    SUM(IF(keyword_status = 2, 1, 0)) AS sum_double_asterisk,
+                    SUM(unmasked),
+                    SUM(IF(keyword_status != 0, 1, unmasked)) AS sum_any
+                FROM
+                    gentoo_installed_packages,
+                    gentoo_installed_package_props,
+                    gentoo_package_pool,
+                    gentoo_slot_pool,
+                    gentoo_version_pool
+                WHERE
+                    gentoo_installed_packages.id = gentoo_installed_package_props.installed_package_id AND
+                    gentoo_package_pool.id = gentoo_installed_packages.package_id AND
+                    gentoo_slot_pool.id = gentoo_installed_packages.slot_id AND
+                    gentoo_version_pool.id = gentoo_installed_package_props.version_id AND
+                    gentoo_installed_packages.package_id IN (%(package_id)s)
+                GROUP BY
+                    package_id,
+                    slot_id,
+                    version_id
+                """ % {
+                    'package_id':','.join(map(str, package_id_order))
+                })
+        for i in metadata.bind.execute(s).fetchall():
+            package_id, slot_name, version_name, \
+                    tilde_arch_absolute_total, \
+                    double_asterisk_absolute_total, \
+                    unmask_absolute_total, \
+                    any_absolute_total, \
+                    = i
+
+            if slot_name not in package_dict[package_id]['slots']:
+                package_dict[package_id]['slots'][slot_name] = {
+                    'tilde_arch_absolute_total':None,
+                    'tilde_arch_relative_total':None,
+                    'double_asterisk_absolute_total':None,
+                    'double_asterisk_relative_total':None,
+                    'unmask_absolute_total':None,
+                    'unmask_relative_total':None,
+                    'any_absolute_total':None,
+                    'any_relative_total':None,
+                    'versions':{}
+                }
+            package_dict[package_id]['slots'][slot_name]['versions'][version_name] = {
+                'tilde_arch_absolute_total':tilde_arch_absolute_total,
+                'tilde_arch_relative_total':None,
+                'double_asterisk_absolute_total':double_asterisk_absolute_total,
+                'double_asterisk_relative_total':None,
+                'unmask_absolute_total':unmask_absolute_total,
+                'unmask_relative_total':None,
+                'any_absolute_total':any_absolute_total,
+                'any_relative_total':None,
+            }
+            # print ', '.join(map(str, i))
+
+        for package_id, package_data in package_dict.items():
+            for slot_name, slot_data in package_data['slots'].items():
+                for key in ('tilde_arch_absolute_total', \
+                            'double_asterisk_absolute_total', \
+                            'unmask_absolute_total', \
+                            'any_absolute_total', ):
+                    slot_data[key] = 0
+                for version, version_data in slot_data['versions'].items():
+                    for key in ('tilde_arch_absolute_total', \
+                                'double_asterisk_absolute_total', \
+                                'unmask_absolute_total', \
+                                'any_absolute_total', ):
+                        slot_data[key] = slot_data[key] + version_data[key]
+                    version_data['tilde_arch_relative_total'] = self._relative(version_data['tilde_arch_absolute_total'], self.gentoo_machines, post_dot_digits)
+                    version_data['double_asterisk_relative_total'] = self._relative(version_data['double_asterisk_absolute_total'], self.gentoo_machines, post_dot_digits)
+                    version_data['unmask_relative_total'] = self._relative(version_data['unmask_absolute_total'], self.gentoo_machines, post_dot_digits)
+                    version_data['any_relative_total'] = self._relative(version_data['any_absolute_total'], self.gentoo_machines, post_dot_digits)
+                # TODO reduce version rows to _MAX_INSTALLED_PACKAGE_SLOT_VERSIONS here, keep max entries, accumulate others into "others"
+                slot_data['tilde_arch_relative_total'] = self._relative(slot_data['tilde_arch_absolute_total'], self.gentoo_machines, post_dot_digits)
+                slot_data['double_asterisk_relative_total'] = self._relative(slot_data['double_asterisk_absolute_total'], self.gentoo_machines, post_dot_digits)
+                slot_data['unmask_relative_total'] = self._relative(slot_data['unmask_absolute_total'], self.gentoo_machines, post_dot_digits)
+                slot_data['any_relative_total'] = self._relative(slot_data['any_absolute_total'], self.gentoo_machines, post_dot_digits)
+            # TODO reduce slot rows to _MAX_INSTALLED_PACKAGE_SLOTS here, keep max entries, accumulate others into "others"
+            package_data['tilde_arch_relative_total'] = self._relative(package_data['tilde_arch_absolute_total'], self.gentoo_machines, post_dot_digits)
+            package_data['double_asterisk_relative_total'] = self._relative(package_data['double_asterisk_absolute_total'], self.gentoo_machines, post_dot_digits)
+            package_data['unmask_relative_total'] = self._relative(package_data['unmask_absolute_total'], self.gentoo_machines, post_dot_digits)
+            package_data['any_relative_total'] = self._relative(package_data['any_absolute_total'], self.gentoo_machines, post_dot_digits)
+
+        res = {
+            'listed':map(package_dict.get, package_id_order),
+            'total':{
+                'tilde_arch_absolute_total':self.gentoo_machines,
+                'tilde_arch_relative_total':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),
+                'double_asterisk_absolute_total':self.gentoo_machines,
+                'double_asterisk_relative_total':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),
+                'unmask_absolute_total':self.gentoo_machines,
+                'unmask_relative_total':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),
+                'any_absolute_total':self.gentoo_machines,
+                'any_relative_total':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),
+            }
+        }
+        return res
+
     def _analyzes_installed_packages(self):
         if _MAX_INSTALLED_PACKAGES >= 50:
             post_dot_digits = 2
@@ -495,6 +648,7 @@ class GentooReporter:
 
         most_installed_world = self._analyzes_installed_packages_most_installed_world(post_dot_digits)
         most_installed_all = self._analyzes_installed_packages_most_installed_all(post_dot_digits)
+        most_unmasked = self._analyzes_installed_packages_most_unmasked(post_dot_digits)
 
         res = {
             'most_installed_world':{
@@ -511,6 +665,7 @@ class GentooReporter:
                     'relative_total':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),
                 }
             },
+            'most_unmasked':most_unmasked
         }
         return res
 

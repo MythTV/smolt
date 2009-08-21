@@ -78,7 +78,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                         <li><a href="#installed_packages_most_installed_all">All packages (with details)</a></li>
                     </ul>
                 </li>
-                <li class="todo"><a href="#installed_packages_most_unmasked">Most-unmasked packages</a></li>
+                <li><a href="#installed_packages_most_unmasked">Most-unmasked packages</a></li>
                 <li class="todo"><a href="#installed_packages_least_installed_main_tree">Least-installed main-tree packages</a></li>
             </ul>
         </li>
@@ -602,18 +602,138 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
         </div>
     </div>
 
-    <a name="installed_packages_most_unmasked"></a><h3>Most-unmasked packages</h3>
-    <div class="todo">
+    <a name="installed_packages_most_unmasked"></a><h3>Most-unmasked packages (top ${len(data['installed_packages']['most_unmasked']['listed'])})</h3>
+    <div>
         <table>
-            <tr><th class="vert_head">Package</th><th class="head">Slot</th><th class="head">Version</th><th colspan="2" class="head">~arch</th><th colspan="2" class="head">**</th><th colspan="2" class="head">.unmask</th><th colspan="2" class="head">any</th></tr>
-            <tr><th class="vert" rowspan="5" style="vertical-align:top">x11-libs/qt</th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr>                                            <td class="group_child_1" rowspan="3" style="vertical-align:top">3</td><td class="group_child_1"><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr>                                                                            <td class="group_child_2">3.3.8-r2</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr>                                                                            <td class="group_child_2">3.3.8-r4</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr>                                            <td class="group_child_1">4</td><td class="group_child_1">4.4.2</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert">dev-util/colormake</th><td>0</td><td>0.2</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert"><span class="group_item">others</span></th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert_foot">Total</th><td class="foot"><span></span></td><td class="foot"><span></span></td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+            <tr>
+                <th class="vert_head">Package</th>
+                <th class="head">Slot</th>
+                <th class="head">Version</th>
+                <th colspan="2" class="head">~arch</th>
+                <th colspan="2" class="head">**</th>
+                <th colspan="2" class="head">.unmask</th>
+                <th colspan="2" class="head"><span class="group_item">any</span></th>
+            </tr>
+<py:for each="row in data['installed_packages']['most_unmasked']['listed']">
+  <py:if test="len(row['slots']) == 1">
+    <py:if test="len(row['slots'].values()[0]['versions']) == 1">
+            <!--! Single slot, single version -->
+            <tr>
+                <th class="vert" rowspan="1" style="vertical-align:top">${row['name']}</th>
+                <td>${row['slots'].keys()[0]}</td>
+                <td>${row['slots'].values()[0]['versions'].keys()[0]}</td>
+                <td class="count">${row['tilde_arch_absolute_total']}</td>
+                <td class="relative">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="count">${row['double_asterisk_absolute_total']}</td>
+                <td class="relative">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="count">${row['unmask_absolute_total']}</td>
+                <td class="relative">(${row['unmask_relative_total']} %)</td>
+                <td class="count">${row['any_absolute_total']}</td>
+                <td class="relative">(${row['any_relative_total']} %)</td>
+            </tr>
+    </py:if>
+    <py:if test="len(row['slots'].values()[0]['versions']) > 1">
+            <!--! Single slot, multiple versions -->
+            <tr>
+                <th class="vert" rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['name']}</th>
+                <td rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['slots'].keys()[0]}</td>
+                <td><span class="group_item">any</span></td>
+                <td class="count">${row['tilde_arch_absolute_total']}</td>
+                <td class="relative">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="count">${row['double_asterisk_absolute_total']}</td>
+                <td class="relative">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="count">${row['unmask_absolute_total']}</td>
+                <td class="relative">(${row['unmask_relative_total']} %)</td>
+                <td class="count">${row['any_absolute_total']}</td>
+                <td class="relative">(${row['any_relative_total']} %)</td>
+            </tr>
+            <tr py:for="version, version_data in sorted(row['slots'].values()[0]['versions'].items())">
+                <td class="group_child_1">${version}</td>
+                <td class="count">${version_data['tilde_arch_absolute_total']}</td>
+                <td class="relative">(${version_data['tilde_arch_relative_total']} %)</td>
+                <td class="count">${version_data['double_asterisk_absolute_total']}</td>
+                <td class="relative">(${version_data['double_asterisk_relative_total']} %)</td>
+                <td class="count">${version_data['unmask_absolute_total']}</td>
+                <td class="relative">(${version_data['unmask_relative_total']} %)</td>
+                <td class="count">${version_data['any_absolute_total']}</td>
+                <td class="relative">(${version_data['any_relative_total']} %)</td>
+            </tr>
+    </py:if>
+  </py:if>
+  <py:if test="len(row['slots']) > 1">
+            <!--! Multiple slots -->
+            <tr>
+                <th class="vert" rowspan="${sum(((len(slot_data['versions']) > 1) and (len(slot_data['versions']) + 1) or 1) for slot, slot_data in row['slots'].items()) + 1}" style="vertical-align:top">${row['name']}</th>
+                <td><span class="group_item">any</span></td>
+                <td><span class="group_item">any</span></td>
+                <td class="count">${row['tilde_arch_absolute_total']}</td>
+                <td class="relative">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="count">${row['double_asterisk_absolute_total']}</td>
+                <td class="relative">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="count">${row['unmask_absolute_total']}</td>
+                <td class="relative">(${row['unmask_relative_total']} %)</td>
+                <td class="count">${row['any_absolute_total']}</td>
+                <td class="relative">(${row['any_relative_total']} %)</td>
+            </tr>
+
+    <py:for each="slot, slot_data, in sorted(row['slots'].items())">
+      <py:if test="len(slot_data['versions']) == 1">
+            <!--! Slots with a single version -->
+            <tr>
+                <td class="group_child_1">${slot}</td>
+                <td class="group_child_1">${slot_data['versions'].keys()[0]}</td>
+                <td class="count">${slot_data['tilde_arch_absolute_total']}</td>
+                <td class="relative">(${slot_data['tilde_arch_relative_total']} %)</td>
+                <td class="count">${slot_data['double_asterisk_absolute_total']}</td>
+                <td class="relative">(${slot_data['double_asterisk_relative_total']} %)</td>
+                <td class="count">${slot_data['unmask_absolute_total']}</td>
+                <td class="relative">(${slot_data['unmask_relative_total']} %)</td>
+                <td class="count">${slot_data['any_absolute_total']}</td>
+                <td class="relative">(${slot_data['any_relative_total']} %)</td>
+            </tr>
+      </py:if>
+      <py:if test="len(slot_data['versions']) > 1">
+            <!--! Slots with multiple versions -->
+            <tr>
+                <td class="group_child_1" rowspan="${len(slot_data['versions']) + 1}" style="vertical-align:top">${slot}</td>
+                <td class="group_child_1" style="vertical-align:top"><span class="group_item">any</span></td>
+                <td class="count">${slot_data['tilde_arch_absolute_total']}</td>
+                <td class="relative">(${slot_data['tilde_arch_relative_total']} %)</td>
+                <td class="count">${slot_data['double_asterisk_absolute_total']}</td>
+                <td class="relative">(${slot_data['double_asterisk_relative_total']} %)</td>
+                <td class="count">${slot_data['unmask_absolute_total']}</td>
+                <td class="relative">(${slot_data['unmask_relative_total']} %)</td>
+                <td class="count">${slot_data['any_absolute_total']}</td>
+                <td class="relative">(${slot_data['any_relative_total']} %)</td>
+            </tr>
+            <tr py:for="version, version_data in sorted(slot_data['versions'].items())">
+                <td class="group_child_2">${version}</td>
+                <td class="count">${version_data['tilde_arch_absolute_total']}</td>
+                <td class="relative">(${version_data['tilde_arch_relative_total']} %)</td>
+                <td class="count">${version_data['double_asterisk_absolute_total']}</td>
+                <td class="relative">(${version_data['double_asterisk_relative_total']} %)</td>
+                <td class="count">${version_data['unmask_absolute_total']}</td>
+                <td class="relative">(${version_data['unmask_relative_total']} %)</td>
+                <td class="count">${version_data['any_absolute_total']}</td>
+                <td class="relative">(${version_data['any_relative_total']} %)</td>
+            </tr>
+      </py:if>
+    </py:for>
+  </py:if>
+</py:for>
+            <tr>
+                <th class="vert_foot">Total</th>
+                <td class="foot"><span></span></td>
+                <td class="foot"><span></span></td>
+                <td class="foot_count">${data['installed_packages']['most_unmasked']['total']['tilde_arch_absolute_total']}</td>
+                <td class="foot_relative">(${data['installed_packages']['most_unmasked']['total']['tilde_arch_relative_total']} %)</td>
+                <td class="foot_count">${data['installed_packages']['most_unmasked']['total']['double_asterisk_absolute_total']}</td>
+                <td class="foot_relative">(${data['installed_packages']['most_unmasked']['total']['double_asterisk_relative_total']} %)</td>
+                <td class="foot_count">${data['installed_packages']['most_unmasked']['total']['unmask_absolute_total']}</td>
+                <td class="foot_relative">(${data['installed_packages']['most_unmasked']['total']['unmask_relative_total']} %)</td>
+                <td class="foot_count">${data['installed_packages']['most_unmasked']['total']['any_absolute_total']}</td>
+                <td class="foot_relative">(${data['installed_packages']['most_unmasked']['total']['any_relative_total']} %)</td>
+            </tr>
         </table>
     </div>
 
