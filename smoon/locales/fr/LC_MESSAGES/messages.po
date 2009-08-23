@@ -1,356 +1,358 @@
-# Translations template for hardware.
+# Translations template for hardware
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
-# Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2009.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hardware 1.0\n"
-"Report-Msgid-Bugs-To: fedora-trans-ja@redhat.com\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-20 19:50+0900\n"
-"Last-Translator: Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>\n"
-"Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
+"PO-Revision-Date: 2009-08-22 21:08+0100\n"
+"Last-Translator: Michel Duquaine <michelduquaine@gmail.com>\n"
+"Language-Team: fedora-trans-fr <fedora-trans-fr@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.1\n"
+"X-Poedit-Language: French\n"
 
 #: hardware/controllers/root.py:95
-msgid ""
-"The credentials you supplied were not correct or did not grant access to "
-"this resource."
-msgstr ""
-"あなたが提示した証明書は正しくないか、この資源へのアクセスを許可されて"
-"いません。"
+msgid "The credentials you supplied were not correct or did not grant access to this resource."
+msgstr "Les informations d'identification que vous avez fournies ne sont pas correctes ou ne donnent pas accès à cette ressource."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr "この資源にアクセスする前に証明書を提示しなければなりません。"
+msgstr "Vous devez fournir vos informations d'identification avant d'accéder à cette ressource."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "ログインしてください。"
+msgstr "Veuillez vous connectez."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr "クラス ${type} 別の装置"
+msgstr "Périphériques par classe ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "合計"
+msgstr "Décompte total"
 
 #: hardware/templates/deviceclass.html:19
-#, python-format
 msgid "% hosts detected ${type}"
-msgstr "${type} で検出された % hosts"
+msgstr "% hôtes détectés ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr "製造元"
+msgstr "Vendeurs"
 
-#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/deviceclass.html:34
+#: hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
-msgstr "装置"
+msgstr "Périphériques"
 
-#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/show.html:60
 msgid "Device"
-msgstr "装置"
+msgstr "Périphérique"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
-msgstr "バス"
+msgstr "Bus"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
-msgstr "ドライバー"
+msgstr "Pilote"
 
-#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr "製造元"
+msgstr "Vendeur"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "下位の製造元"
+msgstr "Sous vendeur"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "下位の装置"
+msgstr "Sous périphérique"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr "追加日"
+msgstr "Date d'ajout"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "ホスト合計 %"
+msgstr "% total hôtes"
 
-#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+#: hardware/templates/devices.html:15
+#: hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr "登録装置合計"
+msgstr "Nombre total de périphériques inscrits"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr "一意な装置"
+msgstr "Périphériques uniques"
 
 #: hardware/templates/devices.html:24
+#, fuzzy
 msgid "Raw Devices"
-msgstr "生の装置"
+msgstr "Périphériques bruts"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "マシン / 装置"
+msgstr "Machines / Périphérique"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
-msgstr "クラス"
+msgstr "Classes"
 
-#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+#: hardware/templates/report_search.html:37
+#: hardware/templates/welcome.html:10
+#, fuzzy
 msgid "Lookup"
-msgstr "検索"
+msgstr "Lookup"
 
 #: hardware/templates/report_search.html:38
+#, fuzzy
 msgid "Dataset"
-msgstr "データ集合"
+msgstr "Série de données"
 
 #: hardware/templates/report_search.html:53
+#, fuzzy
 msgid "Result Set"
-msgstr "結果集合"
+msgstr "Série de résultat"
 
 #: hardware/templates/show.html:8
+#, fuzzy
 msgid "Show Box"
-msgstr "ボックスを示す"
+msgstr "Affiche la boîte"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr "使ってない、または知らない"
+msgstr "Je n'utilise pas ceci ou je ne sais pas"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr "システムを壊す"
+msgstr "Casse le système"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
-msgstr "動かない"
+msgstr "Ne fonctionne pas"
 
 #: hardware/templates/show.html:33
+#, fuzzy
 msgid "Requires 3rd Party Drivers"
-msgstr "サードパーティーのドライバーが必要"
+msgstr "Nécessite des pilotes tiers"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "動くが、追加設定が必要"
+msgstr "Fonctionne mais nécessite une configuration additionnelle"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr "そのまま動く"
+msgstr "Fonctionne parfaitement"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "全情報を表示"
+msgstr "Afficher toutes les informations"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr "総合評価:"
+msgstr "Note générale :"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr "公開 UUID"
+msgstr "UUID publique"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
-msgstr "オペレーティングシステム"
+msgstr "Système d'exploitation"
 
 #: hardware/templates/show.html:44
 msgid "Platform"
-msgstr "プラットフォーム"
+msgstr "Plate-forme"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr "システム製造元"
+msgstr "Vendeur du système"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr "システムモデル"
+msgstr "Modèle du système"
 
-#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+#: hardware/templates/show.html:47
+#: hardware/templates/stats.html:180
 msgid "Kernel"
-msgstr "カーネル"
+msgstr "Noyau"
 
 #: hardware/templates/show.html:48
+#, fuzzy
 msgid "Formfactor"
-msgstr "形状"
+msgstr "Type d'ordinateur"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
-msgstr "最終更新"
+msgstr "Dernière mise à jour"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr "Adminパスワード"
+msgstr "Mot de passe administrateur"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
-msgstr "評価"
+msgstr "Classement"
 
 #: hardware/templates/show.html:60
 msgid "Class"
-msgstr "クラス"
+msgstr "Classe"
 
 #: hardware/templates/stats.html:9
 msgid "Stats"
-msgstr "状況"
+msgstr "Statistiques"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr "登録ホスト合計"
+msgstr "Nombre total d'hôtes inscrits"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr "BogoMips 合計"
+msgstr "Nombre total de BogoMips"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr "プロセッサー合計"
+msgstr "Nombre total de processeurs"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr "MHz 合計"
+msgstr "Total MHz"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr "アーキ"
+msgstr "Architectures"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr "アーキ"
+msgstr "Architecture"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr "数"
+msgstr "Décompte"
 
 #: hardware/templates/stats.html:40
 #, python-format
 msgid "% of total"
-msgstr "合計 % of"
+msgstr "% du total"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
-msgstr "OS"
+msgstr "SE"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr "ランレベル"
+msgstr "Niveau d'exécution"
 
 #: hardware/templates/stats.html:79
 msgid "Language"
-msgstr "言語"
+msgstr "Langage"
 
 #: hardware/templates/stats.html:105
 msgid "Model"
-msgstr "モデル"
+msgstr "Modèle"
 
 #: hardware/templates/stats.html:119
 msgid "RAM"
 msgstr "RAM"
 
 #: hardware/templates/stats.html:132
+#, fuzzy
 msgid "Swap"
-msgstr "スワップ"
+msgstr "Swap"
 
 #: hardware/templates/stats.html:145
 msgid "CPU"
-msgstr "CPU"
+msgstr "Processeur"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
-msgstr "速度 (MHz)"
+msgstr "Vitesse (MHz)"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "CPU数"
+msgstr "Nombre de processeurs"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr "CPU製造元"
+msgstr "Fabricant du processeur"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr "BogoMips"
+msgstr "BogoMIPS"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr "形状"
+msgstr "Type d'ordinateur"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
-msgstr "Selinux"
+msgstr "SELinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr "SELinux 有効"
+msgstr "SELinux activé"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr "SELinux 強制"
+msgstr "SELinux appliqué"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr "SELinux ポリシー"
+msgstr "Stratégie SELinux"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
-msgstr "ファイルシステム"
+msgstr "Systèmes de fichiers"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr "ファイルシステムサイズ"
+msgstr "Taille du système de fichier"
 
 #: hardware/templates/stats.html:253
+#, fuzzy
 msgid "Myth Role"
-msgstr "Myth 役割"
+msgstr "Rôle Myth"
 
 #: hardware/templates/stats.html:266
+#, fuzzy
 msgid "Myth Remote"
-msgstr "Myth リモート"
+msgstr "Myth distant"
 
 #: hardware/templates/stats.html:279
+#, fuzzy
 msgid "Myth  Theme"
-msgstr "Myth テーマ"
+msgstr "Thème myth"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "あなたのプロフィールの UUIDを入れてください:"
+msgstr "Saisissez votre profil UUID :"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
-msgstr "統計情報"
+msgstr "Statistiques"
 
 #: hardware/templates/welcome.html:17
-msgid ""
-"For detailed statistics about the devices in the database see <a href='/"
-"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
-"devices</a>"
-msgstr ""
-"データベース中の装置についての詳細な統計情報は <a href='/"
-"static/stats/stats.html'>/stats</a> か <a href='/static/stats/devices.html'>/"
-"devices</a>を見てください。"
+msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
+msgstr "Pour des statistiques détaillées au sujet des périphériques dans la base de données, voir <a href='/static/stats/stats.html'>/stats</a> ou <a href='/static/stats/devices.html'>/périphériques</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr "製造元トップチャート"
+msgstr "Graphique des vendeurs les plus populaires"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr "詳細な情報"
+msgstr "Plus d'informations"
 
 #: hardware/templates/welcome.html:25
-msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
-"about specific devices. Usage and other general answers can also be found at "
-"the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
-"<p>特定の装置についての詳細な情報は <a href='/wiki/'>Wiki</a> を見て探して"
-"ください。利用方法や他の一般的な答は <a href='/wiki/'>Wiki</a>で見つかる"
-"でしょう。</p>"
+msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr "<p>Pour de l'information détaillée au sujet de périphériques spécifiques, naviguez et cherchez dans le <a href='/wiki/'>Wiki</a>. L'usage et d'autres réponses générales peuvent également être trouvées sur le <a href='/wiki/'>Wiki</a>.</p>"
+
