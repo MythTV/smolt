@@ -557,6 +557,7 @@ class GentooReporter:
                     gentoo_package_pool.id = gentoo_installed_packages.package_id AND
                     gentoo_slot_pool.id = gentoo_installed_packages.slot_id AND
                     gentoo_version_pool.id = gentoo_installed_package_props.version_id AND
+                    IF(keyword_status != 0, 1, unmasked) != 0 AND
                     gentoo_installed_packages.package_id IN (%(package_id)s)
                 GROUP BY
                     package_id,
