@@ -33,6 +33,7 @@ from gate import GateFromConfig
 import time
 
 debug = False
+server_url = None
 
 if os.path.exists(os.path.join(sys.path[0], 'Makefile')):
 	CLIENT_PATH = sys.path[0] + '/'
@@ -66,10 +67,11 @@ class SubmitThread(QThread):
 		QThread.__init__(self, parent)
 
 	def run(self):
+		global server_url
 		try:
 			time_before = time.time()
 			retvalue, self.pub_uuid, self.admin = \
-				self.hardware.send(smoonURL=smolt.smoonURL)
+				self.hardware.send(smoonURL=server_url)
 			time_after = time.time()
 			duration_seconds = time_after - time_before
 			if retvalue == 0:
@@ -240,8 +242,9 @@ class SmoltGui(QMainWindow):
 				QMessageBox.Ok, self).exec_()
 
 	def _on_submission_completed(self):
+		global server_url
 		self._tear_progress_down(success=True)
-		url = smolt.get_profile_link(smolt.smoonURL, self._submit_thread.pub_uuid)
+		url = smolt.get_profile_link(server_url, self._submit_thread.pub_uuid)
 		admin_password = self._submit_thread.admin
 		QMessageBox(QMessageBox.Information, unicode(_('Profile Sent'), 'UTF-8'),
 				unicode(_('<b>Your profile was sent successfully!</b><br>\
@@ -259,9 +262,10 @@ class SmoltGui(QMainWindow):
 			self.mySmoltPageAction.setEnabled(enable)
 
 	def openSmoltPage(self):
- 
+		global server_url
+
 		''' Open My Smolt Page '''
-		url = smolt.get_profile_link(smolt.smoonURL, smolt.getPubUUID())
+		url = smolt.get_profile_link(server_url, smolt.getPubUUID())
 		QDesktopServices.openUrl(QUrl(url))
  
 	def showPP(self):
@@ -325,7 +329,13 @@ if __name__ == '__main__':
                     default = None,
                     metavar = 'file.cfg',
                     help = unicode(_('specify the location of the (only) config file to use'), 'UTF-8'))
+    parser.add_option('-s', '--server',
+                    dest = 'smoonURL',
+                    default = smolt.smoonURL,
+                    metavar = 'smoonURL',
+                    help = _('specify the URL of the server (default "%default")'))
     (opts, args) = parser.parse_args()
+    server_url = opts.smoonURL
     if opts.the_only_config_file != None:
         GateFromConfig(opts.the_only_config_file)
 
