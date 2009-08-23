@@ -3,18 +3,18 @@
 # This file is distributed under the same license as the smolt.smoon project.
 # Göran Uddeborg <goeran@uddeborg.se>, 2009.
 #
-# $Id: smolt.smoon.po,v 1.3 2009-08-17 21:43:30+02 göran Exp $
+# $Id: smolt.smoon.po,v 1.5 2009-08-23 22:17:45+02 göran Exp $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt.smoon\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-17 21:33+0200\n"
+"PO-Revision-Date: 2009-08-23 22:17+0200\n"
 "Last-Translator: Göran Uddeborg <goeran@uddeborg.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.1\n"
 
@@ -22,11 +22,13 @@ msgstr ""
 msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
-msgstr "Referenserna du gav var inte korrekta eller gav inte åtkomst till denna resurs."
+msgstr ""
+"Referenserna du gav var inte korrekta eller gav inte åtkomst till denna "
+"resurs."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr "Du måste ge dina referenser före du får åtkomst till denna resurs."
+msgstr "Du måste ge dina referenser innan du får åtkomst till denna resurs."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
@@ -40,9 +42,12 @@ msgstr "Enheter av klassen ${type}"
 msgid "Total Count"
 msgstr "Totalt antal"
 
+# ho behövs eftersom meddelandet felaktigt är markerat som "python-format"
+# https://fedorahosted.org/smolt/ticket/77
 #: hardware/templates/deviceclass.html:19
+#, python-format
 msgid "% hosts detected ${type}"
-msgstr "% värdar detekterade ${type}"
+msgstr "%ho värdar detekterade ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -99,7 +104,7 @@ msgstr "Råa enheter"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "Makiner / Enhet"
+msgstr "Maskiner / Enhet"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
@@ -139,7 +144,7 @@ msgstr "Kräver tredjeparts drivrutiner"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "Fungerar, men kräver ytterligare konfiguration"
+msgstr "Fungerar, men krävde ytterligare konfiguration"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
@@ -219,7 +224,7 @@ msgstr "Totalt MHz"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr "Arkitektuere"
+msgstr "Arkitekturer"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
@@ -229,9 +234,12 @@ msgstr "Arkitektur"
 msgid "Count"
 msgstr "Antal"
 
+# o:et behövs eftersom meddelandet felaktigt är markerat som python-format
+# https://fedorahosted.org/smolt/ticket/77
 #: hardware/templates/stats.html:40
+#, python-format
 msgid "% of total"
-msgstr "% av totalt"
+msgstr "%o av totalt"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
@@ -303,7 +311,7 @@ msgstr "Filsystem"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr "Filsystemstorlek"
+msgstr "Filsystemsstorlek"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
@@ -327,10 +335,13 @@ msgstr "Statistik"
 
 #: hardware/templates/welcome.html:17
 msgid ""
-"For detailed statistics about the devices in the database see <a "
-"href='/static/stats/stats.html'>/stats</a> or <a "
-"href='/static/stats/devices.html'>/devices</a>"
-msgstr "För detaljerad statistik över enheterna i databasen, se <a href='/static/stats/stats.html'>/stats</a> eller <a href='/static/stats/devices.html'>/devices</a>"
+"For detailed statistics about the devices in the database see <a href='/"
+"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
+"devices</a>"
+msgstr ""
+"För detaljerad statistik över enheterna i databasen, se <a href='/static/"
+"stats/stats.html'>/stats</a> eller <a href='/static/stats/devices.html'>/"
+"devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
@@ -342,8 +353,7 @@ msgstr "Mer information"
 
 #: hardware/templates/welcome.html:25
 msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
-"information about specific devices. Usage and other general answers can "
-"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr "<p>Bläddra och sök i <a href='/wiki/'>Wiki</a>:n för detaljerad information om specifika enheter.  Användningsinstruktioner och andra generella svar finns också att hitta i <a href='/wiki/'>Wiki</a>:n.</p>"
-
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
+"about specific devices. Usage and other general answers can also be found at "
+"the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr "<p>Bläddra och sök i <a href='/wiki/'>wiki:n</a> efter detaljerad information om specifika enheter.  Användarinstruktioner och andra allmänna svar finns också att hitta i <a href='/wiki/'>wiki:n</a>.</p>"
