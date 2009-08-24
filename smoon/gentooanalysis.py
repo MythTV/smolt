@@ -686,17 +686,14 @@ class GentooReporter:
             try:
                 call_flag_class_object = self.session.query(GentooCallFlagClassString).filter_by(name=call_flag_class_upper).one()
             except sqlalchemy.orm.exc.NoResultFound:
-                total_entry_count = 0
-                others = 0
                 post_dot_digits = 1
             else:
                 call_flag_class_id = call_flag_class_object.id
 
                 pool_join = _gentoo_call_flags_table.join(_gentoo_call_flag_pool_table)
-                total_entry_count = self.session.query(GentooCallFlagRel).filter_by(call_flag_class_id=call_flag_class_id).count()
                 query = select([
                             GentooCallFlagString.name, \
-                            func.count(GentooCallFlagRel.machine_id)], \
+                            func.count(GentooCallFlagRel.machine_id.distinct())], \
                         from_obj=\
                             [pool_join]).\
                         where(
@@ -704,7 +701,7 @@ class GentooReporter:
                         group_by(
                             GentooCallFlagRel.call_flag_id).\
                         order_by(\
-                            func.count(GentooCallFlagRel.machine_id).desc(), \
+                            func.count(GentooCallFlagRel.machine_id.distinct()).desc(), \
                             GentooCallFlagString.name).\
                         limit(
                             _MAX_CALL_FLAGS)
@@ -713,18 +710,13 @@ class GentooReporter:
                 else:
                     post_dot_digits = 1
 
-                others = total_entry_count
                 for i in query.execute().fetchall():
                     label, absolute = i
-                    others = others - absolute
                     final_rows.append(make_row(absolute, post_dot_digits, label))
-                if others < 0:
-                    others = 0
 
             res[call_flag_class_upper.lower()] = {
                 'listed':final_rows,
-                'others':[make_row(others, post_dot_digits)],
-                'total':[make_row(total_entry_count, post_dot_digits)],
+                'total':[make_row(self.gentoo_machines, post_dot_digits)],
             }
         return res
 
