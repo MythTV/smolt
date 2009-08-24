@@ -694,10 +694,20 @@ class GentooReporter:
 
                 pool_join = _gentoo_call_flags_table.join(_gentoo_call_flag_pool_table)
                 total_entry_count = self.session.query(GentooCallFlagRel).filter_by(call_flag_class_id=call_flag_class_id).count()
-                query = select([GentooCallFlagString.name, func.count(GentooCallFlagRel.machine_id)], \
-                        from_obj=[pool_join]).where(GentooCallFlagRel.call_flag_class_id == call_flag_class_id).\
-                        group_by(GentooCallFlagRel.call_flag_id).order_by(\
-                        func.count(GentooCallFlagRel.machine_id).desc(), GentooCallFlagString.name).limit(_MAX_CALL_FLAGS)
+                query = select([
+                            GentooCallFlagString.name, \
+                            func.count(GentooCallFlagRel.machine_id)], \
+                        from_obj=\
+                            [pool_join]).\
+                        where(
+                            GentooCallFlagRel.call_flag_class_id == call_flag_class_id).\
+                        group_by(
+                            GentooCallFlagRel.call_flag_id).\
+                        order_by(\
+                            func.count(GentooCallFlagRel.machine_id).desc(), \
+                            GentooCallFlagString.name).\
+                        limit(
+                            _MAX_CALL_FLAGS)
                 if _MAX_CALL_FLAGS >= 50:
                     post_dot_digits = 2
                 else:
