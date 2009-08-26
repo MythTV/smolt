@@ -129,8 +129,22 @@ class _GlobalUseFlags:
             'arch.list')))
 
     def _fill_use_flags(self):
+        def pre_evaluate_to_set(use_flags):
+            # .. -foo .. foo .. --> foo
+            # .. foo .. -foo .. --> -foo
+            d = {}
+            for i in [e.lstrip('+') for e in use_flags]:
+                if i.startswith('-'):
+                    enabled = False
+                    flag = i.lstrip('-')
+                else:
+                    enabled = True
+                    flag = i
+                d[flag] = enabled
+            return set((enabled and flag or '-' + flag) for flag, enabled in d.items())
+
         def get_use_flags(section):
-            res = set(portage.settings.configdict[section].get("USE", "").split())
+            res = pre_evaluate_to_set(portage.settings.configdict[section].get("USE", "").split())
             use_expand = portage.settings.configdict[section].get("USE_EXPAND", "").split()
             for expand_var in use_expand:
                 expand_var_values = portage.settings.configdict[section].get(expand_var, "").split()
