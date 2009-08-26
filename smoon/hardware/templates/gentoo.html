@@ -105,7 +105,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <td class="count">${row['absolute_total']}</td>
             <td class="relative">(${row['relative_total']} %)</td>
         </tr>
-        <tr py:for="row in data['archs']['total']">
+        <tr py:with="row = data['archs']['total']">
             <th class="vert_foot">Total</th>
             <td class="foot_count">${row['absolute_stable']}</td>
             <td class="foot_relative">(${row['relative_stable']} %)</td>
@@ -137,7 +137,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <td class="relative">(${row['relative']} %)</td>
         </tr>
         </py:if>
-        <tr py:for="row in data['chost']['total']">
+        <tr py:with="row = data['chost']['total']">
             <th class="vert_foot">Total</th>
             <td class="foot_count">${row['absolute']}</td>
             <td class="foot_relative">(${row['relative']} %)</td>
@@ -160,7 +160,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
-            <tr py:for="row in data['call_flags']['cflags']['total']">
+            <tr py:with="row = data['call_flags']['cflags']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot_count">${row['absolute']}</td>
                 <td class="foot_relative">(${row['relative']} %)</td>
@@ -180,7 +180,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
-            <tr py:for="row in data['call_flags']['cxxflags']['total']">
+            <tr py:with="row = data['call_flags']['cxxflags']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot_count">${row['absolute']}</td>
                 <td class="foot_relative">(${row['relative']} %)</td>
@@ -200,7 +200,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
-            <tr py:for="row in data['call_flags']['ldflags']['total']">
+            <tr py:with="row = data['call_flags']['ldflags']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot_count">${row['absolute']}</td>
                 <td class="foot_relative">(${row['relative']} %)</td>
@@ -220,7 +220,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <td class="count">${row['absolute']}</td>
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
-            <tr py:for="row in data['call_flags']['makeopts']['total']">
+            <tr py:with="row = data['call_flags']['makeopts']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot_count">${row['absolute']}</td>
                 <td class="foot_relative">(${row['relative']} %)</td>
@@ -249,7 +249,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <td class="relative">(${row['relative']} %)</td>
         </tr>
         </py:if>
-        <tr py:for="row in data['features']['total']">
+        <tr py:with="row = data['features']['total']">
             <th class="vert_foot">Total</th>
             <td class="foot_count">${row['absolute']}</td>
             <td class="foot_relative">(${row['relative']} %)</td>
@@ -270,7 +270,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <td class="count">${row['absolute']}</td>
             <td class="relative">(${row['relative']} %)</td>
         </tr>
-        <tr py:for="row in data['global_use_flags']['total']">
+        <tr py:with="row = data['global_use_flags']['total']">
             <th class="vert_foot">Total</th>
             <td class="foot_count">${row['absolute']}</td>
             <td class="foot_relative">(${row['relative']} %)</td>
@@ -298,7 +298,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <td class="relative">(${row['relative']} %)</td>
         </tr>
         </py:if>
-        <tr py:for="row in data['system_profile']['total']">
+        <tr py:with="row = data['system_profile']['total']">
             <th class="vert_foot">Total</th>
             <td class="foot_count">${row['absolute']}</td>
             <td class="foot_relative">(${row['relative']} %)</td>
@@ -346,7 +346,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <td class="relative">(${row['relative']} %)</td>
         </tr>
         </py:if>
-        <tr py:for="row in data['package_mask']['total']">
+        <tr py:with="row = data['package_mask']['total']">
             <th class="vert_foot">Total</th>
             <td class="foot"><span></span></td>
             <td class="foot_count">${row['absolute']}</td>
@@ -386,7 +386,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <td class="count">${row['absolute_total_installations']}</td>
             <td class="relative">(${row['relative_total_installations']} %)</td>
         </tr>
-        <tr py:for="row in data['repos']['total']">
+        <tr py:with="row = data['repos']['total']">
             <th class="vert_foot">Total</th>
             <td class="foot_count">${row['absolute_popularity']}</td>
             <td class="foot_relative">(${row['relative_popularity']} %)</td>
@@ -420,7 +420,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
             </py:if>
-            <tr py:for="row in data['sync_mirror']['total']">
+            <tr py:with="row = data['sync_mirror']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot_count">${row['absolute']}</td>
                 <td class="foot_relative">(${row['relative']} %)</td>
@@ -447,7 +447,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <td class="relative">(${row['relative']} %)</td>
             </tr>
             </py:if>
-            <tr py:for="row in data['distfiles_mirrors']['total']">
+            <tr py:with="row = data['distfiles_mirrors']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot_count">${row['absolute']}</td>
                 <td class="foot_relative">(${row['relative']} %)</td>
@@ -687,18 +687,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
     </py:for>
   </py:if>
 </py:for>
-            <tr>
+            <tr py:with="row = data['installed_packages']['most_unmasked']['total']">
                 <th class="vert_foot">Total</th>
                 <td class="foot"><span></span></td>
                 <td class="foot"><span></span></td>
-                <td class="foot_count">${data['installed_packages']['most_unmasked']['total']['tilde_arch_absolute_total']}</td>
-                <td class="foot_relative">(${data['installed_packages']['most_unmasked']['total']['tilde_arch_relative_total']} %)</td>
-                <td class="foot_count">${data['installed_packages']['most_unmasked']['total']['double_asterisk_absolute_total']}</td>
-                <td class="foot_relative">(${data['installed_packages']['most_unmasked']['total']['double_asterisk_relative_total']} %)</td>
-                <td class="foot_count">${data['installed_packages']['most_unmasked']['total']['unmask_absolute_total']}</td>
-                <td class="foot_relative">(${data['installed_packages']['most_unmasked']['total']['unmask_relative_total']} %)</td>
-                <td class="foot_count">${data['installed_packages']['most_unmasked']['total']['any_absolute_total']}</td>
-                <td class="foot_relative">(${data['installed_packages']['most_unmasked']['total']['any_relative_total']} %)</td>
+                <td class="foot_count">${row['tilde_arch_absolute_total']}</td>
+                <td class="foot_relative">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="foot_count">${row['double_asterisk_absolute_total']}</td>
+                <td class="foot_relative">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="foot_count">${row['unmask_absolute_total']}</td>
+                <td class="foot_relative">(${row['unmask_relative_total']} %)</td>
+                <td class="foot_count">${row['any_absolute_total']}</td>
+                <td class="foot_relative">(${row['any_relative_total']} %)</td>
             </tr>
         </table>
     </div>

@@ -107,7 +107,7 @@ class GentooReporter:
 
         res = {
             'listed':final_rows,
-            'total':[make_row(total_stable, total_unstable, total_total)],
+            'total':make_row(total_stable, total_unstable, total_total),
         }
         return res
 
@@ -184,7 +184,7 @@ class GentooReporter:
 
         res = {
             'listed':final_rows,
-            'total':[make_row(self.gentoo_machines, package_count, total_total_installations)],
+            'total':make_row(self.gentoo_machines, package_count, total_total_installations),
         }
         return res
 
@@ -286,7 +286,7 @@ class GentooReporter:
             res[_SECTION] = {
                 'listed':final_rows,
                 'others':[make_row(others, post_dot_digits)],
-                'total':[make_row(total_entry_count, post_dot_digits)],
+                'total':make_row(total_entry_count, post_dot_digits),
             }
         return res
 
@@ -327,7 +327,7 @@ class GentooReporter:
 
         res = {
             'listed':final_rows,
-            'total':[make_row(self.gentoo_machines, post_dot_digits)],
+            'total':make_row(self.gentoo_machines, post_dot_digits),
         }
         return res
 
@@ -403,7 +403,7 @@ class GentooReporter:
         res = {
             'listed':final_rows,
             'others':[make_row(others, post_dot_digits)],
-            'total':[make_row(total_entry_count, post_dot_digits)],
+            'total':make_row(total_entry_count, post_dot_digits),
         }
         return res
 
@@ -791,7 +791,7 @@ class GentooReporter:
 
             res[call_flag_class_upper.lower()] = {
                 'listed':final_rows,
-                'total':[make_row(self.gentoo_machines, post_dot_digits)],
+                'total':make_row(self.gentoo_machines, post_dot_digits),
             }
         return res
 
