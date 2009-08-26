@@ -301,8 +301,6 @@ class GentooReporter:
             return res
 
         pool_join = _gentoo_global_use_flags_table.join(_gentoo_use_flag_pool_table)
-        total_entry_count = self.session.query(GentooGlobalUseFlagRel).\
-                filter_by(set_in_make_conf=1).count()
         query = select([
                     GentooUseFlagString.name, \
                     func.count(GentooGlobalUseFlagRel.machine_id)], \
@@ -323,18 +321,13 @@ class GentooReporter:
             post_dot_digits = 1
 
         final_rows = []
-        others = total_entry_count
         for i in query.execute().fetchall():
             label, absolute = i
-            others = others - absolute
             final_rows.append(make_row(absolute, post_dot_digits, label))
-        if others < 0:
-            others = 0
 
         res = {
             'listed':final_rows,
-            'others':[make_row(others, post_dot_digits)],
-            'total':[make_row(total_entry_count, post_dot_digits)],
+            'total':[make_row(self.gentoo_machines, post_dot_digits)],
         }
         return res
 
