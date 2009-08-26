@@ -87,7 +87,7 @@ class GentooReporter:
         pool_join = _gentoo_accept_keywords_table.join(_gentoo_keyword_pool_table)
         query = select(columns, from_obj=[pool_join]).\
                 group_by(GentooAcceptKeywordRel.keyword_id).order_by(\
-                func.count(GentooAcceptKeywordRel.machine_id).desc())
+                GentooKeywordString.name)
         total_stable = 0
         total_unstable = 0
         total_total = 0
@@ -205,6 +205,7 @@ class GentooReporter:
                 '_REL_CLASS_OBJECT':GentooDistfilesMirrorRel,
                 '_POOL_CLASS_OBJECT':GentooMirrorString,
                 '_DISPLAY_LIMIT':_MAX_DISTFILES_MIRRORS,
+                '_SORT_BY_POPULARITY':True,
                 '_FOREIGN_COLUMN_NAME':'mirror_id'},
             {'_SECTION':'features',
                 '_POOL_TABLE_OBJECT':_gentoo_feature_pool_table,
@@ -212,6 +213,7 @@ class GentooReporter:
                 '_REL_CLASS_OBJECT':GentooFeatureRel,
                 '_POOL_CLASS_OBJECT':GentooFeatureString,
                 '_DISPLAY_LIMIT':_MAX_FEATURES,
+                '_SORT_BY_POPULARITY':True,
                 '_FOREIGN_COLUMN_NAME':'feature_id'},
             {'_SECTION':'sync_mirror',
                 '_POOL_TABLE_OBJECT':_gentoo_mirror_pool_table,
@@ -219,6 +221,7 @@ class GentooReporter:
                 '_REL_CLASS_OBJECT':GentooSyncMirrorRel,
                 '_POOL_CLASS_OBJECT':GentooMirrorString,
                 '_DISPLAY_LIMIT':_MAX_SYNC_MIRRORS,
+                '_SORT_BY_POPULARITY':True,
                 '_FOREIGN_COLUMN_NAME':'mirror_id'},
             {'_SECTION':'system_profile',
                 '_POOL_TABLE_OBJECT':_gentoo_system_profile_pool_table,
@@ -226,6 +229,7 @@ class GentooReporter:
                 '_REL_CLASS_OBJECT':GentooSystemProfileRel,
                 '_POOL_CLASS_OBJECT':GentooSystemProfileString,
                 '_DISPLAY_LIMIT':_MAX_SYSTEM_PROFILE,
+                '_SORT_BY_POPULARITY':False,
                 '_FOREIGN_COLUMN_NAME':'system_profile_id'},
             {'_SECTION':'chost',
                 '_POOL_TABLE_OBJECT':_gentoo_chost_pool_table,
@@ -233,6 +237,7 @@ class GentooReporter:
                 '_REL_CLASS_OBJECT':GentooChostRel,
                 '_POOL_CLASS_OBJECT':GentooChostString,
                 '_DISPLAY_LIMIT':_MAX_CHOST,
+                '_SORT_BY_POPULARITY':False,
                 '_FOREIGN_COLUMN_NAME':'chost_id'},
         ]
 
@@ -245,12 +250,25 @@ class GentooReporter:
             _POOL_CLASS_OBJECT = j['_POOL_CLASS_OBJECT']
             _DISPLAY_LIMIT = j['_DISPLAY_LIMIT']
             _FOREIGN_COLUMN_NAME = j['_FOREIGN_COLUMN_NAME']
+            _SORT_BY_POPULARITY = j['_SORT_BY_POPULARITY']
 
             pool_join = _REL_TABLE_OBJECT.join(_POOL_TABLE_OBJECT)
             total_entry_count = self.session.query(_REL_CLASS_OBJECT).count()
-            query = select([_POOL_CLASS_OBJECT.name, func.count(_REL_CLASS_OBJECT.machine_id)], \
-                    from_obj=[pool_join]).group_by(getattr(_REL_CLASS_OBJECT, _FOREIGN_COLUMN_NAME)).order_by(\
-                    func.count(_REL_CLASS_OBJECT.machine_id).desc(), _POOL_CLASS_OBJECT.name).limit(_DISPLAY_LIMIT)
+            query = select([
+                        _POOL_CLASS_OBJECT.name, \
+                        func.count(_REL_CLASS_OBJECT.machine_id)], \
+                    from_obj=[pool_join]).\
+                    group_by(
+                        getattr(_REL_CLASS_OBJECT, _FOREIGN_COLUMN_NAME))
+            if _SORT_BY_POPULARITY:
+                query = query.order_by(
+                        func.count(_REL_CLASS_OBJECT.machine_id).desc(), \
+                        _POOL_CLASS_OBJECT.name)
+            else:
+                query = query.order_by(
+                        _POOL_CLASS_OBJECT.name)
+            query = query.limit(_DISPLAY_LIMIT)
+
             if _DISPLAY_LIMIT >= 50:
                 post_dot_digits = 2
             else:
