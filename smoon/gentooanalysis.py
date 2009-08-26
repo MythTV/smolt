@@ -303,11 +303,20 @@ class GentooReporter:
         pool_join = _gentoo_global_use_flags_table.join(_gentoo_use_flag_pool_table)
         total_entry_count = self.session.query(GentooGlobalUseFlagRel).\
                 filter_by(set_in_make_conf=1).count()
-        query = select([GentooUseFlagString.name, func.count(GentooGlobalUseFlagRel.machine_id)], \
-                from_obj=[pool_join]).group_by(GentooGlobalUseFlagRel.use_flag_id).\
-                where(and_(GentooGlobalUseFlagRel.set_in_make_conf == 1, \
-                    GentooGlobalUseFlagRel.enabled_in_make_conf == 1)).order_by(\
-                func.count(GentooGlobalUseFlagRel.machine_id).desc(), GentooUseFlagString.name).limit(_MAX_GLOBAL_USE_FLAGS)
+        query = select([
+                    GentooUseFlagString.name, \
+                    func.count(GentooGlobalUseFlagRel.machine_id)], \
+                from_obj=[pool_join]).\
+                group_by(
+                    GentooGlobalUseFlagRel.use_flag_id).\
+                where(
+                    and_(
+                        GentooGlobalUseFlagRel.set_in_make_conf == 1, \
+                        GentooGlobalUseFlagRel.enabled_in_make_conf == 1)).\
+                order_by(
+                    func.count(GentooGlobalUseFlagRel.machine_id).desc(), \
+                    GentooUseFlagString.name).\
+                limit(_MAX_GLOBAL_USE_FLAGS)
         if _MAX_GLOBAL_USE_FLAGS >= 50:
             post_dot_digits = 2
         else:
