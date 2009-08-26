@@ -558,6 +558,15 @@ def do_distro_specific_renderinging():
     f.write(out_html)
     f.close()
 
+    t = engine.load_template('hardware.templates.gentoo_zero_installs_packages')
+    out_txt = _process_output(dict(data=gentoo_data_tree), template=t, format='html')
+    # Kill HTML intro and outro. TODO Resolve dirty hack
+    out_txt = '\n'.join(e for e in out_txt.split('\n') if not e.startswith('<'))
+    fname = "%s/gentoo_zero_installs_packages.txt" % (page_path)
+    f = open(fname, "w")
+    f.write(out_txt)
+    f.close()
+
 do_distro_specific_renderinging()
 """
 # Save some memory

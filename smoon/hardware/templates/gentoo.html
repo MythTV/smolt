@@ -79,7 +79,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                     </ul>
                 </li>
                 <li><a href="#installed_packages_most_unmasked">Most-unmasked packages</a></li>
-                <li class="todo"><a href="#installed_packages_least_installed_main_tree">Least-installed main-tree packages</a></li>
+                <li><a href="#installed_packages_least_installed_main_tree">Least-installed main-tree packages</a></li>
+                <li><a href="gentoo_zero_installs_packages.txt">Zero-installs main-tree packages</a></li>
             </ul>
         </li>
     </ul>
@@ -709,18 +710,23 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
         </table>
     </div>
 
-    <a name="installed_packages_least_installed_main_tree"></a><h3>Least-installed main-tree packages</h3>
-    <div class="todo">
+    <a name="installed_packages_least_installed_main_tree"></a><h3>Least-installed main-tree packages (top ${len(data['installed_packages']['least_installed']['listed'])})</h3>
+    <div>
         <table>
-            <tr><th class="vert_head">Package</th><th class="head">Slot</th><th class="head">Version</th><th colspan="2" class="head">Popularity</th></tr>
-            <tr><th class="vert" rowspan="5" style="vertical-align:top">x11-libs/qt</th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr>                                            <td class="group_child_1" rowspan="3" style="vertical-align:top">3</td><td class="group_child_1"><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr>                                                                                                                 <td class="group_child_2">3.3.8-r2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr>                                                                                                                 <td class="group_child_2">3.3.8-r4</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr>                                            <td class="group_child_1">4</td><td class="group_child_1">4.4.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert">dev-util/colormake</th><td>0</td><td>0.2</td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert"><span class="group_item">others</span></th><td><span class="group_item">any</span></td><td><span class="group_item">any</span></td><td class="count">2</td><td class="relative">(XXX %)</td></tr>
-            <tr><th class="vert_foot">Total</th><td class="foot"><span></span></td><td class="foot"><span></span></td><td class="foot_count">2</td><td class="foot_relative">(XXX %)</td></tr>
+            <tr>
+                <th class="vert_head">Package</th>
+                <th colspan="2" class="head">Popularity</th>
+            </tr>
+            <tr py:for="row in data['installed_packages']['least_installed']['listed']">
+                <th class="vert"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
+                <td class="count">${row['absolute']}</td>
+                <td class="relative">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['installed_packages']['least_installed']['total']">
+                <th class="vert_foot">Total</th>
+                <td class="foot_count">${row['absolute']}</td>
+                <td class="foot_relative">(${row['relative']} %)</td>
+            </tr>
         </table>
     </div>
 </div>

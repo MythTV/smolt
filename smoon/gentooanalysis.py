@@ -55,6 +55,7 @@ _MAX_PACKAGE_MASK_SUB_ENTRIES = 5
 _MAX_INSTALLED_PACKAGES = 100
 _MAX_INSTALLED_PACKAGE_SLOTS = 1
 _MAX_INSTALLED_PACKAGE_SLOT_VERSIONS = 1
+_MAX_INSTALLED_PACKAGES_LEAST_INSTALLED = 100
 
 
 class GentooReporter:
@@ -641,6 +642,51 @@ class GentooReporter:
         }
         return res
 
+    def _main_tree_package_names(self):
+        # TODO Sync with live gentoo tree
+        f = open('gentoo_tree_package_names.txt', 'r')
+        res = set([e.rstrip('\r\n') for e in f.readlines() if (e and not e.isspace())])
+        f.close()
+        return res
+
+    def _analyzes_installed_packages_least_installed(self):
+        main_tree_package_names = self._main_tree_package_names()
+
+        pool_join = _gentoo_installed_packages_table.\
+                join(_gentoo_installed_package_props_table).\
+                join(_gentoo_package_pool_table)
+        query = select([
+                    GentooPackageString.name, \
+                    func.count(GentooInstalledPackagesRel.machine_id.distinct())], \
+                from_obj=[pool_join]).\
+                group_by(
+                    GentooInstalledPackagesRel.package_id).\
+                where(
+                    GentooPackageString.name.in_(main_tree_package_names)).\
+                order_by(
+                    func.count(GentooInstalledPackagesRel.machine_id.distinct()).desc(), \
+                    GentooPackageString.name)
+
+        data = query.execute().fetchall()
+
+        package_names_at_least_once = set(e[0] for e in data)
+        package_names_zero = main_tree_package_names - package_names_at_least_once
+
+        if _MAX_INSTALLED_PACKAGES_LEAST_INSTALLED >= 50:
+            post_dot_digits = 2
+        else:
+            post_dot_digits = 1
+
+        return {
+            'least_installed':[{
+                'package':i[0], \
+                'absolute':i[1], \
+                'relative':self._relative(i[1], self.gentoo_machines, post_dot_digits)} \
+                for i in \
+                data[-_MAX_INSTALLED_PACKAGES_LEAST_INSTALLED:]],
+            'zero_installs':sorted(package_names_zero),
+        }
+
     def _analyzes_installed_packages(self):
         if _MAX_INSTALLED_PACKAGES >= 50:
             post_dot_digits = 2
@@ -650,6 +696,7 @@ class GentooReporter:
         most_installed_world = self._analyzes_installed_packages_most_installed_world(post_dot_digits)
         most_installed_all = self._analyzes_installed_packages_most_installed_all(post_dot_digits)
         most_unmasked = self._analyzes_installed_packages_most_unmasked(post_dot_digits)
+        least_installed_dict = self._analyzes_installed_packages_least_installed()
 
         res = {
             'most_installed_world':{
@@ -666,7 +713,15 @@ class GentooReporter:
                     'relative_total':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),
                 }
             },
-            'most_unmasked':most_unmasked
+            'most_unmasked':most_unmasked,
+            'least_installed':{
+                'listed':least_installed_dict['least_installed'],
+                'total':{
+                    'absolute':self.gentoo_machines,
+                    'relative':self._relative(self.gentoo_machines, self.gentoo_machines, post_dot_digits),
+                }
+            },
+            'zero_installs':least_installed_dict['zero_installs']
         }
         return res
 
