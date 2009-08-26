@@ -141,18 +141,21 @@ class _GlobalUseFlags:
         publish_global_use_flags = Gate().grants('gentoo', 'global_use_flags')
         publish_system_profile = Gate().grants('gentoo', 'system_profile')
 
-        self._publish_system_profile_flags = \
-                publish_global_use_flags and publish_system_profile
-        if self._publish_system_profile_flags:
-            _all_profile_use_flags = get_use_flags('defaults')
-        else:
-            _all_profile_use_flags = []
 
-        self._publish_make_conf_flags = publish_global_use_flags
-        if self._publish_make_conf_flags:
-            _all_make_conf_use_flags = get_use_flags('conf')
-        else:
-            _all_make_conf_use_flags = []
+        self._use_flags = {}
+        for key in ('defaults', 'conf'):
+            self._use_flags[key] = {}
+
+        self._use_flags['defaults']['publish'] = \
+                publish_global_use_flags and publish_system_profile
+        self._use_flags['conf']['publish'] = publish_global_use_flags
+
+        _all_use_flags = {}
+        for key in ('defaults', 'conf'):
+            if self._use_flags[key]['publish']:
+                _all_use_flags[key] = get_use_flags(key)
+            else:
+                _all_use_flags[key] = []
 
         # Filter our private use flags
         self._non_private_space = self._registered_global_use_flags().union(
@@ -164,35 +167,34 @@ class _GlobalUseFlags:
             positive = x.lstrip('-')
             return positive in self._non_private_space
 
-        self._profile_use_flags = \
-                set(e for e in _all_profile_use_flags if is_non_private(e))
-        self._profile_use_flags_count_non_private = len(self._profile_use_flags)
-        self._profile_use_flags_count_private = len(_all_profile_use_flags) - \
-                self._profile_use_flags_count_non_private
-
-        self._make_conf_use_flags = \
-                set(e for e in _all_make_conf_use_flags if is_non_private(e))
-        self._make_conf_use_flags_count_non_private = len(self._make_conf_use_flags)
-        self._make_conf_use_flags_count_private = len(_all_make_conf_use_flags) - \
-                self._make_conf_use_flags_count_non_private
+        for key in ('defaults', 'conf'):
+            self._use_flags[key]['flags'] = \
+                    set(e for e in _all_use_flags[key] if is_non_private(e))
+            self._use_flags[key]['count_non_private'] = \
+                    len(self._use_flags[key]['flags'])
+            self._use_flags[key]['count_private'] = len(_all_use_flags[key]) - \
+                    self._use_flags[key]['count_non_private']
 
     def is_known(self, flag):
         return flag in self._non_private_space
 
     def serialize(self):
         res = {
-            'profile':sorted(self._profile_use_flags),
-            'make_conf':sorted(self._make_conf_use_flags),
+            'profile':sorted(self._use_flags['defaults']['flags']),
+            'make_conf':sorted(self._use_flags['conf']['flags']),
         }
         return res
 
     def get_metrics(self, target_dict):
-        target_dict['global_use_flags_profile'] = (self._publish_system_profile_flags, \
-                self._profile_use_flags_count_private, \
-                self._profile_use_flags_count_non_private)
-        target_dict['global_use_flags_make_conf'] = (self._publish_make_conf_flags, \
-                self._make_conf_use_flags_count_private, \
-                self._make_conf_use_flags_count_non_private)
+        fill_jobs = {
+            'global_use_flags_profile':'defaults',
+            'global_use_flags_make_conf':'conf',
+        }
+        for target, source in fill_jobs.keys():
+            target_dict[target] = (
+                    self._use_flags[source]['publish'], \
+                    self._use_flags[source]['count_private'], \
+                    self._use_flags[source]['count_non_private'])
 
     def dump_html(self, lines):
         serialized = self.serialize()
