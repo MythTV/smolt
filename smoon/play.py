@@ -143,14 +143,20 @@ def handle_gentoo_data(session, host_dict, machine_id):
         raise e
 
 def _handle_simple_stuff(session, data, machine_id):
-    # Pre-processing
+    def single_trailing_slash(url_text):
+        return url_text.rstrip('/') + '/'
+
+    # Pre-process distfiles mirrors
     try:
-        distfiles_mirror_urls = data['mirrors']['distfiles']
+        data['mirrors']['distfiles'] = [single_trailing_slash(e) for e in data['mirrors']['distfiles']]
     except KeyError:
         pass
-    else:
-        # Ensure trailing slashes
-        distfiles_mirror_urls = [(e.rstrip('/') + '/') for e in distfiles_mirror_urls]
+
+    # Pre-process sync mirror
+    try:
+        data['mirrors']['sync'] = single_trailing_slash(data['mirrors']['sync'])
+    except KeyError:
+        pass
 
     for job in _DIFF_JOBS:
         foreign = job['foreign']
