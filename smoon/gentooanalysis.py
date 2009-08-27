@@ -291,6 +291,18 @@ class GentooReporter:
         return res
 
     def _analyze_global_use_flags(self):
+        _REL_TABLE = _gentoo_global_use_flags_table
+        _POOL_TABLE = _gentoo_use_flag_pool_table
+        _REL_CLASS = GentooGlobalUseFlagRel
+        _POOL_CLASS = GentooUseFlagString
+        _LIMIT = _MAX_GLOBAL_USE_FLAGS
+        _POOL_ID_NAME = 'use_flag_id'
+        return self._analyze_split_set_entries(
+            _REL_TABLE, _POOL_TABLE, _REL_CLASS, \
+            _POOL_CLASS, _LIMIT, _POOL_ID_NAME)
+
+    def _analyze_split_set_entries(self, _REL_TABLE, _POOL_TABLE, _REL_CLASS, \
+            _POOL_CLASS, _LIMIT, _POOL_ID_NAME):
         def make_row(absolute, post_dot_digits, label=None):
             res = {
                 'absolute':absolute,
@@ -300,22 +312,22 @@ class GentooReporter:
                 res['label'] = label
             return res
 
-        pool_join = _gentoo_global_use_flags_table.join(_gentoo_use_flag_pool_table)
+        pool_join = _REL_TABLE.join(_POOL_TABLE)
         query = select([
-                    GentooUseFlagString.name, \
-                    func.count(GentooGlobalUseFlagRel.machine_id)], \
+                    _POOL_CLASS.name, \
+                    func.count(_REL_CLASS.machine_id)], \
                 from_obj=[pool_join]).\
                 group_by(
-                    GentooGlobalUseFlagRel.use_flag_id).\
+                    getattr(_REL_CLASS, _POOL_ID_NAME)).\
                 where(
                     and_(
-                        GentooGlobalUseFlagRel.set_in_make_conf == 1, \
-                        GentooGlobalUseFlagRel.enabled_in_make_conf == 1)).\
+                        _REL_CLASS.set_in_make_conf == 1, \
+                        _REL_CLASS.enabled_in_make_conf == 1)).\
                 order_by(
-                    func.count(GentooGlobalUseFlagRel.machine_id).desc(), \
-                    GentooUseFlagString.name).\
-                limit(_MAX_GLOBAL_USE_FLAGS)
-        if _MAX_GLOBAL_USE_FLAGS >= 50:
+                    func.count(_REL_CLASS.machine_id).desc(), \
+                    _POOL_CLASS.name).\
+                limit(_LIMIT)
+        if _LIMIT >= 50:
             post_dot_digits = 2
         else:
             post_dot_digits = 1
