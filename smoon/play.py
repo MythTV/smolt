@@ -369,18 +369,29 @@ def _handle_privacy_metrics(session, data, machine_id):
 
 
 def _handle_global_use_flags(session, data, machine_id):
-    current_global_use_flags_lists = {}
+    _PARENT_SOURCE_KEY = 'global_use_flags'
+    _CHILD_KEYS = ('make_conf', 'profile', 'final') # Note: Order must match that on model class
+    _EAGERLOAD_KEY = 'use_flag'
+    _REL_CLASS = GentooGlobalUseFlagRel
+    _POOL_CLASS = GentooUseFlagString
+    return _handle_split_set_entries(session, data, machine_id, \
+            _PARENT_SOURCE_KEY, _CHILD_KEYS, _EAGERLOAD_KEY, \
+            _REL_CLASS, _POOL_CLASS)
+
+def _handle_split_set_entries(session, data, machine_id, \
+        _PARENT_SOURCE_KEY, _CHILD_KEYS, _EAGERLOAD_KEY, _REL_CLASS, _POOL_CLASS):
+    current_entries_lists = {}
 
     # Find current entries
-    for key in ('make_conf', 'profile', 'final'):
+    for key in _CHILD_KEYS:
         try:
-            current_global_use_flags_lists[key] = data['global_use_flags'][key]
+            current_entries_lists[key] = data[_PARENT_SOURCE_KEY][key]
         except KeyError:
-            current_global_use_flags_lists[key] = []
+            current_entries_lists[key] = []
 
-    # Lookup/add use flags
-    def process_flags(target_dict,  source_set_name):
-        for i in [e.strip() for e in current_global_use_flags_lists[source_set_name]]:
+    # Lookup/add pool entries
+    def process_entries(target_dict,  source_set_name):
+        for i in [e.strip() for e in current_entries_lists[source_set_name]]:
             if i.startswith('-'):
                 key = i.lstrip('-')
                 enabled = False
@@ -398,7 +409,7 @@ def _handle_global_use_flags(session, data, machine_id):
                 target_dict[key] = {
                     'pool_object':None,
                 }
-                for candidate in ('make_conf', 'profile', 'final'):
+                for candidate in _CHILD_KEYS:
                     key_set_in_foo = 'set_in_%s' % candidate
                     key_enabled_in_foo = 'enabled_in_%s' % candidate
                     value_set_in_foo = candidate == source_set_name
@@ -407,73 +418,65 @@ def _handle_global_use_flags(session, data, machine_id):
                     target_dict[key][key_set_in_foo] = value_set_in_foo
                     target_dict[key][key_enabled_in_foo] = value_enabled_in_foo
 
-    current_use_flag_dict = {}
-    for key in ('make_conf', 'profile', 'final'):
-        process_flags(current_use_flag_dict, key)
+    current_entries_dict = {}
+    for key in _CHILD_KEYS:
+        process_entries(current_entries_dict, key)
 
-    current_positive_use_flags = current_use_flag_dict.keys()
+    current_positive_entries = current_entries_dict.keys()
 
-    use_flag_pool_objects = session.query(GentooUseFlagString).filter(\
-            GentooUseFlagString.name.in_(current_positive_use_flags)).all()
-    for i in use_flag_pool_objects:
-        current_use_flag_dict[i.name]['pool_object'] = i
-    for i in [e for e in current_positive_use_flags if \
-            current_use_flag_dict[e]['pool_object'] == None]:
-        use_flag_object = GentooUseFlagString(i)
-        current_use_flag_dict[i]['pool_object'] = use_flag_object
-        session.add(use_flag_object)
+    entry_pool_objects = session.query(_POOL_CLASS).filter(\
+            _POOL_CLASS.name.in_(current_positive_entries)).all()
+    for i in entry_pool_objects:
+        current_entries_dict[i.name]['pool_object'] = i
+    for i in [e for e in current_positive_entries if \
+            current_entries_dict[e]['pool_object'] == None]:
+        entry_object = _POOL_CLASS(i)
+        current_entries_dict[i]['pool_object'] = entry_object
+        session.add(entry_object)
     session.flush()
 
-    current_global_use_flag_set = set()
-    for k, v in current_use_flag_dict.items():
+    current_entries_set = set()
+    for k, v in current_entries_dict.items():
         entry = [k, ]
-        for candidate in ('make_conf', 'profile', 'final'):
+        for candidate in _CHILD_KEYS:
             key_set_in_foo = 'set_in_%s' % candidate
             key_enabled_in_foo = 'enabled_in_%s' % candidate
             entry.append(v[key_set_in_foo])
             entry.append(v[key_enabled_in_foo])
-        current_global_use_flag_set.add(tuple(entry))
+        current_entries_set.add(tuple(entry))
 
     # Find old entries
-    old_global_use_flag_objects = session.query(GentooGlobalUseFlagRel).options(\
-                eagerload('use_flag')).filter_by(machine_id=machine_id).all()
-    old_global_use_flag_dict = {}
-    old_global_use_flag_set = set()
-    for e in old_global_use_flag_objects:
-        flag = e.use_flag.name
-        old_global_use_flag_dict[flag] = e
+    old_entry_objects = session.query(_REL_CLASS).options(\
+                eagerload(_EAGERLOAD_KEY)).filter_by(machine_id=machine_id).all()
+    old_entries_dict = {}
+    old_entries_set = set()
+    for e in old_entry_objects:
+        entry_name = getattr(e, _EAGERLOAD_KEY).name
+        old_entries_dict[entry_name] = e
 
-        entry = [flag, ]
-        for candidate in ('make_conf', 'profile', 'final'):
+        entry = [entry_name, ]
+        for candidate in _CHILD_KEYS:
             key_set_in_foo = 'set_in_%s' % candidate
             key_enabled_in_foo = 'enabled_in_%s' % candidate
-            entry.append(bool(get_attr(e, key_set_in_foo)))
-            entry.append(bool(get_attr(e, key_enabled_in_foo)))
-        old_global_use_flag_set.add(tuple(entry))
+            entry.append(bool(getattr(e, key_set_in_foo)))
+            entry.append(bool(getattr(e, key_enabled_in_foo)))
+        old_entries_set.add(tuple(entry))
 
     # Calculate diff
-    flags_to_add = current_global_use_flag_set - old_global_use_flag_set
-    flags_to_remove = old_global_use_flag_set - current_global_use_flag_set
+    entries_to_add = current_entries_set - old_entries_set
+    entries_to_remove = old_entries_set - current_entries_set
 
     # Resolve diff
-    for e in flags_to_remove:
-        flag = e[0]
-        session.delete(old_global_use_flag_dict[flag])
-    if flags_to_remove:
+    for e in entries_to_remove:
+        entry_name = e[0]
+        session.delete(old_entries_dict[entry_name])
+    if entries_to_remove:
         session.flush()
-    for (flag, \
-            set_in_make_conf, enabled_in_make_conf, \
-            set_in_profile, enabled_in_profile, \
-            set_in_final, enabled_in_final) \
-            in flags_to_add:
-        use_flag_id = current_use_flag_dict[flag]['pool_object'].id
-        session.add(GentooGlobalUseFlagRel(machine_id, use_flag_id, \
-                set_in_make_conf, \
-                enabled_in_make_conf, \
-                set_in_profile, \
-                enabled_in_profile, \
-                set_in_final, \
-                enabled_in_final))
+    for i in entries_to_add:
+        entry_name = i[0]
+        entry_data = i[1:]
+        pool_object_id = current_entries_dict[entry_name]['pool_object'].id
+        session.add(_REL_CLASS(machine_id, pool_object_id, entry_data))
 
 
 def _handle_installed_packages(session, data, machine_id):

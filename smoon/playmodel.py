@@ -362,29 +362,29 @@ _gentoo_global_use_flags_table = Table('gentoo_global_use_flags', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('machine_id', Integer, nullable=False),
     Column('use_flag_id', Integer, ForeignKey('%s.id' % 'gentoo_use_flag_pool'), nullable=False),
+
     Column('set_in_make_conf', SmallInteger, nullable=False),  # Not BOOLEAN here as that denies using func.sum
     Column('enabled_in_make_conf', SmallInteger, nullable=False),  # as above
     Column('set_in_profile', SmallInteger, nullable=False),  # as above
     Column('enabled_in_profile', SmallInteger, nullable=False),  # as above
     Column('set_in_final', SmallInteger, nullable=False),  # as above
     Column('enabled_in_final', SmallInteger, nullable=False),  # as above
+
     UniqueConstraint('machine_id', 'use_flag_id'),
 )
 
 class GentooGlobalUseFlagRel(object):
-    def __init__(self, machine_id, use_flag_id, \
-            set_in_make_conf, enabled_in_make_conf, \
-            set_in_profile, enabled_in_profile, \
-            set_in_final, enabled_in_final):
+    def __init__(self, machine_id, use_flag_id,
+            alternating_set_enabled_set_enabled):
         self.machine_id = machine_id
         self.use_flag_id = use_flag_id
 
-        self.set_in_make_conf = set_in_make_conf
-        self.enabled_in_make_conf = enabled_in_make_conf
-        self.set_in_profile = set_in_profile
-        self.enabled_in_profile = enabled_in_profile
-        self.set_in_final = set_in_final
-        self.enabled_in_final = enabled_in_final
+        self.set_in_make_conf, \
+                self.enabled_in_make_conf, \
+                self.set_in_profile, \
+                self.enabled_in_profile, \
+                self.set_in_final, \
+                self.enabled_in_final = alternating_set_enabled_set_enabled
 
 mapper(GentooGlobalUseFlagRel, _gentoo_global_use_flags_table,
     properties={
