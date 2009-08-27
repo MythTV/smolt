@@ -1,350 +1,356 @@
+# translation of smolt.master-smoon.messages.po to Korean
 # Translations template for hardware.
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
-#, fuzzy
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# Eunju Kim <eukim@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: hardware 1.0\n"
+"Project-Id-Version: smolt.master-smoon.messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2009-08-27 14:24+1000\n"
+"Last-Translator: Eunju Kim <eukim@redhat.com>\n"
+"Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
 
 #: hardware/controllers/root.py:95
 msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
-msgstr ""
+msgstr "제시하신 인증서가 올바르지 않거나 이 리소스에 액세스를 허용하지 않습니다.   "
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr ""
+msgstr "이 리소스에 액세스하기 전 인증서를 제시하셔야 합니다.  "
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr ""
+msgstr "로그인하십시오.  "
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr ""
+msgstr "클래스 ${type}에 따른 장치      "
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr ""
+msgstr "합계  "
 
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr ""
+msgstr "% hosts가 ${type} 감지 "
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr ""
+msgstr "제조 업체  "
 
 #: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
-msgstr ""
+msgstr "장치 "
 
 #: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
 msgid "Device"
-msgstr ""
+msgstr "장치 "
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
-msgstr ""
+msgstr "버스 "
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
-msgstr ""
+msgstr "드라이버 "
 
 #: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr ""
+msgstr "제조 업체  "
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr ""
+msgstr "하위 제조 업체  "
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr ""
+msgstr "하위 장치  "
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr ""
+msgstr "추가된 날짜 "
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr ""
+msgstr "% 호스트 합계  "
 
 #: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr ""
+msgstr "등록 장치 합계  "
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr ""
+msgstr "고유 장치  "
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr ""
+msgstr "원시 장치  "
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr ""
+msgstr "기계 / 장치  "
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
-msgstr ""
+msgstr "클래스  "
 
 #: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr ""
+msgstr "검색  "
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
-msgstr ""
+msgstr "데이터 집합  "
 
 #: hardware/templates/report_search.html:53
 msgid "Result Set"
-msgstr ""
+msgstr "결과 집합  "
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr ""
+msgstr "상자 보기  "
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr ""
+msgstr "사용하지 않거나 알지 못함 "
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr ""
+msgstr "시스템 중단  "
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
-msgstr ""
+msgstr "작동하지 않음  "
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr ""
+msgstr "제삼자 드라이버 필요  "
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr ""
+msgstr "작동, 하지만 추가 설정 필요  "
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr ""
+msgstr "계속 작동  "
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr ""
+msgstr "전체 정보 보기  "
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr ""
+msgstr "전체 등급:  "
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr ""
+msgstr "공개 UUID  "
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
-msgstr ""
+msgstr "운영 체제  "
 
 #: hardware/templates/show.html:44
 msgid "Platform"
-msgstr ""
+msgstr "플랫폼  "
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr ""
+msgstr "시스템 제조 업체  "
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr ""
+msgstr "시스템 모델  "
 
 #: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
-msgstr ""
+msgstr "커널  "
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr ""
+msgstr "폼 팩터 "
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
-msgstr ""
+msgstr "마지막 수정  "
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr ""
+msgstr "관리자 암호  "
 
 #: hardware/templates/show.html:60
 msgid "Rating"
-msgstr ""
+msgstr "등급  "
 
 #: hardware/templates/show.html:60
 msgid "Class"
-msgstr ""
+msgstr "클래스  "
 
 #: hardware/templates/stats.html:9
 msgid "Stats"
-msgstr ""
+msgstr "상태  "
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr ""
+msgstr "등록된 호스트 합계  "
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr ""
+msgstr "bogomips 합계  "
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr ""
+msgstr "프로세서 합계  "
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr ""
+msgstr "MHz 합계  "
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr ""
+msgstr "아키텍처  "
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr ""
+msgstr "아키텍처  "
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr ""
+msgstr "카운트  "
 
 #: hardware/templates/stats.html:40
 #, python-format
 msgid "% of total"
-msgstr ""
+msgstr "총 합계 % of "
 
 #: hardware/templates/stats.html:53
 msgid "OS"
-msgstr ""
+msgstr "OS"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr ""
+msgstr "런레벨  "
 
 #: hardware/templates/stats.html:79
 msgid "Language"
-msgstr ""
+msgstr "언어  "
 
 #: hardware/templates/stats.html:105
 msgid "Model"
-msgstr ""
+msgstr "모델  "
 
 #: hardware/templates/stats.html:119
 msgid "RAM"
-msgstr ""
+msgstr "RAM"
 
 #: hardware/templates/stats.html:132
 msgid "Swap"
-msgstr ""
+msgstr "스왑  "
 
 #: hardware/templates/stats.html:145
 msgid "CPU"
-msgstr ""
+msgstr "CPU"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
-msgstr ""
+msgstr "속도 (MHz) "
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr ""
+msgstr "CPU 수 "
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr ""
+msgstr "CPU 제조 업체  "
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr ""
+msgstr "Bogomips"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr ""
+msgstr "폼 팩터  "
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
-msgstr ""
+msgstr "Selinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux 활성화  "
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux 강제  "
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr ""
+msgstr "SELinux 정책  "
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
-msgstr ""
+msgstr "파일 시스템 "
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr ""
+msgstr "파일 시스템 크기  "
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
-msgstr ""
+msgstr "Myth 역할  "
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr ""
+msgstr "Myth 원격  "
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr ""
+msgstr "Myth  테마  "
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr ""
+msgstr "프로파일 UUID를 입력하십시오:  "
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
-msgstr ""
+msgstr "통계  "
 
 #: hardware/templates/welcome.html:17
 msgid ""
-"For detailed statistics about the devices in the database see <a "
-"href='/static/stats/stats.html'>/stats</a> or <a "
-"href='/static/stats/devices.html'>/devices</a>"
+"For detailed statistics about the devices in the database see <a href='/"
+"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
+"devices</a>"
 msgstr ""
+"데이터베이스에 있는 장치에 대한 자세한 통계는 <a href='/"
+"static/stats/stats.html'>/stats</a> 또는 <a href='/static/stats/devices.html'>/"
+"devices</a>를 참조하십시오.  "
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr ""
+msgstr "상위 제조 업체 차트   "
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr ""
+msgstr "상세 정보  "
 
 #: hardware/templates/welcome.html:25
 msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
-"information about specific devices. Usage and other general answers can "
-"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
+"about specific devices. Usage and other general answers can also be found at "
+"the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr "<p>특정 장치에 대한 자세한 내용은 <a href='/wiki/'>Wiki</a>에서 검색하십시오. 사용 방법 및 기타 일반적인 답은 <a href='/wiki/'>Wiki</a>에서 찾아보실 수 있습니다.</p> "
 
