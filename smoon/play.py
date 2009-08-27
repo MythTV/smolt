@@ -369,46 +369,47 @@ def _handle_privacy_metrics(session, data, machine_id):
 
 
 def _handle_global_use_flags(session, data, machine_id):
-    # Find current entries
-    try:
-        current_raw_global_use_flags_make_conf = data['global_use_flags']['make_conf']
-    except KeyError:
-        current_raw_global_use_flags_make_conf = []
+    current_global_use_flags_lists = {}
 
-    try:
-        current_raw_global_use_flags_profile = data['global_use_flags']['profile']
-    except KeyError:
-        current_raw_global_use_flags_profile = []
+    # Find current entries
+    for key in ('make_conf', 'profile'):
+        try:
+            current_global_use_flags_lists[key] = data['global_use_flags'][key]
+        except KeyError:
+            current_global_use_flags_lists[key] = []
 
     # Lookup/add use flags
-    def process_flags(target_dict, source_list, is_profile_list):
-        for i in [e.strip() for e in source_list]:
+    def process_flags(target_dict,  source_set_name):
+        for i in [e.strip() for e in current_global_use_flags_lists[source_set_name]]:
             if i.startswith('-'):
                 key = i.lstrip('-')
                 enabled = False
             else:
                 key = i.lstrip('+')
                 enabled = True
+
             if key in target_dict:
-                if is_profile_list:
-                    target_dict[key]['set_in_profile'] = True
-                    target_dict[key]['enabled_in_profile'] = enabled
-                else:
-                    target_dict[key]['set_in_make_conf'] = True
-                    target_dict[key]['enabled_in_make_conf'] = enabled
+                key_set_in_foo = 'set_in_%s' % source_set_name
+                key_enabled_in_foo = 'enabled_in_%s' % source_set_name
+
+                target_dict[key][key_set_in_foo] = True
+                target_dict[key][key_enabled_in_foo] = enabled
             else:
-                target_dict[key] = {'pool_object':None,
-                    'set_in_profile':is_profile_list,
-                    'set_in_make_conf':not is_profile_list,
-                    'enabled_in_profile':is_profile_list and enabled,
-                    'enabled_in_make_conf':not is_profile_list and enabled,
+                target_dict[key] = {
+                    'pool_object':None,
                 }
+                for candidate in ('make_conf', 'profile'):
+                    key_set_in_foo = 'set_in_%s' % candidate
+                    key_enabled_in_foo = 'enabled_in_%s' % candidate
+                    value_set_in_foo = candidate == source_set_name
+                    value_enabled_in_foo = (candidate == source_set_name) and enabled
+
+                    target_dict[key][key_set_in_foo] = value_set_in_foo
+                    target_dict[key][key_enabled_in_foo] = value_enabled_in_foo
 
     current_use_flag_dict = {}
-    process_flags(current_use_flag_dict, \
-            current_raw_global_use_flags_profile, is_profile_list=True)
-    process_flags(current_use_flag_dict, \
-            current_raw_global_use_flags_make_conf, is_profile_list=False)
+    for key in ('make_conf', 'profile'):
+        process_flags(current_use_flag_dict, key)
 
     current_positive_use_flags = current_use_flag_dict.keys()
 
@@ -425,11 +426,13 @@ def _handle_global_use_flags(session, data, machine_id):
 
     current_global_use_flag_set = set()
     for k, v in current_use_flag_dict.items():
-        current_global_use_flag_set.add((k,
-                v['set_in_profile'],
-                v['set_in_make_conf'],
-                v['enabled_in_profile'],
-                v['enabled_in_make_conf']))
+        entry = [k, ]
+        for candidate in ('make_conf', 'profile'):
+            key_set_in_foo = 'set_in_%s' % candidate
+            key_enabled_in_foo = 'enabled_in_%s' % candidate
+            entry.append(v[key_set_in_foo])
+            entry.append(v[key_enabled_in_foo])
+        current_global_use_flag_set.add(tuple(entry))
 
     # Find old entries
     old_global_use_flag_objects = session.query(GentooGlobalUseFlagRel).options(\
@@ -439,11 +442,14 @@ def _handle_global_use_flags(session, data, machine_id):
     for e in old_global_use_flag_objects:
         flag = e.use_flag.name
         old_global_use_flag_dict[flag] = e
-        old_global_use_flag_set.add((flag,
-                bool(e.set_in_profile),
-                bool(e.set_in_make_conf),
-                bool(e.enabled_in_profile),
-                bool(e.enabled_in_make_conf)))
+
+        entry = [flag, ]
+        for candidate in ('make_conf', 'profile'):
+            key_set_in_foo = 'set_in_%s' % candidate
+            key_enabled_in_foo = 'enabled_in_%s' % candidate
+            entry.append(bool(get_attr(e, key_set_in_foo)))
+            entry.append(bool(get_attr(e, key_enabled_in_foo)))
+        old_global_use_flag_set.add(tuple(entry))
 
     # Calculate diff
     flags_to_add = current_global_use_flag_set - old_global_use_flag_set
