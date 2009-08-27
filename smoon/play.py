@@ -23,6 +23,7 @@ from playmodel import *
 from hardware.model.model import *
 from hardware.submission import * # handle_submission
 from simplejson import JSONEncoder
+import traceback
 
 
 # ================================================================
@@ -128,15 +129,18 @@ def handle_gentoo_data(session, host_dict, machine_id):
         logging.debug('No Gentoo-specific data')
         data = {}
 
-    _handle_simple_stuff(session, data, machine_id)
-    _handle_call_flags(session, data, machine_id)
-    _handle_accept_keywords(session, data, machine_id)
-    _handle_package_mask(session, data, machine_id)
-    _handle_privacy_metrics(session, data, machine_id)
-    _handle_global_use_flags(session, data, machine_id)
-    _handle_features(session, data, machine_id)
-    _handle_installed_packages(session, data, machine_id)
-
+    try:
+        _handle_simple_stuff(session, data, machine_id)
+        _handle_call_flags(session, data, machine_id)
+        _handle_accept_keywords(session, data, machine_id)
+        _handle_package_mask(session, data, machine_id)
+        _handle_privacy_metrics(session, data, machine_id)
+        _handle_global_use_flags(session, data, machine_id)
+        _handle_features(session, data, machine_id)
+        _handle_installed_packages(session, data, machine_id)
+    except Exception, e:
+        traceback.print_tb(sys.exc_info()[2])
+        raise e
 
 def _handle_simple_stuff(session, data, machine_id):
     # Pre-processing
