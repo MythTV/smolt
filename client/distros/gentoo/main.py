@@ -33,6 +33,7 @@ _DATA_CLASS_LABEL_MAP = {
     'features':'Features',
     'global_use_flags_make_conf':'Global use flags (make.conf)',
     'global_use_flags_profile':'Global use flags (system profile)',
+    'global_use_flags_final':'Global use flags (combined)',
     'installed_packages':'Installed packages: General',
     'installed_packages_use_flags':'Installed packages: Use flags',
     'mirrors_distfiles':'Mirrors: Distfiles',
@@ -109,7 +110,7 @@ class _Gentoo(Distro):
         rst_lines.append('Gentoo')
         rst_lines.append('=================================')
         rst_lines.append('')
-        machine_data['protocol'] = '1.0'
+        machine_data['protocol'] = '1.1'
 
         trivials.dump_html(html_lines)
         trivials.dump_rst(rst_lines)

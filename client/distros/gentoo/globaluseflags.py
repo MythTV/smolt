@@ -157,15 +157,18 @@ class _GlobalUseFlags:
 
 
         self._use_flags = {}
-        for key in ('defaults', 'conf'):
+        for key in ('defaults', 'conf', 'env'):
             self._use_flags[key] = {}
 
         self._use_flags['defaults']['publish'] = \
                 publish_global_use_flags and publish_system_profile
         self._use_flags['conf']['publish'] = publish_global_use_flags
+        self._use_flags['env']['publish'] = \
+                self._use_flags['defaults']['publish'] and \
+                self._use_flags['conf']['publish']
 
         _all_use_flags = {}
-        for key in ('defaults', 'conf'):
+        for key in ('defaults', 'conf', 'env'):
             if self._use_flags[key]['publish']:
                 _all_use_flags[key] = get_use_flags(key)
             else:
@@ -181,7 +184,7 @@ class _GlobalUseFlags:
             positive = x.lstrip('-')
             return positive in self._non_private_space
 
-        for key in ('defaults', 'conf'):
+        for key in ('defaults', 'conf', 'env'):
             self._use_flags[key]['flags'] = \
                     set(e for e in _all_use_flags[key] if is_non_private(e))
             self._use_flags[key]['count_non_private'] = \
@@ -196,6 +199,7 @@ class _GlobalUseFlags:
         res = {
             'profile':sorted(self._use_flags['defaults']['flags']),
             'make_conf':sorted(self._use_flags['conf']['flags']),
+            'final':sorted(self._use_flags['env']['flags']),
         }
         return res
 
@@ -203,6 +207,7 @@ class _GlobalUseFlags:
         fill_jobs = {
             'global_use_flags_profile':'defaults',
             'global_use_flags_make_conf':'conf',
+            'global_use_flags_final':'env',
         }
         for target, source in fill_jobs.items():
             target_dict[target] = (
@@ -221,6 +226,10 @@ class _GlobalUseFlags:
         lines.append('<p>')
         lines.append(html.escape(', '.join(compress_use_flags(serialized['profile']))))
         lines.append('</p>')
+        lines.append('<h3>Combined</h3>')
+        lines.append('<p>')
+        lines.append(html.escape(', '.join(compress_use_flags(serialized['final']))))
+        lines.append('</p>')
 
     def dump_rst(self, lines):
         serialized = self.serialize()
@@ -233,6 +242,10 @@ class _GlobalUseFlags:
         lines.append('From system profile')
         lines.append('`````````````````````')
         lines.append('  '.join(compress_use_flags(serialized['profile'])))
+        lines.append('')
+        lines.append('Combined')
+        lines.append('`````````````````````')
+        lines.append('  '.join(compress_use_flags(serialized['final'])))
 
     def _dump(self):
         lines = []
