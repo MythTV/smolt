@@ -207,14 +207,6 @@ class GentooReporter:
                 '_DISPLAY_LIMIT':_MAX_DISTFILES_MIRRORS,
                 '_SORT_BY_POPULARITY':True,
                 '_FOREIGN_COLUMN_NAME':'mirror_id'},
-            {'_SECTION':'features',
-                '_POOL_TABLE_OBJECT':_gentoo_feature_pool_table,
-                '_REL_TABLE_OBJECT':_gentoo_features_table,
-                '_REL_CLASS_OBJECT':GentooFeatureRel,
-                '_POOL_CLASS_OBJECT':GentooFeatureString,
-                '_DISPLAY_LIMIT':_MAX_FEATURES,
-                '_SORT_BY_POPULARITY':True,
-                '_FOREIGN_COLUMN_NAME':'feature_id'},
             {'_SECTION':'sync_mirror',
                 '_POOL_TABLE_OBJECT':_gentoo_mirror_pool_table,
                 '_REL_TABLE_OBJECT':_gentoo_sync_mirror_table,
@@ -297,6 +289,17 @@ class GentooReporter:
         _POOL_CLASS = GentooUseFlagString
         _LIMIT = _MAX_GLOBAL_USE_FLAGS
         _POOL_ID_NAME = 'use_flag_id'
+        return self._analyze_split_set_entries(
+            _REL_TABLE, _POOL_TABLE, _REL_CLASS, \
+            _POOL_CLASS, _LIMIT, _POOL_ID_NAME)
+
+    def _analyze_features(self):
+        _REL_TABLE = _gentoo_features_table
+        _POOL_TABLE = _gentoo_feature_pool_table
+        _REL_CLASS = GentooFeatureRel
+        _POOL_CLASS = GentooFeatureString
+        _LIMIT = _MAX_FEATURES
+        _POOL_ID_NAME = 'feature_id'
         return self._analyze_split_set_entries(
             _REL_TABLE, _POOL_TABLE, _REL_CLASS, \
             _POOL_CLASS, _LIMIT, _POOL_ID_NAME)
@@ -848,6 +851,7 @@ class GentooReporter:
 
         simple_stuff = self._analyze_simple_stuff()
         global_use_flags = self._analyze_global_use_flags()
+        features = self._analyze_features()
         archs = self._analyze_archs()
         call_flags = self._analyzes_call_flags()
         package_mask = self._analyzes_package_mask()
@@ -865,6 +869,7 @@ class GentooReporter:
             'call_flags':call_flags,
             'package_mask':package_mask,
             'global_use_flags':global_use_flags,
+            'features':features,
             'repos':repos,
             'installed_packages':installed_packages,
         }

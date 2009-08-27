@@ -242,13 +242,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <td class="count">${row['absolute']}</td>
             <td class="relative">(${row['relative']} %)</td>
         </tr>
-        <py:if test="data['features']['others'][0]['absolute'] > 0">
-        <tr py:for="row in data['features']['others']">
-            <th class="vert"><span class="group_item">others</span></th>
-            <td class="count">${row['absolute']}</td>
-            <td class="relative">(${row['relative']} %)</td>
-        </tr>
-        </py:if>
         <tr py:with="row = data['features']['total']">
             <th class="vert_foot">Total</th>
             <td class="foot_count">${row['absolute']}</td>
