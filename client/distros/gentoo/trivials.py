@@ -28,7 +28,6 @@ class Trivials:
     def __init__(self):
         self._publish_arch_related = Gate().grants('gentoo', 'arch_related')
         self._publish_system_profile = Gate().grants('gentoo', 'system_profile')
-        self._publish_features = Gate().grants('gentoo', 'features')
 
         self._trivials = {}
 
@@ -50,15 +49,6 @@ class Trivials:
         self._trivials['system_profile'] = self._trivial_scalars['system_profile']
 
         self._trivial_vectors = {}
-        for upper in ('FEATURES',):
-            lower = upper.lower()
-            if self._publish_features:
-                value = portage.settings[upper].split(' ')
-            else:
-                value = ()
-            self._trivial_vectors[lower] = value
-            self._trivials[lower] = self._trivial_vectors[lower]
-
         self._trivial_vectors['accept_keywords'] = \
             self._accept_keywords()
         self._trivials['accept_keywords'] = \
@@ -83,9 +73,6 @@ class Trivials:
         target_dict['system_profile'] = (self._publish_system_profile, \
                 0, \
                 self._publish_system_profile and 1 or 0)
-        target_dict['features'] = (self._publish_features, \
-                0, \
-                self._publish_features and len(self._trivials['features']) or 0)
 
     def dump_html(self, lines):
         lines.append('<h2>General</h2>')
@@ -105,12 +92,6 @@ class Trivials:
                 lines.append('<dd>%s</dd>' % html.escape(v))
             lines.append('</dl>')
 
-        lines.append('<h2>Features</h2>')
-        lines.append('<ul>')
-        for i in sorted(self._trivials['features']):
-            lines.append('<li>%s</li>' % html.escape(i))
-        lines.append('</ul>')
-
     def dump_rst(self, lines):
         lines.append('General')
         lines.append('-----------------------------')
@@ -128,12 +109,6 @@ class Trivials:
             else:
                 lines.append('  %s' % str(v))
             lines.append('')
-
-        lines.append('Features')
-        lines.append('-----------------------------')
-        for i in sorted(self._trivials['features']):
-            lines.append('- %s' % i)
-
 
     def _dump(self):
         lines = []

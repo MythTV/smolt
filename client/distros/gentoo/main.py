@@ -30,7 +30,10 @@ _DATA_CLASS_LABEL_MAP = {
     'call_flags_cxxflags':'Compile flags (CXXFLAGS)',
     'call_flags_ldflags':'Compile flags (LDFLAGS)',
     'call_flags_makeopts':'Compile flags (MAKEOPTS)',
-    'features':'Features',
+    'features_profile':'Features (system profile)',
+    'features_make_conf':'Features (make.conf)',
+    'features_make_globals':'Features (make.globals)',
+    'features_final':'Features (combined)',
     'global_use_flags_make_conf':'Global use flags (make.conf)',
     'global_use_flags_profile':'Global use flags (system profile)',
     'global_use_flags_final':'Global use flags (combined)',
@@ -72,6 +75,7 @@ class _Gentoo(Distro):
         from packagestar import PackageMask
         from systemprofile import SystemProfile
         from trivials import Trivials
+        from features import Features
         from installedpackages import InstalledPackages
 
         _stage('global use flags')
@@ -88,6 +92,9 @@ class _Gentoo(Distro):
 
         _stage('package.mask entries')
         user_package_mask = PackageMask()
+
+        _stage('features')
+        features = Features()
 
         _stage('trivials')
         trivials = Trivials()
@@ -110,12 +117,18 @@ class _Gentoo(Distro):
         rst_lines.append('Gentoo')
         rst_lines.append('=================================')
         rst_lines.append('')
-        machine_data['protocol'] = '1.1'
+        machine_data['protocol'] = '1.2'
 
         trivials.dump_html(html_lines)
         trivials.dump_rst(rst_lines)
         rst_lines.append('')
         trivials.get_metrics(metrics_dict)
+
+        machine_data['features'] = features.serialize()
+        features.dump_html(html_lines)
+        features.dump_rst(rst_lines)
+        rst_lines.append('')
+        features.get_metrics(metrics_dict)
 
         machine_data['call_flags'] = compile_flags.serialize()
         compile_flags.dump_html(html_lines)
