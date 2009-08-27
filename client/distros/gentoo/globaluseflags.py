@@ -190,7 +190,7 @@ class _GlobalUseFlags:
             'global_use_flags_profile':'defaults',
             'global_use_flags_make_conf':'conf',
         }
-        for target, source in fill_jobs.keys():
+        for target, source in fill_jobs.items():
             target_dict[target] = (
                     self._use_flags[source]['publish'], \
                     self._use_flags[source]['count_private'], \
