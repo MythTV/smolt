@@ -108,7 +108,6 @@ _DIFF_JOBS = [
     {'thing':'arch', 'foreign':'keyword', 'vector_flag':False, 'tree_location':"data['arch']"},
     {'thing':'chost', 'foreign':'chost', 'vector_flag':False, 'tree_location':"data['chost']"},
     {'thing':'distfiles_mirror', 'foreign':'mirror', 'vector_flag':True, 'tree_location':"data['mirrors']['distfiles']"},
-    {'thing':'feature', 'foreign':'feature', 'vector_flag':True, 'tree_location':"data['features']"},
     {'thing':'repo', 'foreign':'repo', 'vector_flag':True, 'tree_location':"data['repos']"},
     {'thing':'sync_mirror', 'foreign':'mirror', 'vector_flag':False, 'tree_location':"data['mirrors']['sync']"},
     {'thing':'system_profile', 'foreign':'system_profile', 'vector_flag':False, 'tree_location':"data['system_profile']"},
@@ -135,6 +134,7 @@ def handle_gentoo_data(session, host_dict, machine_id):
     _handle_package_mask(session, data, machine_id)
     _handle_privacy_metrics(session, data, machine_id)
     _handle_global_use_flags(session, data, machine_id)
+    _handle_features(session, data, machine_id)
     _handle_installed_packages(session, data, machine_id)
 
 
@@ -377,6 +377,18 @@ def _handle_global_use_flags(session, data, machine_id):
     return _handle_split_set_entries(session, data, machine_id, \
             _PARENT_SOURCE_KEY, _CHILD_KEYS, _EAGERLOAD_KEY, \
             _REL_CLASS, _POOL_CLASS)
+
+
+def _handle_features(session, data, machine_id):
+    _PARENT_SOURCE_KEY = 'features'
+    _CHILD_KEYS = ('make_conf', 'profile', 'make_globals', 'final') # Note: Order must match that on model class
+    _EAGERLOAD_KEY = 'feature'
+    _REL_CLASS = GentooFeatureRel
+    _POOL_CLASS = GentooFeatureString
+    return _handle_split_set_entries(session, data, machine_id, \
+            _PARENT_SOURCE_KEY, _CHILD_KEYS, _EAGERLOAD_KEY, \
+            _REL_CLASS, _POOL_CLASS)
+
 
 def _handle_split_set_entries(session, data, machine_id, \
         _PARENT_SOURCE_KEY, _CHILD_KEYS, _EAGERLOAD_KEY, _REL_CLASS, _POOL_CLASS):

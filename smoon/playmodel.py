@@ -137,7 +137,6 @@ _rel_table_jobs = [
     {'thing':'chost', 'foreign':'chost', 'vector_flag':False},
     {'thing':'sync_mirror', 'foreign':'mirror', 'vector_flag':False},
     {'thing':'distfiles_mirror', 'foreign':'mirror', 'vector_flag':True},
-    {'thing':'feature', 'foreign':'feature', 'vector_flag':True},
     {'thing':'repo', 'foreign':'repo', 'vector_flag':True},
     {'thing':'system_profile', 'foreign':'system_profile', 'vector_flag':False},
 ]
@@ -389,6 +388,46 @@ class GentooGlobalUseFlagRel(object):
 mapper(GentooGlobalUseFlagRel, _gentoo_global_use_flags_table,
     properties={
         'use_flag':relation(GentooUseFlagString),
+    }
+)
+
+
+_gentoo_features_table = Table('gentoo_features', metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('machine_id', Integer, nullable=False),
+    Column('feature_id', Integer, ForeignKey('%s.id' % 'gentoo_feature_pool'), nullable=False),
+
+    Column('set_in_make_conf', SmallInteger, nullable=False),  # Not BOOLEAN here as that denies using func.sum
+    Column('enabled_in_make_conf', SmallInteger, nullable=False),  # as above
+    Column('set_in_profile', SmallInteger, nullable=False),  # as above
+    Column('enabled_in_profile', SmallInteger, nullable=False),  # as above
+    Column('set_in_make_globals', SmallInteger, nullable=False),  # as above
+    Column('enabled_in_make_globals', SmallInteger, nullable=False),  # as above
+    Column('set_in_final', SmallInteger, nullable=False),  # as above
+    Column('enabled_in_final', SmallInteger, nullable=False),  # as above
+
+    UniqueConstraint('machine_id', 'feature_id'),
+)
+
+
+class GentooFeatureRel(object):
+    def __init__(self, machine_id, feature_id,
+            alternating_set_enabled_set_enabled):
+        self.machine_id = machine_id
+        self.feature_id = feature_id
+
+        self.set_in_make_conf, \
+                self.enabled_in_make_conf, \
+                self.set_in_profile, \
+                self.enabled_in_profile, \
+                self.set_in_make_globals, \
+                self.enabled_in_make_globals, \
+                self.set_in_final, \
+                self.enabled_in_final = alternating_set_enabled_set_enabled
+
+mapper(GentooFeatureRel, _gentoo_features_table,
+    properties={
+        'feature':relation(GentooFeatureString),
     }
 )
 
