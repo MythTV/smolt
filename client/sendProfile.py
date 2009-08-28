@@ -28,6 +28,7 @@ import random
 import getpass
 from tempfile import NamedTemporaryFile
 import subprocess
+import codecs
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -168,6 +169,9 @@ if not opts.autoSend:
     def inner_indent(text):
         return ('\n' + 5 * ' ').join(text.split('\n'))
 
+    def to_ascii(s):
+        return codecs.decode(s, 'ascii', 'ignore')
+
     excerpts = {
         'label_intro':_('Smolt has collected four types of information:'),
         'label_question':_('Do you want to ..'),
@@ -179,10 +183,10 @@ if not opts.autoSend:
         'label_fs_related':_('File system-related'),
         'label_distro_specific':_('Distribution-specific'),
 
-        'general':inner_indent(profile.get_general_info_excerpt()),
-        'devices':inner_indent(profile.get_devices_info_excerpt()),
-        'file_system':inner_indent(profile.get_file_system_info_excerpt()),
-        'distro':inner_indent(profile.get_distro_info_excerpt()),
+        'general':inner_indent(to_ascii(profile.get_general_info_excerpt())),
+        'devices':inner_indent(to_ascii(profile.get_devices_info_excerpt())),
+        'file_system':inner_indent(to_ascii(profile.get_file_system_info_excerpt())),
+        'distro':inner_indent(to_ascii(profile.get_distro_info_excerpt())),
     }
 
     submit = False
