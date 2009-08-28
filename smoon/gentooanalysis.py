@@ -32,6 +32,7 @@ from playmodel import _gentoo_version_pool_table, _gentoo_slot_pool_table
 import datetime
 import sqlalchemy
 from sqlalchemy.sql import func, select, join, and_, text
+import urllib
 
 import sys
 if 'turbogears' in sys.modules:
@@ -678,8 +679,7 @@ class GentooReporter:
         return res
 
     def _main_tree_package_names(self):
-        # TODO Sync with live gentoo tree
-        f = open('gentoo_tree_package_names.txt', 'r')
+        f = urllib.urlopen('http://www.hartwork.org/public/gentoo_packages.txt')
         res = set([e.rstrip('\r\n') for e in f.readlines() if (e and not e.isspace())])
         f.close()
         return res
