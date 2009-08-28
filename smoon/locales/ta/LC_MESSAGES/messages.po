@@ -1,0 +1,352 @@
+# translation of smolt.master-smoon.messages.po to Tamil
+# Translations template for hardware.
+# Copyright (C) 2008 ORGANIZATION
+# This file is distributed under the same license as the hardware project.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# I. Felix <ifelix@redhat.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: smolt.master-smoon.messages\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2008-05-01 22:37-0400\n"
+"PO-Revision-Date: 2009-08-28 11:15+0530\n"
+"Last-Translator: I. Felix <ifelix@redhat.com>\n"
+"Language-Team: Tamil <fedora-trans-ta@redhat.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\\n\n"
+"\n"
+
+#: hardware/controllers/root.py:95
+msgid "The credentials you supplied were not correct or did not grant access to this resource."
+msgstr "நீங்கள் கொடுத்த அந்த சாட்சி பத்திரங்கள் சரியானது இல்லை அல்லது இந்த வாய்ப்பை அணுக அதற்கு அனுமதி இல்லை."
+
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr "இந்த வாய்ப்பினை அணுகுவதற்கு முன்பே உங்களது சாட்சி பத்திரங்களை நீங்கள் தர வேண்டும்."
+
+#: hardware/controllers/root.py:101
+msgid "Please log in."
+msgstr "உட்புகவும்."
+
+#: hardware/templates/deviceclass.html:9
+msgid "Devices by class ${type}"
+msgstr "வகுப்பின் படி சாதனம் ${type}"
+
+#: hardware/templates/deviceclass.html:15
+msgid "Total Count"
+msgstr "மொத்த எண்ணிக்கை"
+
+#: hardware/templates/deviceclass.html:19
+#, python-format
+msgid "% hosts detected ${type}"
+msgstr "% hosts detected ${type}"
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "விற்பனையாளர்கள்"
+
+#: hardware/templates/deviceclass.html:34
+#: hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "சாதனங்கள்"
+
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/show.html:60
+msgid "Device"
+msgstr "சாதனம்"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Bus"
+msgstr "பஸ்"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "இயக்கி"
+
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr "விற்பனையாளர்"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Vendor"
+msgstr "துணை விற்பனையாளர்"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Device"
+msgstr "துணைச் சாதனம்"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr "தேதி சேர்க்கப்பட்டது"
+
+#: hardware/templates/deviceclass.html:36
+msgid "% tot hosts"
+msgstr "% டாட் புரவலர்கள்"
+
+#: hardware/templates/devices.html:15
+#: hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr "மொத்த பதிவுசெய்யப்பட்ட சாதனங்கள்"
+
+#: hardware/templates/devices.html:19
+msgid "Unique Devices"
+msgstr "யுனிக் சாதனங்கள்"
+
+#: hardware/templates/devices.html:24
+msgid "Raw Devices"
+msgstr "புதிய சாதனங்கள்"
+
+#: hardware/templates/devices.html:34
+msgid "Machines / Device"
+msgstr "இய்யந்திரங்கள் / சாதனம்"
+
+#: hardware/templates/devices.html:44
+msgid "Classes"
+msgstr "வகுப்புகள்"
+
+#: hardware/templates/report_search.html:37
+#: hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "மேலே பார்"
+
+#: hardware/templates/report_search.html:38
+msgid "Dataset"
+msgstr "தரவு அமைப்பு"
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr "முடிவை அமை"
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr "காட்சிப் பெட்டி"
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr "எனக்கு இதை பயன்படுத்த தெரியாது அல்லது எனக்கு தெரியாது"
+
+#: hardware/templates/show.html:31
+msgid "Breaks System"
+msgstr "உடைக்கப்படும் கணினி"
+
+#: hardware/templates/show.html:32
+msgid "Doesn't Work"
+msgstr "பணி புரியவில்லை"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr "3வது பார்ட்டி இயக்கிகள் தேவைப்படுகிறது"
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr "பணிகள், ஆனால் கூடுதல் கட்டமைப்பு தேவைப்படுகிறது"
+
+#: hardware/templates/show.html:35
+msgid "Worked out of the box"
+msgstr "பெட்டியின் வெளியில் பணிபுரிகிறது"
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr "அனைத்து தகவலையும் காட்டு"
+
+#: hardware/templates/show.html:39
+msgid "Overall Rating:"
+msgstr "எல்லாற்றின் விகிதமும்:"
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr "பொதுவான UUID"
+
+#: hardware/templates/show.html:43
+msgid "Operating System"
+msgstr "செயல்பாட்டிலுள்ள கணினி"
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr "தளம்"
+
+#: hardware/templates/show.html:45
+msgid "System Vendor"
+msgstr "கணினி விற்பனையாளர்"
+
+#: hardware/templates/show.html:46
+msgid "System Model"
+msgstr "கணினி மாதிரி"
+
+#: hardware/templates/show.html:47
+#: hardware/templates/stats.html:180
+msgid "Kernel"
+msgstr "கெர்னல்"
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr "கூற்றிலிருந்து"
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr "கடைசியாக மாற்றியமைக்கப்பட்டது"
+
+#: hardware/templates/show.html:50
+msgid "Admin Password"
+msgstr "கடவுச்சொல்லை நிர்வாகி"
+
+#: hardware/templates/show.html:60
+msgid "Rating"
+msgstr "விகிதப்படுத்தல்"
+
+#: hardware/templates/show.html:60
+msgid "Class"
+msgstr "வகுப்பு"
+
+#: hardware/templates/stats.html:9
+msgid "Stats"
+msgstr "துவக்குகுறது"
+
+#: hardware/templates/stats.html:15
+msgid "Total Registered Hosts"
+msgstr "மொத்த பதிவுசெய்யப்பட்ட புரவல்கள்"
+
+#: hardware/templates/stats.html:23
+msgid "Total bogomips"
+msgstr "மொத்த bogomips"
+
+#: hardware/templates/stats.html:27
+msgid "Total processors"
+msgstr "மொத்த செயல்பமுறையாளர்கள்"
+
+#: hardware/templates/stats.html:31
+msgid "Total MHz"
+msgstr "மொத்த MHz"
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr "ஆர்ச்சஸ்"
+
+#: hardware/templates/stats.html:40
+msgid "Arch"
+msgstr "ஆர்ச்"
+
+#: hardware/templates/stats.html:40
+msgid "Count"
+msgstr "எண்ணிக்கை"
+
+#: hardware/templates/stats.html:40
+#, python-format
+msgid "% of total"
+msgstr "% of total"
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr "OS"
+
+#: hardware/templates/stats.html:66
+msgid "Runlevel"
+msgstr "இயங்கும் மட்டம்"
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr "மொழி"
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr "மாதிரி"
+
+#: hardware/templates/stats.html:119
+msgid "RAM"
+msgstr "RAM"
+
+#: hardware/templates/stats.html:132
+msgid "Swap"
+msgstr "துடை"
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr "CPU"
+
+#: hardware/templates/stats.html:147
+msgid "Speed (MHz)"
+msgstr "வேகம் (MHz)"
+
+#: hardware/templates/stats.html:154
+msgid "Number of CPUs"
+msgstr "CPUsன் எண்ணிக்கை"
+
+#: hardware/templates/stats.html:161
+msgid "CPU Vendor"
+msgstr "CPU விற்பனையாளர்"
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr "Bogomips"
+
+#: hardware/templates/stats.html:193
+msgid "Form Factor"
+msgstr "கூற்றிலிருந்து"
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr "Selinux"
+
+#: hardware/templates/stats.html:208
+msgid "SELinux Enabled"
+msgstr "SELinux செயல்படுத்தப்பட்டது"
+
+#: hardware/templates/stats.html:215
+msgid "SELinux Enforce"
+msgstr "SELinux வலியுறுத்தல்"
+
+#: hardware/templates/stats.html:222
+msgid "SELinux Policy"
+msgstr "SELinux பாலிசி"
+
+#: hardware/templates/stats.html:234
+msgid "Filesystems"
+msgstr "கோப்புகணினிகள்"
+
+#: hardware/templates/stats.html:242
+msgid "Filesystem size"
+msgstr "கோப்புகணினி அளவு"
+
+#: hardware/templates/stats.html:253
+msgid "Myth Role"
+msgstr "Myth பங்கு"
+
+#: hardware/templates/stats.html:266
+msgid "Myth Remote"
+msgstr "Myth தொலை"
+
+#: hardware/templates/stats.html:279
+msgid "Myth  Theme"
+msgstr "Myth  தீம்"
+
+#: hardware/templates/welcome.html:12
+msgid "Enter your profile UUID:"
+msgstr "உங்களது UUID விவரக்குறிப்பை உள்ளிடவும்:"
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr "புள்ளிவிவரம்"
+
+#: hardware/templates/welcome.html:17
+msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
+msgstr "அடித்தளத்திலுள்ள சாதனங்களைப் பற்றிய விவரவான புள்ளிவிவரங்களுக்கு பார்க்கவும் <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
+
+#: hardware/templates/welcome.html:19
+msgid "Top Vendor Chart"
+msgstr "மேல் விற்பனையாளர் வரைபடம்"
+
+#: hardware/templates/welcome.html:23
+msgid "More info"
+msgstr "கூடுதல் தகவல்"
+
+#: hardware/templates/welcome.html:25
+msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr "<p>Browse and search the <a href='/wiki/'>Wiki</a> சிறப்பான சாதனங்கள் பற்றிய விவரமான தகவல்களுக்கு. பயன்பாடு மற்றும் பொதுவான பதில்களும் கூட இங்கே காணப்படும்<a href='/wiki/'>Wiki</a>.</p>"
+
