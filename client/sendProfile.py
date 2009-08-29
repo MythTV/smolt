@@ -172,8 +172,8 @@ if not opts.autoSend:
         'label_intro':_('Smolt has collected four types of information:'),
         'label_question':_('Do you want to ..'),
         'label_question_view':_('(v)iew details on collected information?'),
-        'label_question_send':_('(s)end this information to the Smolt server? (or [y] for yes)'),
-        'label_question_quit':_('(q)uit Smolt?  (or [n] for no)'),
+        'label_question_send':_('(s)end this information to the Smolt server?'),
+        'label_question_quit':_('(q)uit Smolt?'),
         'label_general':_('General'),
         'label_devices':_('Devices'),
         'label_fs_related':_('File system-related'),
@@ -210,7 +210,7 @@ if not opts.autoSend:
   %(label_question_quit)s
 """ % excerpts
         try:
-            choice = raw_input(_('Your choice (s/v/q/y/n): ')).strip()
+            choice = raw_input(_('Your choice (s)end (v)iew (q)uit: ')).strip()
         except KeyboardInterrupt:
             error(_('Exiting...'))
             sys.exit(4)
