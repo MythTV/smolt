@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-22 21:08+0100\n"
+"PO-Revision-Date: 2009-08-29 15:42+0100\n"
 "Last-Translator: Michel Duquaine <michelduquaine@gmail.com>\n"
 "Language-Team: fedora-trans-fr <fedora-trans-fr@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,6 @@ msgid "Unique Devices"
 msgstr "Périphériques uniques"
 
 #: hardware/templates/devices.html:24
-#, fuzzy
 msgid "Raw Devices"
 msgstr "Périphériques bruts"
 
@@ -109,24 +108,20 @@ msgstr "Classes"
 
 #: hardware/templates/report_search.html:37
 #: hardware/templates/welcome.html:10
-#, fuzzy
 msgid "Lookup"
-msgstr "Lookup"
+msgstr "Chercher"
 
 #: hardware/templates/report_search.html:38
-#, fuzzy
 msgid "Dataset"
 msgstr "Série de données"
 
 #: hardware/templates/report_search.html:53
-#, fuzzy
 msgid "Result Set"
-msgstr "Série de résultat"
+msgstr "Résultats"
 
 #: hardware/templates/show.html:8
-#, fuzzy
 msgid "Show Box"
-msgstr "Affiche la boîte"
+msgstr "Affiche les informations liées à l'UUID"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
@@ -141,9 +136,8 @@ msgid "Doesn't Work"
 msgstr "Ne fonctionne pas"
 
 #: hardware/templates/show.html:33
-#, fuzzy
 msgid "Requires 3rd Party Drivers"
-msgstr "Nécessite des pilotes tiers"
+msgstr "Nécessite des d'une tierce partie"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
@@ -187,7 +181,6 @@ msgid "Kernel"
 msgstr "Noyau"
 
 #: hardware/templates/show.html:48
-#, fuzzy
 msgid "Formfactor"
 msgstr "Type d'ordinateur"
 
@@ -265,9 +258,8 @@ msgid "RAM"
 msgstr "RAM"
 
 #: hardware/templates/stats.html:132
-#, fuzzy
 msgid "Swap"
-msgstr "Swap"
+msgstr "Espace Swap"
 
 #: hardware/templates/stats.html:145
 msgid "CPU"
@@ -318,19 +310,16 @@ msgid "Filesystem size"
 msgstr "Taille du système de fichier"
 
 #: hardware/templates/stats.html:253
-#, fuzzy
 msgid "Myth Role"
-msgstr "Rôle Myth"
+msgstr "Rôle de Myth"
 
 #: hardware/templates/stats.html:266
-#, fuzzy
 msgid "Myth Remote"
-msgstr "Myth distant"
+msgstr "Télécommande pour Myth"
 
 #: hardware/templates/stats.html:279
-#, fuzzy
 msgid "Myth  Theme"
-msgstr "Thème myth"
+msgstr "Thème de Myth"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
