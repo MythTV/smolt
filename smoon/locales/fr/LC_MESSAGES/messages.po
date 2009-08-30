@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-29 15:42+0100\n"
+"PO-Revision-Date: 2009-08-30 12:23+0100\n"
 "Last-Translator: Michel Duquaine <michelduquaine@gmail.com>\n"
 "Language-Team: fedora-trans-fr <fedora-trans-fr@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -137,7 +137,7 @@ msgstr "Ne fonctionne pas"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "Nécessite des d'une tierce partie"
+msgstr "Nécessite des pilotes d'une tierce partie"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
