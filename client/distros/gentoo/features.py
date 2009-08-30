@@ -98,7 +98,7 @@ class _Features:
                     self._features[source]['publish'], \
                     0, \
                     self._features[source]['publish'] and \
-                        len(self._features[source]['entries'] or 0))
+                        len(self._features[source]['entries']) or 0)
 
     def _dump_html_section(self, lines, title, data, line_break=True):
         lines.append('<h3>%s</h3>' % html.escape(title))
