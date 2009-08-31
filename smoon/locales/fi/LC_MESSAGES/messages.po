@@ -1,257 +1,257 @@
-# Translations template for hardware
+# Finnish translation of smoon.
 # Copyright (C) 2008 ORGANIZATION
-# This file is distributed under the same license as the hardware project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
-#
+# This file is distributed under the same license as the smolt/smoon project.
+# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-30 12:23+0100\n"
-"Last-Translator: Michel Duquaine <michelduquaine@gmail.com>\n"
-"Language-Team: fedora-trans-fr <fedora-trans-fr@redhat.com>\n"
+"PO-Revision-Date: 2009-08-29 23:12+0300\n"
+"Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
+"Language-Team: Finnish <laatu@lokalisointi.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 0.9.1\n"
-"X-Poedit-Language: French\n"
 
 #: hardware/controllers/root.py:95
-msgid "The credentials you supplied were not correct or did not grant access to this resource."
-msgstr "Les informations d'identification que vous avez fournies ne sont pas correctes ou ne donnent pas accès à cette ressource."
+msgid ""
+"The credentials you supplied were not correct or did not grant access to "
+"this resource."
+msgstr ""
+"Annetut tunnukset olivat virheelliset tai niillä ei ole oikeutta käyttää "
+"tätä resurssia."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr "Vous devez fournir vos informations d'identification avant d'accéder à cette ressource."
+msgstr "Sinun on kirjauduttava ennen tämän resurssin käyttöä."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "Veuillez vous connectez."
+msgstr "Kirjaudu sisään."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr "Périphériques par classe ${type}"
+msgstr "Laitteet luokassa ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "Décompte total"
+msgstr "Kokonaismäärä"
 
+# Can't translate, % causes an error
 #: hardware/templates/deviceclass.html:19
+#, python-format
 msgid "% hosts detected ${type}"
-msgstr "% hôtes détectés ${type}"
+msgstr ""
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr "Vendeurs"
+msgstr "Valmistajat"
 
-#: hardware/templates/deviceclass.html:34
-#: hardware/templates/devices.html:9
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
-msgstr "Périphériques"
+msgstr "Laitteet"
 
-#: hardware/templates/deviceclass.html:36
-#: hardware/templates/show.html:60
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
 msgid "Device"
-msgstr "Périphérique"
+msgstr "Laite"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
-msgstr "Bus"
+msgstr "Väylä"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
-msgstr "Pilote"
+msgstr "Ajuri"
 
-#: hardware/templates/deviceclass.html:36
-#: hardware/templates/stats.html:92
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr "Vendeur"
+msgstr "Valmistaja"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "Sous vendeur"
+msgstr "Alivalmistaja"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "Sous périphérique"
+msgstr "Alilaite"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr "Date d'ajout"
+msgstr "Lisäyspäivä"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% total hôtes"
+msgstr "% kaikista koneista"
 
-#: hardware/templates/devices.html:15
-#: hardware/templates/stats.html:19
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr "Nombre total de périphériques inscrits"
+msgstr "Rekisteröityjä laitteita yhteensä"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr "Périphériques uniques"
+msgstr "Yksittäisiä laitteita"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr "Périphériques bruts"
+msgstr "”Raakoja” (raw) laitteita"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "Machines / Périphérique"
+msgstr "Koneita/laite"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
-msgstr "Classes"
+msgstr "Luokat"
 
-#: hardware/templates/report_search.html:37
-#: hardware/templates/welcome.html:10
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr "Chercher"
+msgstr "Hae"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
-msgstr "Série de données"
+msgstr "Tietojoukko"
 
 #: hardware/templates/report_search.html:53
 msgid "Result Set"
-msgstr "Résultats"
+msgstr "Tulosjoukko"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr "Affiche les informations liées à l'UUID"
+msgstr "Näytä kone"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr "Je n'utilise pas ceci ou je ne sais pas"
+msgstr "En käytä tätä tai en tiedä"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr "Casse le système"
+msgstr "Rikkoo järjestelmän"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
-msgstr "Ne fonctionne pas"
+msgstr "Ei toimi"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "Nécessite des pilotes d'une tierce partie"
+msgstr "Vaatii kolmannen osapuolen ajureita"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "Fonctionne mais nécessite une configuration additionnelle"
+msgstr "Toimii, mutta vaati lisäasetusten tekemistä"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr "Fonctionne parfaitement"
+msgstr "Toimi oletuksena"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "Afficher toutes les informations"
+msgstr "Näytä kaikki tiedot"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr "Note générale :"
+msgstr "Yleinen arvostelu:"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr "UUID publique"
+msgstr "Julkinen UUID"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
-msgstr "Système d'exploitation"
+msgstr "Käyttöjärjestelmä"
 
 #: hardware/templates/show.html:44
 msgid "Platform"
-msgstr "Plate-forme"
+msgstr "Alusta"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr "Vendeur du système"
+msgstr "Järjestelmän valmistaja"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr "Modèle du système"
+msgstr "Järjestelmän malli"
 
-#: hardware/templates/show.html:47
-#: hardware/templates/stats.html:180
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
-msgstr "Noyau"
+msgstr "Ydin"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr "Type d'ordinateur"
+msgstr "Kotelon tyyppi"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
-msgstr "Dernière mise à jour"
+msgstr "Viimeksi muutettu"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr "Mot de passe administrateur"
+msgstr "Hallintasalasana"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
-msgstr "Classement"
+msgstr "Arvostelu"
 
 #: hardware/templates/show.html:60
 msgid "Class"
-msgstr "Classe"
+msgstr "Luokka"
 
 #: hardware/templates/stats.html:9
 msgid "Stats"
-msgstr "Statistiques"
+msgstr "Tilastot"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr "Nombre total d'hôtes inscrits"
+msgstr "Rekisteröityjä koneita yhteensä"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr "Nombre total de BogoMips"
+msgstr "Bogomipsejä yhteensä"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr "Nombre total de processeurs"
+msgstr "Suorittimia yhteensä"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr "Total MHz"
+msgstr "MHz yhteensä"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr "Architectures"
+msgstr "Arkkitehtuurit"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr "Architecture"
+msgstr "Arkkitehtuuri"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr "Décompte"
+msgstr "Määrä"
 
+# Can't translate, % causes an error
 #: hardware/templates/stats.html:40
 #, python-format
 msgid "% of total"
-msgstr "% du total"
+msgstr ""
 
 #: hardware/templates/stats.html:53
 msgid "OS"
-msgstr "SE"
+msgstr "Käyttöjärjestelmä"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr "Niveau d'exécution"
+msgstr "Suoritustaso"
 
 #: hardware/templates/stats.html:79
 msgid "Language"
-msgstr "Langage"
+msgstr "Kieli"
 
 #: hardware/templates/stats.html:105
 msgid "Model"
-msgstr "Modèle"
+msgstr "Malli"
 
 #: hardware/templates/stats.html:119
 msgid "RAM"
@@ -259,31 +259,31 @@ msgstr "RAM"
 
 #: hardware/templates/stats.html:132
 msgid "Swap"
-msgstr "Espace Swap"
+msgstr "Sivutustila"
 
 #: hardware/templates/stats.html:145
 msgid "CPU"
-msgstr "Processeur"
+msgstr "Suoritin"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
-msgstr "Vitesse (MHz)"
+msgstr "Nopeus (MHz)"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "Nombre de processeurs"
+msgstr "Suorittimien määrä"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr "Fabricant du processeur"
+msgstr "Suorittimen valmistaja"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr "BogoMIPS"
+msgstr "Bogomipsit"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr "Type d'ordinateur"
+msgstr "Kotelon tyyppi"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -291,57 +291,68 @@ msgstr "SELinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr "SELinux activé"
+msgstr "SELinux käytössä"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr "SELinux appliqué"
+msgstr "Toteuttava SELinux"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr "Stratégie SELinux"
+msgstr "SELinux-käytäntö"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
-msgstr "Systèmes de fichiers"
+msgstr "Tiedostojärjestelmät"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr "Taille du système de fichier"
+msgstr "Tiedostojärjestelmän koko"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
-msgstr "Rôle de Myth"
+msgstr "Myth-rooli"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr "Télécommande pour Myth"
+msgstr "Myth-kaukosäädin"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr "Thème de Myth"
+msgstr "Myth-teema"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "Saisissez votre profil UUID :"
+msgstr "Syötä profiilisi UUID:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
-msgstr "Statistiques"
+msgstr "Tilastot"
 
 #: hardware/templates/welcome.html:17
-msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
-msgstr "Pour des statistiques détaillées au sujet des périphériques dans la base de données, voir <a href='/static/stats/stats.html'>/stats</a> ou <a href='/static/stats/devices.html'>/périphériques</a>"
+msgid ""
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+"Yksityiskohtaisia tilastoja tietokannassa olevista laitteista on osoitteissa "
+"<a href='/static/stats/stats.html'>/stats</a> ja <a "
+"href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr "Graphique des vendeurs les plus populaires"
+msgstr "Valmistajien huippulista"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr "Plus d'informations"
+msgstr "Lisätietoja"
 
 #: hardware/templates/welcome.html:25
-msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr "<p>Pour de l'information détaillée au sujet de périphériques spécifiques, naviguez et cherchez dans le <a href='/wiki/'>Wiki</a>. L'usage et d'autres réponses générales peuvent également être trouvées sur le <a href='/wiki/'>Wiki</a>.</p>"
-
+msgid ""
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
+"about specific devices. Usage and other general answers can also be found at "
+"the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+"<p><a href='/wiki/'>Wikissä</a> voi selata tai etsiä lisätietoja tietyistä "
+"laitteista. Siellä on myös käyttöohjeita ja vastauksia yleisiin "
+"kysymyksiin.</p>"
