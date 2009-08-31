@@ -230,55 +230,111 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 </div>
 
 
-<a name="features"></a><h2>Features (top ${len(data['features']['listed'])}, make.conf only)</h2>
+<a name="features"></a><h2>Features (make.conf only)</h2>
 <div>
-    <p>
-        <strong>Note</strong>: This table's data suffers from a post-launch change
-        in data model. This can affect the data of up to 27 submissions.
-    </p>
+    <a name="features_positive"></a><h3>Positive ones (top ${len(data['positive_features']['listed'])})</h3>
+    <div>
+        <p>
+            <strong>Note</strong>: This table's data suffers from a post-launch change
+            in data model. This can affect the data of up to 27 submissions.
+        </p>
 
-    <table>
-        <tr>
-            <th class="leftmost topmost">Feature</th>
-            <th colspan="2" class="rightmost topmost">Popularity</th>
-        </tr>
-        <tr py:for="row in data['features']['listed']">
-            <th class="leftmost"><a href="../man/man5/make.conf.5.html#${row['label']}">${row['label']}</a></th>
-            <td class="absolute_score">${row['absolute']}</td>
-            <td class="relative_score">(${row['relative']} %)</td>
-        </tr>
-        <tr py:with="row = data['features']['total']">
-            <th class="leftmost downmost">Total</th>
-            <td class="downmost absolute_score">${row['absolute']}</td>
-            <td class="downmost relative_score">(${row['relative']} %)</td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <th class="leftmost topmost">Feature</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['positive_features']['listed']">
+                <th class="leftmost"><a href="../man/man5/make.conf.5.html#${row['label']}">${row['label']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['positive_features']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="features_negative"></a><h3>Negative ones (top ${len(data['negative_features']['listed'])})</h3>
+    <div>
+        <p>
+            <strong>Note</strong>: This table's data suffers from a post-launch change
+            in data model. This can affect the data of up to 27 submissions.
+        </p>
+
+        <table>
+            <tr>
+                <th class="leftmost topmost">Feature</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['negative_features']['listed']">
+                <th class="leftmost"><a href="../man/man5/make.conf.5.html#${row['label']}">${row['label']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['negative_features']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 
-<a name="global_use_flags"></a><h2>Global use flags (top ${len(data['global_use_flags']['listed'])}, make.conf only)</h2>
+<a name="global_use_flags"></a><h2>Global use flags (make.conf only)</h2>
 <div>
-    <p>
-        <strong>Note</strong>: This table's data suffers from a post-launch change
-        in data model. This can affect the data of up to 27 submissions.
-    </p>
+    <a name="global_use_flags_positive"></a><h3>Positive ones (top ${len(data['positive_global_use_flags']['listed'])})</h3>
+    <div>
+        <p>
+            <strong>Note</strong>: This table's data suffers from a post-launch change
+            in data model. This can affect the data of up to 27 submissions.
+        </p>
 
-    <table>
-        <tr>
-            <th class="leftmost topmost">Use flag</th>
-            <th colspan="2" class="rightmost topmost">Popularity</th>
-        </tr>
-        <tr py:for="row in data['global_use_flags']['listed']">
-            <th class="leftmost"><a href="http://gpo.zugaina.org/Search?search=&amp;use=${row['label']}">${row['label']}</a></th>
-            <td class="absolute_score">${row['absolute']}</td>
-            <td class="relative_score">(${row['relative']} %)</td>
-        </tr>
-        <tr py:with="row = data['global_use_flags']['total']">
-            <th class="leftmost downmost">Total</th>
-            <td class="downmost absolute_score">${row['absolute']}</td>
-            <td class="downmost relative_score">(${row['relative']} %)</td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <th class="leftmost topmost">Use flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['positive_global_use_flags']['listed']">
+                <th class="leftmost"><a href="http://gpo.zugaina.org/Search?search=&amp;use=${row['label']}">${row['label']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['positive_global_use_flags']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="global_use_flags_negative"></a><h3>Negative ones (top ${len(data['negative_global_use_flags']['listed'])})</h3>
+    <div>
+        <p>
+            <strong>Note</strong>: This table's data suffers from a post-launch change
+            in data model. This can affect the data of up to 27 submissions.
+        </p>
+
+        <table>
+            <tr>
+                <th class="leftmost topmost">Use flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['negative_global_use_flags']['listed']">
+                <th class="leftmost"><a href="http://gpo.zugaina.org/Search?search=&amp;use=${row['label']}">${row['label']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['negative_global_use_flags']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 

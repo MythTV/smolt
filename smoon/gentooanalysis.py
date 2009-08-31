@@ -283,7 +283,7 @@ class GentooReporter:
             }
         return res
 
-    def _analyze_global_use_flags(self):
+    def _analyze_global_use_flags(self, positive):
         _REL_TABLE = _gentoo_global_use_flags_table
         _POOL_TABLE = _gentoo_use_flag_pool_table
         _REL_CLASS = GentooGlobalUseFlagRel
@@ -292,9 +292,9 @@ class GentooReporter:
         _POOL_ID_NAME = 'use_flag_id'
         return self._analyze_split_set_entries(
             _REL_TABLE, _POOL_TABLE, _REL_CLASS, \
-            _POOL_CLASS, _LIMIT, _POOL_ID_NAME)
+            _POOL_CLASS, _LIMIT, _POOL_ID_NAME, positive)
 
-    def _analyze_features(self):
+    def _analyze_features(self, positive):
         _REL_TABLE = _gentoo_features_table
         _POOL_TABLE = _gentoo_feature_pool_table
         _REL_CLASS = GentooFeatureRel
@@ -303,10 +303,10 @@ class GentooReporter:
         _POOL_ID_NAME = 'feature_id'
         return self._analyze_split_set_entries(
             _REL_TABLE, _POOL_TABLE, _REL_CLASS, \
-            _POOL_CLASS, _LIMIT, _POOL_ID_NAME)
+            _POOL_CLASS, _LIMIT, _POOL_ID_NAME, positive)
 
     def _analyze_split_set_entries(self, _REL_TABLE, _POOL_TABLE, _REL_CLASS, \
-            _POOL_CLASS, _LIMIT, _POOL_ID_NAME):
+            _POOL_CLASS, _LIMIT, _POOL_ID_NAME, positive):
         def make_row(absolute, post_dot_digits, label=None):
             res = {
                 'absolute':absolute,
@@ -326,7 +326,7 @@ class GentooReporter:
                 where(
                     and_(
                         _REL_CLASS.set_in_make_conf == 1, \
-                        _REL_CLASS.enabled_in_make_conf == 1)).\
+                        _REL_CLASS.enabled_in_make_conf == int(positive))).\
                 order_by(
                     func.count(_REL_CLASS.machine_id).desc(), \
                     _POOL_CLASS.name).\
@@ -850,8 +850,10 @@ class GentooReporter:
         del query
 
         simple_stuff = self._analyze_simple_stuff()
-        global_use_flags = self._analyze_global_use_flags()
-        features = self._analyze_features()
+        positive_global_use_flags = self._analyze_global_use_flags(positive=True)
+        negative_global_use_flags = self._analyze_global_use_flags(positive=False)
+        positive_features = self._analyze_features(positive=True)
+        negative_features = self._analyze_features(positive=False)
         archs = self._analyze_archs()
         call_flags = self._analyzes_call_flags()
         package_mask = self._analyzes_package_mask()
@@ -868,8 +870,10 @@ class GentooReporter:
             'archs':archs,
             'call_flags':call_flags,
             'package_mask':package_mask,
-            'global_use_flags':global_use_flags,
-            'features':features,
+            'positive_global_use_flags':positive_global_use_flags,
+            'negative_global_use_flags':negative_global_use_flags,
+            'positive_features':positive_features,
+            'negative_features':negative_features,
             'repos':repos,
             'installed_packages':installed_packages,
         }
