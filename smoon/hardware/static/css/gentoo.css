@@ -63,6 +63,10 @@ div p {
     margin-left:30px;
 }
 
+div div p {
+    margin-left:60px;
+}
+
 div table {
     margin-left:30px;
 }
