@@ -87,21 +87,26 @@ class Reports(object):
     @expose(template='hardware.templates.report_view_devices')
     def view_devices(self, *args, **keys):
         device = keys['device']
-        d = select([ComputerLogicalDevice.id, ComputerLogicalDevice.description],
-            ComputerLogicalDevice.description.like('''%%%s%%''' % device)).limit(500).alias('d')
-        found = select ([HostLink.rating, func.count(HostLink.rating).label('cnt'),
-            d.c.description], HostLink.device_id == d.c.id).group_by(HostLink.rating,
-            d.c.description).order_by(desc('cnt')).execute().fetchall()
+#        d = select([ComputerLogicalDevice.id, ComputerLogicalDevice.description],
+#            ComputerLogicalDevice.description.like('''%%%s%%''' % device)).limit(1000).alias('d')
+#        found = select ([HostLink.rating, func.count(HostLink.rating).label('cnt'),
+#            d.c.description], HostLink.device_id == d.c.id).group_by(HostLink.rating,
+#            d.c.description).order_by(desc('cnt')).execute().fetchall()
+        session.bind = metadata.bind
+        found = session.execute('''SELECT host_links.rating, count(host_links.rating) AS cnt, d.description, d.vendor_id, d.device_id, d.subsys_vendor_id, d.subsys_device_id FROM host_links use index(rating), (SELECT device.id AS id, device.vendor_id AS vendor_id, device.device_id AS device_id, device.subsys_vendor_id AS subsys_vendor_id, device.subsys_device_id AS subsys_device_id, device.description AS description FROM device WHERE device.description like '%%%%%s%%%%'  LIMIT 500) AS d WHERE host_links.device_id = d.id and host_links.rating != 0 GROUP BY host_links.rating, d.description, d.vendor_id, d.device_id, d.subsys_vendor_id, d.subsys_device_id ORDER BY cnt DESC;''' % device).fetchall()
         return dict(found=found)
 
     @expose(template='hardware.templates.report_view_device')
     def view_device(self, device, *args, **keys):
-        d = select([ComputerLogicalDevice.id, ComputerLogicalDevice.vendor_id, ComputerLogicalDevice.device_id, ComputerLogicalDevice.subsys_vendor_id, ComputerLogicalDevice.subsys_device_id, ComputerLogicalDevice.description],
-            ComputerLogicalDevice.description == '''%s''' % device).limit(500).alias('d')
-        found = select ([HostLink.rating, func.count(HostLink.rating).label('cnt'),
-            d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id], HostLink.device_id == d.c.id).group_by(HostLink.rating,
-            d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id).order_by(desc('cnt')).execute().fetchall()
+#        d = select([ComputerLogicalDevice.id, ComputerLogicalDevice.vendor_id, ComputerLogicalDevice.device_id, ComputerLogicalDevice.subsys_vendor_id, ComputerLogicalDevice.subsys_device_id, ComputerLogicalDevice.description],
+#            ComputerLogicalDevice.description == '''%s''' % device).limit(1000).alias('d')
+#        found = select ([HostLink.rating, func.count(HostLink.rating).label('cnt'),
+#            d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id], HostLink.device_id == d.c.id).group_by(HostLink.rating,
+#            d.c.description, d.c.vendor_id, d.c.device_id, d.c.subsys_vendor_id, d.c.subsys_device_id).order_by(desc('cnt')).execute().fetchall()
 
+        session.bind = metadata.bind
+
+        found = session.execute('''SELECT host_links.rating, count(host_links.rating) AS cnt, d.description, d.vendor_id, d.device_id, d.subsys_vendor_id, d.subsys_device_id FROM host_links use index(rating), (SELECT device.id AS id, device.vendor_id AS vendor_id, device.device_id AS device_id, device.subsys_vendor_id AS subsys_vendor_id, device.subsys_device_id AS subsys_device_id, device.description AS description FROM device WHERE device.description = '%s'  LIMIT 500) AS d WHERE host_links.device_id = d.id and host_links.rating != 0 GROUP BY host_links.rating, d.description, d.vendor_id, d.device_id, d.subsys_vendor_id, d.subsys_device_id ORDER BY cnt DESC;''' % device).fetchall()
             # Select Device ID's that match our description
         d = select([computer_logical_devices.c.id],
                 computer_logical_devices.c.description == device).alias('d')
