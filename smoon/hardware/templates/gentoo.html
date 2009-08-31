@@ -91,28 +91,28 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 <div>
     <table>
         <tr>
-            <th class="vert_head">Arch</th>
-            <th colspan="2" class="head">Stable</th>
-            <th colspan="2" class="head">Unstable</th>
-            <th colspan="2" class="head">Total</th>
+            <th class="leftmost topmost">Arch</th>
+            <th colspan="2" class="topmost">Stable</th>
+            <th colspan="2" class="topmost">Unstable</th>
+            <th colspan="2" class="rightmost topmost">Total</th>
         </tr>
         <tr py:for="row in data['archs']['listed']">
-            <th class="vert"><a href="http://packages.gentoo.org/arch/${row['label']}">${row['label']}</a></th>
-            <td class="count">${row['absolute_stable']}</td>
-            <td class="relative">(${row['relative_stable']} %)</td>
-            <td class="count">${row['absolute_unstable']}</td>
-            <td class="relative">(${row['relative_unstable']} %)</td>
-            <td class="count">${row['absolute_total']}</td>
-            <td class="relative">(${row['relative_total']} %)</td>
+            <th class="leftmost"><a href="http://packages.gentoo.org/arch/${row['label']}">${row['label']}</a></th>
+            <td class="absolute_score">${row['absolute_stable']}</td>
+            <td class="relative_score">(${row['relative_stable']} %)</td>
+            <td class="absolute_score">${row['absolute_unstable']}</td>
+            <td class="relative_score">(${row['relative_unstable']} %)</td>
+            <td class="absolute_score">${row['absolute_total']}</td>
+            <td class="relative_score">(${row['relative_total']} %)</td>
         </tr>
         <tr py:with="row = data['archs']['total']">
-            <th class="vert_foot">Total</th>
-            <td class="foot_count">${row['absolute_stable']}</td>
-            <td class="foot_relative">(${row['relative_stable']} %)</td>
-            <td class="foot_count">${row['absolute_unstable']}</td>
-            <td class="foot_relative">(${row['relative_unstable']} %)</td>
-            <td class="foot_count">${row['absolute_total']}</td>
-            <td class="foot_relative">(${row['relative_total']} %)</td>
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost absolute_score">${row['absolute_stable']}</td>
+            <td class="downmost relative_score">(${row['relative_stable']} %)</td>
+            <td class="downmost absolute_score">${row['absolute_unstable']}</td>
+            <td class="downmost relative_score">(${row['relative_unstable']} %)</td>
+            <td class="downmost absolute_score">${row['absolute_total']}</td>
+            <td class="downmost relative_score">(${row['relative_total']} %)</td>
         </tr>
     </table>
 </div>
@@ -122,25 +122,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 <div>
     <table>
         <tr>
-            <th class="vert_head">Chost</th>
-            <th colspan="2" class="head">Popularity</th>
+            <th class="leftmost topmost">Chost</th>
+            <th colspan="2" class="rightmost topmost">Popularity</th>
         </tr>
         <tr py:for="row in data['chost']['listed']">
-            <th class="vert">${row['label']}</th>
-            <td class="count">${row['absolute']}</td>
-            <td class="relative">(${row['relative']} %)</td>
+            <th class="leftmost">${row['label']}</th>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
         </tr>
         <py:if test="data['chost']['others'][0]['absolute'] > 0">
         <tr py:for="row in data['chost']['others']">
-            <th class="vert"><span class="group_item">others</span></th>
-            <td class="count">${row['absolute']}</td>
-            <td class="relative">(${row['relative']} %)</td>
+            <th class="leftmost"><span class="group_item">others</span></th>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
         </tr>
         </py:if>
         <tr py:with="row = data['chost']['total']">
-            <th class="vert_foot">Total</th>
-            <td class="foot_count">${row['absolute']}</td>
-            <td class="foot_relative">(${row['relative']} %)</td>
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost absolute_score">${row['absolute']}</td>
+            <td class="downmost relative_score">(${row['relative']} %)</td>
         </tr>
     </table>
 </div>
@@ -152,18 +152,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
     <div>
         <table>
             <tr>
-                <th class="vert_head">Flag</th>
-                <th colspan="2" class="head">Popularity</th>
+                <th class="leftmost topmost">Flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
             </tr>
             <tr py:for="row in data['call_flags']['cflags']['listed']">
-                <th class="vert">${row['label']}</th>
-                <td class="count">${row['absolute']}</td>
-                <td class="relative">(${row['relative']} %)</td>
+                <th class="leftmost">${row['label']}</th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
             </tr>
             <tr py:with="row = data['call_flags']['cflags']['total']">
-                <th class="vert_foot">Total</th>
-                <td class="foot_count">${row['absolute']}</td>
-                <td class="foot_relative">(${row['relative']} %)</td>
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
             </tr>
         </table>
     </div>
@@ -172,18 +172,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
     <div>
         <table>
             <tr>
-                <th class="vert_head">Flag</th>
-                <th colspan="2" class="head">Popularity</th>
+                <th class="leftmost topmost">Flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
             </tr>
             <tr py:for="row in data['call_flags']['cxxflags']['listed']">
-                <th class="vert">${row['label']}</th>
-                <td class="count">${row['absolute']}</td>
-                <td class="relative">(${row['relative']} %)</td>
+                <th class="leftmost">${row['label']}</th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
             </tr>
             <tr py:with="row = data['call_flags']['cxxflags']['total']">
-                <th class="vert_foot">Total</th>
-                <td class="foot_count">${row['absolute']}</td>
-                <td class="foot_relative">(${row['relative']} %)</td>
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
             </tr>
         </table>
     </div>
@@ -192,18 +192,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
     <div>
         <table>
             <tr>
-                <th class="vert_head">Flag</th>
-                <th colspan="2" class="head">Popularity</th>
+                <th class="leftmost topmost">Flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
             </tr>
             <tr py:for="row in data['call_flags']['ldflags']['listed']">
-                <th class="vert">${row['label']}</th>
-                <td class="count">${row['absolute']}</td>
-                <td class="relative">(${row['relative']} %)</td>
+                <th class="leftmost">${row['label']}</th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
             </tr>
             <tr py:with="row = data['call_flags']['ldflags']['total']">
-                <th class="vert_foot">Total</th>
-                <td class="foot_count">${row['absolute']}</td>
-                <td class="foot_relative">(${row['relative']} %)</td>
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
             </tr>
         </table>
     </div>
@@ -212,18 +212,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
     <div>
         <table>
             <tr>
-                <th class="vert_head">Flag</th>
-                <th colspan="2" class="head">Popularity</th>
+                <th class="leftmost topmost">Flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
             </tr>
             <tr py:for="row in data['call_flags']['makeopts']['listed']">
-                <th class="vert">${row['label']}</th>
-                <td class="count">${row['absolute']}</td>
-                <td class="relative">(${row['relative']} %)</td>
+                <th class="leftmost">${row['label']}</th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
             </tr>
             <tr py:with="row = data['call_flags']['makeopts']['total']">
-                <th class="vert_foot">Total</th>
-                <td class="foot_count">${row['absolute']}</td>
-                <td class="foot_relative">(${row['relative']} %)</td>
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
             </tr>
         </table>
     </div>
@@ -239,18 +239,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
     <table>
         <tr>
-            <th class="vert_head">Feature</th>
-            <th colspan="2" class="head">Popularity</th>
+            <th class="leftmost topmost">Feature</th>
+            <th colspan="2" class="rightmost topmost">Popularity</th>
         </tr>
         <tr py:for="row in data['features']['listed']">
-            <th class="vert"><a href="../man/man5/make.conf.5.html#${row['label']}">${row['label']}</a></th>
-            <td class="count">${row['absolute']}</td>
-            <td class="relative">(${row['relative']} %)</td>
+            <th class="leftmost"><a href="../man/man5/make.conf.5.html#${row['label']}">${row['label']}</a></th>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
         </tr>
         <tr py:with="row = data['features']['total']">
-            <th class="vert_foot">Total</th>
-            <td class="foot_count">${row['absolute']}</td>
-            <td class="foot_relative">(${row['relative']} %)</td>
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost absolute_score">${row['absolute']}</td>
+            <td class="downmost relative_score">(${row['relative']} %)</td>
         </tr>
     </table>
 </div>
@@ -265,18 +265,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
     <table>
         <tr>
-            <th class="vert_head">Use flag</th>
-            <th colspan="2" class="head">Popularity</th>
+            <th class="leftmost topmost">Use flag</th>
+            <th colspan="2" class="rightmost topmost">Popularity</th>
         </tr>
         <tr py:for="row in data['global_use_flags']['listed']">
-            <th class="vert"><a href="http://gpo.zugaina.org/Search?search=&amp;use=${row['label']}">${row['label']}</a></th>
-            <td class="count">${row['absolute']}</td>
-            <td class="relative">(${row['relative']} %)</td>
+            <th class="leftmost"><a href="http://gpo.zugaina.org/Search?search=&amp;use=${row['label']}">${row['label']}</a></th>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
         </tr>
         <tr py:with="row = data['global_use_flags']['total']">
-            <th class="vert_foot">Total</th>
-            <td class="foot_count">${row['absolute']}</td>
-            <td class="foot_relative">(${row['relative']} %)</td>
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost absolute_score">${row['absolute']}</td>
+            <td class="downmost relative_score">(${row['relative']} %)</td>
         </tr>
     </table>
 </div>
@@ -286,25 +286,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 <div>
     <table>
         <tr>
-            <th class="vert_head">Profile</th>
-            <th colspan="2" class="head">Popularity</th>
+            <th class="leftmost topmost">Profile</th>
+            <th colspan="2" class="rightmost topmost">Popularity</th>
         </tr>
         <tr py:for="row in data['system_profile']['listed']">
-            <th class="vert">${row['label']}</th>
-            <td class="count">${row['absolute']}</td>
-            <td class="relative">(${row['relative']} %)</td>
+            <th class="leftmost">${row['label']}</th>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
         </tr>
         <py:if test="data['system_profile']['others'][0]['absolute'] > 0">
         <tr py:for="row in data['system_profile']['others']">
-            <th class="vert"><span class="group_item">others</span></th>
-            <td class="count">${row['absolute']}</td>
-            <td class="relative">(${row['relative']} %)</td>
+            <th class="leftmost"><span class="group_item">others</span></th>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
         </tr>
         </py:if>
         <tr py:with="row = data['system_profile']['total']">
-            <th class="vert_foot">Total</th>
-            <td class="foot_count">${row['absolute']}</td>
-            <td class="foot_relative">(${row['relative']} %)</td>
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost absolute_score">${row['absolute']}</td>
+            <td class="downmost relative_score">(${row['relative']} %)</td>
         </tr>
     </table>
 </div>
@@ -314,46 +314,46 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 <div>
     <table>
         <tr>
-            <th class="vert_head">Package</th>
-            <th class="head">Responsible atom</th>
-            <th colspan="2" class="head">Popularity</th>
+            <th class="leftmost topmost">Package</th>
+            <th class="topmost">Responsible atom</th>
+            <th colspan="2" class="rightmost topmost">Popularity</th>
         </tr>
 <py:for each="row in data['package_mask']['listed']">
   <py:if test="len(row['details']) == 1">
         <tr>
-            <th class="vert"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
+            <th class="leftmost"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
             <td>${row['details'][0]['label']}</td>
-            <td class="count">${row['any']['absolute']}</td>
-            <td class="relative">(${row['any']['relative']} %)</td>
+            <td class="absolute_score">${row['any']['absolute']}</td>
+            <td class="relative_score">(${row['any']['relative']} %)</td>
         </tr>
   </py:if>
   <py:if test="len(row['details']) > 1">
         <tr>
-            <th class="vert" rowspan="${len(row['details']) + 1}" style="vertical-align:top"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
+            <th class="leftmost" rowspan="${len(row['details']) + 1}" style="vertical-align:top"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
             <td><span class="group_item">any</span></td>
-            <td class="count">${row['any']['absolute']}</td>
-            <td class="relative">(${row['any']['relative']} %)</td>
+            <td class="absolute_score">${row['any']['absolute']}</td>
+            <td class="relative_score">(${row['any']['relative']} %)</td>
         </tr>
         <tr py:for="sub_row in row['details']">
             <td class="group_child_1">${sub_row['label']}</td>
-            <td class="count">${sub_row['absolute']}</td>
-            <td class="relative">(${sub_row['relative']} %)</td>
+            <td class="absolute_score">${sub_row['absolute']}</td>
+            <td class="relative_score">(${sub_row['relative']} %)</td>
         </tr>
   </py:if>
 </py:for>
         <py:if test="data['package_mask']['others'][0]['absolute'] > 0">
         <tr py:for="row in data['package_mask']['others']">
-            <th class="vert"><span class="group_item">others</span></th>
+            <th class="leftmost"><span class="group_item">others</span></th>
             <td><span></span></td>
-            <td class="count">${row['absolute']}</td>
-            <td class="relative">(${row['relative']} %)</td>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
         </tr>
         </py:if>
         <tr py:with="row = data['package_mask']['total']">
-            <th class="vert_foot">Total</th>
-            <td class="foot"><span></span></td>
-            <td class="foot_count">${row['absolute']}</td>
-            <td class="foot_relative">(${row['relative']} %)</td>
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost"><span></span></td>
+            <td class="downmost absolute_score">${row['absolute']}</td>
+            <td class="downmost relative_score">(${row['relative']} %)</td>
         </tr>
     </table>
 </div>
@@ -370,33 +370,33 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
     <table>
         <tr>
-            <th class="vert_head">Repository</th>
-            <th colspan="2" class="head">Popularity</th>
-            <th colspan="2" class="head">Used packages</th>
-            <th colspan="2" class="head">Total installations</th>
+            <th class="leftmost topmost">Repository</th>
+            <th colspan="2" class="topmost">Popularity</th>
+            <th colspan="2" class="topmost">Used packages</th>
+            <th colspan="2" class="rightmost topmost">Total installations</th>
         </tr>
         <tr py:for="row in data['repos']['listed']">
 <py:if test="row['label'] != ''">
-            <th class="vert"><a href="http://gentoo-overlays.zugaina.org/${row['label']}/">${row['label']}</a></th>
+            <th class="leftmost"><a href="http://gentoo-overlays.zugaina.org/${row['label']}/">${row['label']}</a></th>
 </py:if>
 <py:if test="row['label'] == ''">
-            <th class="vert"><span class="group_item">unknown</span></th>
+            <th class="leftmost"><span class="group_item">unknown</span></th>
 </py:if>
-            <td class="count">${row['absolute_popularity']}</td>
-            <td class="relative">(${row['relative_popularity']} %)</td>
-            <td class="count">${row['absolute_used_packages']}</td>
-            <td class="relative">(${row['relative_used_packages']} %)</td>
-            <td class="count">${row['absolute_total_installations']}</td>
-            <td class="relative">(${row['relative_total_installations']} %)</td>
+            <td class="absolute_score">${row['absolute_popularity']}</td>
+            <td class="relative_score">(${row['relative_popularity']} %)</td>
+            <td class="absolute_score">${row['absolute_used_packages']}</td>
+            <td class="relative_score">(${row['relative_used_packages']} %)</td>
+            <td class="absolute_score">${row['absolute_total_installations']}</td>
+            <td class="relative_score">(${row['relative_total_installations']} %)</td>
         </tr>
         <tr py:with="row = data['repos']['total']">
-            <th class="vert_foot">Total</th>
-            <td class="foot_count">${row['absolute_popularity']}</td>
-            <td class="foot_relative">(${row['relative_popularity']} %)</td>
-            <td class="foot_count">${row['absolute_used_packages']}</td>
-            <td class="foot_relative">(${row['relative_used_packages']} %)</td>
-            <td class="foot_count">${row['absolute_total_installations']}</td>
-            <td class="foot_relative">(${row['relative_total_installations']} %)</td>
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost absolute_score">${row['absolute_popularity']}</td>
+            <td class="downmost relative_score">(${row['relative_popularity']} %)</td>
+            <td class="downmost absolute_score">${row['absolute_used_packages']}</td>
+            <td class="downmost relative_score">(${row['relative_used_packages']} %)</td>
+            <td class="downmost absolute_score">${row['absolute_total_installations']}</td>
+            <td class="downmost relative_score">(${row['relative_total_installations']} %)</td>
         </tr>
     </table>
 </div>
@@ -408,25 +408,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
     <div>
         <table>
             <tr>
-                <th class="vert_head">Mirror</th>
-                <th colspan="2" class="head">Popularity</th>
+                <th class="leftmost topmost">Mirror</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
             </tr>
             <tr py:for="row in data['sync_mirror']['listed']">
-                <th class="vert">${row['label']}</th>
-                <td class="count">${row['absolute']}</td>
-                <td class="relative">(${row['relative']} %)</td>
+                <th class="leftmost">${row['label']}</th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
             </tr>
             <py:if test="data['sync_mirror']['others'][0]['absolute'] > 0">
             <tr py:for="row in data['sync_mirror']['others']">
-                <th class="vert"><span class="group_item">others</span></th>
-                <td class="count">${row['absolute']}</td>
-                <td class="relative">(${row['relative']} %)</td>
+                <th class="leftmost"><span class="group_item">others</span></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
             </tr>
             </py:if>
             <tr py:with="row = data['sync_mirror']['total']">
-                <th class="vert_foot">Total</th>
-                <td class="foot_count">${row['absolute']}</td>
-                <td class="foot_relative">(${row['relative']} %)</td>
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
             </tr>
         </table>
     </div>
@@ -435,25 +435,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
     <div>
         <table>
             <tr>
-                <th class="vert_head">Mirror</th>
-                <th colspan="2" class="head">Popularity</th>
+                <th class="leftmost topmost">Mirror</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
             </tr>
             <tr py:for="row in data['distfiles_mirrors']['listed']">
-                <th class="vert"><a href="${row['label']}">${row['label']}</a></th>
-                <td class="count">${row['absolute']}</td>
-                <td class="relative">(${row['relative']} %)</td>
+                <th class="leftmost"><a href="${row['label']}">${row['label']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
             </tr>
             <py:if test="data['distfiles_mirrors']['others'][0]['absolute'] > 0">
             <tr py:for="row in data['distfiles_mirrors']['others']">
-                <th class="vert"><span class="group_item">others</span></th>
-                <td class="count">${row['absolute']}</td>
-                <td class="relative">(${row['relative']} %)</td>
+                <th class="leftmost"><span class="group_item">others</span></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
             </tr>
             </py:if>
             <tr py:with="row = data['distfiles_mirrors']['total']">
-                <th class="vert_foot">Total</th>
-                <td class="foot_count">${row['absolute']}</td>
-                <td class="foot_relative">(${row['relative']} %)</td>
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
             </tr>
         </table>
     </div>
@@ -468,20 +468,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
         <div>
             <table>
                 <tr>
-                    <th class="vert_head">Package</th>
-                    <th colspan="2" class="head">Popularity</th>
+                    <th class="leftmost topmost">Package</th>
+                    <th colspan="2" class="rightmost topmost">Popularity</th>
                 </tr>
 <py:for each="row in data['installed_packages']['most_installed_world']['listed']">
                 <tr>
-                    <th class="vert" rowspan="1" style="vertical-align:top">${row['name']}</th>
-                    <td class="count">${row['absolute_total']}</td>
-                    <td class="relative">(${row['relative_total']} %)</td>
+                    <th class="leftmost" rowspan="1" style="vertical-align:top">${row['name']}</th>
+                    <td class="absolute_score">${row['absolute_total']}</td>
+                    <td class="relative_score">(${row['relative_total']} %)</td>
                 </tr>
 </py:for>
                 <tr>
-                    <th class="vert_foot">Total</th>
-                    <td class="foot_count">${data['installed_packages']['most_installed_world']['total']['absolute_total']}</td>
-                    <td class="foot_relative">(${data['installed_packages']['most_installed_world']['total']['relative_total']} %)</td>
+                    <th class="leftmost downmost">Total</th>
+                    <td class="downmost absolute_score">${data['installed_packages']['most_installed_world']['total']['absolute_total']}</td>
+                    <td class="downmost relative_score">(${data['installed_packages']['most_installed_world']['total']['relative_total']} %)</td>
                 </tr>
             </table>
         </div>
@@ -490,47 +490,47 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
         <div>
             <table>
                 <tr>
-                    <th class="vert_head">Package</th>
-                    <th class="head">Slot</th>
-                    <th class="head">Version</th>
-                    <th colspan="2" class="head">Popularity</th>
+                    <th class="leftmost topmost">Package</th>
+                    <th class="topmost">Slot</th>
+                    <th class="topmost">Version</th>
+                    <th colspan="2" class="rightmost topmost">Popularity</th>
                 </tr>
 <py:for each="row in data['installed_packages']['most_installed_all']['listed']">
   <py:if test="len(row['slots']) == 1">
     <py:if test="len(row['slots'].values()[0]['versions']) == 1">
                 <!--! Single slot, single version -->
                 <tr>
-                    <th class="vert" rowspan="1" style="vertical-align:top">${row['name']}</th>
+                    <th class="leftmost" rowspan="1" style="vertical-align:top">${row['name']}</th>
                     <td>${row['slots'].keys()[0]}</td>
                     <td>${row['slots'].values()[0]['versions'].keys()[0]}</td>
-                    <td class="count">${row['slots'].values()[0]['absolute_total']}</td>
-                    <td class="relative">(${row['slots'].values()[0]['relative_total']} %)</td>
+                    <td class="absolute_score">${row['slots'].values()[0]['absolute_total']}</td>
+                    <td class="relative_score">(${row['slots'].values()[0]['relative_total']} %)</td>
                 </tr>
     </py:if>
     <py:if test="len(row['slots'].values()[0]['versions']) > 1">
                 <!--! Single slot, multiple versions -->
                 <tr>
-                    <th class="vert" rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['name']}</th>
+                    <th class="leftmost" rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['name']}</th>
                     <td rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['slots'].keys()[0]}</td>
                     <td><span class="group_item">any</span></td>
-                    <td class="count">${row['slots'].values()[0]['absolute_total']}</td>
-                    <td class="relative">(${row['slots'].values()[0]['relative_total']} %)</td>
+                    <td class="absolute_score">${row['slots'].values()[0]['absolute_total']}</td>
+                    <td class="relative_score">(${row['slots'].values()[0]['relative_total']} %)</td>
                 </tr>
                 <tr py:for="version, version_data in sorted(row['slots'].values()[0]['versions'].items())">
                     <td class="group_child_1">${version}</td>
-                    <td class="count">${version_data['absolute_total']}</td>
-                    <td class="relative">(${version_data['relative_total']} %)</td>
+                    <td class="absolute_score">${version_data['absolute_total']}</td>
+                    <td class="relative_score">(${version_data['relative_total']} %)</td>
                 </tr>
     </py:if>
   </py:if>
   <py:if test="len(row['slots']) > 1">
                 <!--! Multiple slots -->
                 <tr>
-                    <th class="vert" rowspan="${sum(((len(slot_data['versions']) > 1) and (len(slot_data['versions']) + 1) or 1) for slot, slot_data in row['slots'].items()) + 1}" style="vertical-align:top">${row['name']}</th>
+                    <th class="leftmost" rowspan="${sum(((len(slot_data['versions']) > 1) and (len(slot_data['versions']) + 1) or 1) for slot, slot_data in row['slots'].items()) + 1}" style="vertical-align:top">${row['name']}</th>
                     <td><span class="group_item">any</span></td>
                     <td><span class="group_item">any</span></td>
-                    <td class="count">${row['absolute_total']}</td>
-                    <td class="relative">(${row['relative_total']} %)</td>
+                    <td class="absolute_score">${row['absolute_total']}</td>
+                    <td class="relative_score">(${row['relative_total']} %)</td>
                 </tr>
 
     <py:for each="slot, slot_data, in sorted(row['slots'].items())">
@@ -539,8 +539,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <tr>
                     <td class="group_child_1">${slot}</td>
                     <td class="group_child_1">${slot_data['versions'].keys()[0]}</td>
-                    <td class="count">${slot_data['absolute_total']}</td>
-                    <td class="relative">(${slot_data['relative_total']} %)</td>
+                    <td class="absolute_score">${slot_data['absolute_total']}</td>
+                    <td class="relative_score">(${slot_data['relative_total']} %)</td>
                 </tr>
       </py:if>
       <py:if test="len(slot_data['versions']) > 1">
@@ -548,24 +548,24 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
                 <tr>
                     <td class="group_child_1" rowspan="${len(slot_data['versions']) + 1}" style="vertical-align:top">${slot}</td>
                     <td class="group_child_1" style="vertical-align:top"><span class="group_item">any</span></td>
-                    <td class="count">${slot_data['absolute_total']}</td>
-                    <td class="relative">(${slot_data['relative_total']} %)</td>
+                    <td class="absolute_score">${slot_data['absolute_total']}</td>
+                    <td class="relative_score">(${slot_data['relative_total']} %)</td>
                 </tr>
                 <tr py:for="version, version_data in sorted(slot_data['versions'].items())">
                     <td class="group_child_2">${version}</td>
-                    <td class="count">${version_data['absolute_total']}</td>
-                    <td class="relative">(${version_data['relative_total']} %)</td>
+                    <td class="absolute_score">${version_data['absolute_total']}</td>
+                    <td class="relative_score">(${version_data['relative_total']} %)</td>
                 </tr>
       </py:if>
     </py:for>
   </py:if>
 </py:for>
                 <tr>
-                    <th class="vert_foot">Total</th>
-                    <td class="foot"><span></span></td>
-                    <td class="foot"><span></span></td>
-                    <td class="foot_count">${data['installed_packages']['most_installed_all']['total']['absolute_total']}</td>
-                    <td class="foot_relative">(${data['installed_packages']['most_installed_all']['total']['relative_total']} %)</td>
+                    <th class="leftmost downmost">Total</th>
+                    <td class="downmost"><span></span></td>
+                    <td class="downmost"><span></span></td>
+                    <td class="downmost absolute_score">${data['installed_packages']['most_installed_all']['total']['absolute_total']}</td>
+                    <td class="downmost relative_score">(${data['installed_packages']['most_installed_all']['total']['relative_total']} %)</td>
                 </tr>
             </table>
         </div>
@@ -575,74 +575,74 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
     <div>
         <table>
             <tr>
-                <th class="vert_head">Package</th>
-                <th class="head">Slot</th>
-                <th class="head">Version</th>
-                <th colspan="2" class="head">~arch</th>
-                <th colspan="2" class="head">**</th>
-                <th colspan="2" class="head">.unmask</th>
-                <th colspan="2" class="head"><span class="group_item">any</span></th>
+                <th class="leftmost topmost">Package</th>
+                <th class="topmost">Slot</th>
+                <th class="topmost">Version</th>
+                <th colspan="2" class="topmost">~arch</th>
+                <th colspan="2" class="topmost">**</th>
+                <th colspan="2" class="topmost">.unmask</th>
+                <th colspan="2" class="rightmost topmost"><span class="group_item">any</span></th>
             </tr>
 <py:for each="row in data['installed_packages']['most_unmasked']['listed']">
   <py:if test="len(row['slots']) == 1">
     <py:if test="len(row['slots'].values()[0]['versions']) == 1">
             <!--! Single slot, single version -->
             <tr>
-                <th class="vert" rowspan="1" style="vertical-align:top">${row['name']}</th>
+                <th class="leftmost" rowspan="1" style="vertical-align:top">${row['name']}</th>
                 <td>${row['slots'].keys()[0]}</td>
                 <td>${row['slots'].values()[0]['versions'].keys()[0]}</td>
-                <td class="count">${row['tilde_arch_absolute_total']}</td>
-                <td class="relative">(${row['tilde_arch_relative_total']} %)</td>
-                <td class="count">${row['double_asterisk_absolute_total']}</td>
-                <td class="relative">(${row['double_asterisk_relative_total']} %)</td>
-                <td class="count">${row['unmask_absolute_total']}</td>
-                <td class="relative">(${row['unmask_relative_total']} %)</td>
-                <td class="count">${row['any_absolute_total']}</td>
-                <td class="relative">(${row['any_relative_total']} %)</td>
+                <td class="absolute_score">${row['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${row['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${row['unmask_absolute_total']}</td>
+                <td class="relative_score">(${row['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${row['any_absolute_total']}</td>
+                <td class="relative_score">(${row['any_relative_total']} %)</td>
             </tr>
     </py:if>
     <py:if test="len(row['slots'].values()[0]['versions']) > 1">
             <!--! Single slot, multiple versions -->
             <tr>
-                <th class="vert" rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['name']}</th>
+                <th class="leftmost" rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['name']}</th>
                 <td rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['slots'].keys()[0]}</td>
                 <td><span class="group_item">any</span></td>
-                <td class="count">${row['tilde_arch_absolute_total']}</td>
-                <td class="relative">(${row['tilde_arch_relative_total']} %)</td>
-                <td class="count">${row['double_asterisk_absolute_total']}</td>
-                <td class="relative">(${row['double_asterisk_relative_total']} %)</td>
-                <td class="count">${row['unmask_absolute_total']}</td>
-                <td class="relative">(${row['unmask_relative_total']} %)</td>
-                <td class="count">${row['any_absolute_total']}</td>
-                <td class="relative">(${row['any_relative_total']} %)</td>
+                <td class="absolute_score">${row['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${row['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${row['unmask_absolute_total']}</td>
+                <td class="relative_score">(${row['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${row['any_absolute_total']}</td>
+                <td class="relative_score">(${row['any_relative_total']} %)</td>
             </tr>
             <tr py:for="version, version_data in sorted(row['slots'].values()[0]['versions'].items())">
                 <td class="group_child_1">${version}</td>
-                <td class="count">${version_data['tilde_arch_absolute_total']}</td>
-                <td class="relative">(${version_data['tilde_arch_relative_total']} %)</td>
-                <td class="count">${version_data['double_asterisk_absolute_total']}</td>
-                <td class="relative">(${version_data['double_asterisk_relative_total']} %)</td>
-                <td class="count">${version_data['unmask_absolute_total']}</td>
-                <td class="relative">(${version_data['unmask_relative_total']} %)</td>
-                <td class="count">${version_data['any_absolute_total']}</td>
-                <td class="relative">(${version_data['any_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${version_data['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${version_data['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['unmask_absolute_total']}</td>
+                <td class="relative_score">(${version_data['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['any_absolute_total']}</td>
+                <td class="relative_score">(${version_data['any_relative_total']} %)</td>
             </tr>
     </py:if>
   </py:if>
   <py:if test="len(row['slots']) > 1">
             <!--! Multiple slots -->
             <tr>
-                <th class="vert" rowspan="${sum(((len(slot_data['versions']) > 1) and (len(slot_data['versions']) + 1) or 1) for slot, slot_data in row['slots'].items()) + 1}" style="vertical-align:top">${row['name']}</th>
+                <th class="leftmost" rowspan="${sum(((len(slot_data['versions']) > 1) and (len(slot_data['versions']) + 1) or 1) for slot, slot_data in row['slots'].items()) + 1}" style="vertical-align:top">${row['name']}</th>
                 <td><span class="group_item">any</span></td>
                 <td><span class="group_item">any</span></td>
-                <td class="count">${row['tilde_arch_absolute_total']}</td>
-                <td class="relative">(${row['tilde_arch_relative_total']} %)</td>
-                <td class="count">${row['double_asterisk_absolute_total']}</td>
-                <td class="relative">(${row['double_asterisk_relative_total']} %)</td>
-                <td class="count">${row['unmask_absolute_total']}</td>
-                <td class="relative">(${row['unmask_relative_total']} %)</td>
-                <td class="count">${row['any_absolute_total']}</td>
-                <td class="relative">(${row['any_relative_total']} %)</td>
+                <td class="absolute_score">${row['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${row['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${row['unmask_absolute_total']}</td>
+                <td class="relative_score">(${row['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${row['any_absolute_total']}</td>
+                <td class="relative_score">(${row['any_relative_total']} %)</td>
             </tr>
 
     <py:for each="slot, slot_data, in sorted(row['slots'].items())">
@@ -651,14 +651,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <tr>
                 <td class="group_child_1">${slot}</td>
                 <td class="group_child_1">${slot_data['versions'].keys()[0]}</td>
-                <td class="count">${slot_data['tilde_arch_absolute_total']}</td>
-                <td class="relative">(${slot_data['tilde_arch_relative_total']} %)</td>
-                <td class="count">${slot_data['double_asterisk_absolute_total']}</td>
-                <td class="relative">(${slot_data['double_asterisk_relative_total']} %)</td>
-                <td class="count">${slot_data['unmask_absolute_total']}</td>
-                <td class="relative">(${slot_data['unmask_relative_total']} %)</td>
-                <td class="count">${slot_data['any_absolute_total']}</td>
-                <td class="relative">(${slot_data['any_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['unmask_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['any_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['any_relative_total']} %)</td>
             </tr>
       </py:if>
       <py:if test="len(slot_data['versions']) > 1">
@@ -666,42 +666,42 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
             <tr>
                 <td class="group_child_1" rowspan="${len(slot_data['versions']) + 1}" style="vertical-align:top">${slot}</td>
                 <td class="group_child_1" style="vertical-align:top"><span class="group_item">any</span></td>
-                <td class="count">${slot_data['tilde_arch_absolute_total']}</td>
-                <td class="relative">(${slot_data['tilde_arch_relative_total']} %)</td>
-                <td class="count">${slot_data['double_asterisk_absolute_total']}</td>
-                <td class="relative">(${slot_data['double_asterisk_relative_total']} %)</td>
-                <td class="count">${slot_data['unmask_absolute_total']}</td>
-                <td class="relative">(${slot_data['unmask_relative_total']} %)</td>
-                <td class="count">${slot_data['any_absolute_total']}</td>
-                <td class="relative">(${slot_data['any_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['unmask_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['any_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['any_relative_total']} %)</td>
             </tr>
             <tr py:for="version, version_data in sorted(slot_data['versions'].items())">
                 <td class="group_child_2">${version}</td>
-                <td class="count">${version_data['tilde_arch_absolute_total']}</td>
-                <td class="relative">(${version_data['tilde_arch_relative_total']} %)</td>
-                <td class="count">${version_data['double_asterisk_absolute_total']}</td>
-                <td class="relative">(${version_data['double_asterisk_relative_total']} %)</td>
-                <td class="count">${version_data['unmask_absolute_total']}</td>
-                <td class="relative">(${version_data['unmask_relative_total']} %)</td>
-                <td class="count">${version_data['any_absolute_total']}</td>
-                <td class="relative">(${version_data['any_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${version_data['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${version_data['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['unmask_absolute_total']}</td>
+                <td class="relative_score">(${version_data['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['any_absolute_total']}</td>
+                <td class="relative_score">(${version_data['any_relative_total']} %)</td>
             </tr>
       </py:if>
     </py:for>
   </py:if>
 </py:for>
             <tr py:with="row = data['installed_packages']['most_unmasked']['total']">
-                <th class="vert_foot">Total</th>
-                <td class="foot"><span></span></td>
-                <td class="foot"><span></span></td>
-                <td class="foot_count">${row['tilde_arch_absolute_total']}</td>
-                <td class="foot_relative">(${row['tilde_arch_relative_total']} %)</td>
-                <td class="foot_count">${row['double_asterisk_absolute_total']}</td>
-                <td class="foot_relative">(${row['double_asterisk_relative_total']} %)</td>
-                <td class="foot_count">${row['unmask_absolute_total']}</td>
-                <td class="foot_relative">(${row['unmask_relative_total']} %)</td>
-                <td class="foot_count">${row['any_absolute_total']}</td>
-                <td class="foot_relative">(${row['any_relative_total']} %)</td>
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost"><span></span></td>
+                <td class="downmost"><span></span></td>
+                <td class="downmost absolute_score">${row['tilde_arch_absolute_total']}</td>
+                <td class="downmost relative_score">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="downmost absolute_score">${row['double_asterisk_absolute_total']}</td>
+                <td class="downmost relative_score">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="downmost absolute_score">${row['unmask_absolute_total']}</td>
+                <td class="downmost relative_score">(${row['unmask_relative_total']} %)</td>
+                <td class="downmost absolute_score">${row['any_absolute_total']}</td>
+                <td class="downmost relative_score">(${row['any_relative_total']} %)</td>
             </tr>
         </table>
     </div>
@@ -710,18 +710,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
     <div>
         <table>
             <tr>
-                <th class="vert_head">Package</th>
-                <th colspan="2" class="head">Popularity</th>
+                <th class="leftmost topmost">Package</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
             </tr>
             <tr py:for="row in data['installed_packages']['least_installed']['listed']">
-                <th class="vert"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
-                <td class="count">${row['absolute']}</td>
-                <td class="relative">(${row['relative']} %)</td>
+                <th class="leftmost"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
             </tr>
             <tr py:with="row = data['installed_packages']['least_installed']['total']">
-                <th class="vert_foot">Total</th>
-                <td class="foot_count">${row['absolute']}</td>
-                <td class="foot_relative">(${row['relative']} %)</td>
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
             </tr>
         </table>
     </div>

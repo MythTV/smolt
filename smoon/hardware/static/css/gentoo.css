@@ -18,7 +18,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-/* XXX */
 body {
     margin:0;
     padding-left:40px;
@@ -27,79 +26,63 @@ body {
     padding-bottom:30px;
 }
 
-/* XXX */
 h1 {
     font-size:30pt;
 }
 
-/* XXX */
 h2 {
     margin-top:40px;
 }
 
-/* XXX */
 a {
     color:#404040;
 }
 
-/* XXX */
 th a {
     color:#000000;
     font-weight:bold;
 }
 
-/* XXX */
 body, h1, td, th, span, p {
     font-family:serif;
 }
 
-/* XXX */
 body, h1 {
     background-color:#fafafa;
 }
 
-/* XXX */
 td, th {
     background-color:#ffffff;
 }
 
-/* XXX */
 table {
     border-spacing:0;
 }
 
-/* XXX */
 div p {
     margin-left:30px;
 }
 
-/* XXX */
 div table {
     margin-left:30px;
 }
 
-/* XXX */
 div div table {
     margin-left:60px;
 }
 
-/* XXX */
 div div div table {
     margin-left:90px;
 }
 
-/* XXX */
 h3 {
     margin-left:30px;
 }
 
-/* XXX */
 h4 {
     margin-left:60px;
 }
 
-
-/* XXX */
 td, th {
     padding-left:8px;
     padding-right:8px;
@@ -107,52 +90,43 @@ td, th {
     padding-bottom:4px;
 }
 
-/* XXX */
 table {
     border-style:solid;
     border-width:2px;
 }
 
-/* XXX */
-td.head {
-    border-bottom-style:solid;
-    border-bottom-width:thin;
-}
-
-/* XXX */
-th.head, th.vert_head {
+th.topmost {
     border-bottom-style:solid;
     border-bottom-width:thin;
     padding-top:8px;
 }
 
-/* XXX */
-td.foot, td.foot_count, td.foot_relative {
+th.leftmost {
+    padding-left:20px;
+    padding-right:20px;
+    text-align:left;
+}
+
+th.rightmost {
+    padding-right:20px;
+}
+
+td.downmost, th.downmost {
     border-top-style:solid;
     border-top-width:thin;
     padding-bottom:8px;
 }
 
-/* XXX */
-th.foot, th.vert_foot {
-    border-top-style:solid;
-    border-top-width:thin;
-    padding-bottom:8px;
-}
-
-/* XXX */
-td.count, td.foot_count {
+td.absolute_score {
     text-align:right;
     padding-left:20px;
 }
 
-/* XXX */
-td.relative, td.foot_relative {
+td.relative_score {
     text-align:right;
     padding-right:20px;
 }
 
-/* XXX */
 td.group_child_1 {
     padding-left:30px;
 }
@@ -161,42 +135,26 @@ td.group_child_2 {
     padding-left:60px;
 }
 
-/* XXX */
-th.vert, th.vert_head, th.vert_foot  {
-    padding-left:20px;
-    padding-right:20px;
-    text-align:left;
-/*
-    border-right-style:solid;
-    border-right-width:thin;
-*/
-}
-
-/* XXX */
 ul li {
     margin-top:1px;
     margin-bottom:2px;
 }
 
-/* XXX */
 span.section_comment {
     color:#b0b0b0;
     padding-left:20px;
 }
 
-/* XXX */
 span.group_item {
     font-style:italic;
     font-weight:normal;
 }
 
-/* XXX */
 div {
     margin:0;
     padding:0;
 }
 
-/* XXX */
 .todo {
     opacity:0.25;
 }
