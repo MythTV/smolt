@@ -144,7 +144,14 @@ PCI_CLASS_SERIAL_USB =          3
 PCI_CLASS_SERIAL_FIBER =        4
 PCI_CLASS_SERIAL_SMBUS =        5
 
-def to_ascii(s):
+def to_ascii(o, current_encoding='utf-8'):
+    if not isinstance(o, basestring):
+        return o
+
+    if isinstance(o, unicode):
+        s = o
+    else:
+        s = unicode(o, current_encoding)
     return codecs.encode(s, 'ascii', 'ignore')
 
 class Device:
