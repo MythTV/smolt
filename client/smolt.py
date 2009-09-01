@@ -54,6 +54,7 @@ from gate import Gate
 from uuiddb import UuidDb
 import logging
 from logging.handlers import RotatingFileHandler
+import codecs
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 SELINUX_ENABLED = 1
@@ -142,6 +143,9 @@ PCI_CLASS_SERIAL_SSA =          2
 PCI_CLASS_SERIAL_USB =          3
 PCI_CLASS_SERIAL_FIBER =        4
 PCI_CLASS_SERIAL_SMBUS =        5
+
+def to_ascii(s):
+    return codecs.encode(s, 'ascii', 'ignore')
 
 class Device:
     def __init__(self, props, hardware):
@@ -611,7 +615,7 @@ class _Hardware:
         log_matrix = {
             '.json':serialize(send_host_obj, human=True),
             '-distro.html':self.get_distro_specific_html(),
-            '.rst':'\n'.join(self.getProfile()),
+            '.rst':'\n'.join(map(to_ascii, self.getProfile())),
         }
         logdir = os.path.expanduser('~/.smolt/')
         try:

@@ -28,7 +28,6 @@ import random
 import getpass
 from tempfile import NamedTemporaryFile
 import subprocess
-import codecs
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -37,6 +36,7 @@ import smolt
 from smolt import debug
 from smolt import error
 from smolt import get_config_attr
+from smolt import to_ascii
 from scan import scan, rating
 from gate import GateFromConfig
 
@@ -168,9 +168,6 @@ if not opts.autoSend:
 
     def inner_indent(text):
         return ('\n' + 5 * ' ').join(text.split('\n'))
-
-    def to_ascii(s):
-        return codecs.encode(s, 'ascii', 'ignore')
 
     excerpts = {
         'label_intro':_('Smolt has collected four types of information:'),
