@@ -170,7 +170,7 @@ if not opts.autoSend:
         return ('\n' + 5 * ' ').join(text.split('\n'))
 
     def to_ascii(s):
-        return codecs.decode(s, 'ascii', 'ignore')
+        return codecs.encode(s, 'ascii', 'ignore')
 
     excerpts = {
         'label_intro':_('Smolt has collected four types of information:'),
