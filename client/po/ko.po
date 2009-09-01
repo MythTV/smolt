@@ -8,14 +8,15 @@ msgstr ""
 "Project-Id-Version: smolt.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-01-28 14:36+1000\n"
+"PO-Revision-Date: 2009-08-26 17:01+1000\n"
 "Last-Translator: Eunju Kim <eukim@redhat.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n!=1);\n"
+"Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -52,7 +53,7 @@ msgstr "HTTP 시간 초과를 초 단위로 지정 (기본값 %default 초) "
 
 #: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr ""
+msgstr "디버깅과 테스트에 유용한, 사용할 uuid를 지정합니다.  "
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -63,14 +64,12 @@ msgid "Profile removed, please verify at"
 msgstr "프로파일이 삭제됨, 이를 확인하시기 바랍니다"
 
 #: gui.py:35 sendProfile.py:177 smolt.py:655
-#, fuzzy
 msgid "General"
-msgstr "커널 "
+msgstr "일반 "
 
 #: gui.py:37
-#, fuzzy
 msgid "Distribution"
-msgstr "설명 "
+msgstr "배포  "
 
 #: gui.py:82
 msgid "Label"
@@ -97,93 +96,114 @@ msgid "Description"
 msgstr "설명 "
 
 #: privacypolicy.py:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a "
+"submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"the submission is anonymous.  If at any point in time a user wants to "
+"delete\n"
 "his/her profile from the database they need only run<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
-"The information sent to the smolt database server should be considered public\n"
-"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"The information sent to the smolt database server should be considered "
+"public\n"
+"in that anyone can view the statistics, data and share machine profiles.  "
+"In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"attention.  As such, not only will this information be shared with 3rd "
+"parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.<br>\n"
 "<br>\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and they\n"
+"server first.  This is the only place IP addresses are being logged and "
+"they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate IP addresses in\n"
-"the smolt database.  These logs are private and will not be available to the\n"
+"the smolt database.  These logs are private and will not be available to "
+"the\n"
 "general public.<br>\n"
 "<br>\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team at\n"
-"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can delete their\n"
+"questions about this policy should contact the Fedora Infrastructure Team "
+"at\n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can "
+"delete their\n"
 "profiles at any time using<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
-"Smolt는 Fedora smolt 서버 (smoon)에 하드웨어 및 운영 체제 정보만을 전송합니다.\n"
-" 데이터베이스에서 보낸사람의 컴퓨터로는 오직 UUID로 연결됩니다. 보낸사람이 이러한 UUID를 알려주지 않는 이상\n"
-"익명으로 제출됩니다. 어느 한 시점에서 사용자가 데이터베이스에서 자신의 프로파일을\n"
-" 삭제하고자 할 경우 다음을 실행하면 됩니다\n"
-"\n"
-"    smoltDeleteProfile\n"
-"\n"
-"smolt 데이터베이스 서버로 전송된 정보는 누구나 통계 자료, 데이터를 볼 수 있고\n"
+"<span></span>\n"
+"Smolt는 Fedora smolt 서버 (smoon)에 하드웨어 및 기본적인 운영 체제 정보만을 전송합니"
+"다.\n"
+" 데이터베이스에서 보낸사람의 컴퓨터로는 오직 UUID로 연결됩니다. 보낸사람이 이"
+"러한 UUID를 알려주지 않는 이상\n"
+"익명으로 제출됩니다. 어느 한 시점에서 사용자가 데이터베이스에서 자신의 프로파"
+"일을\n"
+" 삭제하고자 할 경우 다음을 실행하면 됩니다<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"smolt 데이터베이스 서버로 전송된 정보는 누구나 통계 자료, 데이터를 볼 수 있"
+"고\n"
 " 프로파일을 공유할 수 있도록 공개되어야 합니다. 여러 방면에서\n"
 "smolt는 하드웨어 벤더 및 기타 다른 제삼자의 주목을 끌도록 고안되었습니다.\n"
 "따라서, 이러한 정보는 제삼자와 공유될 뿐 만 아니라,\n"
 "보다 나은 오픈 소스 드라이버 지원은 물론 전반적으로 보다 나은 지원을\n"
-"받기 위한 원동력으로서 smolt를 사용하게 됩니다.\n"
-"\n"
+"받기 위한 원동력으로서 smolt를 사용하게 됩니다.<br>\n"
+"<br>\n"
 "IP 로깅: Fedora의 smolt 설치에서 모든 웹 소통은 우선적으로 proxy\n"
 "서버를 통하게 됩니다. 이는 IP 주소가 로깅되는 유일한 장소이며 로그 순환이\n"
-"이러한 로그를 제거하는 4 주라는 기간 동안 서버에 저장됩니다. Fedora 프로젝트는\n"
-" smolt 데이터베이스에서 ip 주소를 모으지 않습니다. 이러한 로그는 비공개이며\n"
+"이러한 로그를 제거하는 4 주라는 기간 동안 서버에 저장됩니다. Fedora 프로젝트"
+"는\n"
+" smolt 데이터베이스에서 IP주소를 모으지 않습니다. 이러한 로그는 비공개이며\n"
 "공개되지\n"
-"않습니다.\n"
-"\n"
-"이러한 정책에 만족하지 않는 사용자는 smolt를 사용해서는 안됩니다.  이러한 정책에\n"
-"관해 의문 사항이 있으실 경우 admin [at] fedoraproject.org의 Fedora Infrastructure Team에게\n"
-"연락하시기 바랍니다.  또한 \"smoltDeleteProfile\"을 사용하여 사용자는 언제나\n"
-"자신의 프로파일을 삭제할 수 있음에 유의하시기 바랍니다\n"
+"않습니다.<br>\n"
+"<br>\n"
+"이러한 정책에 만족하지 않는 사용자는 smolt를 사용해서는 안됩니다.  이러한 정"
+"책에\n"
+"관해 의문 사항이 있으실 경우 <a href=\"mailto:%(mail)s\">%(mail)s</a>의 Fedora "
+"Infrastructure Team에게\n"
+"연락하시기 바랍니다.  또한 다음을 사용하여 사용자는 언제나\n "
+"자신의 프로파일을 삭제할 수 있음에 유의하시기 바랍니다<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"이러한 정책에 관심을 갖고 참여해 주셔서 감사합니다.\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr ""
+msgstr "제조 업체/모델의 현재 등급 "
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr ""
+msgstr "등급이 없음/알 수 없음 "
 
 #: scan.py:46
 msgid "Non-working"
-msgstr ""
+msgstr "비작동  "
 
 #: scan.py:47
 msgid "Partially-working"
-msgstr ""
+msgstr "부분적으로 작동  "
 
 #: scan.py:48
 msgid "Requires 3rd party drivers"
-msgstr ""
+msgstr "제삼자 드라이버가 필요 "
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr ""
+msgstr "작동, 추가 설정 필요 "
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr ""
+msgstr "계속 작동   "
 
 #: scan.py:58
 #, python-format
@@ -191,24 +211,22 @@ msgid "Scanning %s for known errata.\n"
 msgstr "알려진 에라타에 해당하는 %s 을(를) 검색합니다.\n"
 
 #: scan.py:88
-#, fuzzy
 msgid "\tErrata Found!"
-msgstr "에라타 발견! "
+msgstr "\t에라타 발견!  "
 
 #: scan.py:91
-#, fuzzy
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "에라타가 발견되지 않았습니다. 장치에 문제가 발생할 경우 프로파일로 가시기 바랍니다  "
+msgstr ""
+"\t에라타가 발견되지 않았습니다. 장치에 문제가 발생할 경우 프로파일로 가시기 바"
+"랍니다   "
 
 #: scan.py:92
-#, fuzzy
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "프로파일에 가셔서 장치에 해당하는 wiki 페이지를 생성합니다 "
+msgstr "\t프로파일에 가셔서 장치에 해당하는 wiki 페이지를 생성합니다  "
 
 #: scan.py:93
-#, fuzzy
 msgid "\tbenefit"
-msgstr "이점 "
+msgstr "\t이점  "
 
 #: scan.py:101 smolt.py:1157
 msgid "Error:"
@@ -220,7 +238,7 @@ msgstr "힌트: "
 
 #: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr ""
+msgstr "사용할 설정 파일의 위치를 지정 "
 
 #: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
@@ -239,55 +257,59 @@ msgid "continue to send until success"
 msgstr "보내기 성공할 때 까지 계속 보냅니다 "
 
 #: sendProfile.py:98
-msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
+msgid ""
+"this is an automated checkin, will only run if the \"smolt\" service has "
+"been started"
 msgstr "자동 checkin입니다, \"smolt\" 서비스를 시작할 경우에만 실행됩니다  "
 
 #: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "알려진 하드웨어 에라타의 경우에만 이 장치를 스캔합니다, 프로파일을 보내지 않습니다.   "
+msgstr ""
+"알려진 하드웨어 에라타의 경우에만 이 장치를 스캔합니다, 프로파일을 보내지 않"
+"습니다.   "
 
 #: sendProfile.py:108
-#, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "알려진 하드웨어 에라타의 경우에만 이 장치를 스캔합니다, 프로파일을 보내지 않습니다.   "
+msgstr "알려진 하드웨어 에라타에 대해 이 장치를 스캔하지 않고 프로파일만을 보냅니다.     "
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
-msgstr ""
+msgstr "새로운 공개 UUID 요청 "
 
 #: sendProfile.py:126
 msgid "HTTP proxy"
-msgstr ""
+msgstr "HTTP 프록시  "
 
 #: sendProfile.py:146
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "Smolt는 checkin으로 설정되어 있지만 checkin은 비활성화되어 있습니다 (힌트: service smolt start) "
+msgstr ""
+"Smolt는 checkin으로 설정되어 있지만 checkin은 비활성화되어 있습니다 (힌트: "
+"service smolt start) "
 
 #: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
-msgstr ""
+msgstr "성공! 새로운 공개 UUID는 다음과 같습니다: %s "
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
-msgstr ""
+msgstr "Smolt는 네 가지 종류의 정보를 수집했습니다:  "
 
 #: sendProfile.py:173
 msgid "Do you want to .."
-msgstr ""
+msgstr "다음의 사항을 원하십니까 .. "
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
-msgstr ""
+msgstr "(v) 수집한 정보를 자세히 살펴보시겠습니까?  "
 
 #: sendProfile.py:175
-#, fuzzy
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "이 정보를 Smolt 서버로 보내시겠습니까? (y/n) "
+msgstr "(s) 이 정보를 Smolt 서버로 보내시겠습니까? (예일 경우 [y]) "
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr ""
+msgstr "(q) Smolt를 종료하시겠습니까? (아니오일 경우 [n]) "
 
 #: sendProfile.py:178 smolt.py:669
 msgid "Devices"
@@ -295,16 +317,15 @@ msgstr "장치 "
 
 #: sendProfile.py:179
 msgid "File system-related"
-msgstr ""
+msgstr "파일 시스템 관련  "
 
 #: sendProfile.py:180
-#, fuzzy
 msgid "Distribution-specific"
-msgstr "설명 "
+msgstr "배포 관련 "
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr ""
+msgstr "선택 (s/v/q/y/n):  "
 
 #: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
@@ -312,15 +333,15 @@ msgstr "종료 중... "
 
 #: sendProfile.py:217
 msgid "s|y|yes"
-msgstr ""
+msgstr "s|y|예 "
 
 #: sendProfile.py:220
 msgid "q|n|no"
-msgstr ""
+msgstr "q|n|아니오  "
 
 #: sendProfile.py:222
 msgid "v"
-msgstr ""
+msgstr "v"
 
 #: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
@@ -339,28 +360,36 @@ msgid "Registration Failed, Try again"
 msgstr "등록 실패, 다시 시도 "
 
 #: sendProfile.py:276
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
-msgstr "프로파일을 보려면 다음으로 이동합니다: %s"
+msgstr ""
+"프로파일을 공유하려면: \n"
+"\t%s (공개)  "
 
 #: sendProfile.py:280
-#, fuzzy, python-format
+#, python-format
 msgid "\tAdmin Password: %s"
-msgstr "암호: "
+msgstr "\t관리자 암호: %s  "
 
 #: sendProfile.py:283
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
-msgstr ""
+msgstr "공개 UUID를 찾을 수 없습니다! 새로운 공개 uuid를 생성하려면 -n을 붙여 다시 실행하십시오  "
 
 #: smoltFirstBoot.py:38 smoltFirstBoot.py:39
 msgid "Hardware Profile"
 msgstr "하드웨어 프로파일 "
 
 #: smoltFirstBoot.py:56
-msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "정말로 프로파일을 보내지 않으시겠습니까? 보내주시는 프로파일은 개발을 위한 중요한 자원으로 하드웨어에서 발생할 수 있는 문제를 해결하는데 사용될 수 있습니다.  "
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr ""
+"정말로 프로파일을 보내지 않으시겠습니까? 보내주시는 프로파일은 개발을 위한 중"
+"요한 자원으로 하드웨어에서 발생할 수 있는 문제를 해결하는데 사용될 수 있습니"
+"다.  "
 
 #: smoltFirstBoot.py:64
 msgid "_Reconsider sending"
@@ -371,16 +400,25 @@ msgid "_No, do not send."
 msgstr "아니요, 보내지 않습니다.(_N) "
 
 #: smoltFirstBoot.py:92
-msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt는 Fedora 프로젝트의 하드웨어 프로파일러입니다. 프로파일을 제출하는 것은 제출한 프로파일 정보가 많이 사용되는 하드웨어 및 플랫폼에 초점을 맞추도록 함으로 커뮤니티에 환원할 수 있는 좋은 방법입니다. 제출은 익명으로 이루어 집니다. 프로파일을 보내시면 이는 매달 업데이트됩니다. "
+msgid ""
+"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
+"profile is a great way to give back to the community as this information is "
+"used to help focus our efforts on popular hardware and platforms.  "
+"Submissions are anonymous.  Sending your profile will enable a monthly "
+"update."
+msgstr ""
+"Smolt는 Fedora 프로젝트의 하드웨어 프로파일러입니다. 프로파일을 제출하는 것"
+"은 제출한 프로파일 정보가 많이 사용되는 하드웨어 및 플랫폼에 초점을 맞추도록 "
+"함으로 커뮤니티에 환원할 수 있는 좋은 방법입니다. 제출은 익명으로 이루어 집니"
+"다. 프로파일을 보내시면 이는 매달 업데이트됩니다. "
 
 #: smoltFirstBoot.py:119
 msgid "_Participate in KernelOOPS"
-msgstr ""
+msgstr "KernelOOPS에 참여 (_P)  "
 
 #: smoltFirstBoot.py:120
 msgid "Submit profile link to _Bodhi"
-msgstr ""
+msgstr "Bodhi에 프로파일 링크 제출 (_B)  "
 
 #: smoltFirstBoot.py:122
 msgid "_Send Profile"
@@ -392,59 +430,51 @@ msgstr "프로파일을 전송하지 않음(_O) "
 
 #: smoltGui.py:92
 msgid "Smolt"
-msgstr ""
+msgstr "Smolt"
 
 #: smoltGui.py:97
-#, fuzzy
 msgid "&File"
-msgstr "파일(_F) "
+msgstr "파일(&F)  "
 
 #: smoltGui.py:98
-#, fuzzy
 msgid "&Help"
-msgstr "도움말(_H) "
+msgstr "도움말(&H)  "
 
 #: smoltGui.py:101
-#, fuzzy
 msgid "&Send Profile"
-msgstr "프로파일 전송(_S) "
+msgstr "프로파일 전송(&S)  "
 
 #: smoltGui.py:102
-#, fuzzy
 msgid "&My Smolt Page"
-msgstr "사용자 Smolt 페이지(_M) "
+msgstr "사용자 Smolt 페이지(&M)  "
 
 #: smoltGui.py:103
 msgid "&Exit"
-msgstr ""
+msgstr "종료(&E) "
 
 #: smoltGui.py:104
-#, fuzzy
 msgid "Show &Privacy Policy"
-msgstr "개인 정보 보호 정책 보기(_P) "
+msgstr "개인 정보 보호 정책 보기(&P)  "
 
 #: smoltGui.py:105
-#, fuzzy
 msgid "&About"
-msgstr "정보(_A) "
+msgstr "정보(&A)  "
 
 #: smoltGui.py:106
-#, fuzzy
 msgid "About &Qt"
-msgstr "정보(_A) "
+msgstr "Qt 관련 정보(&Q)  "
 
 #: smoltGui.py:120
 msgid "Main Tool Bar"
-msgstr ""
+msgstr "주요 도구 모음  "
 
 #: smoltGui.py:170
 msgid "No distribution-specific data yet"
-msgstr ""
+msgstr "배포 관련 데이터가 없음 "
 
 #: smoltGui.py:175 smoltGui.py:238
-#, fuzzy
 msgid "Error"
-msgstr "오류: "
+msgstr "오류 "
 
 #: smoltGui.py:239
 msgid "An error occurred while sending the data to the server."
@@ -452,39 +482,68 @@ msgstr "서버에 데이터를 전송하는 동안 오류가 발생했습니다.
 
 #: smoltGui.py:246
 msgid "Profile Sent"
-msgstr ""
+msgstr "프로파일이 전송됨  "
 
 #: smoltGui.py:247
 #, python-format
-msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
+msgid ""
+"<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour "
+"profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</"
+"a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)"
+"s</i>"
 msgstr ""
+"<b>프로파일이 성공적으로 전송되었습니다!</b><br>\t\t\t\t<br>\t\t\t\t프로파일은 다음의 온라인에서 볼 수 있습니다:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</"
+"a><br>\t\t\t\t<br>\t\t\t\t프로파일 관리자 암호는 다음과 같습니다:<br><i>%(password)"
+"s</i>   "
 
 #: smoltGui.py:270
-#, fuzzy
 msgid "Privacy Policy"
-msgstr "개인 정보 보호 정책 보기(_P) "
+msgstr "개인 정보 보호 정책 "
 
 #: smoltGui.py:284
 #, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
-msgstr ""
+msgstr "<h3>Smolt Qt</h3>버전 %(version)s<br/> "
 
 #: smoltGui.py:285
-msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
+msgid ""
+"<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
+"\tto a Smoon server.<br/>"
 msgstr ""
+"<br/>Smolt Qt는 Smolt 하드웨어 프로파일을 Smoon 서버에 보내기 위한 \t\t\t"
+"\tSmolt GUI 클라이언트입니다.<br/> "
 
 #: smoltGui.py:288
-msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
+msgid ""
+"<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t"
+"\tsystem that does a hardware scan against a machine and sends the results \t"
+"\t\t\tto a public Fedora Project turbogears server. The sends are anonymous "
+"\t\t\t\tand should not contain any private information other than the "
+"physical \t\t\t\thardware information and basic OS info.<br/>"
 msgstr ""
+"<b>Smolt 소개:</b><br/>smolt 하드웨어 프로파일러는 시스템에 대한 하드웨어를 검색하고 \t\t\t"
+"\t검색 결과를 Fedora 프로젝트 turbogears 서버로 전송하는 서버-클라이언트 시스템 \t"
+"\t\t\t입니다. 익명으로 보내어지고 실제 하드웨어 정보 및 기본 OS 정보를 제외한 "
+"\t\t\t\t개인 정보는 포함되지 않습니다. \t\t\t\t<br/> "
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
-msgstr ""
+msgstr "<b>저자:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt; "
 
 #: smoltGui.py:296
 #, python-format
-msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
+msgid ""
+"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
+"\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can "
+"redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General "
+"Public License \t\t\t\tas published by the Free Software Foundation; either "
+"version 3 \t\t\t\tof the License, or (at your option) any later version."
 msgstr ""
+"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
+"\t\t\t<b>라이센스:</b><br>\t\t\t\t이 프로그램은 자유 소프트웨어로서 "
+"Free Software Foundation이 \t\t\t\t 발행하는 라이센스 버전 3 또는 "
+"그 이상 버전의\t\t\t\t GNU General Public License 조건 하에서 "
+"\t\t\t\t 수정하거나 재배포하실 수 있습니다.   "
 
 #: smolt.py:362
 #, python-format
@@ -508,11 +567,13 @@ msgid ""
 "\tYour pub_uuid could not be written.\n"
 "\n"
 msgstr ""
+"\tpub_uuid를 작성할 수 없습니다.\n"
+"\n"
 
 #: smolt.py:516
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr ""
+msgstr "\t관리자 토큰을 캐시 저장할 수 없습니다: %s\n"
 
 #: smolt.py:536 smolt.py:579 smolt.py:609
 #, python-format
@@ -525,12 +586,12 @@ msgstr "잘못된 버전입니다, 서버가 클라이언트를 처리할 수 �
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
-msgstr ""
+msgstr "토큰을 가져오는 도중 문제가 발생했습니다 "
 
 #: smolt.py:589
-#, fuzzy, python-format
+#, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "서버에 데이터를 전송하는 동안 오류가 발생했습니다. "
+msgstr "서버에 연결하는 도중 오류가 발생했습니다: %s"
 
 #: smolt.py:618 smolt.py:691
 msgid "OS"
@@ -545,9 +606,8 @@ msgid "Language"
 msgstr "언어 "
 
 #: smolt.py:677
-#, fuzzy
 msgid "Filesystem Information"
-msgstr "디버그 정보 활성화 "
+msgstr "파일 시스템 정보   "
 
 #: smolt.py:690
 msgid "UUID"
@@ -571,16 +631,15 @@ msgstr "CPU 모델 "
 
 #: smolt.py:698
 msgid "CPU Stepping"
-msgstr ""
+msgstr "CPU 스테핑  "
 
 #: smolt.py:699
 msgid "CPU Family"
-msgstr ""
+msgstr "CPU 제품군  "
 
 #: smolt.py:700
-#, fuzzy
 msgid "CPU Model Num"
-msgstr "CPU 모델 "
+msgstr "CPU 모델 번호 "
 
 #: smolt.py:701
 msgid "Number of CPUs"
@@ -619,9 +678,8 @@ msgid "SELinux Enabled"
 msgstr "SELinux 활성화 "
 
 #: smolt.py:710
-#, fuzzy
 msgid "SELinux Policy"
-msgstr "SELinux 강제 "
+msgstr "SELinux 정책  "
 
 #: smolt.py:711
 msgid "SELinux Enforce"
@@ -634,7 +692,7 @@ msgstr "UUID 저장할 수 없습니다, 계속 실행...\n"
 #: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
-msgstr ""
+msgstr "UUID 파일을 생성할 수 없습니다: %s\n"
 
 #: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
@@ -643,72 +701,13 @@ msgstr "시스템의 UUID를 지정할 수 없습니다!\n"
 #: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
-msgstr ""
+msgstr "공개 UUID를 지정하는 도중 오류 발생: %s "
 
 #: smolt.py:1204
-#, fuzzy
 msgid "Unable to determine Public UUID!\n"
-msgstr "시스템의 UUID를 지정할 수 없습니다!\n"
+msgstr "공개 UUID를 지정할 수 없습니다!\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "런레벨을 지정할 수 없습니다 "
 
-#~ msgid "y"
-#~ msgstr "y"
-
-#, fuzzy
-#~ msgid ""
-#~ "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
-#~ "%s\n"
-#~ "stored in %s"
-#~ msgstr ""
-#~ "성공적으로 데이터를 전송했습니다.  버그 신고를 위해 하드웨어 프로파일을 참조해야 할 경우 UUID는 \n"
-#~ "%s\n"
-#~ "%s에 저장되어 있습니다 "
-
-#~ msgid "_Quit"
-#~ msgstr "종료(_Q) "
-
-#~ msgid "Quit the program without sending your hardware profile to the server"
-#~ msgstr "하드웨어 프로파일을 서버로 보내지 않고 프로그램 종료 "
-
-#~ msgid "_Send"
-#~ msgstr "보내기(_S) "
-
-#~ msgid "Send your hardware profile to the server."
-#~ msgstr "하드웨어 프로파일을 서버로 보냅니다.  "
-
-#~ msgid "Show the Smolt privacy policy."
-#~ msgstr "Smolt 개인 정보 보호 정책 보기. "
-
-#~ msgid "Take me to my smolt profile page"
-#~ msgstr "사용자 smolt 프로파일 페이지로 이동 "
-
-#~ msgid "Smolt Privacy Policy"
-#~ msgstr "Smolt 개인 정보 보호정책   "
-
-#~ msgid "translator-credits"
-#~ msgstr "김은주 (eukim@redhat.com) 2006-2008"
-
-#~ msgid "Fedora hardware profiler."
-#~ msgstr "Fedora 하드웨어 프로파일러 "
-
-#~ msgid "Copyright © 2007 Mike McGrath"
-#~ msgstr "Copyright © 2007 Mike McGrath"
-
-#~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
-#~ msgstr ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
-
-#~ msgid "Communication with server failed"
-#~ msgstr "서버와 통신 실패 "

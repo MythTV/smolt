@@ -1,59 +1,60 @@
-# translation of smolt.master.po to Tamil
+# translation of smolt.master.ta.po to Tamil
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# I. Felix <ifelix@redhat.com>, 2008.
+# I. Felix <ifelix@redhat.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt.master\n"
+"Project-Id-Version: smolt.master.ta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2008-03-16 00:53+0530\n"
+"PO-Revision-Date: 2009-08-27 21:44+0530\n"
 "Last-Translator: I. Felix <ifelix@redhat.com>\n"
 "Language-Team: Tamil <fedora-trans-ta@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\\n\n"
 
-#: deleteProfile.py:36 smolt.py:360
+#: deleteProfile.py:36
+#: smolt.py:360
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "சேவையக செய்தி: \"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:48
+#: deleteProfile.py:46
+#: sendProfile.py:48
 msgid "enable debug information"
 msgstr "பிழைத்திருத்த தகவலை செயல்படுத்தல்"
 
-#: deleteProfile.py:51 sendProfile.py:58
+#: deleteProfile.py:51
+#: sendProfile.py:58
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "சேவையகத்தின் URLஐ குறிப்பிடவும் (முன்னிருப்பு \"%default\")"
 
-#: deleteProfile.py:56 sendProfile.py:73
+#: deleteProfile.py:56
+#: sendProfile.py:73
 msgid "print information only, do not send"
 msgstr "அச்சு தகவல் மட்டும், அனுப்ப வேண்டாம்"
 
-#: deleteProfile.py:61 sendProfile.py:88
+#: deleteProfile.py:61
+#: sendProfile.py:88
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "HTTP பயனர் முகவரை குறிப்பிடவும் (முன்னிருப்பு \"%default\")"
 
-#: deleteProfile.py:66 sendProfile.py:93
+#: deleteProfile.py:66
+#: sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "HTTP நேரம் முடிதலை விநாடிகளில் குறிப்பிடவும் (முன்னிருப்பு %default seconds)"
 
-#: deleteProfile.py:70 sendProfile.py:112
+#: deleteProfile.py:70
+#: sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr ""
+msgstr "எந்த uuidஐ பயன்படுத்த வேண்டுமென குறிப்பிடவும், அதிகமாக சோதனையிடுவதற்கு பிழையானது பயன்படுகிறது."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -63,15 +64,15 @@ msgstr "சேவையகத்துடன் தொடர்பு கொள�
 msgid "Profile removed, please verify at"
 msgstr "விவரக்குறிப்பு நீக்கப்பட்டது, இங்கு சரிபார்க்கவும்"
 
-#: gui.py:35 sendProfile.py:177 smolt.py:655
-#, fuzzy
+#: gui.py:35
+#: sendProfile.py:177
+#: smolt.py:655
 msgid "General"
-msgstr "கர்னல்"
+msgstr "பொதுவான"
 
 #: gui.py:37
-#, fuzzy
 msgid "Distribution"
-msgstr "விவரம்"
+msgstr "விநியோகம்"
 
 #: gui.py:82
 msgid "Label"
@@ -98,7 +99,7 @@ msgid "Description"
 msgstr "விவரம்"
 
 #: privacypolicy.py:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
@@ -132,60 +133,65 @@ msgid ""
 "<br>\n"
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
+"<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
 "Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
 "the submission is anonymous.  If at any point in time a user wants to delete\n"
-"their profile from the database they need only run\n"
-"\n"
-"    smoltDeleteProfile\n"
-"\n"
+"his/her profile from the database they need only run<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
 "The information sent to the smolt database server should be considered public\n"
 "in that anyone can view the statistics, data and share machine profiles.  In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
 "attention.  As such, not only will this information be shared with 3rd parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
-"drivers and better support in general.\n"
-"\n"
+"drivers and better support in general.<br>\n"
+"<br>\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
 "server first.  This is the only place IP addresses are being logged and they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
-"removes these logs.  The Fedora Project does not aggregate ip addresses in\n"
+"removes these logs.  The Fedora Project does not aggregate IP addresses in\n"
 "the smolt database.  These logs are private and will not be available to the\n"
-"general public.\n"
-"\n"
+"general public.<br>\n"
+"<br>\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
 "questions about this policy should contact the Fedora Infrastructure Team at\n"
-"admin [at] fedoraproject.org  Also remember that users can delete their\n"
-"profiles at any time using \"smoltDeleteProfile\"\n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can delete their\n"
+"profiles at any time using<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"Thanks for participating and for your interest in our privacy policy.\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr ""
+msgstr "தற்போதைய விற்பனையாளர்/மாதிரிக்கான மதிப்பு"
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr ""
+msgstr "மதிப்பிடப்பட்டாத/தெரியாத"
 
 #: scan.py:46
 msgid "Non-working"
-msgstr ""
+msgstr "பணிபுரியாத"
 
 #: scan.py:47
 msgid "Partially-working"
-msgstr ""
+msgstr "பாதி-பணிபுரிகிற"
 
 #: scan.py:48
 msgid "Requires 3rd party drivers"
-msgstr ""
+msgstr "3வது வகை இயக்கிகள் தேவைப்படுகிறது"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr ""
+msgstr "பணிகளுக்கு, கூடுதல் கட்டமைப்பு தேவைப்படுகிறது"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr ""
+msgstr "பெட்டிக்கு வெளியில் பணிபுரிகிறது"
 
 #: scan.py:58
 #, python-format
@@ -193,36 +199,35 @@ msgid "Scanning %s for known errata.\n"
 msgstr "%sஐ தெரியாத பிழைத்திருத்தத்திற்கு வருடிகிறது.\n"
 
 #: scan.py:88
-#, fuzzy
 msgid "\tErrata Found!"
-msgstr "பிழைத்திருத்தம் உள்ளது!"
+msgstr "\tபிழை காணப்படுகிறது!"
 
 #: scan.py:91
-#, fuzzy
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "பிழைத்திருத்தம் இல்லை, இந்த கணினியில் சிக்கல் இருந்தால் "
+msgstr "பிழைத்திருத்தம் காணப்படவில்லை, இந்த கணினியில் வெளிப்பாடு இருந்தால் செல்லவும்"
 
 #: scan.py:92
-#, fuzzy
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "உங்கள் விவரக்குறிப்பிற்கு சென்று சாதனத்திற்கான ஒரு விக்கி பக்கத்தை உருவாக்கினால் பிறரும்"
+msgstr "\tஇந்த விக்கி பக்கத்திற்கான மற்ற சாதனத்தை உங்களது விவரக்குறிப்பு மற்றும் அதை உருவாக்கு"
 
 #: scan.py:93
-#, fuzzy
 msgid "\tbenefit"
-msgstr "நன்மையடையலாம்"
+msgstr "\tபயன்"
 
-#: scan.py:101 smolt.py:1157
+#: scan.py:101
+#: smolt.py:1157
 msgid "Error:"
 msgstr "பிழை:"
 
-#: scan.py:103 smolt.py:1159
+#: scan.py:103
+#: smolt.py:1159
 msgid "Hint:"
 msgstr "குறிப்பு:"
 
-#: sendProfile.py:53 smoltGui.py:327
+#: sendProfile.py:53
+#: smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr ""
+msgstr "பயன்படுத்தப்படும் கட்டமை கோப்பின் இடத்தை (மட்டும்) குறிப்பிடு"
 
 #: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
@@ -249,17 +254,16 @@ msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr "தெரிந்த வன்பொருள் பிழைத்திருத்திற்கு மட்டுமே இந்த கணினி வருடப்படும், விவரக்குறிப்பை அனுப்ப வேண்டாம்."
 
 #: sendProfile.py:108
-#, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "தெரிந்த வன்பொருள் பிழைத்திருத்திற்கு மட்டுமே இந்த கணினி வருடப்படும், விவரக்குறிப்பை அனுப்ப வேண்டாம்."
+msgstr "தெரிந்த வன்பொருள் பிழைத்திருத்திற்கு மட்டுமே இந்த கணினியை ஸ்கேன் செய்யவும், விவரக்குறிப்பை மட்டும் சமர்பி."
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
-msgstr ""
+msgstr "ஒரு புதிய பொதுவான UUID கோரிக்கை"
 
 #: sendProfile.py:126
 msgid "HTTP proxy"
-msgstr ""
+msgstr "HTTP ப்ராக்ஸி"
 
 #: sendProfile.py:146
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
@@ -268,61 +272,61 @@ msgstr "Smolt சோதனைக்கு அமைக்கப்பட்ட�
 #: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
-msgstr ""
+msgstr "வெற்றி!  உங்களது புதிய பொதுவான UUID : %s"
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
-msgstr ""
+msgstr "ஸ்மோல்ட் நான்கு வகையான தகவலைச் சேகரித்துள்ளது:"
 
 #: sendProfile.py:173
 msgid "Do you want to .."
-msgstr ""
+msgstr "நீங்கள் விரும்புகிறீர்களா..."
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
-msgstr ""
+msgstr "சேகரிப்பட்ட தகவலின் விவரங்களைக் (கா)ட்டவா?"
 
 #: sendProfile.py:175
-#, fuzzy
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "இந்த தகவலை Smolt சேவையகத்திற்கு அனுப்ப வேண்டுமா? (y/n)"
+msgstr "இந்த தகவலை Smolt சேவையகத்திற்கு அனுப்ப வேண்டுமா? (அல்லது [y] ஆம்)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr ""
+msgstr "ஸ்மோல்ட்டை (நி)றுத்தவா? (அல்லது [n] இல்லை)"
 
-#: sendProfile.py:178 smolt.py:669
+#: sendProfile.py:178
+#: smolt.py:669
 msgid "Devices"
 msgstr "சாதனங்கள்"
 
 #: sendProfile.py:179
 msgid "File system-related"
-msgstr ""
+msgstr "கோப்பு கணினி-தொடர்புடைய"
 
 #: sendProfile.py:180
-#, fuzzy
 msgid "Distribution-specific"
-msgstr "விவரம்"
+msgstr "விநியோகம்-குறிப்பட்ட"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr ""
+msgstr "உங்கள் விருப்பம்  (s/v/q/y/n): "
 
-#: sendProfile.py:215 sendProfile.py:234
+#: sendProfile.py:215
+#: sendProfile.py:234
 msgid "Exiting..."
 msgstr "வெளியேறுகிறது..."
 
 #: sendProfile.py:217
 msgid "s|y|yes"
-msgstr ""
+msgstr "s|y|ஆம்"
 
 #: sendProfile.py:220
 msgid "q|n|no"
-msgstr ""
+msgstr "q|n|இல்லை"
 
 #: sendProfile.py:222
 msgid "v"
-msgstr ""
+msgstr "v"
 
 #: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
@@ -341,22 +345,25 @@ msgid "Registration Failed, Try again"
 msgstr "பதிவு செய்ய முடியவில்லை, மீண்டும் முயற்சிக்கவும்"
 
 #: sendProfile.py:276
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
-msgstr "உங்கள் விவரக்குறிப்பை பார்க்க: %s"
+msgstr ""
+"உங்களது விவரக்குறிப்பை பகிருகிறது: \n"
+"\t%s (பொதுவான)"
 
 #: sendProfile.py:280
-#, fuzzy, python-format
+#, python-format
 msgid "\tAdmin Password: %s"
-msgstr "கடவுச்சொல்:"
+msgstr "\tகடவுச்சொல்லை நிர்வாகி: %s"
 
 #: sendProfile.py:283
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
-msgstr ""
+msgstr "பொதுவான UUID காணப்படுகிறது!  ஒரு புதிய பொதுவான uuidஐ  -nஉடன் உருவாக்கி மறு இயக்கவும்"
 
-#: smoltFirstBoot.py:38 smoltFirstBoot.py:39
+#: smoltFirstBoot.py:38
+#: smoltFirstBoot.py:39
 msgid "Hardware Profile"
 msgstr "வன்பொருள் விவரக்குறிப்பு"
 
@@ -378,11 +385,11 @@ msgstr "Smolt is a hardware profiler for The Fedora Project.  Submitting your pr
 
 #: smoltFirstBoot.py:119
 msgid "_Participate in KernelOOPS"
-msgstr ""
+msgstr "கெர்னல் OOPSல் பங்குபெறு (_P)"
 
 #: smoltFirstBoot.py:120
 msgid "Submit profile link to _Bodhi"
-msgstr ""
+msgstr "போத்திக்கு விவர இணைப்பை சமர்பி ( _B)"
 
 #: smoltFirstBoot.py:122
 msgid "_Send Profile"
@@ -394,59 +401,52 @@ msgstr "விவரக்குறிப்பை அனுப்ப வேண�
 
 #: smoltGui.py:92
 msgid "Smolt"
-msgstr ""
+msgstr "Smolt"
 
 #: smoltGui.py:97
-#, fuzzy
 msgid "&File"
-msgstr "கோப்பு (_F)"
+msgstr "&கோப்பு"
 
 #: smoltGui.py:98
-#, fuzzy
 msgid "&Help"
-msgstr "உதவி (_H)"
+msgstr "&உதவி"
 
 #: smoltGui.py:101
-#, fuzzy
 msgid "&Send Profile"
-msgstr "விவரக்குறிப்பு அனுப்புதல் (_S)"
+msgstr "&விவரக்குறிப்பை அனுப்பு"
 
 #: smoltGui.py:102
-#, fuzzy
 msgid "&My Smolt Page"
-msgstr "எனது Smolt பக்கம் (_M)"
+msgstr "&எனது Smolt  பக்கம்"
 
 #: smoltGui.py:103
 msgid "&Exit"
-msgstr ""
+msgstr "&வெளியேறு"
 
 #: smoltGui.py:104
-#, fuzzy
 msgid "Show &Privacy Policy"
-msgstr "தனிப்பட்ட கொள்கையை காட்டுதல் (_P)"
+msgstr "தனிப்பட்ட கொள்கையை & காட்டு"
 
 #: smoltGui.py:105
-#, fuzzy
 msgid "&About"
-msgstr "பற்றி (_A)"
+msgstr "&பற்றி "
 
 #: smoltGui.py:106
-#, fuzzy
 msgid "About &Qt"
-msgstr "பற்றி (_A)"
+msgstr "பற்றி&Qt"
 
 #: smoltGui.py:120
 msgid "Main Tool Bar"
-msgstr ""
+msgstr "முக்கிய கருவிப் பட்டி"
 
 #: smoltGui.py:170
 msgid "No distribution-specific data yet"
-msgstr ""
+msgstr "இதுவரை குறிப்பிட்ட  விநியோகத் தரவு இல்லை"
 
-#: smoltGui.py:175 smoltGui.py:238
-#, fuzzy
+#: smoltGui.py:175
+#: smoltGui.py:238
 msgid "Error"
-msgstr "பிழை:"
+msgstr "பிழை"
 
 #: smoltGui.py:239
 msgid "An error occurred while sending the data to the server."
@@ -454,39 +454,38 @@ msgstr "தரவை சேவையகத்திற்கு அனுப்�
 
 #: smoltGui.py:246
 msgid "Profile Sent"
-msgstr ""
+msgstr "விவரக்குறிப்பு அனுப்பப்பட்டது"
 
 #: smoltGui.py:247
 #, python-format
 msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
-msgstr ""
+msgstr "<b>உங்களது விவரக்குறிப்பு வெற்றிகரமாக சென்றடைந்தது!</b><br>\t\t\t\t<br>\t\t\t\tஇப்போது உங்களது விவரக்குறிப்பு ஆன்லைனில் உள்ளது:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tஉங்களது விவரக்குறிப்பின் நிர்வாக கடவுச்சொல்லானது :<br><i>%(password)s</i>"
 
 #: smoltGui.py:270
-#, fuzzy
 msgid "Privacy Policy"
-msgstr "தனிப்பட்ட கொள்கையை காட்டுதல் (_P)"
+msgstr "தனிப்பட்ட கொள்கை"
 
 #: smoltGui.py:284
 #, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
-msgstr ""
+msgstr "<h3>Smolt Qt</h3>பதிப்பு %(version)s<br/>"
 
 #: smoltGui.py:285
 msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
-msgstr ""
+msgstr "<br/>Smolt Qt ஆனது ஒரு Smolt GUI க்ளையன்ட் Smolt வன்பொருள் விவக்குறிப்புகள் \t\t\t\tto ஒரு Smoon சேவையகத்தில் சமர்பிக்கிறது.<br/>"
 
 #: smoltGui.py:288
 msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr ""
+msgstr "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
-msgstr ""
+msgstr "<b>ஆசிரியர்கள்</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:296
 #, python-format
 msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr ""
+msgstr "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
 
 #: smolt.py:362
 #, python-format
@@ -510,46 +509,53 @@ msgid ""
 "\tYour pub_uuid could not be written.\n"
 "\n"
 msgstr ""
+"\tஉங்களது pub_uuid ஐ எழுத முடியாது.\n"
+"\n"
 
 #: smolt.py:516
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr ""
+msgstr "\tஉங்களது நிர்வாக டோக்கன் வரைவாக்கப்படவில்லை: %s\n"
 
-#: smolt.py:536 smolt.py:579 smolt.py:609
+#: smolt.py:536
+#: smolt.py:579
+#: smolt.py:609
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "சேவையகத்தை இணைக்கும் போது பிழை: %s"
 
-#: smolt.py:545 smolt.py:596
+#: smolt.py:545
+#: smolt.py:596
 msgid "Wrong version, server incapable of handling your client"
 msgstr "தவறான பதிப்பு, சேவையகம் உங்கள் கிளையனை கையாள முடியவில்லை"
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
-msgstr ""
+msgstr "சில தவறான ஒரு தவறான டோக்கனை தருகிறது"
 
 #: smolt.py:589
-#, fuzzy, python-format
+#, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "தரவை சேவையகத்திற்கு அனுப்பும் போது பிழை ஏற்பட்டுள்ளது."
+msgstr "சேவையகத்தை தொடர்பு கொள்ளும் போது ஒரு பிழை ஏற்பட்டுவிட்டது: %s"
 
-#: smolt.py:618 smolt.py:691
+#: smolt.py:618
+#: smolt.py:691
 msgid "OS"
 msgstr "OS"
 
-#: smolt.py:619 smolt.py:692
+#: smolt.py:619
+#: smolt.py:692
 msgid "Default run level"
 msgstr "முன்னிருப்பு இயங்குநிலை"
 
-#: smolt.py:620 smolt.py:693
+#: smolt.py:620
+#: smolt.py:693
 msgid "Language"
 msgstr "மொழி"
 
 #: smolt.py:677
-#, fuzzy
 msgid "Filesystem Information"
-msgstr "பிழைத்திருத்த தகவலை செயல்படுத்தல்"
+msgstr "கோப்புகணினித் தகவல்"
 
 #: smolt.py:690
 msgid "UUID"
@@ -573,16 +579,15 @@ msgstr "CPU மாதிரி"
 
 #: smolt.py:698
 msgid "CPU Stepping"
-msgstr ""
+msgstr "CPU படியாகிறது"
 
 #: smolt.py:699
 msgid "CPU Family"
-msgstr ""
+msgstr "CPU குடிம்பம்"
 
 #: smolt.py:700
-#, fuzzy
 msgid "CPU Model Num"
-msgstr "CPU மாதிரி"
+msgstr "CPU  மாதிரி"
 
 #: smolt.py:701
 msgid "Number of CPUs"
@@ -621,9 +626,8 @@ msgid "SELinux Enabled"
 msgstr "SELinux செயல்படுத்தப்பட்டது"
 
 #: smolt.py:710
-#, fuzzy
 msgid "SELinux Policy"
-msgstr "SELinux வலியுறுத்தல்"
+msgstr "SELinux கொள்கை"
 
 #: smolt.py:711
 msgid "SELinux Enforce"
@@ -636,7 +640,7 @@ msgstr "UUIDஐ சேமிக்க முடியவில்லை, தொ�
 #: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
-msgstr ""
+msgstr "உங்களது UUID கோப்பு உருவாக்கப் படவில்லை: %s\n"
 
 #: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
@@ -645,72 +649,13 @@ msgstr "UUID முறைமயை வரையறுக்க முடிய�
 #: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
-msgstr ""
+msgstr "பொதுவான UUID பிழையை தீர்மானிக்கிறது: %s"
 
 #: smolt.py:1204
-#, fuzzy
 msgid "Unable to determine Public UUID!\n"
-msgstr "UUID முறைமயை வரையறுக்க முடியவில்லை!\n"
+msgstr "பொதுவான UUID வரையறுக்க முடியவில்லை!\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "இயங்கு நிலையை வரையறுக்க முடியவில்லை"
 
-#~ msgid "y"
-#~ msgstr "y"
-
-#, fuzzy
-#~ msgid ""
-#~ "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
-#~ "%s\n"
-#~ "stored in %s"
-#~ msgstr ""
-#~ "தரவு வெற்றிகரமாக அனுப்பப்பட்டது. உங்கள் வன்பொருள் விவரக்குறிப்புக்கு வரு பிழை அறிக்கை உங்கள் UUID க்கு \n"
-#~ "%s\n"
-#~ "%s இல் சேமிக்கப்பட்டிருக்கும்"
-
-#~ msgid "_Quit"
-#~ msgstr "வெளியேறுதல் (_Q)"
-
-#~ msgid "Quit the program without sending your hardware profile to the server"
-#~ msgstr "உங்கள் வன்பொருள் விவரக்குறிப்பை சேவையகத்திற்கு அனுப்பாமல் நிரலை விட்டு வெளியேறவும்"
-
-#~ msgid "_Send"
-#~ msgstr "அனுப்புதல் (_S)"
-
-#~ msgid "Send your hardware profile to the server."
-#~ msgstr "சேவையகத்திற்கு உங்கள் வன்பொருள் விவரக்குறிப்பை அனுப்பவும்."
-
-#~ msgid "Show the Smolt privacy policy."
-#~ msgstr "Smolt தனிப்பட்ட கொள்கையை காட்டவும்."
-
-#~ msgid "Take me to my smolt profile page"
-#~ msgstr "எடன்னை smolt விவரக்குறிப்பு பக்கத்திற்கு எடுத்து செல்லவும்"
-
-#~ msgid "Smolt Privacy Policy"
-#~ msgstr "Smolt தனிப்பட்ட கொள்கை"
-
-#~ msgid "translator-credits"
-#~ msgstr "I. Felix <ifelix@redhat.com> 2008"
-
-#~ msgid "Fedora hardware profiler."
-#~ msgstr "Fedora வன்பொருள் விவரக்குறிப்பி."
-
-#~ msgid "Copyright © 2007 Mike McGrath"
-#~ msgstr "காப்புரிமை © 2007 Mike McGrath"
-
-#~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
-#~ msgstr ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
-
-#~ msgid "Communication with server failed"
-#~ msgstr "சேவையகத்துடன் தொடர்பு கொள்ள முடியவில்லை"

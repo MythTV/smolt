@@ -1,257 +1,257 @@
-# translation of smolt.master-smoon.messages.po to Korean
-# Translations template for hardware.
+# Finnish translation of smoon.
 # Copyright (C) 2008 ORGANIZATION
-# This file is distributed under the same license as the hardware project.
-#
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
-# Eunju Kim <eukim@redhat.com>, 2009.
+# This file is distributed under the same license as the smolt/smoon project.
+# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt.master-smoon.messages\n"
+"Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-27 14:24+1000\n"
-"Last-Translator: Eunju Kim <eukim@redhat.com>\n"
-"Language-Team: Korean <ko@li.org>\n"
+"PO-Revision-Date: 2009-08-29 23:12+0300\n"
+"Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
+"Language-Team: Finnish <laatu@lokalisointi.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 0.9.1\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
 
 #: hardware/controllers/root.py:95
 msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
-msgstr "제시하신 인증서가 올바르지 않거나 이 리소스에 액세스를 허용하지 않습니다.   "
+msgstr ""
+"Annetut tunnukset olivat virheelliset tai niillä ei ole oikeutta käyttää "
+"tätä resurssia."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr "이 리소스에 액세스하기 전 인증서를 제시하셔야 합니다.  "
+msgstr "Sinun on kirjauduttava ennen tämän resurssin käyttöä."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "로그인하십시오.  "
+msgstr "Kirjaudu sisään."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr "클래스 ${type}에 따른 장치      "
+msgstr "Laitteet luokassa ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "합계  "
+msgstr "Kokonaismäärä"
 
+# Can't translate, % causes an error
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr "% hosts가 ${type} 감지 "
+msgstr ""
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr "제조 업체  "
+msgstr "Valmistajat"
 
 #: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
-msgstr "장치 "
+msgstr "Laitteet"
 
 #: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
 msgid "Device"
-msgstr "장치 "
+msgstr "Laite"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
-msgstr "버스 "
+msgstr "Väylä"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
-msgstr "드라이버 "
+msgstr "Ajuri"
 
 #: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr "제조 업체  "
+msgstr "Valmistaja"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "하위 제조 업체  "
+msgstr "Alivalmistaja"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "하위 장치  "
+msgstr "Alilaite"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr "추가된 날짜 "
+msgstr "Lisäyspäivä"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% 호스트 합계  "
+msgstr "% kaikista koneista"
 
 #: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr "등록 장치 합계  "
+msgstr "Rekisteröityjä laitteita yhteensä"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr "고유 장치  "
+msgstr "Yksittäisiä laitteita"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr "원시 장치  "
+msgstr "”Raakoja” (raw) laitteita"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "기계 / 장치  "
+msgstr "Koneita/laite"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
-msgstr "클래스  "
+msgstr "Luokat"
 
 #: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr "검색  "
+msgstr "Hae"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
-msgstr "데이터 집합  "
+msgstr "Tietojoukko"
 
 #: hardware/templates/report_search.html:53
 msgid "Result Set"
-msgstr "결과 집합  "
+msgstr "Tulosjoukko"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr "상자 보기  "
+msgstr "Näytä kone"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr "사용하지 않거나 알지 못함 "
+msgstr "En käytä tätä tai en tiedä"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr "시스템 중단  "
+msgstr "Rikkoo järjestelmän"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
-msgstr "작동하지 않음  "
+msgstr "Ei toimi"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "제삼자 드라이버 필요  "
+msgstr "Vaatii kolmannen osapuolen ajureita"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "작동, 하지만 추가 설정 필요  "
+msgstr "Toimii, mutta vaati lisäasetusten tekemistä"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr "계속 작동  "
+msgstr "Toimi oletuksena"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "전체 정보 보기  "
+msgstr "Näytä kaikki tiedot"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr "전체 등급:  "
+msgstr "Yleinen arvostelu:"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr "공개 UUID  "
+msgstr "Julkinen UUID"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
-msgstr "운영 체제  "
+msgstr "Käyttöjärjestelmä"
 
 #: hardware/templates/show.html:44
 msgid "Platform"
-msgstr "플랫폼  "
+msgstr "Alusta"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr "시스템 제조 업체  "
+msgstr "Järjestelmän valmistaja"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr "시스템 모델  "
+msgstr "Järjestelmän malli"
 
 #: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
-msgstr "커널  "
+msgstr "Ydin"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr "폼 팩터 "
+msgstr "Kotelon tyyppi"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
-msgstr "마지막 수정  "
+msgstr "Viimeksi muutettu"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr "관리자 암호  "
+msgstr "Hallintasalasana"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
-msgstr "등급  "
+msgstr "Arvostelu"
 
 #: hardware/templates/show.html:60
 msgid "Class"
-msgstr "클래스  "
+msgstr "Luokka"
 
 #: hardware/templates/stats.html:9
 msgid "Stats"
-msgstr "상태  "
+msgstr "Tilastot"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr "등록된 호스트 합계  "
+msgstr "Rekisteröityjä koneita yhteensä"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr "bogomips 합계  "
+msgstr "Bogomipsejä yhteensä"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr "프로세서 합계  "
+msgstr "Suorittimia yhteensä"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr "MHz 합계  "
+msgstr "MHz yhteensä"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr "아키텍처  "
+msgstr "Arkkitehtuurit"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr "아키텍처  "
+msgstr "Arkkitehtuuri"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr "카운트  "
+msgstr "Määrä"
 
+# Can't translate, % causes an error
 #: hardware/templates/stats.html:40
 #, python-format
 msgid "% of total"
-msgstr "총 합계 % of "
+msgstr ""
 
 #: hardware/templates/stats.html:53
 msgid "OS"
-msgstr "OS"
+msgstr "Käyttöjärjestelmä"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr "런레벨  "
+msgstr "Suoritustaso"
 
 #: hardware/templates/stats.html:79
 msgid "Language"
-msgstr "언어  "
+msgstr "Kieli"
 
 #: hardware/templates/stats.html:105
 msgid "Model"
-msgstr "모델  "
+msgstr "Malli"
 
 #: hardware/templates/stats.html:119
 msgid "RAM"
@@ -259,98 +259,100 @@ msgstr "RAM"
 
 #: hardware/templates/stats.html:132
 msgid "Swap"
-msgstr "스왑  "
+msgstr "Sivutustila"
 
 #: hardware/templates/stats.html:145
 msgid "CPU"
-msgstr "CPU"
+msgstr "Suoritin"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
-msgstr "속도 (MHz) "
+msgstr "Nopeus (MHz)"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "CPU 수 "
+msgstr "Suorittimien määrä"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr "CPU 제조 업체  "
+msgstr "Suorittimen valmistaja"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr "Bogomips"
+msgstr "Bogomipsit"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr "폼 팩터  "
+msgstr "Kotelon tyyppi"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
-msgstr "Selinux"
+msgstr "SELinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr "SELinux 활성화  "
+msgstr "SELinux käytössä"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr "SELinux 강제  "
+msgstr "Toteuttava SELinux"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr "SELinux 정책  "
+msgstr "SELinux-käytäntö"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
-msgstr "파일 시스템 "
+msgstr "Tiedostojärjestelmät"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr "파일 시스템 크기  "
+msgstr "Tiedostojärjestelmän koko"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
-msgstr "Myth 역할  "
+msgstr "Myth-rooli"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr "Myth 원격  "
+msgstr "Myth-kaukosäädin"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr "Myth  테마  "
+msgstr "Myth-teema"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "프로파일 UUID를 입력하십시오:  "
+msgstr "Syötä profiilisi UUID:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
-msgstr "통계  "
+msgstr "Tilastot"
 
 #: hardware/templates/welcome.html:17
 msgid ""
-"For detailed statistics about the devices in the database see <a href='/"
-"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
-"devices</a>"
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
 msgstr ""
-"데이터베이스에 있는 장치에 대한 자세한 통계는 <a href='/"
-"static/stats/stats.html'>/stats</a> 또는 <a href='/static/stats/devices.html'>/"
-"devices</a>를 참조하십시오.  "
+"Yksityiskohtaisia tilastoja tietokannassa olevista laitteista on osoitteissa "
+"<a href='/static/stats/stats.html'>/stats</a> ja <a "
+"href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr "상위 제조 업체 차트   "
+msgstr "Valmistajien huippulista"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr "상세 정보  "
+msgstr "Lisätietoja"
 
 #: hardware/templates/welcome.html:25
 msgid ""
 "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
 "about specific devices. Usage and other general answers can also be found at "
 "the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr "<p>특정 장치에 대한 자세한 내용은 <a href='/wiki/'>Wiki</a>에서 검색하십시오. 사용 방법 및 기타 일반적인 답은 <a href='/wiki/'>Wiki</a>에서 찾아보실 수 있습니다.</p> "
-
+msgstr ""
+"<p><a href='/wiki/'>Wikissä</a> voi selata tai etsiä lisätietoja tietyistä "
+"laitteista. Siellä on myös käyttöohjeita ja vastauksia yleisiin "
+"kysymyksiin.</p>"
