@@ -3,6 +3,7 @@ import simplejson
 
 from turbogears import expose
 from turbogears import exception_handler
+from turbogears import util
 from sqlalchemy.exceptions import InvalidRequestError, OperationalError
 from datetime import datetime
 
@@ -12,9 +13,15 @@ from hardware.controllers.error import Error
 from hardware.model import *
 from hardware.hwdata import DeviceMap
 from hardware.uuid import generate_uuid
-
+import cherrypy
 
 import gc
+
+def request_format():
+    format = cherrypy.request.params.get('tg_format', '').lower()
+    if not format:
+        format = cherrypy.request.headers.get('Accept', 'default').lower()
+    return format
 
 class Client(object):
     error = Error()
@@ -22,9 +29,10 @@ class Client(object):
         self.smolt_protocol = smolt_protocol
         self.token = token
 
-    @expose(template="hardware.templates.show")
+    @expose(template="hardware.templates.show", allow_json=True)
     @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
     def show(self, uuid='', UUID=None, admin=None):
+
         if UUID:
             uuid = UUID
         try:
@@ -79,6 +87,10 @@ class Client(object):
 
         devices = devices.values()
         devices.sort(key=lambda x: x.get('cls'))
+
+        if request_format() == 'json':
+          host_object['uuid'] = None
+          return dict(host_object=host_object, devices=devices)
 
         return dict(host_object = host_object,
                     host_link = getHostWikiLink(host_object),
