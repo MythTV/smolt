@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: smolt.master-smoon.messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-19 14:57+1000\n"
+"PO-Revision-Date: 2009-09-04 15:43+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,7 @@ msgstr "结果组"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr ""
+msgstr "显示复选框"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
@@ -181,7 +181,7 @@ msgstr "内核"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr ""
+msgstr "格式元素"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
@@ -234,7 +234,7 @@ msgstr "计数"
 #: hardware/templates/stats.html:40
 #, python-format
 msgid "% of total"
-msgstr ""
+msgstr "% of total"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
@@ -282,7 +282,7 @@ msgstr "Bogomip"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr ""
+msgstr "格式因素"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -330,14 +330,16 @@ msgstr "统计"
 
 #: hardware/templates/welcome.html:17
 msgid ""
-"For detailed statistics about the devices in the database see <a "
-"href='/static/stats/stats.html'>/stats</a> or <a "
-"href='/static/stats/devices.html'>/devices</a>"
-msgstr "有关数据库中这些设备的详细统计请查看 <a href='/static/stats/stats.html'>/stats</a> 或者 <a href='/static/stats/devices.html'>/devices</a>"
+"For detailed statistics about the devices in the database see <a href='/"
+"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
+"devices</a>"
+msgstr ""
+"有关数据库中这些设备的详细统计请查看 <a href='/static/stats/stats.html'>/"
+"stats</a> 或者 <a href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr ""
+msgstr "顶极零售商图表"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
@@ -345,8 +347,10 @@ msgstr "更多"
 
 #: hardware/templates/welcome.html:25
 msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
-"information about specific devices. Usage and other general answers can "
-"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr "<p>有关具体设备的详细信息清浏览并搜索 <a href='/wiki/'>Wiki</a>。用法及其它常规答案请查看 <a href='/wiki/'>Wiki</a>.</p>"
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
+"about specific devices. Usage and other general answers can also be found at "
+"the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+"<p>有关具体设备的详细信息清浏览并搜索 <a href='/wiki/'>Wiki</a>。用法及其它常"
+"规答案请查看 <a href='/wiki/'>Wiki</a>.</p>"
 
