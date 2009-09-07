@@ -16,13 +16,15 @@
 #   i contacteu l'anterior traductor/a.
 #
 # Xavier Conde Rueda <xavi.conde@gmail.com>, 2008, 2009.
+# Gerard Sánchez Gil <gsanchezgil@gmail.com>, 2009
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-08-05 13:35+0200\n"
-"Last-Translator: Gerard Sánchez Gil <gsanchezgil@gmail.com>\n"
+"PO-Revision-Date: 2009-09-06 13:35+0200\n"
+"Last-Translator: Xavier Conde Rueda <xavi.conde@gmail.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,11 +56,14 @@ msgstr "especifiqueu l'agent d'usuari HTTP (per defecte «%default»)"
 #: deleteProfile.py:66 sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr "especifiqueu el temps d'espera HTTP en segons (per defecte «%default» segons)"
+msgstr ""
+"especifiqueu el temps d'espera HTTP en segons (per defecte «%default» segons)"
 
 #: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr "especifiqueu quin uuid s'utilitzarà, això normalment és útil per a tasques de depuració."
+msgstr ""
+"especifiqueu quin uuid s'utilitzarà, això normalment és útil per a tasques "
+"de depuració."
 
 # XXX:actual
 #: deleteProfile.py:89
@@ -70,14 +75,12 @@ msgid "Profile removed, please verify at"
 msgstr "S'ha suprimit el perfil, verifiqueu-ho a"
 
 #: gui.py:35 sendProfile.py:177 smolt.py:655
-#, fuzzy
 msgid "General"
-msgstr "Nucli"
+msgstr "General"
 
 #: gui.py:37
-#, fuzzy
 msgid "Distribution"
-msgstr "Descripció"
+msgstr "Distribució"
 
 #: gui.py:82
 msgid "Label"
@@ -104,68 +107,87 @@ msgid "Description"
 msgstr "Descripció"
 
 #: privacypolicy.py:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a "
+"submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"the submission is anonymous.  If at any point in time a user wants to "
+"delete\n"
 "his/her profile from the database they need only run<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
-"The information sent to the smolt database server should be considered public\n"
-"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"The information sent to the smolt database server should be considered "
+"public\n"
+"in that anyone can view the statistics, data and share machine profiles.  "
+"In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"attention.  As such, not only will this information be shared with 3rd "
+"parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.<br>\n"
 "<br>\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and they\n"
+"server first.  This is the only place IP addresses are being logged and "
+"they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate IP addresses in\n"
-"the smolt database.  These logs are private and will not be available to the\n"
+"the smolt database.  These logs are private and will not be available to "
+"the\n"
 "general public.<br>\n"
 "<br>\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team at\n"
-"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can delete their\n"
+"questions about this policy should contact the Fedora Infrastructure Team "
+"at\n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can "
+"delete their\n"
 "profiles at any time using<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
-"Smolt només enviarà informació del maquinari i informació bàsica del sistema\n"
+"<span></span>\n"
+"Smolt només enviarà informació del maquinari i informació bàsica del "
+"sistema\n"
 "al servidor smolt de Fedora (smoon). L'únic vincle entre la base de dades i\n"
-"qui ho enviï serà l'UUID. L'enviament serà anònim sempre que l'usuari no faci\n"
-"saber el seu UUID. Si en algun moment l'usuari vol esborrar el seu perfil\n"
-"de la base de dades només cal que executi\n"
-"\n"
-"    smoltDeleteProfile\n"
-"\n"
+"qui ho enviï serà l'UUID. L'enviament serà anònim sempre que l'usuari no "
+"faci\n"
+"saber el seu UUID. Si en algun moment l'usuari vol suprimir el seu perfil\n"
+"de la base de dades només cal que executi<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
 "La informació enviada al servidor de base de dades d'smolt s'hauria de\n"
 "considerar pública atès que qualsevol pot veure les estadístiques, dades i\n"
 "compartir els perfils de les màquines. Smolt s'ha dissenyat per obtenir\n"
 "l'atenció dels fabricants de maquinari i d'altres tercers. Per tant,\n"
 "aquesta informació no només es compartirà amb tercers, també farem servir\n"
 "l'smolt per obtenir una millor ajuda tècnica per als controladors de codi\n"
-"obert, i ajuda en general.\n"
-"\n"
+"obert, i ajuda en general.<br>\n"
+"<br>\n"
 "Registre d'IP. En la instal·lació d'smolt de Fedora, tot el trànsit web\n"
 "passa per un servidor intermediari. Aquest és l'únic lloc on es registren\n"
 "les adreces IP i es conserven al servidor per un període de 4 setmanes,\n"
 "després del qual el procés de rotació de registre els elimina.\n"
 "El projecte Fedora no afegeix les adreces IP a la base de dades d'smolt.\n"
-"Els registres són privats i no seran disponibles per al públic general.\n"
-"\n"
-"Els usuaris descontents amb aquesta política no haurien de fer servir smolt.\n"
+"Els registres són privats i no seran disponibles per al públic general.<br>\n"
+"<br>\n"
+"Els usuaris descontents amb aquesta política no haurien de fer servir "
+"smolt.\n"
 "Els usuaris amb preguntes quant a aquesta política haurien de contactar amb\n"
-"l'equip d'infraestructura de Fedora a admin@fedoraproject.org. També\n"
-"cal recordar que els usuaris poden esborrar el seu perfil en qualsevol\n"
-"moment amb «smoltDeleteProfile».\n"
+"l'equip d'infraestructura de Fedora a \n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a>. També\n"
+"cal recordar que els usuaris poden suprimir el seu perfil en qualsevol\n"
+"moment amb <br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"Gràcies per participar i pel vostre interès en la nostra política de "
+"privadesa.\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
@@ -210,7 +232,8 @@ msgstr "\tNo s'ha trobat cap error. Si aquesta màquina té cap error aneu al"
 
 #: scan.py:92
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "\tvostre perfil i creeu una pàgina wiki per al dispositiu perquè d'altres"
+msgstr ""
+"\tvostre perfil i creeu una pàgina wiki per al dispositiu perquè d'altres"
 
 #: scan.py:93
 msgid "\tbenefit"
@@ -226,7 +249,7 @@ msgstr "Consell"
 
 #: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr ""
+msgstr "especifiqueu la ubicació de l'únic fitxer de configuració"
 
 #: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
@@ -246,16 +269,24 @@ msgid "continue to send until success"
 msgstr "continua enviant fins que finalitzi correctament"
 
 #: sendProfile.py:98
-msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr "això és una entrada automàtica, només s'executarà si el servei «smolt» s'ha iniciat"
+msgid ""
+"this is an automated checkin, will only run if the \"smolt\" service has "
+"been started"
+msgstr ""
+"això és una entrada automàtica, només s'executarà si el servei «smolt» s'ha "
+"iniciat"
 
 #: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "només escaneja aquesta màquina pels errors de maquinari coneguts, no enviïs el perfil."
+msgstr ""
+"només escaneja aquesta màquina pels errors de maquinari coneguts, no enviïs "
+"el perfil."
 
 #: sendProfile.py:108
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "no escanegis aquesta màquina pels errors de maquinari coneguts, només envia el perfil."
+msgstr ""
+"no escanegis aquesta màquina pels errors de maquinari coneguts, només envia "
+"el perfil."
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
@@ -266,8 +297,11 @@ msgid "HTTP proxy"
 msgstr "Servidor intermediari d'HTTP"
 
 #: sendProfile.py:146
-msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "L'smolt s'ha configurat per a entrar, però les entrades estàn inhabilitades (consell: inicieu el servei smolt amb «service smolt start»)"
+msgid ""
+"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+"L'smolt s'ha configurat per a entrar, però les entrades estàn inhabilitades "
+"(consell: inicieu el servei smolt amb «service smolt start»)"
 
 #: sendProfile.py:156
 #, python-format
@@ -276,41 +310,39 @@ msgstr "S'ha completat amb èxit. El vostre uuid públic és: %s"
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
-msgstr ""
+msgstr "L'smolt ha recollit quatre tipus d'informació:"
 
 #: sendProfile.py:173
 msgid "Do you want to .."
-msgstr ""
+msgstr "Voleu..."
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
-msgstr ""
+msgstr "(v)eure els detalls de la informació recollida?"
 
 #: sendProfile.py:175
-#, fuzzy
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "Voleu enviar aquesta informació al servidor Smolt? (s/n)"
+msgstr "(e)nviar aquesta informació al servidor Smolt? (o [s] per a sí)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr ""
+msgstr "(a)bandonar l'Smolt (o [n] per a no)"
 
 #: sendProfile.py:178 smolt.py:669
 msgid "Devices"
 msgstr "Dispositius"
 
 #: sendProfile.py:179
-#, fuzzy
 msgid "File system-related"
-msgstr "\tInformació del sistema de fitxers"
+msgstr "Relatiu al sistema de fitxers"
 
 #: sendProfile.py:180
 msgid "Distribution-specific"
-msgstr ""
+msgstr "Específic de la distribució"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr ""
+msgstr "Escolliu (s/v/a/e/n): "
 
 #: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
@@ -318,19 +350,19 @@ msgstr "S'està sortint..."
 
 #: sendProfile.py:217
 msgid "s|y|yes"
-msgstr ""
+msgstr "e|s|sí"
 
 #: sendProfile.py:220
 msgid "q|n|no"
-msgstr ""
+msgstr "a|n|no"
 
 #: sendProfile.py:222
 msgid "v"
-msgstr ""
+msgstr "v"
 
 #: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
-msgstr "S'ha habilitat els reintents - s'està reintentant"
+msgstr "S'han habilitat els reintents - s'està reintentant"
 
 #: sendProfile.py:255
 msgid "Could not send - Exiting"
@@ -359,16 +391,25 @@ msgid "\tAdmin Password: %s"
 msgstr "\tContrasenya d'administrador: %s"
 
 #: sendProfile.py:283
-msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
-msgstr "No s'ha trobat l'uuid públic. Si us plau, executeu de nou amb l'opció -n per a generar un nou uuid públic."
+msgid ""
+"No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgstr ""
+"No s'ha trobat l'uuid públic. Si us plau, executeu de nou amb l'opció -n per "
+"a generar un nou uuid públic."
 
 #: smoltFirstBoot.py:38 smoltFirstBoot.py:39
 msgid "Hardware Profile"
 msgstr "Perfil del maquinari"
 
 #: smoltFirstBoot.py:56
-msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "Esteu segur que no voleu enviar el perfil? Enviar el vostre perfil és una font molt valuosa per al nostre desenvolupament i pot ajudar a diagnosticar errors que es produeixin en el vostre maquinari."
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr ""
+"Esteu segur que no voleu enviar el perfil? Enviar el vostre perfil és una "
+"font molt valuosa per al nostre desenvolupament i pot ajudar a diagnosticar "
+"errors que es produeixin en el vostre maquinari."
 
 #: smoltFirstBoot.py:64
 msgid "_Reconsider sending"
@@ -379,8 +420,18 @@ msgid "_No, do not send."
 msgstr "_No, no ho enviïs."
 
 #: smoltFirstBoot.py:92
-msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "L'Smolt és un creador de perfils de maquinari per al projecte Fedora. Enviar el vostre perfil resulta de gran ajuda a la comunitat, atès que aquesta informació s'usa per a concentrar els nostres esforços en el maquinari i plataformes més populars. Els enviaments són anònims. S'enviarà una versió actualitzada del maquinari cada mes."
+msgid ""
+"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
+"profile is a great way to give back to the community as this information is "
+"used to help focus our efforts on popular hardware and platforms.  "
+"Submissions are anonymous.  Sending your profile will enable a monthly "
+"update."
+msgstr ""
+"L'Smolt és un creador de perfils de maquinari per al projecte Fedora. Enviar "
+"el vostre perfil resulta de gran ajuda a la comunitat, atès que aquesta "
+"informació s'usa per a concentrar els nostres esforços en el maquinari i "
+"plataformes més populars. Els enviaments són anònims. S'enviarà una versió "
+"actualitzada del maquinari cada mes."
 
 #: smoltFirstBoot.py:119
 msgid "_Participate in KernelOOPS"
@@ -440,7 +491,7 @@ msgstr "Barra d'eines principal"
 
 #: smoltGui.py:170
 msgid "No distribution-specific data yet"
-msgstr ""
+msgstr "Cap informació específica de la distribució per ara"
 
 #: smoltGui.py:175 smoltGui.py:238
 msgid "Error"
@@ -456,35 +507,67 @@ msgstr "S'ha enviat el perfil"
 
 #: smoltGui.py:247
 #, python-format
-msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
+msgid ""
+"<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour "
+"profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</"
+"a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)"
+"s</i>"
 msgstr ""
+"<b>El vostre perfil s'ha enviat correctament.</b><br>\t\t\t\t<br>\t\t\t\tEl "
+"vostre perfil es troba disponible a:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</"
+"a><br>\t\t\t\t<br>\t\t\t\tLa vostra contrasenya per administrar el perfil és:<br><i>%(password)"
+"s</i>"
 
 #: smoltGui.py:270
 msgid "Privacy Policy"
 msgstr "Política de privadesa"
 
 #: smoltGui.py:284
-#, fuzzy, python-format
+#, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
-msgstr "<h3>Smolt Qt</h3>Versió 0.1.1<br/>"
+msgstr "<h3>Smolt Qt</h3>Versió %(version)s<br/>"
 
 #: smoltGui.py:285
-msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
-msgstr "<br/>L'Smolt Qt és una interfície gràfica per a enviar perfils \t\t\t\ta un servidor Smoon.<br/>"
+msgid ""
+"<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
+"\tto a Smoon server.<br/>"
+msgstr ""
+"<br/>L'Smolt Qt és una interfície gràfica per a enviar perfils \t\t\t\ta un "
+"servidor Smoon.<br/>"
 
 #: smoltGui.py:288
-msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr "<b>Quant a l'Smolt:</b><br/>l'Smolt és una aplicació per a la recol·lecció d'informació del seu maquinari (perfil) per a classificar-la en el servidor turbogears del Projecte Fedora. Els enviaments són anònims i no contenen cap tipus d'informació privada més que la informació bàsica del maquinari i del SO.<br/>"
+msgid ""
+"<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t"
+"\tsystem that does a hardware scan against a machine and sends the results \t"
+"\t\t\tto a public Fedora Project turbogears server. The sends are anonymous "
+"\t\t\t\tand should not contain any private information other than the "
+"physical \t\t\t\thardware information and basic OS info.<br/>"
+msgstr ""
+"<b>Quant a l'Smolt:</b><br/>l'Smolt és una aplicació per a la recol·lecció "
+"d'informació del seu maquinari (perfil) per a classificar-la en el servidor "
+"turbogears del Projecte Fedora. Els enviaments són anònims i no contenen cap "
+"tipus d'informació privada més que la informació bàsica del maquinari i del "
+"SO.<br/>"
 
 #: smoltGui.py:294
-#, fuzzy
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
-msgstr "<b>Autors:</b><br/>Carlos Gon&ccedil;alves &lt;mail@cgoncalves.info&gt;"
+msgstr ""
+"<b>Autors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:296
-#, fuzzy, python-format
-msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr "%s<br/>%s<br/>%s<br/><br/><b>Llicència:</b><br/>L'Smolt és programari lliure; podeu redistribuir-lo i/o modificar-lo sota els termes de la Llicència Pública General GNU tal com ha estat publicada per la Free Software Foundation; ja sigui la versió 2 de la Llicència o bé (si ho preferiu) qualsevol altra versió posterior."
+#, python-format
+msgid ""
+"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
+"\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can "
+"redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General "
+"Public License \t\t\t\tas published by the Free Software Foundation; either "
+"version 3 \t\t\t\tof the License, or (at your option) any later version."
+msgstr ""
+"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
+"\t\t\t<b>Llicència:</b><br>\t\t\t\tAquest programa és programari lliure; "
+"podeu redistribuir-lo i/o \t\t\t\tmodificar-lo sota els termes de la llicència "
+"pública general de GNU \t\t\t\tsegons ha sigut publicada per la Free Software "
+"Foundation; bé la versió 3 \t\t\t\to qualsevol de posterior."
 
 #: smolt.py:362
 #, python-format
@@ -504,11 +587,11 @@ msgstr ""
 "Executeu «service haldaemon start» com a usuari root"
 
 #: smolt.py:507
-#, fuzzy
 msgid ""
 "\tYour pub_uuid could not be written.\n"
 "\n"
-msgstr "\tNo s'ha pogut memoritzar el vostre uuid públic: %s\n"
+msgstr "\tNo s'ha pogut escriure el vostre uuid públic.\n"
+"\n"
 
 #: smolt.py:516
 #, python-format
@@ -546,9 +629,8 @@ msgid "Language"
 msgstr "Llengua"
 
 #: smolt.py:677
-#, fuzzy
 msgid "Filesystem Information"
-msgstr "\tInformació del sistema de fitxers"
+msgstr "Informació del sistema de fitxers"
 
 #: smolt.py:690
 msgid "UUID"
@@ -642,29 +724,32 @@ msgstr "No es pot determinar l'UUID del sistema\n"
 #: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
-msgstr ""
+msgstr "Error en determinar l'UUID públic: %s"
 
 #: smolt.py:1204
-#, fuzzy
 msgid "Unable to determine Public UUID!\n"
-msgstr "No es pot determinar l'UUID del sistema\n"
+msgstr "No es pot determinar l'UUID públic\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "No es pot determinar el nivell d'execució"
 
 #~ msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
-#~ msgstr "Envia aquest perfil també al Bodhi, per a l'equip de desenvolupament de Fedora."
+#~ msgstr ""
+#~ "Envia aquest perfil també al Bodhi, per a l'equip de desenvolupament de "
+#~ "Fedora."
 
 #~ msgid "y"
 #~ msgstr "s"
 
 #~ msgid ""
-#~ "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
+#~ "The data was successfully sent. If you need to refer to your hardware "
+#~ "profile for a bug report your UUID is \n"
 #~ "%s\n"
 #~ "stored in %s"
 #~ msgstr ""
-#~ "Les dades s'han enviat correctament. Si necessiteu referir-vos al vostre perfil de maquinari en un informe d'error, el vostre UUID és\n"
+#~ "Les dades s'han enviat correctament. Si necessiteu referir-vos al vostre "
+#~ "perfil de maquinari en un informe d'error, el vostre UUID és\n"
 #~ "%s,\n"
 #~ "emmagatzemat en %s"
 
@@ -708,11 +793,19 @@ msgstr "No es pot determinar el nivell d'execució"
 #~ msgstr "Copyright © 2007 Mike McGrath"
 
 #~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
 #~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
 #~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program; if not, write to the Free Software Foundation, Inc., "
+#~ "675 Mass Ave, Cambridge, MA 02139, USA."
 #~ msgstr ""
 #~ "    Aquest és un programa lliure; podeu redistribuir-lo i/o modificar-lo\n"
 #~ "    sota els termes de la Llicència Pública General GNU publicada per\n"
