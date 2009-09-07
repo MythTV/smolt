@@ -122,7 +122,10 @@ class _Overlays:
                 name = overlay_name(overlay_location)
             except:
                 return False
-            return (name in self._global_overlays_dict)
+
+            # TODO improve
+            return name in ('g-ctan', ) or \
+                    (name in self._global_overlays_dict)
 
         def fix_repo_name(repo_name):
             try:
