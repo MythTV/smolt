@@ -1,0 +1,364 @@
+# translation of smolt.master-smoon.messages.or.po to Oriya
+# Translations template for hardware.
+# Copyright (C) 2008 ORGANIZATION
+# This file is distributed under the same license as the hardware project.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# Manoj Kumar Giri <mgiri@redhat.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: smolt.master-smoon.messages.or\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2008-05-01 22:37-0400\n"
+"PO-Revision-Date: 2009-09-07 13:13+0530\n"
+"Last-Translator: Manoj Kumar Giri <mgiri@redhat.com>\n"
+"Language-Team: Oriya <oriya-it@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"\n"
+"\n"
+"\n"
+"\n"
+
+#: hardware/controllers/root.py:95
+msgid ""
+"The credentials you supplied were not correct or did not grant access to "
+"this resource."
+msgstr "ଆପଣ ଦ୍ୱାରା ପ୍ରଦତ୍ତ ପ୍ରମାଣପତ୍ରଗୁଡ଼ିକ ଠିକ ନୁହଁ ଅଥବା ଏହି ଉତ୍ସ ପ୍ରତି ଅବିଗମ୍ୟତା ପ୍ରଦାନ କରିନଥାଏ।"
+
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr "ଏହି ଉତ୍ସକୁ ଅଭିଗମ୍ୟ କରିବା ପୂର୍ବରୁ ଆପଣଙ୍କୁ ଆପଣଙ୍କର ପ୍ରମାଣପତ୍ର ପ୍ରଦାନ କରିବାକୁ ହେବ।"
+
+#: hardware/controllers/root.py:101
+msgid "Please log in."
+msgstr "ଦୟାକରି ଲଗଇନ କରନ୍ତୁ।"
+
+#: hardware/templates/deviceclass.html:9
+msgid "Devices by class ${type}"
+msgstr "${type}ଶ୍ରେଣୀ ଅନୁଯାୟୀ ଉପକରଣଗୁଡ଼ିକ"
+
+#: hardware/templates/deviceclass.html:15
+msgid "Total Count"
+msgstr "ସମୁଦାୟ ଗଣନା"
+
+#: hardware/templates/deviceclass.html:19
+#, python-format
+msgid "% hosts detected ${type}"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "ବିକ୍ରେତାମାନେ"
+
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "ଯନ୍ତ୍ର"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+msgid "Device"
+msgstr "ଉପକରଣ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Bus"
+msgstr "ବସ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "ଚାଳକ"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr "ଭେଣ୍ଡର"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Vendor"
+msgstr "ଉପ ବିକ୍ରେତା"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Device"
+msgstr "ଉପ ସାଧନ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr "ତାରିଖ ମିଶା ହୋଇଛି/ ୟୋଡା ୟାଇଛି"
+
+#: hardware/templates/deviceclass.html:36
+msgid "% tot hosts"
+msgstr "% tot ଆଧାରଗୁଡ଼ିକ"
+
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr "ସମୁଦାୟ ପଞ୍ଜିକୃତ ଉପକରଣଗୁଡ଼ିକ"
+
+#: hardware/templates/devices.html:19
+msgid "Unique Devices"
+msgstr "ଅନନ୍ୟ ଉପକରଣଗୁଡ଼ିକ"
+
+#: hardware/templates/devices.html:24
+msgid "Raw Devices"
+msgstr "ଅପରିପକ୍ୱ ଉପକରଣଗୁଡ଼ିକ"
+
+#: hardware/templates/devices.html:34
+msgid "Machines / Device"
+msgstr "ଯନ୍ତ୍ର / ଉପକରଣଗୁଡ଼ିକ"
+
+#: hardware/templates/devices.html:44
+msgid "Classes"
+msgstr "ଶ୍ରେଣୀଗୁଡ଼ିକ"
+
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "ସନ୍ଧାନ କରନ୍ତୁ"
+
+#: hardware/templates/report_search.html:38
+msgid "Dataset"
+msgstr "ତଥ୍ୟ ସେଟ"
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr "ଫଳାଫଳ ସେଟ ହୋଇଛି"
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr "ବାକ୍ସ ଦର୍ଶାନ୍ତୁ"
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr "ମୁଁ ଏହାକୁ ବ୍ୟବହାର କରିନଥାଏ ଅଥବା ମୁଁ ଜାଣିନାହିଁ"
+
+#: hardware/templates/show.html:31
+msgid "Breaks System"
+msgstr "ତନ୍ତ୍ରକୁ ଭାଙ୍ଗିଥାଏ"
+
+#: hardware/templates/show.html:32
+msgid "Doesn't Work"
+msgstr "କାର୍ଯ୍ୟ କରିନଥାଏ"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr "ତୃତୀୟ ପକ୍ଷ ଡ୍ରାଇଭରଗୁଡ଼ିକୁ ଆବଶ୍ୟକ କରିଥାଏ"
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr "କାର୍ଯ୍ୟ କରିଥାଏ, କିନ୍ତୁ ଅତିରିକ୍ତ ସୂଚନା ଆବଶ୍ୟକ କରିଥାଏ"
+
+#: hardware/templates/show.html:35
+msgid "Worked out of the box"
+msgstr "ପରିସର ବାହାରେ କାର୍ଯ୍ୟ କରିଛି"
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr "ସମସ୍ତ ସୂଚନା ଦର୍ଶାନ୍ତୁ"
+
+#: hardware/templates/show.html:39
+msgid "Overall Rating:"
+msgstr "ମୋଟାମୋଟି ମାନ୍ୟତା:"
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr "ସର୍ବସାଧାରଣ UUID"
+
+#: hardware/templates/show.html:43
+msgid "Operating System"
+msgstr "ପ୍ରଚାଳନ ତନ୍ତ୍ର"
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr "ପ୍ଲାଟଫର୍ମ"
+
+#: hardware/templates/show.html:45
+msgid "System Vendor"
+msgstr "ତନ୍ତ୍ର ବିକ୍ରେତା"
+
+#: hardware/templates/show.html:46
+msgid "System Model"
+msgstr "ତନ୍ତ୍ର ମଡେଲ"
+
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+msgid "Kernel"
+msgstr "କର୍ଣ୍ଣଲ"
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr "ଫର୍ମ ଗୁଣାଙ୍କ"
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr "ଶେଷଥର ପରିବର୍ତ୍ତିତ"
+
+#: hardware/templates/show.html:50
+msgid "Admin Password"
+msgstr "ତନ୍ତ୍ର ପ୍ରଶାସକ ପ୍ରବେଶ ସଂକେତ"
+
+#: hardware/templates/show.html:60
+msgid "Rating"
+msgstr "ରେଟିଙ୍ଗ"
+
+#: hardware/templates/show.html:60
+msgid "Class"
+msgstr "ଶ୍ରେଣୀ"
+
+#: hardware/templates/stats.html:9
+msgid "Stats"
+msgstr "Stats"
+
+#: hardware/templates/stats.html:15
+msgid "Total Registered Hosts"
+msgstr "ସମୁଦାୟ ପଞ୍ଜିକୃତ ଆଧାରଗୁଡ଼ିକ"
+
+#: hardware/templates/stats.html:23
+msgid "Total bogomips"
+msgstr "ସମୁଦାୟ bogomips"
+
+#: hardware/templates/stats.html:27
+msgid "Total processors"
+msgstr "ସମୁଦାୟ ସଞ୍ଚାଳକଗୁଡ଼ିକ"
+
+#: hardware/templates/stats.html:31
+msgid "Total MHz"
+msgstr "ସମୁଦାୟ MHz"
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr "Archs"
+
+#: hardware/templates/stats.html:40
+msgid "Arch"
+msgstr "Arch"
+
+#: hardware/templates/stats.html:40
+msgid "Count"
+msgstr "ଗଣନା"
+
+#: hardware/templates/stats.html:40
+#, python-format
+msgid "% of total"
+msgstr ""
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr "ପ୍ରଚାଳନ ତନ୍ତ୍ର"
+
+#: hardware/templates/stats.html:66
+msgid "Runlevel"
+msgstr "ଚାଳନ ସ୍ତର"
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr "ଭାଷା"
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr "ମୋଡେଲ"
+
+#: hardware/templates/stats.html:119
+msgid "RAM"
+msgstr "RAM"
+
+#: hardware/templates/stats.html:132
+msgid "Swap"
+msgstr "ଅଦଳ ବଦଳ"
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr "CPU"
+
+#: hardware/templates/stats.html:147
+msgid "Speed (MHz)"
+msgstr "ଗତି (MHz)"
+
+#: hardware/templates/stats.html:154
+msgid "Number of CPUs"
+msgstr "CPU ସଂଖ୍ଯା"
+
+#: hardware/templates/stats.html:161
+msgid "CPU Vendor"
+msgstr "CPU ବିକ୍ରେତା"
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr "Bogomips"
+
+#: hardware/templates/stats.html:193
+msgid "Form Factor"
+msgstr "ଫର୍ମ ଗୁଣାଙ୍କ"
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr "Selinux"
+
+#: hardware/templates/stats.html:208
+msgid "SELinux Enabled"
+msgstr "SELinux ସକ୍ରିୟ"
+
+#: hardware/templates/stats.html:215
+msgid "SELinux Enforce"
+msgstr "SELinux ଲାଗୁକରିବା"
+
+#: hardware/templates/stats.html:222
+msgid "SELinux Policy"
+msgstr "SELinux ନିତୀ"
+
+#: hardware/templates/stats.html:234
+msgid "Filesystems"
+msgstr "ଫାଇଲ ତନ୍ତ୍ରଗୁଡ଼ିକ"
+
+#: hardware/templates/stats.html:242
+msgid "Filesystem size"
+msgstr "ଫାଇଲ ତନ୍ତ୍ରଗୁଡ଼ିକର ଆକାର"
+
+#: hardware/templates/stats.html:253
+msgid "Myth Role"
+msgstr "Myth ଭୂମିକା"
+
+#: hardware/templates/stats.html:266
+msgid "Myth Remote"
+msgstr "Myth ସୁଦୂର"
+
+#: hardware/templates/stats.html:279
+msgid "Myth  Theme"
+msgstr "Myth  ପ୍ରସଙ୍ଗ"
+
+#: hardware/templates/welcome.html:12
+msgid "Enter your profile UUID:"
+msgstr "ଆପଣଙ୍କର ସକ୍ଷିପ୍ତ ଚିତ୍ର UUID ଭରଣ କରନ୍ତୁ:"
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr "ପରିସଂଖ୍ଯାନ"
+
+#: hardware/templates/welcome.html:17
+msgid ""
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+"ତଥ୍ୟାଧାରରେ ଉପକରଣଗୁଡ଼ିକର ବିସ୍ତୃତ ପରିସଂଖ୍ୟାନ ପାଇଁ <a "
+"href='/static/stats/stats.html'>/stats</a> ଅଥବା <a "
+"href='/static/stats/devices.html'>/devices</a> "
+"କୁ ଦେଖନ୍ତୁ"
+
+#: hardware/templates/welcome.html:19
+msgid "Top Vendor Chart"
+msgstr "ଶୀର୍ଷ ବିକ୍ରେତା ଚାର୍ଟ"
+
+#: hardware/templates/welcome.html:23
+msgid "More info"
+msgstr "ଅଧିକ ସୂଚନା"
+
+#: hardware/templates/welcome.html:25
+msgid ""
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
+"information about specific devices. Usage and other general answers can "
+"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+"ନିର୍ଦ୍ଦିଷ୍ଟ ଉପକରଣଗୁଡ଼ିକ ବିଷୟରେ ବିସ୍ତୃତ ସୂଚନା ପାଇଁ <p><a href='/wiki/'>Wiki କୁ ବ୍ରାଉଜ କରନ୍ତୁ "
+"ଏବଂ ସନ୍ଧାନ କରନ୍ତୁ</a>। ବ୍ୟବହାର ବିଧି ଏବଂ ଅନ୍ୟାନ୍ୟ ସାଧାରଣ ଉତ୍ତରଗୁଡ଼ିକ ମଧ୍ଯ "
+"<a href='/wiki/'>Wiki ରେ ମିଳିପାରିବ</a>.</p>"
+
