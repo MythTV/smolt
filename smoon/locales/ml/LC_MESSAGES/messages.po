@@ -1,0 +1,359 @@
+# translation of smolt.master-smoon.messages.ml.po to
+# Translations template for hardware.
+# Copyright (C) 2008 ORGANIZATION
+# This file is distributed under the same license as the hardware project.
+# ANI PETER <apeter@redhat.com>, 2009
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: smolt.master-smoon.messages.ml\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2008-05-01 22:37-0400\n"
+"PO-Revision-Date: 2009-09-07 16:40+0530\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: hardware/controllers/root.py:95
+msgid ""
+"The credentials you supplied were not correct or did not grant access to "
+"this resource."
+msgstr ""
+"ഈ നല്‍കിയ അനുമതികള്‍ ശരിയല്ല. ഈ റിസോഴ്സിലേക്കുള്ള പ്രവേശനം "
+"ലഭ്യമല്ല."
+
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr "ഈ റിസോഴ്സ് ഉപയോഗിക്കുന്നതിനു് മുമ്പു് നിങ്ങളുടെ അനുമതികള്‍ നല്‍കേണ്ടതുണ്ടു്."
+
+#: hardware/controllers/root.py:101
+msgid "Please log in."
+msgstr "ദയവായി ലോഗിന്‍ ചെയ്യുക."
+
+#: hardware/templates/deviceclass.html:9
+msgid "Devices by class ${type}"
+msgstr "class ${type} അനുസരിച്ചുള്ള ഡിവൈസുകള്‍"
+
+#: hardware/templates/deviceclass.html:15
+msgid "Total Count"
+msgstr "മൊത്തം എണ്ണം"
+
+#: hardware/templates/deviceclass.html:19
+#, python-format
+msgid "% hosts detected ${type}"
+msgstr "% hosts detected ${type}"
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "വിതരണക്കാര്‍"
+
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "ഡിവൈസുകള്‍"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+msgid "Device"
+msgstr "ഡിവൈസ്"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Bus"
+msgstr "ബസ്"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "ഡ്രൈവര്‍"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr "വിതരണക്കാരന്‍"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Vendor"
+msgstr "ഉപ വിതരണക്കാരന്‍"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Device"
+msgstr "സബ് ഡിവൈസ്"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr "ചേര്‍ത്ത തീയതി"
+
+#: hardware/templates/deviceclass.html:36
+msgid "% tot hosts"
+msgstr "% tot hosts"
+
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr "മൊത്തം രജിസ്ടര്‍ ചെയ്ത ഡിവൈസുകള്‍"
+
+#: hardware/templates/devices.html:19
+msgid "Unique Devices"
+msgstr "ഏക ഡിവൈസുകള്‍"
+
+#: hardware/templates/devices.html:24
+msgid "Raw Devices"
+msgstr "റോ ഡിവൈസുകള്‍"
+
+#: hardware/templates/devices.html:34
+msgid "Machines / Device"
+msgstr "മഷീനുകള്‍ / ഡിവൈസ്"
+
+#: hardware/templates/devices.html:44
+msgid "Classes"
+msgstr "ക്ലാസ്സുകള്‍"
+
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "തെരയുക"
+
+#: hardware/templates/report_search.html:38
+msgid "Dataset"
+msgstr "ഡേറ്റാസെറ്റ്"
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr "ഫലങ്ങളുടെ സെറ്റ്"
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr "പെട്ടി കാണിക്കുക"
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr "ഉപയോഗിക്കുന്നില്ല അല്ലെങ്കില്‍ അറിയില്ല"
+
+#: hardware/templates/show.html:31
+msgid "Breaks System"
+msgstr "സിസ്റ്റം തകരാറിലാക്കുന്നു"
+
+#: hardware/templates/show.html:32
+msgid "Doesn't Work"
+msgstr "പ്രവര്‍ത്തിക്കുന്നില്ല"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr "തേര്‍ഡ് പാര്‍ട്ടി ഡ്രൈവറുകള്‍ ആവശ്യമുണ്ടു്"
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr "പ്രവര്‍ത്തിക്കും, പക്ഷേ കൂടുതല്‍ ക്രമീകരണങ്ങള്‍ ആവശ്യമുണ്ടു്"
+
+#: hardware/templates/show.html:35
+msgid "Worked out of the box"
+msgstr "ശരിയായി പ്രവര്‍ത്തിക്കുന്നില്ല"
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr "എല്ലാ വിവരങ്ങളും കാണിക്കുക"
+
+#: hardware/templates/show.html:39
+msgid "Overall Rating:"
+msgstr "മൊത്തത്തിലുള്ള റേറ്റിങ്:"
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr "പബ്ലിക് UUID"
+
+#: hardware/templates/show.html:43
+msgid "Operating System"
+msgstr "ഓപ്പറേറ്റിങ് സിസ്റ്റം"
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr "പ്ലാറ്റ്ഫോം"
+
+#: hardware/templates/show.html:45
+msgid "System Vendor"
+msgstr "സിസ്റ്റം വിതരണക്കാരന്‍"
+
+#: hardware/templates/show.html:46
+msgid "System Model"
+msgstr "സിസ്റ്റം മോഡല്‍"
+
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+msgid "Kernel"
+msgstr "കേര്‍ണല്‍"
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr "ഫോംഫാക്ടര്‍"
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr "അവസാനം മാറ്റം വരുത്തിയതു്"
+
+#: hardware/templates/show.html:50
+msgid "Admin Password"
+msgstr "അഡ്മിന്‍ അടയാളവാക്ക്"
+
+#: hardware/templates/show.html:60
+msgid "Rating"
+msgstr "റേറ്റിങ്"
+
+#: hardware/templates/show.html:60
+msgid "Class"
+msgstr "ക്ലാസ്സ്"
+
+#: hardware/templates/stats.html:9
+msgid "Stats"
+msgstr "അവസ്ഥ"
+
+#: hardware/templates/stats.html:15
+msgid "Total Registered Hosts"
+msgstr "മൊത്തം രജിസ്ടര്‍ ചെയ്ത ഹോസ്റ്റുകള്‍"
+
+#: hardware/templates/stats.html:23
+msgid "Total bogomips"
+msgstr "മൊത്തം bogomips"
+
+#: hardware/templates/stats.html:27
+msgid "Total processors"
+msgstr "മൊത്തം പ്രൊസസ്സറുകള്‍"
+
+#: hardware/templates/stats.html:31
+msgid "Total MHz"
+msgstr "മൊത്തം MHz"
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr "ആര്‍ക്കുകള്‍"
+
+#: hardware/templates/stats.html:40
+msgid "Arch"
+msgstr "ആര്‍ക്ക്"
+
+#: hardware/templates/stats.html:40
+msgid "Count"
+msgstr "എണ്ണം"
+
+#: hardware/templates/stats.html:40
+#, python-format
+msgid "% of total"
+msgstr "% of total"
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr "ഒഎസ്"
+
+#: hardware/templates/stats.html:66
+msgid "Runlevel"
+msgstr "റണ്‍ലവല്‍"
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr "ഭാഷ"
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr "മാതൃക"
+
+#: hardware/templates/stats.html:119
+msgid "RAM"
+msgstr "RAM"
+
+#: hardware/templates/stats.html:132
+msgid "Swap"
+msgstr "Swap"
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr "സിപിയു"
+
+#: hardware/templates/stats.html:147
+msgid "Speed (MHz)"
+msgstr "വേഗത (MHz)"
+
+#: hardware/templates/stats.html:154
+msgid "Number of CPUs"
+msgstr "സിപിയുകളുടെ എണ്ണം"
+
+#: hardware/templates/stats.html:161
+msgid "CPU Vendor"
+msgstr "സിപിയു വില്‍പനക്കാരന്‍"
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr "Bogomips"
+
+#: hardware/templates/stats.html:193
+msgid "Form Factor"
+msgstr "ഫോം ഫാക്ടര്‍"
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr "Selinux"
+
+#: hardware/templates/stats.html:208
+msgid "SELinux Enabled"
+msgstr "SELinux Enabled"
+
+#: hardware/templates/stats.html:215
+msgid "SELinux Enforce"
+msgstr "SELinux Enforce"
+
+#: hardware/templates/stats.html:222
+msgid "SELinux Policy"
+msgstr "SELinux പോളിസി"
+
+#: hardware/templates/stats.html:234
+msgid "Filesystems"
+msgstr "ഫയല്‍സിസ്റ്റമുകള്‍"
+
+#: hardware/templates/stats.html:242
+msgid "Filesystem size"
+msgstr "ഫയല്‍സിസ്റ്റം വ്യാപ്തി"
+
+#: hardware/templates/stats.html:253
+msgid "Myth Role"
+msgstr "മിഥ് റോള്‍"
+
+#: hardware/templates/stats.html:266
+msgid "Myth Remote"
+msgstr "മിഥ് റിമോട്ട്"
+
+#: hardware/templates/stats.html:279
+msgid "Myth  Theme"
+msgstr "മിഥ് പ്രമേയം"
+
+#: hardware/templates/welcome.html:12
+msgid "Enter your profile UUID:"
+msgstr "നിങ്ങളുടെ പ്രൊഫൈല്‍ UUID കാണുക:"
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr "സ്ഥിതിവിവരക്കണക്കുകള്‍"
+
+#: hardware/templates/welcome.html:17
+msgid ""
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+"ഡേറ്റാബെയിസിലുള്ള ഡിവൈസുകളുടെ വിശദമായ സ്ഥിതിവിവരക്കണക്കുകള്‍ക്കായി "
+"<a href='/static/stats/stats.html'>/stats</a> അല്ലെങ്കില്‍ <a "
+"href='/static/stats/devices.html'>/devices</a> കാണുക"
+
+#: hardware/templates/welcome.html:19
+msgid "Top Vendor Chart"
+msgstr "ഏറ്റവും കൂടിയ വിതരണക്കാരുടെ പട്ടിക"
+
+#: hardware/templates/welcome.html:23
+msgid "More info"
+msgstr "കൂടുതല്‍ വിവരങ്ങള്‍"
+
+#: hardware/templates/welcome.html:25
+msgid ""
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
+"information about specific devices. Usage and other general answers can "
+"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+"<p>ചില പ്രത്യേക ഡിവൈസുകളെപ്പറ്റിയുള്ള വിവരങ്ങള്‍ക്കായി <a href='/wiki/'>വിക്കി</a> "
+"തെരയുക. ഉപയോഗിക്കേണ്ട വിധവും സാധാരണയുള്ള ചോദ്യങ്ങളുടെ ഉത്തരവും "
+"<a href='/wiki/'>വിക്കിയില്‍</a> ലഭ്യമാണു്.</p>"
+
