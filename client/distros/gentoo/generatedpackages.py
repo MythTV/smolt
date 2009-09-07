@@ -18,6 +18,7 @@
 
 _COLLECT_CROSSDEV = True  # TODO configurable
 _COLLECT_GCPAN = True  # TODO configurable
+_COLLECT_G_CTAN = True  # TODO configurable, affects overlays.py, too
 
 class _GeneratedPackages:
     def __init__(self):
@@ -28,13 +29,17 @@ class _GeneratedPackages:
 
     def is_private_cat(self, cat):
         return (self._is_crossdev_cat(cat) and not _COLLECT_CROSSDEV) or \
-            (self._is_gcpan_cat(cat) and not _COLLECT_GCPAN)
+            (self._is_gcpan_cat(cat) and not _COLLECT_GCPAN) or \
+            (self._is_g_ctan_cat(cat) and not _COLLECT_G_CTAN)
 
     def _is_crossdev_cat(self, cat):
         return cat.startswith('cross-')
 
     def _is_gcpan_cat(self, cat):
         return cat == 'perl-gcpan'
+
+    def _is_g_ctan_cat(self, cat):
+        return cat == 'g-ctan'
 
 
 _generated_packages = None

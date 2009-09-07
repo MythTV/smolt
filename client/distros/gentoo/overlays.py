@@ -34,10 +34,12 @@ import sys
 import distros.shared.html as html
 from gate import Gate
 
-_MAIN_TREE_WHITELIST = (
-    "gentoo",
-    "funtoo",
-    "gentoo_prefix",
+_REPO_NAME_WHITELIST = (
+    "gentoo",  # Gentoo main tree
+    "funtoo",  # Funtoo main tree
+    "gentoo_prefix",  # Gentoo prefix main tree
+
+    "g-ctan",  # app-portage/g-ctan target repository
 )
 
 _REPO_NAME_RENAME_MAP = {
@@ -161,7 +163,7 @@ class _Overlays:
         if not overlay_name:
             return True
 
-        if overlay_name in _MAIN_TREE_WHITELIST:
+        if overlay_name in _REPO_NAME_WHITELIST:
             return False
 
         if overlay_name in _REPO_NAME_RENAME_MAP:
