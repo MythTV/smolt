@@ -1,0 +1,356 @@
+# translation of smolt.master-smoon.po to Bengali INDIA
+# Translations template for hardware.
+# Copyright (C) 2008 ORGANIZATION
+# This file is distributed under the same license as the hardware project.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# Runa Bhattacharjee <runab@redhat.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: smolt.master-smoon\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2008-05-01 22:37-0400\n"
+"PO-Revision-Date: 2009-09-07 17:57+0530\n"
+"Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
+"Language-Team: Bengali INDIA <anubad@lists.ankur.org.in>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hardware/controllers/root.py:95
+msgid ""
+"The credentials you supplied were not correct or did not grant access to "
+"this resource."
+msgstr "আপনার উল্লিখিত পরিচিতির তথ্য সঠিক নয় অথবা এই রিসোর্সটি ব্যবহারের অধিকার প্রদানের জন্য প্রযোজ্য নয়।"
+
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr "এই রিসোর্স ব্যবহারের পূর্বে আপনার পরিচয় সম্বন্ধীয় তথ্য উল্লেখ করা আবশ্যক।"
+
+#: hardware/controllers/root.py:101
+msgid "Please log in."
+msgstr "অনুগ্রহ করে লগ-ইন করুন।"
+
+#: hardware/templates/deviceclass.html:9
+msgid "Devices by class ${type}"
+msgstr "${type} শ্রেণী অনুযায়ী ডিভাইস"
+
+#: hardware/templates/deviceclass.html:15
+msgid "Total Count"
+msgstr "সর্বমোট সংখ্যা"
+
+#: hardware/templates/deviceclass.html:19
+#, python-format
+msgid "% hosts detected ${type}"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "বিক্রেতা"
+
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "ডিভাইস"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+msgid "Device"
+msgstr "ডিভাইস"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Bus"
+msgstr "বাস"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "ড্রাইভার"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr "বিক্রেতা"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Vendor"
+msgstr "উপ বিক্রেতা"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Device"
+msgstr "সাব-ডিভাইস"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr "সংযোজনের তারিখ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "% tot hosts"
+msgstr ""
+
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr "সর্বমোট নিবন্ধিত ডিভাইস"
+
+#: hardware/templates/devices.html:19
+msgid "Unique Devices"
+msgstr "স্বতন্ত্র ডিভাইস"
+
+#: hardware/templates/devices.html:24
+msgid "Raw Devices"
+msgstr "Raw ডিভাইস"
+
+#: hardware/templates/devices.html:34
+msgid "Machines / Device"
+msgstr "মেশিন / ডিভাইস"
+
+#: hardware/templates/devices.html:44
+msgid "Classes"
+msgstr "শ্রেণী"
+
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "অনুসন্ধান"
+
+#: hardware/templates/report_search.html:38
+msgid "Dataset"
+msgstr "ডাটা-সেট"
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr "ফলাফলের সংকলন"
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr "বক্স প্রদর্শন"
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr "আমি এটি ব্যবহার করি না অথবা আমি জানি না"
+
+#: hardware/templates/show.html:31
+msgid "Breaks System"
+msgstr "সিস্টেম ক্ষতিগ্রস্ত করে"
+
+#: hardware/templates/show.html:32
+msgid "Doesn't Work"
+msgstr "কার্যকরী নয়"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr "স্বতন্ত্র ড্রাইভারের উপস্থিতি প্রয়োজন"
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr "সক্ষম, কিছু অতিরিক্ত কনফিগারেশন প্রয়োজন"
+
+#: hardware/templates/show.html:35
+msgid "Worked out of the box"
+msgstr "স্বতন্ত্রভাবে চলতে সক্ষম"
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr "সকল তথ্য প্রদর্শন করা হবে"
+
+#: hardware/templates/show.html:39
+msgid "Overall Rating:"
+msgstr "সর্বমোট মাত্রা:"
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr "সার্বজনীন UUID"
+
+#: hardware/templates/show.html:43
+msgid "Operating System"
+msgstr "অপারেটিং সিস্টেম"
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr "প্ল্যাটফর্ম"
+
+#: hardware/templates/show.html:45
+msgid "System Vendor"
+msgstr "সিস্টেম বিক্রেতা"
+
+#: hardware/templates/show.html:46
+msgid "System Model"
+msgstr "সিস্টেম মডেল"
+
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+msgid "Kernel"
+msgstr "কার্নেল"
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr "ফর্ম ফ্যাক্টর"
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr "সর্বশেষ পরিবর্তন"
+
+#: hardware/templates/show.html:50
+msgid "Admin Password"
+msgstr "অ্যাডমিন পাসওয়ার্ড"
+
+#: hardware/templates/show.html:60
+msgid "Rating"
+msgstr "মাত্রা"
+
+#: hardware/templates/show.html:60
+msgid "Class"
+msgstr "শ্রেণী"
+
+#: hardware/templates/stats.html:9
+msgid "Stats"
+msgstr "Stats"
+
+#: hardware/templates/stats.html:15
+msgid "Total Registered Hosts"
+msgstr "সর্বমোট নিবন্ধিত হোস্ট"
+
+#: hardware/templates/stats.html:23
+msgid "Total bogomips"
+msgstr "সর্বমোট bogomips"
+
+#: hardware/templates/stats.html:27
+msgid "Total processors"
+msgstr "সর্বমোট প্রসেসর"
+
+#: hardware/templates/stats.html:31
+msgid "Total MHz"
+msgstr "সর্বমোট MHz"
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr "আর্কিটেকচার"
+
+#: hardware/templates/stats.html:40
+msgid "Arch"
+msgstr "আর্কিটেকচার"
+
+#: hardware/templates/stats.html:40
+msgid "Count"
+msgstr "সংখ্যা"
+
+#: hardware/templates/stats.html:40
+#, python-format
+msgid "% of total"
+msgstr ""
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr "OS"
+
+#: hardware/templates/stats.html:66
+msgid "Runlevel"
+msgstr "রান-লেভেল"
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr "ভাষা"
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr "মডেল"
+
+#: hardware/templates/stats.html:119
+msgid "RAM"
+msgstr "RAM"
+
+#: hardware/templates/stats.html:132
+msgid "Swap"
+msgstr "Swap"
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr "CPU"
+
+#: hardware/templates/stats.html:147
+msgid "Speed (MHz)"
+msgstr "গতি (MHz)"
+
+#: hardware/templates/stats.html:154
+msgid "Number of CPUs"
+msgstr "CPU-র সংখ্যা"
+
+#: hardware/templates/stats.html:161
+msgid "CPU Vendor"
+msgstr "CPU বিক্রেতা"
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr "Bogomips"
+
+#: hardware/templates/stats.html:193
+msgid "Form Factor"
+msgstr "ফর্ম ফ্যাক্টর"
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr "Selinux"
+
+#: hardware/templates/stats.html:208
+msgid "SELinux Enabled"
+msgstr "SELinux Enabled"
+
+#: hardware/templates/stats.html:215
+msgid "SELinux Enforce"
+msgstr "SELinux Enforce"
+
+#: hardware/templates/stats.html:222
+msgid "SELinux Policy"
+msgstr "SELinux নিয়মনীতি"
+
+#: hardware/templates/stats.html:234
+msgid "Filesystems"
+msgstr "ফাইল-সিস্টেম"
+
+#: hardware/templates/stats.html:242
+msgid "Filesystem size"
+msgstr "ফাইল-সিস্টেমের মাপ"
+
+#: hardware/templates/stats.html:253
+msgid "Myth Role"
+msgstr "Myth ভূমিকা"
+
+#: hardware/templates/stats.html:266
+msgid "Myth Remote"
+msgstr "Myth দূরবর্তী"
+
+#: hardware/templates/stats.html:279
+msgid "Myth  Theme"
+msgstr "Myth-র থিম"
+
+#: hardware/templates/welcome.html:12
+msgid "Enter your profile UUID:"
+msgstr "আপনার প্রোফাইল UUID লিখুন:"
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr "পরিসংখ্যান"
+
+#: hardware/templates/welcome.html:17
+msgid ""
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+"ডাটাবেসের মধ্যে উপস্থিত ডিভাসইগুলি সম্পর্কে বিস্তারিত তথ্য জানার জন্য <a "
+"href='/static/stats/stats.html'>/stats</a> অথবা <a "
+"href='/static/stats/devices.html'>/devices</a> দেখুন"
+
+#: hardware/templates/welcome.html:19
+msgid "Top Vendor Chart"
+msgstr "শীর্ষ বিক্রেতাদের রেখাচিত্র"
+
+#: hardware/templates/welcome.html:23
+msgid "More info"
+msgstr "অতিরিক্ত তথ্য"
+
+#: hardware/templates/welcome.html:25
+msgid ""
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
+"information about specific devices. Usage and other general answers can "
+"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr "<p>সুনির্দিষ্ট ডিভাইস সম্পর্কে অধিক বিবরণের জন্য <a href='/wiki/'>Wiki</a> দেখুন। ব্যবহারবিধি ও সাধারণ কিছু প্রশ্নের উত্তর <a href='/wiki/'>Wiki</a>-এ পাওয়া যাবে।</p>"
+
