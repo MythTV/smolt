@@ -30,7 +30,10 @@ def is_private_package_atom(atom, installed_from=None, debug=False):
                     (atom, 'was generated', 'is currently blacklisted')
             return True
         else:
-            if installed_from and installed_from[0] != '':
+            if installed_from and \
+                    installed_from[0] != '' and \
+                    not GeneratedPackages().is_dedicated_repo_name(
+                        installed_from[0]):
                 if debug:
                     print '  removing %s source tree "%s" for atom "%s"' % \
                     ('misleading', installed_from[0], atom)

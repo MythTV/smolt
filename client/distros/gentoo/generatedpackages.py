@@ -43,6 +43,9 @@ class _GeneratedPackages:
     def _is_g_ctan_cat(self, cat):
         return cat == 'g-ctan'
 
+    def is_dedicated_repo_name(self, repo_name):
+        return repo_name in ('g-ctan', )
+
 
 _generated_packages = None
 def GeneratedPackages():
