@@ -25,7 +25,9 @@ class _GeneratedPackages:
         pass
 
     def is_generated_cat(self, cat):
-        return self._is_crossdev_cat(cat) or self._is_gcpan_cat(cat)
+        return self._is_crossdev_cat(cat) or \
+            self._is_gcpan_cat(cat) or \
+            self._is_g_ctan_cat(cat)
 
     def is_private_cat(self, cat):
         return (self._is_crossdev_cat(cat) and not _COLLECT_CROSSDEV) or \
