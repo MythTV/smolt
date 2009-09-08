@@ -1,0 +1,353 @@
+# translation of messages.po to Gujarati
+# Translations template for hardware.
+# Copyright (C) 2008 ORGANIZATION
+# This file is distributed under the same license as the hardware project.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# Sweta Kothari <swkothar@redhat.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: messages\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2008-05-01 22:37-0400\n"
+"PO-Revision-Date: 2009-09-08 16:39+0530\n"
+"Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
+"Language-Team: Gujarati\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: hardware/controllers/root.py:95
+msgid ""
+"The credentials you supplied were not correct or did not grant access to "
+"this resource."
+msgstr ""
+
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr ""
+
+#: hardware/controllers/root.py:101
+msgid "Please log in."
+msgstr "મહેરબાની કરીને પ્રવેશો."
+
+#: hardware/templates/deviceclass.html:9
+msgid "Devices by class ${type}"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:15
+msgid "Total Count"
+msgstr "કુલ ગણતરી"
+
+#: hardware/templates/deviceclass.html:19
+#, python-format
+msgid "% hosts detected ${type}"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "વેન્ડરો"
+
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "ઉપકરણો"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+msgid "Device"
+msgstr "ઉપકરણ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Bus"
+msgstr "બસ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "ડ્રાઇવર"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr "વેન્ડર"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Vendor"
+msgstr "ઉપ વેન્ડર"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Device"
+msgstr "ઉપ ઉપકરણ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr "માહિતી ઉમેરાયેલ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "% tot hosts"
+msgstr "% કુલ યજમાનો"
+
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr "કુલ રજીસ્ટર થયેલ ઉપકરણો"
+
+#: hardware/templates/devices.html:19
+msgid "Unique Devices"
+msgstr "અનન્ય ઉપકરણો"
+
+#: hardware/templates/devices.html:24
+msgid "Raw Devices"
+msgstr ""
+
+#: hardware/templates/devices.html:34
+msgid "Machines / Device"
+msgstr "મશીન / ઉપકરણ"
+
+#: hardware/templates/devices.html:44
+msgid "Classes"
+msgstr "વર્ગો"
+
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "જુઓ"
+
+#: hardware/templates/report_search.html:38
+msgid "Dataset"
+msgstr "ડેટાસેટ"
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr "પરિણામ સમૂહ"
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr "બોક્સને બતાવો"
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr "હું આને વાપરતો નથી અથવા હું જાણતો નથી"
+
+#: hardware/templates/show.html:31
+msgid "Breaks System"
+msgstr "સિસ્ટમ તૂટે છે"
+
+#: hardware/templates/show.html:32
+msgid "Doesn't Work"
+msgstr "કામ કરતો નથી"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr "ત્રીજી પાર્ટી ડ્રાઇવરોની જરૂર છે"
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr "કામ કરે છે, પરંતુ જરૂરી વધારાના રૂપરેખાંકન"
+
+#: hardware/templates/show.html:35
+msgid "Worked out of the box"
+msgstr ""
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr "બધી જાણકારીને બતાવો"
+
+#: hardware/templates/show.html:39
+msgid "Overall Rating:"
+msgstr "આખુ મૂલ્યાંકન:"
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr "સાર્વજનિક UUID"
+
+#: hardware/templates/show.html:43
+msgid "Operating System"
+msgstr "ઓપરેટીંગ સિસ્ટમ"
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr "પ્લેટફોર્મ"
+
+#: hardware/templates/show.html:45
+msgid "System Vendor"
+msgstr "સિસ્ટમ વેન્ડર"
+
+#: hardware/templates/show.html:46
+msgid "System Model"
+msgstr "સિસ્ટમ મોડલ"
+
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+msgid "Kernel"
+msgstr "કર્નલ"
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr "ફોર્મફેક્ટર"
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr "છેલ્લે બદલાયેલ"
+
+#: hardware/templates/show.html:50
+msgid "Admin Password"
+msgstr "સંચાલક પાસવર્ડ"
+
+#: hardware/templates/show.html:60
+msgid "Rating"
+msgstr "મૂલ્યાંકન"
+
+#: hardware/templates/show.html:60
+msgid "Class"
+msgstr "વર્ગ"
+
+#: hardware/templates/stats.html:9
+msgid "Stats"
+msgstr "પરિસ્થિતિઓ"
+
+#: hardware/templates/stats.html:15
+msgid "Total Registered Hosts"
+msgstr "કુલ રજીસ્ટર થયેલ યજમાનો"
+
+#: hardware/templates/stats.html:23
+msgid "Total bogomips"
+msgstr "કુલ bogomips"
+
+#: hardware/templates/stats.html:27
+msgid "Total processors"
+msgstr "તુલ પ્રોસેસરો"
+
+#: hardware/templates/stats.html:31
+msgid "Total MHz"
+msgstr "કુલ MHz"
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr "આર્કીટેક્ચરો"
+
+#: hardware/templates/stats.html:40
+msgid "Arch"
+msgstr "આર્કીટેક્ચર"
+
+#: hardware/templates/stats.html:40
+msgid "Count"
+msgstr "ગણતરી"
+
+#: hardware/templates/stats.html:40
+#, python-format
+msgid "% of total"
+msgstr ""
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr "OS"
+
+#: hardware/templates/stats.html:66
+msgid "Runlevel"
+msgstr "રનલેવલ"
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr "ભાષા"
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr "મોડેલ"
+
+#: hardware/templates/stats.html:119
+msgid "RAM"
+msgstr "RAM"
+
+#: hardware/templates/stats.html:132
+msgid "Swap"
+msgstr "સ્વેપ"
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr "CPU"
+
+#: hardware/templates/stats.html:147
+msgid "Speed (MHz)"
+msgstr "ઝડપ (MHz)"
+
+#: hardware/templates/stats.html:154
+msgid "Number of CPUs"
+msgstr "CPUs ની સંખ્યા"
+
+#: hardware/templates/stats.html:161
+msgid "CPU Vendor"
+msgstr "CPU વેન્ડર"
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr "Bogomips"
+
+#: hardware/templates/stats.html:193
+msgid "Form Factor"
+msgstr ""
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr "Selinux"
+
+#: hardware/templates/stats.html:208
+msgid "SELinux Enabled"
+msgstr "SELinux Enabled"
+
+#: hardware/templates/stats.html:215
+msgid "SELinux Enforce"
+msgstr "SELinux Enforce"
+
+#: hardware/templates/stats.html:222
+msgid "SELinux Policy"
+msgstr "SELinux પોલિસી"
+
+#: hardware/templates/stats.html:234
+msgid "Filesystems"
+msgstr "ફાઇલસિસ્ટમો"
+
+#: hardware/templates/stats.html:242
+msgid "Filesystem size"
+msgstr ""
+
+#: hardware/templates/stats.html:253
+msgid "Myth Role"
+msgstr "Myth ભૂમિકા"
+
+#: hardware/templates/stats.html:266
+msgid "Myth Remote"
+msgstr "Myth દૂરસ્થ"
+
+#: hardware/templates/stats.html:279
+msgid "Myth  Theme"
+msgstr "Myth  થીમ"
+
+#: hardware/templates/welcome.html:12
+msgid "Enter your profile UUID:"
+msgstr ""
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr "પરિસ્થિતિઓ"
+
+#: hardware/templates/welcome.html:17
+msgid ""
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+
+#: hardware/templates/welcome.html:19
+msgid "Top Vendor Chart"
+msgstr ""
+
+#: hardware/templates/welcome.html:23
+msgid "More info"
+msgstr ""
+
+#: hardware/templates/welcome.html:25
+msgid ""
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
+"information about specific devices. Usage and other general answers can "
+"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+
