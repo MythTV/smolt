@@ -2,19 +2,19 @@
 # This file is distributed under the same license as the smolt package.
 # Marek Mahut <mmahut fedoraproject.org>, 2007.
 # Michal Ingeli <michal.ingeli@hladat.sk>, 2007.
-# Ondrej Šulek <feonsu@gmail.com>, 2008.
+# Ondrej Šulek <feonsu@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2008-10-19 23:28+0200\n"
+"PO-Revision-Date: 2009-09-07 19:07+0200\n"
 "Last-Translator: Ondrej Šulek <feonsu@gmail.com>\n"
 "Language-Team: Slovak <fedora-trans-sk@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.2\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: deleteProfile.py:36 smolt.py:360
@@ -29,7 +29,7 @@ msgstr "zapnúť ladiace informácie"
 #: deleteProfile.py:51 sendProfile.py:58
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
-msgstr "špecifikujte URL servera (štandardne \"%default\")"
+msgstr "zadajte URL adresu servera (predvolene \"%default\")"
 
 #: deleteProfile.py:56 sendProfile.py:73
 msgid "print information only, do not send"
@@ -38,16 +38,16 @@ msgstr "neodoslať, len zobraziť informácie"
 #: deleteProfile.py:61 sendProfile.py:88
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
-msgstr "špecifikuj HTTP user agent (štandardne \"%default\")"
+msgstr "zadajte HTTP user agent (predvolene \"%default\")"
 
 #: deleteProfile.py:66 sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr "špecifikuj časový limit v sekundách pre HTTP (štandardne %default sekúnd)"
+msgstr "zadajte časový limit v sekundách pre HTTP (predvolene %default sekúnd)"
 
 #: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr ""
+msgstr "zadajte uuid, väčšinou užitočné pre ladenie a testovanie"
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -58,14 +58,12 @@ msgid "Profile removed, please verify at"
 msgstr "Profil bol odstránený. Prosím, presvedčte sa o tom na"
 
 #: gui.py:35 sendProfile.py:177 smolt.py:655
-#, fuzzy
 msgid "General"
-msgstr "Jadro"
+msgstr "Všeobecné"
 
 #: gui.py:37
-#, fuzzy
 msgid "Distribution"
-msgstr "Popis"
+msgstr "Distribúcia"
 
 #: gui.py:82
 msgid "Label"
@@ -91,92 +89,111 @@ msgstr "Typ"
 msgid "Description"
 msgstr "Popis"
 
-#: privacypolicy.py:3
-#, fuzzy, python-format
+#: privacypolicy.py:3, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a "
+"submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"the submission is anonymous.  If at any point in time a user wants to "
+"delete\n"
 "his/her profile from the database they need only run<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
-"The information sent to the smolt database server should be considered public\n"
-"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"The information sent to the smolt database server should be considered "
+"public\n"
+"in that anyone can view the statistics, data and share machine profiles.  "
+"In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"attention.  As such, not only will this information be shared with 3rd "
+"parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.<br>\n"
 "<br>\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and they\n"
+"server first.  This is the only place IP addresses are being logged and "
+"they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate IP addresses in\n"
-"the smolt database.  These logs are private and will not be available to the\n"
+"the smolt database.  These logs are private and will not be available to "
+"the\n"
 "general public.<br>\n"
 "<br>\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team at\n"
-"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can delete their\n"
+"questions about this policy should contact the Fedora Infrastructure Team "
+"at\n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can "
+"delete their\n"
 "profiles at any time using<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
+"<span></span>\n"
 "Smolt odosiela iba informácie o hardvéri a základné informácie o operačnom \n"
-"systéme na Fedora Smolt server (smoon).  Jediná informácia, ktorá spája Váš systém\n"
+"systéme na Fedora Smolt server (smoon).  Jediná informácia, ktorá spája Váš "
+"systém\n"
 "s informáciami v databáze, je UUID.  Váš profil zostáva úplne anonymný,\n"
 "kým neposkytnete toto UUID tretej strane.  Ak chcete kedykoľvek zmazať \n"
-"Váš profil z databázy, stačí spustiť\n"
-"\n"
-"    smoltDeleteProfile\n"
-"\n"
+"Váš profil z databázy, stačí spustiť<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
 "Informácie zaslané do smolt databázy sú verejné, aby každý mohol nahliadnuť\n"
-"do štatistík, údajov a zdielať hardvérové profily.  Smolt ma upútať pozornosť\n"
-"výrobcov hardvéru a ostatných tretích strán. Tieto informácie budú zdielané nielen \n"
-"medzi tretie strany, ale použijeme smolt ako aj ako páku na získanie lepších ovládačov \n"
-"a lepšiu podporu všeobecne.\n"
-"\n"
+"do štatistík, údajov a zdielať hardvérové profily.  Smolt ma upútať "
+"pozornosť\n"
+"výrobcov hardvéru a ostatných tretích strán. Tieto informácie budú zdielané "
+"nielen \n"
+"medzi tretie strany, ale použijeme smolt ako aj ako páku na získanie lepších "
+"ovládačov \n"
+"a lepšiu podporu všeobecne.<br>\n"
+"<br>\n"
 "Zaznamenávanie IP adries: Jedine miesto, kde sa zaznamenávajú IP adresy,\n"
 "sú záznamy proxy servera projektu Fedora. Tieto záznamy budú odstránené po\n"
 "štyroch týždňoch. IP adresy nie sú zaznamenávané v Smolt databáze. Záznamy\n"
-"z proxy serveru nebudú nikdy verejne dostupné.\n"
-"\n"
-"Užívatelia, ktorí nesúhlasia s touto politikou, jednoducho nemusia smolt používať.\n"
+"z proxy serveru nebudú nikdy verejne dostupné.<br>\n"
+"<br>\n"
+"Užívatelia, ktorí nesúhlasia s touto politikou, jednoducho nemusia smolt "
+"používať.\n"
 "Otázky ohľadom tejto politiky môžete klásť týmu Fedora Infrastructure na\n"
-"e-mailovej adrese admin@fedoraproject.org. Nezabudnite, že váš hardvérový\n"
-"profil môžete kedykoľvek zmazať pomocou príkazu \"smoltDeleteProfile\"\n"
+"e-mailovej adrese <a href=\"mailto:%(mail)s\">%(mail)s</a>. Nezabudnite, že "
+"váš hardvérový\n"
+"profil môžete kedykoľvek zmazať pomocou príkazu <br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"Ďakujeme za účasť a záujem o naše zásady ochrany osobných údajov.\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr ""
+msgstr "Aktuálne hodnotenie pre výrobcu/model"
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr ""
+msgstr "Nehodnotené/neznáme"
 
 #: scan.py:46
 msgid "Non-working"
-msgstr ""
+msgstr "Nefunguje"
 
 #: scan.py:47
 msgid "Partially-working"
-msgstr ""
+msgstr "Čiastočne funguje"
 
 #: scan.py:48
 msgid "Requires 3rd party drivers"
-msgstr ""
+msgstr "Vyžaduje ovládače tretích strán"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr ""
+msgstr "Funguje, potrebuje dodatočnú konfiguráciu"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr ""
+msgstr "Všetko funguje ako má"
 
 #: scan.py:58
 #, python-format
@@ -184,24 +201,21 @@ msgid "Scanning %s for known errata.\n"
 msgstr "Hľadám %s pre známe errata.\n"
 
 #: scan.py:88
-#, fuzzy
 msgid "\tErrata Found!"
-msgstr "Nájdená errata!"
+msgstr "\tNájdená errata!"
 
 #: scan.py:91
-#, fuzzy
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "Nenájdená žiadna errata, ak má tento počítač problémy prejdite prosím na"
+msgstr ""
+"\tNenájdená žiadna errata, ak má tento počítač problémy prejdite prosím na"
 
 #: scan.py:92
-#, fuzzy
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "váš profil a vytvorte stránku wiki o zariadení, aby to ďalší mohli"
+msgstr "\tváš profil a vytvorte stránku wiki o zariadení, aby to ďalší mohli"
 
 #: scan.py:93
-#, fuzzy
 msgid "\tbenefit"
-msgstr "využiť"
+msgstr "\tvyužiť"
 
 #: scan.py:101 smolt.py:1157
 msgid "Error:"
@@ -213,11 +227,11 @@ msgstr "Rada:"
 
 #: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr ""
+msgstr "zadajte (iba) umiestnenie použitého konfiguračného súboru"
 
 #: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
-msgstr "(voliteľné) Registrácia do Fedora Account System"
+msgstr "(voliteľné) Registrácia do Fedora Account Systému"
 
 # review
 #: sendProfile.py:68
@@ -230,77 +244,83 @@ msgstr "odoslať bez potvrdenia"
 
 #: sendProfile.py:83
 msgid "continue to send until success"
-msgstr "skúšaj až kým nepošleš"
+msgstr "skúšaj až kým neodošleš"
 
 # msgstr "pokračovať v odosielani, kým neprebehne úspešne"
 #: sendProfile.py:98
-msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr "toto je automatická kontrola; bude bežať, iba ak bola služba \"smolt\" spustená"
+msgid ""
+"this is an automated checkin, will only run if the \"smolt\" service has "
+"been started"
+msgstr ""
+"toto je automatická kontrola; bude bežať, iba ak bola služba \"smolt\" "
+"spustená"
 
 #: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "neodoslať profil, len hľadať známe hardvérové errata na tomto počítači."
+msgstr ""
+"neodoslať profil, len hľadať známe hardvérové errata na tomto počítači."
 
 #: sendProfile.py:108
-#, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "neodoslať profil, len hľadať známe hardvérové errata na tomto počítači."
+msgstr ""
+"nehľadať známe hardvérové errata na tomto počítači, iba odoslať profil."
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
-msgstr ""
+msgstr "Žiadosť o nové verejné UUID"
 
 #: sendProfile.py:126
 msgid "HTTP proxy"
-msgstr ""
+msgstr "HTTP proxy"
 
 # XXX
 #: sendProfile.py:146
-msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "Smolt bol spustený pre kontrolu zmien ale kontrola zmien je vypnutá (skúste: server smolt start)"
+msgid ""
+"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+"Smolt bol nastavený pre kontrolu zmien ale kontrola zmien je vypnutá "
+"(skúste: service smolt start)"
 
 #: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
-msgstr ""
+msgstr "Úspech!  Tvoje nové verejné UUID je: %s"
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
-msgstr ""
+msgstr "Smolt zhromaždil štyri typy informácií:"
 
 #: sendProfile.py:173
 msgid "Do you want to .."
-msgstr ""
+msgstr "Chcete ..."
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
-msgstr ""
+msgstr "(z)obraziť detaily o zhromaždených informáciách?"
 
 #: sendProfile.py:175
-#, fuzzy
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "Odoslať túto informáciu Smolt serveru? (y/n)"
+msgstr "(O)doslať túto informáciu na Smolt server? (alebo [a] pre áno)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr ""
+msgstr "(u)končiť Smolt? (alebo [n] ak nie)"
 
 #: sendProfile.py:178 smolt.py:669
 msgid "Devices"
-msgstr "Zariadenie"
+msgstr "Zariadenia"
 
 #: sendProfile.py:179
 msgid "File system-related"
-msgstr ""
+msgstr "Súvisiace so súborovým systémom"
 
 #: sendProfile.py:180
-#, fuzzy
 msgid "Distribution-specific"
-msgstr "Popis"
+msgstr "Špecifické pre distribúciu"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr ""
+msgstr "Váš výber (o/z/u/a/n)"
 
 #: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
@@ -308,15 +328,15 @@ msgstr "Ukončujem..."
 
 #: sendProfile.py:217
 msgid "s|y|yes"
-msgstr ""
+msgstr "o|a|áno"
 
 #: sendProfile.py:220
 msgid "q|n|no"
-msgstr ""
+msgstr "u|n|nie"
 
 #: sendProfile.py:222
 msgid "v"
-msgstr ""
+msgstr "z"
 
 #: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
@@ -324,7 +344,7 @@ msgstr "Opakovanie zapnuté - Skúšam znovu"
 
 #: sendProfile.py:255
 msgid "Could not send - Exiting"
-msgstr "Nepodarilo sa odoslať - Ukončujem."
+msgstr "Nepodarilo sa odoslať - Ukončujem"
 
 #: sendProfile.py:260
 msgid "Password:"
@@ -334,50 +354,68 @@ msgstr "Heslo:"
 msgid "Registration Failed, Try again"
 msgstr "Registrácia zlyhala, skúste znovu"
 
-#: sendProfile.py:276
-#, fuzzy, python-format
+#: sendProfile.py:276, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
-msgstr "Pre náhľad vašeho profilu navštívte: %s"
+msgstr ""
+"Zdielať profil: \n"
+"\t%s (verejný)"
 
-#: sendProfile.py:280
-#, fuzzy, python-format
+#: sendProfile.py:280, python-format
 msgid "\tAdmin Password: %s"
-msgstr "Heslo:"
+msgstr "\tAdmin heslo: %s"
 
 #: sendProfile.py:283
-msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgid ""
+"No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr ""
+"Nenájdené žiadne verejné UUID!  Znovu spustite pomocou -n na generovanie "
+"nového verejného uuid"
 
 #: smoltFirstBoot.py:38 smoltFirstBoot.py:39
 msgid "Hardware Profile"
 msgstr "Hardvérový profil"
 
 #: smoltFirstBoot.py:56
-msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "Ste si istý, že nechcete zaslať Váš hardvérový profil? Zaslanie Vašeho profilu je hodnotná informácia pre vývojárov projektu Fedora a uľahčuje riešenie problémov, ktoré môžu nastať aj s Vašim hardvérom."
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr ""
+"Ste si istý, že nechcete zaslať Váš hardvérový profil? Zaslanie Vašeho "
+"profilu je hodnotná informácia pre vývojárov projektu Fedora a uľahčuje "
+"riešenie problémov, ktoré môžu nastať aj s Vašim hardvérom."
 
 #: smoltFirstBoot.py:64
 msgid "_Reconsider sending"
-msgstr "_Prehodnoťte odoslanie"
+msgstr "_Prehodnotiť odoslanie"
 
 #: smoltFirstBoot.py:65
 msgid "_No, do not send."
-msgstr "_Nie, neodosielaj."
+msgstr "_Nie, neodosielať."
 
 # XXX
 #: smoltFirstBoot.py:92
-msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt je nástroj pre zber hardvérových profilov projektu Fedora.  Zaslanie Vášho profilu je významná odozva pre komunitu, ktorá pomáha zamerať naše úsilie na populárne zariadenia a platformy.  Zaslanie profilu je anonymné.  Zaslaním sa zapnú automatické mesačné aktualizácie."
+msgid ""
+"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
+"profile is a great way to give back to the community as this information is "
+"used to help focus our efforts on popular hardware and platforms.  "
+"Submissions are anonymous.  Sending your profile will enable a monthly "
+"update."
+msgstr ""
+"Smolt je nástroj pre zber hardvérových profilov projektu Fedora.  Zaslanie "
+"Vášho profilu je významná odozva pre komunitu, ktorá pomáha zamerať naše "
+"úsilie na populárne zariadenia a platformy.  Zaslanie profilu je anonymné.  "
+"Zaslaním sa zapnú automatické mesačné aktualizácie."
 
 #: smoltFirstBoot.py:119
 msgid "_Participate in KernelOOPS"
-msgstr ""
+msgstr "Účasť v _KernelOOPS"
 
 #: smoltFirstBoot.py:120
 msgid "Submit profile link to _Bodhi"
-msgstr ""
+msgstr "Poslať odkaz profilu na _Bodhi"
 
 #: smoltFirstBoot.py:122
 msgid "_Send Profile"
@@ -389,99 +427,122 @@ msgstr "Ne_odoslať profil"
 
 #: smoltGui.py:92
 msgid "Smolt"
-msgstr ""
+msgstr "Smolt"
 
 #: smoltGui.py:97
-#, fuzzy
 msgid "&File"
-msgstr "_Súbor"
+msgstr "&Súbor"
 
 #: smoltGui.py:98
-#, fuzzy
 msgid "&Help"
-msgstr "_Pomoc"
+msgstr "&Pomoc"
 
 #: smoltGui.py:101
-#, fuzzy
 msgid "&Send Profile"
-msgstr "Odo_slať profil"
+msgstr "Odo&slať profil"
 
 #: smoltGui.py:102
-#, fuzzy
 msgid "&My Smolt Page"
-msgstr "_Moja Smolt stránka"
+msgstr "&Moja Smolt stránka"
 
 #: smoltGui.py:103
 msgid "&Exit"
-msgstr ""
+msgstr "&Koniec"
 
 #: smoltGui.py:104
-#, fuzzy
 msgid "Show &Privacy Policy"
-msgstr "Ukáž _politiku súkromia."
+msgstr "Ukáž &politiku súkromia."
 
 #: smoltGui.py:105
-#, fuzzy
 msgid "&About"
-msgstr "_O Smolt-e"
+msgstr "&O Smolt-e"
 
 #: smoltGui.py:106
-#, fuzzy
 msgid "About &Qt"
-msgstr "_O Smolt-e"
+msgstr "&O Qt"
 
 #: smoltGui.py:120
 msgid "Main Tool Bar"
-msgstr ""
+msgstr "Hlavný panel nástrojov"
 
 #: smoltGui.py:170
 msgid "No distribution-specific data yet"
-msgstr ""
+msgstr "Žiadne špecifické údaje pre distribúciu"
 
 #: smoltGui.py:175 smoltGui.py:238
-#, fuzzy
 msgid "Error"
-msgstr "Chyba:"
+msgstr "Chyba"
 
 #: smoltGui.py:239
 msgid "An error occurred while sending the data to the server."
-msgstr "Nastala chyba pri odosielaní údajov serveru."
+msgstr "Nastala chyba pri odosielaní údajov na server."
 
 #: smoltGui.py:246
 msgid "Profile Sent"
-msgstr ""
+msgstr "Profil odoslaný"
 
 #: smoltGui.py:247
 #, python-format
-msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
+msgid ""
+"<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour "
+"profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</"
+"a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)"
+"s</i>"
 msgstr ""
+"<b>Váš profil bol úspešne odoslaný!</b><br>\t\t\t\t<br>\t\t\t\tVaše profily "
+"sú dostupné online na:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t"
+"\t<br>\t\t\t\tVaše admin heslo profilu je:<br><i>%(password)s</i>"
 
 #: smoltGui.py:270
-#, fuzzy
 msgid "Privacy Policy"
-msgstr "Ukáž _politiku súkromia."
+msgstr "Politika súkromia"
 
 #: smoltGui.py:284
 #, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
-msgstr ""
+msgstr "<h3>Smolt Qt</h3>Verzia %(version)s<br/>"
 
 #: smoltGui.py:285
-msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
+msgid ""
+"<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
+"\tto a Smoon server.<br/>"
 msgstr ""
+"<br/>Smolt Qt je grafický Smolt klient na odosielanie hardvérových profilov "
+"Smolt \t\t\t\tna Smoon server.<br/>"
 
 #: smoltGui.py:288
-msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
+msgid ""
+"<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t"
+"\tsystem that does a hardware scan against a machine and sends the results \t"
+"\t\t\tto a public Fedora Project turbogears server. The sends are anonymous "
+"\t\t\t\tand should not contain any private information other than the "
+"physical \t\t\t\thardware information and basic OS info.<br/>"
 msgstr ""
+"<b>O Smolt:</b><br/>Smolt - nástroj pre zber hardvérových profilov je server-"
+"klient systém\t\t\t\t, ktorý prehľadáva hardvér počítača a odosiela výsledky"
+"\t \t\t\tna verejný Fedora Project turbogears server. Odosielanie je "
+"anonymné \t\t\t\ta neobsahuje žiadne privátne informácie s výmimkou "
+"informácií o fyzickom \t\t\t\thardvéry a základných informácií o operačnom "
+"systéme.<br/>"
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
-msgstr ""
+msgstr "<b>Autori:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
-#: smoltGui.py:296
-#, python-format
-msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
+#: smoltGui.py:296, python-format
+msgid ""
+"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
+"\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can "
+"redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General "
+"Public License \t\t\t\tas published by the Free Software Foundation; either "
+"version 3 \t\t\t\tof the License, or (at your option) any later version."
 msgstr ""
+"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
+"\t\t\t<b>Licencia:</b><br>\t\t\t\tTento program je slobodný softvér. Môžete "
+"ho ďalej šíriť a/alebo \t\t\t\tupravovať podľa ustanovení Všeobecnej "
+"verejnej licencie GNU \t\t\t\ttak, ako bola vydaná organizáciou Free "
+"Software Foundation, a to buď verzie 3 \t\t\t\ttejto licencie, alebo (podľa "
+"vášho uváženia) ktorejkoľvek neskoršej verzie."
 
 #: smolt.py:362
 #, python-format
@@ -505,11 +566,13 @@ msgid ""
 "\tYour pub_uuid could not be written.\n"
 "\n"
 msgstr ""
+"\tVáš pub_uuid sa nepodarilo zapísať.\n"
+"\n"
 
 #: smolt.py:516
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr ""
+msgstr "\tNepodarilo sa zapísať admin token do vyrovnávacej pamäte: %s\n"
 
 #: smolt.py:536 smolt.py:579 smolt.py:609
 #, python-format
@@ -518,16 +581,15 @@ msgstr "Chyba pri nadväzovaní spojenia so serverom: %s"
 
 #: smolt.py:545 smolt.py:596
 msgid "Wrong version, server incapable of handling your client"
-msgstr "Nesprávna verzia klienta, server je nemôže spolupracovať s vašim klientom."
+msgstr "Nesprávna verzia, server nie je schopný spolupracovať s vašim klientom"
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
-msgstr ""
+msgstr "Nastala chyba pri získavaní tokenu"
 
-#: smolt.py:589
-#, fuzzy, python-format
+#: smolt.py:589, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "Nastala chyba pri odosielaní údajov serveru."
+msgstr "Nastala chyba pri nadväzovaní spojenia so serverom: %s"
 
 #: smolt.py:618 smolt.py:691
 msgid "OS"
@@ -535,16 +597,15 @@ msgstr "OS"
 
 #: smolt.py:619 smolt.py:692
 msgid "Default run level"
-msgstr "Štandardná úroveň behu"
+msgstr "Predvolená úroveň behu"
 
 #: smolt.py:620 smolt.py:693
 msgid "Language"
 msgstr "Jazyk"
 
 #: smolt.py:677
-#, fuzzy
 msgid "Filesystem Information"
-msgstr "zapnúť ladiace informácie"
+msgstr "Informácie o súborovom systéme"
 
 #: smolt.py:690
 msgid "UUID"
@@ -560,28 +621,27 @@ msgstr "BogoMIPS"
 
 #: smolt.py:696
 msgid "CPU Vendor"
-msgstr "Výrobca procesora"
+msgstr "Výrobca CPU"
 
 #: smolt.py:697
 msgid "CPU Model"
-msgstr "Model procesora"
+msgstr "Model CPU"
 
 #: smolt.py:698
 msgid "CPU Stepping"
-msgstr ""
+msgstr "Krokovanie CPU"
 
 #: smolt.py:699
 msgid "CPU Family"
-msgstr ""
+msgstr "Rodina CPU"
 
 #: smolt.py:700
-#, fuzzy
 msgid "CPU Model Num"
-msgstr "Model procesora"
+msgstr "Číslo modelu CPU"
 
 #: smolt.py:701
 msgid "Number of CPUs"
-msgstr "Počet procesorov"
+msgstr "Počet CPU"
 
 #: smolt.py:702
 msgid "CPU Speed"
@@ -617,9 +677,8 @@ msgstr "SELinux povolený"
 
 # XXX
 #: smolt.py:710
-#, fuzzy
 msgid "SELinux Policy"
-msgstr "SELinux vynútený"
+msgstr "Politika SELinuxu"
 
 # XXX
 #: smolt.py:711
@@ -633,7 +692,7 @@ msgstr "Nebolo možné uložiť UUID, pokračujem...\n"
 #: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
-msgstr ""
+msgstr "Vaše UUID nebolo možné vytvoriť: %s\n"
 
 #: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
@@ -642,12 +701,11 @@ msgstr "Nebolo možné zistiť UUID systému!\n"
 #: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
-msgstr ""
+msgstr "Chyba pri zisťovaní verejného UUID: %s"
 
 #: smolt.py:1204
-#, fuzzy
 msgid "Unable to determine Public UUID!\n"
-msgstr "Nebolo možné zistiť UUID systému!\n"
+msgstr "Nebolo možné zistiť verejné UUID!\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
@@ -658,11 +716,13 @@ msgstr "Nepodarilo sa zistiť úroveň behu"
 
 #, fuzzy
 #~ msgid ""
-#~ "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
+#~ "The data was successfully sent. If you need to refer to your hardware "
+#~ "profile for a bug report your UUID is \n"
 #~ "%s\n"
 #~ "stored in %s"
 #~ msgstr ""
-#~ "Dáta boli úspešne odoslané.  Ak budete odkazovať na váš hardvérový profil v hlásení o chybe, vaše UUID je \n"
+#~ "Dáta boli úspešne odoslané.  Ak budete odkazovať na váš hardvérový profil "
+#~ "v hlásení o chybe, vaše UUID je \n"
 #~ "%s\n"
 #~ "uložené v %s"
 
@@ -697,17 +757,33 @@ msgstr "Nepodarilo sa zistiť úroveň behu"
 #~ msgstr "Copyright © 2007 Mike McGrath"
 
 #~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
 #~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
 #~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program; if not, write to the Free Software Foundation, Inc., "
+#~ "675 Mass Ave, Cambridge, MA 02139, USA."
 #~ msgstr ""
-#~ "Tento program je slobodný softvér. Môžete ho šíriť a modifikovať podľa ustanovení Všeobecnej verejnej licencie GNU, vydávanej nadáciou Free Software Foundation a to buď verzie 2 tejto licencie, alebo (podľa vášho uváženia) ktorejkoľvek neskoršej verzie.\n"
+#~ "Tento program je slobodný softvér. Môžete ho šíriť a modifikovať podľa "
+#~ "ustanovení Všeobecnej verejnej licencie GNU, vydávanej nadáciou Free "
+#~ "Software Foundation a to buď verzie 2 tejto licencie, alebo (podľa vášho "
+#~ "uváženia) ktorejkoľvek neskoršej verzie.\n"
 #~ "\n"
-#~ "Tento program je rozširovaný v nádeji, že bude užitočný, avšak BEZ AKEJKOĽVEK ZÁRUKY. Neposkytujú sa ani odvodené záruky PREDAJNOSTI alebo VHODNOSTI PRE URČITÝ ÚČEL. Ďalšie podrobnosti hľadajte vo Všeobecnej verejnej licencii GNU.\n"
+#~ "Tento program je rozširovaný v nádeji, že bude užitočný, avšak BEZ "
+#~ "AKEJKOĽVEK ZÁRUKY. Neposkytujú sa ani odvodené záruky PREDAJNOSTI alebo "
+#~ "VHODNOSTI PRE URČITÝ ÚČEL. Ďalšie podrobnosti hľadajte vo Všeobecnej "
+#~ "verejnej licencii GNU.\n"
 #~ "\n"
-#~ "Kópiu Všeobecnej verejnej licencie GNU ste mali dostať spolu s týmto programom. Ak sa tak nestalo, požiadajte o ňu Free Software Foundation, Inc.,51 Franklin Street, piate poschodie, Boston, MA 02110-1301, USA."
+#~ "Kópiu Všeobecnej verejnej licencie GNU ste mali dostať spolu s týmto "
+#~ "programom. Ak sa tak nestalo, požiadajte o ňu Free Software Foundation, "
+#~ "Inc.,51 Franklin Street, piate poschodie, Boston, MA 02110-1301, USA."
 
 #~ msgid "Communication with server failed"
 #~ msgstr "Komunikácia so serverom nebola úspešná"
