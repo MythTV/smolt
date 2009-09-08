@@ -4,17 +4,40 @@ __requires__ = "Turbogears[future]"
 import pkg_resources
 pkg_resources.require("TurboGears")
 
+
+# Import without warnings on stderr
+import sys
+stderr_backup = sys.stderr
+class DevNull:
+    def write(self, data):
+        pass
+    def flush(self):
+        pass
+
+
+# BEGIN Import error silencer
+sys.stderr = DevNull()
 from turbogears.view import engines
+sys.stderr = stderr_backup
+# END Import error silencer
+
+
 import turbogears.view
 import turbogears.util as tg_util
 from turbogears import view, database, errorhandling, config
 from itertools import izip
 from inspect import isclass
 from turbogears import update_config, start_server
+
+# BEGIN Import error silencer
+sys.stderr = DevNull()
 import cherrypy
+sys.stderr = stderr_backup
+# END Import error silencer
+
+
 cherrypy.lowercase_api = True
 from os.path import *
-import sys
 import time
 from hardware.wiki import *
 from turboflot import TurboFlot
@@ -36,7 +59,14 @@ else:
 
 from sqlalchemy import *
 
+
+# BEGIN Import error silencer
+sys.stderr = DevNull()
 from hardware.model import *
+sys.stderr = stderr_backup
+# END Import error silencer
+
+
 from hardware.hwdata import DeviceMap
 
 #bind = metadata.bind
