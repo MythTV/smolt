@@ -1,0 +1,352 @@
+# translation of smolt.master-smoon.messages.po to Punjabi
+# Translations template for hardware.
+# Copyright (C) 2008 ORGANIZATION
+# This file is distributed under the same license as the hardware project.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# Jaswinder Singh <jsingh@redhat.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: smolt.master-smoon.messages\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2008-05-01 22:37-0400\n"
+"PO-Revision-Date: 2009-09-08 17:07+0530\n"
+"Last-Translator: Jaswinder Singh <jsingh@redhat.com>\n"
+"Language-Team: Punjabi <Punjabi-users@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: hardware/controllers/root.py:95
+msgid ""
+"The credentials you supplied were not correct or did not grant access to "
+"this resource."
+msgstr ""
+
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr ""
+
+#: hardware/controllers/root.py:101
+msgid "Please log in."
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਲਾਗਇਨ ਕਰੋ।"
+
+#: hardware/templates/deviceclass.html:9
+msgid "Devices by class ${type}"
+msgstr "class ${type} ਦੁਆਰਾ ਜੰਤਰ"
+
+#: hardware/templates/deviceclass.html:15
+msgid "Total Count"
+msgstr "ਕੁੱਲ ਗਿਣਤੀ"
+
+#: hardware/templates/deviceclass.html:19
+#, python-format
+msgid "% hosts detected ${type}"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "ਵਿਕਰੇਤਾ"
+
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "ਜੰਤਰ"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+msgid "Device"
+msgstr "ਜੰਤਰ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Bus"
+msgstr "ਬੱਸ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "ਡਰਾਈਵਰ"
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr "ਵਿਕਰੇਤਾ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Vendor"
+msgstr "ਉਪ ਵਿਕਰੇਤਾ"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Device"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:36
+msgid "% tot hosts"
+msgstr ""
+
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr ""
+
+#: hardware/templates/devices.html:19
+msgid "Unique Devices"
+msgstr ""
+
+#: hardware/templates/devices.html:24
+msgid "Raw Devices"
+msgstr ""
+
+#: hardware/templates/devices.html:34
+msgid "Machines / Device"
+msgstr ""
+
+#: hardware/templates/devices.html:44
+msgid "Classes"
+msgstr ""
+
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr ""
+
+#: hardware/templates/report_search.html:38
+msgid "Dataset"
+msgstr ""
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr ""
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr ""
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr ""
+
+#: hardware/templates/show.html:31
+msgid "Breaks System"
+msgstr ""
+
+#: hardware/templates/show.html:32
+msgid "Doesn't Work"
+msgstr ""
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr ""
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr ""
+
+#: hardware/templates/show.html:35
+msgid "Worked out of the box"
+msgstr ""
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr ""
+
+#: hardware/templates/show.html:39
+msgid "Overall Rating:"
+msgstr ""
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr ""
+
+#: hardware/templates/show.html:43
+msgid "Operating System"
+msgstr ""
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr ""
+
+#: hardware/templates/show.html:45
+msgid "System Vendor"
+msgstr ""
+
+#: hardware/templates/show.html:46
+msgid "System Model"
+msgstr ""
+
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+msgid "Kernel"
+msgstr ""
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr ""
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr ""
+
+#: hardware/templates/show.html:50
+msgid "Admin Password"
+msgstr ""
+
+#: hardware/templates/show.html:60
+msgid "Rating"
+msgstr ""
+
+#: hardware/templates/show.html:60
+msgid "Class"
+msgstr ""
+
+#: hardware/templates/stats.html:9
+msgid "Stats"
+msgstr ""
+
+#: hardware/templates/stats.html:15
+msgid "Total Registered Hosts"
+msgstr ""
+
+#: hardware/templates/stats.html:23
+msgid "Total bogomips"
+msgstr ""
+
+#: hardware/templates/stats.html:27
+msgid "Total processors"
+msgstr ""
+
+#: hardware/templates/stats.html:31
+msgid "Total MHz"
+msgstr ""
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr ""
+
+#: hardware/templates/stats.html:40
+msgid "Arch"
+msgstr ""
+
+#: hardware/templates/stats.html:40
+msgid "Count"
+msgstr ""
+
+#: hardware/templates/stats.html:40
+#, python-format
+msgid "% of total"
+msgstr ""
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr ""
+
+#: hardware/templates/stats.html:66
+msgid "Runlevel"
+msgstr ""
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr ""
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr ""
+
+#: hardware/templates/stats.html:119
+msgid "RAM"
+msgstr ""
+
+#: hardware/templates/stats.html:132
+msgid "Swap"
+msgstr ""
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr ""
+
+#: hardware/templates/stats.html:147
+msgid "Speed (MHz)"
+msgstr ""
+
+#: hardware/templates/stats.html:154
+msgid "Number of CPUs"
+msgstr ""
+
+#: hardware/templates/stats.html:161
+msgid "CPU Vendor"
+msgstr ""
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr ""
+
+#: hardware/templates/stats.html:193
+msgid "Form Factor"
+msgstr ""
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr ""
+
+#: hardware/templates/stats.html:208
+msgid "SELinux Enabled"
+msgstr ""
+
+#: hardware/templates/stats.html:215
+msgid "SELinux Enforce"
+msgstr ""
+
+#: hardware/templates/stats.html:222
+msgid "SELinux Policy"
+msgstr ""
+
+#: hardware/templates/stats.html:234
+msgid "Filesystems"
+msgstr ""
+
+#: hardware/templates/stats.html:242
+msgid "Filesystem size"
+msgstr ""
+
+#: hardware/templates/stats.html:253
+msgid "Myth Role"
+msgstr ""
+
+#: hardware/templates/stats.html:266
+msgid "Myth Remote"
+msgstr ""
+
+#: hardware/templates/stats.html:279
+msgid "Myth  Theme"
+msgstr ""
+
+#: hardware/templates/welcome.html:12
+msgid "Enter your profile UUID:"
+msgstr ""
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr ""
+
+#: hardware/templates/welcome.html:17
+msgid ""
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+
+#: hardware/templates/welcome.html:19
+msgid "Top Vendor Chart"
+msgstr ""
+
+#: hardware/templates/welcome.html:23
+msgid "More info"
+msgstr ""
+
+#: hardware/templates/welcome.html:25
+msgid ""
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
+"information about specific devices. Usage and other general answers can "
+"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+
