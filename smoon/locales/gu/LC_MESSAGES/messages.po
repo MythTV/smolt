@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-09-08 16:39+0530\n"
+"PO-Revision-Date: 2009-09-08 17:12+0530\n"
 "Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
@@ -24,11 +24,11 @@ msgstr ""
 msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
-msgstr ""
+msgstr "શ્રેયો જે પૂરા પાડેલ છે તે યોગ્ય નથી અથવા આ સ્ત્રોતનાં પ્રવેશને સંમતિ  ન હતી."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr ""
+msgstr "આ સ્ત્રોતને પ્રવેશ કરી રહ્યા હોય તે પહેલાં તમારે તમારાં શ્રેયો પૂરા પાડવા જ જોઇએ."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
@@ -36,7 +36,7 @@ msgstr "મહેરબાની કરીને પ્રવેશો."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr ""
+msgstr "Devices by class ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
@@ -45,7 +45,7 @@ msgstr "કુલ ગણતરી"
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr ""
+msgstr "% hosts detected ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -86,7 +86,7 @@ msgstr "માહિતી ઉમેરાયેલ"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% કુલ યજમાનો"
+msgstr "% tot hosts"
 
 #: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
@@ -235,7 +235,7 @@ msgstr "ગણતરી"
 #: hardware/templates/stats.html:40
 #, python-format
 msgid "% of total"
-msgstr ""
+msgstr "% of total"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
@@ -283,7 +283,7 @@ msgstr "Bogomips"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr ""
+msgstr "ફોર્મ ફેક્ટર"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -307,7 +307,7 @@ msgstr "ફાઇલસિસ્ટમો"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr ""
+msgstr "ફાઇલ સિસ્ટમ માપ"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
@@ -342,7 +342,7 @@ msgstr ""
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr ""
+msgstr "વધારે જાણકારી"
 
 #: hardware/templates/welcome.html:25
 msgid ""
