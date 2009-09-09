@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-09-08 17:12+0530\n"
+"PO-Revision-Date: 2009-09-09 11:03+0530\n"
 "Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "મહેરબાની કરીને પ્રવેશો."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr "Devices by class ${type}"
+msgstr "વર્ગ ${type} દ્દારા ઉપકરણો"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
@@ -98,7 +98,7 @@ msgstr "અનન્ય ઉપકરણો"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr ""
+msgstr "રો ઉપકરણો"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
@@ -146,7 +146,7 @@ msgstr "કામ કરે છે, પરંતુ જરૂરી વધાર
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr ""
+msgstr "બોક્સનું કામ સમાપ્ત થયેલ છે"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
@@ -323,7 +323,7 @@ msgstr "Myth  થીમ"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr ""
+msgstr "તમારી રૂપરેખા UUID ને દાખલ કરો:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
@@ -331,14 +331,17 @@ msgstr "પરિસ્થિતિઓ"
 
 #: hardware/templates/welcome.html:17
 msgid ""
-"For detailed statistics about the devices in the database see <a "
-"href='/static/stats/stats.html'>/stats</a> or <a "
-"href='/static/stats/devices.html'>/devices</a>"
+"For detailed statistics about the devices in the database see <a href='/"
+"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
+"devices</a>"
 msgstr ""
+"ડેટાબેઝમાં ઉપકરણો વિશે વિગત થયેલ પરિસ્થિતિઓ માટે <a href='/"
+"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
+"devices</a> ને જુઓ"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr ""
+msgstr "ઉપર વેન્ડર નક્ષો"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
@@ -346,8 +349,10 @@ msgstr "વધારે જાણકારી"
 
 #: hardware/templates/welcome.html:25
 msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
-"information about specific devices. Usage and other general answers can "
-"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
+"about specific devices. Usage and other general answers can also be found at "
+"the <a href='/wiki/'>Wiki</a>.</p>"
 msgstr ""
+"<p>ચોક્કસ ઉપકરણો વિશે વિગત થયેલ જાણકારી માટે <a href='/wiki/'>Wiki</a> ને બ્રાઉઝ કરો અને શોધો. "
+"વપરાશ અને બીજા સામાન્ય જવાબો <a href='/wiki/'>Wiki</a> પર પણ શોધી શકો છો.</p>"
 
