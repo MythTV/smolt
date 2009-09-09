@@ -154,7 +154,9 @@ def _handle_simple_stuff(session, data, machine_id):
 
     # Pre-process sync mirror
     try:
-        data['mirrors']['sync'] = single_trailing_slash(data['mirrors']['sync'])
+        current = data['mirrors']['sync']
+        if current != 'WITHHELD':
+            data['mirrors']['sync'] = single_trailing_slash(current)
     except KeyError:
         pass
 
