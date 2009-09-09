@@ -152,8 +152,9 @@ class ByClass(object):
 
         # We only want hosts that detected hardware (IE, hal was working properly)
         print 'Device: total_host with hardware'
-        total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))])\
-                      .execute().fetchone()[0]
+        #total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))])\
+        #              .execute().fetchone()[0]
+        total_hosts=stats['total_hosts']
 
         for cls in classes:
             type = cls.cls
