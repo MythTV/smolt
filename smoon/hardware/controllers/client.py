@@ -179,6 +179,11 @@ class Client(object):
         session.flush()
         return dict(pub_uuid=pub_uuid)
 
+    def _fix_vendor(vendor):
+        rc = vendor
+        if vendor.startswith('Dell'):
+            rc = 'Dell, Inc.'
+        return rc
 
     @expose(template="hardware.templates.pub_uuid")
     @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
@@ -217,7 +222,7 @@ class Client(object):
         host_sql.num_cpus = host_dict['num_cpus']
         host_sql.system_memory = host_dict['system_memory']
         host_sql.system_swap = host_dict['system_swap']
-        host_sql.vendor = host_dict['vendor']
+        host_sql.vendor = _fix_vendor(host_dict['vendor'])
         host_sql.system = host_dict['system']
         host_sql.kernel_version = host_dict['kernel_version']
         host_sql.formfactor = host_dict['formfactor']
