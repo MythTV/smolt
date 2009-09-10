@@ -1,21 +1,21 @@
-# translation of pa.po to Punjabi
+# translation of smolt.master.pa.po to Punjabi
 # Copyright (C) YEAR ORGANIZATION
 #
 # A S Alam <aalam@users.sf.net>, 2007.
 # Jaswinder Singh <jsingh@redhat.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: pa\n"
+"Project-Id-Version: smolt.master.pa\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-09-08 22:39+0530\n"
-"Last-Translator: \n"
-"Language-Team: Punjabi/Panjabi <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2009-09-10 12:14+0530\n"
+"Last-Translator: Jaswinder Singh <jsingh@redhat.com>\n"
+"Language-Team: Punjabi <Punjabi-users@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: deleteProfile.py:36 smolt.py:360
@@ -34,7 +34,7 @@ msgstr "ਸਰਵਰ ਦਾ URL ਦਿਓ (ਮੂਲ \"%default\")"
 
 #: deleteProfile.py:56 sendProfile.py:73
 msgid "print information only, do not send"
-msgstr "ਸਿਰਫ਼ ਜਾਣਕਾਰੀ ਛਾਪੋ, ਭੇਜੋ ਨਾ"
+msgstr "ਸਿਰਫ ਜਾਣਕਾਰੀ ਛਾਪੋ, ਭੇਜੋ ਨਾ"
 
 #: deleteProfile.py:61 sendProfile.py:88
 #, python-format
@@ -90,7 +90,8 @@ msgstr "ਕਿਸਮ"
 msgid "Description"
 msgstr "ਵੇਰਵਾ"
 
-#: privacypolicy.py:3, python-format
+#: privacypolicy.py:3
+#, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
@@ -352,7 +353,8 @@ msgstr "ਪਾਸਵਰਡ:"
 msgid "Registration Failed, Try again"
 msgstr "ਰਜਿਸਟਰੇਸ਼ਨ ਫੇਲ ਹੋਈ, ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
 
-#: sendProfile.py:276, python-format
+#: sendProfile.py:276
+#, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
@@ -360,7 +362,8 @@ msgstr ""
 "ਆਪਣਾ ਪਰੋਫਾਈਲ ਸ਼ੇਅਰ ਕਰਨ ਲਈ: \n"
 "\t%s (ਪਬਲਿਕ)"
 
-#: sendProfile.py:280, python-format
+#: sendProfile.py:280
+#, python-format
 msgid "\tAdmin Password: %s"
 msgstr "\tਪਰਬੰਧਕ ਪਾਸਵਰਡ: %s"
 
@@ -580,7 +583,8 @@ msgstr "ਗਲਤ ਵਰਜਨ, ਤੁਹਾਡੇ ਕਲਾਂਈਟ ਦੀ ਨ
 msgid "Something went wrong fetching a token"
 msgstr "ਟੋਕਨ ਲੈਣ ਵੇਲੇ ਕੁਝ ਗਲਤ ਹੋਇਆ ਹੈ"
 
-#: smolt.py:589, python-format
+#: smolt.py:589
+#, python-format
 msgid "An error has occured while contacting the server: %s"
 msgstr "An error has occured while contacting the server: %s"
 
@@ -702,76 +706,3 @@ msgstr "ਪਬਲਿਕ UUID ਪਤਾ ਕਰਨ ਵਿੱਚ ਅਸਮਰਥ!\n
 msgid "Cannot Determine Runlevel"
 msgstr "ਰੰਨਲੈਵਲ ਪਤਾ ਨਹੀਂ ਕਰ ਸਕਦਾ"
 
-#~ msgid "y"
-#~ msgstr "y"
-
-#, fuzzy
-#~ msgid ""
-#~ "The data was successfully sent. If you need to refer to your hardware "
-#~ "profile for a bug report your UUID is \n"
-#~ "%s\n"
-#~ "stored in %s"
-#~ msgstr ""
-#~ "ਡਾਟਾ ਸਫਲਤਾਪੂਰਕ ਭੇਜਿਆ ਗਿਆ ਹੈ।  ਜੇ ਤੁਹਾਨੂ  ਬੱਗ ਰਿਪੋਰਟ ਲਈ ਆਪਣਾ ਹਾਰਡਵੇਅਰ ਪਰੋਫਾਈਲ ਭੇਜਣ ਦੀ "
-#~ "ਲੋੜ ਹੈ ਤਾਂ ਤੁਹਾਡੇ UUID \n"
-#~ "%s ਨੂੰ\n"
-#~ "%s ਵਿੱਚ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ"
-
-#~ msgid "_Quit"
-#~ msgstr "ਬੰਦ ਕਰੋ(_Q)"
-
-#~ msgid "Quit the program without sending your hardware profile to the server"
-#~ msgstr "ਆਪਣਾ ਹਾਰਡਵੇਅਰ ਪਰੋਫਾਈਲ ਸਰਵਰ ਤੇ ਭੇਜੇ ਬਿਨਾਂ ਪਰੋਗਰਾਮ ਬੰਦ ਕਰੋ"
-
-#~ msgid "_Send"
-#~ msgstr "ਭੇਜੋ(_S)"
-
-#~ msgid "Send your hardware profile to the server."
-#~ msgstr "ਆਪਣਾ ਹਾਰਡਵੇਅਰ ਪਰੋਫਾਈਲ ਸਰਵਰ ਤੇ ਭੇਜੋ।"
-
-#~ msgid "Show the Smolt privacy policy."
-#~ msgstr "Smolt ਗੋਪਨੀਅਤਾ ਪਾਲਿਸੀ ਵੇਖਾਓ।"
-
-#~ msgid "Take me to my smolt profile page"
-#~ msgstr "ਮੈਨੂੰ ਮੇਰੇ smolt ਪਰੋਫਾਈਲ ਸਫੇ ਤੇ ਲੈ ਜਾਓ"
-
-#~ msgid "Smolt Privacy Policy"
-#~ msgstr "ਸਮੋਲਟ ਪ੍ਰਾਈਵੇਸੀ ਨੀਤੀ"
-
-#~ msgid "translator-credits"
-#~ msgstr "ਜਸਵਿੰਦਰ ਸਿੰਘ <j.phulewala@gmail.com>"
-
-#~ msgid "Fedora hardware profiler."
-#~ msgstr "ਫੇਡੋਰਾ ਹਾਰਡਵੇਅਰ ਪਰੋਫਾਈਲ"
-
-#~ msgid "Copyright © 2007 Mike McGrath"
-#~ msgstr "ਕਾਪੀਰਾਈਟ © 2007 Mike McGrath"
-
-#~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public License as published by the "
-#~ "Free Software Foundation; either version 2 of the License, or (at your "
-#~ "option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but "
-#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
-#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
-#~ "Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along "
-#~ "with this program; if not, write to the Free Software Foundation, Inc., "
-#~ "675 Mass Ave, Cambridge, MA 02139, USA."
-#~ msgstr ""
-#~ "ਇਹ ਪਰੋਗਰਾਮ ਫਰੀ ਸਾਫਟਵੇਅਰ ਹੈ; ਤੁਸੀਂ ਇਸ ਨੂੰ ਫਰੀ ਸਾਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ ਦੁਆਰਾ ਪਬਲਿਸ਼ ਕੀਤੇ GNU "
-#~ "ਜਨਰਲ ਪਬਲਿਕ ਲਾਈਸੈਂਸ ਦੀਆਂ ਸ਼ਰਤਾਂ ਅਧੀਨ ਮੁੜ-ਵੰਡ ਅਤੇ/ਜਾਂ ਸੋਧ ਸਕਦੇ ਹੋ; ਲਾਈਸੈਂਸ ਦਾ ਵਰਜਨ 2, ਜਾਂ "
-#~ "(ਤੁਹਾਡੀ ਚੋਣ ਮੁਤਾਬਿਕ) ਕੋਈ ਵੀ ਬਾਅਦ ਵਾਲਾ ਵਰਜਨ।\n"
-#~ "\n"
-#~ "ਇਸ ਪਰੋਗਰਾਮ ਨੂੰ ਇਸ ਕਰਕੇ ਵੰਡਿਆ ਜਾਂਦਾ ਹੈ ਤਾਂ ਕਿ ਇਹ ਵਰਤੋਂ-ਯੋਗ ਹੋਵੇਗਾ, ਪਰ ਬਿਨਾਂ ਕਿਸੇ ਵਾਰੰਟੀ; "
-#~ "MERCHANTABILITY ਦੁਆਰਾ ਦਿੱਤੀ ਵਾਰੰਟੀ ਤੋਂ ਵੀ ਬਿਨਾਂ ਜਾਂ ਕਿਸੇ ਖਾਸ ਉਦੇਸ਼ ਲਈ।  ਵੇਰਵਾ ਲਈ GNU "
-#~ "ਜਨਰਲ ਪਬਲਿਕ ਲਾਈਸੈਂਸ ਵੇਖੋ।\n"
-#~ "\n"
-#~ "ਤੁਹਾਨੂੰ ਇਸ ਪਰੋਗਰਾਮ ਨਾਲ GNU ਜਨਰਲ ਪਬਲਿਕ ਲਾਈਸੈਂਸ ਦੀ ਨਕਲ ਮਿਲਣੀ ਚਾਹੀਦੀ ਹੈ; ਜੇ ਨਹੀਂ, "
-#~ "ਤਾਂਫਰੀ ਸਾਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ, Inc., 675 Mass Ave, Cambridge, MA 02139, USA ਨੂੰ ਲਿਖੋ।"
-
-#~ msgid "Communication with server failed"
-#~ msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਫੇਲ ਹੋਇਆ"
