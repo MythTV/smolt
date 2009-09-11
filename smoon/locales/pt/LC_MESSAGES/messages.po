@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: smolt.master-smoon.messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-09-11 11:57+0100\n"
+"PO-Revision-Date: 2009-09-11 12:19+0100\n"
 "Last-Translator: Sérgio Mesquita <sergiomesquita@cm-porto.pt>\n"
 "Language-Team: pt <fedora-trans-pt@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Contagem total"
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr "%de máquinas detectadas ${type}"
+msgstr "%d máquinas detectadas ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
