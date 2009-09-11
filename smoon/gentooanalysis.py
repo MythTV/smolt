@@ -18,7 +18,7 @@
 
 from playmodel import *
 from playmodel import _gentoo_distfiles_mirrors_table, _gentoo_mirror_pool_table
-from playmodel import _gentoo_accept_keywords_table, _gentoo_keyword_pool_table
+from playmodel import _gentoo_accept_keywords_table, _gentoo_keyword_pool_table, _gentoo_arch_table
 from playmodel import _gentoo_features_table, _gentoo_feature_pool_table
 from playmodel import _gentoo_global_use_flags_table, _gentoo_use_flag_pool_table
 from playmodel import _gentoo_sync_mirror_table, _gentoo_mirror_pool_table
@@ -85,7 +85,11 @@ class GentooReporter:
             return res
 
         columns = [GentooKeywordString.name, func.count(GentooAcceptKeywordRel.machine_id), func.sum(GentooAcceptKeywordRel.stable)]
-        pool_join = _gentoo_accept_keywords_table.join(_gentoo_keyword_pool_table)
+        # Also join with arch table to count stuff like ACCEPT_KEYWORDS="~mips ~x86" once only
+        pool_join = _gentoo_accept_keywords_table.join(_gentoo_keyword_pool_table).\
+                join(_gentoo_arch_table, \
+                    and_(_gentoo_arch_table.c.machine_id == _gentoo_accept_keywords_table.c.machine_id, \
+                    _gentoo_arch_table.c.keyword_id == _gentoo_accept_keywords_table.c.keyword_id))
         query = select(columns, from_obj=[pool_join]).\
                 group_by(GentooAcceptKeywordRel.keyword_id).order_by(\
                 GentooKeywordString.name)
