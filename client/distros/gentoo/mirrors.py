@@ -124,6 +124,8 @@ class Mirrors:
     def serialize(self):
         res = {
             'sync':self._sync_url,
+            # NOTE:  Keep distfiles mirrors in original order as the order
+            #        determines how likely/often a mirror is actually hit
             'distfiles':self._mirror_urls,
         }
         return res
@@ -146,7 +148,7 @@ class Mirrors:
 
         lines.append('<h3>Distfiles</h3>')
         lines.append('<ul>')
-        for url in sorted(self._mirror_urls):
+        for url in self._mirror_urls:
             lines.append('<li><a href="%(url)s">%(url)s</a></li>' % {'url':html.escape(url)})
         lines.append('</ul>')
 
@@ -159,7 +161,7 @@ class Mirrors:
         lines.append('')
         lines.append('Distfiles')
         lines.append('`````````````````````')
-        for v in sorted(self._mirror_urls):
+        for v in self._mirror_urls:
             lines.append('- ' + v)
 
     def _dump(self):
