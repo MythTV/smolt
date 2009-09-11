@@ -174,8 +174,8 @@ class ByClass(object):
               ComputerLogicalDevice.subsys_device_id,
               ComputerLogicalDevice.subsys_vendor_id],
               ComputerLogicalDevice.cls==type).alias('d')
-            types = select([Device, func.count(HostLink.device_id.distinct()
-                    ).label('count')], Device.c.id==HostLink.host_link_id).group_by(Device.c.id)\
+            types = select([Device, func.count(HostLink.host_link_id.distinct()
+                    ).label('count')], Device.c.id==HostLink.device_id).group_by(Device.c.id)\
                     .order_by(desc('count')).limit(100).execute().fetchall()
 #            types = select([devs,
 #                            func.count(func.distinct(host_links.c.host_link_id)).label('c')],
