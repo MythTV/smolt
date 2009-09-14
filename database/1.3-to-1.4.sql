@@ -5,6 +5,4 @@ create index last_modified_join on host (id, last_modified);
 -- 
 create index device_host_link on host_links (device_id, host_link_id);
 -- This one is a maybe, don't want to forget it
--- create index system_vendor on host (system, vendor);
--- This is a duplicate, dropping 5 seconds
 drop index class_2 on device;
