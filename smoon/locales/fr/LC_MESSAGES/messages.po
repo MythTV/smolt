@@ -1,29 +1,38 @@
 # Translations template for hardware
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# Thomas Canniot <mrtom@fedoraproject.org>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-09-02 18:59+0100\n"
-"Last-Translator: Michel Duquaine <michelduquaine@gmail.com>\n"
-"Language-Team: fedora-trans-fr <fedora-trans-fr@redhat.com>\n"
+"PO-Revision-Date: 2009-09-19 15:44+0200\n"
+"Last-Translator: Thomas Canniot <mrtom@fedoraproject.org>\n"
+"Language-Team: French <fedora-trans-fr@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.1\n"
 "X-Poedit-Language: French\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: hardware/controllers/root.py:95
-msgid "The credentials you supplied were not correct or did not grant access to this resource."
-msgstr "Les informations d'identification que vous avez fournies ne sont pas correctes ou ne donnent pas accès à cette ressource."
+msgid ""
+"The credentials you supplied were not correct or did not grant access to "
+"this resource."
+msgstr ""
+"Les informations d'identification que vous avez fournies ne sont pas "
+"correctes ou ne donnent pas accès à cette ressource."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr "Vous devez fournir vos informations d'identification avant d'accéder à cette ressource."
+msgstr ""
+"Vous devez fournir vos informations d'identification avant d'accéder à cette "
+"ressource."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
@@ -37,7 +46,7 @@ msgstr "Périphériques par classe ${type}"
 msgid "Total Count"
 msgstr "Décompte total"
 
-#: hardware/templates/deviceclass.html:19
+#: hardware/templates/deviceclass.html:19, python-format
 msgid "% hosts detected ${type}"
 msgstr "% hôtes détectés ${type}"
 
@@ -45,14 +54,12 @@ msgstr "% hôtes détectés ${type}"
 msgid "Vendors"
 msgstr "Vendeurs"
 
-#: hardware/templates/deviceclass.html:34
-#: hardware/templates/devices.html:9
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
 msgstr "Périphériques"
 
-#: hardware/templates/deviceclass.html:36
-#: hardware/templates/show.html:60
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
 msgid "Device"
 msgstr "Périphérique"
 
@@ -64,8 +71,7 @@ msgstr "Bus"
 msgid "Driver"
 msgstr "Pilote"
 
-#: hardware/templates/deviceclass.html:36
-#: hardware/templates/stats.html:92
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
 msgid "Vendor"
 msgstr "Vendeur"
 
@@ -85,8 +91,7 @@ msgstr "Date d'ajout"
 msgid "% tot hosts"
 msgstr "% total hôtes"
 
-#: hardware/templates/devices.html:15
-#: hardware/templates/stats.html:19
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
 msgstr "Nombre total de périphériques inscrits"
 
@@ -106,8 +111,7 @@ msgstr "Machines / Périphérique"
 msgid "Classes"
 msgstr "Classes"
 
-#: hardware/templates/report_search.html:37
-#: hardware/templates/welcome.html:10
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
 msgid "Lookup"
 msgstr "Chercher"
 
@@ -175,8 +179,7 @@ msgstr "Vendeur du système"
 msgid "System Model"
 msgstr "Modèle du système"
 
-#: hardware/templates/show.html:47
-#: hardware/templates/stats.html:180
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
 msgstr "Noyau"
 
@@ -330,8 +333,14 @@ msgid "Statistics"
 msgstr "Statistiques"
 
 #: hardware/templates/welcome.html:17
-msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
-msgstr "Pour des statistiques détaillées au sujet des périphériques dans la base de données, voir <a href='/static/stats/stats.html'>/stats</a> ou <a href='/static/stats/devices.html'>/périphériques</a>"
+msgid ""
+"For detailed statistics about the devices in the database see <a href='/"
+"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
+"devices</a>"
+msgstr ""
+"Pour des statistiques détaillées au sujet des périphériques dans la base de "
+"données, voir <a href='/static/stats/stats.html'>/stats</a> ou <a href='/"
+"static/stats/devices.html'>/périphériques</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
@@ -342,6 +351,13 @@ msgid "More info"
 msgstr "Plus d'informations"
 
 #: hardware/templates/welcome.html:25
-msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr "<p>Pour de l'information détaillée au sujet de périphériques spécifiques, naviguez et cherchez dans le <a href='/wiki/'>Wiki</a>. L'usage et d'autres réponses générales peuvent également être trouvées sur le <a href='/wiki/'>Wiki</a>.</p>"
+msgid ""
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
+"about specific devices. Usage and other general answers can also be found at "
+"the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+"<p>Pour de l'information détaillée au sujet de périphériques spécifiques, "
+"naviguez et cherchez dans le <a href='/wiki/'>Wiki</a>. L'usage et d'autres "
+"réponses générales peuvent également être trouvées sur le <a href='/"
+"wiki/'>Wiki</a>.</p>"
 
