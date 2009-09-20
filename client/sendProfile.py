@@ -36,6 +36,7 @@ import smolt
 from smolt import debug
 from smolt import error
 from smolt import get_config_attr
+from smolt import to_ascii
 from scan import scan, rating
 from gate import GateFromConfig
 
@@ -179,10 +180,10 @@ if not opts.autoSend:
         'label_fs_related':_('File system-related'),
         'label_distro_specific':_('Distribution-specific'),
 
-        'general':inner_indent(profile.get_general_info_excerpt()),
-        'devices':inner_indent(profile.get_devices_info_excerpt()),
-        'file_system':inner_indent(profile.get_file_system_info_excerpt()),
-        'distro':inner_indent(profile.get_distro_info_excerpt()),
+        'general':inner_indent(to_ascii(profile.get_general_info_excerpt())),
+        'devices':inner_indent(to_ascii(profile.get_devices_info_excerpt())),
+        'file_system':inner_indent(to_ascii(profile.get_file_system_info_excerpt())),
+        'distro':inner_indent(to_ascii(profile.get_distro_info_excerpt())),
     }
 
     submit = False
