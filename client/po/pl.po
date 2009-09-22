@@ -6,9 +6,9 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-08-11 15:17+0200\n"
+"PO-Revision-Date: 2009-09-22 22:08+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish <pl@li.org>\n"
+"Language-Team: Polish <fedora-trans-pl@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,30 +20,30 @@ msgstr "Komunikat serwera: \"%s\""
 
 #: deleteProfile.py:46 sendProfile.py:48
 msgid "enable debug information"
-msgstr "włącz informacje debugowania"
+msgstr "włączenie informacji debugowania"
 
 #: deleteProfile.py:51 sendProfile.py:58
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
-msgstr "podaj URL serwera (domyślnie \"%default\")"
+msgstr "proszę podać adres URL serwera (domyślnie \"%default\")"
 
 #: deleteProfile.py:56 sendProfile.py:73
 msgid "print information only, do not send"
-msgstr "tylko wyświetl informacje, nie wysyłaj"
+msgstr "tylko wyświetlenie informacji, bez wysyłania"
 
 #: deleteProfile.py:61 sendProfile.py:88
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
-msgstr "podaj agenta użytkownika HTTP (domyślnie \"%default\")"
+msgstr "proszę podać agenta użytkownika HTTP (domyślnie \"%default\")"
 
 #: deleteProfile.py:66 sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr "podaj czas oczekiwania HTTP w sekundach (domyślnie %default sekund)"
+msgstr "proszę podać czas oczekiwania HTTP w sekundach (domyślnie %default sekund)"
 
 #: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr "podaj UUID do użycia, przydatne głównie do debugowania i testowania."
+msgstr "proszę podać UUID do użycia, przydatne głównie do debugowania i testowania."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -51,7 +51,7 @@ msgstr "Błąd podczas kontaktowania się z serwerem:"
 
 #: deleteProfile.py:97
 msgid "Profile removed, please verify at"
-msgstr "Profil został usunięty, sprawdź"
+msgstr "Profil został usunięty, proszę sprawdzić na"
 
 #: gui.py:35 sendProfile.py:177 smolt.py:655
 msgid "General"
@@ -123,9 +123,9 @@ msgstr ""
 "<span></span>\n"
 "Smolt wysyła tylko podstawowe informacje o sprzęcie i systemie operacyjnym\n"
 "do serwera Smolt Fedory (smoon). Jedynym, co łączy bazę danych z komputerem\n"
-"jest UUID. Dopóki nie podasz swojego UUID, wysyłanie jest anonimowe. Jeśli \n"
-"w dowolnym czasie użytkownik zechce usunąć swój profil z bazy danych, musi\n"
-"tylko uruchomić<br>\n"
+"jest UUID. Dopóki użytkownik nie poda swojego UUID, wysyłanie jest "
+"anonimowe. Jeśli w dowolnym czasie użytkownik zechce usunąć swój profil z\n"
+"bazy danych, musi tylko wykonać<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
@@ -189,15 +189,15 @@ msgstr "Skanowanie %s w poszukiwaniu znanych aktualizacji.\n"
 
 #: scan.py:88
 msgid "\tErrata Found!"
-msgstr "\tZnaleziono aktualizację!"
+msgstr "\tOdnaleziono aktualizację."
 
 #: scan.py:91
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "\tNie znaleziono aktualizacji, jeśli masz problem z tym komputerem,"
+msgstr "\tNie odnaleziono aktualizacji, jeśli występuje problem z tym komputerem,"
 
 #: scan.py:92
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "\tprzejdź swojego profilu i utwórz stronę wiki dla urządzenia, aby inni"
+msgstr "\tproszę przejść do profilu i utworzyć stronę wiki dla urządzenia, aby inni"
 
 #: scan.py:93
 msgid "\tbenefit"
@@ -213,7 +213,7 @@ msgstr "Podpowiedź:"
 
 #: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr "podaj położenie (jedynego) użytego pliku konfiguracji"
+msgstr "proszę podać położenie (jedynego) użytego pliku konfiguracji"
 
 #: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
@@ -221,15 +221,15 @@ msgstr "(opcjonalne) rejestracja w Systemie kont Fedory"
 
 #: sendProfile.py:68
 msgid "password, will prompt if not specified"
-msgstr "hasło, zostaniesz o nie poproszony, jeśli nie zostanie podane"
+msgstr "hasło, użytkownik zostanie o nie poproszone, jeśli nie zostanie podane"
 
 #: sendProfile.py:78
 msgid "don't prompt to send, just send"
-msgstr "nie przypominaj o wysłaniu, po prostu wyślij"
+msgstr "bez przypominania o wysłaniu, po prostu wysłanie"
 
 #: sendProfile.py:83
 msgid "continue to send until success"
-msgstr "kontynuuj wysyłanie do osiągnięcia sukcesu"
+msgstr "kontynuowanie wysyłania do osiągnięcia sukcesu"
 
 #: sendProfile.py:98
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
@@ -237,15 +237,15 @@ msgstr "to jest zautomatyzowane sprawdzanie, zostanie uruchomione tylko, jeśli 
 
 #: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "przeskanuj ten komputer tylko w poszukiwaniu znanych aktualizacji sprzętu, nie wysyłaj profilu."
+msgstr "przeskanowanie tego komputera tylko w poszukiwaniu znanych aktualizacji sprzętu, bez wysyłania profilu."
 
 #: sendProfile.py:108
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "nie skanuj tego komputera w poszukiwaniu znanych aktualizacji sprzętu, tylko wyślij profil."
+msgstr "bez skanowania tego komputera w poszukiwaniu znanych aktualizacji sprzętu, tylko wysłanie profilu."
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
-msgstr "Zażądaj nowego publicznego UUID"
+msgstr "Żądanie nowego publicznego UUID"
 
 #: sendProfile.py:126
 msgid "HTTP proxy"
@@ -258,7 +258,7 @@ msgstr "Smolt jest ustawiony tak, aby sprawdzał, ale sprawdzanie jest wyłączo
 #: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
-msgstr "Powodzenie! Nowy publiczny UUID to: %s"
+msgstr "Powodzenie. Nowy publiczny UUID to: %s"
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
@@ -294,7 +294,7 @@ msgstr "Specyficzne dla dystrybucji"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr "Twój wybór (s/w/z/t/n): "
+msgstr "Wybór (s/w/z/t/n): "
 
 #: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
@@ -326,7 +326,7 @@ msgstr "Hasło:"
 
 #: sendProfile.py:265
 msgid "Registration Failed, Try again"
-msgstr "Rejestracja nie powiodła się, spróbuj ponownie"
+msgstr "Rejestracja nie powiodła się, proszę spróbować ponownie"
 
 #: sendProfile.py:276
 #, python-format
@@ -344,7 +344,7 @@ msgstr "\tHasło administratora: %s"
 
 #: sendProfile.py:283
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
-msgstr "Nie znaleziono publicznego UUID! Ponownie wykonaj za pomocą -n, aby utworzyć nowy publiczny UUID"
+msgstr "Nie odnaleziono publicznego UUID. Proszę ponownie wykonać za pomocą -n, aby utworzyć nowy publiczny UUID"
 
 #: smoltFirstBoot.py:38 smoltFirstBoot.py:39
 msgid "Hardware Profile"
@@ -352,19 +352,19 @@ msgstr "Profil sprzętu"
 
 #: smoltFirstBoot.py:56
 msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "Na pewno nie chcesz wysłać profilu? Przysłany profil jest cennym źródłem informacji dla rozwoju i może pomóc w rozwiązywaniu problemów, na jakie możesz natrafić używając tego sprzętu."
+msgstr "Na pewno nie wysłać profilu? Przysłany profil jest cennym źródłem informacji dla rozwoju i może pomóc w rozwiązywaniu problemów, na jakie można natrafić używając tego sprzętu."
 
 #: smoltFirstBoot.py:64
 msgid "_Reconsider sending"
-msgstr "Ponownie p_rzemyśl wysłanie"
+msgstr "Ponowne p_rzemyślenie wysłania"
 
 #: smoltFirstBoot.py:65
 msgid "_No, do not send."
-msgstr "_Nie wysyłaj."
+msgstr "Bez wysyła_nia."
 
 #: smoltFirstBoot.py:92
 msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt jest narzędziem profilowania sprzętu dla Projektu Fedora. Wysyłając profil wspomożesz społeczność, ponieważ te informacje są używane, aby skupić nasze wysiłki na popularnym sprzęcie i platformach. Wysyłanie jest anonimowe. Wysłanie profilu umożliwi comiesięczne aktualizacje."
+msgstr "Smolt jest narzędziem profilowania sprzętu dla Projektu Fedora. Wysyłając profil wspomaga się społeczność, ponieważ te informacje są używane, aby skupić nasze wysiłki na popularnym sprzęcie i platformach. Wysyłanie jest anonimowe. Wysłanie profilu włączy comiesięczne aktualizacje."
 
 #: smoltFirstBoot.py:119
 msgid "_Participate in KernelOOPS"
@@ -441,7 +441,7 @@ msgstr "Wysłano profil"
 #: smoltGui.py:247
 #, python-format
 msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
-msgstr "<b>Profil został pomyślnie wysłany!</b><br>\t\t\t\t<br>\t\t\t\tProfile są dostępne online na:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tHasło administratora profilu to:<br><i>%(password)s</i>"
+msgstr "<b>Profil został pomyślnie wysłany.</b><br>\t\t\t\t<br>\t\t\t\tProfile są dostępne online na:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tHasło administratora profilu to:<br><i>%(password)s</i>"
 
 #: smoltGui.py:270
 msgid "Privacy Policy"
@@ -450,7 +450,7 @@ msgstr "Polityka prywatności"
 #: smoltGui.py:284
 #, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
-msgstr "<h3>Smolt Qt</h3>Version %(version)s<br/>"
+msgstr "<h3>Smolt Qt</h3>Wersja %(version)s<br/>"
 
 #: smoltGui.py:285
 msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
@@ -484,7 +484,7 @@ msgid ""
 "Run \"service haldaemon start\" as root"
 msgstr ""
 "Nie można połączyć się z HAL, czy jest uruchomiony?\n"
-"Wykonaj \"service haldaemon start\" jako root"
+"Proszę wykonać \"service haldaemon start\" jako root"
 
 #: smolt.py:507
 msgid ""
@@ -620,7 +620,7 @@ msgstr "Nie można utworzyć pliku UUID: %s\n"
 
 #: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
-msgstr "Nie można określić UUID systemu!\n"
+msgstr "Nie można ustalić UUID systemu.\n"
 
 #: smolt.py:1203
 #, python-format
@@ -629,8 +629,8 @@ msgstr "Błąd podczas ustalania publicznego UUID: %s"
 
 #: smolt.py:1204
 msgid "Unable to determine Public UUID!\n"
-msgstr "Nie można określić publicznego UUID!\n"
+msgstr "Nie można ustalić publicznego UUID.\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
-msgstr "Nie można określić poziomu uruchamiania"
+msgstr "Nie można ustalić poziomu uruchamiania"
