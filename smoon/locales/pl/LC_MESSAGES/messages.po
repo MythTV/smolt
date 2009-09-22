@@ -6,9 +6,9 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2008-06-10 18:39+0200\n"
+"PO-Revision-Date: 2009-09-22 22:12+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish <pl@li.org>\n"
+"Language-Team: Polish <fedora-trans-pl@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,11 +24,11 @@ msgstr ""
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
 msgstr ""
-"Musisz podać dane uwierzytelniające przed uzyskaniem dostępu do tego zasobu."
+"Należy podać dane uwierzytelniające przed uzyskaniem dostępu do tego zasobu."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "Zaloguj się."
+msgstr "Proszę się zalogować."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
@@ -36,12 +36,11 @@ msgstr "Urządzenia według klasy ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "Całkowity licznik"
+msgstr "Całkowita liczba"
 
 #: hardware/templates/deviceclass.html:19
-#, python-format
 msgid "% hosts detected ${type}"
-msgstr "% hostów wykryto ${type}"
+msgstr "% komputery wykryto ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -82,7 +81,7 @@ msgstr "Data dodania"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% tot komputerów"
+msgstr "% tot komputery"
 
 #: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
@@ -106,7 +105,7 @@ msgstr "Klasy"
 
 #: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr "Znajdź"
+msgstr "Wyszukanie"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
@@ -146,7 +145,7 @@ msgstr "Działa od razu"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "Wyświetl wszystkie informacje"
+msgstr "Wyświetlenie wszystkich informacji"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
@@ -226,7 +225,7 @@ msgstr "Architektura"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr "Licznik"
+msgstr "Liczba"
 
 #: hardware/templates/stats.html:40
 #, python-format
@@ -319,7 +318,7 @@ msgstr "Motyw Mytha"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "Podaj UUID profilu:"
+msgstr "Proszę podać UUID profilu:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
@@ -331,8 +330,8 @@ msgid ""
 "href='/static/stats/stats.html'>/stats</a> or <a "
 "href='/static/stats/devices.html'>/devices</a>"
 msgstr ""
-"Aby uzyskać szczegółowe statystyki urządzeń w bazie danych, zobacz <a "
-"href='/static/stats/stats.html'>/stats</a> lub <a "
+"Aby uzyskać szczegółowe statystyki urządzeń w bazie danych, proszę zobaczyć "
+"<a href='/static/stats/stats.html'>/stats</a> lub <a "
 "href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
@@ -349,6 +348,6 @@ msgid ""
 "information about specific devices. Usage and other general answers can "
 "also be found at the <a href='/wiki/'>Wiki</a>.</p>"
 msgstr ""
-"<p>Przejrzyj i przeszukaj <a href='/wiki/'>Wiki</a>, aby uzyskać szczegółowe "
-"informacje o poszczególnych urządzeniach. Sposób użycia i inne ogólne "
-"odpowiedzi można znaleźć także na <a href='/wiki/'>Wiki</a>.</p>"
+"<p>Można przejrzeć i przeszukać <a href='/wiki/'>Wiki</a>, aby uzyskać "
+"szczegółowe informacje o poszczególnych urządzeniach. Sposób użycia i inne "
+"ogólne odpowiedzi można znaleźć także na <a href='/wiki/'>Wiki</a>.</p>"
