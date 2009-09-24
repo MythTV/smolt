@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-09-22 22:12+0200\n"
+"PO-Revision-Date: 2009-09-24 24:53+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <fedora-trans-pl@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -39,8 +39,9 @@ msgid "Total Count"
 msgstr "Całkowita liczba"
 
 #: hardware/templates/deviceclass.html:19
+#, python-format
 msgid "% hosts detected ${type}"
-msgstr "% komputery wykryto ${type}"
+msgstr "% hosty wykryto ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -326,13 +327,13 @@ msgstr "Statystyki"
 
 #: hardware/templates/welcome.html:17
 msgid ""
-"For detailed statistics about the devices in the database see <a "
-"href='/static/stats/stats.html'>/stats</a> or <a "
-"href='/static/stats/devices.html'>/devices</a>"
+"For detailed statistics about the devices in the database see <a href='/"
+"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
+"devices</a>"
 msgstr ""
 "Aby uzyskać szczegółowe statystyki urządzeń w bazie danych, proszę zobaczyć "
-"<a href='/static/stats/stats.html'>/stats</a> lub <a "
-"href='/static/stats/devices.html'>/devices</a>"
+"<a href='/static/stats/stats.html'>/stats</a> lub <a href='/static/stats/"
+"devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
@@ -344,9 +345,9 @@ msgstr "Więcej informacji"
 
 #: hardware/templates/welcome.html:25
 msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
-"information about specific devices. Usage and other general answers can "
-"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
+"about specific devices. Usage and other general answers can also be found at "
+"the <a href='/wiki/'>Wiki</a>.</p>"
 msgstr ""
 "<p>Można przejrzeć i przeszukać <a href='/wiki/'>Wiki</a>, aby uzyskać "
 "szczegółowe informacje o poszczególnych urządzeniach. Sposób użycia i inne "
