@@ -17,6 +17,18 @@ PREFIX=$(DESTDIR)/usr
 BINDIR=$(PREFIX)/bin
 DATADIR=$(PREFIX)/share
 
+ifndef DOCDIR
+_DOCDIR=$(DATADIR)/$(NAME)/doc
+else
+_DOCDIR=$(DESTDIR)/$(DOCDIR)
+endif
+
+ifndef MANDIR
+_MANDIR=$(DATADIR)/man
+else
+_MANDIR=$(DESTDIR)/$(MANDIR)
+endif
+
 all: po/smolt.pot $(MO_FILES)
 
 po/smolt.pot: $(PY_FILES)
@@ -33,7 +45,7 @@ install-main: move-mo
 	mkdir -p $(ETC)/smolt/
 	mkdir -p $(BINDIR)/
 	mkdir -p $(DATADIR)/locale/
-	mkdir -p $(DATADIR)/man/man1
+	mkdir -p $(_MANDIR)/man1
 	
 	cp -advr mo/* $(DATADIR)/locale/ 
 	cp -advr config.py $(SMOLTCONFIGDIR)
@@ -56,12 +68,12 @@ install-main: move-mo
 	cp ./icons/smolt-icon-24.png $(DATADIR)/icons/hicolor/24x24/apps/smolt.png
 	cp ./icons/smolt-icon-32.png $(DATADIR)/icons/hicolor/32x32/apps/smolt.png
 	
-	mkdir -p $(DATADIR)/$(NAME)/doc
-	install -p -m 0644 ../doc/PrivacyPolicy $(DATADIR)/$(NAME)/doc
+	mkdir -p $(_DOCDIR)
+	install -p -m 0644 ../doc/PrivacyPolicy $(_DOCDIR)
 	
-	gzip -c -9 man/smoltSendProfile.1 > $(DATADIR)/man/man1/smoltSendProfile.1.gz
-	gzip -c -9 man/smoltDeleteProfile.1 > $(DATADIR)/man/man1/smoltDeleteProfile.1.gz
-	gzip -c -9 man/smoltGui.1 > $(DATADIR)/man/man1/smoltGui.1.gz
+	gzip -c -9 man/smoltSendProfile.1 > $(_MANDIR)/man1/smoltSendProfile.1.gz
+	gzip -c -9 man/smoltDeleteProfile.1 > $(_MANDIR)/man1/smoltDeleteProfile.1.gz
+	gzip -c -9 man/smoltGui.1 > $(_MANDIR)/man1/smoltGui.1.gz
 	
 	ln -sf $(DATADIR)/$(NAME)/client/sendProfile.py $(BINDIR)/smoltSendProfile
 	ln -sf $(DATADIR)/$(NAME)/client/deleteProfile.py $(BINDIR)/smoltDeleteProfile
