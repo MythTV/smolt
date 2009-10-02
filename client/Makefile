@@ -59,9 +59,9 @@ install-main: move-mo
 	mkdir -p $(DATADIR)/$(NAME)/doc
 	install -p -m 0644 ../doc/PrivacyPolicy $(DATADIR)/$(NAME)/doc
 	
-	gzip -9 man/smoltSendProfile.1 > $(DATADIR)/man/man1/smoltSendProfile.1.gz
-	gzip -9 man/smoltDeleteProfile.1 > $(DATADIR)/man/man1/smoltDeleteProfile.1.gz
-	gzip -9 man/smoltGui.1 > $(DATADIR)/man/man1/smoltGui.1.gz
+	gzip -c -9 man/smoltSendProfile.1 > $(DATADIR)/man/man1/smoltSendProfile.1.gz
+	gzip -c -9 man/smoltDeleteProfile.1 > $(DATADIR)/man/man1/smoltDeleteProfile.1.gz
+	gzip -c -9 man/smoltGui.1 > $(DATADIR)/man/man1/smoltGui.1.gz
 	
 	ln -sf $(DATADIR)/$(NAME)/client/sendProfile.py $(BINDIR)/smoltSendProfile
 	ln -sf $(DATADIR)/$(NAME)/client/deleteProfile.py $(BINDIR)/smoltDeleteProfile
