@@ -161,6 +161,13 @@ class _Gentoo(Distro):
         global_use_flags.get_metrics(metrics_dict)
 
         machine_data['installed_packages'] = installed_packages.serialize()
+        # Stupid fix to handle server's magic transformation of '+' to ' '
+        # TODO XXX
+        # - Why the hell is it happening?
+        # - What else is transformed/crippled?
+        # - How do we turn it off?
+        for i in machine_data['installed_packages']:
+            i[0] = i[0].replace('+', '%%2B')
         installed_packages.dump_html(html_lines)
         installed_packages.dump_rst(rst_lines)
         installed_packages.get_metrics(metrics_dict)
