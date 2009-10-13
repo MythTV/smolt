@@ -3,7 +3,6 @@ import string
 import gtk
 import gobject
 import sys
-import rhpl.iconv
 import os
 import subprocess
 import commands
