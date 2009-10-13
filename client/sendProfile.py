@@ -164,6 +164,8 @@ if opts.scanOnly:
 
 if not opts.autoSend:
     if opts.printOnly:
+        for line in profile.getProfile():
+            print line
         sys.exit(0)
 
     def inner_indent(text):
