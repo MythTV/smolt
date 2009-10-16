@@ -1,235 +1,236 @@
-# translation of smolt.master-smoon.messages.po to Simplified Chinese
+# translation of smolt.master-smoon.messages.po to Hindi
 # Translations template for hardware.
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
-# Leah Liu <lliu@redhat.com>, 2009.
+# Rajesh Ranjan <rajesh672@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master-smoon.messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-09-04 15:43+1000\n"
-"Last-Translator: Leah Liu <lliu@redhat.com>\n"
-"Language-Team: Simplified Chinese <zh@li.org>\n"
+"PO-Revision-Date: 2009-09-09 13:39+0530\n"
+"Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
+"Language-Team: Hindi <hindi.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.1\n"
 "X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
 
 #: hardware/controllers/root.py:95
 msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
-msgstr "您提供的凭证不正确或者无法给予对这个资源的访问。"
+msgstr "जो प्रमाण आपने दिया था वह सही नहीं था या इस संसाधन में पहुँच नहीं देता था."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr "您必须在访问这个资源前提供您的凭证。"
+msgstr "इस संसाधन की पहुँच के पहले आपको जरूर प्रमाण देना चाहिए."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "请登录。"
+msgstr "कृपया लॉगिन करें."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr "根据类型 ${type} 的设备"
+msgstr "वर्ग ${type} से युक्ति"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "总计"
+msgstr "कुल गिनती"
 
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr "% hosts 侦测到 ${type}"
+msgstr "% hosts detected ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr "零售商"
+msgstr "विक्रेता"
 
 #: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
-msgstr "设备"
+msgstr "औज़ार"
 
 #: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
 msgid "Device"
-msgstr "设备"
+msgstr "युक्ति"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
-msgstr "总线"
+msgstr "बस"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
-msgstr "驱动程序"
+msgstr "ड्राइवर"
 
 #: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr "零售商"
+msgstr "विक्रेता"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "分销商"
+msgstr "उप विक्रेता"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "分销商"
+msgstr "उप युक्ति"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr "添加的日期"
+msgstr "दिनांक जोड़ा गया"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% 合计主机"
+msgstr "% tot hosts"
 
 #: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr "全部注册的设备"
+msgstr "कुल पंजीकृत युक्ति"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr "唯一设备"
+msgstr "बेजोड़ युक्ति"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr "原始设备"
+msgstr "कच्ची युक्ति"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "机器 / 设备"
+msgstr "मशीन / युक्ति"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
-msgstr "分类"
+msgstr "वर्ग"
 
 #: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr "查找"
+msgstr "देखें"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
-msgstr "数据组"
+msgstr "डेटासेट"
 
 #: hardware/templates/report_search.html:53
 msgid "Result Set"
-msgstr "结果组"
+msgstr "परिणाम सेट"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr "显示复选框"
+msgstr "बक्सा दिखाएँ"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr "我不使用或者不知道"
+msgstr "मैं इसे प्रयोग नहीं करता हूँ या मैं नहीं जानता हूँ"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr "切入系统"
+msgstr "ब्रेक तंत्र"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
-msgstr "不工作"
+msgstr "काम नहीं करता है"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "需要第三方驱动程序"
+msgstr "3रे पक्ष ड्राइवर की जरूरत है"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "工作，但需要额外配置"
+msgstr "कार्य करता है, लेकिन अतिरिक्त विन्यास जरूरी है"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr "即时可用"
+msgstr "सोचे के अलावे काम किया"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "显示所有信息"
+msgstr "सभी जानकारी दिखाएँ"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr "总评级："
+msgstr "सकल रेटिंग:"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr "公共 UUID"
+msgstr "सार्वजनिक UUID"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
-msgstr "操作系统"
+msgstr "ऑपरेटिंग सिस्टम"
 
 #: hardware/templates/show.html:44
 msgid "Platform"
-msgstr "平台"
+msgstr "प्लेटफॉर्म"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr "系统零售商"
+msgstr "तंत्र विक्रेता"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr "系统型号"
+msgstr "तंत्र मॉडल"
 
 #: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
-msgstr "内核"
+msgstr "कर्नेल"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr "格式元素"
+msgstr "फॉर्मफैक्टर"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
-msgstr "最后修改"
+msgstr "पिछली मर्तबा परिवर्धित"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr "管理员密码"
+msgstr "एडमिन कूटशब्द"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
-msgstr "等级"
+msgstr "रेटिंग"
 
 #: hardware/templates/show.html:60
 msgid "Class"
-msgstr "类别"
+msgstr "वर्ग"
 
 #: hardware/templates/stats.html:9
 msgid "Stats"
-msgstr "状态"
+msgstr "स्थिति"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr "全部注册主机"
+msgstr "कुल पंजीकृत मेजबान"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr "全部 bogomip"
+msgstr "कुल बॉगमिप्स"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr "全部处理器"
+msgstr "कुल प्रोसेसर"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr "全部 MHz"
+msgstr "कुल MHz"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr "构架"
+msgstr "आर्क"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr "构架"
+msgstr "Arch"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr "计数"
+msgstr "गिनती"
 
 #: hardware/templates/stats.html:40
 #, python-format
@@ -238,19 +239,19 @@ msgstr "% of total"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
-msgstr "操作系统"
+msgstr "OS"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr "运行级别"
+msgstr "रनलेवल"
 
 #: hardware/templates/stats.html:79
 msgid "Language"
-msgstr "语言"
+msgstr "भाषा"
 
 #: hardware/templates/stats.html:105
 msgid "Model"
-msgstr "型号"
+msgstr "मॉडल"
 
 #: hardware/templates/stats.html:119
 msgid "RAM"
@@ -266,23 +267,23 @@ msgstr "CPU"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
-msgstr "速度（MHz）"
+msgstr "गति (MHz)"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "CPU 数"
+msgstr "CPU की संख्या"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr "CPU 零售商"
+msgstr "CPU विक्रेता"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr "Bogomip"
+msgstr "बोगोमिप्स"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr "格式因素"
+msgstr "फॉर्म कारक"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -290,67 +291,66 @@ msgstr "Selinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr "启用 SELinux "
+msgstr "SELinux सक्रिय"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr "强制 SELinux"
+msgstr "SELinux पुनर्बलित करें"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr "SELinux 策略"
+msgstr "SELinux नीति"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
-msgstr "文件系统"
+msgstr "फ़ाइलसिस्टम"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr "文件系统大小"
+msgstr "फ़ाइलतंत्र आकार"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
-msgstr "Myth 角色"
+msgstr "मिथक भूमिका"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr "Myth 远程"
+msgstr "मिथक रिमोट"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr "Myth 主题"
+msgstr "मिथक प्रसंग"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "输入您的侧写 UUID："
+msgstr "अपना प्रोफ़ाइल UUID दाखिल करें:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
-msgstr "统计"
+msgstr "आंकड़े"
 
 #: hardware/templates/welcome.html:17
 msgid ""
-"For detailed statistics about the devices in the database see <a href='/"
-"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
-"devices</a>"
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
 msgstr ""
-"有关数据库中这些设备的详细统计请查看 <a href='/static/stats/stats.html'>/"
-"stats</a> 或者 <a href='/static/stats/devices.html'>/devices</a>"
+"डेटाबेस में युक्ति के बारे में विस्तृत विवरण के लिए देखें <a "
+"href='/static/stats/stats.html'>/stats</a> या <a "
+"href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr "顶极零售商图表"
+msgstr "शीर्ष विक्रेता चार्ट"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr "更多"
+msgstr "अधिक सूचना"
 
 #: hardware/templates/welcome.html:25
 msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
-"about specific devices. Usage and other general answers can also be found at "
-"the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
-"<p>有关具体设备的详细信息清浏览并搜索 <a href='/wiki/'>Wiki</a>。用法及其它常"
-"规答案请查看 <a href='/wiki/'>Wiki</a>.</p>"
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
+"information about specific devices. Usage and other general answers can "
+"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr "<p><a href='/wiki/'>Wiki</a> को विस्तार से विशेष युक्ति के बारे में सूचना के लिए ब्राउज़ करें और खोजें. प्रयोग और दूसरे सामान्य उत्तर यहाँ पाए जा सकते हैं <a href='/wiki/'>Wiki</a>.</p>"
 

@@ -45,10 +45,10 @@
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
           <tr><th>${_("Arch")}</th><th>${_("Count")}</th><th>${_("% of total")}</th><th halign="left"> </th></tr>
           <tr py:for='arch in stat["archs"]'>
-            <th align="left">${arch.platform}</th>
-            <td align="right">${arch.cnt}</td>
-            <td align="right"><strong>${'%.1f' % (float(arch.cnt) / total_active_hosts * 100) } %</strong></td>
-            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(arch.cnt) / total_active_hosts * 100 }'><div width='100%' id="bar"></div></td><td width='${ 100 - (float(arch.cnt) / total_active_hosts * 100) }'></td></tr></table></td>
+            <th align="left">${arch[1]}</th>
+            <td align="right">${arch[0]}</td>
+            <td align="right"><strong>${'%.1f' % (float(arch[0]) / total_active_hosts * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(arch[0]) / total_active_hosts * 100 }'><div width='100%' id="bar"></div></td><td width='${ 100 - (float(arch[0]) / total_active_hosts * 100) }'></td></tr></table></td>
           </tr>
         </table>
         <!--${ET(flot['archs'].display())}-->

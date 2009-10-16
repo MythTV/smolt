@@ -97,6 +97,11 @@ template_config['mythrole']=config.get("stats_template.mythrole", [])
 template_config['mythremote']=config.get("stats_template.mythremote", [])
 template_config['myththeme']=config.get("stats_template.myththeme", [])
 
+
+right_now = date.today() - timedelta(days=90)
+right_now = '%s-%s-%s' % (right_now.year, right_now.month, right_now.day)
+
+
 def _process_output(output, template, format):
     """Produces final output form from the data returned from a
     controller method.
@@ -182,8 +187,9 @@ class ByClass(object):
 
         # We only want hosts that detected hardware (IE, hal was working properly)
         print 'Device: total_host with hardware'
-        total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))])\
-                      .execute().fetchone()[0]
+        #total_hosts = select([func.count(func.distinct(host_links.c.host_link_id))])\
+        #              .execute().fetchone()[0]
+        total_hosts=stats['total_hosts']
 
         for cls in classes:
             type = cls.cls
@@ -272,22 +278,24 @@ total_hosts = stats['total_hosts']
 flot = {}
 # Arch calculation
 if not  template_config['archs'] == [] :
-    print 'arch stats'
-    stats['archs'] = handle_withheld_elem(
-            session.query(Arch).all(),
-            'platform', WITHHELD_MAGIC_STRING)
-    archs = []
-    counts = []
-    i = 0
-    for arch in stats['archs']:
-        archs.append([i + .5, arch.platform])
-        counts.append([i, arch.cnt])
-        i += 1
-    flot['archs'] = TurboFlot([
-        {   'data' : counts,
-            'bars' : { 'show' : True },
-            'label' : 'Archs', }],
-        {   'xaxis' : { 'ticks' : archs }, } )
+    print '====================== archs ======================'
+    session.bind = metadata.bind
+    stats['archs'] = session.execute('''select count(platform), platform from host use index(platform) where host.last_modified > '%s' group by platform order by count(platform) desc;''' % right_now).fetchall()
+#    stats['archs'] = handle_withheld_elem(
+#            session.query(Arch).all(),
+#            'platform', WITHHELD_MAGIC_STRING)
+#    archs = []
+#    counts = []
+#    i = 0
+#    for arch in stats['archs']:
+#        archs.append([i + .5, arch.platform])
+#        counts.append([i, arch.cnt])
+#        i += 1
+#    flot['archs'] = TurboFlot([
+#        {   'data' : counts,
+#            'bars' : { 'show' : True },
+#            'label' : 'Archs', }],
+#        {   'xaxis' : { 'ticks' : archs }, } )
 
 print "====================== OS Stats ======================"
 if not  template_config['os'] == [] :
@@ -533,7 +541,9 @@ stats['registered_devices'] = session.query(ComputerLogicalDevice).count()
 if not  template_config['filesystem'] == [] :
     print '====================== filesystems ======================'
     #stats['filesystems'] = session.query(FileSys).all()
-    stats['filesystems'] = select([FileSystem.fs_type, func.count(FileSystem.fs_type).label('cnt')], FileSystem.host_id == Host.id).where(Host.last_modified > (date.today() - timedelta(days=90))).group_by(FileSystem.fs_type).order_by(desc(func.count(FileSystem.fs_type))).execute().fetchall()
+    # SELECT file_systems.fs_type, count(file_systems.fs_type) AS cnt FROM file_systems, host use index(last_modified_join) WHERE file_systems.host_id = host.id AND host.last_modified > '2009-06-11' GROUP BY file_systems.fs_type ORDER BY count(file_systems.fs_type) DESC;
+    session.bind = metadata.bind
+    stats['filesystems'] = session.execute('''SELECT file_systems.fs_type, count(file_systems.fs_type) AS cnt FROM file_systems, host use index(last_modified_join) WHERE file_systems.host_id = host.id AND host.last_modified > '%s' GROUP BY file_systems.fs_type ORDER BY count(file_systems.fs_type) DESC;''' % right_now).fetchall()
     stats['total_fs'] = session.query(FileSys).count()
     if not stats['total_fs']:
         stats['total_fs'] = 1

@@ -30,6 +30,12 @@ import inspect
 sys.path.append(os.path.join(os.path.dirname(inspect.currentframe().f_code.co_filename), '..'))
 from play import handle_gentoo_data
 
+def _fix_vendor(vendor):
+    rc = vendor
+    if vendor.startswith('Dell'):
+        rc = 'Dell, Inc.'
+    return rc
+
 def handle_submission(session, uuid, host):
     logging.info('Processing hardware UUID %s' % uuid)
     host_dict = simplejson.loads(host)
@@ -58,7 +64,7 @@ def handle_submission(session, uuid, host):
     host_sql.num_cpus = host_dict['num_cpus']
     host_sql.system_memory = host_dict['system_memory']
     host_sql.system_swap = host_dict['system_swap']
-    host_sql.vendor = host_dict['vendor']
+    host_sql.vendor = _fix_vendor(host_dict['vendor'])
     host_sql.system = host_dict['system']
     host_sql.kernel_version = host_dict['kernel_version']
     host_sql.formfactor = host_dict['formfactor']
