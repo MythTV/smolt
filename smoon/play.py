@@ -524,6 +524,9 @@ def _handle_installed_packages(session, data, machine_id):
         installed_packages = []
     current_install_dict = {}
     for e in installed_packages:
+        # Repair package name
+        e[0] = e[0].replace(' ', '+')
+
         package, version, slot, keyword_status, masked, unmasked, \
                 world, repo, raw_use_flags = e
         key = (package, slot)
