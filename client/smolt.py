@@ -53,6 +53,9 @@ from fs_util import get_fslist
 from gate import Gate
 from uuiddb import UuidDb
 import codecs
+import MultipartPostHandler
+import urllib2
+
 
 try:
     import subprocess
@@ -691,20 +694,20 @@ class _Hardware:
         debug('smoon server URL: %s' % smoonURL)
 
         serialized_host_obj_machine = serialize(send_host_obj, human=False)
-        send_host_str = ('uuid=%s&host=' + \
-                         serialized_host_obj_machine + \
-                         '&token=%s&smolt_protocol=%s') % \
-                         (self.host.UUID, tok, smoltProtocol)
 
         debug('sendHostStr: %s' % serialized_host_obj_machine)
         debug('Sending Host')
 
         try:
-            o = grabber.urlopen(urljoin(smoonURL + "/", "/client/add_json", False), data=send_host_str,
-                                http_headers=(
-                            ('Content-length', '%i' % len(send_host_str)),
-                            ('Content-type', 'application/x-www-form-urlencoded')))
-        except urlgrabber.grabber.URLGrabError, e:
+            request_url = urljoin(smoonURL + "/", "/client/add_json", False)
+            opener = urllib2.build_opener(MultipartPostHandler.MultipartPostHandler)
+            params = {  'uuid':self.host.UUID,
+                        'host':serialized_host_obj_machine,
+                        'token':tok,
+                        'smolt_protocol':smoltProtocol}
+            o = opener.open(request_url, params)
+
+        except Exception, e:
             error(_('Error contacting Server: %s') % e)
             return (1, None, None)
         else:
