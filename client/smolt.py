@@ -55,6 +55,9 @@ from uuiddb import UuidDb
 import logging
 from logging.handlers import RotatingFileHandler
 import codecs
+import MultipartPostHandler
+import urllib2
+
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 SELINUX_ENABLED = 1
@@ -612,11 +615,6 @@ class _Hardware:
         debug('smoon server URL: %s' % smoonURL)
 
         serialized_host_obj_machine = serialize(send_host_obj, human=False)
-        send_host_str = ('uuid=%s&host=' + \
-                         serialized_host_obj_machine + \
-                         '&token=%s&smolt_protocol=%s') % \
-                         (self.host.UUID, tok, smoltProtocol)
-
 
         # Log-dump submission data
         log_matrix = {
@@ -656,11 +654,14 @@ class _Hardware:
         request_url = urljoin(smoonURL + "/", entry_point, False)
         try:
             logging.debug('Sending request to %s' % request_url)
-            o = grabber.urlopen(request_url, data=send_host_str,
-                                http_headers=(
-                            ('Content-length', '%i' % len(send_host_str)),
-                            ('Content-type', 'application/x-www-form-urlencoded')))
-        except urlgrabber.grabber.URLGrabError, e:
+            opener = urllib2.build_opener(MultipartPostHandler.MultipartPostHandler)
+            params = {  'uuid':self.host.UUID,
+                        'host':serialized_host_obj_machine,
+                        'token':tok,
+                        'smolt_protocol':smoltProtocol}
+            o = opener.open(request_url, params)
+
+        except Exception, e:
             error(_('Error contacting Server: %s') % e)
             return (1, None, None)
         else:
