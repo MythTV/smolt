@@ -167,16 +167,25 @@ class ByClass(object):
             #devs = select([computer_logical_devices], computer_logical_devices.c.cls == type).alias("devs")
             devs = computer_logical_devices
             print 'Device: %s types' % type
-            Device=select([ComputerLogicalDevice.id, ComputerLogicalDevice.description,
-              ComputerLogicalDevice.bus, ComputerLogicalDevice.driver,
-              ComputerLogicalDevice.cls, ComputerLogicalDevice.date_added,
-              ComputerLogicalDevice.device_id, ComputerLogicalDevice.vendor_id,
-              ComputerLogicalDevice.subsys_device_id,
-              ComputerLogicalDevice.subsys_vendor_id],
-              ComputerLogicalDevice.cls==type).alias('d')
-            types = select([Device, func.count(HostLink.host_link_id.distinct()
-                    ).label('count')], Device.c.id==HostLink.device_id).group_by(Device.c.id)\
-                    .order_by(desc('count')).limit(100).execute().fetchall()
+#            Device=select([ComputerLogicalDevice.id, ComputerLogicalDevice.description,
+#              ComputerLogicalDevice.bus, ComputerLogicalDevice.driver,
+#              ComputerLogicalDevice.cls, ComputerLogicalDevice.date_added,
+#              ComputerLogicalDevice.device_id, ComputerLogicalDevice.vendor_id,
+#              ComputerLogicalDevice.subsys_device_id,
+#              ComputerLogicalDevice.subsys_vendor_id],
+#              ComputerLogicalDevice.cls==type).alias('d')
+#            types = select([Device, func.count(HostLink.host_link_id.distinct()
+#                    ).label('count')], Device.c.id==HostLink.device_id).group_by(Device.c.id)\
+#                    .order_by(desc('count')).limit(100).execute().fetchall()
+            types = select([ComputerLogicalDevice.id, ComputerLogicalDevice.description,
+                ComputerLogicalDevice.bus, ComputerLogicalDevice.driver,
+                ComputerLogicalDevice.cls, ComputerLogicalDevice.date_added,
+                ComputerLogicalDevice.device_id, ComputerLogicalDevice.vendor_id,
+                ComputerLogicalDevice.subsys_device_id,
+                ComputerLogicalDevice.subsys_vendor_id, ComputerLogicalDevice.cls,
+                func.count(HostLink.host_link_id.distinct()).label('count')],
+                and_(ComputerLogicalDevice.cls==type, ComputerLogicalDevice.id==HostLink.device_id)).group_by(ComputerLogicalDevice.id).order_by(desc('count')).limit(100).execute().fetchall()
+
 #            types = select([devs,
 #                            func.count(func.distinct(host_links.c.host_link_id)).label('c')],
 #                           and_(devs.c.cls == type,
