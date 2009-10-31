@@ -23,6 +23,13 @@ def request_format():
         format = cherrypy.request.headers.get('Accept', 'default').lower()
     return format
 
+def _fix_vendor(vendor):
+    rc = vendor
+    if vendor.startswith('Dell'):
+        rc = 'Dell, Inc.'
+    return rc
+
+
 class Client(object):
     error = Error()
     def __init__(self, smolt_protocol, token):
@@ -179,11 +186,6 @@ class Client(object):
         session.flush()
         return dict(pub_uuid=pub_uuid)
 
-    def _fix_vendor(vendor):
-        rc = vendor
-        if vendor.startswith('Dell'):
-            rc = 'Dell, Inc.'
-        return rc
 
     @expose(template="hardware.templates.pub_uuid")
     @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
