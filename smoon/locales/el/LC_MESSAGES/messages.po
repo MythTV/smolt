@@ -1,0 +1,399 @@
+# Translations template for hardware.
+# Copyright (C) 2008 ORGANIZATION
+# This file is distributed under the same license as the hardware project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hardware 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2008-05-01 22:37-0400\n"
+"PO-Revision-Date: 2009-11-02 00:22+0200\n"
+"Last-Translator: Nikos Charonitakis <nikosx@gmail.com>\n"
+"Language-Team: Greek <fedora-trans-el>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.1\n"
+
+#: hardware/controllers/root.py:95
+msgid "The credentials you supplied were not correct or did not grant access to this resource."
+msgstr ""
+
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr ""
+
+#: hardware/controllers/root.py:101
+#, fuzzy
+msgid "Please log in."
+msgstr "Σύνδεση οπωσδήποτε"
+
+#: hardware/templates/deviceclass.html:9
+#, fuzzy
+msgid "Devices by class ${type}"
+msgstr "/Ταξινόμηση αντικειμένων/κατά _τύπο"
+
+#: hardware/templates/deviceclass.html:15
+#, fuzzy
+msgid "Total Count"
+msgstr "_Πέρασμα αρίθμησης:"
+
+#: hardware/templates/deviceclass.html:19
+#, fuzzy, python-format
+msgid "% hosts detected ${type}"
+msgstr "Τύπος εξόδου ή_χου:"
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "Διανομείς"
+
+#: hardware/templates/deviceclass.html:34
+#: hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "Συσκευές"
+
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/show.html:60
+msgid "Device"
+msgstr "Συσκευή"
+
+#: hardware/templates/deviceclass.html:36
+#, fuzzy
+msgid "Bus"
+msgstr "Υπηρεσία D-Bus"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "Οδηγός"
+
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/stats.html:92
+#, fuzzy
+msgid "Vendor"
+msgstr "<b>Κατασκευαστής:</b>"
+
+#: hardware/templates/deviceclass.html:36
+#, fuzzy
+msgid "Sub Vendor"
+msgstr "Ετικέτα κατασκευαστή:"
+
+#: hardware/templates/deviceclass.html:36
+#, fuzzy
+msgid "Sub Device"
+msgstr "Συσκευή ήχου"
+
+#: hardware/templates/deviceclass.html:36
+#, fuzzy
+msgid "Date Added"
+msgstr "Ημερομηνία προσθήκης"
+
+#: hardware/templates/deviceclass.html:36
+#, fuzzy
+msgid "% tot hosts"
+msgstr "Γειτονικά συστήματα"
+
+#: hardware/templates/devices.html:15
+#: hardware/templates/stats.html:19
+#, fuzzy
+msgid "Total Registered Devices"
+msgstr "Αναζήτηση για συσκευές..."
+
+#: hardware/templates/devices.html:19
+#, fuzzy
+msgid "Unique Devices"
+msgstr "Α_νανέωση συσκευών"
+
+#: hardware/templates/devices.html:24
+#, fuzzy
+msgid "Raw Devices"
+msgstr "Α_νανέωση συσκευών"
+
+#: hardware/templates/devices.html:34
+#, fuzzy
+msgid "Machines / Device"
+msgstr "Συσκευή ήχου"
+
+#: hardware/templates/devices.html:44
+#, fuzzy
+msgid "Classes"
+msgstr "Τάξεις"
+
+#: hardware/templates/report_search.html:37
+#: hardware/templates/welcome.html:10
+#, fuzzy
+msgid "Lookup"
+msgstr "Ανα_ζήτηση"
+
+#: hardware/templates/report_search.html:38
+#, fuzzy
+msgid "Dataset"
+msgstr "Άγνωστη συλλογή δεδομένων ΙΙΜ"
+
+#: hardware/templates/report_search.html:53
+#, fuzzy
+msgid "Result Set"
+msgstr "Ορισμός κειμένου"
+
+#: hardware/templates/show.html:8
+#, fuzzy
+msgid "Show Box"
+msgstr "Σχεδιασμού πλαισίων"
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr ""
+
+#: hardware/templates/show.html:31
+#, fuzzy
+msgid "Breaks System"
+msgstr "Άγνωστο σύστημα"
+
+#: hardware/templates/show.html:32
+msgid "Doesn't Work"
+msgstr "Δεν λειτουργεί"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr ""
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr ""
+
+#: hardware/templates/show.html:35
+#, fuzzy
+msgid "Worked out of the box"
+msgstr "Δημιουργία κουτιού πολλαπλών επιλογών"
+
+#: hardware/templates/show.html:36
+#, fuzzy
+msgid "Show all Information"
+msgstr "Προβολή πληροφοριών έκδοσης"
+
+#: hardware/templates/show.html:39
+#, fuzzy
+msgid "Overall Rating:"
+msgstr "<b>Βέλτιστη βαθμολογία</b>"
+
+#: hardware/templates/show.html:42
+#, fuzzy
+msgid "Public UUID"
+msgstr "Δημόσιο FTP"
+
+#: hardware/templates/show.html:43
+msgid "Operating System"
+msgstr "Λειτουργικό σύστημα"
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr "Πλατφόρμα"
+
+#: hardware/templates/show.html:45
+#, fuzzy
+msgid "System Vendor"
+msgstr "Ετικέτα κατασκευαστή:"
+
+#: hardware/templates/show.html:46
+#, fuzzy
+msgid "System Model"
+msgstr "Μοντέλο CPU"
+
+#: hardware/templates/show.html:47
+#: hardware/templates/stats.html:180
+msgid "Kernel"
+msgstr "Πυρήνας"
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr ""
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr "Τελευταία τροποποίηση"
+
+#: hardware/templates/show.html:50
+#, fuzzy
+msgid "Admin Password"
+msgstr "Αλλαγή κωδικού"
+
+#: hardware/templates/show.html:60
+#, fuzzy
+msgid "Rating"
+msgstr "_Κατάταξη"
+
+#: hardware/templates/show.html:60
+#, fuzzy
+msgid "Class"
+msgstr "Τάξη:"
+
+#: hardware/templates/stats.html:9
+#, fuzzy
+msgid "Stats"
+msgstr "Στατιστικά"
+
+#: hardware/templates/stats.html:15
+#, fuzzy
+msgid "Total Registered Hosts"
+msgstr "Προσθήκη επιτρεπόμενων συστημάτων"
+
+#: hardware/templates/stats.html:23
+#, fuzzy
+msgid "Total bogomips"
+msgstr "Σύνολο τομέων:"
+
+#: hardware/templates/stats.html:27
+#, fuzzy
+msgid "Total processors"
+msgstr "Όλοι οι επεξεργαστές"
+
+#: hardware/templates/stats.html:31
+#, fuzzy
+msgid "Total MHz"
+msgstr "CPU MHz"
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr ""
+
+#: hardware/templates/stats.html:40
+#, fuzzy
+msgid "Arch"
+msgstr "Arch A"
+
+#: hardware/templates/stats.html:40
+#, fuzzy
+msgid "Count"
+msgstr "Πλήθος"
+
+#: hardware/templates/stats.html:40
+#, fuzzy, python-format
+msgid "% of total"
+msgstr "Σύνολο:"
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr "ΛΣ"
+
+#: hardware/templates/stats.html:66
+#, fuzzy
+msgid "Runlevel"
+msgstr "Runlevel"
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr "Γλώσσα"
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr "Μοντέλο"
+
+#: hardware/templates/stats.html:119
+msgid "RAM"
+msgstr "RAM"
+
+#: hardware/templates/stats.html:132
+#, fuzzy
+msgid "Swap"
+msgstr "Swap"
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr "CPU"
+
+#: hardware/templates/stats.html:147
+#, fuzzy
+msgid "Speed (MHz)"
+msgstr "CPU MHz"
+
+#: hardware/templates/stats.html:154
+#, fuzzy
+msgid "Number of CPUs"
+msgstr "Όλες οι CPUs"
+
+#: hardware/templates/stats.html:161
+#, fuzzy
+msgid "CPU Vendor"
+msgstr "Ετικέτα κατασκευαστή:"
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr "Bogomips"
+
+#: hardware/templates/stats.html:193
+#, fuzzy
+msgid "Form Factor"
+msgstr "Συντελεστής εστίασης"
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr "Selinux"
+
+#: hardware/templates/stats.html:208
+#, fuzzy
+msgid "SELinux Enabled"
+msgstr "Bluetooth: Ενεργοποιημένο"
+
+#: hardware/templates/stats.html:215
+#, fuzzy
+msgid "SELinux Enforce"
+msgstr "Αναγκαστική εφαρμογή υποχρεωτικών ρυθμίσεων"
+
+#: hardware/templates/stats.html:222
+#, fuzzy
+msgid "SELinux Policy"
+msgstr "Πολιτική ενημέρωσης"
+
+#: hardware/templates/stats.html:234
+#, fuzzy
+msgid "Filesystems"
+msgstr "Εμ_φάνιση όλων των συστημάτων αρχείων"
+
+#: hardware/templates/stats.html:242
+#, fuzzy
+msgid "Filesystem size"
+msgstr "_Μέγεθος οπτικών εφέ:"
+
+#: hardware/templates/stats.html:253
+#, fuzzy
+msgid "Myth Role"
+msgstr "Χωρίς ρόλο"
+
+#: hardware/templates/stats.html:266
+#, fuzzy
+msgid "Myth Remote"
+msgstr "Απομακρυσμένη επιφάνεια εργασίας"
+
+#: hardware/templates/stats.html:279
+#, fuzzy
+msgid "Myth  Theme"
+msgstr "Προεπιλεγμένο θέμα"
+
+#: hardware/templates/welcome.html:12
+#, fuzzy
+msgid "Enter your profile UUID:"
+msgstr "Εισάγετε τα στοιχεία του λογαριασμού σας"
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr "Στατιστικά"
+
+#: hardware/templates/welcome.html:17
+msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+
+#: hardware/templates/welcome.html:19
+#, fuzzy
+msgid "Top Vendor Chart"
+msgstr "Γράφημα κλήσης συνάρτησης"
+
+#: hardware/templates/welcome.html:23
+#, fuzzy
+msgid "More info"
+msgstr "Πληροφορίες προχείρου"
+
+#: hardware/templates/welcome.html:25
+msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+
