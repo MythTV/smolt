@@ -1,20 +1,24 @@
+# translation of ru.po to Russian
 # Translations template for hardware.
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
-# Oksana Kurysheva <oksana.kurysheva@vdel.com>, 2009. 
 #
+# Oksana Kurysheva <oksana.kurysheva@vdel.com>, 2009.
+# Yulia <ypoyarko@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: hardware 1.0\n"
+"Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2009-12-08 13:49+1100\n"
+"Last-Translator: Yulia <ypoyarko@redhat.com>\n"
+"Language-Team: Russian <fedora-trans-ru@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.1\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: hardware/controllers/root.py:95
 msgid ""
@@ -45,7 +49,7 @@ msgstr ""
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr ""
+msgstr "Производители"
 
 #: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
@@ -58,7 +62,7 @@ msgstr "Устройство"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
-msgstr ""
+msgstr "Шина"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
@@ -66,23 +70,23 @@ msgstr "Драйвер"
 
 #: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr ""
+msgstr "Производитель"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr ""
+msgstr "Вторичный производитель"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr ""
+msgstr "Вторичное устройство"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr "Дата добавлена"
+msgstr "Дата добавления"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr ""
+msgstr "% всех узлов"
 
 #: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
@@ -90,7 +94,7 @@ msgstr "Общее число зарегистрированных устрой�
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr ""
+msgstr "Уникальные устройства"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
@@ -106,15 +110,15 @@ msgstr "Классы"
 
 #: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr ""
+msgstr "Поиск"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
-msgstr ""
+msgstr "Набор данных"
 
 #: hardware/templates/report_search.html:53
 msgid "Result Set"
-msgstr "Установки результата"
+msgstr "Набор результатов"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
@@ -134,7 +138,7 @@ msgstr "Не работает"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr ""
+msgstr "Требует драйверы сторонних производителей"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
@@ -150,11 +154,11 @@ msgstr "Показать всю информацию"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr ""
+msgstr "Общий рейтинг:"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr "Публичный UUID"
+msgstr "Общий UUID"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
@@ -166,11 +170,11 @@ msgstr "Платформа"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr ""
+msgstr "Производитель системы"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr ""
+msgstr "Модель системы"
 
 #: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
@@ -190,7 +194,7 @@ msgstr "Пароль администратора"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
-msgstr ""
+msgstr "Рейтинг"
 
 #: hardware/templates/show.html:60
 msgid "Class"
@@ -198,15 +202,15 @@ msgstr "Класс"
 
 #: hardware/templates/stats.html:9
 msgid "Stats"
-msgstr ""
+msgstr "Статистика"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr ""
+msgstr "Всего зарегистрировано узлов"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr ""
+msgstr "Всего bogomips"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
@@ -214,7 +218,7 @@ msgstr "Всего процессоров"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr ""
+msgstr "МГц"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
@@ -226,7 +230,7 @@ msgstr "Архитектура"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr ""
+msgstr "Счётчик"
 
 #: hardware/templates/stats.html:40
 #, python-format
@@ -239,7 +243,7 @@ msgstr "ОС"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr ""
+msgstr "Уровень выполнения"
 
 #: hardware/templates/stats.html:79
 msgid "Language"
@@ -251,7 +255,7 @@ msgstr "Модель"
 
 #: hardware/templates/stats.html:119
 msgid "RAM"
-msgstr "RAM"
+msgstr "ОЗУ"
 
 #: hardware/templates/stats.html:132
 msgid "Swap"
@@ -263,15 +267,15 @@ msgstr "CPU"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
-msgstr "Частота (MHz)"
+msgstr "Частота (МГц)"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "Количество процессоров"
+msgstr "Число процессоров"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr ""
+msgstr "Производитель CPU"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
@@ -291,7 +295,7 @@ msgstr "SELinux включен"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "Строгий режим SELinux"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
@@ -319,7 +323,7 @@ msgstr ""
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "Введите ваш UUID:"
+msgstr "Введите UUID профиля:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
@@ -330,8 +334,9 @@ msgid ""
 "For detailed statistics about the devices in the database see <a href='/"
 "static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
 "devices</a>"
-msgstr "Более подробную статистику по устройствам можно найти на <a href='/"
-"static/stats/stats.html'>/stats</a> или <a href='/static/stats/devices.html'>/"
+msgstr ""
+"Более подробную статистику по устройствам можно найти на <a href='/static/"
+"stats/stats.html'>/stats</a> или <a href='/static/stats/devices.html'>/"
 "devices</a>"
 
 #: hardware/templates/welcome.html:19
@@ -348,6 +353,7 @@ msgid ""
 "about specific devices. Usage and other general answers can also be found at "
 "the <a href='/wiki/'>Wiki</a>.</p>"
 msgstr ""
-"<p>Более подробную информацию об устройствах можно получить в "
-"<a href='/wiki/'>Wiki</a>. Инструкции к использованию и ответы на "
-"частозадаваемые вопросы можно найти там же. </p>"
+"<p>Более подробную информацию об устройствах можно получить в <a href='/"
+"wiki/'>Вики</a>. Там же можно найти инструкции по использованию и ответы на распространённые "
+"вопросы. </p>"
+
