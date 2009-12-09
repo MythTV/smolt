@@ -1,4 +1,4 @@
-# translation of ru.po to Russian
+# translation of ru.po to
 # Translations template for hardware.
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-12-08 13:49+1100\n"
+"PO-Revision-Date: 2009-12-09 16:31+1100\n"
 "Last-Translator: Yulia <ypoyarko@redhat.com>\n"
-"Language-Team: Russian <fedora-trans-ru@redhat.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,11 +24,11 @@ msgstr ""
 msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
-msgstr ""
+msgstr "Предоставленные данные авторизации не прошли проверку или они неверны."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr ""
+msgstr "Для доступа к этому ресурсу необходимо предоставить данные авторизации."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
@@ -98,11 +98,11 @@ msgstr "Уникальные устройства"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr ""
+msgstr "Raw-устройства"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr ""
+msgstr "Машины/устройство"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
@@ -122,7 +122,7 @@ msgstr "Набор результатов"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr ""
+msgstr "Показать окно"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
@@ -130,7 +130,7 @@ msgstr "Я не знаю или не использую это"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr ""
+msgstr "Нарушает работу системы"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
@@ -146,7 +146,7 @@ msgstr "Работает, но требует дополнительной на�
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr ""
+msgstr "Работало «из коробки»"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
@@ -182,7 +182,7 @@ msgstr "Ядро"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr ""
+msgstr "Форм-фактор"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
@@ -210,7 +210,7 @@ msgstr "Всего зарегистрировано узлов"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr "Всего bogomips"
+msgstr "Общее BogoMIPS"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
@@ -271,7 +271,7 @@ msgstr "Частота (МГц)"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "Число процессоров"
+msgstr "Количество процессоров"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
@@ -279,11 +279,11 @@ msgstr "Производитель CPU"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr ""
+msgstr "BogoMIPS"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr ""
+msgstr "Форм-фактор"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -311,15 +311,15 @@ msgstr "Размер файловой системы"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
-msgstr ""
+msgstr "Роль Myth"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr ""
+msgstr "Удалённый Myth"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr ""
+msgstr "Тема Myth"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
@@ -341,7 +341,7 @@ msgstr ""
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr ""
+msgstr "Популярные производители"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
@@ -354,6 +354,6 @@ msgid ""
 "the <a href='/wiki/'>Wiki</a>.</p>"
 msgstr ""
 "<p>Более подробную информацию об устройствах можно получить в <a href='/"
-"wiki/'>Вики</a>. Там же можно найти инструкции по использованию и ответы на распространённые "
-"вопросы. </p>"
+"wiki/'>Вики</a>. Там же можно найти инструкции по использованию и ответы на "
+"распространённые вопросы. </p>"
 
