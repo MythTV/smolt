@@ -1,358 +1,2457 @@
-# translation of smolt.master-smoon.messages.po to Simplified Chinese
-# Translations template for hardware.
-# Copyright (C) 2008 ORGANIZATION
-# This file is distributed under the same license as the hardware project.
-#
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
-# Leah Liu <lliu@redhat.com>, 2009.
-# TianShixiong <tiansworld@gmail.com>, 2009.
+# translation of installation-quick-start-guide to Traditional Chinese
+# Ben Wu <hpwu@redhat.com>, 2003.
+# Chester Cheng <ccheng@redhat.com>, 2004.
+# Sarah Saiying Wang <sarahs@redhat.com>, 2003, 2004.
+# Tony Fu <tfu@redhat.com>, 2004.
+# Xi HUANG <xhuang@redhat.com>, 2007.
+# Andy Liu <aliu@redhat.com>, 2007.
+# Terry Chuang <tchuang@redhat.com>, 2008.
+# Leah Liu <lliu@redhat.com>, 2008.
+# 甘露(Gan Lu) <rhythm.gan@gmail.com>, 2008, 2009.
+# Tian Shixiong <tiansworld@gmail.com>, 2009.
+# microcai <microcai@sina.com> , 2009
+# CyrusHMH <cyrushmh@vip.qq.com;cyrusyzgtt@gmail.com>, 2009.
 # Tom K. C. Chiu <tomchiukc@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt.master-smoon.messages\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-11-11 11:08+0800\n"
+"Project-Id-Version: installation-quick-start-guide\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2009-10-01 15:10+0000\n"
+"PO-Revision-Date: 2009-10-08 16:25+0800\n"
 "Last-Translator: Tom K. C. Chiu <tomchiukc@gmail.com>\n"
 "Language-Team: Traditional Chinese\n"
-"Language: zh-TW\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Virtaal 0.4.0\n"
-"Generated-By: Babel 0.9.1\n"
 
-#: hardware/controllers/root.py:95
+#. Tag: para
+#: Account_Configuration_common-para-6.xml:8
+#, no-c-format
 msgid ""
-"The credentials you supplied were not correct or did not grant access to "
-"this resource."
-msgstr "您提供的憑證不正確或者無法給予對這個資源的存取。"
-
-#: hardware/controllers/root.py:98
-msgid "You must provide your credentials before accessing this resource."
-msgstr "您必須在存取這個資源前提供您的憑證。"
-
-#: hardware/controllers/root.py:101
-msgid "Please log in."
-msgstr "請登入。"
-
-#: hardware/templates/deviceclass.html:9
-msgid "Devices by class ${type}"
-msgstr "根據類別 ${type} 的裝置"
-
-#: hardware/templates/deviceclass.html:15
-msgid "Total Count"
-msgstr "總計"
-
-#: hardware/templates/deviceclass.html:19
-#, python-format
-msgid "% hosts detected ${type}"
-msgstr "% hosts 偵測到 ${type}"
-
-#: hardware/templates/deviceclass.html:24
-msgid "Vendors"
-msgstr "零售商"
-
-#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
-#: hardware/templates/show.html:57
-msgid "Devices"
-msgstr "裝置"
-
-#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
-msgid "Device"
-msgstr "裝置"
-
-#: hardware/templates/deviceclass.html:36
-msgid "Bus"
-msgstr "匯流排"
-
-#: hardware/templates/deviceclass.html:36
-msgid "Driver"
-msgstr "驅動程式"
-
-#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
-msgid "Vendor"
-msgstr "零售商"
-
-#: hardware/templates/deviceclass.html:36
-msgid "Sub Vendor"
-msgstr "分銷商"
-
-#: hardware/templates/deviceclass.html:36
-msgid "Sub Device"
-msgstr "分銷商"
-
-#: hardware/templates/deviceclass.html:36
-msgid "Date Added"
-msgstr "添加的日期"
-
-#: hardware/templates/deviceclass.html:36
-msgid "% tot hosts"
-msgstr "% 合计主机"
-
-#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
-msgid "Total Registered Devices"
-msgstr "全部注册的设备"
-
-#: hardware/templates/devices.html:19
-msgid "Unique Devices"
-msgstr "唯一设备"
-
-#: hardware/templates/devices.html:24
-msgid "Raw Devices"
-msgstr "原始设备"
-
-#: hardware/templates/devices.html:34
-msgid "Machines / Device"
-msgstr "机器 / 设备"
-
-#: hardware/templates/devices.html:44
-msgid "Classes"
-msgstr "分类"
-
-#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
-msgid "Lookup"
-msgstr "查找"
-
-#: hardware/templates/report_search.html:38
-msgid "Dataset"
-msgstr "数据组"
-
-#: hardware/templates/report_search.html:53
-msgid "Result Set"
-msgstr "结果组"
-
-#: hardware/templates/show.html:8
-msgid "Show Box"
-msgstr "显示复选框"
-
-#: hardware/templates/show.html:30
-msgid "I don't use this or I don't know"
-msgstr "我不使用或者不知道"
-
-#: hardware/templates/show.html:31
-msgid "Breaks System"
-msgstr "切入系统"
-
-#: hardware/templates/show.html:32
-msgid "Doesn't Work"
-msgstr "不工作"
-
-#: hardware/templates/show.html:33
-msgid "Requires 3rd Party Drivers"
-msgstr "需要第三方驱动程序"
-
-#: hardware/templates/show.html:34
-msgid "Works, but required additional configuration"
-msgstr "工作，但需要额外配置"
-
-#: hardware/templates/show.html:35
-msgid "Worked out of the box"
-msgstr "即时可用"
-
-#: hardware/templates/show.html:36
-msgid "Show all Information"
-msgstr "显示所有信息"
-
-#: hardware/templates/show.html:39
-msgid "Overall Rating:"
-msgstr "总评级："
-
-#: hardware/templates/show.html:42
-msgid "Public UUID"
-msgstr "公共 UUID"
-
-#: hardware/templates/show.html:43
-msgid "Operating System"
-msgstr "操作系统"
-
-#: hardware/templates/show.html:44
-msgid "Platform"
-msgstr "平台"
-
-#: hardware/templates/show.html:45
-msgid "System Vendor"
-msgstr "系统零售商"
-
-#: hardware/templates/show.html:46
-msgid "System Model"
-msgstr "系统型号"
-
-#: hardware/templates/show.html:47 hardware/templates/stats.html:180
-msgid "Kernel"
-msgstr "内核"
-
-#: hardware/templates/show.html:48
-msgid "Formfactor"
-msgstr "格式元素"
-
-#: hardware/templates/show.html:49
-msgid "Last Modified"
-msgstr "最后修改"
-
-#: hardware/templates/show.html:50
-msgid "Admin Password"
-msgstr "管理员密码"
-
-#: hardware/templates/show.html:60
-msgid "Rating"
-msgstr "等级"
-
-#: hardware/templates/show.html:60
-msgid "Class"
-msgstr "类别"
-
-#: hardware/templates/stats.html:9
-msgid "Stats"
-msgstr "状态"
-
-#: hardware/templates/stats.html:15
-msgid "Total Registered Hosts"
-msgstr "全部注册主机"
-
-#: hardware/templates/stats.html:23
-msgid "Total bogomips"
-msgstr "全部 bogomip"
-
-#: hardware/templates/stats.html:27
-msgid "Total processors"
-msgstr "全部处理器"
-
-#: hardware/templates/stats.html:31
-msgid "Total MHz"
-msgstr "全部 MHz"
-
-#: hardware/templates/stats.html:38
-msgid "Archs"
-msgstr "构架"
-
-#: hardware/templates/stats.html:40
-msgid "Arch"
-msgstr "构架"
-
-#: hardware/templates/stats.html:40
-msgid "Count"
-msgstr "计数"
-
-#: hardware/templates/stats.html:40
-#, python-format
-msgid "% of total"
-msgstr "% of total"
-
-#: hardware/templates/stats.html:53
-msgid "OS"
-msgstr "操作系统"
-
-#: hardware/templates/stats.html:66
-msgid "Runlevel"
-msgstr "运行级别"
-
-#: hardware/templates/stats.html:79
-msgid "Language"
-msgstr "语言"
-
-#: hardware/templates/stats.html:105
-msgid "Model"
-msgstr "型号"
-
-#: hardware/templates/stats.html:119
-msgid "RAM"
-msgstr "RAM"
-
-#: hardware/templates/stats.html:132
-msgid "Swap"
-msgstr "Swap"
-
-#: hardware/templates/stats.html:145
-msgid "CPU"
-msgstr "CPU"
-
-#: hardware/templates/stats.html:147
-msgid "Speed (MHz)"
-msgstr "速度（MHz）"
-
-#: hardware/templates/stats.html:154
-msgid "Number of CPUs"
-msgstr "CPU 数"
-
-#: hardware/templates/stats.html:161
-msgid "CPU Vendor"
-msgstr "CPU 零售商"
-
-#: hardware/templates/stats.html:168
-msgid "Bogomips"
-msgstr "Bogomip"
-
-#: hardware/templates/stats.html:193
-msgid "Form Factor"
-msgstr "格式因素"
-
-#: hardware/templates/stats.html:206
-msgid "Selinux"
-msgstr "Selinux"
-
-#: hardware/templates/stats.html:208
-msgid "SELinux Enabled"
-msgstr "启用 SELinux "
-
-#: hardware/templates/stats.html:215
-msgid "SELinux Enforce"
-msgstr "强制 SELinux"
-
-#: hardware/templates/stats.html:222
-msgid "SELinux Policy"
-msgstr "SELinux 策略"
-
-#: hardware/templates/stats.html:234
-msgid "Filesystems"
-msgstr "文件系统"
-
-#: hardware/templates/stats.html:242
-msgid "Filesystem size"
-msgstr "文件系统大小"
-
-#: hardware/templates/stats.html:253
-msgid "Myth Role"
-msgstr "Myth 角色"
-
-#: hardware/templates/stats.html:266
-msgid "Myth Remote"
-msgstr "Myth 远程"
-
-#: hardware/templates/stats.html:279
-msgid "Myth  Theme"
-msgstr "Myth 主题"
-
-#: hardware/templates/welcome.html:12
-msgid "Enter your profile UUID:"
-msgstr "输入您的配置UUID："
-
-#: hardware/templates/welcome.html:15
-msgid "Statistics"
-msgstr "统计"
-
-#: hardware/templates/welcome.html:17
-msgid ""
-"For detailed statistics about the devices in the database see <a href='/"
-"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
-"devices</a>"
+"Enter the <systemitem class=\"username\">root</systemitem> password into the "
+"<guilabel>Root Password</guilabel> field. Fedora displays the characters as "
+"asterisks for security. Type the same password into the "
+"<guilabel>Confirm</guilabel> field to ensure it is set correctly. After you "
+"set the root password, select <guibutton>Next</guibutton> to proceed."
 msgstr ""
-"有关数据库中这些设备的详细统计请查看 <a href='/static/stats/stats.html'>/"
-"stats</a> 或者 <a href='/static/stats/devices.html'>/devices</a>"
+"請在<guilabel>Root Password</guilabel> 欄位輸入 <systemitem "
+"class=\"username\">root</systemitem> 密碼。為保安理由，Fedora把密碼顯示為星號。請在 "
+"<guilabel>Confirm</guilabel> 欄位輸入同一組密碼，以確保輸入正確。在您設置 root "
+"密碼後，請選擇<guibutton>下一步</guibutton>繼續進行。"
 
-#: hardware/templates/welcome.html:19
-msgid "Top Vendor Chart"
-msgstr "顶极零售商图"
-
-#: hardware/templates/welcome.html:23
-msgid "More info"
-msgstr "更多"
-
-#: hardware/templates/welcome.html:25
+# <para>Setting up a root account and password is one of the most important steps during your installation. Your root account is similar to the administrator account used on Windows NT machines. The root account is used to install packages, upgrade RPMs, and perform most system maintenance. Logging in as root gives you complete control over your system. </para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#. Tag: para
+#: Account_Configuration-common.xml:15
+#, fuzzy, no-c-format
 msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
-"about specific devices. Usage and other general answers can also be found at "
-"the <a href='/wiki/'>Wiki</a>.</p>"
+"Setting up a root account and password is one of the most important steps "
+"during your installation. Your root account is similar to the administrator "
+"account used on Microsoft Windows machines. The root account is used to "
+"install packages, upgrade RPMs, and perform most system maintenance. Logging "
+"in as root gives you complete control over your system."
 msgstr ""
-"<p>有关具体设备的详细信息清浏览并搜索 <a href='/wiki/'>Wiki</a>。用法及其它常"
-"规答案请查看 <a href='/wiki/'>Wiki</a>.</p>"
+"設定一個 root 的帳號與密碼是安裝過程中最重要的步驟。您的 root 帳號就像在 微軟"
+"視窗 NT 系統中的 administrator 帳號一樣。這個 root 帳號是用來安裝套件、升級 "
+"RPMs 以及執行大部分的系統維護工作。以 root 帳號登入將使您對整個系統有完全的掌"
+"控權。"
+
+# EXACT MATCH
+#. Tag: title
+#: Account_Configuration-common.xml:26
+#, no-c-format
+msgid "Root Password"
+msgstr "設定 Root 密碼 "
+
+# <para> Setting your root password. </para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#. Tag: para
+#: Account_Configuration-common.xml:29
+#, no-c-format
+msgid "Setting your root password."
+msgstr "設定您的 root 密碼。"
+
+# EXACT MATCH
+#. Tag: title
+#: Account_Configuration_common-title.xml:5
+#, no-c-format
+msgid "Set the Root Password"
+msgstr "設定 Root 密碼 "
+
+#. Tag: title
+#: Article_Info.xml:6
+#, no-c-format
+msgid "Installation Quick Start Guide"
+msgstr "快速安裝指南"
+
+#. Tag: subtitle
+#: Article_Info.xml:7
+#, no-c-format
+msgid ""
+"Downloading and installing Fedora &PRODVER; on most desktop and laptop "
+"computers"
+msgstr "下載Fedora &PRODVER; ，並裝載在大多數台式機和筆記型電腦"
+
+#. Tag: para
+#: Article_Info.xml:13
+#, no-c-format
+msgid ""
+"This document shows you how to download and install Fedora. It does not "
+"cover every possible scenario, but describes steps that will work in most "
+"situations on most common hardware."
+msgstr ""
+"這份檔案介紹了如何下載和裝載Fedora，難道不是涵蓋所有可能的場景，但將說明的步"
+"驟是最重要的涵蓋常見的硬體。"
+
+#. Tag: phrase
+#: Article_Info.xml:20
+#, no-c-format
+msgid "Logo"
+msgstr "Logo"
+
+#. Tag: holder
+#: Article_Info.xml:25
+#, no-c-format
+msgid "&HOLDER;"
+msgstr "&HOLDER;"
+
+#. Tag: corpauthor
+#: Author_Group.xml:6
+#, no-c-format
+msgid "Red Hat Engineering Content Services"
+msgstr "紅帽工程內容服務"
+
+#. Tag: corpauthor
+#: Author_Group.xml:7
+#, no-c-format
+msgid "Fedora Documentation Project"
+msgstr "Fedora文件專案"
+
+#. Tag: editor
+#: Author_Group.xml:8
+#, no-c-format
+msgid ""
+"<firstname>Rüdiger</firstname> <surname>Landmann</surname> <affiliation> "
+"<orgname>Red Hat</orgname> <orgdiv>Engineering Content Services</orgdiv> "
+"</affiliation> <email>r.landmann@redhat.com</email>"
+msgstr ""
+"<firstname>Rüdiger</firstname> <surname>Landmann</surname> <affiliation> "
+"<orgname>紅帽</orgname> <orgdiv>工程內容服務</orgdiv> </affiliation> "
+"<email>r.landmann@redhat.com</email>"
+
+#. Tag: title
+#: Automatic_Partitioning_common-figure-1.xml:5
+#, no-c-format
+msgid "Create Default Layout"
+msgstr "建立預設版面"
+
+# EXACT MATCH
+#. Tag: para
+#: Automatic_Partitioning_common-figure-1.xml:8
+#, no-c-format
+msgid "Automatic partitioning."
+msgstr "自動分割磁碟。"
+
+# <para><guilabel>Remove all partitions on this system</guilabel> &mdash; select this option to remove all partitions on your hard drive(s) (this includes partitions created by other operating systems such as Windows 9x/NT/2000/ME/XP or NTFS partitions). </para>
+# /home/i18n/cvs/en_US/igs/diskpartauto.idx:
+#. Tag: para
+#: Automatic_Partitioning_common-itemizedlist-1.xml:7
+#, fuzzy, no-c-format
+msgid ""
+"<guilabel>Use entire drive</guilabel> &mdash; select this option to remove "
+"all partitions on your hard drive(s) (this includes partitions created by "
+"other operating systems such as Windows VFAT or NTFS partitions)."
+msgstr ""
+"<guilabel>移除系統上所有選取的分割區並建立預設配置</guilabel> &mdash; 使用這"
+"選項移除硬碟上所有分割區（包括其它作業系統建立的分割區，例如由 微軟視窗 所建"
+"立的 VFAT 或 NTFS 分割區）。"
+
+#. Tag: title
+#: Automatic_Partitioning_common-itemizedlist-1.xml:11
+#: Automatic_Partitioning_common-itemizedlist-1.xml:33
+#, no-c-format
+msgid "Warning"
+msgstr "警告"
+
+# <para>If you select this option, all data on the selected hard drive(s) will be removed by the installation program. Do not select this option if you have information that you want to keep on the hard drive(s) where you are installing &PROD;. </para>
+# /home/i18n/cvs/en_US/igs/diskpartauto.idx:
+#. Tag: para
+#: Automatic_Partitioning_common-itemizedlist-1.xml:13
+#, fuzzy, no-c-format
+msgid ""
+"If you select this option, all data on the selected hard drive(s) is removed "
+"by the installation program. Do not select this option if you have "
+"information that you want to keep on the hard drive(s) where you are "
+"installing Fedora."
+msgstr ""
+"如果您選取這個選項，在所選取硬碟上的所有資料都會被安裝程式移除。 如果在要安"
+"裝 &PROD; 的硬碟上有您想要保留的資料，請不要選擇這個選項。"
+
+# <para><guilabel>Remove all Linux partitions on this system</guilabel> &mdash; select this option to remove only Linux partitions (partitions created from a previous Linux installation). This will not remove other partitions you may have on your hard drive(s)<![%X86[ (such as VFAT or FAT32 partitions)]]>. </para>
+# /home/i18n/cvs/en_US/igs/diskpartauto.idx:
+#. Tag: para
+#: Automatic_Partitioning_common-itemizedlist-1.xml:20
+#, fuzzy, no-c-format
+msgid ""
+"<guilabel>Replace existing Linux system</guilabel> &mdash; select this "
+"option to remove only Linux partitions (partitions created from a previous "
+"Linux installation). This does not remove other partitions you may have on "
+"your hard drive(s) (such as VFAT or FAT32 partitions)."
+msgstr ""
+"<guilabel>移除系統上的 Linux 分割區並建立預設配置</guilabel> &mdash; 使用這選"
+"項移除所有之前建立的 Linux 分割區。這選項不會移除硬碟上的其它分割區（例如 "
+"VFAT 或 FAT32 分割區）。"
+
+# <para><guilabel>Keep all partitions and use existing free space</guilabel> &mdash; select this option to retain your current data and partitions, assuming you have enough free space available on your hard drive(s). </para>
+# /home/i18n/cvs/en_US/igs/diskpartauto.idx:
+#. Tag: para
+#: Automatic_Partitioning_common-itemizedlist-1.xml:29
+#, fuzzy, no-c-format
+msgid ""
+"<guilabel>Shrink existing system</guilabel> &mdash; select this option to "
+"resize your current data and partitions manually and install a default "
+"Fedora layout in the space that is freed."
+msgstr ""
+"<guilabel>在可磁碟的可用空間上建立預設配置</guilabel> &mdash; 如果您的硬碟上"
+"有足夠的剩餘空間，選擇這個選項以保留您目前的資料與分割區。"
+
+#. Tag: para
+#: Automatic_Partitioning_common-itemizedlist-1.xml:35
+#, no-c-format
+msgid ""
+"If you shrink partitions on which other operating systems are installed, you "
+"might not be able to use those operating systems. Although this partitioning "
+"option does not destroy data, operating systems typically require some free "
+"space in their partitions. Before you resize a partition that holds an "
+"operating system that you might want to use again, find out how much space "
+"you need to leave free."
+msgstr ""
+
+# <para><guilabel>Keep all partitions and use existing free space</guilabel> &mdash; select this option to retain your current data and partitions, assuming you have enough free space available on your hard drive(s). </para>
+# /home/i18n/cvs/en_US/igs/diskpartauto.idx:
+#. Tag: para
+#: Automatic_Partitioning_common-itemizedlist-1.xml:42
+#, fuzzy, no-c-format
+msgid ""
+"<guilabel>Use free space</guilabel> &mdash; select this option to retain "
+"your current data and partitions, assuming you have enough free space "
+"available on your hard drive(s)."
+msgstr ""
+"<guilabel>在可磁碟的可用空間上建立預設配置</guilabel> &mdash; 如果您的硬碟上"
+"有足夠的剩餘空間，選擇這個選項以保留您目前的資料與分割區。"
+
+# <para>Automatic partitioning allows you to have some control concerning what data is removed (if any) from your system. Your options are: </para>
+# /home/i18n/cvs/en_US/igs/diskpartauto.idx:
+#. Tag: para
+#: Automatic_Partitioning_common-para-1.xml:8
+#, no-c-format
+msgid ""
+"Create default layout allows you to have some control concerning what data "
+"is removed (if any) from your system. Your options are:"
+msgstr "建立預設配置並讓您能夠控制您欲從系統中移除的資料。您有幾種選擇"
+
+# <para>Using your mouse, choose the hard drive(s) on which you want &PROD; to be installed. If you have two or more hard drives, you can choose which hard drive(s) should contain this installation. Unselected hard drives, and any data on them, will not be touched. </para>
+# /home/i18n/cvs/en_US/igs/diskpartauto.idx:
+#. Tag: para
+#: Automatic_Partitioning_common-para-2.xml:5
+#, fuzzy, no-c-format
+msgid ""
+"Using your mouse, choose the storage drive(s) on which you want Fedora to be "
+"installed. If you have two or more drives, you can choose which drive(s) "
+"should contain this installation. Unselected drives, and any data on them, "
+"are not touched."
+msgstr ""
+"使用您的滑鼠，選擇您要安裝 &PROD; 的硬碟。如果您有兩個以上的硬碟，您可以選擇"
+"要安裝在哪一個硬碟上。取消選取硬碟的話，所有在其上的資料都不會變動。"
+
+# <para>To review and make any necessary changes to the partitions created by automatic partitioning, select the <guilabel>Review</guilabel> option. After selecting <guilabel>Review</guilabel> and clicking <guibutton>Next</guibutton> to move forward, you will see the partitions created for you in <application>Disk Druid</application>. You will also be able to make modifications to these partitions if they do not meet your needs. </para>
+# /home/i18n/cvs/en_US/igs/diskpartauto.idx:
+#. Tag: para
+#: Automatic_Partitioning_common-para-3.xml:5
+#, fuzzy, no-c-format
+msgid ""
+"To review and make any necessary changes to the partitions created by "
+"automatic partitioning, select the <guilabel>Review</guilabel> option. After "
+"selecting <guilabel>Review</guilabel> and clicking <guibutton>Next</"
+"guibutton> to move forward, the partitions created for you by "
+"<application>anaconda</application> appear. You can make modifications to "
+"these partitions if they do not meet your needs."
+msgstr ""
+"要檢視由自動分割磁碟所建立的分割區與做任何必要的變更，請選擇 <guilabel>檢視</"
+"guilabel> 選項。 在選擇 <guilabel>檢視</guilabel> 之後，點選 <guibutton>下一"
+"步</guibutton> 以前往下一步驟，您將會看到由 <application>Disk Druid</"
+"application> 為您建立的分割區。 如果它們不符合您的需求的話，您也可以修改這些"
+"分割區的設定。"
+
+# <para>Click <guibutton>Next</guibutton> once you have made your selections to proceed. </para>
+# /home/i18n/cvs/en_US/igs/diskpartauto.idx:
+#. Tag: para
+#: Automatic_Partitioning_common-para-4.xml:8
+#, no-c-format
+msgid ""
+"Click <guibutton>Next</guibutton> once you have made your selections to "
+"proceed."
+msgstr "在您已做好選擇要繼續時，請點選 <guibutton>下一步</guibutton>。"
+
+#. Tag: title
+#: Boot_your_computer_from_the_CD.xml:6
+#, no-c-format
+msgid "Boot your computer from the CD"
+msgstr "把您的電腦系統從CD啟動。"
+
+#. Tag: para
+#: Boot_your_computer_from_the_CD.xml:7
+#, no-c-format
+msgid ""
+"Switch on your computer, load the Fedora &PRODVER; live CD into the CD or "
+"DVD drive, and restart the computer with the disc still in the drive. "
+"Ideally, you should soon see the Fedora boot screen and a ten-second "
+"countdown:"
+msgstr ""
+"在您的電腦開關，負載在Fedora &PRODVER; live CD 到 CD 或 DVD 磁碟機， 并重新啟"
+"動與光碟磁碟機中仍然是電腦。理想情況下，應該儘快看到Fedora的啟動螢幕和一個10"
+"秒 倒計時:"
+
+#. Tag: title
+#: Boot_your_computer_from_the_CD.xml:10
+#, no-c-format
+msgid "The Fedora live CD boot screen"
+msgstr "Fedora live CD啟動螢幕"
+
+#. Tag: para
+#: Boot_your_computer_from_the_CD.xml:13
+#, no-c-format
+msgid "The boot screen displays a countdown timer."
+msgstr "在啟動螢幕顯示倒數計時器"
+
+#. Tag: para
+#: Boot_your_computer_from_the_CD.xml:19
+#, fuzzy, no-c-format
+msgid ""
+"If you do not see this screen, you might need to select an option manually "
+"to make your computer boot from the CD. Power your computer on, and watch "
+"the initial BIOS screen for a prompt that indicates which key to use for "
+"either:"
+msgstr ""
+"此部份為只知道開機代表按下電源鈕的用戶們提供了額外的指南。若要將您的系統設為"
+"以 Live 媒介開機的話，首先請將系統關閉或是使它進入睡眠模式（若原本為開機狀"
+"態）。請開啟您的電腦，然後查看初始 BIOS 畫面上一個顯示了下列兩者所對應的鍵值"
+"為何的提示："
+
+#. Tag: para
+#: Boot_your_computer_from_the_CD.xml:24
+#, no-c-format
+msgid "a boot menu, or"
+msgstr "開機選單，或是"
+
+#. Tag: para
+#: Boot_your_computer_from_the_CD.xml:29
+#, no-c-format
+msgid "the BIOS setup utility"
+msgstr "BIOS 設定工具程式"
+
+#. Tag: para
+#: Boot_your_computer_from_the_CD.xml:34
+#, fuzzy, no-c-format
+msgid ""
+"The boot menu option is preferable. If you cannot see such a prompt, consult "
+"your manufacturer's documentation for your computer system, motherboard, or "
+"mainboard for the correct keystroke. On many systems, the required key will "
+"be <keycap>F12</keycap>, <keycap>F2</keycap>, <keycap>F1</keycap>, "
+"<keycap>Esc</keycap>, or <keycap>Delete</keycap>."
+msgstr ""
+"我們建議開機選單選項。若您看不到這樣的一個提示，請參閱您電腦系統、主機板，或"
+"是主板製造商的文件來取得正確的鍵值。在許多系統上，必要的鍵值為 <keycap>F12</"
+"keycap>、<keycap>F2</keycap>、<keycap>F1</keycap> 或 <keycap>Delete</"
+"keycap>。"
+
+#. Tag: title
+#: Burn_the_image_file_to_CD.xml:6
+#, no-c-format
+msgid "Burn the image file to CD"
+msgstr "映像檔案刻錄到CD"
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:7
+#, no-c-format
+msgid ""
+"The exact series of steps that produces a CD from an image file varies "
+"greatly from computer to computer, depending on the operating system and "
+"disc burning software installed. Use this procedure as a general guide. You "
+"might be able to omit certain steps on your computer, or might have to "
+"perform some of the steps in a different order from the order described here."
+msgstr ""
+"具體的步驟產生的一家族從不同的CD映像檔案  極大地從電腦到電腦， 根據作業系統"
+"和 裝載光碟刻錄軟體。 作為一般使用此過程指導。 你 也許能夠在電腦上省略某些步"
+"驟, 或者可能要 在執行該指令從不同的順序這裡所說明的一些步驟。"
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:10
+#, no-c-format
+msgid ""
+"Make sure that your disc burning software is capable of burning discs from "
+"image files. Although this is true of most disc burning software, exceptions "
+"exist."
+msgstr ""
+"請確保您的光碟刻錄軟體是刻錄光碟的能力 映像檔案。 雖然這是大多數光碟刻錄軟"
+"件，不規則真實存在。"
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:13
+#, no-c-format
+msgid ""
+"In particular, note that the CD burning feature built into Windows XP and "
+"Windows Vista cannot burn CDs from images and that earlier Windows operating "
+"systems did not have any CD burning capability installed by default. "
+"Therefore, if your computer has a Windows operating system installed on it, "
+"you need a separate piece of software for this task. Examples of popular CD "
+"burning software for Windows that you might already have on your computer "
+"include <application>Nero Burning ROM</application> and <application>Roxio "
+"Creator</application>. If you use a Windows operating system on your "
+"computer and do not have disc burning software installed (or you are not "
+"sure that the software can burn discs from image files) "
+"<application>InfraRecorder</application> is a suitable alternative available "
+"from <ulink url=\"http://www.infrarecorder.org/\"></ulink>, and is free and "
+"open-source."
+msgstr ""
+"特別留意：內建在 Windows XP 和 Windows Vista 的 光碟刻錄功能無法幫您從映像檔刻錄光碟，而再早期的 Windows "
+"作業系統更沒有任何預建的CD刻錄功能。 因此，如果您的計算機有Windows作業系統上裝載，你需要額外的軟體以完成這個工作。以下為在 Windows "
+"流行的CD 刻錄軟體，可能已經在您的電腦中包含了： <application>Nero Burning ROM</application> 和 "
+"<application>Roxio Creator</application>. 如果您使用Windows作業系統上的和你的 "
+"電腦沒有安裝光碟刻錄軟體（或您不確保該軟體可以從映像檔案刻錄光碟） <application>InfraRecorder</application> "
+"是一個合適的交替可用 從 <ulink url=\"http://www.infrarecorder.org/\"></ulink>, 而且是免費和開源的。"
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:16
+#, no-c-format
+msgid ""
+"The <application>Disk Utility</application> software installed by default "
+"with Mac OS&nbsp;X on Apple computers has the capability to burn CDs from "
+"images built into it already. Most widely-used CD burning software for "
+"Linux, such as <application>Brasero</application> and <application>K3b</"
+"application>, also includes this capability."
+msgstr ""
+"<application>磁碟工具</application> 軟體預設裝載 跟 Mac OS&nbsp;X 在 蘋果電"
+"腦 有能力刻錄光碟從 把它已經建成的影像。 最廣泛使用的CD刻錄軟體為 Linux, 就"
+"像 <application>Brasero</application> 和 <application>K3b</application> ，也"
+"包括此功能。"
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:21
+#, no-c-format
+msgid ""
+"Insert a blank, writeable CD into your computer's CD or DVD burner. On some "
+"computers, a window opens and displays various options when you insert the "
+"disc. If you see a window like this, look for an option to launch your "
+"chosen disc burning program. If you do not see an option like this, close "
+"the window and launch the program manually."
+msgstr ""
+"把可寫的空白 CD 或 DVD 插入電腦的光碟刻錄機。在某些電腦上，開啟一個視窗，並顯示各"
+"種選項當您插入光碟。如果你看到這樣的視窗中，尋找一個選項啟動您所選取的光槃刻"
+"錄程式。如果您沒有看到這樣的選項，關閉該視窗和手動啟動該程式。"
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:26
+#, no-c-format
+msgid ""
+"Launch your disc burning program. On some computers, you can do this by "
+"right-clicking (or control-clicking) on the image file and selecting a menu "
+"option with a label like <guilabel>Copy image to CD</guilabel>, or "
+"<guilabel>Copy CD or DVD image</guilabel>. Other computers might provide you "
+"with a menu option to launch your chosen disc burning program, either "
+"directly or with an option like <guimenuitem>Open With</guimenuitem>. If "
+"none of these options are available on your computer, launch the program "
+"from an icon on your desktop, in a menu of applications such as the "
+"<guimenu>Start</guimenu> menu on Windows operating systems, or in the Mac "
+"<filename>Applications</filename> folder."
+msgstr ""
+"啟動您的光碟刻錄程式在某些電腦上。，你可以這樣做的 右擊（或控制按一下影像文"
+"件），并選取功能表 我們這樣一個標簽選項 <guilabel>複製映像到CD</guilabel>，"
+"或 <guilabel>複製CD或DVD的映像</guilabel>。其他電腦可能會為您提供 一個功能表"
+"選項來啟動你選取的光碟刻錄程式，要么 直接或與像選取 <guimenuitem>開啟方式</"
+"guimenuitem>。如果 這些選項都可用您的電腦上，啟動該程式 從上管理系統上的圖"
+"像，菜單的應用，如 <guimenu>開始</guimenu> 功能表上的Windows作業系統，或者在 "
+"Mac <filename>應用程式</filename> 檔案夾。"
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:31
+#, no-c-format
+msgid ""
+"In your disc burning program, select the option to burn a CD from an image "
+"file. For example, in <application>Nero Burning ROM</application>, this "
+"option is called <guimenuitem>Burn Image</guimenuitem> and is located on the "
+"<guimenu>File</guimenu> menu."
+msgstr ""
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:34
+#, no-c-format
+msgid ""
+"Note that you can skip this step when using certain CD burning software; for "
+"example, <application>Disk Utility</application> on Mac OS&nbsp;X does not "
+"require it."
+msgstr ""
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:39
+#, no-c-format
+msgid ""
+"Browse to the Fedora live CD image file that you downloaded previously and "
+"select it for burning."
+msgstr ""
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:44
+#, no-c-format
+msgid "Click the button that starts the burning process."
+msgstr ""
+
+#. Tag: title
+#: Burn_the_image_file_to_CD.xml:50
+#, no-c-format
+msgid "Check the CD"
+msgstr "請檢查光碟"
+
+#. Tag: para
+#: Burn_the_image_file_to_CD.xml:51
+#, no-c-format
+msgid ""
+"After the burning process completes, browse to the CD and check its "
+"contents. If you have burned the disc correctly, it should contain a number "
+"of files and folders, including <filename>GPL</filename>, <filename>README</"
+"filename>, <filename>LiveOS</filename>, <filename>EFI</filename>, and "
+"<filename>isolinux</filename>. If you see only a single file named "
+"<filename>Fedora-&PRODVER;-i686-Live.iso</filename>, you have burned the "
+"image file itself to the CD, rather than burning a CD from the image file. "
+"In this case, you cannot use the CD and must try again."
+msgstr ""
+
+# <para>On this screen, you can choose to perform automatic partitioning, or manual partitioning using <application>Disk Druid</application>. </para>
+# /home/i18n/cvs/en_US/igs/diskpartsetup.idx:
+#. Tag: para
+#: Disk_Partitioning_Setup_common-para-1.xml:5
+#, fuzzy, no-c-format
+msgid ""
+"On this screen you can choose to create the default layout or choose to "
+"manual partition using the <guimenuitem>Create custom layout</guimenuitem> "
+"option."
+msgstr ""
+"在這個畫面，您可以選擇執行自動分割磁碟或使用 <application>Disk Druid</"
+"application> 手動分割磁碟。"
+
+# <para>Automatic partitioning allows you to perform an installation without having to partition your drive(s) yourself. If you do not feel comfortable with partitioning your system, it is recommended that you <emphasis>do not</emphasis> choose to partition manually and instead let the installation program partition for you. </para>
+# /home/i18n/cvs/en_US/igs/diskpartsetup.idx:
+#. Tag: para
+#: Disk_Partitioning_Setup_common-para-2.xml:8
+#, fuzzy, no-c-format
+msgid ""
+"The first four options allow you to perform an automated installation "
+"without having to partition your drive(s) yourself. If you do not feel "
+"comfortable with partitioning your system, it is recommended that you "
+"<emphasis>do not</emphasis> choose to create a custom layout and instead let "
+"the installation program partition for you."
+msgstr ""
+"自動分割磁碟讓您在執行安裝程式時不必自己分割您的硬碟。如果您沒有把握自己動手"
+"分割磁碟，建議您 <emphasis>不要</emphasis> 選擇手動分割，而讓安裝程式替您分"
+"割。"
+
+# <title>Disk Partitioning Setup</title>
+# /home/i18n/cvs/en_US/igs/diskpartsetup.idx:
+#. Tag: title
+#: Disk_Partitioning_Setup_common-title.xml:8
+#, no-c-format
+msgid "Disk Partitioning Setup"
+msgstr "磁碟分割管理程式"
+
+#. Tag: title
+#: Download_Fedora.xml:6
+#, no-c-format
+msgid "Download the Fedora live CD image file"
+msgstr "下載Fedora live CD映像檔案"
+
+#. Tag: para
+#: Download_Fedora.xml:7
+#, no-c-format
+msgid ""
+"The image file for the Fedora &PRODVER; live CD is available from <ulink url="
+"\"http://download.fedoraproject.org/pub/fedora/linux/releases/12/Live/i686/"
+"Fedora-12-i686-Live.iso\"></ulink>. Download and save this file to your "
+"computer."
+msgstr ""
+"為Fedora &PRODVER; live CD 的映像檔案可從 <ulink url=\"http://download."
+"fedoraproject.org/pub/fedora/linux/releases/11/Live/i686/Fedora-11-i686-Live."
+"iso\"></ulink> 。下載并儲存這個檔案到您的電腦。"
+
+#. Tag: title
+#: firstboot-datetime.xml:9
+#, no-c-format
+msgid "Date and Time"
+msgstr "日期和時間"
+
+#. Tag: para
+#: firstboot-datetime.xml:11
+#, no-c-format
+msgid ""
+"If your system does not have Internet access or a network time server, "
+"manually set the date and time for your system on this screen. Otherwise, "
+"use <indexterm> <primary>NTP (Network Time Protocol)</primary> </indexterm> "
+"<firstterm>NTP</firstterm> (Network Time Protocol) servers to maintain the "
+"accuracy of the clock. NTP provides time synchronization service to "
+"computers on the same network. The Internet contains many computers that "
+"offer public NTP services."
+msgstr ""
+
+#. Tag: title
+#: firstboot-datetime.xml:29
+#, no-c-format
+msgid "<title>Firstboot date and time screen</title>"
+msgstr "<title>首次啟動日期和時間螢幕</title>"
+
+#. Tag: para
+#: firstboot-datetime.xml:32
+#, no-c-format
+msgid "<para>Firstboot date and time screen</para>"
+msgstr "<para>首次啟動日期和時間螢幕</para>"
+
+#. Tag: title
+#: firstboot-license.xml:9
+#, no-c-format
+msgid "License Agreement"
+msgstr "許可協定"
+
+#. Tag: para
+#: firstboot-license.xml:11
+#, no-c-format
+msgid ""
+"This screen displays the overall licensing terms for Fedora. Each software "
+"package in Fedora is covered by its own license. All licensing guidelines "
+"for Fedora are located at <ulink url=\"http://fedoraproject.org/wiki/Legal/"
+"Licenses\"></ulink>."
+msgstr ""
+
+#. Tag: title
+#: firstboot-license.xml:18
+#, no-c-format
+msgid "<title>Firstboot license screen</title>"
+msgstr "<title>首次啟動許可螢幕</title>"
+
+#. Tag: para
+#: firstboot-license.xml:21
+#, no-c-format
+msgid "<para>Firstboot license screen</para>"
+msgstr "<para>首次啟動許可螢幕</para>"
+
+#. Tag: para
+#: firstboot-license.xml:29
+#, no-c-format
+msgid ""
+"If you agree to the terms of the licence, select <guibutton>Forward</"
+"guibutton>."
+msgstr ""
+"要修改 GRUB 啟動管理者的一個項目，選取它然后按下 <guibutton>編輯</guibutton> "
+"按鈕。"
+
+#. Tag: title
+#: firstboot-smolt.xml:8
+#, no-c-format
+msgid "Hardware Profile"
+msgstr "硬體配置檔案"
+
+#. Tag: para
+#: firstboot-smolt.xml:9
+#, no-c-format
+msgid ""
+"<application>Firstboot</application> displays a screen that allows you to "
+"submit your hardware information anonymously to the Fedora Project. "
+"Developers use these hardware details to guide further support efforts. You "
+"can read more about this project and its development at <ulink url=\"http://"
+"smolts.org/\"></ulink>."
+msgstr ""
+
+#. Tag: title
+#: firstboot-smolt.xml:17
+#, no-c-format
+msgid "<title>Firstboot hardware profile screen</title>"
+msgstr "<title>首次啟動硬體配置檔案螢幕</title>"
+
+#. Tag: para
+#: firstboot-smolt.xml:20
+#, no-c-format
+msgid "<para>Firstboot hardware profile screen</para>"
+msgstr "<para>首次啟動硬體配置檔案螢幕</para>"
+
+#. Tag: para
+#: firstboot-smolt.xml:28
+#, no-c-format
+msgid ""
+"To opt in to this important work, select <guilabel>Send Profile</guilabel>. "
+"If you choose not to submit any profile data, do not change the default. "
+"Select <guilabel>Finish</guilabel> to continue to the login screen."
+msgstr ""
+
+#. Tag: title
+#: firstboot-systemuser.xml:9
+#, no-c-format
+msgid "System User"
+msgstr "系統用戶"
+
+#. Tag: para
+#: firstboot-systemuser.xml:11
+#, no-c-format
+msgid ""
+"Create a user account for yourself with this screen. Always use this account "
+"to log in to your Fedora system, rather than using the <systemitem class="
+"\"username\">root</systemitem> account."
+msgstr ""
+
+#. Tag: title
+#: firstboot-systemuser.xml:17
+#, no-c-format
+msgid "<title>Firstboot create user screen</title>"
+msgstr "<title>首次啟動 - 建立用戶畫面</title>"
+
+#. Tag: para
+#: firstboot-systemuser.xml:20
+#, no-c-format
+msgid "<para>Firstboot create user screen</para>"
+msgstr "<para>首次啟動 - 建立用戶畫面</para>"
+
+#. Tag: title
+#: firstboot-welcome.xml:9
+#, no-c-format
+msgid "Firstboot"
+msgstr "首次啟動"
+
+#. Tag: para
+#: firstboot-welcome.xml:14
+#, no-c-format
+msgid ""
+"<application>Firstboot</application> launches the first time that you start "
+"a new Fedora system. Use <application>Firstboot</application> to configure "
+"the system for use before you log in."
+msgstr ""
+
+#. Tag: title
+#: firstboot-welcome.xml:20
+#, no-c-format
+msgid "<title>Firstboot welcome screen</title>"
+msgstr "<title>首次啟動歡迎畫面</title>"
+
+#. Tag: para
+#: firstboot-welcome.xml:23
+#, no-c-format
+msgid "<para>Firstboot welcome screen</para>"
+msgstr "<para>首次啟動歡迎畫面</para>"
+
+#. Tag: para
+#: firstboot-welcome.xml:30
+#, no-c-format
+msgid ""
+"Select <guibutton>Forward</guibutton> to start <application>Firstboot</"
+"application>."
+msgstr "點擊<guibutton>「下一步」</guibutton>按鈕來繼續。"
+
+#. Tag: para
+#: Initializing_Hard_Disk_common-para-1.xml:5
+#, no-c-format
+msgid ""
+"If no readable partition tables are found on existing hard disks, the "
+"installation program asks to initialize the hard disk. This operation makes "
+"any existing data on the hard disk unreadable. If your system has a brand "
+"new hard disk with no operating system installed, or you have removed all "
+"partitions on the hard disk, click <guibutton>Re-initialize drive</"
+"guibutton>."
+msgstr ""
+"假若在所有現存的硬碟中都沒有可讀的分割區表格，安裝程式會詢問是否要把硬碟格式"
+"化。這個動作會令硬碟內所有現有的資料不能再讀取。若你的系統有一個全新的硬碟，"
+"而且未有安裝任何作業系統，又或你先前已移除硬碟內所有分割區，請選擇<guibutton>"
+"把硬碟格式化</guibutton>。"
+
+# <title>Installing from a Hard Drive <![%S390[(DASD)]]></title>
+# /home/i18n/cvs/en_US/igs/begininstall.idx:
+#. Tag: title
+#: Initializing_Hard_Disk_common-title.xml:5
+#, no-c-format
+msgid "Initializing the Hard Disk"
+msgstr "把硬碟格式化"
+
+#. Tag: title
+#: Initializing_Hard_Disk-x86.xml:17
+#, no-c-format
+msgid "Warning screen &ndash; initializing hard drive"
+msgstr ""
+
+#. Tag: para
+#: Initializing_Hard_Disk-x86.xml:20
+#, no-c-format
+msgid "Warning screen &ndash; initializing hard drive."
+msgstr ""
+
+# EXACT MATCH
+#. Tag: para
+#: Installing_Packages_common-para-1.xml:5
+#, no-c-format
+msgid ""
+"At this point there is nothing left for you to do until all the packages "
+"have been installed. How quickly this happens depends on the number of "
+"packages you have selected and your computer's speed."
+msgstr ""
+"在所有套件還未安裝好之前，您不需要做任何事，安裝時間的長短完全依照於您所選取"
+"的 套件數量以及您電腦的速度。"
+
+#. Tag: para
+#: Installing_Packages_common-para-3.xml:6
+#, no-c-format
+msgid ""
+"After installation completes, select <guibutton>Reboot</guibutton> to "
+"restart your computer. Fedora ejects any loaded discs before the computer "
+"reboots."
+msgstr ""
+
+# <title>Installing Packages</title>
+# /home/pgampe/cvs/en_US/cgs/graphical-rpm.idx:
+#. Tag: title
+#: Installing_Packages_common-title.xml:8
+#, no-c-format
+msgid "Installing Packages"
+msgstr "安裝套件"
+
+#. Tag: title
+#: Introduction.xml:6
+#, no-c-format
+msgid "Introduction"
+msgstr "介紹"
+
+#. Tag: para
+#: Introduction.xml:7
+#, no-c-format
+msgid ""
+"This guide shows you how to download a Fedora &PRODVER; live CD image, burn "
+"this image to a disc, and use this disc to install Fedora &PRODVER; on a "
+"typical desktop or notebook computer. This guide is not a complete "
+"description of the installation process and all its options &mdash; for "
+"greater detail, refer to the <citetitle>Fedora &PRODVER; Installation Guide</"
+"citetitle>, available from <ulink url=\"http://docs.fedoraproject.org/"
+"install-guide/f12/\"></ulink>."
+msgstr ""
+
+#. Tag: para
+#: Key_Board_Configuration-x86.xml:16
+#, no-c-format
+msgid ""
+"Using your mouse, select the correct layout type (for example, U.S. English) "
+"for the keyboard you would prefer to use for the installation and as the "
+"system default (refer to the figure below)."
+msgstr ""
+"使用您的滑鼠，選擇正確的鍵盤配置類型（例如，US English），用來安裝以及設定為"
+"系統預設（請參照下列圖表）。"
+
+# EXACT MATCH
+#. Tag: para
+#: Key_Board_Configuration-x86.xml:26
+#, no-c-format
+msgid "Keyboard configuration screen"
+msgstr "鍵盤設定畫面"
+
+# <para>Once you have made your selection, click <guibutton>Next</guibutton> to continue.</para>
+# /home/i18n/cvs/en_US/igs/kbdconfig.idx:
+#. Tag: para
+#: Key_Board_Configuration_x86_ppc-para-1.xml:8
+#, no-c-format
+msgid ""
+"Once you have made your selection, click <guibutton>Next</guibutton> to "
+"continue."
+msgstr "當您做好選擇，請按下 <guibutton>下一步</guibutton> 繼續。"
+
+# <para>Selecting the appropriate language will also help target your time zone configuration later in the installation. The installation program will try to define the appropriate time zone based on what you specify on this screen. </para>
+# /home/i18n/cvs/en_US/igs/langselection.idx:
+#. Tag: para
+#: Language_Selection_common-para-1.xml:5
+#, no-c-format
+msgid ""
+"The language you select here will become the default language for the "
+"operating system once it is installed. Selecting the appropriate language "
+"also helps target your time zone configuration later in the installation. "
+"The installation program tries to define the appropriate time zone based on "
+"what you specify on this screen."
+msgstr ""
+"您所選擇的語言將在完成安裝後成為作業系統的預設語言，選擇適當的語言將助您在之"
+"後安裝程式的設定中指向您的時區。安裝程式會試著以您在這個畫面所指定的語言來定"
+"義適當的時區。"
+
+# <para>Once you select the appropriate language, click <guibutton>Next</guibutton> to continue.</para>
+# /home/i18n/cvs/en_US/igs/langselection.idx:
+#. Tag: para
+#: Language_Selection_common-para-2.xml:5
+#, no-c-format
+msgid ""
+"Once you select the appropriate language, click <guibutton>Next</guibutton> "
+"to continue."
+msgstr "當您選好適當的語言，按下 <guibutton>下一步</guibutton> 繼續。"
+
+#. Tag: para
+#: Language_Selection-x86.xml:13
+#, no-c-format
+msgid ""
+"Using your mouse, select a language to use for the installation (refer to "
+"<xref linkend=\"fig-langselection-x86\"/>)."
+msgstr ""
+"使用您的滑鼠來選擇安裝程式的語言（請參照<xref linkend=\"fig-langselection-x86"
+"\"/>）。"
+
+# <para> Language selection screen. </para>
+# /home/i18n/cvs/en_US/igs/langselection.idx:
+#. Tag: para
+#: Language_Selection-x86.xml:28
+#, no-c-format
+msgid "Language selection screen."
+msgstr "語言選擇畫面。"
+
+#. Tag: title
+#: Log_in_to_the_Fedora_live_system.xml:6
+#, no-c-format
+msgid "Log in to the Fedora live system"
+msgstr ""
+
+#. Tag: para
+#: Log_in_to_the_Fedora_live_system.xml:7
+#, no-c-format
+msgid ""
+"After a ten-second countdown, your computer loads the Fedora live system and "
+"presents you with a login screen:"
+msgstr ""
+
+#. Tag: title
+#: Log_in_to_the_Fedora_live_system.xml:10
+#, no-c-format
+msgid "The Fedora live system login screen"
+msgstr ""
+
+#. Tag: para
+#: Log_in_to_the_Fedora_live_system.xml:13
+#, no-c-format
+msgid ""
+"The Fedora live system login screen. A menu bar with drop-down menus for "
+"language and keyboard layout runs along the bottom. A dialog box in the "
+"middle of the screen contains the <guibutton>Log In</guibutton> button."
+msgstr ""
+
+#. Tag: para
+#: Log_in_to_the_Fedora_live_system.xml:21
+#, no-c-format
+msgid ""
+"Click on the menus in the gray bar at the bottom of the screen to select "
+"your language and keyboard layout."
+msgstr ""
+
+#. Tag: para
+#: Log_in_to_the_Fedora_live_system.xml:26
+#, no-c-format
+msgid ""
+"Click the <guibutton>Log In</guibutton> button. The Fedora live system "
+"desktop loads."
+msgstr ""
+
+#. Tag: para
+#: Log_in_to_the_Fedora_live_system.xml:31
+#, no-c-format
+msgid ""
+"The Fedora live system desktop consists of menu bars at the top and bottom "
+"of the screen, plus four icons on the desktop. Double-click the icon marked "
+"<guilabel>Install to Hard Drive</guilabel> to launch the installation "
+"program."
+msgstr ""
+
+#. Tag: title
+#: Log_in_to_the_Fedora_live_system.xml:34
+#, no-c-format
+msgid "The desktop of the Fedora live system"
+msgstr ""
+
+#. Tag: para
+#: Log_in_to_the_Fedora_live_system.xml:37
+#, no-c-format
+msgid ""
+"The desktop of the Fedora live system. There are menu bars at the top and "
+"bottom of the screen, and the icons <guilabel>Computer</guilabel>, "
+"<guilabel>liveuser's Home</guilabel>, <guilabel>Trash</guilabel>, and "
+"<guilabel>Install to Hard Drive</guilabel> on the desktop itself."
+msgstr ""
+
+# <title>Network Configuration</title>
+# /home/i18n/cvs/en_US/cgs/networkconfig.idx:
+#. Tag: title
+#: networkconfig-fedora.xml:9
+#, no-c-format
+msgid "Network Configuration"
+msgstr "網路設定"
+
+#. Tag: para
+#: networkconfig-fedora.xml:29
+#, no-c-format
+msgid ""
+"Setup prompts you to supply a host name and domain name for this computer, "
+"in the format <replaceable>hostname</replaceable>.<replaceable>domainname</"
+"replaceable>. Many networks have a DHCP (Dynamic Host Configuration "
+"Protocol) service that automatically supplies connected systems with a "
+"domain name, leaving the user to enter a hostname."
+msgstr ""
+
+#. Tag: para
+#: networkconfig-fedora.xml:33
+#, no-c-format
+msgid ""
+"Unless you have a specific need to customize the host name and domain name, "
+"the default setting <literal>localhost.localdomain</literal> is a good "
+"choice for most users."
+msgstr ""
+
+#. Tag: title
+#: networkconfig-fedora.xml:37
+#, no-c-format
+msgid "<title>Setting the hostname</title>"
+msgstr ""
+
+#. Tag: para
+#: networkconfig-fedora.xml:40
+#, no-c-format
+msgid "<para>Setting the hostname</para>"
+msgstr ""
+
+# EXACT MATCH
+#. Tag: para
+#: Package_Selection_common-imagecap-1.xml:8
+#, no-c-format
+msgid "Choose which package groups you want to install."
+msgstr "選擇您想安裝的套件群組。"
+
+# EXACT MATCH
+#. Tag: para
+#: Package_Selection_common-imagecap-2.xml:5
+#, no-c-format
+msgid "Choose to add or remove optional packages from this package group."
+msgstr "從套件群組中選擇要增加或移除的可選套件。"
+
+#. Tag: term
+#: Package_Selection_common-list-1.xml:9
+#, no-c-format
+msgid "Office and Productivity"
+msgstr "辦公及生產力軟件"
+
+#. Tag: para
+#: Package_Selection_common-list-1.xml:11
+#, no-c-format
+msgid ""
+"This option provides the OpenOffice.org productivity suite, the Planner "
+"project management application, graphical tools such as the GIMP, and "
+"multimedia applications."
+msgstr ""
+
+# EXACT MATCH
+#. Tag: term
+#: Package_Selection_common-list-1.xml:20
+#, no-c-format
+msgid "Software Development"
+msgstr "軟件開發"
+
+# This appendix explains the various methods available for upgrading your &PROD; system.
+#. Tag: para
+#: Package_Selection_common-list-1.xml:22
+#, no-c-format
+msgid ""
+"This option provides the necessary tools to compile software on your Fedora "
+"system."
+msgstr "這個選項為重新編繹您的 Fedora 系統提供所需的工具。"
+
+# EXACT MATCH
+#. Tag: term
+#: Package_Selection_common-list-1.xml:30
+#, no-c-format
+msgid "Web server"
+msgstr "網頁伺服器"
+
+#. Tag: para
+#: Package_Selection_common-list-1.xml:32
+#, no-c-format
+msgid "This option provides the Apache Web server."
+msgstr ""
+
+# <para>First, a screen appears that details the default package set for your &RHEL; installation. This screen will vary depending on the version of &PROD; you are installing.</para>
+#. Tag: para
+#: Package_Selection_common-para-2.xml:5
+#, fuzzy, no-c-format
+msgid ""
+"The <guilabel>Package Installation Defaults</guilabel> screen appears and "
+"details the default package set for your Fedora installation."
+msgstr ""
+"首先，出現一個詳細列出 &PROD; 安裝的預設套件<guilabel>套件安裝預設</guilabel>"
+"畫面，這個畫面將因您安裝不同版本的 &PROD; 而不同。"
+
+# <para>To customize your package set further, select <guilabel>Customize the set of packages to be installed</guilabel> option on the screen. Clicking <guibutton>Next</guibutton> takes you to the <guilabel>Package Group Selection</guilabel> screen.</para>
+#. Tag: para
+#: Package_Selection_common-para-3.xml:8
+#, no-c-format
+msgid ""
+"To customize your package set further, select the <guilabel>Customize now</"
+"guilabel> option on the screen. Clicking <guibutton>Next</guibutton> takes "
+"you to the <guilabel>Package Group Selection</guilabel> screen."
+msgstr ""
+"如要進一步自訂您的套件組，請選取畫面中 <guilabel>自訂要安裝的套件群組</"
+"guilabel> 選項，在點選 <guibutton>下一步</guibutton> 後將會帶您到 <guilabel>"
+"選擇套件群組</guilabel> 的畫面。"
+
+# <para>You can select package groups, which group components together according to function (for example, <guilabel>X Window System</guilabel> and <guilabel>Editors</guilabel>), individual packages, or a combination of the two. </para>
+# /home/i18n/cvs/en_US/igs/pkgselection.idx:
+#. Tag: para
+#: Package_Selection_common-para-4.xml:8
+#, no-c-format
+msgid ""
+"You can select package groups, which group components together according to "
+"function (for example, <guilabel>X Window System</guilabel> and "
+"<guilabel>Editors</guilabel>), individual packages, or a combination of the "
+"two."
+msgstr ""
+"在此您可以選擇套件群組（根據功能性將套件群組起來，例如 <guilabel>X 視窗系統</"
+"guilabel> 與 <guilabel>編輯器</guilabel>）、個別套件或者是兩者的結合。"
+
+#. Tag: para
+#: Package_Selection_common-para-7.xml:7
+#, no-c-format
+msgid ""
+"By default, the Fedora installation process loads a selection of software "
+"that is suitable for a desktop system. To include or remove software for "
+"common tasks, select the relevant items from the list:"
+msgstr ""
+
+#. Tag: title
+#: Package_Selection_Customizing-x86.xml:8
+#, no-c-format
+msgid "Customizing the Software Selection"
+msgstr ""
+
+# <title>Package Group Details</title>
+# /home/i18n/cvs/en_US/igs/pkgselection.idx:
+#. Tag: title
+#: Package_Selection_Customizing-x86.xml:26
+#, no-c-format
+msgid "Package Group Details"
+msgstr "套件群組的細節"
+
+#. Tag: para
+#: Package_Selection_Customizing-x86.xml:37
+#, no-c-format
+msgid ""
+"Fedora divides the included software into <indexterm> <primary>package "
+"groups</primary> </indexterm> <firstterm>package groups</firstterm>. For "
+"ease of use, the package selection screen displays these groups as "
+"categories."
+msgstr ""
+
+#. Tag: para
+#: Package_Selection_Customizing-x86.xml:71
+#, no-c-format
+msgid ""
+"After you choose the desired packages, select <guilabel>Next</guilabel> to "
+"proceed. Fedora checks your selection, and automatically adds any extra "
+"packages required to use the software you select. When you have finished "
+"selecting packages, click <guilabel>Close</guilabel> to save your optional "
+"package selections and return to the main package selection screen."
+msgstr ""
+
+#. Tag: title
+#: Package_Selection-dvd.xml:9
+#, no-c-format
+msgid "DVD or six-CD set only"
+msgstr "DVD碟 或 一套六張的光碟"
+
+#. Tag: para
+#: Package_Selection-dvd.xml:10
+#, no-c-format
+msgid ""
+"You will not see this screen if you are installing Fedora from the live CD."
+msgstr ""
+
+#. Tag: para
+#: Package_Selection-x86.xml:12
+#, no-c-format
+msgid ""
+"If you install from a Fedora Live image, you cannot make package selections. "
+"This installation method transfers a copy of the Live image rather than "
+"installing packages from a repository. To change the package selection, "
+"complete the installation, then use the <application>Add/Remove Software</"
+"application> application to make desired changes."
+msgstr ""
+
+#. Tag: para
+#: Package_Selection-x86.xml:19
+#, no-c-format
+msgid ""
+"If you are installing Fedora from a DVD or set of six CDs, refer to <xref "
+"linkend=\"ap-pkgselection-dvd\"/> for details of package selection."
+msgstr ""
+
+#. Tag: title
+#: Requirements.xml:6
+#, no-c-format
+msgid "Requirements"
+msgstr "需求"
+
+#. Tag: para
+#: Requirements.xml:7
+#, no-c-format
+msgid "To create a Fedora live CD, you need:"
+msgstr "要建立 Fedora 的 Live CD，您需要有："
+
+#. Tag: para
+#: Requirements.xml:11
+#, no-c-format
+msgid "a broadband connection to the Internet."
+msgstr "連往網際網路的寬頻連線。"
+
+#. Tag: para
+#: Requirements.xml:16
+#, no-c-format
+msgid "a computer with a CD or DVD burner."
+msgstr "一台裝有可錄寫的光碟機或DVD機。"
+
+#. Tag: para
+#: Requirements.xml:21
+#, no-c-format
+msgid "software that allows you to create a CD from an image file."
+msgstr ""
+
+#. Tag: para
+#: Requirements.xml:26
+#, no-c-format
+msgid "a blank, writeable CD."
+msgstr "一隻空白且可寫入的光碟。"
+
+#. Tag: para
+#: Requirements.xml:33
+#, no-c-format
+msgid ""
+"If you do not have a fast Internet connection, or if you have a problem "
+"creating boot media, downloading may not be an option. Fedora DVD and CD "
+"distribution media is available from a number of online sources around the "
+"world at a minimal cost. Use your favorite Web search engine to locate a "
+"vendor, or refer to <ulink url=\"http://fedoraproject.org/wiki/Distribution"
+"\"></ulink>."
+msgstr ""
+
+#. Tag: para
+#: Requirements.xml:36
+#, no-c-format
+msgid ""
+"The computer on which you intend to install Fedora &PRODVER; from the live "
+"CD should have: <itemizedlist> <listitem> <para> a CD or DVD drive, and the "
+"capability to boot from this drive. </para> </listitem> <listitem> <para> a "
+"400 MHz processor or faster </para> </listitem> <listitem> <para> at least "
+"256 MB of memory (RAM) </para> </listitem> <listitem> <para> at least 10 GB "
+"of permanent storage (hard drive) space. </para> </listitem> </itemizedlist> "
+"These specifications represent a bare minumum to use Fedora in graphical "
+"mode. Almost any laptop or desktop computer manufactured during the past ten "
+"years will meet these requirements. For more details of the hardware "
+"requirements for Fedora &PRODVER;, refer to the <citetitle>Fedora &PRODVER; "
+"Release Notes</citetitle>, available from <ulink url=\"http://docs."
+"fedoraproject.org/release-notes/f12/\"></ulink>."
+msgstr ""
+
+#. Tag: para
+#: Requirements.xml:62
+#, no-c-format
+msgid ""
+"If your computer does not have a CD or DVD drive, or is not capable of "
+"booting from this drive, then you might be able to install Fedora from a USB "
+"storage device such as a USB flash drive. Refer to the <citetitle>liveusb-"
+"creator</citetitle> page at <ulink url=\"https://fedorahosted.org/liveusb-"
+"creator/\"></ulink> for instructions."
+msgstr ""
+
+#. Tag: title
+#: Requirements.xml:66
+#, no-c-format
+msgid "Do you already have Fedora &PRODVER; on CD, DVD, or live USB media?"
+msgstr ""
+
+#. Tag: para
+#: Requirements.xml:67
+#, no-c-format
+msgid ""
+"If you already have Fedora &PRODVER; on CD, DVD, or live USB media, you can "
+"still use this guide, because many steps will be similar. Skip ahead to "
+"<xref linkend=\"Boot_your_computer_from_the_CD\"/>, then"
+msgstr ""
+
+#. Tag: para
+#: Requirements.xml:72
+#, no-c-format
+msgid ""
+"continue through the instructions in order if you have a Fedora &PRODVER; "
+"live CD or live USB device."
+msgstr ""
+
+#. Tag: para
+#: Requirements.xml:77
+#, no-c-format
+msgid ""
+"skip ahead to <xref linkend=\"sn-welcome-x86\"/> if you have a Fedora "
+"&PRODVER; DVD or set of six CDs."
+msgstr ""
+
+#. Tag: title
+#: Revision_History.xml:6
+#, no-c-format
+msgid "Revision History"
+msgstr "修訂歷史"
+
+#. Tag: author
+#: Revision_History.xml:12 Revision_History.xml:25
+#, no-c-format
+msgid "<firstname>Rüdiger</firstname> <surname>Landmann</surname>"
+msgstr "<firstname>Rüdiger</firstname> <surname>Landmann</surname>"
+
+#. Tag: member
+#: Revision_History.xml:18
+#, no-c-format
+msgid "Update for Fedora 12"
+msgstr "升級至 Fedora 12"
+
+#. Tag: member
+#: Revision_History.xml:31
+#, no-c-format
+msgid ""
+"Initial version with sections copied from Fedora 11 Installation guide and "
+"Readme: Live Images"
+msgstr ""
+
+# EXACT MATCH
+#. Tag: title
+#: Time_Zone_common-figure-1.xml:5
+#, no-c-format
+msgid "Configuring the Time Zone"
+msgstr "設定時區"
+
+# EXACT MATCH
+#. Tag: para
+#: Time_Zone_common-figure-1.xml:8
+#, no-c-format
+msgid "Time zone configuration screen."
+msgstr "時區設定畫面。"
+
+# <para>On the interactive map, you can also click on a specific city, which is marked by a yellow dot; a red <guilabel>X</guilabel> will appear indicating your selection. You can also scroll through a list and choose a time zone. </para>
+# /home/i18n/cvs/en_US/igs/timezone.idx:
+#. Tag: para
+#: Time_Zone_common-itemizedlist-1.xml:10
+#, no-c-format
+msgid ""
+"Using your mouse, click on the interactive map to select a specific city "
+"(represented by a yellow dot). A red <guilabel>X</guilabel> appears "
+"indicating your selection."
+msgstr ""
+"藉由滑鼠點選互動式地圖，在城市間切換（以黃點標示）。紅色的<guilabel>X</"
+"guilabel>表示您目前的選擇。"
+
+# EXACT MATCH
+#. Tag: para
+#: Time_Zone_common-itemizedlist-1.xml:16
+#, no-c-format
+msgid ""
+"You can also scroll through the list at the bottom of the screen to select "
+"your time zone. Using your mouse, click on a location to highlight your "
+"selection."
+msgstr "您也可以捲動螢幕下方的選單，選擇您的時區。請用滑鼠點選您的所在位置。"
+
+# Set your time zone by selecting the city closest to your computer's physical location.
+#. Tag: para
+#: Time_Zone_common-para-1.xml:8
+#, no-c-format
+msgid ""
+"Set your time zone by selecting the city closest to your computer's physical "
+"location. Click on the map to zoom in to a particular geographical region of "
+"the world."
+msgstr ""
+"選擇並設定離您電腦實際位置最近的城市時區。在地圖上點選來縮放特定地理位置。"
+
+# There are two ways for you to select your time zone:
+#. Tag: para
+#: Time_Zone_common-para-2.xml:8
+#, no-c-format
+msgid "From here there are two ways for you to select your time zone:"
+msgstr "欲設定時區，有以下兩種方法："
+
+#. Tag: para
+#: Time_Zone_common-para-6.xml:6
+#, no-c-format
+msgid "Select <guibutton>Next</guibutton> to proceed."
+msgstr "選擇 <guibutton>下一步</guibutton> 繼續。"
+
+# EXACT MATCH
+#. Tag: title
+#: Time_Zone_common-title.xml:5
+#, no-c-format
+msgid "Time Zone Configuration"
+msgstr "時區設定"
+
+#. Tag: title
+#: upgrading-fedora.xml:9
+#, no-c-format
+msgid "Upgrading an Existing System"
+msgstr "把現存的系統升級"
+
+#. Tag: para
+#: upgrading-fedora.xml:36
+#, no-c-format
+msgid ""
+"If your system contains a Fedora or Red Hat Linux installation, a dialog "
+"appears asking whether you want to upgrade that installation. To perform an "
+"upgrade of an existing system, choose the appropriate installation from the "
+"drop-down list and select <guibutton>Next</guibutton>."
+msgstr ""
+
+#. Tag: title
+#: upgrading-fedora.xml:43
+#, no-c-format
+msgid "The upgrade screen"
+msgstr "升級頁面"
+
+#. Tag: para
+#: upgrading-fedora.xml:46
+#, no-c-format
+msgid "The upgrade screen."
+msgstr "升級頁面。"
+
+# <title>Welcome to &PROD;</title>
+# /home/i18n/cvs/en_US/igs/welcome.idx:
+#. Tag: title
+#: Welcome-x86.xml:6
+#, no-c-format
+msgid "Welcome to Fedora"
+msgstr "歡迎使用 Fedora"
+
+#. Tag: para
+#: Welcome-x86.xml:8
+#, no-c-format
+msgid ""
+"The <guilabel>Welcome</guilabel> screen does not prompt you for any input."
+msgstr "<guilabel>歡迎</guilabel> 畫面並不會提示您輸入任何訊息。"
+
+#. Tag: para
+#: Welcome-x86.xml:14
+#, no-c-format
+msgid "Welcome to Fedora &PRODVER;"
+msgstr "歡迎使用 Fedora &PRODVER;"
+
+# <para>Click on the <guibutton>Next</guibutton> button to continue. </para>
+# /home/i18n/cvs/en_US/igs/welcome.idx:
+#. Tag: para
+#: Welcome-x86.xml:19
+#, no-c-format
+msgid "Click on the <guibutton>Next</guibutton> button to continue."
+msgstr "點選 <guibutton>下一步</guibutton> 的按鈕繼續。"
+
+#. Tag: title
+#: Write_changes_to_disk.xml:6
+#, no-c-format
+msgid "Write changes to disk"
+msgstr "寫入所有變更"
+
+#. Tag: para
+#: Write_changes_to_disk.xml:7
+#, no-c-format
+msgid ""
+"The installer prompts you to confirm the partitioning options that you "
+"selected. Click <guibutton>Write changes to disk</guibutton> to allow the "
+"installer to partition your hard drive and install Fedora."
+msgstr ""
+
+#. Tag: title
+#: Write_changes_to_disk.xml:10
+#, no-c-format
+msgid "Writing storage configuration to disk"
+msgstr "寫入儲存裝置設定"
+
+#. Tag: para
+#: Write_changes_to_disk.xml:13
+#, no-c-format
+msgid ""
+"The <guilabel>Writing storage configuration to disk</guilabel> dialog box "
+"lets you choose to <guibutton>Write changes to disk</guibutton> or to "
+"<guibutton>Go back</guibutton>."
+msgstr ""
+
+#. Tag: para
+#: Write_changes_to_disk.xml:19
+#, no-c-format
+msgid ""
+"If you are certain that you want to proceed, click <guibutton>Write changes "
+"to disk</guibutton>."
+msgstr ""
+
+#. Tag: title
+#: Write_changes_to_disk.xml:23
+#, no-c-format
+msgid "Last chance to cancel safely"
+msgstr "安全地取銷的最後機會"
+
+#. Tag: para
+#: Write_changes_to_disk.xml:24
+#, no-c-format
+msgid ""
+"Up to this point in the installation process, the installer has made no "
+"lasting changes to your computer. When you click <guibutton>Write changes to "
+"disk</guibutton>, the installer will allocate space on your hard drive and "
+"start to transfer Fedora into this space. Depending on the partitioning "
+"option that you chose, this process might include erasing data that already "
+"exists on your computer."
+msgstr ""
+
+#. Tag: para
+#: Write_changes_to_disk.xml:27
+#, no-c-format
+msgid ""
+"To revise any of the choices that you made up to this point, click "
+"<guibutton>Go back</guibutton>. To cancel installation completely, switch "
+"off your computer. To switch off most computers at this stage, press the "
+"power button and hold it down for a few seconds."
+msgstr ""
+
+#. Tag: para
+#: Write_changes_to_disk.xml:30
+#, no-c-format
+msgid ""
+"After you click <guibutton>Write changes to disk</guibutton>, allow the "
+"installation process to complete. If the process is interrupted (for "
+"example, by you switching off or resetting the computer, or by a power "
+"outage) you will probably not be able to use your computer until you restart "
+"and complete the Fedora installation process, or install a different "
+"operating system."
+msgstr ""
+
+# <title>Boot Loader Configuration</title>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#. Tag: title
+#: X86_Bootloader.xml:7 X86_Bootloader.xml:61
+#, no-c-format
+msgid "Boot Loader Configuration"
+msgstr "開機管理程式設定"
+
+#. Tag: para
+#: X86_Bootloader.xml:43
+#, no-c-format
+msgid ""
+"Some partitioning options cause the boot loader configuration screen to "
+"appear. If you do not see this screen, skip to <xref linkend=\"s1-"
+"pkgselection-x86\"/>."
+msgstr ""
+
+# <para>GRUB (GRand Unified Bootloader), which is installed by default, is a very powerful boot loader. GRUB can load a variety of free operating systems, as well as proprietary operating systems with chain-loading (the mechanism for loading unsupported operating systems, such as DOS or Windows, by loading another boot loader).</para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#. Tag: para
+#: X86_Bootloader.xml:46
+#, no-c-format
+msgid ""
+"GRUB (GRand Unified Bootloader), which is installed by default, is a very "
+"powerful boot loader. GRUB can load a variety of free operating systems, as "
+"well as proprietary operating systems with chain-loading (the mechanism for "
+"loading unsupported operating systems, such as DOS or Windows, by loading "
+"another boot loader)."
+msgstr ""
+"GRUB（GRand Unified Bootloader）是預設安裝的，它是功能強大的開機管理程式。"
+"GRUB 可以用來啟動許多種免費的作業系統以及使用 chain-loading （藉由載入另一個"
+"開機管理程式，如 DOS 或微軟視窗，來載入不被支援之作業系統的機制）來載入有專利"
+"權的作業系統。"
+
+# <para> Configure how you would like to boot the system. </para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#. Tag: para
+#: X86_Bootloader.xml:64
+#, no-c-format
+msgid "Configure how you would like to boot the system."
+msgstr "設定要如何啟動系統。"
+
+#. Tag: para
+#: X86_Bootloader.xml:78
+#, no-c-format
+msgid ""
+"If there are no other operating systems on your computer, or you are "
+"completely removing any other operating systems the installation program "
+"will install <application>GRUB</application> as your boot loader without any "
+"intervention. In that case you may continue on to <xref linkend=\"s1-"
+"pkgselection-x86\"/>."
+msgstr ""
+
+#. Tag: para
+#: X86_Bootloader.xml:124
+#, no-c-format
+msgid ""
+"If you have other operating systems already installed, Fedora attempts to "
+"automatically detect and configure <application>GRUB</application> to boot "
+"them. You may manually configure any additional operating systems if "
+"<application>GRUB</application> does not detect them."
+msgstr ""
+
+#. Tag: para
+#: X86_Bootloader.xml:132
+#, no-c-format
+msgid ""
+"To add, remove, or change the detected operating system settings, use the "
+"options provided."
+msgstr ""
+
+#. Tag: guibutton
+#: X86_Bootloader.xml:137
+#, no-c-format
+msgid "<guibutton>Add</guibutton>"
+msgstr "<guibutton>新增</guibutton>"
+
+#. Tag: para
+#: X86_Bootloader.xml:139
+#, no-c-format
+msgid ""
+"Select <guibutton>Add</guibutton> to include an additional operating system "
+"in GRUB."
+msgstr ""
+
+#. Tag: para
+#: X86_Bootloader.xml:143
+#, no-c-format
+msgid ""
+"Select the disk partition which contains the bootable operating system from "
+"the drop-down list and give the entry a label. <application>GRUB</"
+"application> displays this label in its boot menu."
+msgstr ""
+
+#. Tag: guibutton
+#: X86_Bootloader.xml:153
+#, no-c-format
+msgid "Edit"
+msgstr "編輯"
+
+#. Tag: para
+#: X86_Bootloader.xml:155
+#, no-c-format
+msgid ""
+"To change an entry in the GRUB boot menu, select the entry and then select "
+"<guibutton>Edit</guibutton>."
+msgstr ""
+
+#. Tag: guibutton
+#: X86_Bootloader.xml:163
+#, no-c-format
+msgid "Delete"
+msgstr "刪除"
+
+#. Tag: para
+#: X86_Bootloader.xml:165
+#, no-c-format
+msgid ""
+"To remove an entry from the GRUB boot menu, select the entry and then select "
+"<guibutton>Delete</guibutton>."
+msgstr ""
+
+# <para>Select <guilabel>Default</guilabel> beside the preferred boot partition to choose your default bootable OS. You will not be able to move forward in the installation unless you choose a default boot image.</para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#. Tag: para
+#: X86_Bootloader.xml:173
+#, no-c-format
+msgid ""
+"Select <guilabel>Default</guilabel> beside the preferred boot partition to "
+"choose your default bootable OS. You cannot move forward in the installation "
+"unless you choose a default boot image."
+msgstr ""
+"在您想要的開機分割區旁選擇 <guilabel>預設</guilabel> 來決定您預設開機的作業系"
+"統。除非您選擇一個預設開機的映像，否則您無法繼續您的安裝過程。"
+
+#. Tag: title
+#: Your_installation_is_complete.xml:6
+#, no-c-format
+msgid "Your installation is complete"
+msgstr "您的安裝已完成"
+
+#. Tag: para
+#: Your_installation_is_complete.xml:7
+#, no-c-format
+msgid ""
+"Fedora is now installed on your computer. Log in with the username and "
+"password that you created during the installation process."
+msgstr ""
+"Fedora 已在您的電腦上安裝完成。請用您先前在安裝過程中建立的用戶名稱及密碼來登"
+"入。"
+
+#. Tag: para
+#: Your_installation_is_complete.xml:10
+#, no-c-format
+msgid ""
+"To learn more about Fedora, visit the Fedora Project website at <ulink url="
+"\"http://fedoraproject.org/\"></ulink>. If you need help installing or using "
+"Fedora, visit <ulink url=\"http://fedoraproject.org/en/get-help\"></ulink>."
+msgstr ""
+
+# #-#-#-#-#  userconfig.po (PACKAGE VERSION)  #-#-#-#-#
+# <primary>password</primary>
+# /home/i18n/cvs/en_US/cgs/userconfig.idx:
+# #-#-#-#-#  userconfig.po (PACKAGE VERSION)  #-#-#-#-#
+# <secondary>password</secondary>
+# /home/i18n/cvs/en_US/cgs/userconfig.idx:
+#, fuzzy
+#~ msgid "root password"
+#~ msgstr "密碼"
+
+# #-#-#-#-#  userconfig.po (PACKAGE VERSION)  #-#-#-#-#
+# <primary>password</primary>
+# /home/i18n/cvs/en_US/cgs/userconfig.idx:
+# #-#-#-#-#  userconfig.po (PACKAGE VERSION)  #-#-#-#-#
+# <secondary>password</secondary>
+# /home/i18n/cvs/en_US/cgs/userconfig.idx:
+#~ msgid "password"
+#~ msgstr "密碼"
+
+# <secondary>setting root</secondary>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#~ msgid "setting root"
+#~ msgstr "設定 root"
+
+# <para>The root user (also known as the superuser) has complete access to the entire system; for this reason, logging in as the root user is best done <emphasis>only</emphasis> to perform system maintenance or administration. </para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#~ msgid ""
+#~ "The root user (also known as the superuser) has complete access to the "
+#~ "entire system; for this reason, logging in as the root user is best done "
+#~ "<emphasis>only</emphasis> to perform system maintenance or administration."
+#~ msgstr ""
+#~ "root 使用者（也可稱為超級使用者 - superuser）對整個系統有完全的控制權。也"
+#~ "因此 <emphasis>只有</emphasis> 在執行系統維護或管理時，才以 root 帳號登"
+#~ "入。"
+
+# <para>Use the root account only for system administration. Create a non-root account for your general use and <command>su -</command> to root when you need to fix something quickly. These basic rules will minimize the chances of a typo or an incorrect command doing damage to your system. </para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#~ msgid ""
+#~ "Use the root account only for system administration. Create a non-root "
+#~ "account for your general use and <command>su -</command> to root when you "
+#~ "need to fix something quickly. These basic rules minimize the chances of "
+#~ "a typo or an incorrect command doing damage to your system."
+#~ msgstr ""
+#~ "只有在做系統管理時，才使用 root 帳號登入。建立一個非 root 的帳號以當作一般"
+#~ "用途使用，在您需要快速修復某些系統問題時，才執行 <command>su -</command> "
+#~ "指令以轉換成 root。這些基本的原則將會減少因打字錯誤或不當的指令造成系統毀"
+#~ "損的機會。"
+
+# <para>To become root, type <command>su -</command> at the shell prompt in a terminal window and then press <keycap>Enter</keycap>. Then, enter the root password and press <keycap>Enter</keycap>. </para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#~ msgid ""
+#~ "To become root, type <command>su -</command> at the shell prompt in a "
+#~ "terminal window and then press <keycap>Enter</keycap>. Then, enter the "
+#~ "root password and press <keycap>Enter</keycap>."
+#~ msgstr ""
+#~ "要轉換成 root，只要在終端機視窗的 shell 提示符號下輸入 <command>su -</"
+#~ "command> 指令後按下 <keycap>Enter</keycap> 鍵。然後輸入 root 的密碼，再按"
+#~ "下 <keycap>Enter</keycap> 鍵即可。"
+
+# <para>The installation program will prompt you to set a root password<footnote> <para>A root password is the administrative password for your &PROD; system. You should only log in as root when needed for system maintenance. The root account does not operate within the restrictions placed on normal user accounts, so changes made as root can have implications for your entire system.</para> </footnote> for your system. You must enter a root password. The installation program will not let you proceed to the next section without entering a root password. </para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#, fuzzy
+#~ msgid ""
+#~ "The installation program prompts you to set a root password<footnote> "
+#~ "<para> A root password is the administrative password for your Fedora "
+#~ "system. You should only log in as root when needed for system "
+#~ "maintenance. The root account does not operate within the restrictions "
+#~ "placed on normal user accounts, so changes made as root can have "
+#~ "implications for your entire system. </para> </footnote> for your system. "
+#~ "<emphasis>You cannot proceed to the next stage of the installation "
+#~ "process without entering a root password.</emphasis>"
+#~ msgstr ""
+#~ "安裝程式將會提示您為系統設定一個 root 的密碼，<footnote><para>這個 root 密"
+#~ "碼是您的 &PROD; 系統管理員的密碼。您必須只有在做系統維護時，才以 root 帳號"
+#~ "登入，root 帳號的操作行為並不受限於一般使用者帳號的限制，所以使用 root 帳"
+#~ "號所做的系統變更，將會影響到整個系統。</para> </footnote> <emphasis>您必須"
+#~ "輸入一個 root 的密碼，如果沒有輸入的話，安裝程式不會讓您繼續到下一個階段。"
+#~ "</emphasis>"
+
+# <para>The root password must be at least six characters long; the password you type is not echoed to the screen. You must enter the password twice; if the two passwords do not match, the installation program will ask you to enter them again. </para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#~ msgid ""
+#~ "The root password must be at least six characters long; the password you "
+#~ "type is not echoed to the screen. You must enter the password twice; if "
+#~ "the two passwords do not match, the installation program asks you to "
+#~ "enter them again."
+#~ msgstr ""
+#~ "root 的密碼至少必須是六個字元，而且您所輸入的密碼不會出現在螢幕上。您必須"
+#~ "輸入密碼兩次，如果您所輸入的密碼不相符，安裝程式會要求您再輸入一次。"
+
+# <para>You should make the root password something you can remember, but not something that is easy for someone else to guess. Your name, your phone number, <firstterm>qwerty</firstterm>, <firstterm>password, root</firstterm>, <firstterm>123456</firstterm>, and <firstterm>anteater</firstterm> are all examples of bad passwords. Good passwords mix numerals with upper and lower case letters and do not contain dictionary words: <firstterm>Aard387vark</firstterm> or <firstterm>420BMttNT</firstterm>, for example. Remember that the password is case-sensitive. If you write down your password, keep it in a secure place. However, it is recommended that you do not write down this or any password you create. </para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#~ msgid ""
+#~ "You should make the root password something you can remember, but not "
+#~ "something that is easy for someone else to guess. Your name, your phone "
+#~ "number, <firstterm>qwerty</firstterm>, <firstterm>password, root</"
+#~ "firstterm>, <firstterm>123456</firstterm>, and <firstterm>anteater</"
+#~ "firstterm> are all examples of bad passwords. Good passwords mix numerals "
+#~ "with upper and lower case letters and do not contain dictionary words: "
+#~ "<firstterm>Aard387vark</firstterm> or <firstterm>420BMttNT</firstterm>, "
+#~ "for example. Remember that the password is case-sensitive. If you write "
+#~ "down your password, keep it in a secure place. However, it is recommended "
+#~ "that you do not write down this or any password you create."
+#~ msgstr ""
+#~ "這個 root 的密碼必須是您能夠記得住的，但也不要是輕易就可被別人猜出來。您的"
+#~ "名字、電話號碼、<firstterm>qwerty</firstterm>、<firstterm>password、root</"
+#~ "firstterm>、<firstterm>123456</firstterm> 和 <firstterm>anteater</"
+#~ "firstterm> 等等都是不當密碼的例子。 好的密碼會混雜數字與大小寫的字母，並且"
+#~ "不能包含有字典裡的字，例如：<firstterm>Aard387vark</firstterm> 或 "
+#~ "<firstterm>420BMttNT</firstterm> 都是好密碼的例子。請記得這個密碼是有分辨"
+#~ "大小寫的。如果您把密碼寫下來，請將它放在安全的地方。然而，還是不建議您寫下"
+#~ "所建立的任何密碼。"
+
+# <para>Do not use one of the example passwords offered in this manual. Using one of these passwords could be considered a security risk. </para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#~ msgid ""
+#~ "Do not use one of the example passwords offered in this manual. Using one "
+#~ "of these passwords could be considered a security risk."
+#~ msgstr ""
+#~ "不要使用任何在這本手冊上所提及的密碼，使用這些密碼將會有安全上的考量。"
+
+# <para>To change your root password after you have completed the installation, use the <application>&RHROOTPASSTOOL;</application>.</para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#~ msgid ""
+#~ "To change your root password after you have completed the installation, "
+#~ "use the <application>Root Password Tool</application>."
+#~ msgstr ""
+#~ "如要在安裝完成後更改您的 root 密碼，您可以使用 <application>Root Password "
+#~ "Tool</application>。"
+
+# <para>Type the <command>redhat-config-rootpassword</command> command in a shell prompt to launch the <application>&RHROOTPASSTOOL;</application>. If you are not root, it will prompt you for the root password to continue.</para>
+# /home/i18n/cvs/en_US/igs/accountconfig.idx:
+#~ msgid ""
+#~ "Type the <command>system-config-rootpassword</command> command in a shell "
+#~ "prompt to launch the <application>Root Password Tool</application>. If "
+#~ "you are not root, it prompts you for the root password to continue."
+#~ msgstr ""
+#~ "在 shell 提示符號下輸入 <command>system-config-rootpassword</command> 指令"
+#~ "以啟動 <application>Root Password Tool</application>。如果您不是 root，系"
+#~ "統將會提示您輸入 root 的密碼以繼續。"
+
+#, fuzzy
+#~ msgid ""
+#~ "A Live image is a low-risk and time-efficient method of \"test-driving\" "
+#~ "the Fedora operating system on your own familiar hardware. If the "
+#~ "evaluation provides a pleasant adventure, you may choose to install the "
+#~ "Live system software to provide your normal computing environment. This "
+#~ "Live image provides you with an experience that is very similar to "
+#~ "running Fedora, but there are some benefits and caveats. Refer to <xref "
+#~ "linkend=\"sect-Fedora_Live_images-Benefits\"/> and <xref linkend=\"sect-"
+#~ "Fedora_Live_images-Caveats\"/> for more information."
+#~ msgstr ""
+#~ "使用 Live 映像是個在您自己熟悉的硬體上「測試」Fedora 作業系統的低風險、高"
+#~ "時間效率的方法。若測試後沒有問題，您便可選擇安裝 Live 系統軟體來提供您的正"
+#~ "常運算環境。Live 映像可提供給您非常相似執行 Fedora 的經驗，不過這雖有優點"
+#~ "不過也有缺點。如欲取得更多相關資訊請參閱 <xref linkend=\"benefits\"/> and "
+#~ "<xref linkend=\"caveats\"/>。"
+
+#~ msgid "What Should I Do With My Live Image?"
+#~ msgstr "我應該如何使用我的 Live 映像呢？"
+
+#, fuzzy
+#~ msgid ""
+#~ "Before you use your Live image, read the next section to learn how to "
+#~ "maximize your enjoyment of Fedora. You may also want to read <xref "
+#~ "linkend=\"sect-Fedora_Live_images-Booting\"/> for hints on booting from "
+#~ "this media. Then insert this media in your computer and boot from it."
+#~ msgstr ""
+#~ "在您使用您的 Live 映像之前，請參閱下個部份來學習如何快樂地利用 Fedora。您"
+#~ "亦可參閱 <xref linkend=\"booting\"/> 來取得以此媒介開機的相關提示。接著請"
+#~ "將此媒介插入您的電腦中並以該媒介來開機。"
+
+#~ msgid "Suggested Hardware"
+#~ msgstr "建議的硬體"
+
+#~ msgid ""
+#~ "This Live system successfully boots and runs on most computers with 256 "
+#~ "MB or more installed system memory, or RAM. If your computer has 1 GB or "
+#~ "more installed system memory, for higher performance, select "
+#~ "<guilabel>Run from RAM</guilabel> from the boot menu."
+#~ msgstr ""
+#~ "此 Live 系統可成功開機並運作於大部分含有 256 MB 或更多系統記憶體（或 RAM）"
+#~ "的電腦上。若您的電腦持有 1 GB 或更多的系統記憶體，要達到更高的效能請由開機"
+#~ "選單選擇 <guilabel>由 RAM 來執行</guilabel>。"
+
+#~ msgid ""
+#~ "Your computer must have the ability to boot from the device holding the "
+#~ "Live image media. For instance, if the Live image is on a CD or DVD, your "
+#~ "computer must be able to boot from the CD or DVD drive."
+#~ msgstr ""
+#~ "您的電腦必須具有能夠由持有 Live 映像媒介的裝置啟動的功能。比方說，若 Live "
+#~ "映像位於一片 CD 或是 DVD 光碟上，您的電腦就必須以 CD 或 DVD 光碟機來啟動。"
+
+#~ msgid "Booting"
+#~ msgstr "正在開機"
+
+#~ msgid ""
+#~ "Most computers boot from hard disk (or one of the hard disks, if there "
+#~ "are more than one). If you are reading this document from a CD or a DVD, "
+#~ "then set the computer to boot from the DVD or CD drive. If you are "
+#~ "reading this file from a USB device such as a memory stick or thumb "
+#~ "drive, set your computer to boot from the USB device."
+#~ msgstr ""
+#~ "大部分電腦都是由硬碟（或若有多重硬碟的話，則硬碟之一）來開機的。若您是透過"
+#~ "一片 CD 或是 DVD 來讀取此文件的話，那麼請將電腦設為透過 DVD 或 CD 光碟機進"
+#~ "行開機。若您是透過 USB 裝置（如 memory stick 或是 USB 磁碟）來讀取此文件的"
+#~ "話，請將您的電腦設為以 USB 裝置進行開機。"
+
+#~ msgid ""
+#~ "If you are making changes to the BIOS configuration, record the current "
+#~ "boot device selection configuration before you change it. This record "
+#~ "allows you to restore the original configuration if you choose to return "
+#~ "to your previous computing environment."
+#~ msgstr ""
+#~ "若您要針對於 BIOS 配置進行變更的話，請在進行變更前將目前的開機裝置選項配置"
+#~ "記錄下來。此紀錄能讓您在選擇退回您先前環境的情況下，重新恢復原本的配置。"
+
+#~ msgid ""
+#~ "The BIOS on older computers may not include a choice you desire, such as "
+#~ "network booting. If your computer can only boot from floppy diskette or "
+#~ "hard disk, you may be unable to experience this Live image on your "
+#~ "computer."
+#~ msgstr ""
+#~ "較舊電腦上的 BIO 可能不會包含您所想要的選項，例如網路開機。若您的電腦只能"
+#~ "由磁片或是硬碟開機的話，您可能便無法在您的電腦上嘗試此 Live 映像。"
+
+#, fuzzy
+#~ msgid ""
+#~ "You may wish to see if an updated BIOS is available from the manufacturer "
+#~ "of your computer. A BIOS update may offer additional boot menu choices, "
+#~ "but requires care to install properly. Consult the manufacturer&#39;s "
+#~ "documentation for more information. Otherwise, ask a friend if you can "
+#~ "try running this Live image on their newer computer."
+#~ msgstr ""
+#~ "您可透過您的電腦製造商來查看是否有已更新的可用 BIOS。BIOS 更新可提供更多額"
+#~ "外的開機選單選像，不過需要小心才可正確安裝。請參閱製造商的文件來取得更多相"
+#~ "關資訊。否則，請詢問朋友您是否能在他們較新的電腦上嘗試執行此 Live 映像。"
+
+#~ msgid "Benefits"
+#~ msgstr "優點"
+
+#~ msgid "The following benefits accrue with a Live image:"
+#~ msgstr "Live 映像含有下列優點："
+
+#~ msgid ""
+#~ "While running this Live image, you are in control, and are not limited to "
+#~ "a set of screenshots or options chosen by others. Select which tasks or "
+#~ "applications to explore with complete freedom."
+#~ msgstr ""
+#~ "當執行此 Live 映像時，您可行使控制權，而不會只是被一組其他人所選擇的抓圖或"
+#~ "選項所限制。您可完全自由地選擇要瀏覽哪些工作與應用程式。"
+
+#~ msgid ""
+#~ "You can experiment with this Live image with no disruption to your "
+#~ "previous computing environment, documents, or desktop. Hibernate your "
+#~ "current operating system, restart with the Live image, and restart the "
+#~ "original operating system when finished. Your previous environment "
+#~ "returns with no changes made."
+#~ msgstr ""
+#~ "您能夠在不影響您先前環境、文件或是桌面的情況下嘗試此 Live 映像。請令您目前"
+#~ "的作業系統進行休眠，然後重新以 Live 映像啟動，然後當完成後重新啟動原本的作"
+#~ "業系統。您先前的環境會回報無變更。"
+
+#~ msgid ""
+#~ "You can use the Live image to evaluate whether all of your hardware "
+#~ "devices are recognized and properly configured."
+#~ msgstr ""
+#~ "您可使用 Live 映像來評估您所有的硬體裝置是否都可被辨識以及正常配置。"
+
+#~ msgid "Full Hardware Recognition"
+#~ msgstr "完整硬體辨識"
+
+#~ msgid ""
+#~ "In some cases, the Live image does not offer the full range of hardware "
+#~ "support seeing in an installed Fedora system. You may be able to manually "
+#~ "configure support in the Live image, but must repeat these steps each "
+#~ "time you use the Live image."
+#~ msgstr ""
+#~ "在某些情況下，Live 映像並不會像一部已安裝 Fedora 的系統一樣地提供完整硬體"
+#~ "範圍的支援。您可能能夠手動式地配置 Live 映像中的支援，不過每當您使用 Live "
+#~ "映像時您就得重複一次這些步驟。"
+
+#~ msgid ""
+#~ "You can use the Live image to try different desktop environments such as "
+#~ "GNOME, KDE, XFCE, or others. None of these choices require you to "
+#~ "reconfigure an existing Linux installation on your computer."
+#~ msgstr ""
+#~ "您可使用 Live 映像來嘗試不同的桌面環境（例如 GNOME、KDE、XFCE 或其它）。這"
+#~ "些選項都無須您重新配置您電腦上現有的 Linux 安裝。"
+
+#~ msgid "Caveats"
+#~ msgstr "缺點"
+
+#~ msgid ""
+#~ "The Live image also involves some drawbacks in exchange for convenience:"
+#~ msgstr "Live 映像雖方便不過也含有一些缺點："
+
+#, fuzzy
+#~ msgid ""
+#~ "While using this Live image, your computer may be much slower to respond "
+#~ "or require more time to complete tasks than with a system installed to "
+#~ "hard disk. CD and DVD discs provide data to the computer at a much slower "
+#~ "rate than hard disks. Less of your computer&#39;s system memory is "
+#~ "available for loading and running applications. Running the Live image "
+#~ "from RAM trades higher memory usage for faster response times."
+#~ msgstr ""
+#~ "當使用此 Live 映像時，您的電腦反應速度可能會變得很慢，它的反應和工作完成所"
+#~ "需時間會變得比將作業系統安裝至硬碟的系統還要緩慢。CD 和 DVD 光碟提供資料給"
+#~ "電腦的速度要比硬碟的速度慢得多。可用來載入和執行應用程式的系統記憶體會較"
+#~ "少。由記憶體來執行 Live 映像會使用較高的記憶體用量並犧牲回應時間。"
+
+#~ msgid ""
+#~ "To fit space constraints, fewer installed applications are included than "
+#~ "in a full installation of Fedora. Your favorite applications may not be "
+#~ "present in this Live image, even though they may be present and run quite "
+#~ "well in a full installation of Fedora."
+#~ msgstr ""
+#~ "因為空間限制，所以被安裝的應用程式會比 Fedora 的完整安裝還要少。您常使用的"
+#~ "應用程式可能不會出現在此 Live 映像中，即使這些應用程式在 Fedora 完整安裝下"
+#~ "可能存在並且可順利運作。"
+
+#~ msgid ""
+#~ "At this time, you cannot permanently install new applications in the Live "
+#~ "image. To try other applications, or newer versions of existing "
+#~ "applications, you must generally install Fedora on your computer. You may "
+#~ "be able to temporarily install or update applications, however, if you "
+#~ "have sufficient system memory. Most systems require more than 512 MB RAM "
+#~ "for installations or updates to succeed. These changes will be lost when "
+#~ "you shut down the Live image."
+#~ msgstr ""
+#~ "目前，您無法在 Live 映像中永久地安裝新應用程式。若要嘗試其它應用程式或是現"
+#~ "有應用程式的較新版本，您一般必須要在您的電腦上安裝 Fedora。您可能能夠暫時"
+#~ "性地安裝或是更新應用程式，不過您必須要有足夠的系統記憶體。大多數系統都需要"
+#~ "大於 512 MB 的 RAM 才可成功安裝或更新。當您關閉了 Live 映像後，這些變更便"
+#~ "會遺失。"
+
+#, fuzzy
+#~ msgid ""
+#~ "Changes may also evaporate if your system&#39;s memory usage forces the "
+#~ "system to reread the original software or settings from the Live image. "
+#~ "This behavior is peculiar to a Live image and does not occur in a full "
+#~ "installation of Fedora."
+#~ msgstr ""
+#~ "若您的系統記憶體強制系統由 Live 映像重新讀取原始軟體或是設定，變更也有可能"
+#~ "會遺失。此特性只會在 Live 映像上發生，並且不會發生在 Fedora 的完整安裝中。"
+
+#~ msgid "Experimenting with the Live image"
+#~ msgstr "Live 映像實驗"
+
+#~ msgid ""
+#~ "As you explore the the cascading menus on or around the desktop, look for "
+#~ "application programs you may wish to run. In addition, you may wish to "
+#~ "explore other capabilities."
+#~ msgstr ""
+#~ "當您瀏覽桌面上的選單時，請尋找您可能希望執行的程式。另外，您也可瀏覽其它功"
+#~ "能。"
+
+#~ msgid "Sharing Existing Data"
+#~ msgstr "共享現有的資料"
+
+#~ msgid "You can share data via mounting existing storage devices, such as:"
+#~ msgstr "您可透過掛載現有的儲存裝置來共享資料，比方說："
+
+#~ msgid "floppy diskettes"
+#~ msgstr "磁片"
+
+#~ msgid "USB drives"
+#~ msgstr "USB 磁碟"
+
+#~ msgid "disk partitions"
+#~ msgstr "磁碟分割區"
+
+#~ msgid "Making a Backup Copy of Data"
+#~ msgstr "備份資料"
+
+#~ msgid ""
+#~ "You may use this Live image to make backup or archival copies of data, if "
+#~ "your computer system includes:"
+#~ msgstr "您可使用這個 Live 映像來備份或是壓縮資料，不過您的電腦系統需含有："
+
+#~ msgid "a CD or DVD burning drive"
+#~ msgstr "CD 或 DVD 燒錄裝置"
+
+#~ msgid "a hard disk with ample free space"
+#~ msgstr "含有足夠可用空間的硬碟"
+
+#~ msgid ""
+#~ "Files normally in use by your previous operating system when it is "
+#~ "running are not in use in the Live image. Therefore you can use the Live "
+#~ "image to copy files that are problematic for backup software in the "
+#~ "previous operating system."
+#~ msgstr ""
+#~ "通常在您先前的作業系統運作時會處於使用中的檔案在 Live 映像中不會被使用。因"
+#~ "此您可使用 Live 映像來將先前作業系統中使備份軟體出問題的檔案給複製起來。"
+
+#~ msgid "Installing Fedora from the Live Image"
+#~ msgstr "藉由 Live 映像來安裝 Fedora"
+
+#~ msgid ""
+#~ "To install the system from this Live image, run the LiveOS as described "
+#~ "above, and select the <emphasis>Install to Hard Disk</emphasis> "
+#~ "application on the Desktop. Using the resulting Fedora installation, you "
+#~ "can customize the software and configuration to your liking on a "
+#~ "persistent basis."
+#~ msgstr ""
+#~ "若要藉由此 Live 映像來安裝系統，請依照上述描述地來執行 LiveOS，然後選擇桌"
+#~ "面上的 <emphasis>安裝至硬碟</emphasis>。您可使用該 Fedora 安裝來依照您的喜"
+#~ "好自訂軟體和進行持續性的配置。"
+
+# <title>Network Configuration</title>
+# /home/i18n/cvs/en_US/cgs/networkconfig.idx:
+#, fuzzy
+#~ msgid "Modem Configuration"
+#~ msgstr "網路設定"
+
+# network devices
+#, fuzzy
+#~ msgid "Core Network Services"
+#~ msgstr "請勿自動偵測網路裝置。"
+
+#~ msgid ""
+#~ "If you choose to accept the current package list, skip ahead to <xref "
+#~ "linkend=\"s1-preparetoinstall-x86\"/>."
+#~ msgstr ""
+#~ "如果您選擇接受目前的套件清單，略過並前往 <xref linkend=\"s1-"
+#~ "preparetoinstall-x86\"/>。"
+
+#~ msgid ""
+#~ "To select a component, click on the checkbox beside it (refer to <xref "
+#~ "linkend=\"fig-pkgselection-group-x86\"/>)."
+#~ msgstr ""
+#~ "如要選擇一個元件請點選元件旁的選取方塊（請參照 <xref linkend=\"fig-"
+#~ "pkgselection-group-x86\"/>）。"
+
+# <secondary>hiding</secondary>
+# /home/i18n/cvs/en_US/igs/welcome.idx:
+#, fuzzy
+#~ msgid "downloading"
+#~ msgstr "連環載入"
+
+# EXACT MATCH
+#, fuzzy
+#~ msgid "booting"
+#~ msgstr "放棄"
+
+# #-#-#-#-#  x86-bootloader.po (PACKAGE VERSION)  #-#-#-#-#
+# <primary>boot loader</primary>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+# #-#-#-#-#  x86-bootloader.po (PACKAGE VERSION)  #-#-#-#-#
+# <secondary>boot loader</secondary>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#, fuzzy
+#~ msgid "boot loader"
+#~ msgstr "開機管理程式"
+
+#~ msgid ""
+#~ "x86, AMD64, and <trademark class=\"registered\">Intel</trademark> 64 Boot "
+#~ "Loader Configuration"
+#~ msgstr ""
+#~ "x86, AMD64, 和 <trademark class=\"registered\">Intel</trademark> 64 的開機"
+#~ "管理程式設定"
+
+# EXACT MATCH
+#~ msgid "<primary>boot loader</primary>"
+#~ msgstr "<primary>開機管理程式</primary>"
+
+# EXACT MATCH
+#~ msgid "<secondary>GRUB</secondary>"
+#~ msgstr "<secondary>GRUB</secondary>"
+
+# EXACT MATCH
+#, fuzzy
+#~ msgid "<primary>GRUB</primary>"
+#~ msgstr "<primary>BIOS</primary>"
+
+# EXACT MATCH
+#, fuzzy
+#~ msgid "<primary>configuration</primary>"
+#~ msgstr "<primary>關機</primary>"
+
+# EXACT MATCH
+#, fuzzy
+#~ msgid "<secondary>configuration</secondary>"
+#~ msgstr "<secondary>definition of</secondary>"
+
+# <para>In order to boot the system without a boot diskette, you usually need to install a boot loader. A boot loader is the first software program that runs when a computer starts. It is responsible for loading and transferring control to the operating system kernel software. The kernel, in turn, initializes the rest of the operating system.</para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid ""
+#~ "To boot the system without boot media, you usually need to install a boot "
+#~ "loader. A boot loader is the first software program that runs when a "
+#~ "computer starts. It is responsible for loading and transferring control "
+#~ "to the operating system kernel software. The kernel, in turn, initializes "
+#~ "the rest of the operating system."
+#~ msgstr ""
+#~ "為了要不使用開機媒體來啟動您的系統，通常您需要安裝一個開機管理程式。開機管"
+#~ "理程式是當電腦啟動時第一個執行的軟體程式。它負責載入並傳遞控制到作業系統的"
+#~ "核心軟體。然後，核心便會初始其餘的作業系統。"
+
+# EXACT MATCH
+#, fuzzy
+#~ msgid "Installing in text mode"
+#~ msgstr "安裝類型"
+
+# <secondary>installing</secondary>
+# /home/pgampe/cvs/en_US/cgs/graphical-rpm.idx:
+#~ msgid "Installing GRUB"
+#~ msgstr "安裝 GRUB "
+
+# <para>If you choose not to install GRUB or LILO for any reason, you will not be able to boot the system directly, and you will need to use another boot method (such as a boot diskette). Use this option only if you are sure you have another way of booting the system! </para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid ""
+#~ "If you choose not to install GRUB for any reason, you will not be able to "
+#~ "boot the system directly, and you must use another boot method (such as a "
+#~ "commercial boot loader application). Use this option only if you are sure "
+#~ "you have another way of booting the system!"
+#~ msgstr ""
+#~ "如果您選擇不安裝 GRUB，您將無法直接啟動您的系統，而您需要使用另一種開機方"
+#~ "式（例如其它廠商的開機管理程式）。只當您確定您有其它啟動系統的方法時才使用"
+#~ "這個選項！"
+
+# <para>The <guilabel>Label</guilabel> column lists what you must enter at the boot prompt, in non-graphical boot loaders, in order to boot the desired operating system.</para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid ""
+#~ "The <guilabel>Label</guilabel> column lists what you must enter at the "
+#~ "boot prompt, in non-graphical boot loaders, in order to boot the desired "
+#~ "operating system."
+#~ msgstr ""
+#~ "<guilabel>標籤</guilabel> 的欄位列出您必須在非圖形的開機管理程式中的開機提"
+#~ "示符號輸入的字串，以啟動您想要的作業系統。"
+
+# <para>Once you have loaded the GRUB boot screen, use the arrow keys to choose a boot label or type <keycap>e</keycap> for edit. You will be presented with a list of items in the configuration file for the boot label you have selected.</para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid ""
+#~ "Once you have loaded the GRUB boot screen, use the arrow keys to choose a "
+#~ "boot label or type <keycap>e</keycap> for edit. You are presented with a "
+#~ "list of items in the configuration file for the boot label you have "
+#~ "selected."
+#~ msgstr ""
+#~ "一旦您載入 GRUB 開機畫面，請使用方向鍵來選取一個開機標籤或輸入 <keycap>e</"
+#~ "keycap> 以進行編輯。您將會看到您所選取的開機識別標籤在設定檔中的一系列的項"
+#~ "目。"
+
+# <para>Boot loader passwords provide a security mechanism in an environment where physical access to your server is available.</para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid ""
+#~ "Boot loader passwords provide a security mechanism in an environment "
+#~ "where physical access to your server is available."
+#~ msgstr ""
+#~ "開機管理程式密碼為在伺服器有可能被實體存取的環境，提供了一個安全的機制。"
+
+# <para>If you are installing a boot loader, you should create a password to protect your system. Without a boot loader password, users with access to your system can pass options to the kernel which can compromise your system security. With a boot loader password in place, the password must first be entered in order to select any non-standard boot options. </para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid ""
+#~ "If you are installing a boot loader, you should create a password to "
+#~ "protect your system. Without a boot loader password, users with access to "
+#~ "your system can pass options to the kernel which can compromise your "
+#~ "system security. With a boot loader password in place, the password must "
+#~ "first be entered before selecting any non-standard boot options. However, "
+#~ "it is still possible for someone with physical access to the machine to "
+#~ "boot from a diskette, CD-ROM, or USB media if the BIOS supports it. "
+#~ "Security plans which include boot loader passwords should also address "
+#~ "alternate boot methods."
+#~ msgstr ""
+#~ "如果您安裝一個開機管理程式，您應該要建立一個密碼來保護您的系統。如缺少開機"
+#~ "管理程式密碼，存取您系統的使用者可以傳送參數到核心，這將會危害到系統的安全"
+#~ "性。如有設定開機管理程式密碼，必須先輸入密碼才能選取任何非標準的開機選項。"
+#~ "然而，能接觸到電腦的人，就可以用磁碟片、光碟片、或 USB 裝置等開機（如果 "
+#~ "BIOS 支援的話）。您的安全計畫應該將開機管理程式的密碼也涵蓋進去，同時也該"
+#~ "包括其它的開機方法。"
+
+# <primary>boot loader password</primary>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid "boot loader password"
+#~ msgstr "開機管理程式密碼"
+
+# EXACT MATCH
+#~ msgid "<primary>password</primary>"
+#~ msgstr "<primary>密碼</primary>"
+
+# EXACT MATCH
+#~ msgid "<secondary>boot loader</secondary>"
+#~ msgstr "<secondary>開機管理程式</secondary>"
+
+# EXACT MATCH
+#~ msgid "<secondary>password</secondary>"
+#~ msgstr "<secondary>密碼</secondary>"
+
+# <para>If you choose to use a boot loader password to enhance your system security, be sure to select the checkbox labeled <guilabel>Use a boot loader password</guilabel>. </para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid ""
+#~ "If you choose to use a boot loader password to enhance your system "
+#~ "security, be sure to select the checkbox labeled <guilabel>Use a boot "
+#~ "loader password</guilabel>."
+#~ msgstr ""
+#~ "如果您選擇要使用一個開機管理程式密碼來加強系統的安全性，請確定選取標示為 "
+#~ "<guilabel>使用開機管理程式密碼</guilabel> 的選取方塊。"
+
+# <para>Once selected, enter a password and confirm it.</para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid "Once selected, enter a password and confirm it."
+#~ msgstr "選取後，請輸入一個密碼並再輸入一次以做確認。"
+
+#~ msgid ""
+#~ "To configure more advanced boot loader options, such as changing the "
+#~ "drive order or passing options to the kernel, be sure <guilabel>Configure "
+#~ "advanced boot loader options</guilabel> is selected before clicking "
+#~ "<guibutton>Next</guibutton>."
+#~ msgstr ""
+#~ "欲設定進階開機管理程式選項，例如更改磁碟順序或傳遞選項至核心，在點選 "
+#~ "<guibutton>下一步</guibutton>之前請先確定 <guilabel>設定進階開機管理程式選"
+#~ "項</guilabel> 已點選。"
+
+# <title>Advanced Boot Loader Configuration</title>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid "Advanced Boot Loader Configuration"
+#~ msgstr "進階開機管理程式設定"
+
+# <para>Now that you have chosen which boot loader to install, you can also determine where you want the boot loader to be installed. You may install the boot loader in one of two places: </para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid ""
+#~ "Now that you have chosen which boot loader to install, you can also "
+#~ "determine where you want the boot loader to be installed. You may install "
+#~ "the boot loader in one of two places:"
+#~ msgstr ""
+#~ "現在您已經選擇要安裝何種開機管理程式，您也可以選擇要在那裡安裝開機管理程"
+#~ "式。您可以安裝開機管理程式在兩種地方的其中之一："
+
+# EXACT MATCH
+#~ msgid "<secondary>MBR</secondary>"
+#~ msgstr "<secondary>MBR</secondary>"
+
+# EXACT MATCH
+#, fuzzy
+#~ msgid "<primary>MBR</primary>"
+#~ msgstr "<primary>LVM</primary>"
+
+# <secondary>installing boot loader on</secondary>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid "installing boot loader on"
+#~ msgstr "安裝開機管理程式在"
+
+# <primary>OS/2 boot manager</primary>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid "OS/2 boot manager"
+#~ msgstr "OS/2 開機管理員"
+
+# <para>This is the recommended place to install a boot loader, unless the MBR already starts another operating system loader, such as System Commander. The MBR is a special area on your hard drive that is automatically loaded by your computer's BIOS, and is the earliest point at which the boot loader can take control of the boot process. If you install it in the MBR, when your machine boots, GRUB (or LILO) will present a boot prompt. You can then boot &PROD; or any other operating system that you have configured the boot loader to boot. </para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#, fuzzy
+#~ msgid ""
+#~ "The master boot record (MBR) &mdash; This is the recommended place to "
+#~ "install a boot loader, unless the MBR already starts another operating "
+#~ "system loader, such as System Commander. The MBR is a special area on "
+#~ "your hard drive that is automatically loaded by your computer's BIOS, and "
+#~ "is the earliest point at which the boot loader can take control of the "
+#~ "boot process. If you install it in the MBR, when your machine boots, GRUB "
+#~ "presents a boot prompt. You can then boot Fedora or any other operating "
+#~ "system that you have configured the boot loader to boot."
+#~ msgstr ""
+#~ "主開機紀錄磁區（MBR）&mdash; 這是建議來安裝開機管理程式的地方，除非 MBR 已"
+#~ "經啟動另外一個作業系統的管理程式，例如 System Commander。MBR 是硬碟上的特"
+#~ "殊區域，它會由電腦的 BIOS 自動載入，而且它也是開機管理程式用來控制開機程序"
+#~ "的最初起點，也是開機程序最容易取得開機控制權的地方。如果您將它安裝在 MBR，"
+#~ "當您的系統開機時，GRUB 將會顯示一個開機提示符號。然後您就可以啟動 &PROD; "
+#~ "或任何您設定給開機管理程式啟動的作業系統。"
+
+# <secondary>installing on boot partition</secondary>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid "installing on boot partition"
+#~ msgstr "安裝在開機分割區"
+
+# <para>This is recommended if you are already using another boot loader on your system. In this case, your other boot loader will take control first. You can then configure that boot loader to start GRUB (or LILO), which will then boot &PROD;. </para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#, fuzzy
+#~ msgid ""
+#~ "The first sector of your boot partition &mdash; This is recommended if "
+#~ "you are already using another boot loader on your system. In this case, "
+#~ "your other boot loader takes control first. You can then configure that "
+#~ "boot loader to start GRUB, which then boots Fedora."
+#~ msgstr ""
+#~ "開機分割區的第一個磁碟區段 &mdash; 當您已經在系統上使用另一種開機管理程式"
+#~ "時，建議您使用這個。在這種情況下，其它的開機管理程式會先取得控制，再來您可"
+#~ "以設定哪個開機管理程式來啟動 GRUB，它們將被用來啟動 &PROD;。"
+
+# <title>Boot Loader Installation</title>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid "Boot Loader Installation"
+#~ msgstr "安裝開機管理程式"
+
+# <para> Choose where to install a boot loader and how to configure it. </para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid "Choose where to install a boot loader and how to configure it."
+#~ msgstr "選擇在那裡安裝開機管理程式以及如何設定它。"
+
+# <para>If you have a RAID card, be aware that some BIOSes do not support booting from the RAID card. In cases such as these, the boot loader <emphasis>should not</emphasis> be installed on the MBR of the RAID array. Rather, the boot loader should be installed on the MBR of the same drive as the <filename>/boot</filename> partition was created.</para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid ""
+#~ "If you have a RAID card, be aware that some BIOSes do not support booting "
+#~ "from the RAID card. In cases such as these, the boot loader "
+#~ "<emphasis>should not</emphasis> be installed on the MBR of the RAID "
+#~ "array. Rather, the boot loader should be installed on the MBR of the same "
+#~ "drive as the <filename>/boot/</filename> partition was created."
+#~ msgstr ""
+#~ "如果您有一張 RAID 控制卡，請注意有些 BIOS 並不支援從 RAID 控制卡開機。在這"
+#~ "樣的情況下，開機管理程式<emphasis>不應該</emphasis>安裝在該 RAID 陣列的 "
+#~ "MBR 上。它應該要被安裝在與 <filename>/boot/</filename> 分割區同一顆磁碟上"
+#~ "的 MBR。"
+
+#, fuzzy
+#~ msgid "If your system only uses Fedora, you should choose the MBR."
+#~ msgstr "如果您的系統僅使用 &PROD;，您應該選擇 MBR。"
+
+# <para>Click the <guibutton>Change Drive Order</guibutton> button if you would like to rearrange the drive order or if your BIOS does not return the correct drive order. Changing the drive order may be useful if you have multiple SCSI adapters, or both SCSI and IDE adapters, and you want to boot from the SCSI device.</para>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid ""
+#~ "Click the <guibutton>Change Drive Order</guibutton> button if you would "
+#~ "like to rearrange the drive order or if your BIOS does not return the "
+#~ "correct drive order. Changing the drive order may be useful if you have "
+#~ "multiple SCSI adapters, or both SCSI and IDE adapters, and you want to "
+#~ "boot from the SCSI device."
+#~ msgstr ""
+#~ "如果您想要重新調整磁碟順序或者您的 BIOS 並沒有正確的磁碟順序，請點選 "
+#~ "<guibutton>更改磁碟順序</guibutton> 按鈕。 如果您有多重的 SCSI 介面卡或 "
+#~ "SCSI 與 IDE 介面卡，而且您想要從 SCSI 裝置開機，更改磁碟順序就會很有用。"
+
+# <title>Rescue Mode</title>
+# /home/i18n/cvs/en_US/igs/x86-bootloader.idx:
+#~ msgid "Rescue Mode"
+#~ msgstr "救援模式"
+
+# #-#-#-#-#  rescuemode.po (PACKAGE VERSION)  #-#-#-#-#
+# <primary>rescue mode</primary>
+# /home/i18n/cvs/en_US/cgs/rescuemode.idx:
+# #-#-#-#-#  rescuemode.po (PACKAGE VERSION)  #-#-#-#-#
+# <secondary>rescue mode</secondary>
+# /home/i18n/cvs/en_US/cgs/rescuemode.idx:
+#~ msgid "rescue mode"
+#~ msgstr "救援模式"
+
+# <para>Rescue mode provides the ability to boot a small &PROD; environment entirely from a diskette, CD-ROM, or some other boot method instead of the system's hard drive. There may be times when you are unable to get &PROD; running completely enough to access files on your system's hard drive. Using rescue mode, you can access the files stored on your system's hard drive, even if you cannot actually run &PROD; from that hard drive. If you need to use rescue mode, there are several options available to you.</para>
+#, fuzzy
+#~ msgid ""
+#~ "Rescue mode provides the ability to boot a small Fedora environment "
+#~ "entirely from boot media or some other boot method instead of the "
+#~ "system's hard drive. There may be times when you are unable to get Fedora "
+#~ "running completely enough to access files on your system's hard drive. "
+#~ "Using rescue mode, you can access the files stored on your system's hard "
+#~ "drive, even if you cannot actually run Fedora from that hard drive. If "
+#~ "you need to use rescue mode, try the following method:"
+#~ msgstr ""
+#~ "救援模式提供直接從軟碟片光碟片或其它的開機方式（而非使用系統的硬碟）啟動小"
+#~ "型 &PROD; 環境的能力，當您無法使 &PROD; 完整運作以使您存取系統硬碟上的檔案"
+#~ "時，藉由使用救援模式，即使您無法真正從硬碟上執行 &PROD;，您仍然可以存取存"
+#~ "放在您系統硬碟上的檔案，如果您需要使用救援模式，請試試以下方法："
+
+#, fuzzy
+#~ msgid ""
+#~ "Using the CD-ROM to boot an x86, AMD64, or <trademark class=\"registered"
+#~ "\">Intel</trademark> 64 system, type <userinput>linux rescue</userinput> "
+#~ "at the installation boot prompt."
+#~ msgstr ""
+#~ "使用 CD-ROM 光碟來啟動 x86, AMD64, 或 <trademark class=\"registered"
+#~ "\">Intel</trademark> 64 系統。在安裝開機提示符號輸入 <userinput>linux "
+#~ "rescue</userinput> Itanium使用者應輸入 <userinput>elilo linux rescue</"
+#~ "userinput> 以進入救援模式。"
