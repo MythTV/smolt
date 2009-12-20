@@ -1,83 +1,85 @@
-# translation of smolt.master-smoon.messages.po to Simplified Chinese
 # Translations template for hardware.
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
-#
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 # Leah Liu <lliu@redhat.com>, 2009.
+# TianShixiong <tiansworld@gmail.com>, 2009.
+# Tom K. C. Chiu <tomchiukc@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master-smoon.messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-11-11 11:08+0800\n"
-"Last-Translator: TianShixiong <tiansworld@gmail.com>\n"
-"Language-Team: Simplified Chinese <zh@li.org>\n"
+"PO-Revision-Date: 2009-12-21 01:25+0800\n"
+"Last-Translator: Tom K. C. Chiu <tomchiukc@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh@li.org>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Virtaal 0.4.0\n"
 "Generated-By: Babel 0.9.1\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: hardware/controllers/root.py:95
-msgid ""
-"The credentials you supplied were not correct or did not grant access to "
-"this resource."
-msgstr "您提供的凭证不正确或者无法给予对这个资源的访问。"
+msgid "The credentials you supplied were not correct or did not grant access to this resource."
+msgstr "您提供的憑證不正確或者無法給予對這個資源的存取。"
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr "您必须在访问这个资源前提供您的凭证。"
+msgstr "您必須在存取這個資源前提供您的憑證。"
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "请登录。"
+msgstr "請登入。"
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr "根据类型 ${type} 的设备"
+msgstr "根據類別 ${type} 的裝置"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "总计"
+msgstr "總計"
 
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr "% hosts 侦测到 ${type}"
+msgstr "% hosts detected ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr "零售商"
+msgstr "生產商"
 
-#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/deviceclass.html:34
+#: hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
-msgstr "设备"
+msgstr "裝置"
 
-#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/show.html:60
 msgid "Device"
-msgstr "设备"
+msgstr "裝置"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
-msgstr "总线"
+msgstr "匯流排"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
-msgstr "驱动程序"
+msgstr "驅動程式"
 
-#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/stats.html:92
 msgid "Vendor"
 msgstr "零售商"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "分销商"
+msgstr "分銷商"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "分销商"
+msgstr "小裝置"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
@@ -85,43 +87,45 @@ msgstr "添加的日期"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% 合计主机"
+msgstr "% 主機總數"
 
-#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+#: hardware/templates/devices.html:15
+#: hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr "全部注册的设备"
+msgstr "全部已註冊的裝置"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr "唯一设备"
+msgstr "唯一裝置"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr "原始设备"
+msgstr "原始裝置"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "机器 / 设备"
+msgstr "電腦 / 裝置"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
-msgstr "分类"
+msgstr "分類"
 
-#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+#: hardware/templates/report_search.html:37
+#: hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr "查找"
+msgstr "尋找"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
-msgstr "数据组"
+msgstr "資料組"
 
 #: hardware/templates/report_search.html:53
 msgid "Result Set"
-msgstr "结果组"
+msgstr "結果組"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr "显示复选框"
+msgstr "顯示核取框"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
@@ -129,7 +133,7 @@ msgstr "我不使用或者不知道"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr "切入系统"
+msgstr "切入系統"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
@@ -137,23 +141,23 @@ msgstr "不工作"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "需要第三方驱动程序"
+msgstr "需要第三方驅動程式"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "工作，但需要额外配置"
+msgstr "可用，但需要額外的設定"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr "即时可用"
+msgstr "即時可用"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "显示所有信息"
+msgstr "顯示所有資訊"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr "总评级："
+msgstr "總評級："
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
@@ -161,7 +165,7 @@ msgstr "公共 UUID"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
-msgstr "操作系统"
+msgstr "作業系統"
 
 #: hardware/templates/show.html:44
 msgid "Platform"
@@ -169,15 +173,16 @@ msgstr "平台"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr "系统零售商"
+msgstr "系統零售商"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr "系统型号"
+msgstr "系統型號"
 
-#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+#: hardware/templates/show.html:47
+#: hardware/templates/stats.html:180
 msgid "Kernel"
-msgstr "内核"
+msgstr "作業系統核心"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
@@ -185,27 +190,27 @@ msgstr "格式元素"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
-msgstr "最后修改"
+msgstr "最後修改"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr "管理员密码"
+msgstr "管理員密碼"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
-msgstr "等级"
+msgstr "評級"
 
 #: hardware/templates/show.html:60
 msgid "Class"
-msgstr "类别"
+msgstr "類別"
 
 #: hardware/templates/stats.html:9
 msgid "Stats"
-msgstr "状态"
+msgstr "統計"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr "全部注册主机"
+msgstr "全部已註冊的主機"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
@@ -213,7 +218,7 @@ msgstr "全部 bogomip"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr "全部处理器"
+msgstr "全部處理器"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
@@ -221,15 +226,15 @@ msgstr "全部 MHz"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr "构架"
+msgstr "架構"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr "构架"
+msgstr "架構"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr "计数"
+msgstr "計數"
 
 #: hardware/templates/stats.html:40
 #, python-format
@@ -238,19 +243,19 @@ msgstr "% of total"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
-msgstr "操作系统"
+msgstr "作業系統"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr "运行级别"
+msgstr "執行級別"
 
 #: hardware/templates/stats.html:79
 msgid "Language"
-msgstr "语言"
+msgstr "語言"
 
 #: hardware/templates/stats.html:105
 msgid "Model"
-msgstr "型号"
+msgstr "型號"
 
 #: hardware/templates/stats.html:119
 msgid "RAM"
@@ -270,11 +275,11 @@ msgstr "速度（MHz）"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "CPU 数"
+msgstr "CPU 數量"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr "CPU 零售商"
+msgstr "CPU 生產商"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
@@ -290,11 +295,11 @@ msgstr "Selinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr "启用 SELinux "
+msgstr "啟用 SELinux "
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr "强制 SELinux"
+msgstr "強制 SELinux"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
@@ -302,11 +307,11 @@ msgstr "SELinux 策略"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
-msgstr "文件系统"
+msgstr "檔案系統"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr "文件系统大小"
+msgstr "檔案系統大小"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
@@ -314,42 +319,33 @@ msgstr "Myth 角色"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr "Myth 远程"
+msgstr "Myth 遠端"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr "Myth 主题"
+msgstr "Myth 主題"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "输入您的配置UUID："
+msgstr "匯入您的配置UUID："
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
-msgstr "统计"
+msgstr "統計"
 
 #: hardware/templates/welcome.html:17
-msgid ""
-"For detailed statistics about the devices in the database see <a href='/"
-"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
-"devices</a>"
-msgstr ""
-"有关数据库中这些设备的详细统计请查看 <a href='/static/stats/stats.html'>/"
-"stats</a> 或者 <a href='/static/stats/devices.html'>/devices</a>"
+msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
+msgstr "有關資料程式庫中這些裝置的詳細統計請檢視 <a href='/static/stats/stats.html'>/stats</a> 或者 <a href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr "顶极零售商图"
+msgstr "零售商排行榜"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
 msgstr "更多"
 
 #: hardware/templates/welcome.html:25
-msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
-"about specific devices. Usage and other general answers can also be found at "
-"the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
-"<p>有关具体设备的详细信息清浏览并搜索 <a href='/wiki/'>Wiki</a>。用法及其它常"
-"规答案请查看 <a href='/wiki/'>Wiki</a>.</p>"
+msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr "<p>有關具體裝置的詳細資訊，請瀏覽並搜尋 <a href='/wiki/'>Wiki</a>。用法及其他常規答案請檢視 <a href='/wiki/'>Wiki</a>。</p>"
+
