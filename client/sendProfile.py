@@ -235,7 +235,13 @@ if not opts.autoSend:
             try:
                 pager_command = os.environ['PAGER']
             except KeyError:
-                pager_command = '/usr/bin/less'
+                if os.path.exists('/usr/bin/less'):
+                    pager_command = '/usr/bin/less'
+                elif os.path.exists('/bin/less'):
+                    pager_command = '/bin/less'
+                else:
+                    #fallback to more  , could use /bin/more but might as well let the path sort it out.
+                    pager_command = 'more'
             subprocess.call([pager_command, f.name])
             f.close()
             print '\n\n'
