@@ -12,6 +12,7 @@ SECURE = 0
 
 HW_UUID = "/etc/smolt/hw-uuid"
 PUB_UUID = "/etc/smolt/pub-uuid"
+#UUID_DB = "/etc/smolt/uuiddb.cfg"
 #ADMIN_TOKEN = "/etc/sysconfig/smolt-token"
 
 
