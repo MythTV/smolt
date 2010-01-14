@@ -229,7 +229,10 @@ for type in byclass_cache.data.keys():
     pci_vendors = DeviceMap('pci')
     (total_hosts, count, types, vendors) = byclass_cache[type]
     for t in types:
-        t.description = t.description.decode('latin1')
+        try:
+            t.description = t.description.decode('latin1')
+        except AttributeError:
+            pass
     engine = engines.get('genshi', None)
     t=engine.load_template('hardware.templates.deviceclass')
     out_html = _process_output(dict(types=types, type=type,
