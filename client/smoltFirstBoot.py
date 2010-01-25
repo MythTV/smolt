@@ -92,7 +92,8 @@ class moduleClass(Module):
                 "Project.  Submitting your profile is a great way to give back "
                 "to the community as this information is used to help focus our"
                 " efforts on popular hardware and platforms.  Submissions are "
-                "anonymous.  Sending your profile will enable a monthly update."))
+                "anonymous.  Sending your profile will enable a monthly "
+                "check-in."))
 
         label.set_line_wrap(True)
         label.set_alignment(0.0, 0.5)
