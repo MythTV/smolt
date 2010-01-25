@@ -1,253 +1,261 @@
-# translation of pl.po to Polish
-# Piotr Drąg <piotrdrag@gmail.com>, 2008.
-#
+# Translations template for hardware.
+# Copyright (C) 2008 ORGANIZATION
+# This file is distributed under the same license as the hardware project.
+# Leah Liu <lliu@redhat.com>, 2009.
+# TianShixiong <tiansworld@gmail.com>, 2009.
+# Tom K. C. Chiu <tomchiukc@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: pl\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: smolt.master-smoon.messages\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-09-24 24:53+0200\n"
-"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish <fedora-trans-pl@redhat.com>\n"
+"PO-Revision-Date: 2009-12-21 01:25+0800\n"
+"Last-Translator: Tom K. C. Chiu <tomchiukc@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh@li.org>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Virtaal 0.4.0\n"
+"Generated-By: Babel 0.9.1\n"
 
 #: hardware/controllers/root.py:95
-msgid ""
-"The credentials you supplied were not correct or did not grant access to "
-"this resource."
-msgstr ""
-"Podane dane uwierzytelniające nie są poprawne lub nie gwarantują dostępu do "
-"tego zasobu."
+msgid "The credentials you supplied were not correct or did not grant access to this resource."
+msgstr "您提供的憑證不正確或者無法給予對這個資源的存取。"
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr ""
-"Należy podać dane uwierzytelniające przed uzyskaniem dostępu do tego zasobu."
+msgstr "您必須在存取這個資源前提供您的憑證。"
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "Proszę się zalogować."
+msgstr "請登入。"
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr "Urządzenia według klasy ${type}"
+msgstr "根據類別 ${type} 的裝置"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "Całkowita liczba"
+msgstr "總計"
 
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr "% hosty wykryto ${type}"
+msgstr "% hosts detected ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr "Producenci"
+msgstr "生產商"
 
-#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/deviceclass.html:34
+#: hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
-msgstr "Urządzenia"
+msgstr "裝置"
 
-#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/show.html:60
 msgid "Device"
-msgstr "Urządzenie"
+msgstr "裝置"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
-msgstr "Magistrala"
+msgstr "匯流排"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
-msgstr "Sterownik"
+msgstr "驅動程式"
 
-#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr "Producent"
+msgstr "零售商"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "Producent podrzędny"
+msgstr "分銷商"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "Urządzenie podrzędne"
+msgstr "小裝置"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr "Data dodania"
+msgstr "添加的日期"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% tot komputery"
+msgstr "% 主機總數"
 
-#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+#: hardware/templates/devices.html:15
+#: hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr "Razem zarejestrowanych urządzeń"
+msgstr "全部已註冊的裝置"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr "Unikalne urządzenia"
+msgstr "唯一裝置"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr "Surowe urządzenia"
+msgstr "原始裝置"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "Komputery/urządzenia"
+msgstr "電腦 / 裝置"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
-msgstr "Klasy"
+msgstr "分類"
 
-#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+#: hardware/templates/report_search.html:37
+#: hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr "Wyszukanie"
+msgstr "尋找"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
-msgstr "Zestaw danych"
+msgstr "資料組"
 
 #: hardware/templates/report_search.html:53
 msgid "Result Set"
-msgstr "Zestaw wynikowy"
+msgstr "結果組"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr "Wyświetl komputer"
+msgstr "顯示核取框"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr "Nie używam lub nie wiem"
+msgstr "我不使用或者不知道"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr "Uszkadza system"
+msgstr "切入系統"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
-msgstr "Nie działa"
+msgstr "不工作"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "Wymaga sterowników firm trzecich"
+msgstr "需要第三方驅動程式"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "Działa, ale wymaga dodatkowej konfiguracji"
+msgstr "可用，但需要額外的設定"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr "Działa od razu"
+msgstr "即時可用"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "Wyświetlenie wszystkich informacji"
+msgstr "顯示所有資訊"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr "Całkowita ocena:"
+msgstr "總評級："
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr "Publiczne UUID"
+msgstr "公共 UUID"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
-msgstr "System operacyjny"
+msgstr "作業系統"
 
 #: hardware/templates/show.html:44
 msgid "Platform"
-msgstr "Platforma"
+msgstr "平台"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr "Producent systemu"
+msgstr "系統零售商"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr "Model systemu"
+msgstr "系統型號"
 
-#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+#: hardware/templates/show.html:47
+#: hardware/templates/stats.html:180
 msgid "Kernel"
-msgstr "Jądro"
+msgstr "作業系統核心"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr "Konstrukcja płyty głównej"
+msgstr "格式元素"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
-msgstr "Ostatnio zmodyfikowane"
+msgstr "最後修改"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr "Hasło administratora"
+msgstr "管理員密碼"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
-msgstr "Ocena"
+msgstr "評級"
 
 #: hardware/templates/show.html:60
 msgid "Class"
-msgstr "Klasa"
+msgstr "類別"
 
 #: hardware/templates/stats.html:9
 msgid "Stats"
-msgstr "Statystyki"
+msgstr "統計"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr "Razem zarejestrowanych komputerów"
+msgstr "全部已註冊的主機"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr "Razem BogoMIPS"
+msgstr "全部 bogomip"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr "Razem procesorów"
+msgstr "全部處理器"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr "Razem MHz"
+msgstr "全部 MHz"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr "Architektury"
+msgstr "架構"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr "Architektura"
+msgstr "架構"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr "Liczba"
+msgstr "計數"
 
 #: hardware/templates/stats.html:40
 #, python-format
 msgid "% of total"
-msgstr "% ogółem"
+msgstr "% of total"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
-msgstr "System operacyjny"
+msgstr "作業系統"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr "Poziom uruchamiania"
+msgstr "執行級別"
 
 #: hardware/templates/stats.html:79
 msgid "Language"
-msgstr "Język"
+msgstr "語言"
 
 #: hardware/templates/stats.html:105
 msgid "Model"
-msgstr "Model"
+msgstr "型號"
 
 #: hardware/templates/stats.html:119
 msgid "RAM"
@@ -255,100 +263,89 @@ msgstr "RAM"
 
 #: hardware/templates/stats.html:132
 msgid "Swap"
-msgstr "Przestrzeń wymiany"
+msgstr "Swap"
 
 #: hardware/templates/stats.html:145
 msgid "CPU"
-msgstr "Procesor"
+msgstr "CPU"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
-msgstr "Prędkość (MHz)"
+msgstr "速度（MHz）"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "Liczba procesorów"
+msgstr "CPU 數量"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr "Producent procesora"
+msgstr "CPU 生產商"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr "BogoMIPS"
+msgstr "Bogomip"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr "Konstrukcja płyty głównej"
+msgstr "格式因素"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
-msgstr "SELinux"
+msgstr "Selinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr "SELinux jest włączony"
+msgstr "啟用 SELinux "
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr "SELinux w trybie wymuszania"
+msgstr "強制 SELinux"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr "Polityka SELinuksa"
+msgstr "SELinux 策略"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
-msgstr "Systemy plików"
+msgstr "檔案系統"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
-msgstr "Rozmiar systemu plików"
+msgstr "檔案系統大小"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
-msgstr "Rola Myth"
+msgstr "Myth 角色"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr "Zdalny Myth"
+msgstr "Myth 遠端"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr "Motyw Mytha"
+msgstr "Myth 主題"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "Proszę podać UUID profilu:"
+msgstr "匯入您的配置UUID："
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
-msgstr "Statystyki"
+msgstr "統計"
 
 #: hardware/templates/welcome.html:17
-msgid ""
-"For detailed statistics about the devices in the database see <a href='/"
-"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
-"devices</a>"
-msgstr ""
-"Aby uzyskać szczegółowe statystyki urządzeń w bazie danych, proszę zobaczyć "
-"<a href='/static/stats/stats.html'>/stats</a> lub <a href='/static/stats/"
-"devices.html'>/devices</a>"
+msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
+msgstr "有關資料程式庫中這些裝置的詳細統計請檢視 <a href='/static/stats/stats.html'>/stats</a> 或者 <a href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr "Najpopularniejsi producenci"
+msgstr "零售商排行榜"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr "Więcej informacji"
+msgstr "更多"
 
 #: hardware/templates/welcome.html:25
-msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
-"about specific devices. Usage and other general answers can also be found at "
-"the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
-"<p>Można przejrzeć i przeszukać <a href='/wiki/'>Wiki</a>, aby uzyskać "
-"szczegółowe informacje o poszczególnych urządzeniach. Sposób użycia i inne "
-"ogólne odpowiedzi można znaleźć także na <a href='/wiki/'>Wiki</a>.</p>"
+msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr "<p>有關具體裝置的詳細資訊，請瀏覽並搜尋 <a href='/wiki/'>Wiki</a>。用法及其他常規答案請檢視 <a href='/wiki/'>Wiki</a>。</p>"
+
