@@ -1226,5 +1226,6 @@ def getPubUUID(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
 		return pudict["pub_uuid"]
 	except Exception, e:
 		error(_('Error determining public UUID: %s') % e)
-		sys.stderr.write(_('Unable to determine Public UUID!\n'))
+		sys.stderr.write(_("Unable to determine Public UUID!  This could be a network error or you've\n"))
+		sys.stderr.write(_("not submitted your profile yet.\n"))
 		raise PubUUIDError, 'Could not determine Public UUID!\n'
