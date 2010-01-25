@@ -148,7 +148,11 @@ elif opts.checkin:
     sys.exit(6)
 
 # read the profile
-profile = smolt.get_profile()
+try:
+    profile = smolt.get_profile()
+except smolt.UUIDError, e:
+    sys.stderr.write(_('%s\n' % e))
+    sys.exit(9)
 
 if opts.new_pub:
     pub_uuid = profile.regenerate_pub_uuid(user_agent=opts.user_agent,

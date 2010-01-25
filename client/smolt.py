@@ -1202,8 +1202,6 @@ def getUUID():
             try:
                 file(hw_uuid_file, 'w').write(UUID)
             except Exception, e:
-                sys.stderr.write(_('Unable to save UUID: %s\n' % e))
-                sys.stderr.write(_('Please re-run as root\n'))
                 raise UUIDError, 'Unable to save UUID to %s.  Please run once as root.' % hw_uuid_file
         except IOError:
             sys.stderr.write(_('Unable to determine UUID of system!\n'))
