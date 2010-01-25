@@ -592,7 +592,11 @@ class _Hardware:
             error(_('Error contacting Server: %s') % e)
             return (1, None, None)
         else:
-            pub_uuid = serverMessage(o.read())
+            try:
+                pub_uuid = serverMessage(o.read())
+            except ServerError, e:
+                error(_('Error contacting server: %s') % e)
+                return (1, None, None)
             o.close()
             self.write_pub_uuid(smoonURL,pub_uuid)
 
@@ -1198,9 +1202,9 @@ def getUUID():
             try:
                 file(hw_uuid_file, 'w').write(UUID)
             except Exception, e:
-                sys.stderr.write(_('Unable to save UUID, continuing...\n'))
-                sys.stderr.write(_('Your UUID file could not be created: %s\n' % e))
-                sys.exit(9)
+                sys.stderr.write(_('Unable to save UUID: %s\n' % e))
+                sys.stderr.write(_('Please re-run as root\n'))
+                raise UUIDError, 'Unable to save UUID to %s.  Please run once as root.' % hw_uuid_file
         except IOError:
             sys.stderr.write(_('Unable to determine UUID of system!\n'))
             raise UUIDError, 'Could not determine UUID of system!\n'
