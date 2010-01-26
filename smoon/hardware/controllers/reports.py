@@ -116,7 +116,7 @@ class Reports(object):
              HostLink.device_id==d.c.id).limit(1000).alias('hl')
 
             # Select pub_uuids that match our host ID from device ID from desc)
-        profiles = select([Host.pub_uuid, Host.system, Host.vendor], Host.id == hl.c.host_link_id).execute().fetchall()
+        profiles = select([distinct(Host.pub_uuid), Host.system, Host.vendor], Host.id == hl.c.host_link_id).execute().fetchall()
         device = args
         return dict(found=found, profiles=profiles, device=device)
 
