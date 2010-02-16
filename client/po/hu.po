@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Smolt master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-08-06 20:04+0200\n"
-"Last-Translator: Sulyok Péter <peti@fedoraproject.org>\n"
+"PO-Revision-Date: 2010-02-16 13:13+0100\n"
+"Last-Translator: Nikolas Slivka <snicore@gmail.com>\n"
 "Language-Team: Hungarian <fedora-trans-hu@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,47 +18,56 @@ msgstr ""
 "X-Poedit-Country: HUNGARY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: deleteProfile.py:36 smolt.py:360
+#: deleteProfile.py:36
+#: smolt.py:360
 #, python-format
 msgid "Server Message: \"%s\""
-msgstr "Kiszolgáló üzenet: „%s”"
+msgstr "Kiszolgáló üzenet : \"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:48
+#: deleteProfile.py:46
+#: sendProfile.py:48
 msgid "enable debug information"
-msgstr "hibakereső tájékoztatás engedélyezése"
+msgstr "hibakereső információ engedélyezése"
 
-#: deleteProfile.py:51 sendProfile.py:58
+#: deleteProfile.py:51
+#: sendProfile.py:58
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "adja meg a kiszolgáló URL-jét (alapértelmezés „%default”)"
 
-#: deleteProfile.py:56 sendProfile.py:73
+#: deleteProfile.py:56
+#: sendProfile.py:73
 msgid "print information only, do not send"
 msgstr "tájékoztatás nyomtatása csak, nincs küldés"
 
-#: deleteProfile.py:61 sendProfile.py:88
+#: deleteProfile.py:61
+#: sendProfile.py:88
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
 msgstr "adja meg a HTTP használó ügyfelet (alapértelmezés „%default”)"
 
-#: deleteProfile.py:66 sendProfile.py:93
+#: deleteProfile.py:66
+#: sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
 msgstr "adja meg a HTTP időkorlátot másodpercben (alapértelmezés %default másodperc)"
 
-#: deleteProfile.py:70 sendProfile.py:112
+#: deleteProfile.py:70
+#: sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
 msgstr "adja meg a használandó UUID-t. Ez főként a hibakeresésnél és próbáknál hasznos."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
-msgstr "Hiba a kiszolgálóhoz csatlakozáskor"
+msgstr "Hiba a kiszolgálóhoz csatlakozáskor:"
 
 #: deleteProfile.py:97
 msgid "Profile removed, please verify at"
 msgstr "Profil törölve, kérem ellenőrizze "
 
-#: gui.py:35 sendProfile.py:177 smolt.py:655
+#: gui.py:35
+#: sendProfile.py:177
+#: smolt.py:655
 msgid "General"
 msgstr "Általános"
 
@@ -208,15 +217,18 @@ msgstr "\taz ön profiljába, és csináljon egy wiki oldalt az eszköznek, "
 msgid "\tbenefit"
 msgstr "\thogy másoknak is hasznára váljék"
 
-#: scan.py:101 smolt.py:1157
+#: scan.py:101
+#: smolt.py:1157
 msgid "Error:"
 msgstr "Hiba:"
 
-#: scan.py:103 smolt.py:1159
+#: scan.py:103
+#: smolt.py:1159
 msgid "Hint:"
 msgstr "Tipp:"
 
-#: sendProfile.py:53 smoltGui.py:327
+#: sendProfile.py:53
+#: smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
 msgstr "adja meg az egyedül használandó beállítás fájl helyét"
 
@@ -267,7 +279,7 @@ msgstr "Sikerült!  Az ön új nyilvános UUID-je: %s"
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
-msgstr ""
+msgstr "A Smolt ezeket a típusú adatokat gyűjtötte:"
 
 #: sendProfile.py:173
 msgid "Do you want to .."
@@ -275,50 +287,52 @@ msgstr ""
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
-msgstr ""
+msgstr "összegyűjtött információk részleteinek megtekintése?"
 
 #: sendProfile.py:175
 #, fuzzy
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "Küldjük e tájékoztatást a Smolt kiszolgálóra? (i/n)"
+msgstr "Küldjük e tájékoztatást a Smolt kiszolgálónak? (i/n)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
 msgstr ""
 
-#: sendProfile.py:178 smolt.py:669
+#: sendProfile.py:178
+#: smolt.py:669
 msgid "Devices"
 msgstr "Eszközök"
 
 #: sendProfile.py:179
-#, fuzzy
 msgid "File system-related"
-msgstr "\tFájlrendszer ismertető"
+msgstr "Fájlrendszer kapcsolatos"
 
 #: sendProfile.py:180
-#, fuzzy
 msgid "Distribution-specific"
-msgstr "Még nincs kiadásra jellemző adat"
+msgstr "Disztribúció-függő"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr ""
+msgstr "Ön választása (s/v/q/y/n):"
 
-#: sendProfile.py:215 sendProfile.py:234
+#: sendProfile.py:215
+#: sendProfile.py:234
 msgid "Exiting..."
 msgstr "Kilépés…"
 
 #: sendProfile.py:217
+#, fuzzy
 msgid "s|y|yes"
-msgstr ""
+msgstr "s|y|yes"
 
 #: sendProfile.py:220
+#, fuzzy
 msgid "q|n|no"
-msgstr ""
+msgstr "q|n|no"
 
 #: sendProfile.py:222
 msgid "v"
-msgstr ""
+msgstr "v"
 
 #: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
@@ -354,7 +368,8 @@ msgstr "\tAdmin jelszó: %s"
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr "Nincs nyilvános UUID!  Kérem futtasson újra „-n” kapcsolóval, hogy csináljak új nyilvános UUID-t."
 
-#: smoltFirstBoot.py:38 smoltFirstBoot.py:39
+#: smoltFirstBoot.py:38
+#: smoltFirstBoot.py:39
 msgid "Hardware Profile"
 msgstr "Hardver profil"
 
@@ -434,7 +449,8 @@ msgstr "Fő eszköztár"
 msgid "No distribution-specific data yet"
 msgstr "Még nincs kiadásra jellemző adat"
 
-#: smoltGui.py:175 smoltGui.py:238
+#: smoltGui.py:175
+#: smoltGui.py:238
 msgid "Error"
 msgstr "Hiba"
 
@@ -458,7 +474,7 @@ msgstr "S_zemélyes adatok szabályzat"
 #: smoltGui.py:284
 #, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
-msgstr "<h3>Smolt Qt</h3> %(version)s<br/>"
+msgstr "<h3>Smolt Qt</h3>Verzió %(version)s<br/>"
 
 #: smoltGui.py:285
 msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
@@ -505,12 +521,15 @@ msgstr "\tA pub_uuid fájlt nem lehetett írni.\n"
 msgid "\tYour admin token  could not be cached: %s\n"
 msgstr "\tA rendszergazda kulcsot  nem lehetett betárazni: %s\n"
 
-#: smolt.py:536 smolt.py:579 smolt.py:609
+#: smolt.py:536
+#: smolt.py:579
+#: smolt.py:609
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Hiba %s kiszolgálóhoz kapcsolódáskor"
 
-#: smolt.py:545 smolt.py:596
+#: smolt.py:545
+#: smolt.py:596
 msgid "Wrong version, server incapable of handling your client"
 msgstr "Hibás változat. A kiszolgáló képtelen az ügyfelet kezelni"
 
@@ -523,22 +542,24 @@ msgstr "Valami rosszul sült el a kulcs beszerzésekor"
 msgid "An error has occured while contacting the server: %s"
 msgstr "Hiba történt a szolgálóhoz csatlakozván: %s"
 
-#: smolt.py:618 smolt.py:691
+#: smolt.py:618
+#: smolt.py:691
 msgid "OS"
-msgstr "OR"
+msgstr "OP"
 
-#: smolt.py:619 smolt.py:692
+#: smolt.py:619
+#: smolt.py:692
 msgid "Default run level"
 msgstr "Alapértelmezett futási szint"
 
-#: smolt.py:620 smolt.py:693
+#: smolt.py:620
+#: smolt.py:693
 msgid "Language"
 msgstr "Nyelv"
 
 #: smolt.py:677
-#, fuzzy
 msgid "Filesystem Information"
-msgstr "\tFájlrendszer ismertető"
+msgstr "Fájlrendszer információ"
 
 #: smolt.py:690
 msgid "UUID"
