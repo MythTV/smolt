@@ -2,12 +2,13 @@
 # This file is distributed under the same license as the Smolt package.
 # Copyright © 2009 Fedora Project
 # Sulyok Peti <peti@fedoraproject.org>, 2007-2009.
+# Nikolas Slivka <snicore@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: Smolt master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2010-02-16 13:13+0100\n"
+"PO-Revision-Date: 2010-02-20 15:46+0100\n"
 "Last-Translator: Nikolas Slivka <snicore@gmail.com>\n"
 "Language-Team: Hungarian <fedora-trans-hu@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -283,20 +284,19 @@ msgstr "A Smolt ezeket a típusú adatokat gyűjtötte:"
 
 #: sendProfile.py:173
 msgid "Do you want to .."
-msgstr ""
+msgstr "Akar .."
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
 msgstr "összegyűjtött információk részleteinek megtekintése?"
 
 #: sendProfile.py:175
-#, fuzzy
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "Küldjük e tájékoztatást a Smolt kiszolgálónak? (i/n)"
+msgstr "(k)üldjük az információkat a Smolt kiszolgálónak? (vagy [i] ha igen)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr ""
+msgstr "(K)ilép a Smoltból? (vagy [n] ha nem)"
 
 #: sendProfile.py:178
 #: smolt.py:669
@@ -321,14 +321,12 @@ msgid "Exiting..."
 msgstr "Kilépés…"
 
 #: sendProfile.py:217
-#, fuzzy
 msgid "s|y|yes"
-msgstr "s|y|yes"
+msgstr "s|i|igen"
 
 #: sendProfile.py:220
-#, fuzzy
 msgid "q|n|no"
-msgstr "q|n|no"
+msgstr "q|n|nem"
 
 #: sendProfile.py:222
 msgid "v"
