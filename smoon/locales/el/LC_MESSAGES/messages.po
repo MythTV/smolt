@@ -1,18 +1,18 @@
-# Translations template for hardware.
-# Copyright (C) 2008 ORGANIZATION
-# This file is distributed under the same license as the hardware project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# Greek Translation of Smolt package
+# Copyright (C) 2010 Fedora Greek Translation Team
+# This file is distributed under the same license as the smolt project.
+# Pierros Papadeas <pierros@papadeas.gr>, 2010
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-11-02 00:22+0200\n"
-"Last-Translator: Nikos Charonitakis <nikosx@gmail.com>\n"
-"Language-Team: Greek <fedora-trans-el>\n"
+"PO-Revision-Date: 2010-02-27 20:41+0200\n"
+"Last-Translator: Pierros Papadeas <pierros@papadeas.gr>\n"
+"Language-Team: Greek <trans-el@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.1\n"
 
@@ -25,9 +25,8 @@ msgid "You must provide your credentials before accessing this resource."
 msgstr ""
 
 #: hardware/controllers/root.py:101
-#, fuzzy
 msgid "Please log in."
-msgstr "Σύνδεση οπωσδήποτε"
+msgstr "Παρακαλώ συνδεθείτε."
 
 #: hardware/templates/deviceclass.html:9
 #, fuzzy
@@ -35,9 +34,8 @@ msgid "Devices by class ${type}"
 msgstr "/Ταξινόμηση αντικειμένων/κατά _τύπο"
 
 #: hardware/templates/deviceclass.html:15
-#, fuzzy
 msgid "Total Count"
-msgstr "_Πέρασμα αρίθμησης:"
+msgstr "Σύνολο"
 
 #: hardware/templates/deviceclass.html:19
 #, fuzzy, python-format
@@ -60,9 +58,8 @@ msgid "Device"
 msgstr "Συσκευή"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "Bus"
-msgstr "Υπηρεσία D-Bus"
+msgstr "Bus"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
@@ -70,22 +67,18 @@ msgstr "Οδηγός"
 
 #: hardware/templates/deviceclass.html:36
 #: hardware/templates/stats.html:92
-#, fuzzy
 msgid "Vendor"
-msgstr "<b>Κατασκευαστής:</b>"
+msgstr "Κατασκευαστής"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "Sub Vendor"
-msgstr "Ετικέτα κατασκευαστή:"
+msgstr "Υπο-κατασκευαστής"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "Sub Device"
-msgstr "Συσκευή ήχου"
+msgstr "Υπο-συσκευή"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "Date Added"
 msgstr "Ημερομηνία προσθήκης"
 
@@ -116,15 +109,13 @@ msgid "Machines / Device"
 msgstr "Συσκευή ήχου"
 
 #: hardware/templates/devices.html:44
-#, fuzzy
 msgid "Classes"
 msgstr "Τάξεις"
 
 #: hardware/templates/report_search.html:37
 #: hardware/templates/welcome.html:10
-#, fuzzy
 msgid "Lookup"
-msgstr "Ανα_ζήτηση"
+msgstr "Αναζήτηση"
 
 #: hardware/templates/report_search.html:38
 #, fuzzy
@@ -255,29 +246,26 @@ msgstr "CPU MHz"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr ""
+msgstr "Αρχιτεκτονικές"
 
 #: hardware/templates/stats.html:40
-#, fuzzy
 msgid "Arch"
-msgstr "Arch A"
+msgstr "Αρχιτεκτονική"
 
 #: hardware/templates/stats.html:40
-#, fuzzy
 msgid "Count"
 msgstr "Πλήθος"
 
 #: hardware/templates/stats.html:40
-#, fuzzy, python-format
+#, python-format
 msgid "% of total"
-msgstr "Σύνολο:"
+msgstr ""
 
 #: hardware/templates/stats.html:53
 msgid "OS"
 msgstr "ΛΣ"
 
 #: hardware/templates/stats.html:66
-#, fuzzy
 msgid "Runlevel"
 msgstr "Runlevel"
 
@@ -294,7 +282,6 @@ msgid "RAM"
 msgstr "RAM"
 
 #: hardware/templates/stats.html:132
-#, fuzzy
 msgid "Swap"
 msgstr "Swap"
 
@@ -303,14 +290,12 @@ msgid "CPU"
 msgstr "CPU"
 
 #: hardware/templates/stats.html:147
-#, fuzzy
 msgid "Speed (MHz)"
-msgstr "CPU MHz"
+msgstr "Ταχύτητα (MHz)"
 
 #: hardware/templates/stats.html:154
-#, fuzzy
 msgid "Number of CPUs"
-msgstr "Όλες οι CPUs"
+msgstr "Αριθμός CPUs"
 
 #: hardware/templates/stats.html:161
 #, fuzzy
@@ -389,9 +374,8 @@ msgid "Top Vendor Chart"
 msgstr "Γράφημα κλήσης συνάρτησης"
 
 #: hardware/templates/welcome.html:23
-#, fuzzy
 msgid "More info"
-msgstr "Πληροφορίες προχείρου"
+msgstr "Περισσότερες πληροφορίες"
 
 #: hardware/templates/welcome.html:25
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
