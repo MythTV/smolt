@@ -64,7 +64,7 @@ ${ET(ratingwidget.display(update="rating",
                     <div py:if="not admin"><img src="/static/images/rating/r${device.get('rating')}.png"/></div>
                     <div py:if="admin" class="rating" id="Host${host_object.uuid}@Device${device.get('id')}">${device.get('rating')}</div>
                 </td>
-		<td><a href="/reports/view_device/${device.description}">${device.get('name')}</a> (<a href="${device.get('link')}">${_("wiki")}</a>)</td>
+		<td><a href="${tg.url('/reports/view_device/?device=%s' % device.description)}">${device.get('name')}</a> (<a href="${device.get('link')}">${_("wiki")}</a>)</td>
                 <td align='center'>${device.get('cls')}</td>
             </tr>
         </table>
