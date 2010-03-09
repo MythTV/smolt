@@ -37,6 +37,7 @@ import software
 import commands
 import urlgrabber.grabber
 import sys
+import os
 from urlparse import urljoin
 from urlparse import urlparse
 from urllib import urlencode
@@ -54,9 +55,9 @@ from uuiddb import UuidDb
 import codecs
 
 try:
-    from subprocess import os
+    import subprocess
 except ImportError, e:
-    import os
+    pass
 
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
@@ -484,15 +485,20 @@ class _Hardware:
                             product = None
                     except KeyError:
                         product = None
+
+                # This could be done with python-dmidecode but it would pull
+                # In an extra dep on smolt.  It may not be worth it
                 if vendor is None or product is None:
-                    i, dmiOutput, e = os.popen3("/usr/sbin/dmidecode", "r")
+                    try:
+                        dmiOutput = subprocess.Popen('/usr/sbin/dmidecode r 2> /dev/null', shell=True, stdout=subprocess.PIPE).stdout
+                    except NameError:
+                        dmiOutput = os.popen('/usr/sbin/dmidecode r 2> /dev/null')
                     section = None
                     sysvendor = None
                     sysproduct = None
                     boardvendor = None
                     boardproduct = None
                     for line in dmiOutput:
-                        print line
                         line = line.strip()
                         if "Information" in line:
                             section = line
