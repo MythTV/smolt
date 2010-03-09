@@ -412,14 +412,19 @@ def debug(message):
 def reset_resolver():
     '''Attempt to reset the system hostname resolver.
     returns 0 on success, or -1 if an error occurs.'''
-    import ctypes
     try:
-        resolv = ctypes.CDLL("libresolv.so.2")
-        r = resolv.__res_init()
-    except (OSError, AttributeError):
-        print "Warning: could not find __res_init in libresolv.so.2"
-        r = -1
-    return r
+        import ctypes
+        try:
+            resolv = ctypes.CDLL("libresolv.so.2")
+            r = resolv.__res_init()
+        except (OSError, AttributeError):
+            print "Warning: could not find __res_init in libresolv.so.2"
+            r = -1
+        return r
+    except ImportError:
+        # If ctypes isn't supported (older versions of python for example)
+        # Then just don't do anything
+        pass
 
 class SystemBusError(Exception):
     def __init__(self, message, hint = None):
