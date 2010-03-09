@@ -27,7 +27,11 @@ import os
 import random
 import getpass
 from tempfile import NamedTemporaryFile
-import subprocess
+
+try:
+    import subprocess
+except ImportError, e:
+    import os.popen3 as subprocess
 
 sys.path.append('/usr/share/smolt/client')
 

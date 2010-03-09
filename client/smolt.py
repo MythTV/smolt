@@ -34,7 +34,7 @@ from i18n import _
 
 import dbus
 import software
-import os
+import commands
 import urlgrabber.grabber
 import sys
 from urlparse import urljoin
@@ -52,6 +52,12 @@ from fs_util import get_fslist
 from gate import Gate
 from uuiddb import UuidDb
 import codecs
+
+try:
+    from subprocess import os
+except ImportError, e:
+    import os
+
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 SELINUX_ENABLED = 1
@@ -149,7 +155,7 @@ def to_ascii(o, current_encoding='utf-8'):
         s = o
     else:
         s = unicode(o, current_encoding)
-    return codecs.encode(s, 'ascii', 'ignore')
+    return s
 
 class Device:
     def __init__(self, props, hardware):
@@ -182,7 +188,10 @@ class Device:
         try:
             self.bus = props['linux.subsystem'].strip()
         except KeyError:
-            self.bus = 'Unknown'
+            try:
+                self.bus = props['info.bus'].strip()
+            except KeyError:
+                self.bus = 'Unknown'
         try:
             self.vendorid = props['%s.vendor_id' % self.bus]
         except KeyError:
@@ -202,7 +211,10 @@ class Device:
         try:
             self.driver = props['info.linux.driver'].strip()
         except KeyError:
-            self.driver = 'Unknown'
+            try:
+                self.driver = props['net.linux.driver'].strip()
+            except KeyError:
+                self.driver = 'Unknown'
 
 class Host:
     def __init__(self, hostInfo):
@@ -228,14 +240,22 @@ class Host:
             try:
                 self.language = os.environ['LANG']
             except KeyError:
-                self.language = 'Unknown'
+                try:
+                    status, lang = commands.getstatusoutput("grep LANG /etc/sysconfig/i18n")
+                    if status == 0:
+                        self.language = lang.split('"')[1]
+                except:
+                    self.language = 'Unknown'
         else:
             self.language = WITHHELD_MAGIC_STRING
 
         try:
             tempform = hostInfo['system.kernel.machine']
         except KeyError:
-            tempform = 'Unknown'
+            try:
+                tempform = hostInfo['kernel.machine']
+            except KeyError:
+                tempform = 'Unknown'
         self.platform = Gate().process('arch', tempform, WITHHELD_MAGIC_STRING)
 
         if Gate().grants('vendor'):
@@ -347,15 +367,21 @@ def get_file_systems():
 
 def ignoreDevice(device):
     ignore = 1
-    if device.bus == 'Unknown':
+    if device.bus == 'Unknown' or device.bus == 'unknown':
         return 1
-    if device.bus == 'usb' and device.type == None:
+    if device.vendorid in (0, None) and device.type == None:
         return 1
     if device.bus == 'usb' and device.driver == 'hub':
         return 1
+    if device.bus == 'usb' and 'Hub' in device.description:
+        return 1
     if device.bus == 'sound' and device.driver == 'Unknown':
         return 1
-    if device.bus == 'pnp' and (device.driver == 'Unknown' or device.driver == 'system'):
+    if device.bus == 'pnp' and device.driver in ('Unknown', 'system'):
+        return 1
+    if device.bus == 'block' and device.type == 'DISK':
+        return 1
+    if device.bus == 'usb_device' and device.type == None:
         return 1
     return 0
 
@@ -436,6 +462,58 @@ class _Hardware:
             if Gate().grants('devices'):
                 self.devices[udi] = Device(props, self)
             if udi == '/org/freedesktop/Hal/devices/computer':
+                try:
+                    vendor = props['system.vendor']
+                    if len(vendor.strip()) == 0:
+                        vendor = None
+                except KeyError:
+                    try:
+                        vendor = props['vendor']
+                        if len(vendor.strip()) == 0:
+                            vendor = None
+                    except KeyError:
+                        vendor = None
+                try:
+                    product = props['system.product']
+                    if len(product.strip()) == 0:
+                        product = None
+                except KeyError:
+                    try:
+                        product = props['product']
+                        if len(product.strip()) == 0:
+                            product = None
+                    except KeyError:
+                        product = None
+                if vendor is None or product is None:
+                    i, dmiOutput, e = os.popen3("/usr/sbin/dmidecode", "r")
+                    section = None
+                    sysvendor = None
+                    sysproduct = None
+                    boardvendor = None
+                    boardproduct = None
+                    for line in dmiOutput:
+                        print line
+                        line = line.strip()
+                        if "Information" in line:
+                            section = line
+                        elif section is None:
+                            continue
+                        elif line.startswith("Manufacturer: ") and section.startswith("System"):
+                            sysvendor = line.split("Manufacturer: ", 1)[1]
+                        elif line.startswith("Product Name: ") and section.startswith("System"):
+                            sysproduct = line.split("Product Name: ", 1)[1]
+                        elif line.startswith("Manufacturer: ") and section.startswith("Base Board"):
+                            boardvendor = line.split("Manufacturer: ", 1)[1]
+                        elif line.startswith("Product Name: ") and section.startswith("Base Board"):
+                            boardproduct = line.split("Product Name: ", 1)[1]
+                    status = dmiOutput.close()
+                    if status is None:
+                        if sysvendor not in (None, 'System Manufacturer') and sysproduct not in (None, 'System Name'):
+                            props['system.vendor'] = sysvendor
+                            props['system.product'] = sysproduct
+                        elif boardproduct is not None and boardproduct is not None:
+                            props['system.vendor'] = boardvendor
+                            props['system.product'] = boardproduct
                 self.host = Host(props)
 
         self.fss = get_file_systems()
@@ -515,14 +593,14 @@ class _Hardware:
     def write_pub_uuid(self,smoonURL,pub_uuid):
         smoonURLparsed=urlparse(smoonURL)
         try:
-            UuidDb().set_pub_uuid(getUUID(), smoonURLparsed.hostname, pub_uuid)
+            UuidDb().set_pub_uuid(getUUID(), smoonURLparsed[1], pub_uuid)
         except Exception, e:
             sys.stderr.write(_('\tYour pub_uuid could not be written.\n\n'))
         return
 
     def write_admin_token(self,smoonURL,admin,admin_token_file):
         smoonURLparsed=urlparse(smoonURL)
-        admin_token_file += ("-"+smoonURLparsed.hostname)
+        admin_token_file += ("-"+smoonURLparsed[1])
         try:
             file(admin_token_file, 'w').write(admin)
         except Exception, e:
@@ -637,7 +715,7 @@ class _Hardware:
             _('Language'):self.host.language,
         }
         lines = []
-        for k, v in sorted(d.items()):
+        for k, v in d.items():
             lines.append('%s: %s' % (k, v))
         lines.append('...')
         return '\n'.join(lines)
@@ -833,18 +911,7 @@ def classify_hal(node):
             return 'SOCKET'
 
     if node.has_key('storage.drive_type'):
-        #CDROM
-        if node['storage.drive_type'] == 'cdrom':
-            return 'CDROM'
-        #HD
-        if node['storage.drive_type'] == 'disk':
-            return 'HD'
-         #FLOPPY
-        if node['storage.drive_type'] == 'floppy':
-            return 'FLOPPY'
-        #TAPE
-        if node['storage.drive_type'] == 'tape':
-            return 'TAPE'
+        return node['storage.drive_type'].upper()
 
     #PRINTER
     if node.has_key('printer.product'):
@@ -1211,7 +1278,7 @@ def getUUID():
 
 def getPubUUID(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
 	smoonURLparsed=urlparse(smoonURL)
-	res = UuidDb().get_pub_uuid(getUUID(), smoonURLparsed.hostname)
+	res = UuidDb().get_pub_uuid(getUUID(), smoonURLparsed[1])
 	if res:
 		return res
 
@@ -1220,7 +1287,7 @@ def getPubUUID(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
 		o = grabber.urlopen(urljoin(smoonURL + "/", '/client/pub_uuid/%s' % getUUID()))
 		pudict = simplejson.loads(o.read())
 		o.close()
-		UuidDb().set_pub_uuid(getUUID(), smoonURLparsed.hostname, pudict["pub_uuid"])
+		UuidDb().set_pub_uuid(getUUID(), smoonURLparsed[1], pudict["pub_uuid"])
 		return pudict["pub_uuid"]
 	except Exception, e:
 		error(_('Error determining public UUID: %s') % e)

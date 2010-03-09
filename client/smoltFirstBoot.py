@@ -4,13 +4,18 @@ import gtk
 import gobject
 import sys
 import os
-import subprocess
 import commands
 
 from firstboot.config import *
 from firstboot.constants import *
 from firstboot.functions import *
 from firstboot.module import *
+
+try:
+    import subprocess
+except ImportError, e:
+    import os.popen3 as subprocess
+
 
 # Based off of the EULA
 

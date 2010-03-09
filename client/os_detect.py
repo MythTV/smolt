@@ -1,7 +1,11 @@
 import os
 import re
-import subprocess
 from UserDict import UserDict
+
+try:
+    import subprocess
+except ImportError, e:
+    import os.popen3 as subprocess
 
 class odict(UserDict):
     def __init__(self, dict = None):
