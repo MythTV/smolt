@@ -1,0 +1,30 @@
+RHEL5 is the system used on http://smolts.org/ so it is fully supported at
+this time.
+
+This will explain how to install a single smolt server (smoon).
+
+1) Install smolt server and mysql server
+
+yum -y install smolt-server mysql-server MySQL-python
+
+2) create smoon database
+
+mysqladmin -u root create smoon
+mysql -u root -e "CREATE USER 'smoon'@'localhost' IDENTIFIED BY 'smoon';"
+mysql -u root -e "GRANT ALL ON smoon.* TO 'smoon'@'localhost';"
+mysqladmin -u root flush-privileges
+mysql -u root smoon < smolt.sql
+
+3) Create production config.  Note in prod.cfg change the line:
+
+cd /usr/share/smolt/smoon/
+cp sample-dev.cfg dev.cfg
+vi dev.cfg
+
+4) Next start smolt:
+
+./start-hardware.py dev.cfg
+
+It should be at http://localhost:8080 at that time.
+
+
