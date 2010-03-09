@@ -5,7 +5,7 @@ from UserDict import UserDict
 try:
     import subprocess
 except ImportError, e:
-    import os.popen3 as subprocess
+    pass
 
 class odict(UserDict):
     def __init__(self, dict = None):
@@ -130,7 +130,10 @@ def get_os_info():
       if os.path.exists(full_path_to_executable):
         command = [full_path_to_executable] + params
         try:
-          child = subprocess.Popen(command, stdout=subprocess.PIPE, close_fds=True)
+            try:
+                child = subprocess.Popen(command, stdout=subprocess.PIPE, close_fds=True)
+            except NameError:
+                child = os.system(' '.join(command))
         except OSError:
           print "Warning: Could not run "+executable+", using alternate method."
           break # parse files instead

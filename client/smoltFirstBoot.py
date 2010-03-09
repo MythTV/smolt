@@ -14,7 +14,7 @@ from firstboot.module import *
 try:
     import subprocess
 except ImportError, e:
-    import os.popen3 as subprocess
+    pass
 
 
 # Based off of the EULA
@@ -52,8 +52,12 @@ class moduleClass(Module):
 
             # You'd think I know better than this.
             # So would I.
-            result = subprocess.call(['/sbin/chkconfig', 'smolt', 'on'])
-            result = subprocess.Popen(['/usr/bin/smoltSendProfile', '-r', '-a'])
+            try: 
+                result = subprocess.call(['/sbin/chkconfig', 'smolt', 'on'])
+                result = subprocess.Popen(['/usr/bin/smoltSendProfile', '-r', '-a'])
+            except NameError:
+                result = os.system(' '.join(['/sbin/chkconfig', 'smolt', 'on']))
+                result = os.system(' '.join(['/usr/bin/smoltSendProfile', '-r', '-a']))
             return RESULT_SUCCESS
         else:
             dlg = gtk.MessageDialog(None, 0, gtk.MESSAGE_QUESTION, gtk.BUTTONS_NONE,

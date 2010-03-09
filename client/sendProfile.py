@@ -250,7 +250,10 @@ if not opts.autoSend:
                 else:
                     #fallback to more  , could use /bin/more but might as well let the path sort it out.
                     pager_command = 'more'
-            subprocess.call([pager_command, f.name])
+            try:
+                subprocess.call([pager_command, f.name])
+            except NameError:
+                os.system(' '.join([pager_command, f.name]))
             f.close()
             print '\n\n'
         else:
