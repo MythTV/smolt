@@ -31,7 +31,7 @@ from tempfile import NamedTemporaryFile
 try:
     import subprocess
 except ImportError, e:
-    import os.popen3 as subprocess
+    pass
 
 sys.path.append('/usr/share/smolt/client')
 
