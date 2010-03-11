@@ -497,7 +497,7 @@ class _Hardware:
                     try:
                         dmiOutput = subprocess.Popen('/usr/sbin/dmidecode r 2> /dev/null', shell=True, stdout=subprocess.PIPE).stdout
                     except NameError:
-                        dmiOutput = os.popen('/usr/sbin/dmidecode r 2> /dev/null')
+                        i, dmiOutput, e = os.popen('/usr/sbin/dmidecode', 'r')
                     section = None
                     sysvendor = None
                     sysproduct = None
