@@ -665,13 +665,18 @@ class _Hardware:
             error(_('Error contacting Server: %s') % e)
             return (1, None, None)
         else:
-            server_response = serverMessage(o.read())
+            try:
+                server_response = serverMessage(o.read())
+            except ServerError, e:
+                error(_('Error contacting server: %s') % e)
+                return (1, None, None)
+
+            o.close()
             if batch:
                 pub_uuid = None
             else:
                 pub_uuid = server_response
-                self.write_pub_uuid(smoonURL, pub_uuid)
-            o.close()
+            self.write_pub_uuid(smoonURL, pub_uuid)
 
             try:
                 admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
@@ -1282,9 +1287,7 @@ def getUUID():
             try:
                 file(hw_uuid_file, 'w').write(UUID)
             except Exception, e:
-                sys.stderr.write(_('Unable to save UUID, continuing...\n'))
-                sys.stderr.write(_('Your UUID file could not be created: %s\n' % e))
-                sys.exit(9)
+                raise UUIDError, 'Unable to save UUID to %s.  Please run once as root.' % hw_uuid_file
         except IOError:
             sys.stderr.write(_('Unable to determine UUID of system!\n'))
             raise UUIDError, 'Could not determine UUID of system!\n'
@@ -1306,5 +1309,6 @@ def getPubUUID(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
 		return pudict["pub_uuid"]
 	except Exception, e:
 		error(_('Error determining public UUID: %s') % e)
-		sys.stderr.write(_('Unable to determine Public UUID!\n'))
+		sys.stderr.write(_("Unable to determine Public UUID!  This could be a network error or you've\n"))
+		sys.stderr.write(_("not submitted your profile yet.\n"))
 		raise PubUUIDError, 'Could not determine Public UUID!\n'

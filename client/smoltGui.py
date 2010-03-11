@@ -60,6 +60,9 @@ class GatherThread(QThread):
 		except smolt.SystemBusError, e:
 			self.error_message = e.msg
 			self.emit(SIGNAL('system_bus_error()'))
+		except smolt.UUIDError, e:
+			self.error_message = e.msg
+			self.emit(SIGNAL('system_bus_error()'))
 
 class SubmitThread(QThread):
 	def __init__(self, hardware, parent=None):

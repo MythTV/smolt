@@ -148,7 +148,11 @@ elif opts.checkin:
     sys.exit(6)
 
 # read the profile
-profile = smolt.get_profile()
+try:
+    profile = smolt.get_profile()
+except smolt.UUIDError, e:
+    sys.stderr.write(_('%s\n' % e))
+    sys.exit(9)
 
 if opts.new_pub:
     pub_uuid = profile.regenerate_pub_uuid(user_agent=opts.user_agent,
@@ -164,6 +168,9 @@ if opts.scanOnly:
 
 if not opts.autoSend:
     if opts.printOnly:
+        for line in profile.getProfile():
+            if not line.startswith('#'):
+                print line
         sys.exit(0)
 
     def inner_indent(text):
@@ -232,7 +239,13 @@ if not opts.autoSend:
             try:
                 pager_command = os.environ['PAGER']
             except KeyError:
-                pager_command = '/usr/bin/less'
+                if os.path.exists('/usr/bin/less'):
+                    pager_command = '/usr/bin/less'
+                elif os.path.exists('/bin/less'):
+                    pager_command = '/bin/less'
+                else:
+                    #fallback to more  , could use /bin/more but might as well let the path sort it out.
+                    pager_command = 'more'
             subprocess.call([pager_command, f.name])
             f.close()
             print '\n\n'
