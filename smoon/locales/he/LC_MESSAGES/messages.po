@@ -1,20 +1,17 @@
-# Greek Translation of Smolt package
-# Copyright (C) 2010 Fedora Greek Translation Team
-# This file is distributed under the same license as the smolt project.
-# Pierros Papadeas <pierros@papadeas.gr>, 2010
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: hardware 1.0\n"
+"Project-Id-Version: smolt smoon\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2010-02-27 20:41+0200\n"
-"Last-Translator: Pierros Papadeas <pierros@papadeas.gr>\n"
-"Language-Team: Greek <trans-el@lists.fedoraproject.org>\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Elad <el.il@doom.co.il>\n"
+"Language-Team: Hebrew <he-users@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 0.9.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Poedit-Language: Hebrew\n"
+"X-Poedit-Country: Israel\n"
 
 #: hardware/controllers/root.py:95
 msgid "The credentials you supplied were not correct or did not grant access to this resource."
@@ -26,175 +23,159 @@ msgstr ""
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "Παρακαλώ συνδεθείτε."
+msgstr "אנא התחבר."
 
 #: hardware/templates/deviceclass.html:9
-#, fuzzy
 msgid "Devices by class ${type}"
-msgstr "/Ταξινόμηση αντικειμένων/κατά _τύπο"
+msgstr "התקנים לפי מחלקה ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "Σύνολο"
+msgstr ""
 
 #: hardware/templates/deviceclass.html:19
-#, fuzzy, python-format
+#, python-format
 msgid "% hosts detected ${type}"
-msgstr "Τύπος εξόδου ή_χου:"
+msgstr ""
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr "Διανομείς"
+msgstr "יצרנים"
 
 #: hardware/templates/deviceclass.html:34
 #: hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
-msgstr "Συσκευές"
+msgstr "התקנים"
 
 #: hardware/templates/deviceclass.html:36
 #: hardware/templates/show.html:60
 msgid "Device"
-msgstr "Συσκευή"
+msgstr "התקן"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
-msgstr "Bus"
+msgstr "אפיק"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
-msgstr "Οδηγός"
+msgstr "מנהל התקן"
 
 #: hardware/templates/deviceclass.html:36
 #: hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr "Κατασκευαστής"
+msgstr "יצרן"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "Υπο-κατασκευαστής"
+msgstr "תת ספק"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "Υπο-συσκευή"
+msgstr "תת התקן"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr "Ημερομηνία προσθήκης"
+msgstr "נוסף בתאריך"
 
 #: hardware/templates/deviceclass.html:36
-#, fuzzy
 msgid "% tot hosts"
-msgstr "Γειτονικά συστήματα"
+msgstr ""
 
 #: hardware/templates/devices.html:15
 #: hardware/templates/stats.html:19
-#, fuzzy
 msgid "Total Registered Devices"
-msgstr "Αναζήτηση για συσκευές..."
+msgstr "סה\"כ התקנים רשומים"
 
 #: hardware/templates/devices.html:19
-#, fuzzy
 msgid "Unique Devices"
-msgstr "Α_νανέωση συσκευών"
+msgstr "התקנים יחודיים"
 
 #: hardware/templates/devices.html:24
-#, fuzzy
 msgid "Raw Devices"
-msgstr "Α_νανέωση συσκευών"
+msgstr ""
 
 #: hardware/templates/devices.html:34
-#, fuzzy
 msgid "Machines / Device"
-msgstr "Συσκευή ήχου"
+msgstr "מכונות / התקנים"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
-msgstr "Τάξεις"
+msgstr "מחלקות"
 
 #: hardware/templates/report_search.html:37
 #: hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr "Αναζήτηση"
+msgstr "חיפוש"
 
 #: hardware/templates/report_search.html:38
-#, fuzzy
 msgid "Dataset"
-msgstr "Άγνωστη συλλογή δεδομένων ΙΙΜ"
+msgstr ""
 
 #: hardware/templates/report_search.html:53
-#, fuzzy
 msgid "Result Set"
-msgstr "Ορισμός κειμένου"
+msgstr "סט תוצאות"
 
 #: hardware/templates/show.html:8
-#, fuzzy
 msgid "Show Box"
-msgstr "Σχεδιασμού πλαισίων"
+msgstr "הצג קופסה"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr ""
+msgstr "אני לא משתמש בזה או שאני לא יודע"
 
 #: hardware/templates/show.html:31
-#, fuzzy
 msgid "Breaks System"
-msgstr "Άγνωστο σύστημα"
+msgstr "שובר את המערכת"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
-msgstr "Δεν λειτουργεί"
+msgstr "לא עובד"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr ""
+msgstr "דורש מנהלי התקן מצד שלישי"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr ""
+msgstr "עובד, אבל דורש הגדרות נוספות"
 
 #: hardware/templates/show.html:35
-#, fuzzy
 msgid "Worked out of the box"
-msgstr "Δημιουργία κουτιού πολλαπλών επιλογών"
+msgstr "עובד מהקופסה"
 
 #: hardware/templates/show.html:36
-#, fuzzy
 msgid "Show all Information"
-msgstr "Προβολή πληροφοριών έκδοσης"
+msgstr "הצג את כל המידע"
 
 #: hardware/templates/show.html:39
-#, fuzzy
 msgid "Overall Rating:"
-msgstr "<b>Βέλτιστη βαθμολογία</b>"
+msgstr "דירוג כללי:"
 
 #: hardware/templates/show.html:42
-#, fuzzy
 msgid "Public UUID"
-msgstr "Δημόσιο FTP"
+msgstr "מזהה ייחודי (UUID) ציבורי"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
-msgstr "Λειτουργικό σύστημα"
+msgstr "מערכת הפעלה"
 
 #: hardware/templates/show.html:44
 msgid "Platform"
-msgstr "Πλατφόρμα"
+msgstr "פלטפורמה"
 
 #: hardware/templates/show.html:45
-#, fuzzy
 msgid "System Vendor"
-msgstr "Ετικέτα κατασκευαστή:"
+msgstr "ספק המערכת"
 
 #: hardware/templates/show.html:46
-#, fuzzy
 msgid "System Model"
-msgstr "Μοντέλο CPU"
+msgstr "דגם המערכת"
 
 #: hardware/templates/show.html:47
 #: hardware/templates/stats.html:180
 msgid "Kernel"
-msgstr "Πυρήνας"
+msgstr "ליבה"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
@@ -202,59 +183,51 @@ msgstr ""
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
-msgstr "Τελευταία τροποποίηση"
+msgstr "שונה לאחרונה"
 
 #: hardware/templates/show.html:50
-#, fuzzy
 msgid "Admin Password"
-msgstr "Αλλαγή κωδικού"
+msgstr "ססמת המנהל"
 
 #: hardware/templates/show.html:60
-#, fuzzy
 msgid "Rating"
-msgstr "_Κατάταξη"
+msgstr "דירוג"
 
 #: hardware/templates/show.html:60
-#, fuzzy
 msgid "Class"
-msgstr "Τάξη:"
+msgstr "מחלקה"
 
 #: hardware/templates/stats.html:9
-#, fuzzy
 msgid "Stats"
-msgstr "Στατιστικά"
+msgstr "סטטיסטיקה"
 
 #: hardware/templates/stats.html:15
-#, fuzzy
 msgid "Total Registered Hosts"
-msgstr "Προσθήκη επιτρεπόμενων συστημάτων"
+msgstr "סה\"כ מארחים רשומים"
 
 #: hardware/templates/stats.html:23
-#, fuzzy
 msgid "Total bogomips"
-msgstr "Σύνολο τομέων:"
+msgstr ""
 
 #: hardware/templates/stats.html:27
-#, fuzzy
 msgid "Total processors"
-msgstr "Όλοι οι επεξεργαστές"
+msgstr "מספר מעבדים"
 
 #: hardware/templates/stats.html:31
-#, fuzzy
 msgid "Total MHz"
-msgstr "CPU MHz"
+msgstr "סה\"כ MHz"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr "Αρχιτεκτονικές"
+msgstr "ארכיטקטורות"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr "Αρχιτεκτονική"
+msgstr "ארכיטקטורה"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr "Πλήθος"
+msgstr ""
 
 #: hardware/templates/stats.html:40
 #, python-format
@@ -263,119 +236,107 @@ msgstr ""
 
 #: hardware/templates/stats.html:53
 msgid "OS"
-msgstr "ΛΣ"
+msgstr "מערכת הפעלה"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr "Runlevel"
+msgstr "רמת ריצה"
 
 #: hardware/templates/stats.html:79
 msgid "Language"
-msgstr "Γλώσσα"
+msgstr "שפה"
 
 #: hardware/templates/stats.html:105
 msgid "Model"
-msgstr "Μοντέλο"
+msgstr "דגם"
 
 #: hardware/templates/stats.html:119
 msgid "RAM"
-msgstr "RAM"
+msgstr "זיכרון RAM"
 
 #: hardware/templates/stats.html:132
 msgid "Swap"
-msgstr "Swap"
+msgstr "תחלופה"
 
 #: hardware/templates/stats.html:145
 msgid "CPU"
-msgstr "CPU"
+msgstr "מעבד"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
-msgstr "Ταχύτητα (MHz)"
+msgstr "מהירות (MHz)"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "Αριθμός CPUs"
+msgstr "מספר מעבדים"
 
 #: hardware/templates/stats.html:161
-#, fuzzy
 msgid "CPU Vendor"
-msgstr "Ετικέτα κατασκευαστή:"
+msgstr "יצרן המעבד"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr "Bogomips"
+msgstr ""
 
 #: hardware/templates/stats.html:193
-#, fuzzy
 msgid "Form Factor"
-msgstr "Συντελεστής εστίασης"
+msgstr ""
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
 msgstr "Selinux"
 
 #: hardware/templates/stats.html:208
-#, fuzzy
 msgid "SELinux Enabled"
-msgstr "Bluetooth: Ενεργοποιημένο"
+msgstr "SELinux מאופשר"
 
 #: hardware/templates/stats.html:215
-#, fuzzy
 msgid "SELinux Enforce"
-msgstr "Αναγκαστική εφαρμογή υποχρεωτικών ρυθμίσεων"
+msgstr "SELinux Enforce"
 
 #: hardware/templates/stats.html:222
-#, fuzzy
 msgid "SELinux Policy"
-msgstr "Πολιτική ενημέρωσης"
+msgstr "מדיניות SELinux"
 
 #: hardware/templates/stats.html:234
-#, fuzzy
 msgid "Filesystems"
-msgstr "Εμ_φάνιση όλων των συστημάτων αρχείων"
+msgstr "מערכות קבצים"
 
 #: hardware/templates/stats.html:242
-#, fuzzy
 msgid "Filesystem size"
-msgstr "_Μέγεθος οπτικών εφέ:"
+msgstr "גודל מערכת הקבצים"
 
 #: hardware/templates/stats.html:253
-#, fuzzy
 msgid "Myth Role"
-msgstr "Χωρίς ρόλο"
+msgstr ""
 
 #: hardware/templates/stats.html:266
-#, fuzzy
 msgid "Myth Remote"
-msgstr "Απομακρυσμένη επιφάνεια εργασίας"
+msgstr ""
 
 #: hardware/templates/stats.html:279
-#, fuzzy
 msgid "Myth  Theme"
-msgstr "Προεπιλεγμένο θέμα"
+msgstr ""
 
 #: hardware/templates/welcome.html:12
-#, fuzzy
 msgid "Enter your profile UUID:"
-msgstr "Εισάγετε τα στοιχεία του λογαριασμού σας"
+msgstr "הקלד את המזהה הייחודי (UUID) של הפרופיל שלך:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
-msgstr "Στατιστικά"
+msgstr "סטטיסטיקות\""
 
 #: hardware/templates/welcome.html:17
 msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
 msgstr ""
 
 #: hardware/templates/welcome.html:19
-#, fuzzy
 msgid "Top Vendor Chart"
-msgstr "Γράφημα κλήσης συνάρτησης"
+msgstr "טבלת היצרנים המובילים"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr "Περισσότερες πληροφορίες"
+msgstr "מידע נוסף"
 
 #: hardware/templates/welcome.html:25
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"

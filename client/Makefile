@@ -6,11 +6,6 @@ DIRED_MO_FILES=$(patsubst po/%.mo,mo/%/LC_MESSAGES/$(NAME).mo,$(MO_FILES))
 
 
 NAME=smolt
-ifndef DESTDIR
-DESTDIR=/
-else
-DESTDIR:=$(abspath $(DESTDIR))
-endif
 ETC=$(DESTDIR)/etc
 SMOLTCONFIGDIR=$(ETC)/smolt
 PREFIX=$(DESTDIR)/usr
