@@ -2,7 +2,7 @@
 # Copyright (C) 2010 Fedora Greek Translation Team
 # This file is distributed under the same license as the smolt project.
 # Pierros Papadeas <pierros@papadeas.gr>, 2010
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: hardware 1.0\n"
@@ -18,10 +18,6 @@ msgstr ""
 
 #: hardware/controllers/root.py:95
 msgid "The credentials you supplied were not correct or did not grant access to this resource."
-msgstr ""
-
-#: hardware/controllers/root.py:98
-msgid "You must provide your credentials before accessing this resource."
 msgstr ""
 
 #: hardware/controllers/root.py:101
@@ -46,14 +42,12 @@ msgstr "Τύπος εξόδου ή_χου:"
 msgid "Vendors"
 msgstr "Διανομείς"
 
-#: hardware/templates/deviceclass.html:34
-#: hardware/templates/devices.html:9
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
 msgstr "Συσκευές"
 
-#: hardware/templates/deviceclass.html:36
-#: hardware/templates/show.html:60
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
 msgid "Device"
 msgstr "Συσκευή"
 
@@ -65,8 +59,7 @@ msgstr "Bus"
 msgid "Driver"
 msgstr "Οδηγός"
 
-#: hardware/templates/deviceclass.html:36
-#: hardware/templates/stats.html:92
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
 msgid "Vendor"
 msgstr "Κατασκευαστής"
 
@@ -87,12 +80,6 @@ msgstr "Ημερομηνία προσθήκης"
 msgid "% tot hosts"
 msgstr "Γειτονικά συστήματα"
 
-#: hardware/templates/devices.html:15
-#: hardware/templates/stats.html:19
-#, fuzzy
-msgid "Total Registered Devices"
-msgstr "Αναζήτηση για συσκευές..."
-
 #: hardware/templates/devices.html:19
 #, fuzzy
 msgid "Unique Devices"
@@ -112,8 +99,7 @@ msgstr "Συσκευή ήχου"
 msgid "Classes"
 msgstr "Τάξεις"
 
-#: hardware/templates/report_search.html:37
-#: hardware/templates/welcome.html:10
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
 msgid "Lookup"
 msgstr "Αναζήτηση"
 
@@ -122,56 +108,9 @@ msgstr "Αναζήτηση"
 msgid "Dataset"
 msgstr "Άγνωστη συλλογή δεδομένων ΙΙΜ"
 
-#: hardware/templates/report_search.html:53
-#, fuzzy
-msgid "Result Set"
-msgstr "Ορισμός κειμένου"
-
-#: hardware/templates/show.html:8
-#, fuzzy
-msgid "Show Box"
-msgstr "Σχεδιασμού πλαισίων"
-
-#: hardware/templates/show.html:30
-msgid "I don't use this or I don't know"
-msgstr ""
-
-#: hardware/templates/show.html:31
-#, fuzzy
-msgid "Breaks System"
-msgstr "Άγνωστο σύστημα"
-
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
 msgstr "Δεν λειτουργεί"
-
-#: hardware/templates/show.html:33
-msgid "Requires 3rd Party Drivers"
-msgstr ""
-
-#: hardware/templates/show.html:34
-msgid "Works, but required additional configuration"
-msgstr ""
-
-#: hardware/templates/show.html:35
-#, fuzzy
-msgid "Worked out of the box"
-msgstr "Δημιουργία κουτιού πολλαπλών επιλογών"
-
-#: hardware/templates/show.html:36
-#, fuzzy
-msgid "Show all Information"
-msgstr "Προβολή πληροφοριών έκδοσης"
-
-#: hardware/templates/show.html:39
-#, fuzzy
-msgid "Overall Rating:"
-msgstr "<b>Βέλτιστη βαθμολογία</b>"
-
-#: hardware/templates/show.html:42
-#, fuzzy
-msgid "Public UUID"
-msgstr "Δημόσιο FTP"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
@@ -191,8 +130,7 @@ msgstr "Ετικέτα κατασκευαστή:"
 msgid "System Model"
 msgstr "Μοντέλο CPU"
 
-#: hardware/templates/show.html:47
-#: hardware/templates/stats.html:180
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
 msgstr "Πυρήνας"
 
@@ -381,3 +319,50 @@ msgstr "Περισσότερες πληροφορίες"
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
 msgstr ""
 
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr ""
+
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr ""
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr ""
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr "Πλαίσιο που εμφανίζεται"
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr "Δεν το χρησιμοποιώ ή δεν γνωρίζω κάτι για αυτό"
+
+#: hardware/templates/show.html:31
+msgid "Breaks System"
+msgstr "Δημιουργεί πρόβλημα στο σύστημα"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr "Απαιτούνται οδηγοί τρίτων κατασκευαστών"
+
+#: hardware/templates/show.html:39
+msgid "Overall Rating:"
+msgstr "Βέλτιστη βαθμολογία"
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr "Εμφάνιση όλων των πληροφοριών"
+
+#: hardware/templates/show.html:35
+msgid "Worked out of the box"
+msgstr "Δουλεύει χωρίς περαιτέρω ρυθμίσεις "
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr "Δουλεύει αλλά χρειάζεται περαιτέρω ρύθμιση."
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr ""
