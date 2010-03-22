@@ -146,7 +146,7 @@ class _ProfilePackageMask(_PackageStar):
 
     def _locations(self):
         main_tree_profiles = [os.path.join(portage.settings["PORTDIR"],
-            "profiles")] + portage.settings.profiles # TODO break potential
+            "profiles")] + list(portage.settings.profiles)  # TODO break potential
         overlay_profiles = [os.path.join(e, "profiles") for e in \
             portage.settings["PORTDIR_OVERLAY"].split()]
         return[e for e in main_tree_profiles + overlay_profiles if \
