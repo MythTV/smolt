@@ -34,6 +34,7 @@ import logging
 import sys
 import distros.shared.html as html
 from gate import Gate
+from tools.wrappers import get_cp
 
 _REPO_NAME_WHITELIST = (
     "gentoo",  # Gentoo main tree
@@ -160,7 +161,7 @@ class _Overlays:
         return self._active_overlay_paths
 
     def is_private_package_atom(self, atom):
-        cp = portage.dep_getkey(atom)
+        cp = get_cp(atom)
         return not self._dbapi.cp_list(cp)
 
     def is_private_overlay_name(self, overlay_name):

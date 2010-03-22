@@ -21,9 +21,10 @@ import portage
 from portage.versions import catsplit
 from generatedpackages import GeneratedPackages
 from overlays import Overlays
+from tools.wrappers import get_cp
 
 def is_private_package_atom(atom, installed_from=None, debug=False):
-    cat = catsplit(portage.dep_getkey(atom))[0]
+    cat = catsplit(get_cp(atom))[0]
     if GeneratedPackages().is_generated_cat(cat):
         if GeneratedPackages().is_private_cat(cat):
             if debug:

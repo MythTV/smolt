@@ -25,6 +25,7 @@ from packageprivacy import is_private_package_atom
 import sys
 import distros.shared.html as html
 from gate import Gate
+from tools.wrappers import get_cp
 
 class _PackageStar:
     def __init__(self):
@@ -52,7 +53,7 @@ class _PackageStar:
             for x in portage.grabfile_package(
                     os.path.join(location, self._section), recursive = 1):
                 self._total_count = self._total_count + 1
-                cp = portage.dep_getkey(x)
+                cp = get_cp(x)
                 if self._privacy_filter and is_private_package_atom(cp):
                     self._private_count = self._private_count + 1
                     dict_ref = self._private_cp_to_atoms
@@ -75,10 +76,10 @@ class _PackageStar:
         return self.total_count() - self.private_count()
 
     def _hits(self, cpv, dict_ref):
-        cp = portage.dep_getkey(cpv)
+        test_atom = '=' + cpv
+        cp = get_cp(test_atom)
         if cp not in dict_ref:
             return False
-        test_atom = '=' + cpv
         for a in dict_ref[cp]:
             if portage.dep.get_operator(a) == None:
                 return True

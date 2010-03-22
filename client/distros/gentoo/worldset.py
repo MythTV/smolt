@@ -33,7 +33,7 @@ class _WorldSet:
         self._all_cps = [line.rstrip("\r\n") for line in file]
         self._total_count = len(self._all_cps)
         self._known_cps = set([e for e in self._all_cps if \
-            not is_private_package_atom('=' + e)])
+            not is_private_package_atom(e)])
         self._private_count = self._total_count - len(self._known_cps)
         file.close()
 
