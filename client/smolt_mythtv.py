@@ -104,7 +104,10 @@ def runMythTuner():
     if role == "StandAlone" or role == "Master backend" or role == "Master backend with Frontend":
         fencoder = False
         url="http://localhost:6544"
-        web_page = urlgrabber.urlopen(url).readlines()
+        try:
+            web_page = urlgrabber.urlopen(url).readlines()
+        except:
+            return 0
         num_encoders = 0
         for line in web_page:
             line = line.strip()
