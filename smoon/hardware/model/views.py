@@ -2,6 +2,9 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 
 from hardware.model.model import *
+from turbogears import config
+myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+
 
 def old_hosts_clause():
     return (hosts.c.last_modified > (date.today() - timedelta(days=90)))
@@ -20,12 +23,12 @@ def column_cnt_d(column):
     return func.count(func.distinct(column)).label('cnt')
 
 def counted_view(name, columns, group_by, restrictions=None, desc=False, distinct=False):
-    '''Generates a satistical counted view of some table or simple join 
+    '''Generates a satistical counted view of some table or simple join
     for some group of columns.
-    
+
     This function is a bit low level, and you probably want the
     simple version of this: simple_mapped_counted_view
-    
+
     params:
         name is the name of the view
         columns is an iterable with the columns desired
@@ -34,7 +37,7 @@ def counted_view(name, columns, group_by, restrictions=None, desc=False, distinc
         group_by the object to group on, such that it is counted
         restrictions are sqlalchemy where constraints
         desc is a boolean whether you want it in ascending, descending or condescending order
-    ''' 
+    '''
     if distinct:
         cnt_f = column_cnt_d
     else:
@@ -58,10 +61,10 @@ def mapped_counted_view(name, map_obj, columns, group_by, restrictions=None, des
     p_key = getattr(sel.c, group_by.name)
     mapper(map_obj, sel, primary_key=[p_key])
     return sel
-    
+
 def simple_mapped_counted_view(name, column, map_obj, desc=False, label=None):
     '''For some column in a table, generates a counted view and maps it to some object
-    
+
     params:
         name is the name of the view
         column is the column being counted
@@ -78,7 +81,7 @@ def simple_mapped_counted_view(name, column, map_obj, desc=False, label=None):
 
     mapper(map_obj, sel, primary_key=[p_key])
     return sel
-    
+
 
 class FileSys(object):
     pass
@@ -113,12 +116,6 @@ class SelinuxEnforced(object):
     pass
 class SelinuxPolicy(object):
     pass
-class MythSystemRole(object):
-    pass
-class MythRemote(object):
-    pass
-class MythTheme(object):
-    pass
 
 #this references hosts just as an example for now, this will become necessary later
 filesys = mapped_counted_view("FILESYSTEMS", FileSys, [],
@@ -130,10 +127,10 @@ archs = simple_mapped_counted_view("ARCH", old_hosts.c.platform,
 oses = simple_mapped_counted_view("OS", old_hosts.c.os,
                                   OS, desc=True)
 
-runlevels = simple_mapped_counted_view("RUNLEVEL", old_hosts.c.default_runlevel, 
+runlevels = simple_mapped_counted_view("RUNLEVEL", old_hosts.c.default_runlevel,
                                        Runlevel, desc=True, label='runlevel')
 
-num_cpus = simple_mapped_counted_view("NUM_CPUS", old_hosts.c.num_cpus, 
+num_cpus = simple_mapped_counted_view("NUM_CPUS", old_hosts.c.num_cpus,
                                       NumCPUs, desc=True)
 
 vendors = simple_mapped_counted_view('VENDOR', old_hosts.c.vendor,
@@ -163,14 +160,7 @@ selinux_enforce = simple_mapped_counted_view('SELINUX_ENFORCE', old_hosts.c.seli
 selinux_policy = simple_mapped_counted_view('SELINUX_POLICY', old_hosts.c.selinux_policy,
                                             SelinuxPolicy, desc=True, label='policy')
 
-#myth_systemroles = simple_mapped_counted_view('MYTH_SYSTEMROLE', old_hosts.c.myth_systemrole,
-#                                              MythSystemRole, desc=True)
 
-#mythremotes = simple_mapped_counted_view('MYTHREMOTE', old_hosts.c.mythremote,
-#                                         MythRemote, desc=True)
-
-#myththemes = simple_mapped_counted_view('MYTHTHEME', old_hosts.c.myththeme,
-#                                        MythTheme, desc=True)
 
 totallist = mapped_counted_view('TOTALLIST', TotalList,
                                 [computer_logical_devices.c.description],
@@ -183,7 +173,7 @@ uniquelist = mapped_counted_view('UNIQUELIST', UniqueList,
                                 host_links.c.device_id,
                                 host_links.c.device_id==computer_logical_devices.c.id,
                                 desc=True, distinct=True)
- 
+
 
 
 def total_hosts ():
@@ -198,11 +188,11 @@ def host_count_with_devices():
                  old_hosts.c.id == host_links.c.host_link_id).execute().fetchone()[0]
 
 def devices_per_class(cls):
-    return counted_view('tmp', [computer_logical_devices], host_links.c.host_link_id, 
+    return counted_view('tmp', [computer_logical_devices], host_links.c.host_link_id,
                         and_(computer_logical_devices.c.cls==cls,
-                             host_links.c.device_id==computer_logical_devices.c.id), 
+                             host_links.c.device_id==computer_logical_devices.c.id),
                         desc=True, distinct=True)
-              
+
 def top_devices_per_class(cls):
     return devices_per_class(cls).select().limit(100).execute().fetchall()
 
@@ -230,7 +220,15 @@ def just_count(table):
     return select([func.count(table.c.id)]).execute().fetchone()[0]
 
 def top_vendors_per_class(cls):
-    return counted_view('tmp', [], 
+    return counted_view('tmp', [],
                         computer_logical_devices.c.vendor_id,
                         computer_logical_devices.c.cls==cls,
                         desc=True, distinct=False).execute().fetchall()[:100]
+
+if myth_support == True:
+        from myth_views import myth_import_string
+        exec(myth_import_string)
+
+
+
+

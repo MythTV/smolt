@@ -8,6 +8,10 @@ from turbogears import identity
 from datetime import timedelta, date, datetime
 from turbogears.database import mapper
 
+from turbogears import config
+myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+
+
 #ctx = session.context
 
 
@@ -40,7 +44,13 @@ host_links = Table('host_links', metadata,
                           ForeignKey("device.id")),
                    Column("rating", INT))
 
-hosts = Table('host', metadata,
+# import myth_model for hosts, otherwise use the default
+if myth_support == True:
+    #define what the hosts table looks like with myth support
+    #otherwise use the default
+    from myth_model import hosts
+else:
+    hosts = Table('host', metadata,
               Column("id", INT,
                      autoincrement=True,
                      nullable=False,
@@ -73,11 +83,8 @@ hosts = Table('host', metadata,
               Column('selinux_policy', TEXT),
               Column('selinux_enforce', TEXT),
               Column('cpu_stepping', INT, default=None),
-              Column('cpu_family', INT, default=None),
-              Column('cpu_model_num', INT, default=None))
-#              Column('myth_systemrole', TEXT),
-#              Column('mythremote', TEXT),
-#              Column('myththeme', TEXT))
+              Column('cpu_family', INT, default=None))
+
 
 fas_links = Table('fas_link', metadata,
                   Column("id", INT, autoincrement=True,

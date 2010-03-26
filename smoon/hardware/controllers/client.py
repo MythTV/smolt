@@ -17,6 +17,11 @@ import cherrypy
 
 import gc
 
+#added to detect myth support
+from turbogears import config
+myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+
+
 def request_format():
     format = cherrypy.request.params.get('tg_format', '').lower()
     if not format:
@@ -189,6 +194,8 @@ class Client(object):
 
     @expose(template="hardware.templates.pub_uuid")
     @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
+
+
     def add_json(self, uuid, host, token, smolt_protocol):
         if smolt_protocol < self.smolt_protocol:
             raise ValueError("Critical: Outdated smolt client.  Please upgrade.")
@@ -244,25 +251,18 @@ class Client(object):
           host_sql.cpu_stepping = host_sql.cpu_family = host_sql.cpu_model_num = None
 
         host_sql.selinux_enforce = host_dict['selinux_enforce']
-#        try:
-#                host_sql.myth_systemrole = host_dict['myth_systemrole']
-#        except KeyError:
-#                 host_sql.myth_systemrole = 'Unknown'
-#        try:
-#                host_sql.mythremote = host_dict['mythremote']
-#        except KeyError:
-#                 host_sql.mythremote = 'Unknown'
-#        try:
-#                host_sql.myththeme = host_dict['myththeme']
-#        except KeyError:
-#                host_sql.myththeme = 'Unknown'
+
+#MYTH STUFF
+        if myth_support == True:
+            from myth_client import add_to_host_sql
+            host_sql = add_to_host_sql(host_sql,host_dict)
 
 
         orig_devices = [device.device_id for device
                                          in host_sql.devices]
 
         for device in host_dict['devices']:
-            description = device['description']
+            description = device['description'].encode('UTF8')
             device_id = device['device_id']
             if device_id is None:
                 device_id = 0
