@@ -322,7 +322,20 @@ class Host:
             self.selinux_enabled = SELINUX_WITHHELD
             self.selinux_policy = WITHHELD_MAGIC_STRING
             self.selinux_enforce = WITHHELD_MAGIC_STRING
-
+        #MYTHTV STUFF
+        if Gate().grants("MythTV"):
+            import smolt_mythtv
+            if Gate().grants('MythRemote'):
+                self.mythRemote = smolt_mythtv.runMythRemote()
+                print self.mythRemote
+            if Gate().grants('MythTheme'):
+                self.mythTheme = smolt_mythtv.runMythTheme()
+            if Gate().grants('MythPlugins'):
+                self.mythPlugins = smolt_mythtv.runMythPlugins()
+            if Gate().grants('MythRole'):
+                self.mythRole = smolt_mythtv.runMythRole()
+            if Gate().grants('MythTuner'):
+                self.mythTuner = smolt_mythtv.runMythTuner()
 
 def get_file_systems():
     if not Gate().grants('file_systems'):
@@ -507,7 +520,13 @@ class _Hardware:
                 'formfactor' :      self.host.formfactor,
                 'selinux_enabled':  self.host.selinux_enabled,
                 'selinux_policy':   self.host.selinux_policy,
-                'selinux_enforce':  self.host.selinux_enforce}
+                'selinux_enforce':  self.host.selinux_enforce,
+                'myth_remote':      self.host.mythRemote,
+                'myth_role':        self.host.mythRole,
+                'myth_theme':       self.host.mythTheme,
+                'myth_plugins':      self.host.mythPlugins,
+                'myth_tuner':       self.host.mythTuner
+                }
 
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
@@ -730,6 +749,11 @@ class _Hardware:
         yield _('SELinux Enabled'), self.host.selinux_enabled
         yield _('SELinux Policy'), self.host.selinux_policy
         yield _('SELinux Enforce'), self.host.selinux_enforce
+        yield _('MythTV Remote'), self.host.mythRemote
+        yield _('MythTV Role'), self.host.mythRole
+        yield _('MythTV Theme'), self.host.mythTheme
+        yield _('MythTV Plugin'), self.host.mythPlugins
+        yield _('MythTV Tuner'), self.host.mythTuner
 
     def deviceIter(self):
         '''Iterate over our devices.'''
