@@ -140,7 +140,7 @@ stats = {}
 # somehow this has to be first, cause it binds us to
 # an sqlalchemy context
 print '====================== total_hosts ======================'
-stats['total_hosts'] = session.query(Host).count()
+stats['total_hosts'] = session.query(Host, HostArchive).count()
 
 class ByClass(object):
     def __init__(self):
@@ -257,7 +257,7 @@ if not total_active_hosts:
    total_active_hosts = 1
 
 print '====================== total_hosts ======================'
-stats['total_hosts'] = session.query(Host).count()
+stats['total_hosts'] = session.query(Host).count() + session.query(HostArchive).count()
 total_hosts = stats['total_hosts']
 flot = {}
 # Arch calculation

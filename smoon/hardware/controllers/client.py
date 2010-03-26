@@ -7,6 +7,8 @@ from turbogears import util
 from sqlalchemy.exceptions import InvalidRequestError, OperationalError
 from datetime import datetime
 
+from urllib import quote
+
 from hardware.wiki import *
 from hardware.ratingwidget import *
 from hardware.controllers.error import Error
@@ -90,12 +92,12 @@ class Client(object):
             #This is to prevent duplicate devices showing up, in the future,
             #There will be no dups in the database
             devices[dev.device_id] = dict(id = dev.device_id,
-                                          name = device_name,
-                                          link = getDeviceWikiLink(device),
-                                          cls = device.cls,
-                                          rating = dev.rating,
-                                          description = device.description
-                                          )
+                                            name = device_name,
+                                            link = getDeviceWikiLink(device),
+                                            cls = device.cls,
+                                            rating = dev.rating,
+                                            description = quote(device.description).replace('/', '%2F')
+                                            )
 
         devices = devices.values()
         devices.sort(key=lambda x: x.get('cls'))

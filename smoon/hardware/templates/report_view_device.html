@@ -23,12 +23,12 @@
       ${_("Search Again")}<a href="/reports/search_devices"> /search_devices</a>
     </p>
 
-    <h1>Devices Found: ${device}</h1>
+    <h1>${_('Rated Devices Found:')} ${device}</h1>
     <p>
       <table>
         <tr><th>${_("Description")}</th><th>${_("Rating")}</th><th>${_("Rating Count")}</th><th>${_("Vendor:Device:Subvend:Subdevice")}</th></tr>
         <tr py:for="device in found">
-          <td><a href='/reports/view_device/${device.description.replace("/", "%2F")}'>${device.description}</a></td>
+          <td><a href='${tg.url("/reports/view_device/?device=%s" % device.description)}'>${device.description}</a></td>
           <td><img src="/static/images/rating/r${device.rating}.png"/></td>
           <td>${device[1]}</td>
           <td>${device.vendor_id}:${device.device_id}:${device.subsys_vendor_id}:${device.subsys_device_id}</td>

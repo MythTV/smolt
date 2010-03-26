@@ -1,7 +1,11 @@
 import os
 import re
-import subprocess
 from UserDict import UserDict
+
+try:
+    import subprocess
+except ImportError, e:
+    pass
 
 class odict(UserDict):
     def __init__(self, dict = None):
@@ -70,6 +74,7 @@ distro_info['Gentoo Linux']= '/etc/gentoo-release'
 distro_info['Linux from Scratch']= '/etc/lfs-release'
 distro_info['Mandrake Linux']= '/etc/mandrake-release'
 distro_info['Mandriva Linux']= '/etc/mandriva-release'
+distro_info['Pardus Linux']= '/etc/pardus-release'
 distro_info['Slackware Linux']= '/etc/slackware-release'
 distro_info['Solaris/Sparc']= '/etc/release'
 distro_info['Sun JDS']= '/etc/sun-release'
@@ -125,7 +130,10 @@ def get_os_info():
       if os.path.exists(full_path_to_executable):
         command = [full_path_to_executable] + params
         try:
-          child = subprocess.Popen(command, stdout=subprocess.PIPE, close_fds=True)
+            try:
+                child = subprocess.Popen(command, stdout=subprocess.PIPE, close_fds=True)
+            except NameError:
+                child = os.system(' '.join(command))
         except OSError:
           print "Warning: Could not run "+executable+", using alternate method."
           break # parse files instead

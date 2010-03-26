@@ -4,13 +4,18 @@ import gtk
 import gobject
 import sys
 import os
-import subprocess
 import commands
 
 from firstboot.config import *
 from firstboot.constants import *
 from firstboot.functions import *
 from firstboot.module import *
+
+try:
+    import subprocess
+except ImportError, e:
+    pass
+
 
 # Based off of the EULA
 
@@ -47,8 +52,12 @@ class moduleClass(Module):
 
             # You'd think I know better than this.
             # So would I.
-            result = subprocess.call(['/sbin/chkconfig', 'smolt', 'on'])
-            result = subprocess.Popen(['/usr/bin/smoltSendProfile', '-r', '-a'])
+            try: 
+                result = subprocess.call(['/sbin/chkconfig', 'smolt', 'on'])
+                result = subprocess.Popen(['/usr/bin/smoltSendProfile', '-r', '-a'])
+            except NameError:
+                result = os.system(' '.join(['/sbin/chkconfig', 'smolt', 'on']))
+                result = os.system(' '.join(['/usr/bin/smoltSendProfile', '-r', '-a']))
             return RESULT_SUCCESS
         else:
             dlg = gtk.MessageDialog(None, 0, gtk.MESSAGE_QUESTION, gtk.BUTTONS_NONE,
@@ -92,7 +101,8 @@ class moduleClass(Module):
                 "Project.  Submitting your profile is a great way to give back "
                 "to the community as this information is used to help focus our"
                 " efforts on popular hardware and platforms.  Submissions are "
-                "anonymous.  Sending your profile will enable a monthly update."))
+                "anonymous.  Sending your profile will enable a monthly "
+                "check-in."))
 
         label.set_line_wrap(True)
         label.set_alignment(0.0, 0.5)

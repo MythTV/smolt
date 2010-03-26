@@ -27,7 +27,11 @@ import os
 import random
 import getpass
 from tempfile import NamedTemporaryFile
-import subprocess
+
+try:
+    import subprocess
+except ImportError, e:
+    pass
 
 sys.path.append('/usr/share/smolt/client')
 
@@ -148,7 +152,11 @@ elif opts.checkin:
     sys.exit(6)
 
 # read the profile
-profile = smolt.get_profile()
+try:
+    profile = smolt.get_profile()
+except smolt.UUIDError, e:
+    sys.stderr.write(_('%s\n' % e))
+    sys.exit(9)
 
 if opts.new_pub:
     pub_uuid = profile.regenerate_pub_uuid(user_agent=opts.user_agent,
@@ -242,7 +250,10 @@ if not opts.autoSend:
                 else:
                     #fallback to more  , could use /bin/more but might as well let the path sort it out.
                     pager_command = 'more'
-            subprocess.call([pager_command, f.name])
+            try:
+                subprocess.call([pager_command, f.name])
+            except NameError:
+                os.system(' '.join([pager_command, f.name]))
             f.close()
             print '\n\n'
         else:
