@@ -344,11 +344,15 @@ class Host:
             self.selinux_policy = WITHHELD_MAGIC_STRING
             self.selinux_enforce = WITHHELD_MAGIC_STRING
         #MYTHTV STUFF
+        self.mythRemote = "Not Installed"
+        self.mythTheme = "Not Installed"
+        self.mythPlugins = "Not Installed"
+        self.mythRole = "Not Installed"
+        self.mythTuner = "Not Installed"
         if Gate().grants("MythTV"):
             import smolt_mythtv
             if Gate().grants('MythRemote'):
                 self.mythRemote = smolt_mythtv.runMythRemote()
-                print self.mythRemote
             if Gate().grants('MythTheme'):
                 self.mythTheme = smolt_mythtv.runMythTheme()
             if Gate().grants('MythPlugins'):
@@ -357,6 +361,8 @@ class Host:
                 self.mythRole = smolt_mythtv.runMythRole()
             if Gate().grants('MythTuner'):
                 self.mythTuner = smolt_mythtv.runMythTuner()
+
+
 
 def get_file_systems():
     if not Gate().grants('file_systems'):
