@@ -63,9 +63,8 @@ template_config['kernel']=config.get("stats_template.kernel", [])
 template_config['formfactor']=config.get("stats_template.formfactor", [])
 template_config['selinux']=config.get("stats_template.selinux", [])
 template_config['filesystem']=config.get("stats_template.filesystem", [])
-template_config['mythrole']=config.get("stats_template.mythrole", [])
-template_config['mythremote']=config.get("stats_template.mythremote", [])
-template_config['myththeme']=config.get("stats_template.myththeme", [])
+
+
 
 
 right_now = date.today() - timedelta(days=90)
@@ -230,7 +229,8 @@ for type in byclass_cache.data.keys():
     (total_hosts, count, types, vendors) = byclass_cache[type]
     for t in types:
         try:
-            t.description = t.description.decode('latin1')
+            #t.description = t.description.decode('ascii')
+            pass
         except AttributeError:
             pass
     engine = engines.get('genshi', None)
@@ -556,10 +556,128 @@ if not  template_config['filesystem'] == [] :
     stats['combined_fs_size'].append((withheld_label,session.query(FileSystem).filter(FileSystem.f_fssize==0) .count()))
 
 
+#myth stuff
+#---------------
+template_config['smoon.myth_support'] = ''
+if config.get("smoon.myth_support"):
+    template_config['smoon.myth_support'] = 'YES'
+    template_config['myth_role']=config.get("stats_template.myth_role", [])
+    template_config['myth_remote']=config.get("stats_template.myth_remote", [])
+    template_config['myth_theme']=config.get("stats_template.myth_theme", [])
+    template_config['myth_plugins']=config.get("stats_template.myth_theme", [])
+    template_config['myth_tuner']=config.get("stats_template.myth_theme", [])
+
+    print "====================== Myth Role ======================"
+    if not  template_config['myth_role'] == [] :
+        stats['myth_role'] = handle_withheld_elem(
+                session.query(MythRole).limit(30).all(),
+                'myth_role', WITHHELD_MAGIC_STRING)
+
+    print "====================== Myth Remote ======================"
+    if not  template_config['myth_remote'] == [] :
+        stats['myth_remote'] = handle_withheld_elem(
+                session.query(MythRemote).limit(30).all(),
+                'myth_remote', WITHHELD_MAGIC_STRING)
+
+    print "====================== Myth theme ======================"
+    if not  template_config['myth_theme'] == [] :
+        stats['myth_theme'] = handle_withheld_elem(
+                session.query(MythTheme).limit(30).all(),
+                'myth_theme', WITHHELD_MAGIC_STRING)
+
+    print "====================== Myth plugins ======================"
+    if not  template_config['myth_plugins'] == [] :
+        temp_list = []
+        stats['myth_plugins']=[]
+        plugin_count = {}
+        temp_list = session.execute('''SELECT myth_plugins from host where host.last_modified > '%s' and not myth_plugins = ''  ;''' %
+        right_now).fetchall()
+        #print temp_list
+        #sys.exit(2)
+        for i in temp_list:
+            #retrieve the first record in the list
+            y = i[0]
+            split_plugins = y.split(',')
+            for plugin in split_plugins:
+                if plugin in plugin_count:
+                    plugin_count[plugin] = plugin_count[plugin] + 1
+                else:
+                    plugin_count[plugin] = 1
+
+        stats['myth_plugins'] = plugin_count
+        del temp_list
+        del plugin_count
+
+    print "====================== Myth Tuners ======================"
+    if not  template_config['myth_tuner'] == [] :
+
+        stats['myth_tuner']=[]
+        stats['myth_tuner'].append(("One Tuner",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner==1,
+                                                    Host.last_modified > (now))).count()))
+
+        stats['myth_tuner'].append(("Two Tuners",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner==2,
+                                                    Host.last_modified > (now))).count()))
+        stats['myth_tuner'].append(("Three Tuners",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner==3,
+                                                    Host.last_modified > (now))).count()))
+        stats['myth_tuner'].append(("Four Tuners",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner==4,
+                                                    Host.last_modified > (now))).count()))
+        stats['myth_tuner'].append(("Five Tuners",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner==5,
+                                                    Host.last_modified > (now))).count()))
+        stats['myth_tuner'].append(("Six Tuners",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner==6,
+                                                    Host.last_modified > (now))).count()))
+        stats['myth_tuner'].append(("Seven Tuners",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner==7,
+                                                    Host.last_modified > (now))).count()))
+        stats['myth_tuner'].append(("Eight Tuners",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner==8,
+                                                    Host.last_modified > (now))).count()))
+        stats['myth_tuner'].append(("Nine Tuners",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner==9,
+                                                    Host.last_modified > (now))).count()))
+        stats['myth_tuner'].append(("Ten Tuners",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner==10,
+                                                    Host.last_modified > (now))).count()))
+        stats['myth_tuner'].append(("More Then Ten Tuners",
+                            session.query(Host).filter(and_(
+                                                    Host.myth_tuner!=0,
+                                                    Host.myth_tuner>=10,
+                                                    Host.last_modified > (now))).count()))
+
+#------------------
+
+
+
+
 
 t=engine.load_template('hardware.templates.stats')
 out_html=_process_output(dict(stat=stats, tabs=tabs,
-                              total_hosts=total_hosts, 
+                              total_hosts=total_hosts,
                               getOSWikiLink=getOSWikiLink,
                               flot=flot,
                               template_config=template_config,
