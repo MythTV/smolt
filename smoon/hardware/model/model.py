@@ -7,11 +7,8 @@ from turbogears.database import metadata, session
 from turbogears import identity
 from datetime import timedelta, date, datetime
 from turbogears.database import mapper
-
 from turbogears import config
 myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
-
-
 #ctx = session.context
 
 
@@ -33,24 +30,34 @@ computer_logical_devices = \
              Column("subsys_vendor_id", INT))
 
 host_links = Table('host_links', metadata,
-                   Column("id", INT,
-                          autoincrement=True,
-                          nullable=False,
-                          primary_key=True),
-                   Column('host_link_id', INT,
-                          ForeignKey("host.id"),
-                          nullable=False),
-                   Column("device_id", INT,
-                          ForeignKey("device.id")),
-                   Column("rating", INT))
+                Column("id", INT,
+                        autoincrement=True,
+                        nullable=False,
+                        primary_key=True),
+                Column('host_link_id', INT,
+                        ForeignKey("host.id"),
+                        nullable=False),
+                Column("device_id", INT,
+                        ForeignKey("device.id")),
+                Column("rating", INT))
 
+host_links_archive = Table('host_links_archive', metadata,
+                Column("id", INT,
+                        autoincrement=True,
+                        nullable=False,
+                        primary_key=True),
+                Column('host_link_id', INT,
+                        ForeignKey("host.id"),
+                        nullable=False),
+                Column("device_id", INT,
+                        ForeignKey("device.id")),
+                Column("rating", INT))
 
 # import myth_model for hosts, otherwise use the default
 if myth_support == True:
-    #define what the hosts table looks like with myth support
-    #otherwise use the default
-    from myth_model import hosts
+    from myth_model import hosts, hosts_archive
 else:
+
     hosts = Table('host', metadata,
                 Column("id", INT,
                         autoincrement=True,
@@ -86,6 +93,43 @@ else:
                 Column('cpu_stepping', INT, default=None),
                 Column('cpu_family', INT, default=None),
                 Column('cpu_model_num', INT, default=None))
+
+    hosts_archive = Table('host_archive', metadata,
+                Column("id", INT,
+                        autoincrement=True,
+                        nullable=False,
+                        primary_key=True),
+                Column('uuid', VARCHAR(36),
+                        nullable=False,
+                        unique=True),
+                Column('pub_uuid', VARCHAR(40),
+                        nullable=False,
+                        unique=True),
+                Column('os', TEXT),
+                Column('platform', TEXT),
+                Column('bogomips', DECIMAL),
+                Column('system_memory', INT),
+                Column('system_swap', INT),
+                Column('vendor', TEXT),
+                Column('system', TEXT),
+                Column('cpu_vendor', TEXT),
+                Column('cpu_model', TEXT),
+                Column('num_cpus', INT),
+                Column('cpu_speed', DECIMAL),
+                Column('language', TEXT),
+                Column('default_runlevel', INT),
+                Column('kernel_version', TEXT),
+                Column('formfactor', TEXT),
+                Column('last_modified', DATETIME,
+                        default=0, nullable=False),
+                Column('rating', INT, nullable=False, default=0),
+                Column('selinux_enabled', INT, nullable=False),
+                Column('selinux_policy', TEXT),
+                Column('selinux_enforce', TEXT),
+                Column('cpu_stepping', INT, default=None),
+                Column('cpu_family', INT, default=None),
+                Column('cpu_model_num', INT, default=None))
+
 
 
 fas_links = Table('fas_link', metadata,
@@ -129,10 +173,18 @@ class Host(object):
         self.rating = rating
         self.last_modified = last_modified
 
+class HostArchive(object):
+    def __init__(self, rating=0):
+        self.rating = rating
+
 class ComputerLogicalDevice(object):
     pass
 
 class HostLink(object):
+    def __init__(self, rating=0):
+        self.rating = rating
+
+class HostLinkArchive(object):
     def __init__(self, rating=0):
         self.rating = rating
 
@@ -164,6 +216,8 @@ mapper(Host, hosts,
                       file_systems=relation(FileSystem,
                                             backref='host')))
 
+mapper(HostArchive, hosts_archive)
+
 mapper(ComputerLogicalDevice,
        computer_logical_devices,
        properties = {"_host_links": relation(HostLink,
@@ -174,6 +228,7 @@ mapper(ComputerLogicalDevice,
                                             cascade="all,delete-orphan")})
 
 mapper(HostLink, host_links)
+mapper(HostLinkArchive, host_links_archive)
 
 mapper(FasLink, fas_links, properties = {'hosts': relation(Host),
                                          'uuid': fas_links.c.uuid})
@@ -188,7 +243,4 @@ mapper(HardwareClass,
                      'cls': synonym('_cls')})
 
 mapper(FileSystem, file_systems)
-
-
-
 
