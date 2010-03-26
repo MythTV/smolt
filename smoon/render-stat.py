@@ -139,8 +139,10 @@ def handle_withheld_elem(list, attrib_to_check, value_to_check_for):
 stats = {}
 # somehow this has to be first, cause it binds us to
 # an sqlalchemy context
+# total hosts is also defined below, one of these should be removed.
 print '====================== total_hosts ======================'
-stats['total_hosts'] = session.query(Host, HostArchive).count()
+stats['total_hosts'] = session.query(Host).count() + session.query(HostArchive).count()
+
 
 class ByClass(object):
     def __init__(self):
@@ -258,6 +260,7 @@ if not total_active_hosts:
 
 print '====================== total_hosts ======================'
 stats['total_hosts'] = session.query(Host).count() + session.query(HostArchive).count()
+
 total_hosts = stats['total_hosts']
 flot = {}
 # Arch calculation
