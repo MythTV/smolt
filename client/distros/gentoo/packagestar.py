@@ -53,6 +53,9 @@ class _PackageStar:
             for x in portage.grabfile_package(
                     os.path.join(location, self._section), recursive = 1):
                 self._total_count = self._total_count + 1
+                if x.startswith('-'):
+                    print '  no proper support for "-cat/pkg" style entry "%s" yet, sorry.' % x.strip()
+                    continue
                 cp = get_cp(x)
                 if self._privacy_filter and is_private_package_atom(cp):
                     self._private_count = self._private_count + 1
