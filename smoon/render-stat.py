@@ -231,7 +231,7 @@ for type in byclass_cache.data.keys():
     (total_hosts, count, types, vendors) = byclass_cache[type]
     for t in types:
         try:
-            #t.description = t.description.decode('ascii')
+            t.description = t.description.decode('latin1')
             pass
         except AttributeError:
             pass
