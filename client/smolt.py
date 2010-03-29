@@ -251,6 +251,8 @@ class Host:
                     status, lang = commands.getstatusoutput("grep LANG /etc/sysconfig/i18n")
                     if status == 0:
                         self.language = lang.split('"')[1]
+                    else:
+                        self.language = 'Unknown'
                 except:
                     self.language = 'Unknown'
         else:
