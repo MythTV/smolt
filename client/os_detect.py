@@ -63,6 +63,7 @@ distro_info= odict()
 distro_info['Blag Linux']='/etc/blag-release'
 distro_info['MythVantage']='/etc/mythvantage-release'
 distro_info['Knoppmyth']='/etc/KnoppMyth-version'
+distro_info['LinHES']='/etc/LinHES-release'
 distro_info['MythDora']='/etc/mythdora-release'
 distro_info['Arch Linux']= '/etc/arch-release'
 distro_info['Aurox Linux']= '/etc/aurox-release'
