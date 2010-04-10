@@ -19,23 +19,12 @@ from hardware.submission import handle_submission
 
 import gc
 
-#added to detect myth support
-from turbogears import config
-myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
-
 
 def request_format():
     format = cherrypy.request.params.get('tg_format', '').lower()
     if not format:
         format = cherrypy.request.headers.get('Accept', 'default').lower()
     return format
-
-def _fix_vendor(vendor):
-    rc = vendor
-    if vendor.startswith('Dell'):
-        rc = 'Dell, Inc.'
-    return rc
-
 
 class Client(object):
     error = Error()
@@ -207,6 +196,7 @@ class Client(object):
     def add_json(self, uuid, host, token, smolt_protocol):
         self._run_add_json_checks(uuid, host, token, smolt_protocol)
         res = handle_submission(session, uuid, host)
+
         log_entry = BatchJob(host, uuid, added=True)
         session.add(log_entry)
         session.flush()

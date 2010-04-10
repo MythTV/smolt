@@ -30,6 +30,9 @@ import sys
 import inspect
 sys.path.append(os.path.join(os.path.dirname(inspect.currentframe().f_code.co_filename), '..'))
 from play import handle_gentoo_data
+#added to detect myth support
+from turbogears import config
+myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
 
 def _fix_vendor(vendor):
     rc = vendor
@@ -159,8 +162,8 @@ def handle_submission(session, uuid, host):
 
     for device_sql_id in orig_devices:
         bad_host_link = session.query(HostLink)\
-        .filter(and_(HostLink.device_id==device_sql_id,
-        HostLink.host_link_id==host_sql.id))
+            .filter(and_(HostLink.device_id==device_sql_id,
+            HostLink.host_link_id==host_sql.id))
         if bad_host_link and bad_host_link > 0:
             session.delete(bad_host_link[0])
     session.flush()
