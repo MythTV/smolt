@@ -193,8 +193,6 @@ class Client(object):
 
     @expose(template="hardware.templates.pub_uuid")
     @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
-
-
     def add_json(self, uuid, host, token, smolt_protocol):
         self._run_add_json_checks(uuid, host, token, smolt_protocol)
         res = handle_submission(session, uuid, host)
