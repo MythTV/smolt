@@ -36,17 +36,17 @@ hosts = Table('host', meta,
               Column('selinux_policy', TEXT),
               Column('selinux_enforce', TEXT))
 
-myth_systemrole = Column('myth_systemrole', String(32))
-mythremote = Column('mythremote', String(32))
-myththeme = Column('myththeme', String(32))
+myth_role = Column('myth_role', String(32))
+myth_remote = Column('myth_remote', String(32))
+myth_theme = Column('myth_theme', String(32))
 
 def upgrade():
-    create_column(myth_systemrole, hosts)
-    create_column(mythremote, hosts)
-    create_column(myththeme, hosts)
+    create_column(myth_role, hosts)
+    create_column(myth_remote, hosts)
+    create_column(myth_theme, hosts)
 
 
 def downgrade():
-    drop_column(myth_systemrole, hosts)
-    drop_column(mythremote, hosts)
-    drop_column(myththeme, hosts)
+    drop_column(myth_role, hosts)
+    drop_column(myth_remote, hosts)
+    drop_column(myth_theme, hosts)

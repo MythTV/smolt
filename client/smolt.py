@@ -351,6 +351,25 @@ class Host:
             self.selinux_enabled = SELINUX_WITHHELD
             self.selinux_policy = WITHHELD_MAGIC_STRING
             self.selinux_enforce = WITHHELD_MAGIC_STRING
+        #MYTHTV STUFF
+        self.mythRemote = "Not Installed"
+        self.mythTheme = "Not Installed"
+        self.mythPlugins = "Not Installed"
+        self.mythRole = "Not Installed"
+        self.mythTuner = "Not Installed"
+        if Gate().grants("MythTV"):
+            import smolt_mythtv
+            if Gate().grants('MythRemote'):
+                self.mythRemote = smolt_mythtv.runMythRemote()
+            if Gate().grants('MythTheme'):
+                self.mythTheme = smolt_mythtv.runMythTheme()
+            if Gate().grants('MythPlugins'):
+                self.mythPlugins = smolt_mythtv.runMythPlugins()
+            if Gate().grants('MythRole'):
+                self.mythRole = smolt_mythtv.runMythRole()
+            if Gate().grants('MythTuner'):
+                self.mythTuner = smolt_mythtv.runMythTuner()
+
 
 
 def get_file_systems():
@@ -505,7 +524,7 @@ class _Hardware:
                     try:
                         dmiOutput = subprocess.Popen('/usr/sbin/dmidecode r 2> /dev/null', shell=True, stdout=subprocess.PIPE).stdout
                     except NameError:
-                        dmiOutput = os.popen('/usr/sbin/dmidecode r 2> /dev/null')
+                        i, dmiOutput, e = os.popen('/usr/sbin/dmidecode', 'r')
                     section = None
                     sysvendor = None
                     sysproduct = None
@@ -622,7 +641,13 @@ class _Hardware:
                 'formfactor' :      self.host.formfactor,
                 'selinux_enabled':  self.host.selinux_enabled,
                 'selinux_policy':   self.host.selinux_policy,
-                'selinux_enforce':  self.host.selinux_enforce}
+                'selinux_enforce':  self.host.selinux_enforce,
+                'myth_remote':      self.host.mythRemote,
+                'myth_role':        self.host.mythRole,
+                'myth_theme':       self.host.mythTheme,
+                'myth_plugins':      self.host.mythPlugins,
+                'myth_tuner':       self.host.mythTuner
+                }
 
     def get_sendable_fss(self, protocol_version=smoltProtocol):
         return [fs.to_dict() for fs in self.fss]
@@ -743,8 +768,8 @@ class _Hardware:
             entry_point = "/client/add_json"
             logging.debug('Submitting in synchronous mode')
         request_url = urljoin(smoonURL + "/", entry_point, False)
+        logging.debug('Sending request to %s' % request_url)
         try:
-            logging.debug('Sending request to %s' % request_url)
             opener = urllib2.build_opener(MultipartPostHandler.MultipartPostHandler)
             params = {  'uuid':self.host.UUID,
                         'host':serialized_host_obj_machine,
@@ -910,6 +935,11 @@ class _Hardware:
         yield _('SELinux Enabled'), self.host.selinux_enabled
         yield _('SELinux Policy'), self.host.selinux_policy
         yield _('SELinux Enforce'), self.host.selinux_enforce
+        yield _('MythTV Remote'), self.host.mythRemote
+        yield _('MythTV Role'), self.host.mythRole
+        yield _('MythTV Theme'), self.host.mythTheme
+        yield _('MythTV Plugin'), self.host.mythPlugins
+        yield _('MythTV Tuner'), self.host.mythTuner
 
     def deviceIter(self):
         '''Iterate over our devices.'''

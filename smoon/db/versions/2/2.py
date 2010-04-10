@@ -35,9 +35,9 @@ hosts = Table('host', meta,
               Column('selinux_enabled', BOOLEAN, nullable=False),
               Column('selinux_policy', TEXT),
               Column('selinux_enforce', TEXT),
-              Column('myth_systemrole', TEXT),
-              Column('mythremote', TEXT),
-              Column('myththeme', TEXT))
+              Column('myth_role', TEXT),
+              Column('myth_remote', TEXT),
+              Column('myth_theme', TEXT))
 
 def upgrade():
     alter_column(hosts.c.language, type=VARCHAR(16))

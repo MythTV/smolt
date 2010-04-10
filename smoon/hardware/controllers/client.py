@@ -19,6 +19,11 @@ from hardware.submission import handle_submission
 
 import gc
 
+#added to detect myth support
+from turbogears import config
+myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+
+
 def request_format():
     format = cherrypy.request.params.get('tg_format', '').lower()
     if not format:

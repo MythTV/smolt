@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+           xmlns:py="http://genshi.edgewall.org/"
+           xmlns:xi="http://www.w3.org/2001/XInclude"
+           lang="en"
+           py:strip="">
+
+<py:if test='template_config["myth_role"]'>
+<div class="tabbertab"><h2>${_("Myth Role")}</h2>
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr py:for='myth_role in stat["myth_role"]'>
+            <th align="right">${myth_role.myth_role}</th>
+            <td align="center">${myth_role.cnt}</td>
+            <td><strong>${'%.1f' % (float(myth_role.cnt) / total_active_hosts * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(myth_role.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+        </tr>
+    </table>
+</div>
+</py:if>
+
+
+<py:if test='template_config["myth_remote"]'>
+    <div class="tabbertab"><h2>${_("Myth Remote")}</h2>
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr py:for='myth_remote in stat["myth_remote"]'>
+            <th align="right">${myth_remote.myth_remote}</th>
+            <td align="center">${myth_remote.cnt}</td>
+            <td><strong>${'%.1f' % (float(myth_remote.cnt) / total_active_hosts * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(myth_remote.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+        </tr>
+    </table>
+</div>
+</py:if>
+
+<py:if test='template_config["myth_theme"]'>
+    <div class="tabbertab"><h2>${_("Myth  Theme")}</h2>
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr py:for='myth_theme in stat["myth_theme"]'>
+            <th align="right">${myth_theme.myth_theme}</th>
+            <td align="center">${myth_theme.cnt}</td>
+            <td><strong>${'%.1f' % (float(myth_theme.cnt) / total_active_hosts * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(myth_theme.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+        </tr>
+    </table>
+</div>
+</py:if>
+
+<py:if test='template_config["myth_tuner"]'>
+    <div class="tabbertab"><h2>${_("# Tuners")}</h2>
+        <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+            <tr><th colspan="4">${_("Number of tuners")}</th></tr>
+                <tr py:for='combined_fs_size in stat["myth_tuner"]'>
+                    <th align="left">${combined_fs_size[0]}</th>
+                    <td align="right">${combined_fs_size[1]}</td>
+            </tr>
+        </table>
+    </div>
+</py:if>
+
+
+<py:if test='template_config["myth_plugins"]'>
+    <div class="tabbertab"><h2>${_("Myth Plugins")}</h2>
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+            <tr><th colspan="4">${_("Plugins installed")}</th></tr>
+                <tr py:for='plugin,count in  stat["myth_plugins"].items()'>
+                    <th align="left">${plugin}</th>
+                    <td align="right">${count}</td>
+            </tr>
+
+    </table>
+</div>
+</py:if>
+
+</html>
