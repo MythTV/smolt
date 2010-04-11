@@ -1,10 +1,11 @@
 import random
 import simplejson
-import pkg_resources
 
 from turbogears.widgets import JSLink, Widget, register_static_directory
 
-js_dir = pkg_resources.resource_filename("turboflot", "static")
+import inspect
+import os
+js_dir = os.path.join(os.path.dirname(inspect.currentframe().f_code.co_filename), 'static', 'js')
 register_static_directory("turboflot", js_dir)
 
 class TurboFlot(Widget):
@@ -26,9 +27,9 @@ class TurboFlot(Widget):
             "height"  : "The height of the graph",
             "width"   : "The width of the graph"
     }
-    javascript = [JSLink('turboflot', '../../static/js/excanvas.js'),
-                  JSLink("turboflot", "../../static/js/jquery.js"),
-                  JSLink("turboflot", "../../static/js/jquery.flot.js")]
+    javascript = [JSLink('turboflot', 'excanvas.js'),
+                  JSLink("turboflot", "jquery.js"),
+                  JSLink("turboflot", "jquery.flot.js")]
     
 
     def __init__(self, data, options={}, height="300px", width="600px"):
