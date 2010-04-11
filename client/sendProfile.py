@@ -100,7 +100,7 @@ parser.add_option('-c', '--checkin',
                   dest = 'checkin',
                   default = False,
                   action = 'store_true',
-                  help = _('this is an automated checkin, will only run if the "smolt" service has been started'))
+                  help = _('do an automated checkin as when run from cron (implies --autoSend)'))
 parser.add_option('-S', '--scanOnly',
                   dest = 'scanOnly',
                   default = False,
@@ -143,13 +143,9 @@ if opts.httpproxy == None:
 else:
     proxies = {'http':opts.httpproxy}
 
-if opts.checkin and os.path.exists('/var/lock/subsys/smolt'):
+if opts.checkin:
     # Smolt is set to run
     opts.autoSend = True
-elif opts.checkin:
-    # Tried to check in but checkins are disabled
-    print _('Smolt set to checkin but checkins are disabled (hint: service smolt start)')
-    sys.exit(6)
 
 # read the profile
 try:
