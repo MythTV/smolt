@@ -1,7 +1,15 @@
-import random
+# -*- coding: utf-8 -*-
+# Copyright (C) 2008 Luke Macken <lewk at csh rit edu>
+# Licensed under MIT
+# http://pypi.python.org/pypi/TurboFlot
+#
+# With modifications for Smolt.
+#
+import random ; random.seed()
 import simplejson
 
-from turbogears.widgets import JSLink, Widget, register_static_directory
+from turbogears.widgets import CSSLink, JSLink, Widget
+from turbogears.widgets import register_static_directory
 
 import inspect
 import os
@@ -13,30 +21,38 @@ class TurboFlot(Widget):
         A TurboGears Flot Widget.
     """
     template = """
-      <div xmlns:py="http://purl.org/kid/ns#" id="turboflot${id}"
-           style="width:${width};height:${height};">
+      <div xmlns:py="http://purl.org/kid/ns#">
+        <div style="width:${width};height:${height};" id="${id}" />
         <script>
-          $.plot($("#turboflot${id}"), ${data}, ${options});
+          $(document).ready(function() {
+            $.plot($("#${id}"), ${data}, ${options});
+          });
         </script>
       </div>
     """
-    params = ["data", "options", "height", "width"]
+    params = ["data", "options", "height", "width", "id", "label"]
     params_doc = {
             "data"    : "An array of data series",
             "options" : "Plot options",
             "height"  : "The height of the graph",
-            "width"   : "The width of the graph"
+            "width"   : "The width of the graph",
+            "label"   : "Label for the graph",
+            "id"      : "An optional ID for the graph"
     }
+    css = [CSSLink('turboflot', 'turboflot.css')]
     javascript = [JSLink('turboflot', 'excanvas.js'),
                   JSLink("turboflot", "jquery.js"),
                   JSLink("turboflot", "jquery.flot.js")]
-    
 
-    def __init__(self, data, options={}, height="300px", width="600px"):
-        random.seed()
-        self.id = int(random.random() * 1000)
+    def __init__(self, data, options={}, height="300px", width="600px",
+                 id=None, label=''):
+        super(TurboFlot, self).__init__()
+        if id:
+            self.id = id
+        else:
+            self.id = "turboflot" + str(int(random.random() * 1000))
         self.data = simplejson.dumps(data)
         self.options = simplejson.dumps(options)
         self.height = height
         self.width = width
-
+        self.label = label
