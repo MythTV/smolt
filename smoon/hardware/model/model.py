@@ -2,13 +2,26 @@
 from datetime import datetime
 from sqlalchemy import *
 from sqlalchemy.orm import *
-from turbogears.database import metadata, session
 #from sqlalchemy.ext.assignmapper import assign_mapper
-from turbogears import identity
 from datetime import timedelta, date, datetime
-from turbogears.database import mapper
 from turbogears import config
 myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+
+
+# Context dependent metadata and mapper creation
+import sys
+import logging
+if 'turbogears' in sys.modules:
+    logging.debug('Turbogears context')
+    from turbogears.database import metadata
+    from turbogears.database import mapper
+else:
+    logging.debug('Plain SQL alchemy context')
+    from sqlalchemy.orm import mapper
+    from sqlalchemy import MetaData
+    metadata = MetaData()
+
+
 #ctx = session.context
 
 
@@ -165,6 +178,17 @@ file_systems = Table('file_systems', metadata,
                      Column('f_ffree', INT),
                      Column('f_fssize', INT))
 
+batch_queue = Table('batch_queue', metadata,
+                    Column('id', Integer,
+                            primary_key=True, autoincrement=True),
+                    Column('arrival', TIMESTAMP,
+                            nullable=False),
+                    Column('added', Boolean,
+                            nullable=False),
+                    Column('hw_uuid', VARCHAR(36),
+                            nullable=False),
+                    Column('data', CLOB(1000000)))
+
 
 class Host(object):
     def __init__(self, selinux_enabled=False,
@@ -206,6 +230,14 @@ class HardwareClass(object):
 class FileSystem(object):
     pass
 
+class BatchJob(object):
+    def __init__(self, data, hw_uuid, added):
+        self.data = data
+        self.hw_uuid = hw_uuid
+        self.added = added
+        self.arrival = text('NOW()')
+
+
 mapper(Host, hosts,
        properties=dict(_devices=relation(HostLink,
                                          cascade="all,delete-orphan",
@@ -244,3 +276,4 @@ mapper(HardwareClass,
 
 mapper(FileSystem, file_systems)
 
+mapper(BatchJob, batch_queue)

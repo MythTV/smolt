@@ -45,6 +45,7 @@ import urllib
 import simplejson
 from simplejson import JSONEncoder
 import datetime
+import logging
 
 import config
 from smolt_config import get_config_attr
@@ -634,6 +635,9 @@ class _Hardware:
 
     def write_pub_uuid(self,smoonURL,pub_uuid):
         smoonURLparsed=urlparse(smoonURL)
+        if pub_uuid is None:
+            return
+
         try:
             UuidDb().set_pub_uuid(getUUID(), smoonURLparsed[1], pub_uuid)
         except Exception, e:
@@ -650,7 +654,7 @@ class _Hardware:
         return
 
 
-    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies):
+    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies, batch=False):
         def serialize(object, human=False):
             if human:
                 indent = 2
@@ -699,8 +703,15 @@ class _Hardware:
         debug('sendHostStr: %s' % serialized_host_obj_machine)
         debug('Sending Host')
 
+        if batch:
+            entry_point = "/client/batch_add_json"
+            logging.debug('Submitting in asynchronous mode')
+        else:
+            entry_point = "/client/add_json"
+            logging.debug('Submitting in synchronous mode')
+        request_url = urljoin(smoonURL + "/", entry_point, False)
+        logging.debug('Sending request to %s' % request_url)
         try:
-            request_url = urljoin(smoonURL + "/", "/client/add_json", False)
             opener = urllib2.build_opener(MultipartPostHandler.MultipartPostHandler)
             params = {  'uuid':self.host.UUID,
                         'host':serialized_host_obj_machine,

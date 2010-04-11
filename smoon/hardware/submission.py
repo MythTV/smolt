@@ -18,6 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
+import logging
 import simplejson
 from sqlalchemy.exceptions import InvalidRequestError, OperationalError
 from datetime import datetime
@@ -35,6 +36,7 @@ def _fix_vendor(vendor):
     return rc
 
 def handle_submission(session, uuid, host):
+    logging.info('Processing hardware UUID %s' % uuid)
     host_dict = simplejson.loads(host)
     try:
         host_sql = session.query(Host).filter_by(uuid=uuid).one()
