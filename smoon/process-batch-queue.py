@@ -72,6 +72,8 @@ engine = create_engine(CONNECTION, echo=True)
 session = sessionmaker(bind=engine)()
 
 # Check existing tables, create those missing
+from sqlalchemy import MetaData
+metadata = MetaData()
 metadata.create_all(engine)
 
 # Build query base
