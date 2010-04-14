@@ -39,6 +39,11 @@ parser.add_option('--echo',
                   default = False,
                   action = 'store_true',
                   help = 'print SQL queries being run')
+parser.add_option('--flush-each',
+                  dest = 'flush_each',
+                  default = False,
+                  action = 'store_true',
+                  help = 'flush after each job processed')
 parser.add_option('--redo',
                   dest = 'redo',
                   default = False,
@@ -114,7 +119,13 @@ for j in jobs:
             session.delete(j)
         else:
             j.added = True
-session.flush()
+
+        if opts.flush_each:
+            session.flush()
+
+if not opts.flush_each:
+    session.flush()
+
 print '===================================================================='
 print '%d jobs processed' % count
 print ''
