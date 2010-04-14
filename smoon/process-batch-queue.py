@@ -94,7 +94,8 @@ for j in jobs:
         handle_submission(session, j.hw_uuid, j.data)
         good = good + 1
     except Exception, e:
-        traceback.print_tb(sys.exc_info()[2])
+        (_type, _value, _traceback) = sys.exc_info()
+        traceback.print_exception(_type, _value, _traceback)
         bad = bad + 1
     else:
         if opts.delete_after_addition:
