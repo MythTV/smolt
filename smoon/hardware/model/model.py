@@ -4,8 +4,13 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 #from sqlalchemy.ext.assignmapper import assign_mapper
 from datetime import timedelta, date, datetime
-from turbogears import config
-myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+
+import sys
+if 'turbogears' in sys.modules:
+    from turbogears import config
+    myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+else:
+    myth_support = False  # FIXME
 
 
 # Context dependent metadata and mapper creation

@@ -59,9 +59,13 @@ from sqlalchemy.orm import sessionmaker
 import traceback
 
 from hardware.submission import handle_submission
-from hardware.model.model import BatchJob
+from hardware.model.model import BatchJob, metadata
 
 warnings.resetwarnings()
+
+# Check if context sensitive things work right
+# This script is meant to work with plain SQL alchemy
+assert('turbogears' not in sys.modules)
 
 # first look on the command line for a desired config file,
 # if it's not on the command line, then
@@ -82,8 +86,6 @@ engine = create_engine(CONNECTION, echo=opts.echo)
 session = sessionmaker(bind=engine)()
 
 # Check existing tables, create those missing
-from sqlalchemy import MetaData
-metadata = MetaData()
 metadata.create_all(engine)
 
 # Build query base

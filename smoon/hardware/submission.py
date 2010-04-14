@@ -26,8 +26,11 @@ from hardware.model.model import *
 from hardware.uuid import generate_uuid
 
 #added to detect myth support
-from turbogears import config
-myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+if 'turbogears' in sys.modules:
+    from turbogears import config
+    myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+else:
+    myth_support = False  # FIXME
 
 def _fix_vendor(vendor):
     rc = vendor
