@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 # smolt - Fedora hardware profiler
 #
 # Copyright (C) 2007 Mike McGrath
@@ -41,6 +42,9 @@ parser.add_option('--redo',
 
 (opts, args) = parser.parse_args()
 
+import warnings
+warnings.filterwarnings("ignore")
+
 import sys
 import os
 import logging
@@ -52,6 +56,7 @@ import traceback
 from hardware.submission import handle_submission
 from hardware.model.model import BatchJob
 
+warnings.resetwarnings()
 
 # first look on the command line for a desired config file,
 # if it's not on the command line, then
