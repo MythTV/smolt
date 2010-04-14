@@ -34,6 +34,11 @@ parser.add_option('--delete',
                   default = False,
                   action = 'store_true',
                   help = 'delete entries after addition (default is marking as added)')
+parser.add_option('--echo',
+                  dest = 'echo',
+                  default = False,
+                  action = 'store_true',
+                  help = 'print SQL queries being run')
 parser.add_option('--redo',
                   dest = 'redo',
                   default = False,
@@ -73,7 +78,7 @@ config = ConfigParser()
 config.read(opts.config_file)
 CONNECTION = config.get('global', 'sqlalchemy.dburi').\
         lstrip('"\'').rstrip('"\'')
-engine = create_engine(CONNECTION, echo=True)
+engine = create_engine(CONNECTION, echo=opts.echo)
 session = sessionmaker(bind=engine)()
 
 # Check existing tables, create those missing
