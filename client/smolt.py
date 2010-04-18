@@ -43,7 +43,7 @@ from urlparse import urlparse
 from urllib import urlencode
 import urllib
 import simplejson
-from simplejson import JSONEncoder
+from simplejson import JSONEncoder, JSONDecodeError
 import datetime
 import logging
 
@@ -428,10 +428,10 @@ def serverMessage(page):
         if 'UUID:' in line:
             return line.strip()[6:]
         if 'ServerMessage:' in line:
-            print _('Server Message: "%s"') % line.split('ServerMessage: ')[1]
             if 'Critical' in line:
-                raise ServerError, _('Could not contact server: %s') % line.split('ServerMessage: ')[1]
-
+                raise ServerError, line.split('ServerMessage: ')[1]
+            else:
+                print _('Server Message: "%s"') % line.split('ServerMessage: ')[1]
 
 def error(message):
     print >> sys.stderr, message
@@ -754,11 +754,21 @@ class _Hardware:
         try:
             new_uuid = grabber.urlopen(urljoin(smoonURL + "/", '/client/regenerate_pub_uuid?uuid=%s' % self.host.UUID))
         except urlgrabber.grabber.URLGrabError, e:
-            error(_('Error contacting Server: %s') % e)
-            sys.exit(0)
-        pub_uuid = simplejson.loads(new_uuid.read())['pub_uuid']
-        self.write_pub_uuid(smoonURL,pub_uuid)
-        return pub_uuid
+            raise ServerError, str(e)
+
+        response = new_uuid.read()  # Either JSON or an error page in (X)HTML
+        try:
+            response_dict = simplejson.loads(response)
+        except JSONDecodeError, e:
+            serverMessage(response)
+            raise ServerError, _('Reply from server could not be interpreted')
+        else:
+            try:
+                pub_uuid = response_dict['pub_uuid']
+            except KeyError:
+                raise ServerError, _('Reply from server could not be interpreted')
+            self.write_pub_uuid(smoonURL,pub_uuid)
+            return pub_uuid
 
 
     def get_general_info_excerpt(self):

@@ -24,7 +24,7 @@ import simplejson
 from simplejson import JSONDecodeError
 import re
 
-_pub_uuid_extractor = re.compile('^\\s*UUID: pub_([0-9a-fA-F-]+)\\s*$', re.MULTILINE)
+_pub_uuid_extractor = re.compile('^\\s*UUID: (pub_[0-9a-fA-F-]+)\\s*$', re.MULTILINE)
 
 class Sender(object):
     def __init__(self, home_url):
