@@ -40,6 +40,9 @@ class Client(object):
         self._sender = None
         # TODO self._sender = Sender('http://smolts.org/')
 
+    def new_token(self, hardware_uuid):
+        return self._sender.new_token(hardware_uuid)
+
     def forward(self, function_name, **kwargs):
         return self._sender.send('/client/' + function_name, **kwargs)
 
@@ -87,9 +90,10 @@ class Client(object):
     @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
         if not self.at_final_server():
+            final_token = self.new_token(uuid)
             host_excerpt = self._impl.data_for_next_hop(host)
-            response_dict = self.forward('add_json', uuid=uuid, host=host_excerpt, token=token,
-                smolt_protocol=smolt_protocol)
+            response_dict = self.forward('add_json', uuid=uuid, host=host_excerpt,
+                token=final_token, smolt_protocol=smolt_protocol)
             # TODO extract pub ID and re-use it
         response_dict = self._impl.add_json(uuid, host, token, smolt_protocol)
         return response_dict

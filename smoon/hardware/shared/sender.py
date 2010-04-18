@@ -33,6 +33,10 @@ class Sender(object):
     def url(self):
         return self._home_url
 
+    def new_token(self, hardware_uuid):
+        token_response = self.send('/tokens/token_json', uuid=hardware_uuid)
+        return token_response['token']
+
     def send(self, entry_point, **kwargs):
         request_url = urljoin(self._home_url + "/", entry_point, False)
         
