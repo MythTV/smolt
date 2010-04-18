@@ -64,6 +64,8 @@ class Client(object):
     @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, uuid=''):
         if not self.at_final_server():
+            # TODO handle "UUID unknown"
+            # TODO handle "UUID existing but deletion still failed"
             response_dict = self.forward('delete', uuid=uuid)
         return self._impl.delete(uuid)
 
@@ -97,12 +99,15 @@ class Client(object):
             response_dict = self.forward('add_json', uuid=uuid, host=host_excerpt,
                 token=final_token, smolt_protocol=smolt_protocol)
             # TODO extract pub ID and re-use it
+            # TODO handle passwords?
         response_dict = self._impl.add_json(uuid, host, token, smolt_protocol)
         return response_dict
 
     @expose()
     def rate_object(self, *args, **kwargs):  # NOTE: *args not used, keeping for robustness
         if not self.at_final_server():
+            # TODO check if rating is domain-specific or
+            # of interested to final server
             self.forward('rate_object', **kwargs)
         return self._impl.rate_object(self, **kwargs)
 
