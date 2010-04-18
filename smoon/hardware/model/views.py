@@ -1,9 +1,15 @@
+# -*- coding: utf-8 -*-
 from sqlalchemy import *
 from sqlalchemy.orm import *
 
 from hardware.model.model import *
-from turbogears import config
-myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+
+import sys
+if 'turbogears' in sys.modules:
+    from turbogears import config
+    myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+else:
+    myth_support = False  # FIXME
 
 
 def old_hosts_clause():

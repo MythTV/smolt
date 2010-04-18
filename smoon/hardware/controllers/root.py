@@ -51,7 +51,6 @@ class Root(controllers.RootController):
         import time
         # log.debug("Happy TurboGears Controller Smooning For Duty")
         import math
-        from turboflot import TurboFlot
         #archs = session.query(Arch).select()
         topVendors = session.query(Host).group_by(Host.vendor).filter_by(rating=5).add_column(func.count(Host.rating).label('count')).order_by(desc('count')).limit(7)
         types = []

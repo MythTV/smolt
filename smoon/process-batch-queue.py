@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 # smolt - Fedora hardware profiler
 #
 # Copyright (C) 2007 Mike McGrath
@@ -33,6 +34,16 @@ parser.add_option('--delete',
                   default = False,
                   action = 'store_true',
                   help = 'delete entries after addition (default is marking as added)')
+parser.add_option('--echo',
+                  dest = 'echo',
+                  default = False,
+                  action = 'store_true',
+                  help = 'print SQL queries being run')
+parser.add_option('--flush-each',
+                  dest = 'flush_each',
+                  default = False,
+                  action = 'store_true',
+                  help = 'flush after each job processed')
 parser.add_option('--redo',
                   dest = 'redo',
                   default = False,
@@ -40,6 +51,9 @@ parser.add_option('--redo',
                   help = 're-process all entries')
 
 (opts, args) = parser.parse_args()
+
+import warnings
+warnings.filterwarnings("ignore")
 
 import sys
 import os
@@ -50,9 +64,14 @@ from sqlalchemy.orm import sessionmaker
 import traceback
 
 from hardware.submission import handle_submission
-from hardware.model.model import BatchJob
 from playmodel import *
+from hardware.model.model import BatchJob, metadata
 
+warnings.resetwarnings()
+
+# Check if context sensitive things work right
+# This script is meant to work with plain SQL alchemy
+assert('turbogears' not in sys.modules)
 
 # first look on the command line for a desired config file,
 # if it's not on the command line, then
@@ -69,7 +88,7 @@ config = ConfigParser()
 config.read(opts.config_file)
 CONNECTION = config.get('global', 'sqlalchemy.dburi').\
         lstrip('"\'').rstrip('"\'')
-engine = create_engine(CONNECTION, echo=True)
+engine = create_engine(CONNECTION, echo=opts.echo)
 session = sessionmaker(bind=engine)()
 
 # Check existing tables, create those missing
@@ -93,7 +112,8 @@ for j in jobs:
         handle_submission(session, j.hw_uuid, j.data)
         good = good + 1
     except Exception, e:
-        traceback.print_tb(sys.exc_info()[2])
+        (_type, _value, _traceback) = sys.exc_info()
+        traceback.print_exception(_type, _value, _traceback)
         bad = bad + 1
     else:
         if opts.delete_after_addition:

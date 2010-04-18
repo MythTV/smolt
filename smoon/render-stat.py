@@ -40,7 +40,7 @@ cherrypy.lowercase_api = True
 from os.path import *
 import time
 from hardware.wiki import *
-from turboflot import TurboFlot
+from hardware.turboflot import TurboFlot
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 withheld_label = "withheld"

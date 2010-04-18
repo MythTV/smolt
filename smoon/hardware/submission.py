@@ -31,8 +31,11 @@ import inspect
 sys.path.append(os.path.join(os.path.dirname(inspect.currentframe().f_code.co_filename), '..'))
 from play import handle_gentoo_data
 #added to detect myth support
-from turbogears import config
-myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+if 'turbogears' in sys.modules:
+    from turbogears import config
+    myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+else:
+    myth_support = False  # FIXME
 
 def _fix_vendor(vendor):
     rc = vendor

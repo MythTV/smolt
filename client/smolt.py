@@ -59,7 +59,6 @@ import codecs
 import MultipartPostHandler
 import urllib2
 
-
 try:
     import subprocess
 except ImportError, e:
@@ -70,6 +69,7 @@ WITHHELD_MAGIC_STRING = 'WITHHELD'
 SELINUX_ENABLED = 1
 SELINUX_DISABLED = 0
 SELINUX_WITHHELD = -1
+
 
 fs_types = get_config_attr("FS_TYPES", ["ext2", "ext3", "xfs", "reiserfs"])
 fs_mounts = dict.fromkeys(get_config_attr("FS_MOUNTS", ["/", "/home", "/etc", "/var", "/boot"]), True)
@@ -88,6 +88,11 @@ user_agent = 'smolt/%s' % smoltProtocol
 timeout = 120.0
 proxies = None
 DEBUG = False
+
+#note this is located here so that smoltProtocol, can be imported into smolt_mythtv
+if Gate().grants("MythTV"):
+    import smolt_mythtv
+
 
 PCI_BASE_CLASS_STORAGE =        1
 PCI_CLASS_STORAGE_SCSI =        0
@@ -351,14 +356,15 @@ class Host:
             self.selinux_enabled = SELINUX_WITHHELD
             self.selinux_policy = WITHHELD_MAGIC_STRING
             self.selinux_enforce = WITHHELD_MAGIC_STRING
-        #MYTHTV STUFF
-        self.mythRemote = "Not Installed"
-        self.mythTheme = "Not Installed"
-        self.mythPlugins = "Not Installed"
-        self.mythRole = "Not Installed"
-        self.mythTuner = "Not Installed"
+
+    #MYTHTV STUFF
         if Gate().grants("MythTV"):
-            import smolt_mythtv
+            self.mythRemote = "Not Installed"
+            self.mythTheme = "Not Installed"
+            self.mythPlugins = "Not Installed"
+            self.mythRole = "Not Installed"
+            self.mythTuner = "Not Installed"
+
             if Gate().grants('MythRemote'):
                 self.mythRemote = smolt_mythtv.runMythRemote()
             if Gate().grants('MythTheme'):
@@ -641,12 +647,7 @@ class _Hardware:
                 'formfactor' :      self.host.formfactor,
                 'selinux_enabled':  self.host.selinux_enabled,
                 'selinux_policy':   self.host.selinux_policy,
-                'selinux_enforce':  self.host.selinux_enforce,
-                'myth_remote':      self.host.mythRemote,
-                'myth_role':        self.host.mythRole,
-                'myth_theme':       self.host.mythTheme,
-                'myth_plugins':      self.host.mythPlugins,
-                'myth_tuner':       self.host.mythTuner
+                'selinux_enforce':  self.host.selinux_enforce
                 }
 
     def get_sendable_fss(self, protocol_version=smoltProtocol):
@@ -654,6 +655,9 @@ class _Hardware:
 
     def write_pub_uuid(self,smoonURL,pub_uuid):
         smoonURLparsed=urlparse(smoonURL)
+        if pub_uuid is None:
+            return
+
         try:
             UuidDb().set_pub_uuid(getUUID(), smoonURLparsed[1], pub_uuid)
         except Exception, e:
@@ -935,11 +939,6 @@ class _Hardware:
         yield _('SELinux Enabled'), self.host.selinux_enabled
         yield _('SELinux Policy'), self.host.selinux_policy
         yield _('SELinux Enforce'), self.host.selinux_enforce
-        yield _('MythTV Remote'), self.host.mythRemote
-        yield _('MythTV Role'), self.host.mythRole
-        yield _('MythTV Theme'), self.host.mythTheme
-        yield _('MythTV Plugin'), self.host.mythPlugins
-        yield _('MythTV Tuner'), self.host.mythTuner
 
     def deviceIter(self):
         '''Iterate over our devices.'''
@@ -967,6 +966,11 @@ def Hardware():
     global _hardware_instance
     if _hardware_instance == None:
         _hardware_instance = _Hardware()
+        #if enabled then insert the myth specific items into hardware
+        if Gate().grants("MythTV"):
+            _Hardware.get_sendable_host = smolt_mythtv.hardware_get_sendable_host
+            _Hardware.hostIter = smolt_mythtv.hardware_hostIter
+
     return _hardware_instance
 
 

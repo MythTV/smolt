@@ -5,6 +5,13 @@ from sqlalchemy.orm import *
 #from sqlalchemy.ext.assignmapper import assign_mapper
 from datetime import timedelta, date, datetime
 
+import sys
+if 'turbogears' in sys.modules:
+    from turbogears import config
+    myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
+else:
+    myth_support = False  # FIXME
+
 
 # Context dependent metadata and mapper creation
 import sys
@@ -27,9 +34,6 @@ sys.path.append(os.path.join(os.path.dirname(inspect.currentframe().f_code.co_fi
 from playmodel import *
 
 
-from turbogears.database import mapper
-from turbogears import config
-myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
 #ctx = session.context
 
 

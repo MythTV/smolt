@@ -4,6 +4,7 @@ import simplejson
 from turbogears import expose
 from turbogears import exception_handler
 from turbogears import util
+from turbogears.database import session
 from sqlalchemy.exceptions import InvalidRequestError, OperationalError
 from datetime import datetime
 
