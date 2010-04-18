@@ -109,8 +109,7 @@ def at_final_server():
 def forward(uuid, host):
     assert(not at_final_server())
     print 'FORWARDING to "%s"' % sender.url()
-    token_response = sender.send('/tokens/token_json', uuid=uuid)
-    token = token_response['token']
+    token = sender.new_token(uuid)
     smolt_protocol = '0.97'
 
     # Try batch processed version if available
