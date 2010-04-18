@@ -196,7 +196,7 @@ class ClientImplementation(object):
         session.flush()
         return res
 
-    def rate_object(self, *args, **kwargs):
+    def rate_object(self, **kwargs):
         #log.info('args = %s' % str(args))
         #log.info('kwargs = %s' % str(kwargs))
         id = kwargs.get("ratingID")
