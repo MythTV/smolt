@@ -755,8 +755,14 @@ class _Hardware:
             new_uuid = grabber.urlopen(urljoin(smoonURL + "/", '/client/regenerate_pub_uuid?uuid=%s' % self.host.UUID))
         except urlgrabber.grabber.URLGrabError, e:
             error(_('Error contacting Server: %s') % e)
-            sys.exit(0)
-        pub_uuid = simplejson.loads(new_uuid.read())['pub_uuid']
+            sys.exit(1)
+
+        response_dict = simplejson.loads(new_uuid.read())
+        if 'exception' in response_dict:
+            error(_('Error contacting Server: %s') % response_dict['exception'])
+            sys.exit(1)
+
+        pub_uuid = response_dict['pub_uuid']
         self.write_pub_uuid(smoonURL,pub_uuid)
         return pub_uuid
 
