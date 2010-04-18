@@ -19,6 +19,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 from urllib import quote
+import copy
 
 from sqlalchemy.exceptions import InvalidRequestError
 from turbogears.database import session
@@ -34,6 +35,9 @@ class ClientImplementation(object):
     def __init__(self, smolt_protocol, token):
         self.smolt_protocol = smolt_protocol
         self.token = token
+
+    def data_for_next_hop(self, host_dict):
+        return copy.copy(host_dict)  # TODO
 
     def show(self, uuid, UUID, admin):
         if UUID:
