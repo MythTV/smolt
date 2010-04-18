@@ -93,6 +93,37 @@ session = sessionmaker(bind=engine)()
 # Check existing tables, create those missing
 metadata.create_all(engine)
 
+
+# TODO
+from hardware.shared.sender import Sender
+from urllib2 import HTTPError
+from hardward.controllser.client_impl import ClientImplementation
+sender = None
+# sender = Sender('http://smolts.org/')
+impl = ClientImplementation(None, None) # TODO
+
+
+def at_final_server():
+    return sender is None
+
+def forward(uuid, host):
+    assert(not at_final_server())
+    print 'FORWARDING to "%s"' % sender.url()
+    token_response = sender.send('/tokens/token_json', uuid=uuid)
+    token = token_response['token']
+    smolt_protocol = '0.97'
+
+    # Try batch processed version if available
+    try:
+        sender.send('/client/batch_add_json', uuid=uuid, host=host,
+            token=token, smolt_protocol=smolt_protocol)
+    except HTTPError, e:
+        if e.getcode() == 404:
+            # Fall back to unbatched version
+            sender.send('/client/add_json', uuid=uuid, host=host,
+                token=token, smolt_protocol=smolt_protocol)
+
+
 # Build query base
 q = session.query(BatchJob)
 if not opts.redo:
@@ -108,6 +139,8 @@ for j in jobs:
     print 'Processing job with hardware UUID %s' % j.hw_uuid
     print '===================================================================='
     try:
+        if not at_final_server():
+            forward(j.hw_uuid, impl.data_for_next_hop(j.data))
         handle_submission(session, j.hw_uuid, j.data)
         good = good + 1
     except Exception, e:
