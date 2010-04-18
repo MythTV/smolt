@@ -59,6 +59,7 @@ class Client(object):
     def show_all(self, uuid='', admin=None):
         return self._impl.show_all(uuid, admin)
 
+    # NOTE: Exposing as (X)HTML for backwards compatibility
     @expose(template="hardware.templates.delete")
     @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, uuid=''):
@@ -86,6 +87,7 @@ class Client(object):
             # TODO store public UUID in our DB, too
         return response_dict
 
+    # NOTE: Exposing as (X)HTML for backwards compatibility
     @expose(template="hardware.templates.pub_uuid")
     @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
