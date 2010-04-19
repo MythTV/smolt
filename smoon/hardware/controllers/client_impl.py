@@ -39,6 +39,11 @@ class ClientImplementation(object):
     def data_for_next_hop(self, host_dict):
         return copy.copy(host_dict)  # TODO
 
+    def update_pub_uuid(self, uuid, pub_uuid):
+        host_sql = session.query(Host).filter_by(uuid=uuid).one()
+        host_sql.pub_uuid = pub_uuid
+        session.flush()
+
     def show(self, uuid, UUID, admin):
         if UUID:
             uuid = UUID

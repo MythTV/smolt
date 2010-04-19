@@ -86,7 +86,8 @@ class Client(object):
             response_dict = self._impl.regenerate_pub_uuid(uuid)
         else:
             response_dict = self.forward('regenerate_pub_uuid', uuid=uuid)
-            # TODO store public UUID in our DB, too
+            pub_uuid = response_dict['pub_uuid']
+            self._impl.update_pub_uuid(uuid, pub_uuid)
         return response_dict
 
     # NOTE: Exposing as (X)HTML for backwards compatibility
