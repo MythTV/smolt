@@ -97,7 +97,7 @@ metadata.create_all(engine)
 # TODO
 from hardware.shared.sender import Sender
 from urllib2 import HTTPError
-from hardward.controllser.client_impl import ClientImplementation
+from hardware.controllers.client_impl import ClientImplementation
 sender = None
 # sender = Sender('http://smolts.org/')
 impl = ClientImplementation(None, None) # TODO
