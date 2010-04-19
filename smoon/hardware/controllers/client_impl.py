@@ -188,9 +188,9 @@ class ClientImplementation(object):
 
         self.token.check_token(token, uuid)
 
-    def add_json(self, uuid, host, token, smolt_protocol):
+    def add_json_plus_pub_uuid(self, uuid, pub_uuid, host, token, smolt_protocol):
         self._run_add_json_checks(uuid, host, token, smolt_protocol)
-        res = handle_submission(session, uuid, host)
+        res = handle_submission(session, uuid, pub_uuid, host)
         log_entry = BatchJob(host, uuid, added=True)
         session.add(log_entry)
         session.flush()

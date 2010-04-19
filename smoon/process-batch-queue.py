@@ -114,13 +114,14 @@ def forward(uuid, host):
 
     # Try batch processed version if available
     try:
-        sender.send('/client/batch_add_json', uuid=uuid, host=host,
+        response_dict = sender.send('/client/batch_add_json', uuid=uuid, host=host,
             token=token, smolt_protocol=smolt_protocol)
     except HTTPError, e:
         if e.getcode() == 404:
             # Fall back to unbatched version
-            sender.send('/client/add_json', uuid=uuid, host=host,
+            response_dict = sender.send('/client/add_json', uuid=uuid, host=host,
                 token=token, smolt_protocol=smolt_protocol)
+    return response_dict
 
 
 # Build query base
@@ -137,10 +138,12 @@ for j in jobs:
     print '===================================================================='
     print 'Processing job with hardware UUID %s' % j.hw_uuid
     print '===================================================================='
+    pub_uuid = None
     try:
         if not at_final_server():
-            forward(j.hw_uuid, impl.data_for_next_hop(j.data))
-        handle_submission(session, j.hw_uuid, j.data)
+            response_dict = forward(j.hw_uuid, impl.data_for_next_hop(j.data))
+            pub_uuid = response_dict['pub_uuid']
+        handle_submission(session, j.hw_uuid, pub_uuid, j.data)
         good = good + 1
     except Exception, e:
         (_type, _value, _traceback) = sys.exc_info()

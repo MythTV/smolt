@@ -93,14 +93,15 @@ class Client(object):
     @expose(template="hardware.templates.pub_uuid")
     @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
+        pub_uuid = None
         if not self.at_final_server():
             final_token = self.new_token(uuid)
             host_excerpt = self._impl.data_for_next_hop(host)
             response_dict = self.forward('add_json', uuid=uuid, host=host_excerpt,
                 token=final_token, smolt_protocol=smolt_protocol)
-            # TODO extract pub ID and re-use it
+            pub_uuid = response_dict['pub_uuid']
             # TODO handle passwords?
-        response_dict = self._impl.add_json(uuid, host, token, smolt_protocol)
+        response_dict = self._impl.add_json_plus_pub_uuid(uuid, pub_uuid, host, token, smolt_protocol)
         return response_dict
 
     @expose()

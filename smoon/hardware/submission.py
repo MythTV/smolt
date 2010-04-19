@@ -38,7 +38,7 @@ def _fix_vendor(vendor):
         rc = 'Dell, Inc.'
     return rc
 
-def handle_submission(session, uuid, host):
+def handle_submission(session, uuid, pub_uuid, host):
     logging.info('Processing hardware UUID %s' % uuid)
     host_dict = simplejson.loads(host)
     try:
@@ -46,11 +46,21 @@ def handle_submission(session, uuid, host):
     except InvalidRequestError:
         host_sql = Host()
         host_sql.uuid = host_dict["uuid"]
-        host_sql.pub_uuid = generate_uuid(public=True)
+        if pub_uuid:
+            host_sql.pub_uuid = pub_uuid
+        else:
+            host_sql.pub_uuid = generate_uuid(public=True)
     except OperationalError:
         host_sql = Host()
         host_sql.uuid = host_dict["uuid"]
-        host_sql.pub_uuid = generate_uuid(public=True)
+        if pub_uuid:
+            host_sql.pub_uuid = pub_uuid
+        else:
+            host_sql.pub_uuid = generate_uuid(public=True)
+    else:
+        # Propagate changes in public UUID
+        if pub_uuid:
+            host_sql.pub_uuid = pub_uuid
     # Fix lsb vs release error in F11.
     if host_dict['os'] == 'Fedora 11 Leonidas':
         host_sql.os = 'Fedora release 11 (Leonidas)'
