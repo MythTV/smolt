@@ -95,9 +95,11 @@ metadata.create_all(engine)
 
 
 # TODO
+warnings.filterwarnings("ignore")
 from hardware.shared.sender import Sender
 from urllib2 import HTTPError
 from hardware.controllers.client_impl import ClientImplementation
+warnings.resetwarnings()
 sender = None
 # sender = Sender('http://smolts.org/')
 impl = ClientImplementation(None, None) # TODO
