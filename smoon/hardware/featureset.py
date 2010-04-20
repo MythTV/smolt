@@ -117,6 +117,6 @@ def init(config_filename=None):
 
     _feature_set_key = _feature_set_key.lstrip('"\'').rstrip('"\'')
     if _feature_set_key not in _VALID_FEATURE_SET_KEYS:
-        sys.stderr.write('Config key "%s" in section "%s" has invalid value "%s".\n' % (key, section, feature_set_key))
+        sys.stderr.write('Config key "%s" in section "%s" has invalid value "%s".\n' % (key, section, _feature_set_key))
         sys.stderr.write('Example values include %s.\n' % ', '.join('"%s"' % e for e in _VALID_FEATURE_SET_KEYS))
         sys.exit(1)
