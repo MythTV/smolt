@@ -37,6 +37,7 @@ elif path.exists(path.join(path.dirname(__file__), "setup.py")):
 else:
     update_config(configfile="prod.cfg",modulename="hardware.config")
 
+from turbogears.database import session
 past_changes = session.query(SchemaChange).all()
 
 def flatten(listOfLists):
