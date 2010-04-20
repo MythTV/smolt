@@ -1,4 +1,24 @@
 # -*- coding: utf-8 -*-
+# smolt - Fedora hardware profiler
+#
+# Copyright (C) 2007 Mike McGrath
+# Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
+# Copyright (C) 2010 James Meyer <james.meyer@operamail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+
 from datetime import datetime
 from sqlalchemy import *
 from sqlalchemy.orm import *
@@ -65,10 +85,7 @@ host_links_archive = Table('host_links_archive', metadata,
                         ForeignKey("device.id")),
                 Column("rating", INT))
 
-# import myth_model for hosts, otherwise use the default
-if this_is(MYTH_TV):
-    from myth_model import hosts, hosts_archive
-else:
+if True:  # Stupid hack to not let indentation changes blow our diffs up
     _host_columns = [
                 Column("id", INT,
                         autoincrement=True,
@@ -105,6 +122,14 @@ else:
                 Column('cpu_family', INT, default=None),
                 Column('cpu_model_num', INT, default=None),
     ]
+    if this_is(MYTH_TV):
+        _host_columns += [
+                Column('myth_role', TEXT),
+                Column('myth_remote', TEXT),
+                Column('myth_theme', TEXT),
+                Column('myth_plugins',TEXT),
+                Column('myth_tuner', INT),
+        ]
     hosts = Table('host', metadata, *_host_columns)
 
     _hosts_archive_columns = [
@@ -143,6 +168,14 @@ else:
                 Column('cpu_family', INT, default=None),
                 Column('cpu_model_num', INT, default=None),
     ]
+    if this_is(MYTH_TV):
+        _host_columns += [
+                Column('myth_role', TEXT),
+                Column('myth_remote', TEXT),
+                Column('myth_theme', TEXT),
+                Column('myth_plugins',TEXT),
+                Column('myth_tuner', INT),
+        ]
     hosts_archive = Table('host_archive', metadata, *_hosts_archive_columns)
 
 
