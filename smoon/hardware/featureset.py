@@ -54,8 +54,14 @@ def make_client_impl(smolt_protocol=None, token=None):
     global _initialized
     assert(_initialized)
 
-    from hardware.controllers.client_impl import ClientImplementation
-    return ClientImplementation(smolt_protocol, token)
+    global MYTH_TV
+    if this_is(MYTH_TV):
+        from hardware.controllers.client_impl_mythtv import MythTvClientImplementation
+        impl = MythTvClientImplementation(smolt_protocol, token)
+    else:
+        from hardware.controllers.client_impl import ClientImplementation
+        impl = ClientImplementation(smolt_protocol, token)
+    return impl
 
 
 def forward_url():

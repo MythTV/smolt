@@ -32,7 +32,6 @@ from hardware.model import BatchJob, Host
 from hardware.wiki import getDeviceWikiLink, getHostWikiLink, getOSWikiLink
 from hardware.ratingwidget import SingleRatingWidget
 from hardware.uuid import generate_uuid
-from hardware.featureset import this_is, MYTH_TV
 from hardware.model.model import *
 
 
@@ -253,11 +252,7 @@ class ClientImplementation(object):
         return dict(pub_uuid=pub_uuid)
 
     def extend_host_sql_hook(self, host_sql, host_dict):
-        #MYTH STUFF
-        if this_is(MYTH_TV):
-            from myth_client import add_to_host_sql
-            host_sql = add_to_host_sql(host_sql,host_dict)
-        return host_sql
+        return host_sql  # See subclasses
 
     def _handle_submission(self, uuid, pub_uuid, host):
         logging.info('Processing hardware UUID %s' % uuid)
