@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # smolt - Fedora hardware profiler
 #
 # Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
@@ -57,6 +58,8 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from ConfigParser import ConfigParser
 
+from hardware.featureset import init, config_filename
+init(opts.config_file)
 
 # Import without warnings on stderr
 stderr_backup = sys.stderr
@@ -70,14 +73,8 @@ from hardware.model.model import metadata
 sys.stderr = stderr_backup
 
 
-if opts.config_file == None:
-    if os.path.exists(os.path.join(os.path.dirname(__file__), "setup.py")):
-        opts.config_file = 'dev.cfg'
-    else:
-        opts.config_file = 'prod.cfg'
-
 config = ConfigParser()
-config.read(opts.config_file)
+config.read(config_filename())
 CONNECTION = config.get('global', 'sqlalchemy.dburi').\
         lstrip('"\'').rstrip('"\'')
 

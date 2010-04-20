@@ -25,6 +25,7 @@ from turbogears import exception_handler
 from hardware.controllers.error import Error
 from hardware.controllers.client_impl import ClientImplementation
 from hardware.shared.sender import Sender
+from hardware.featureset import at_final_server, forward_url
 
 
 def request_format():
@@ -37,17 +38,16 @@ class Client(object):
     error = Error()
     def __init__(self, smolt_protocol, token):
         self._impl = ClientImplementation(smolt_protocol, token)
-        self._sender = None
-        # TODO self._sender = Sender('http://smolts.org/')
+        if at_final_server():
+            self._sender = None
+        else:
+            self._sender = Sender(forward_url())
 
     def new_token(self, hardware_uuid):
         return self._sender.new_token(hardware_uuid)
 
     def forward(self, function_name, **kwargs):
         return self._sender.send('/client/' + function_name, **kwargs)
-
-    def at_final_server(self):
-        return self._sender is None
 
     @expose(template="hardware.templates.show", allow_json=True)
     @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")
@@ -63,7 +63,7 @@ class Client(object):
     @expose(template="hardware.templates.delete")
     @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def delete(self, uuid=''):
-        if not self.at_final_server():
+        if not at_final_server():
             # TODO handle "UUID unknown"
             # TODO handle "UUID existing but deletion still failed"
             response_dict = self.forward('delete', uuid=uuid)
@@ -72,7 +72,7 @@ class Client(object):
     @expose("json")
     @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def host_rating(self, vendor, system):
-        if self.at_final_server():
+        if at_final_server():
             response_dict = self._impl.host_rating(vendor, system)
         else:
             response_dict = self.forward('host_rating', vendor=vendor, system=system)
@@ -82,7 +82,7 @@ class Client(object):
     @expose("json")
     @exception_handler(error.error_client,rules="isinstance(tg_exceptions,ValueError)")
     def regenerate_pub_uuid(self, uuid):
-        if self.at_final_server():
+        if at_final_server():
             response_dict = self._impl.regenerate_pub_uuid(uuid)
         else:
             response_dict = self.forward('regenerate_pub_uuid', uuid=uuid)
@@ -95,7 +95,7 @@ class Client(object):
     @exception_handler(error.error_client, rules="isinstance(tg_exceptions,ValueError)")
     def add_json(self, uuid, host, token, smolt_protocol):
         pub_uuid = None
-        if not self.at_final_server():
+        if not at_final_server():
             final_token = self.new_token(uuid)
             host_excerpt = self._impl.data_for_next_hop(host)
             response_dict = self.forward('add_json', uuid=uuid, host=host_excerpt,
@@ -107,7 +107,7 @@ class Client(object):
 
     @expose()
     def rate_object(self, *args, **kwargs):  # NOTE: *args not used, keeping for robustness
-        if not self.at_final_server():
+        if not at_final_server():
             # TODO check if rating is domain-specific or
             # of interested to final server
             self.forward('rate_object', **kwargs)
@@ -119,7 +119,7 @@ class Client(object):
 
     @expose()
     def pub_uuid(self, uuid):
-        if self.at_final_server():
+        if at_final_server():
             response_dict = self._impl.pub_uuid(uuid)
         else:
             response_dict = self.forward('pub_uuid', uuid=uuid)

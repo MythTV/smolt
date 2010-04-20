@@ -24,13 +24,7 @@ from sqlalchemy.exceptions import InvalidRequestError, OperationalError
 from datetime import datetime
 from hardware.model.model import *
 from hardware.uuid import generate_uuid
-
-#added to detect myth support
-if 'turbogears' in sys.modules:
-    from turbogears import config
-    myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
-else:
-    myth_support = False  # FIXME
+from hardware.featureset import this_is, MYTH_TV
 
 def _fix_vendor(vendor):
     rc = vendor
@@ -98,7 +92,7 @@ def handle_submission(session, uuid, pub_uuid, host):
     host_sql.selinux_enforce = host_dict['selinux_enforce']
 
 #MYTH STUFF
-    if myth_support == True:
+    if this_is(MYTH_TV):
         from myth_client import add_to_host_sql
         host_sql = add_to_host_sql(host_sql,host_dict)
 

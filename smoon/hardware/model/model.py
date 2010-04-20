@@ -4,13 +4,7 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 #from sqlalchemy.ext.assignmapper import assign_mapper
 from datetime import timedelta, date, datetime
-
-import sys
-if 'turbogears' in sys.modules:
-    from turbogears import config
-    myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
-else:
-    myth_support = False  # FIXME
+from hardware.featureset import this_is, MYTH_TV
 
 
 # Context dependent metadata and mapper creation
@@ -72,7 +66,7 @@ host_links_archive = Table('host_links_archive', metadata,
                 Column("rating", INT))
 
 # import myth_model for hosts, otherwise use the default
-if myth_support == True:
+if this_is(MYTH_TV):
     from myth_model import hosts, hosts_archive
 else:
 
