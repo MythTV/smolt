@@ -61,6 +61,8 @@ import time
 from hardware.wiki import *
 from hardware.turboflot import TurboFlot
 from hardware.featureset import init, config_filename
+from reportutils import _process_output
+from turbogears.database import session
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 withheld_label = "withheld"
@@ -115,60 +117,6 @@ template_config['filesystem']=config.get("stats_template.filesystem", [])
 right_now = date.today() - timedelta(days=90)
 right_now = '%s-%s-%s' % (right_now.year, right_now.month, right_now.day)
 
-
-def _process_output(output, template, format):
-    """Produces final output form from the data returned from a
-    controller method.
-
-    @param tg_format: format of desired output (html or json)
-    @param output: the output returned by the controller
-    @param template: HTML template to use
-    """
-    if isinstance(output, dict):
-        from turbogears.widgets import js_location
-
-        css = tg_util.setlike()
-        js = dict(izip(js_location, iter(tg_util.setlike, None)))
-        include_widgets = {}
-        include_widgets_lst = config.get("tg.include_widgets", [])
-
-        if config.get("tg.mochikit_all", False):
-            include_widgets_lst.insert(0, 'turbogears.mochikit')
-
-        for i in include_widgets_lst:
-            widget = tg_util.load_class(i)
-            if isclass(widget):
-                widget = widget()
-            include_widgets["tg_%s" % i.split(".")[-1]] = widget
-            for script in widget.retrieve_javascript():
-                if hasattr(script, "location"):
-                    js[script.location].add(script)
-                else:
-                    js[js_location.head].add(script)
-            css.add_all(widget.retrieve_css())
-
-        for value in output.itervalues():
-            if hasattr(value, "retrieve_css"):
-                retrieve = getattr(value, "retrieve_css")
-                if callable(retrieve):
-                    css.add_all(value.retrieve_css())
-            if hasattr(value, "retrieve_javascript"):
-                retrieve = getattr(value, "retrieve_javascript")
-                if callable(retrieve):
-                    for script in value.retrieve_javascript():
-                        if hasattr(script, "location"):
-                            js[script.location].add(script)
-                        else:
-                            js[js_location.head].add(script)
-        output.update(include_widgets)
-        output["tg_css"] = css
-        #output.update([("tg_js_%s" % str(l), js[l]) for l in js_location])
-        for l in iter(js_location):
-            output["tg_js_%s" % str(l)] = js[l]
-
-        output["tg_flash"] = output.get("tg_flash")
-
-        return engine.render(output, format=format, template=template)
 
 def handle_withheld_elem(list, attrib_to_check, value_to_check_for):
     """finds the the withheld special entry,
@@ -282,7 +230,7 @@ for type in byclass_cache.data.keys():
             pass
     engine = engines.get('genshi', None)
     t=engine.load_template('hardware.templates.deviceclass')
-    out_html = _process_output(dict(types=types, type=type,
+    out_html = _process_output(engine, dict(types=types, type=type,
                                     total_hosts=total_hosts, count=count,
                                     pci_vendors=pci_vendors, vendors=vendors,
                                     tabs=tabs), template=t, format='html')
@@ -724,7 +672,7 @@ if config.get("smoon.myth_support"):
 
 
 t=engine.load_template('hardware.templates.stats')
-out_html=_process_output(dict(stat=stats, tabs=tabs,
+out_html=_process_output(engine, dict(stat=stats, tabs=tabs,
                               total_hosts=total_hosts,
                               getOSWikiLink=getOSWikiLink,
                               flot=flot,
@@ -786,7 +734,7 @@ devices['classes'] = session.query(HardwareClass).all()
 
 t=engine.load_template('hardware.templates.devices')
 
-out_html = _process_output(dict(devices=devices, tabs=tabs,
+out_html = _process_output(engine, dict(devices=devices, tabs=tabs,
                                 total_hosts=total_hosts),
                            template=t, format='html')
 fname = "%s/devices.html" % (page_path)
