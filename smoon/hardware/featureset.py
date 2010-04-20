@@ -55,9 +55,13 @@ def make_client_impl(smolt_protocol=None, token=None):
     assert(_initialized)
 
     global MYTH_TV
+    global GENTOO
     if this_is(MYTH_TV):
         from hardware.controllers.client_impl_mythtv import MythTvClientImplementation
         impl = MythTvClientImplementation(smolt_protocol, token)
+    elif this_is(GENTOO):
+        from hardware.controllers.client_impl_gentoo import GentooClientImplementation
+        impl = GentooClientImplementation(smolt_protocol, token)
     else:
         from hardware.controllers.client_impl import ClientImplementation
         impl = ClientImplementation(smolt_protocol, token)
