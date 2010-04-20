@@ -18,6 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
+import simplejson
+from simplejson import JSONEncoder
 import cherrypy
 from turbogears import expose
 from turbogears import exception_handler
@@ -96,8 +98,10 @@ class Client(object):
         pub_uuid = None
         if not at_final_server():
             final_token = self.new_token(uuid)
-            host_excerpt = self._impl.data_for_next_hop(host)
-            response_dict = self.forward('add_json', uuid=uuid, host=host_excerpt,
+            host_dict = simplejson.loads(host)
+            host_dict_excerpt = self._impl.data_for_next_hop(host_dict)
+            json_host_excerpt = JSONEncoder(indent=2, sort_keys=True).encode(host_dict_excerpt)
+            response_dict = self.forward('add_json', uuid=uuid, host=json_host_excerpt,
                 token=final_token, smolt_protocol=smolt_protocol)
             pub_uuid = response_dict['pub_uuid']
             # TODO handle passwords?
