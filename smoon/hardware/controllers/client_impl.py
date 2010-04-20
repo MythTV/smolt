@@ -206,7 +206,7 @@ class ClientImplementation(object):
 
     def add_json_plus_pub_uuid(self, uuid, pub_uuid, host, token, smolt_protocol):
         self._run_add_json_checks(uuid, host, token, smolt_protocol)
-        res = self._handle_submission(uuid, pub_uuid, host)
+        res = self.handle_submission(uuid, pub_uuid, host)
         log_entry = BatchJob(host, uuid, added=True)
         session.add(log_entry)
         session.flush()
@@ -254,7 +254,7 @@ class ClientImplementation(object):
     def extend_host_sql_hook(self, host_sql, host_dict):
         return host_sql  # See subclasses
 
-    def _handle_submission(self, uuid, pub_uuid, host):
+    def handle_submission(self, uuid, pub_uuid, host):
         logging.info('Processing hardware UUID %s' % uuid)
         host_dict = simplejson.loads(host)
         try:
