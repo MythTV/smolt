@@ -23,40 +23,17 @@ __requires__ = "Turbogears[future]"
 import pkg_resources
 pkg_resources.require("TurboGears")
 
-
-# Import without warnings on stderr
-import sys
-stderr_backup = sys.stderr
-class DevNull:
-    def write(self, data):
-        pass
-    def flush(self):
-        pass
-
-
-# BEGIN Import error silencer
-sys.stderr = DevNull()
 from turbogears.view import engines
-sys.stderr = stderr_backup
-# END Import error silencer
-
-
 import turbogears.view
 import turbogears.util as tg_util
 from turbogears import view, database, errorhandling, config
 from itertools import izip
 from inspect import isclass
 from turbogears import update_config, start_server
-
-# BEGIN Import error silencer
-sys.stderr = DevNull()
 import cherrypy
-sys.stderr = stderr_backup
-# END Import error silencer
-
-
 cherrypy.lowercase_api = True
 from os.path import *
+import sys
 import time
 from hardware.wiki import *
 from hardware.turboflot import TurboFlot
@@ -76,14 +53,7 @@ update_config(configfile=config_filename(),modulename="hardware.config")
 
 from sqlalchemy import *
 
-
-# BEGIN Import error silencer
-sys.stderr = DevNull()
 from hardware.model import *
-sys.stderr = stderr_backup
-# END Import error silencer
-
-
 from hardware.hwdata import DeviceMap
 
 #bind = metadata.bind
@@ -128,7 +98,7 @@ def handle_withheld_elem(list, attrib_to_check, value_to_check_for):
     other_list = [e for e in list if not condition(e)]
     withheld_list = [modify(e) for e in list if condition(e)]
     return other_list + withheld_list
-"""
+
 stats = {}
 # somehow this has to be first, cause it binds us to
 # an sqlalchemy context
@@ -684,29 +654,7 @@ fname = "%s/stats.html" % (page_path)
 f = open(fname, "w")
 f.write(out_html)
 f.close()
-"""
-def do_distro_specific_renderinging():
-    import gentooanalysis
-    import datetime
-    gentoo_data_tree = gentooanalysis.gentoo_data_tree(session)
-    t = engine.load_template('hardware.templates.gentoo')
-    out_html = _process_output(dict(data=gentoo_data_tree), template=t, format='html')
-    fname = "%s/gentoo.html" % (page_path)
-    f = open(fname, "w")
-    f.write(out_html)
-    f.close()
 
-    t = engine.load_template('hardware.templates.gentoo_zero_installs_packages')
-    out_txt = _process_output(dict(data=gentoo_data_tree), template=t, format='html')
-    # Kill HTML intro and outro. TODO Resolve dirty hack
-    out_txt = '\n'.join(e for e in out_txt.split('\n') if not e.startswith('<'))
-    fname = "%s/gentoo_zero_installs_packages.txt" % (page_path)
-    f = open(fname, "w")
-    f.write(out_txt)
-    f.close()
-
-do_distro_specific_renderinging()
-"""
 # Save some memory
 del out_html
 del stats
@@ -745,4 +693,3 @@ f.close()
 # Save some memory
 del devices
 del out_html
-"""
