@@ -313,8 +313,6 @@ class ClientImplementation(object):
 
         host_sql.selinux_enforce = host_dict['selinux_enforce']
 
-        host_sql = self.extend_host_sql_hook(host_sql, host_dict)
-
         orig_devices = [device.device_id for device
                                         in host_sql.devices]
 
@@ -407,5 +405,7 @@ class ClientImplementation(object):
             map(add_fs, host_dict['fss'])
         except:
             pass
+
+        host_sql = self.extend_host_sql_hook(host_sql, host_dict)
 
         return dict(pub_uuid=host_sql.pub_uuid)
