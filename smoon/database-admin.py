@@ -71,7 +71,6 @@ class DevNull:
 sys.stderr = DevNull()
 from hardware.model.model import metadata
 sys.stderr = stderr_backup
-import playmodel
 
 
 config = ConfigParser()

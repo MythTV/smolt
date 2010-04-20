@@ -41,11 +41,7 @@ else:
     metadata = MetaData()
 
 
-import os
-import sys
-import inspect
-sys.path.append(os.path.join(os.path.dirname(inspect.currentframe().f_code.co_filename), '..', '..'))
-from playmodel import *
+from hardware.model.model_gentoo import *
 
 
 #ctx = session.context

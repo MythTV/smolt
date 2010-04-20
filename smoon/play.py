@@ -20,7 +20,7 @@
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, eagerload
-from playmodel import *
+from hardware.model.model_gentoo import *
 from hardware.model.model import *
 from simplejson import JSONEncoder
 import traceback

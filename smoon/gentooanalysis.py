@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # smolt - Fedora hardware profiler
 #
 # Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
@@ -16,19 +17,19 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
-from playmodel import *
-from playmodel import _gentoo_distfiles_mirrors_table, _gentoo_mirror_pool_table
-from playmodel import _gentoo_accept_keywords_table, _gentoo_keyword_pool_table, _gentoo_arch_table
-from playmodel import _gentoo_features_table, _gentoo_feature_pool_table
-from playmodel import _gentoo_global_use_flags_table, _gentoo_use_flag_pool_table
-from playmodel import _gentoo_sync_mirror_table, _gentoo_mirror_pool_table
-from playmodel import _gentoo_system_profile_table, _gentoo_system_profile_pool_table
-from playmodel import _gentoo_chost_table, _gentoo_chost_pool_table
-from playmodel import _gentoo_call_flags_table, _gentoo_call_flag_pool_table
-from playmodel import _gentoo_package_mask_table, _gentoo_package_pool_table, _gentoo_atom_pool_table
-from playmodel import _gentoo_repo_pool_table, _gentoo_repos_table
-from playmodel import _gentoo_installed_packages_table, _gentoo_installed_package_props_table
-from playmodel import _gentoo_version_pool_table, _gentoo_slot_pool_table
+from hardware.model.model_gentoo import *
+from hardware.model.model_gentoo import _gentoo_distfiles_mirrors_table, _gentoo_mirror_pool_table
+from hardware.model.model_gentoo import _gentoo_accept_keywords_table, _gentoo_keyword_pool_table, _gentoo_arch_table
+from hardware.model.model_gentoo import _gentoo_features_table, _gentoo_feature_pool_table
+from hardware.model.model_gentoo import _gentoo_global_use_flags_table, _gentoo_use_flag_pool_table
+from hardware.model.model_gentoo import _gentoo_sync_mirror_table, _gentoo_mirror_pool_table
+from hardware.model.model_gentoo import _gentoo_system_profile_table, _gentoo_system_profile_pool_table
+from hardware.model.model_gentoo import _gentoo_chost_table, _gentoo_chost_pool_table
+from hardware.model.model_gentoo import _gentoo_call_flags_table, _gentoo_call_flag_pool_table
+from hardware.model.model_gentoo import _gentoo_package_mask_table, _gentoo_package_pool_table, _gentoo_atom_pool_table
+from hardware.model.model_gentoo import _gentoo_repo_pool_table, _gentoo_repos_table
+from hardware.model.model_gentoo import _gentoo_installed_packages_table, _gentoo_installed_package_props_table
+from hardware.model.model_gentoo import _gentoo_version_pool_table, _gentoo_slot_pool_table
 import datetime
 import sqlalchemy
 from sqlalchemy.sql import func, select, join, and_, text
