@@ -252,6 +252,13 @@ class ClientImplementation(object):
         pub_uuid=select([Host.pub_uuid], Host.uuid==uuid).execute().fetchone()[0]
         return dict(pub_uuid=pub_uuid)
 
+    def extend_host_sql_hook(self, host_sql, host_dict):
+        #MYTH STUFF
+        if this_is(MYTH_TV):
+            from myth_client import add_to_host_sql
+            host_sql = add_to_host_sql(host_sql,host_dict)
+        return host_sql
+
     def _handle_submission(self, uuid, pub_uuid, host):
         logging.info('Processing hardware UUID %s' % uuid)
         host_dict = simplejson.loads(host)
@@ -311,11 +318,7 @@ class ClientImplementation(object):
 
         host_sql.selinux_enforce = host_dict['selinux_enforce']
 
-    #MYTH STUFF
-        if this_is(MYTH_TV):
-            from myth_client import add_to_host_sql
-            host_sql = add_to_host_sql(host_sql,host_dict)
-
+        host_sql = self.extend_host_sql_hook(host_sql, host_dict)
 
         orig_devices = [device.device_id for device
                                         in host_sql.devices]
