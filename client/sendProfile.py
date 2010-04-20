@@ -38,7 +38,7 @@ sys.path.append('/usr/share/smolt/client')
 from i18n import _
 import smolt
 from smolt import debug
-from smolt import error
+from smolt import error, ServerError
 from smolt import get_config_attr
 from smolt import to_ascii
 from scan import scan, rating
@@ -155,9 +155,14 @@ except smolt.UUIDError, e:
     sys.exit(9)
 
 if opts.new_pub:
-    pub_uuid = profile.regenerate_pub_uuid(user_agent=opts.user_agent,
+    try:
+        pub_uuid = profile.regenerate_pub_uuid(user_agent=opts.user_agent,
                               smoonURL=opts.smoonURL,
                               timeout=opts.timeout)
+    except ServerError, e:
+        error(_('Error contacting server: %s') % str(e))
+        sys.exit(1)
+
     print _('Success!  Your new public UUID is: %s' % pub_uuid)
     sys.exit(0)
 

@@ -1,4 +1,23 @@
-#! /usr/bin/python
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# smolt - Fedora hardware profiler
+#
+# Copyright (C) 2007 Mike McGrath
+# Copyright (C) 2010 Sebastian Pipping <sebastian@pipping.org>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 from __future__ import with_statement
 
@@ -22,21 +41,21 @@ import itertools as iter
 from sqlalchemy import *
 import sqlalchemy.sql as sql
 
+
+from hardware.featureset import init, config_filename
+_cfg_filename = None
+if len(sys.argv) > 1:
+    _cfg_filename = sys.argv[1]
+
+init(_cfg_filename)
+update_config(configfile=config_filename(),modulename="hardware.config")
+
+
 from hardware.model import *
 from hardware.hwdata import DeviceMap
 
-# first look on the command line for a desired config file,
-# if it's not on the command line, then
-# look for setup.py in this directory. If it's not there, this script is
-# probably installed
-if len(sys.argv) > 1:
-    update_config(configfile=sys.argv[1],
-        modulename="hardware.config")
-elif path.exists(path.join(path.dirname(__file__), "setup.py")):
-    update_config(configfile="dev.cfg",modulename="hardware.config")
-else:
-    update_config(configfile="prod.cfg",modulename="hardware.config")
 
+from turbogears.database import session
 past_changes = session.query(SchemaChange).all()
 
 def flatten(listOfLists):

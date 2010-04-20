@@ -30,12 +30,7 @@ import sys
 import inspect
 sys.path.append(os.path.join(os.path.dirname(inspect.currentframe().f_code.co_filename), '..'))
 from play import handle_gentoo_data
-#added to detect myth support
-if 'turbogears' in sys.modules:
-    from turbogears import config
-    myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
-else:
-    myth_support = False  # FIXME
+from hardware.featureset import this_is, MYTH_TV
 
 def _fix_vendor(vendor):
     rc = vendor
@@ -43,7 +38,7 @@ def _fix_vendor(vendor):
         rc = 'Dell, Inc.'
     return rc
 
-def handle_submission(session, uuid, host):
+def handle_submission(session, uuid, pub_uuid, host):
     logging.info('Processing hardware UUID %s' % uuid)
     host_dict = simplejson.loads(host)
     try:
@@ -51,11 +46,21 @@ def handle_submission(session, uuid, host):
     except InvalidRequestError:
         host_sql = Host()
         host_sql.uuid = host_dict["uuid"]
-        host_sql.pub_uuid = generate_uuid(public=True)
+        if pub_uuid:
+            host_sql.pub_uuid = pub_uuid
+        else:
+            host_sql.pub_uuid = generate_uuid(public=True)
     except OperationalError:
         host_sql = Host()
         host_sql.uuid = host_dict["uuid"]
-        host_sql.pub_uuid = generate_uuid(public=True)
+        if pub_uuid:
+            host_sql.pub_uuid = pub_uuid
+        else:
+            host_sql.pub_uuid = generate_uuid(public=True)
+    else:
+        # Propagate changes in public UUID
+        if pub_uuid:
+            host_sql.pub_uuid = pub_uuid
     # Fix lsb vs release error in F11.
     if host_dict['os'] == 'Fedora 11 Leonidas':
         host_sql.os = 'Fedora release 11 (Leonidas)'
@@ -93,7 +98,7 @@ def handle_submission(session, uuid, host):
     host_sql.selinux_enforce = host_dict['selinux_enforce']
 
 #MYTH STUFF
-    if myth_support == True:
+    if this_is(MYTH_TV):
         from myth_client import add_to_host_sql
         host_sql = add_to_host_sql(host_sql,host_dict)
 

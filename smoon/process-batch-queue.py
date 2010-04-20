@@ -52,6 +52,10 @@ parser.add_option('--redo',
 
 (opts, args) = parser.parse_args()
 
+from hardware.featureset import init, config_filename, forward_url, at_final_server, make_client_impl
+init(opts.config_file)
+
+
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -73,19 +77,11 @@ warnings.resetwarnings()
 # This script is meant to work with plain SQL alchemy
 assert('turbogears' not in sys.modules)
 
-# first look on the command line for a desired config file,
-# if it's not on the command line, then
-# look for setup.py in this directory. If it's not there, this script is
-# probably installed
-if opts.config_file == None:
-    if os.path.exists(os.path.join(os.path.dirname(__file__), "setup.py")):
-        opts.config_file = 'dev.cfg'
-    else:
-        opts.config_file = 'prod.cfg'
-
 
 config = ConfigParser()
-config.read(opts.config_file)
+config.read(config_filename())
+
+
 CONNECTION = config.get('global', 'sqlalchemy.dburi').\
         lstrip('"\'').rstrip('"\'')
 engine = create_engine(CONNECTION, echo=opts.echo)
@@ -93,6 +89,37 @@ session = sessionmaker(bind=engine)()
 
 # Check existing tables, create those missing
 metadata.create_all(engine)
+
+
+# TODO
+warnings.filterwarnings("ignore")
+from hardware.shared.sender import Sender
+from urllib2 import HTTPError
+warnings.resetwarnings()
+if at_final_server():
+    sender = None
+else:
+    sender = Sender(forward_url())
+impl = make_client_impl()
+
+
+def forward(uuid, host):
+    assert(not at_final_server())
+    print 'FORWARDING to "%s"' % sender.url()
+    token = sender.new_token(uuid)
+    smolt_protocol = '0.97'
+
+    # Try batch processed version if available
+    try:
+        response_dict = sender.send('/client/batch_add_json', uuid=uuid, host=host,
+            token=token, smolt_protocol=smolt_protocol)
+    except HTTPError, e:
+        if e.getcode() == 404:
+            # Fall back to unbatched version
+            response_dict = sender.send('/client/add_json', uuid=uuid, host=host,
+                token=token, smolt_protocol=smolt_protocol)
+    return response_dict
+
 
 # Build query base
 q = session.query(BatchJob)
@@ -108,8 +135,12 @@ for j in jobs:
     print '===================================================================='
     print 'Processing job with hardware UUID %s' % j.hw_uuid
     print '===================================================================='
+    pub_uuid = None
     try:
-        handle_submission(session, j.hw_uuid, j.data)
+        if not at_final_server():
+            response_dict = forward(j.hw_uuid, impl.data_for_next_hop(j.data))
+            pub_uuid = response_dict['pub_uuid']
+        handle_submission(session, j.hw_uuid, pub_uuid, j.data)
         good = good + 1
     except Exception, e:
         (_type, _value, _traceback) = sys.exc_info()

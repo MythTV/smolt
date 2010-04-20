@@ -1,5 +1,24 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+# smolt - Fedora hardware profiler
+#
+# Copyright (C) 2007 Mike McGrath
+# Copyright (C) 2010 Sebastian Pipping <sebastian@pipping.org>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+
 __requires__ = "Turbogears[future]"
 import pkg_resources
 pkg_resources.require("TurboGears")
@@ -41,21 +60,17 @@ from os.path import *
 import time
 from hardware.wiki import *
 from hardware.turboflot import TurboFlot
+from hardware.featureset import init, config_filename
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 withheld_label = "withheld"
 
-# first look on the command line for a desired config file,
-# if it's not on the command line, then
-# look for setup.py in this directory. If it's not there, this script is
-# probably installed
+_cfg_filename = None
 if len(sys.argv) > 1:
-    update_config(configfile=sys.argv[1],
-        modulename="hardware.config")
-elif exists(join(dirname(__file__), "setup.py")):
-    update_config(configfile="dev.cfg",modulename="hardware.config")
-else:
-    update_config(configfile="prod.cfg",modulename="hardware.config")
+    _cfg_filename = sys.argv[1]
+
+init(_cfg_filename)
+update_config(configfile=config_filename(),modulename="hardware.config")
 
 from sqlalchemy import *
 

@@ -3,13 +3,7 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 
 from hardware.model.model import *
-
-import sys
-if 'turbogears' in sys.modules:
-    from turbogears import config
-    myth_support = config.config.configMap["global"].get("smoon.myth_support", False)
-else:
-    myth_support = False  # FIXME
+from hardware.featureset import this_is, MYTH_TV
 
 
 def old_hosts_clause():
@@ -231,7 +225,7 @@ def top_vendors_per_class(cls):
                         computer_logical_devices.c.cls==cls,
                         desc=True, distinct=False).execute().fetchall()[:100]
 
-if myth_support == True:
+if this_is(MYTH_TV):
         from myth_views import myth_import_string
         exec(myth_import_string)
 
