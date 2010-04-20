@@ -67,8 +67,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import traceback
 
-from hardware.submission import handle_submission
-from playmodel import *
 from hardware.model.model import BatchJob, metadata
 
 warnings.resetwarnings()
@@ -140,7 +138,7 @@ for j in jobs:
         if not at_final_server():
             response_dict = forward(j.hw_uuid, impl.data_for_next_hop(j.data))
             pub_uuid = response_dict['pub_uuid']
-        handle_submission(session, j.hw_uuid, pub_uuid, j.data)
+        impl.handle_submission(j.hw_uuid, pub_uuid, j.data)
         good = good + 1
     except Exception, e:
         (_type, _value, _traceback) = sys.exc_info()
