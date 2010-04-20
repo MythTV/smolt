@@ -39,6 +39,7 @@ from hardware.wiki import *
 from hardware.turboflot import TurboFlot
 from hardware.featureset import init, config_filename
 from reportutils import _process_output
+from turbogears.database import session
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 withheld_label = "withheld"
