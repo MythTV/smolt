@@ -149,7 +149,13 @@ for j in jobs:
             session.delete(j)
         else:
             j.added = True
-session.flush()
+
+        if opts.flush_each:
+            session.flush()
+
+if not opts.flush_each:
+    session.flush()
+
 print '===================================================================='
 print '%d jobs processed' % count
 print ''
