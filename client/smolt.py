@@ -724,12 +724,17 @@ class _Hardware:
             return (1, None, None)
         else:
             try:
-                pub_uuid = serverMessage(o.read())
+                server_response = serverMessage(o.read())
             except ServerError, e:
                 error(_('Error contacting server: %s') % e)
                 return (1, None, None)
+
             o.close()
-            self.write_pub_uuid(smoonURL,pub_uuid)
+            if batch:
+                pub_uuid = None
+            else:
+                pub_uuid = server_response
+            self.write_pub_uuid(smoonURL, pub_uuid)
 
             try:
                 admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
