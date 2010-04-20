@@ -41,9 +41,6 @@ else:
     metadata = MetaData()
 
 
-from hardware.model.model_gentoo import *
-
-
 #ctx = session.context
 
 
