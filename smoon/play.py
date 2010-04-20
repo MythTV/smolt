@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # smolt - Fedora hardware profiler
 #
 # Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
@@ -21,7 +22,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, eagerload
 from playmodel import *
 from hardware.model.model import *
-from hardware.submission import * # handle_submission
 from simplejson import JSONEncoder
 import traceback
 
