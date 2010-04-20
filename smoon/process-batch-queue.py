@@ -52,7 +52,7 @@ parser.add_option('--redo',
 
 (opts, args) = parser.parse_args()
 
-from hardware.featureset import init, config_filename, forward_url, at_final_server
+from hardware.featureset import init, config_filename, forward_url, at_final_server, make_client_impl
 init(opts.config_file)
 
 
@@ -94,13 +94,12 @@ metadata.create_all(engine)
 warnings.filterwarnings("ignore")
 from hardware.shared.sender import Sender
 from urllib2 import HTTPError
-from hardware.controllers.client_impl import ClientImplementation
 warnings.resetwarnings()
 if at_final_server():
     sender = None
 else:
     sender = Sender(forward_url())
-impl = ClientImplementation(None, None) # TODO
+impl = make_client_impl()
 
 
 def forward(uuid, host):

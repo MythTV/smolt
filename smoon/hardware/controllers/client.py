@@ -23,9 +23,8 @@ from turbogears import expose
 from turbogears import exception_handler
 
 from hardware.controllers.error import Error
-from hardware.controllers.client_impl import ClientImplementation
 from hardware.shared.sender import Sender
-from hardware.featureset import at_final_server, forward_url
+from hardware.featureset import at_final_server, forward_url, make_client_impl
 
 
 def request_format():
@@ -37,7 +36,7 @@ def request_format():
 class Client(object):
     error = Error()
     def __init__(self, smolt_protocol, token):
-        self._impl = ClientImplementation(smolt_protocol, token)
+        self._impl = make_client_impl(smolt_protocol, token)
         if at_final_server():
             self._sender = None
         else:

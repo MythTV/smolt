@@ -50,6 +50,14 @@ def at_final_server():
     return _feature_set_key == _FINAL_SERVER_KEY
 
 
+def make_client_impl(smolt_protocol=None, token=None):
+    global _initialized
+    assert(_initialized)
+
+    from hardware.controllers.client_impl import ClientImplementation
+    return ClientImplementation(smolt_protocol, token)
+
+
 def forward_url():
     global _initialized
     assert(_initialized)
