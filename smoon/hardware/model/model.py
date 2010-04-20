@@ -69,8 +69,7 @@ host_links_archive = Table('host_links_archive', metadata,
 if this_is(MYTH_TV):
     from myth_model import hosts, hosts_archive
 else:
-
-    hosts = Table('host', metadata,
+    _host_columns = [
                 Column("id", INT,
                         autoincrement=True,
                         nullable=False,
@@ -104,9 +103,11 @@ else:
                 Column('selinux_enforce', TEXT),
                 Column('cpu_stepping', INT, default=None),
                 Column('cpu_family', INT, default=None),
-                Column('cpu_model_num', INT, default=None))
+                Column('cpu_model_num', INT, default=None),
+    ]
+    hosts = Table('host', metadata, *_host_columns)
 
-    hosts_archive = Table('host_archive', metadata,
+    _hosts_archive_columns = [
                 Column("id", INT,
                         autoincrement=True,
                         nullable=False,
@@ -140,7 +141,9 @@ else:
                 Column('selinux_enforce', TEXT),
                 Column('cpu_stepping', INT, default=None),
                 Column('cpu_family', INT, default=None),
-                Column('cpu_model_num', INT, default=None))
+                Column('cpu_model_num', INT, default=None),
+    ]
+    hosts_archive = Table('host_archive', metadata, *_hosts_archive_columns)
 
 
 
