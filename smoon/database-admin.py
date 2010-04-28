@@ -58,7 +58,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from ConfigParser import ConfigParser
 
-from hardware.featureset import init, config_filename
+from hardware.featureset import init, config_filename, this_is, GENTOO
 init(opts.config_file)
 
 # Import without warnings on stderr
@@ -70,6 +70,8 @@ class DevNull:
         pass
 sys.stderr = DevNull()
 from hardware.model.model import metadata
+if this_is(GENTOO):
+    from hardware.model.model_gentoo import *
 sys.stderr = stderr_backup
 
 

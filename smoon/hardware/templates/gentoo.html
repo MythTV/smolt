@@ -1,0 +1,791 @@
+<html
+  xmlns:py="http://genshi.edgewall.org/"
+>
+
+<!--
+smolt - Fedora hardware profiler
+
+Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+-->
+
+<head>
+    <title>Gentoo in Numbers</title>
+    <!-- Simple hack to make CSS import work from both ./templates/ and ./static/stats/ -->
+    <link media="screen" href="../static/css/gentoo.css" type="text/css" rel="stylesheet" />
+    <link media="screen" href="../css/gentoo.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+
+<h1>Gentoo in Numbers</h1>
+<div>
+    <p>Stats tracked by <a href="https://fedorahosted.org/smolt/">Smolt</a>, report generated on ${data['generation_time']}</p>
+    <p>Gentoo-related coding by <a href="mailto:sebastian@pipping.org">Sebastian Pipping</a></p>
+    <p>
+        Please <em>report bugs</em> through the dedicated <a href="http://soc.gentooexperimental.org/projects/stats/issues">bug tracker</a>.
+        <em style="margin-left:10px">Thank you!</em>
+    </p>
+</div>
+
+
+<a name="toc"></a><h2>Table of contents</h2>
+<div>
+    <ul>
+        <li><a href="#archs">Archs</a><span class="section_comment">(ARCH, ACCEPT_KEYWORDS)</span></li>
+        <li><a href="#chosts">Chosts</a><span class="section_comment">(CHOST)</span></li>
+        <li>
+            <a href="#compile_flags">Compile flags</a>
+            <ul>
+                <li><a href="#compile_flags_cflags">CFLAGS</a></li>
+                <li><a href="#compile_flags_cxxflags">CXXFLAGS</a></li>
+                <li><a href="#compile_flags_ldflags">LDFLAGS</a></li>
+                <li><a href="#compile_flags_makeopts">MAKEOPTS</a></li>
+            </ul>
+        </li>
+        <li><a href="#features">Features</a><span class="section_comment">(FEATURES)</span></li>
+        <li><a href="#global_use_flags">Global use flags</a><span class="section_comment">(USE)</span></li>
+        <li><a href="#system_profiles">System profiles</a><span class="section_comment">(/etc/make.profile)</span></li>
+        <li><a href="#package_mask">User-masked packages</a><span class="section_comment">(/etc/portage/package.mask)</span></li>
+        <li><a href="#repositories">Repositories</a><span class="section_comment">(PORTDIR, PORTDIR_OVERLAY)</span></li>
+        <li>
+            <a href="#mirrors">Mirrors</a>
+            <ul>
+                <li><a href="#mirrors_sync">Package tree</a><span class="section_comment">(SYNC)</span></li>
+                <li><a href="#mirrors_distfiles">Distfiles</a><span class="section_comment">(GENTOO_MIRRORS)</span></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#installed_packages">Installed packages</a><span class="section_comment">(/var/db/pkg/)</span>
+            <ul>
+                <li>
+                    <a href="#installed_packages_most_installed">Most-installed packages</a>
+                    <ul>
+                        <li><a href="#installed_packages_most_installed_world">World-file packages only</a></li>
+                        <li><a href="#installed_packages_most_installed_all">All packages (with details)</a></li>
+                    </ul>
+                </li>
+                <li><a href="#installed_packages_most_unmasked">Most-unmasked packages</a></li>
+                <li><a href="#installed_packages_least_installed_main_tree">Least-installed main-tree packages</a></li>
+                <li><a href="gentoo_zero_installs_packages.txt">Zero-installs main-tree packages</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+<a name="archs"></a><h2>Archs</h2>
+<div>
+    <table>
+        <tr>
+            <th class="leftmost topmost">Arch</th>
+            <th colspan="2" class="topmost">Stable</th>
+            <th colspan="2" class="topmost">Unstable</th>
+            <th colspan="2" class="rightmost topmost">Total</th>
+        </tr>
+        <tr py:for="row in data['archs']['listed']">
+            <th class="leftmost"><a href="http://packages.gentoo.org/arch/${row['label']}">${row['label']}</a></th>
+            <td class="absolute_score">${row['absolute_stable']}</td>
+            <td class="relative_score">(${row['relative_stable']} %)</td>
+            <td class="absolute_score">${row['absolute_unstable']}</td>
+            <td class="relative_score">(${row['relative_unstable']} %)</td>
+            <td class="absolute_score">${row['absolute_total']}</td>
+            <td class="relative_score">(${row['relative_total']} %)</td>
+        </tr>
+        <tr py:with="row = data['archs']['total']">
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost absolute_score">${row['absolute_stable']}</td>
+            <td class="downmost relative_score">(${row['relative_stable']} %)</td>
+            <td class="downmost absolute_score">${row['absolute_unstable']}</td>
+            <td class="downmost relative_score">(${row['relative_unstable']} %)</td>
+            <td class="downmost absolute_score">${row['absolute_total']}</td>
+            <td class="downmost relative_score">(${row['relative_total']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
+<a name="chosts"></a><h2>Chosts</h2>
+<div>
+    <table>
+        <tr>
+            <th class="leftmost topmost">Chost</th>
+            <th colspan="2" class="rightmost topmost">Popularity</th>
+        </tr>
+        <tr py:for="row in data['chost']['listed']">
+            <th class="leftmost">${row['label']}</th>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
+        </tr>
+        <py:if test="data['chost']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['chost']['others']">
+            <th class="leftmost"><span class="group_item">others</span></th>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:with="row = data['chost']['total']">
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost absolute_score">${row['absolute']}</td>
+            <td class="downmost relative_score">(${row['relative']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
+<a name="compile_flags"></a><h2>Compile flags</h2>
+<div>
+    <a name="compile_flags_cflags"></a><h3>CFLAGS (top ${len(data['call_flags']['cxxflags']['listed'])})</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="leftmost topmost">Flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['call_flags']['cflags']['listed']">
+                <th class="leftmost">${row['label']}</th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['call_flags']['cflags']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="compile_flags_cxxflags"></a><h3>CXXFLAGS (top ${len(data['call_flags']['cflags']['listed'])})</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="leftmost topmost">Flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['call_flags']['cxxflags']['listed']">
+                <th class="leftmost">${row['label']}</th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['call_flags']['cxxflags']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="compile_flags_ldflags"></a><h3>LDFLAGS (top ${len(data['call_flags']['ldflags']['listed'])})</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="leftmost topmost">Flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['call_flags']['ldflags']['listed']">
+                <th class="leftmost">${row['label']}</th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['call_flags']['ldflags']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="compile_flags_makeopts"></a><h3>MAKEOPTS (top ${len(data['call_flags']['makeopts']['listed'])})</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="leftmost topmost">Flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['call_flags']['makeopts']['listed']">
+                <th class="leftmost">${row['label']}</th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['call_flags']['makeopts']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<a name="features"></a><h2>Features (make.conf only)</h2>
+<div>
+    <a name="features_positive"></a><h3>Positive ones (top ${len(data['positive_features']['listed'])})</h3>
+    <div>
+        <p>
+            <strong>Note</strong>: This table's data suffers from a post-launch change
+            in data model. This can affect the data of up to 27 submissions.
+        </p>
+
+        <table>
+            <tr>
+                <th class="leftmost topmost">Feature</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['positive_features']['listed']">
+                <th class="leftmost"><a href="../man/man5/make.conf.5.html#${row['label']}">${row['label']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['positive_features']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="features_negative"></a><h3>Negative ones (top ${len(data['negative_features']['listed'])})</h3>
+    <div>
+        <p>
+            <strong>Note</strong>: This table's data suffers from a post-launch change
+            in data model. This can affect the data of up to 27 submissions.
+        </p>
+
+        <table>
+            <tr>
+                <th class="leftmost topmost">Feature</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['negative_features']['listed']">
+                <th class="leftmost"><a href="../man/man5/make.conf.5.html#${row['label']}">${row['label']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['negative_features']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<a name="global_use_flags"></a><h2>Global use flags (make.conf only)</h2>
+<div>
+    <a name="global_use_flags_positive"></a><h3>Positive ones (top ${len(data['positive_global_use_flags']['listed'])})</h3>
+    <div>
+        <p>
+            <strong>Note</strong>: This table's data suffers from a post-launch change
+            in data model. This can affect the data of up to 27 submissions.
+        </p>
+
+        <table>
+            <tr>
+                <th class="leftmost topmost">Use flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['positive_global_use_flags']['listed']">
+                <th class="leftmost"><a href="http://gpo.zugaina.org/Search?search=&amp;use=${row['label']}">${row['label']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['positive_global_use_flags']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="global_use_flags_negative"></a><h3>Negative ones (top ${len(data['negative_global_use_flags']['listed'])})</h3>
+    <div>
+        <p>
+            <strong>Note</strong>: This table's data suffers from a post-launch change
+            in data model. This can affect the data of up to 27 submissions.
+        </p>
+
+        <table>
+            <tr>
+                <th class="leftmost topmost">Use flag</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['negative_global_use_flags']['listed']">
+                <th class="leftmost"><a href="http://gpo.zugaina.org/Search?search=&amp;use=${row['label']}">${row['label']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['negative_global_use_flags']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<a name="system_profiles"></a><h2>System profiles</h2>
+<div>
+    <table>
+        <tr>
+            <th class="leftmost topmost">Profile</th>
+            <th colspan="2" class="rightmost topmost">Popularity</th>
+        </tr>
+        <tr py:for="row in data['system_profile']['listed']">
+            <th class="leftmost">${row['label']}</th>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
+        </tr>
+        <py:if test="data['system_profile']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['system_profile']['others']">
+            <th class="leftmost"><span class="group_item">others</span></th>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:with="row = data['system_profile']['total']">
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost absolute_score">${row['absolute']}</td>
+            <td class="downmost relative_score">(${row['relative']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
+<a name="package_mask"></a><h2>User-masked packages</h2>
+<div>
+    <table>
+        <tr>
+            <th class="leftmost topmost">Package</th>
+            <th class="topmost">Responsible atom</th>
+            <th colspan="2" class="rightmost topmost">Popularity</th>
+        </tr>
+<py:for each="row in data['package_mask']['listed']">
+  <py:if test="len(row['details']) == 1">
+        <tr>
+            <th class="leftmost"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
+            <td>${row['details'][0]['label']}</td>
+            <td class="absolute_score">${row['any']['absolute']}</td>
+            <td class="relative_score">(${row['any']['relative']} %)</td>
+        </tr>
+  </py:if>
+  <py:if test="len(row['details']) > 1">
+        <tr>
+            <th class="leftmost" rowspan="${len(row['details']) + 1}" style="vertical-align:top"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
+            <td><span class="group_item">any</span></td>
+            <td class="absolute_score">${row['any']['absolute']}</td>
+            <td class="relative_score">(${row['any']['relative']} %)</td>
+        </tr>
+        <tr py:for="sub_row in row['details']">
+            <td class="group_child_1">${sub_row['label']}</td>
+            <td class="absolute_score">${sub_row['absolute']}</td>
+            <td class="relative_score">(${sub_row['relative']} %)</td>
+        </tr>
+  </py:if>
+</py:for>
+        <py:if test="data['package_mask']['others'][0]['absolute'] > 0">
+        <tr py:for="row in data['package_mask']['others']">
+            <th class="leftmost"><span class="group_item">others</span></th>
+            <td><span></span></td>
+            <td class="absolute_score">${row['absolute']}</td>
+            <td class="relative_score">(${row['relative']} %)</td>
+        </tr>
+        </py:if>
+        <tr py:with="row = data['package_mask']['total']">
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost"><span></span></td>
+            <td class="downmost absolute_score">${row['absolute']}</td>
+            <td class="downmost relative_score">(${row['relative']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
+<a name="overlays"></a><!-- for backwards compatibility -->
+<a name="repositories"></a><h2>Repositories</h2>
+<div>
+    <p>
+        <strong>Note</strong>: Columns <em>Used packages</em> and <em>Total installations</em>
+        in the table below suffer from a bug in previous client code which broke the
+        package-to-repository mapping of at least 19 submissions.
+    </p>
+
+    <table>
+        <tr>
+            <th class="leftmost topmost">Repository</th>
+            <th colspan="2" class="topmost">Popularity</th>
+            <th colspan="2" class="topmost">Used packages</th>
+            <th colspan="2" class="rightmost topmost">Total installations</th>
+        </tr>
+        <tr py:for="row in data['repos']['listed']">
+<py:if test="row['label'] != ''">
+            <th class="leftmost"><a href="http://gentoo-overlays.zugaina.org/${row['label']}/">${row['label']}</a></th>
+</py:if>
+<py:if test="row['label'] == ''">
+            <th class="leftmost"><span class="group_item">unknown</span></th>
+</py:if>
+            <td class="absolute_score">${row['absolute_popularity']}</td>
+            <td class="relative_score">(${row['relative_popularity']} %)</td>
+            <td class="absolute_score">${row['absolute_used_packages']}</td>
+            <td class="relative_score">(${row['relative_used_packages']} %)</td>
+            <td class="absolute_score">${row['absolute_total_installations']}</td>
+            <td class="relative_score">(${row['relative_total_installations']} %)</td>
+        </tr>
+        <tr py:with="row = data['repos']['total']">
+            <th class="leftmost downmost">Total</th>
+            <td class="downmost absolute_score">${row['absolute_popularity']}</td>
+            <td class="downmost relative_score">(${row['relative_popularity']} %)</td>
+            <td class="downmost absolute_score">${row['absolute_used_packages']}</td>
+            <td class="downmost relative_score">(${row['relative_used_packages']} %)</td>
+            <td class="downmost absolute_score">${row['absolute_total_installations']}</td>
+            <td class="downmost relative_score">(${row['relative_total_installations']} %)</td>
+        </tr>
+    </table>
+</div>
+
+
+<a name="mirrors"></a><h2>Mirrors</h2>
+<div>
+    <a name="mirrors_sync"></a><h3>Package tree mirrors</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="leftmost topmost">Mirror</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['sync_mirror']['listed']">
+                <th class="leftmost">${row['label']}</th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['sync_mirror']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['sync_mirror']['others']">
+                <th class="leftmost"><span class="group_item">others</span></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:with="row = data['sync_mirror']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="mirrors_distfiles"></a><h3>Distfiles mirrors</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="leftmost topmost">Mirror</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['distfiles_mirrors']['listed']">
+                <th class="leftmost"><a href="${row['label']}">${row['label']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <py:if test="data['distfiles_mirrors']['others'][0]['absolute'] > 0">
+            <tr py:for="row in data['distfiles_mirrors']['others']">
+                <th class="leftmost"><span class="group_item">others</span></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            </py:if>
+            <tr py:with="row = data['distfiles_mirrors']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<a name="installed_packages"></a><h2>Installed packages</h2>
+<div>
+    <a name="installed_packages_most_installed"></a><h3>Most-installed packages</h3>
+    <div>
+        <a name="installed_packages_most_installed_world"></a><h4>World-file packages (top ${len(data['installed_packages']['most_installed_world']['listed'])})</h4>
+        <div>
+            <table>
+                <tr>
+                    <th class="leftmost topmost">Package</th>
+                    <th colspan="2" class="rightmost topmost">Popularity</th>
+                </tr>
+<py:for each="row in data['installed_packages']['most_installed_world']['listed']">
+                <tr>
+                    <th class="leftmost" rowspan="1" style="vertical-align:top">${row['name']}</th>
+                    <td class="absolute_score">${row['absolute_total']}</td>
+                    <td class="relative_score">(${row['relative_total']} %)</td>
+                </tr>
+</py:for>
+                <tr>
+                    <th class="leftmost downmost">Total</th>
+                    <td class="downmost absolute_score">${data['installed_packages']['most_installed_world']['total']['absolute_total']}</td>
+                    <td class="downmost relative_score">(${data['installed_packages']['most_installed_world']['total']['relative_total']} %)</td>
+                </tr>
+            </table>
+        </div>
+
+        <a name="installed_packages_most_installed_all"></a><h4>All packages (top ${len(data['installed_packages']['most_installed_world']['listed'])} with details)</h4>
+        <div>
+            <table>
+                <tr>
+                    <th class="leftmost topmost">Package</th>
+                    <th class="topmost">Slot</th>
+                    <th class="topmost">Version</th>
+                    <th colspan="2" class="rightmost topmost">Popularity</th>
+                </tr>
+<py:for each="row in data['installed_packages']['most_installed_all']['listed']">
+  <py:if test="len(row['slots']) == 1">
+    <py:if test="len(row['slots'].values()[0]['versions']) == 1">
+                <!--! Single slot, single version -->
+                <tr>
+                    <th class="leftmost" rowspan="1" style="vertical-align:top">${row['name']}</th>
+                    <td>${row['slots'].keys()[0]}</td>
+                    <td>${row['slots'].values()[0]['versions'].keys()[0]}</td>
+                    <td class="absolute_score">${row['slots'].values()[0]['absolute_total']}</td>
+                    <td class="relative_score">(${row['slots'].values()[0]['relative_total']} %)</td>
+                </tr>
+    </py:if>
+    <py:if test="len(row['slots'].values()[0]['versions']) > 1">
+                <!--! Single slot, multiple versions -->
+                <tr>
+                    <th class="leftmost" rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['name']}</th>
+                    <td rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['slots'].keys()[0]}</td>
+                    <td><span class="group_item">any</span></td>
+                    <td class="absolute_score">${row['slots'].values()[0]['absolute_total']}</td>
+                    <td class="relative_score">(${row['slots'].values()[0]['relative_total']} %)</td>
+                </tr>
+                <tr py:for="version, version_data in sorted(row['slots'].values()[0]['versions'].items())">
+                    <td class="group_child_1">${version}</td>
+                    <td class="absolute_score">${version_data['absolute_total']}</td>
+                    <td class="relative_score">(${version_data['relative_total']} %)</td>
+                </tr>
+    </py:if>
+  </py:if>
+  <py:if test="len(row['slots']) > 1">
+                <!--! Multiple slots -->
+                <tr>
+                    <th class="leftmost" rowspan="${sum(((len(slot_data['versions']) > 1) and (len(slot_data['versions']) + 1) or 1) for slot, slot_data in row['slots'].items()) + 1}" style="vertical-align:top">${row['name']}</th>
+                    <td><span class="group_item">any</span></td>
+                    <td><span class="group_item">any</span></td>
+                    <td class="absolute_score">${row['absolute_total']}</td>
+                    <td class="relative_score">(${row['relative_total']} %)</td>
+                </tr>
+
+    <py:for each="slot, slot_data, in sorted(row['slots'].items())">
+      <py:if test="len(slot_data['versions']) == 1">
+                <!--! Slots with a single version -->
+                <tr>
+                    <td class="group_child_1">${slot}</td>
+                    <td class="group_child_1">${slot_data['versions'].keys()[0]}</td>
+                    <td class="absolute_score">${slot_data['absolute_total']}</td>
+                    <td class="relative_score">(${slot_data['relative_total']} %)</td>
+                </tr>
+      </py:if>
+      <py:if test="len(slot_data['versions']) > 1">
+                <!--! Slots with multiple versions -->
+                <tr>
+                    <td class="group_child_1" rowspan="${len(slot_data['versions']) + 1}" style="vertical-align:top">${slot}</td>
+                    <td class="group_child_1" style="vertical-align:top"><span class="group_item">any</span></td>
+                    <td class="absolute_score">${slot_data['absolute_total']}</td>
+                    <td class="relative_score">(${slot_data['relative_total']} %)</td>
+                </tr>
+                <tr py:for="version, version_data in sorted(slot_data['versions'].items())">
+                    <td class="group_child_2">${version}</td>
+                    <td class="absolute_score">${version_data['absolute_total']}</td>
+                    <td class="relative_score">(${version_data['relative_total']} %)</td>
+                </tr>
+      </py:if>
+    </py:for>
+  </py:if>
+</py:for>
+                <tr>
+                    <th class="leftmost downmost">Total</th>
+                    <td class="downmost"><span></span></td>
+                    <td class="downmost"><span></span></td>
+                    <td class="downmost absolute_score">${data['installed_packages']['most_installed_all']['total']['absolute_total']}</td>
+                    <td class="downmost relative_score">(${data['installed_packages']['most_installed_all']['total']['relative_total']} %)</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <a name="installed_packages_most_unmasked"></a><h3>Most-unmasked packages (top ${len(data['installed_packages']['most_unmasked']['listed'])})</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="leftmost topmost">Package</th>
+                <th class="topmost">Slot</th>
+                <th class="topmost">Version</th>
+                <th colspan="2" class="topmost">~arch</th>
+                <th colspan="2" class="topmost">**</th>
+                <th colspan="2" class="topmost">.unmask</th>
+                <th colspan="2" class="rightmost topmost"><span class="group_item">any</span></th>
+            </tr>
+<py:for each="row in data['installed_packages']['most_unmasked']['listed']">
+  <py:if test="len(row['slots']) == 1">
+    <py:if test="len(row['slots'].values()[0]['versions']) == 1">
+            <!--! Single slot, single version -->
+            <tr>
+                <th class="leftmost" rowspan="1" style="vertical-align:top">${row['name']}</th>
+                <td>${row['slots'].keys()[0]}</td>
+                <td>${row['slots'].values()[0]['versions'].keys()[0]}</td>
+                <td class="absolute_score">${row['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${row['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${row['unmask_absolute_total']}</td>
+                <td class="relative_score">(${row['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${row['any_absolute_total']}</td>
+                <td class="relative_score">(${row['any_relative_total']} %)</td>
+            </tr>
+    </py:if>
+    <py:if test="len(row['slots'].values()[0]['versions']) > 1">
+            <!--! Single slot, multiple versions -->
+            <tr>
+                <th class="leftmost" rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['name']}</th>
+                <td rowspan="${len(row['slots'].values()[0]['versions']) + 1}" style="vertical-align:top">${row['slots'].keys()[0]}</td>
+                <td><span class="group_item">any</span></td>
+                <td class="absolute_score">${row['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${row['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${row['unmask_absolute_total']}</td>
+                <td class="relative_score">(${row['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${row['any_absolute_total']}</td>
+                <td class="relative_score">(${row['any_relative_total']} %)</td>
+            </tr>
+            <tr py:for="version, version_data in sorted(row['slots'].values()[0]['versions'].items())">
+                <td class="group_child_1">${version}</td>
+                <td class="absolute_score">${version_data['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${version_data['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${version_data['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['unmask_absolute_total']}</td>
+                <td class="relative_score">(${version_data['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['any_absolute_total']}</td>
+                <td class="relative_score">(${version_data['any_relative_total']} %)</td>
+            </tr>
+    </py:if>
+  </py:if>
+  <py:if test="len(row['slots']) > 1">
+            <!--! Multiple slots -->
+            <tr>
+                <th class="leftmost" rowspan="${sum(((len(slot_data['versions']) > 1) and (len(slot_data['versions']) + 1) or 1) for slot, slot_data in row['slots'].items()) + 1}" style="vertical-align:top">${row['name']}</th>
+                <td><span class="group_item">any</span></td>
+                <td><span class="group_item">any</span></td>
+                <td class="absolute_score">${row['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${row['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${row['unmask_absolute_total']}</td>
+                <td class="relative_score">(${row['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${row['any_absolute_total']}</td>
+                <td class="relative_score">(${row['any_relative_total']} %)</td>
+            </tr>
+
+    <py:for each="slot, slot_data, in sorted(row['slots'].items())">
+      <py:if test="len(slot_data['versions']) == 1">
+            <!--! Slots with a single version -->
+            <tr>
+                <td class="group_child_1">${slot}</td>
+                <td class="group_child_1">${slot_data['versions'].keys()[0]}</td>
+                <td class="absolute_score">${slot_data['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['unmask_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['any_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['any_relative_total']} %)</td>
+            </tr>
+      </py:if>
+      <py:if test="len(slot_data['versions']) > 1">
+            <!--! Slots with multiple versions -->
+            <tr>
+                <td class="group_child_1" rowspan="${len(slot_data['versions']) + 1}" style="vertical-align:top">${slot}</td>
+                <td class="group_child_1" style="vertical-align:top"><span class="group_item">any</span></td>
+                <td class="absolute_score">${slot_data['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['unmask_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${slot_data['any_absolute_total']}</td>
+                <td class="relative_score">(${slot_data['any_relative_total']} %)</td>
+            </tr>
+            <tr py:for="version, version_data in sorted(slot_data['versions'].items())">
+                <td class="group_child_2">${version}</td>
+                <td class="absolute_score">${version_data['tilde_arch_absolute_total']}</td>
+                <td class="relative_score">(${version_data['tilde_arch_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['double_asterisk_absolute_total']}</td>
+                <td class="relative_score">(${version_data['double_asterisk_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['unmask_absolute_total']}</td>
+                <td class="relative_score">(${version_data['unmask_relative_total']} %)</td>
+                <td class="absolute_score">${version_data['any_absolute_total']}</td>
+                <td class="relative_score">(${version_data['any_relative_total']} %)</td>
+            </tr>
+      </py:if>
+    </py:for>
+  </py:if>
+</py:for>
+            <tr py:with="row = data['installed_packages']['most_unmasked']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost"><span></span></td>
+                <td class="downmost"><span></span></td>
+                <td class="downmost absolute_score">${row['tilde_arch_absolute_total']}</td>
+                <td class="downmost relative_score">(${row['tilde_arch_relative_total']} %)</td>
+                <td class="downmost absolute_score">${row['double_asterisk_absolute_total']}</td>
+                <td class="downmost relative_score">(${row['double_asterisk_relative_total']} %)</td>
+                <td class="downmost absolute_score">${row['unmask_absolute_total']}</td>
+                <td class="downmost relative_score">(${row['unmask_relative_total']} %)</td>
+                <td class="downmost absolute_score">${row['any_absolute_total']}</td>
+                <td class="downmost relative_score">(${row['any_relative_total']} %)</td>
+            </tr>
+        </table>
+    </div>
+
+    <a name="installed_packages_least_installed_main_tree"></a><h3>Least-installed main-tree packages (top ${len(data['installed_packages']['least_installed']['listed'])})</h3>
+    <div>
+        <table>
+            <tr>
+                <th class="leftmost topmost">Package</th>
+                <th colspan="2" class="rightmost topmost">Popularity</th>
+            </tr>
+            <tr py:for="row in data['installed_packages']['least_installed']['listed']">
+                <th class="leftmost"><a href="http://packages.gentoo.org/package/${row['package']}">${row['package']}</a></th>
+                <td class="absolute_score">${row['absolute']}</td>
+                <td class="relative_score">(${row['relative']} %)</td>
+            </tr>
+            <tr py:with="row = data['installed_packages']['least_installed']['total']">
+                <th class="leftmost downmost">Total</th>
+                <td class="downmost absolute_score">${row['absolute']}</td>
+                <td class="downmost relative_score">(${row['relative']} %)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div>
+    <p>Report generation took ${data['generation_duration']}.</p>
+</div>
+
+</body>
+</html>

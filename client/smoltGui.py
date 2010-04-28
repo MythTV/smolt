@@ -142,6 +142,7 @@ class SmoltGui(QMainWindow):
 		self.distroTab = gui.DistroTab()
 		self.distroInfo = QTextBrowser()
 		self.distroInfo.setReadOnly(True)
+		self.distroInfo.setOpenExternalLinks(True)
 		self.distroTab.addWidget(self.distroInfo)
 
 		self.mainTabWidget = gui.MainTabWidget(self.generalTab, self.distroTab)
@@ -172,7 +173,8 @@ class SmoltGui(QMainWindow):
 		self.host_table.set_profile(self._gather_thread.hardware)
 		self.device_table.set_profile(self._gather_thread.hardware)
 		self.distro_document = QTextDocument()
-		self.distro_document.setHtml(_('No distribution-specific data yet'))
+		self.distro_document.setHtml(\
+			self._gather_thread.hardware.get_distro_specific_html())
 		self.distroInfo.setDocument(self.distro_document)
 
 	def _on_system_bus_error(self):
@@ -205,7 +207,7 @@ class SmoltGui(QMainWindow):
 	def _gather_data(self):
 		self._setup_progress_dialog(label='Gathering data...', force_show=False)
 		# TODO get live progress instead?
-		self._setup_progress_animation(5000)
+		self._setup_progress_animation(7000)
 
 		self._gather_thread = GatherThread()
 		self.connect(self._gather_thread, SIGNAL("profile_ready()"), \

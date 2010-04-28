@@ -53,6 +53,8 @@ from fs_util import get_fslist
 
 from gate import Gate
 from uuiddb import UuidDb
+import logging
+from logging.handlers import RotatingFileHandler
 import codecs
 import MultipartPostHandler
 import urllib2
@@ -83,7 +85,7 @@ clientVersion = '1.3.2'
 smoltProtocol = '0.97'
 supported_protocols = ['0.97',]
 user_agent = 'smolt/%s' % smoltProtocol
-timeout = 60.0
+timeout = 120.0
 proxies = None
 DEBUG = False
 
@@ -560,6 +562,24 @@ class _Hardware:
 
         self.fss = get_file_systems()
 
+        self.distro_specific = self.get_distro_specific_data()
+
+    def get_distro_specific_data(self):
+        dist_dict = {}
+        import distros.all
+        for d in distros.all.get():
+            key = d.key()
+            if d.detected():
+                logging.info('Distro "%s" detected' % (key))
+                d.gather(debug=True)
+                dist_dict[key] = {
+                    'data':d.data(),
+                    'html':d.html(),
+                    'rst':d.rst(),
+                    'rst_excerpt':d.rst_excerpt(),
+                }
+        return dist_dict
+
     def get_properties_for_udi (self, udi):
         dev = self.dbus_get_interface(self.systemBus, 'org.freedesktop.Hal',
                                       udi, 'org.freedesktop.Hal.Device')
@@ -653,6 +673,27 @@ class _Hardware:
             sys.stderr.write(_('\tYour admin token  could not be cached: %s\n' % e))
         return
 
+    def get_submission_data(self, prefered_protocol=None):
+        send_host_obj = self.get_sendable_host(prefered_protocol)
+        send_host_obj['devices'] = self.get_sendable_devices(prefered_protocol)
+        send_host_obj['fss'] = self.get_sendable_fss(prefered_protocol)
+        send_host_obj['smolt_protocol'] = prefered_protocol
+
+        dist_data_dict = {}
+        for k, v in self.distro_specific.items():
+            dist_data_dict[k] = v['data']
+        send_host_obj['distro_specific'] = dist_data_dict
+
+        return send_host_obj
+
+    def get_distro_specific_html(self):
+        lines = []
+        if not self.distro_specific:
+            lines.append(_('No distribution-specific data yet'))
+        else:
+            for k, v in self.distro_specific.items():
+                lines.append(v['html'])
+        return '\n'.join(lines)
 
     def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies, batch=False):
         def serialize(object, human=False):
@@ -688,17 +729,38 @@ class _Hardware:
         finally:
             token.close()
 
-        send_host_obj = self.get_sendable_host(prefered_protocol)
-        my_devices = self.get_sendable_devices(prefered_protocol)
-        my_fss = self.get_sendable_fss(prefered_protocol)
+        send_host_obj = self.get_submission_data(prefered_protocol)
 
-        send_host_obj['devices'] = my_devices
-        send_host_obj['fss'] = my_fss
-        send_host_obj['smolt_protocol'] = prefered_protocol
 
         debug('smoon server URL: %s' % smoonURL)
 
         serialized_host_obj_machine = serialize(send_host_obj, human=False)
+
+        # Log-dump submission data
+        log_matrix = {
+            '.json':serialize(send_host_obj, human=True),
+            '-distro.html':self.get_distro_specific_html(),
+            '.rst':'\n'.join(map(to_ascii, self.getProfile())),
+        }
+        logdir = os.path.expanduser('~/.smolt/')
+        try:
+            if not os.path.exists(logdir):
+                os.mkdir(logdir, 1700)
+
+            for k, v in log_matrix.items():
+                filename = os.path.expanduser(os.path.join(
+                        logdir, 'submission%s' % k))
+                r = RotatingFileHandler(filename, \
+                        maxBytes=1000000, backupCount=9)
+                r.stream.write(v)
+                r.doRollover()
+                r.close()
+                os.remove(filename)
+        except:
+            pass
+        del logdir
+        del log_matrix
+
 
         debug('sendHostStr: %s' % serialized_host_obj_machine)
         debug('Sending Host')
@@ -810,6 +872,8 @@ class _Hardware:
         return '\n'.join(lines)
 
     def get_distro_info_excerpt(self):
+        for k, v in self.distro_specific.items():
+            return v['rst_excerpt']
         return "No data, yet"
 
     def getProfile(self):
@@ -851,6 +915,11 @@ class _Hardware:
             printBuffer.append('-------------------------------------------------------------------')
             for fs in self.fss:
                 printBuffer.append(str(fs))
+
+            for k, v in self.distro_specific.items():
+                printBuffer.append('')
+                printBuffer.append('')
+                printBuffer.append(v['rst'])
 
             printBuffer.append('')
         return printBuffer

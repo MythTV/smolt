@@ -1,0 +1,164 @@
+/*
+ * smolt - Fedora hardware profiler
+ *
+ * Copyright (C) 2009 Sebastian Pipping <sebastian@pipping.org>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
+body {
+    margin:0;
+    padding-left:40px;
+    padding-right:40px;
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+h1 {
+    font-size:30pt;
+}
+
+h2 {
+    margin-top:40px;
+}
+
+a {
+    color:#404040;
+}
+
+th a {
+    color:#000000;
+    font-weight:bold;
+}
+
+body, h1, td, th, span, p {
+    font-family:serif;
+}
+
+body, h1 {
+    background-color:#fafafa;
+}
+
+td, th {
+    background-color:#ffffff;
+}
+
+table {
+    border-spacing:0;
+}
+
+div p {
+    margin-left:30px;
+}
+
+div div p {
+    margin-left:60px;
+}
+
+div table {
+    margin-left:30px;
+}
+
+div div table {
+    margin-left:60px;
+}
+
+div div div table {
+    margin-left:90px;
+}
+
+h3 {
+    margin-left:30px;
+}
+
+h4 {
+    margin-left:60px;
+}
+
+td, th {
+    padding-left:8px;
+    padding-right:8px;
+    padding-top:4px;
+    padding-bottom:4px;
+}
+
+table {
+    border-style:solid;
+    border-width:2px;
+}
+
+th.topmost {
+    border-bottom-style:solid;
+    border-bottom-width:thin;
+    padding-top:8px;
+}
+
+th.leftmost {
+    padding-left:20px;
+    padding-right:20px;
+    text-align:left;
+}
+
+th.rightmost {
+    padding-right:20px;
+}
+
+td.downmost, th.downmost {
+    border-top-style:solid;
+    border-top-width:thin;
+    padding-bottom:8px;
+}
+
+td.absolute_score {
+    text-align:right;
+    padding-left:20px;
+}
+
+td.relative_score {
+    text-align:right;
+    padding-right:20px;
+}
+
+td.group_child_1 {
+    padding-left:30px;
+}
+
+td.group_child_2 {
+    padding-left:60px;
+}
+
+ul li {
+    margin-top:1px;
+    margin-bottom:2px;
+}
+
+span.section_comment {
+    color:#b0b0b0;
+    padding-left:20px;
+}
+
+span.group_item {
+    font-style:italic;
+    font-weight:normal;
+}
+
+div {
+    margin:0;
+    padding:0;
+}
+
+.todo {
+    opacity:0.25;
+}
