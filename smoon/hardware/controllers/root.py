@@ -4,6 +4,7 @@ from turbogears import controllers, expose, identity
 from turbogears import exception_handler
 from turbogears import redirect
 from turbogears import config
+from turbogears.database import session
 import turbogears
 
 from hardware.controllers.client import Client
