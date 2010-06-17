@@ -24,7 +24,7 @@ PUB_UUID = "/etc/smolt/pub-uuid"
 
 FS_T_FILTER=False
 FS_M_FILTER=True
-FS_MOUNTS=commands.getoutput('rpm -ql filesystem').split('\n')
+FS_MOUNTS=commands.getoutput('rpm -ql filesystem').split('\n') + ['/']
 
 
 #This will attempt to find the distro.
