@@ -175,7 +175,7 @@ if not opts.autoSend:
     if opts.printOnly:
         for line in profile.getProfile():
             if not line.startswith('#'):
-                print line
+                print line.encode('utf-8')
         sys.exit(0)
 
     def inner_indent(text):
