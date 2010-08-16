@@ -6,17 +6,17 @@ from sqlalchemy.orm import *
 from datetime import timedelta, date, datetime
 
 
+from hardware.model.model import metadata
+
+
 import sys
 import logging
 if 'turbogears' in sys.modules:
     logging.debug('Turbogears context')
-    from turbogears.database import metadata
     from turbogears.database import mapper
 else:
     logging.debug('Plain SQL alchemy context')
     from sqlalchemy.orm import mapper
-    from sqlalchemy import MetaData
-    metadata = MetaData()
 
 
 schema_changes = Table('schema_changes', metadata,

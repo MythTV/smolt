@@ -21,15 +21,7 @@ from sqlalchemy import Table, Column, Integer, SmallInteger, String, ForeignKey,
 from sqlalchemy.orm import mapper, relation
 
 
-# Context dependent metadata creation
-import sys
-if 'turbogears' in sys.modules:
-    logging.debug('Turbogears context')
-    from turbogears.database import metadata
-else:
-    logging.debug('Plain SQL alchemy context')
-    from sqlalchemy import MetaData
-    metadata = MetaData()
+from hardware.model.model import metadata
 
 
 _GENTOO_KEYWORD_STATUS_EMPTY, \

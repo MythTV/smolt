@@ -41,6 +41,8 @@ install-main: move-mo
 	mkdir -p $(BINDIR)/
 	mkdir -p $(DATADIR)/locale/
 	mkdir -p $(_MANDIR)/man1
+	mkdir -p $(DATADIR)/sugar/extensions/cpsection/smolt/
+	mkdir -p $(DATADIR)/sugar/data/icons/
 	
 	cp -advr mo/* $(DATADIR)/locale/ 
 	cp -advr config.py $(SMOLTCONFIGDIR)
@@ -52,6 +54,7 @@ install-main: move-mo
 	install -D -m 0644 icons/send-profile.png $(DATADIR)/$(NAME)/client/icons/send-profile.png
 	install -D -m 0644 icons/smolt.png $(DATADIR)/$(NAME)/client/icons/smolt.png
 	cp -adv $(PY_FILES) $(DATADIR)/$(NAME)/client/
+	cp -adv sugar/* $(DATADIR)/sugar/extensions/cpsection/smolt/
 	
 	mkdir -p $(DATADIR)/icons/hicolor/16x16/apps/
 	mkdir -p $(DATADIR)/icons/hicolor/22x22/apps/
@@ -62,6 +65,7 @@ install-main: move-mo
 	cp ./icons/smolt-icon-22.png $(DATADIR)/icons/hicolor/22x22/apps/smolt.png
 	cp ./icons/smolt-icon-24.png $(DATADIR)/icons/hicolor/24x24/apps/smolt.png
 	cp ./icons/smolt-icon-32.png $(DATADIR)/icons/hicolor/32x32/apps/smolt.png
+	cp ./icons/smolt-icon-48.svg $(DATADIR)/sugar/data/icons/module-smolt.svg
 	
 	mkdir -p $(_DOCDIR)
 	install -p -m 0644 ../doc/PrivacyPolicy $(_DOCDIR)

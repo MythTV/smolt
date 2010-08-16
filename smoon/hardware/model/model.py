@@ -26,6 +26,7 @@ from sqlalchemy.orm import *
 from datetime import timedelta, date, datetime
 from hardware.featureset import this_is, MYTH_TV
 
+from sqlalchemy.types import LargeBinary
 
 # Context dependent metadata and mapper creation
 import sys
@@ -222,7 +223,7 @@ batch_queue = Table('batch_queue', metadata,
                             nullable=False),
                     Column('hw_uuid', VARCHAR(36),
                             nullable=False),
-                    Column('data', CLOB(1000000)))
+                    Column('data', LargeBinary(1000000)))
 
 
 class Host(object):

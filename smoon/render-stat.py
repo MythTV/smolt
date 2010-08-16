@@ -37,7 +37,7 @@ import sys
 import time
 from hardware.wiki import *
 from hardware.turboflot import TurboFlot
-from hardware.featureset import init, config_filename
+from hardware.featureset import init, config_filename, at_final_server
 from reportutils import _process_output
 from turbogears.database import session
 
@@ -230,7 +230,11 @@ flot = {}
 if not  template_config['archs'] == [] :
     print '====================== archs ======================'
     session.bind = metadata.bind
-    stats['archs'] = session.execute('''select count(platform), platform from host use index(platform) where host.last_modified > '%s' group by platform order by count(platform) desc;''' % right_now).fetchall()
+    # FIXME Extend our alchemy model to allow "use index(platform)"
+    if at_final_server():
+        stats['archs'] = session.execute('''select count(platform), platform from host use index(platform) where host.last_modified > '%s' group by platform order by count(platform) desc;''' % right_now).fetchall()
+    else:
+        stats['archs'] = session.execute('''select count(platform), platform from host                     where host.last_modified > '%s' group by platform order by count(platform) desc;''' % right_now).fetchall()
 #    stats['archs'] = handle_withheld_elem(
 #            session.query(Arch).all(),
 #            'platform', WITHHELD_MAGIC_STRING)
@@ -493,7 +497,11 @@ if not  template_config['filesystem'] == [] :
     #stats['filesystems'] = session.query(FileSys).all()
     # SELECT file_systems.fs_type, count(file_systems.fs_type) AS cnt FROM file_systems, host use index(last_modified_join) WHERE file_systems.host_id = host.id AND host.last_modified > '2009-06-11' GROUP BY file_systems.fs_type ORDER BY count(file_systems.fs_type) DESC;
     session.bind = metadata.bind
-    stats['filesystems'] = session.execute('''SELECT file_systems.fs_type, count(file_systems.fs_type) AS cnt FROM file_systems, host use index(last_modified_join) WHERE file_systems.host_id = host.id AND host.last_modified > '%s' GROUP BY file_systems.fs_type ORDER BY count(file_systems.fs_type) DESC;''' % right_now).fetchall()
+    # FIXME Extend our alchemy model to allow "use index(last_modified_join)"
+    if at_final_server():
+        stats['filesystems'] = session.execute('''SELECT file_systems.fs_type, count(file_systems.fs_type) AS cnt FROM file_systems, host use index(last_modified_join) WHERE file_systems.host_id = host.id AND host.last_modified > '%s' GROUP BY file_systems.fs_type ORDER BY count(file_systems.fs_type) DESC;''' % right_now).fetchall()
+    else:
+        stats['filesystems'] = session.execute('''SELECT file_systems.fs_type, count(file_systems.fs_type) AS cnt FROM file_systems, host                              WHERE file_systems.host_id = host.id AND host.last_modified > '%s' GROUP BY file_systems.fs_type ORDER BY count(file_systems.fs_type) DESC;''' % right_now).fetchall()
     stats['total_fs'] = session.query(FileSys).count()
     if not stats['total_fs']:
         stats['total_fs'] = 1

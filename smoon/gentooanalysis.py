@@ -35,14 +35,8 @@ import sqlalchemy
 from sqlalchemy.sql import func, select, join, and_, text
 import urllib
 
-import sys
-if 'turbogears' in sys.modules:
-    logging.debug('Turbogears context')
-    from turbogears.database import metadata
-else:
-    logging.debug('Plain SQL alchemy context')
-    from sqlalchemy import MetaData
-    metadata = MetaData()
+
+from hardware.model.model import metadata
 
 
 _MAX_DISTFILES_MIRRORS = 30
