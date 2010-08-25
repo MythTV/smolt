@@ -1,12 +1,16 @@
-# translation of smolt.master.es.po to Spanish
+# Fedora Spanish translation of the smolt.master package.
+# This file is distributed under the same license as the smolt.master package.
+# 
 # Domingo Becker <domingobecker@gmail.com>, 2008.
+# Héctor Daniel Cabrera <logan@fedoraproject.org>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master.es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-08-10 14:23-0300\n"
-"Last-Translator: Héctor Daniel Cabrera <h.daniel.cabrera@gmail.com>\n"
+"PO-Revision-Date: 2010-08-25 10:39-0300\n"
+"Last-Translator: Héctor Daniel Cabrera <logan@fedoraproject.org>\n"
 "Language-Team: Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -302,9 +306,8 @@ msgid "File system-related"
 msgstr "Información relacionada con el sistema de archivos"
 
 #: sendProfile.py:180
-#, fuzzy
 msgid "Distribution-specific"
-msgstr "Releacionados con la distribucion"
+msgstr "Relacionados con la distribucion"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
@@ -660,8 +663,10 @@ msgstr "No se pudo determinar el nivel de ejecución"
 
 #~ msgid "y"
 #~ msgstr "s"
+
 #~ msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
 #~ msgstr "Envie este perfil también a Bodhy, para el Desarrollo de Fedora"
+
 #~ msgid ""
 #~ "The data was successfully sent. If you need to refer to your hardware "
 #~ "profile for a bug report your UUID is \n"
@@ -672,32 +677,44 @@ msgstr "No se pudo determinar el nivel de ejecución"
 #~ "de hardware para informar un error, su UUID es \n"
 #~ "%s\n"
 #~ "almacenado en %s"
+
 #~ msgid ""
 #~ "\tMaybe re-run as root?\n"
 #~ "\n"
 #~ msgstr ""
 #~ "\t¿Quizás correr de nuevo como root?\n"
 #~ "\n"
+
 #~ msgid "_Quit"
 #~ msgstr "_Salir"
+
 #~ msgid "Quit the program without sending your hardware profile to the server"
 #~ msgstr "¿Salir del programa sin enviar su perfil de hardware al servidor"
+
 #~ msgid "_Send"
 #~ msgstr "_Enviar"
+
 #~ msgid "Send your hardware profile to the server."
 #~ msgstr "Enviar su perfil de hardware al servidor."
+
 #~ msgid "Show the Smolt privacy policy."
 #~ msgstr "Mostrar la política de privacidad de Smolt."
+
 #~ msgid "Take me to my smolt profile page"
 #~ msgstr "Lléveme a mi página de perfil smolt"
+
 #~ msgid "Smolt Privacy Policy"
 #~ msgstr "Política de Privacidad de Smolt"
+
 #~ msgid "translator-credits"
 #~ msgstr "Domingo Becker <domingobecker@gmail.com>, 2007"
+
 #~ msgid "Fedora hardware profiler."
 #~ msgstr "Perfilador de hardware de Fedora."
+
 #~ msgid "Copyright © 2007 Mike McGrath"
 #~ msgstr "Copyright © 2007 Mike McGrath"
+
 #~ msgid ""
 #~ "This program is free software; you can redistribute it and/or modify it "
 #~ "under the terms of the GNU General Public License as published by the "
@@ -726,6 +743,6 @@ msgstr "No se pudo determinar el nivel de ejecución"
 #~ "Debe haber recibido una copia de la Licencia Pública General de GNU, "
 #~ "junto con este programa; sino, escriba a la Free Software Foundation, "
 #~ "Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
+
 #~ msgid "Communication with server failed"
 #~ msgstr "Falló la comunicación con el servidor"
-
