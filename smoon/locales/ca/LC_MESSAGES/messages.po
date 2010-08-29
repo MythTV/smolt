@@ -1,0 +1,347 @@
+# Serbian(Latin) translations for hardware
+# Copyright (C) 2008 Red Hat, Inc.
+# This file is distributed under the same license as the hardware project.
+# Miloš Komarčević <kmilos@gmail.com>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hardware 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2008-05-01 22:37-0400\n"
+"PO-Revision-Date: 2010-08-29 05:07+0100\n"
+"Last-Translator: Robert Antoni Buj Gelonch <robert.buj@gmail.com>\n"
+"Language-Team: Catalan <fedora@softcatala.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Catalan\n"
+
+#: hardware/controllers/root.py:95
+msgid "The credentials you supplied were not correct or did not grant access to this resource."
+msgstr "Les credencials que vàreu proporcionar no són correctes o bé no garanteixen l'accés a aquest recurs."
+
+#: hardware/controllers/root.py:98
+msgid "You must provide your credentials before accessing this resource."
+msgstr ""
+
+#: hardware/controllers/root.py:101
+msgid "Please log in."
+msgstr "Inicieu una sessió."
+
+#: hardware/templates/deviceclass.html:9
+msgid "Devices by class ${type}"
+msgstr "Dispositiu per classe ${type}"
+
+#: hardware/templates/deviceclass.html:15
+msgid "Total Count"
+msgstr "Quantitat total"
+
+#: hardware/templates/deviceclass.html:19
+#, python-format
+msgid "% hosts detected ${type}"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:24
+msgid "Vendors"
+msgstr "Fabricants"
+
+#: hardware/templates/deviceclass.html:34
+#: hardware/templates/devices.html:9
+#: hardware/templates/show.html:57
+msgid "Devices"
+msgstr "Dispositius"
+
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/show.html:60
+msgid "Device"
+msgstr "Dispositiu"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Bus"
+msgstr "Bus"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "Controlador"
+
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr "Fabricant"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Vendor"
+msgstr "Sub fabricant"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Device"
+msgstr "Sub dispositiu"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr "Data afegit"
+
+#: hardware/templates/deviceclass.html:36
+msgid "% tot hosts"
+msgstr "% equips totals"
+
+#: hardware/templates/devices.html:15
+#: hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr "Dispositius totals registrats"
+
+#: hardware/templates/devices.html:19
+msgid "Unique Devices"
+msgstr "Dispositius únics"
+
+#: hardware/templates/devices.html:24
+msgid "Raw Devices"
+msgstr "Dispositius crus"
+
+#: hardware/templates/devices.html:34
+msgid "Machines / Device"
+msgstr "Ordinadors / dispositius"
+
+#: hardware/templates/devices.html:44
+msgid "Classes"
+msgstr "Classes"
+
+#: hardware/templates/report_search.html:37
+#: hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "Cercar"
+
+#: hardware/templates/report_search.html:38
+msgid "Dataset"
+msgstr "Conjunt de dades"
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr "Conjunt de resultats"
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr "Mostra el quadre"
+
+#: hardware/templates/show.html:30
+msgid "I don't use this or I don't know"
+msgstr "No se si ho utilitzo o ho desconec"
+
+#: hardware/templates/show.html:31
+msgid "Breaks System"
+msgstr "Malmet el sistema"
+
+#: hardware/templates/show.html:32
+msgid "Doesn't Work"
+msgstr "No funciona"
+
+#: hardware/templates/show.html:33
+msgid "Requires 3rd Party Drivers"
+msgstr "Necessita controladors de tercers"
+
+#: hardware/templates/show.html:34
+msgid "Works, but required additional configuration"
+msgstr "Funciona, però necessita configuració addicional"
+
+#: hardware/templates/show.html:35
+msgid "Worked out of the box"
+msgstr ""
+
+#: hardware/templates/show.html:36
+msgid "Show all Information"
+msgstr "Mostra tota la informació"
+
+#: hardware/templates/show.html:39
+msgid "Overall Rating:"
+msgstr ""
+
+#: hardware/templates/show.html:42
+msgid "Public UUID"
+msgstr "UUID públic"
+
+#: hardware/templates/show.html:43
+msgid "Operating System"
+msgstr "Sistema operatiu"
+
+#: hardware/templates/show.html:44
+msgid "Platform"
+msgstr "Plataforma"
+
+#: hardware/templates/show.html:45
+msgid "System Vendor"
+msgstr "Fabricant del sistema"
+
+#: hardware/templates/show.html:46
+msgid "System Model"
+msgstr "Model del sistema"
+
+#: hardware/templates/show.html:47
+#: hardware/templates/stats.html:180
+msgid "Kernel"
+msgstr "Nucli"
+
+#: hardware/templates/show.html:48
+msgid "Formfactor"
+msgstr ""
+
+#: hardware/templates/show.html:49
+msgid "Last Modified"
+msgstr "Darrera modificació"
+
+#: hardware/templates/show.html:50
+msgid "Admin Password"
+msgstr "Contrasenya d'administració"
+
+#: hardware/templates/show.html:60
+msgid "Rating"
+msgstr "Puntuació"
+
+#: hardware/templates/show.html:60
+msgid "Class"
+msgstr "Classe"
+
+#: hardware/templates/stats.html:9
+msgid "Stats"
+msgstr "Estadístques"
+
+#: hardware/templates/stats.html:15
+msgid "Total Registered Hosts"
+msgstr "Equips totals registrats"
+
+#: hardware/templates/stats.html:23
+msgid "Total bogomips"
+msgstr "Bogomips totals"
+
+#: hardware/templates/stats.html:27
+msgid "Total processors"
+msgstr "Processadors totals"
+
+#: hardware/templates/stats.html:31
+msgid "Total MHz"
+msgstr "MHz totals"
+
+#: hardware/templates/stats.html:38
+msgid "Archs"
+msgstr "Arquitectures"
+
+#: hardware/templates/stats.html:40
+msgid "Arch"
+msgstr "Arquitectura"
+
+#: hardware/templates/stats.html:40
+msgid "Count"
+msgstr "Quantitat"
+
+#: hardware/templates/stats.html:40
+#, python-format
+msgid "% of total"
+msgstr "% del total"
+
+#: hardware/templates/stats.html:53
+msgid "OS"
+msgstr "SO"
+
+#: hardware/templates/stats.html:66
+msgid "Runlevel"
+msgstr "Nivell d'execució"
+
+#: hardware/templates/stats.html:79
+msgid "Language"
+msgstr "Idioma"
+
+#: hardware/templates/stats.html:105
+msgid "Model"
+msgstr "Model"
+
+#: hardware/templates/stats.html:119
+msgid "RAM"
+msgstr "RAM"
+
+#: hardware/templates/stats.html:132
+msgid "Swap"
+msgstr "Memòria d'intercanvi"
+
+#: hardware/templates/stats.html:145
+msgid "CPU"
+msgstr "UCP"
+
+#: hardware/templates/stats.html:147
+msgid "Speed (MHz)"
+msgstr "Velocitat (Mhz)"
+
+#: hardware/templates/stats.html:154
+msgid "Number of CPUs"
+msgstr "Número d'UCPs"
+
+#: hardware/templates/stats.html:161
+msgid "CPU Vendor"
+msgstr "Fabricant de la UCP"
+
+#: hardware/templates/stats.html:168
+msgid "Bogomips"
+msgstr "Bogomips"
+
+#: hardware/templates/stats.html:193
+msgid "Form Factor"
+msgstr ""
+
+#: hardware/templates/stats.html:206
+msgid "Selinux"
+msgstr "Selinux"
+
+#: hardware/templates/stats.html:208
+msgid "SELinux Enabled"
+msgstr "SELinix habilitat"
+
+#: hardware/templates/stats.html:215
+msgid "SELinux Enforce"
+msgstr ""
+
+#: hardware/templates/stats.html:222
+msgid "SELinux Policy"
+msgstr ""
+
+#: hardware/templates/stats.html:234
+msgid "Filesystems"
+msgstr "Sistemes de fitxers"
+
+#: hardware/templates/stats.html:242
+msgid "Filesystem size"
+msgstr "Mida dels sistemes de fitxers"
+
+#: hardware/templates/stats.html:253
+msgid "Myth Role"
+msgstr "Rol Myth"
+
+#: hardware/templates/stats.html:266
+msgid "Myth Remote"
+msgstr "Myth remot"
+
+#: hardware/templates/stats.html:279
+msgid "Myth  Theme"
+msgstr "Tema de Myth"
+
+#: hardware/templates/welcome.html:12
+msgid "Enter your profile UUID:"
+msgstr "Introduïu l'UUID del vostre perfil:"
+
+#: hardware/templates/welcome.html:15
+msgid "Statistics"
+msgstr "Estadístiques"
+
+#: hardware/templates/welcome.html:17
+msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+
+#: hardware/templates/welcome.html:19
+msgid "Top Vendor Chart"
+msgstr "Fabricants principals"
+
+#: hardware/templates/welcome.html:23
+msgid "More info"
+msgstr "Més informació"
+
+#: hardware/templates/welcome.html:25
+msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+
