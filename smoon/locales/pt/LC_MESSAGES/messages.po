@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2010-08-30 16:34+0100\n"
+"PO-Revision-Date: 2010-08-30 16:42+0100\n"
 "Last-Translator: Rui Gouveia <rui.gouveia@gmail.com>\n"
 "Language-Team: trans-pt@lists.fedoraproject.org\n"
 "Language: pt\n"
@@ -44,9 +44,10 @@ msgid "Total Count"
 msgstr "Contagem total"
 
 #: hardware/templates/deviceclass.html:19
-#, fuzzy, python-format
+#, python-format
 msgid "% hosts detected ${type}"
-msgstr "% máquinas detectadas ${type}"
+msgstr ""
+"%ho máquinas detectadas ${type} -- NT: BUG. esta string não é utilizada."
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
