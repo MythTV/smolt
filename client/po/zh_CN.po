@@ -1,75 +1,81 @@
-# translation of smolt.master.po to Simplified Chinese
-# translation of zh-CN.po to
-# Chinese translations for translate_rhel package
-# translate_rhel 软件包的简体中文翻译.
-# Copyright (C) 2007 ORGANIZATION
-#
+# Translation of smolt.master.po to Simplified Chinese
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # Xi HUANG <xhuang@dhcp-93.brisbane.redhat.com>, 2007.
 # Xi HUANG <xhuang@redhat.com>, 2007.
 # Leah Liu <lliu@redhat.com>, 2008.
+# Tian Shixiong <tiansworld@gmail.com>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt.master\n"
+"Project-Id-Version: Smolt Translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2008-09-15 09:31+1000\n"
-"Last-Translator: Leah Liu <lliu@redhat.com>\n"
+"PO-Revision-Date: 2010-08-31 10:51+0800\n"
+"Last-Translator: Tian shixiong <tiansworld@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: pygettext.py 1.5\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Country: CHINA\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
-#: deleteProfile.py:36 smolt.py:360
+#: deleteProfile.py:36
+#: smolt.py:360
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "服务器信息：\"%s\""
 
-#: deleteProfile.py:46 sendProfile.py:48
+#: deleteProfile.py:46
+#: sendProfile.py:48
 msgid "enable debug information"
-msgstr "启用调试信息"
+msgstr "开启调试信息"
 
-#: deleteProfile.py:51 sendProfile.py:58
+#: deleteProfile.py:51
+#: sendProfile.py:58
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
-msgstr "指定服务器的 URL（缺省为 \"%default\"）"
+msgstr "指定服务器 URL (默认为 \"%default\")"
 
-#: deleteProfile.py:56 sendProfile.py:73
+#: deleteProfile.py:56
+#: sendProfile.py:73
 msgid "print information only, do not send"
-msgstr "只显示信息而不发送信息"
+msgstr "仅显示信息，不发送"
 
-#: deleteProfile.py:61 sendProfile.py:88
+#: deleteProfile.py:61
+#: sendProfile.py:88
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
-msgstr "指定 HTTP 用户代理（缺省为 \"%default\"）"
+msgstr ""
 
-#: deleteProfile.py:66 sendProfile.py:93
+#: deleteProfile.py:66
+#: sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr "指定 HTTP 的超时时间（缺省为 %default 秒）"
+msgstr "以秒为单位指定 HTTP 超时时间（默认为 %default 秒）"
 
-#: deleteProfile.py:70 sendProfile.py:112
+#: deleteProfile.py:70
+#: sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr ""
+msgstr "指定要使用的 uuid，对多数调试及测试很有用处。"
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
-msgstr "连接服务器错误："
+msgstr "连接服务器时出错："
 
 #: deleteProfile.py:97
 msgid "Profile removed, please verify at"
-msgstr "配置文件被删除，请验证"
+msgstr "硬件信息已删除，请确认"
 
-#: gui.py:35 sendProfile.py:177 smolt.py:655
-#, fuzzy
+#: gui.py:35
+#: sendProfile.py:177
+#: smolt.py:655
 msgid "General"
-msgstr "内核"
+msgstr "总则"
 
 #: gui.py:37
-#, fuzzy
 msgid "Distribution"
-msgstr "描述"
+msgstr "发行版"
 
 #: gui.py:82
 msgid "Label"
@@ -96,7 +102,7 @@ msgid "Description"
 msgstr "描述"
 
 #: privacypolicy.py:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
@@ -130,203 +136,206 @@ msgid ""
 "<br>\n"
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
-"Smolt 将只能将硬件和基本操作系统信息发送到\n"
-"Fedora smolt 服务器（smoon）。数据库与提交机器间的唯一纽带就是 UUID。\n"
-"只要提交者没有给出这个 UUID\n"
-"那么提交就是匿名的。如果任何时候某个用户想要从删除\n"
-"数据库中删除他们的侧写，他们只需要运行\n"
-"\n"
-"     smoltDeleteProfile\n"
-"\n"
-"发送到 smolt 数据库服务器的信息应被视为公共\n"
-"信息，因此任何人都可以查看状态、数据以及共享机器侧写。 smolt\n"
-"被设计为可使用很多方法引起硬件销售商以及第三方的重视，\n"
-"我们将利用 smolt 作为杠杆来获得对开源\n"
-"驱动程序的更好支持以及普遍意义上的更好支持。\n"
-"\n"
-"IP 日志：在 Fedora 的 smolt 中首先安装所有网页流量需要通过的代理服务器。\n"
-"这是唯一存放已登录 IP 地址的地方，\n"
-"而且这些地址会在那个服务器中保存四周，之后会被时间日志轮换删除。\n"
-"Fedora Project 不会在 smolt 数据库中收集 ip 地址。\n"
-"这些日志是专用的，且在一般公共信息中\n"
-"不可用。\n"
-"不喜欢这个策略的用户可以不使用 smolt。对这个策略\n"
-"有疑问的用户应该联络 Fedora 构架团队。\n"
-"网站 fedoraproject.org。还请记住：用户无法在使用 \"smoltDeleteProfile\" 时删除其\n"
-"侧写。\n"
+"<span></span>\n"
+"Smolt 仅向 Fedora smolt 服务器（smoon）发送硬件和基本\n"
+"操作系统信息。从数据库到提交人计算机之间唯一的联系就\n"
+"是 UUID。只要提交人不泄漏此 UUID，那么提交就是匿名的。\n"
+"如果用户在任何时间想要从数据库中删除他/她的硬件信息\n"
+"他们需要运行<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"发送至数据库服务器的信息将会向公众开放\n"
+"因此任何人都可以浏览统计结果、信息并分享硬件信息。\n"
+"smolt 设法以多种方式引起硬件制造商以及第三方的注意\n"
+"因此硬件信息不仅会向第三方共享，同时我们也会以 smolt\n"
+"为动力对开源驱动和常规使用提供更好地支持。<br>\n"
+"<br>\n"
+"IP 记录：Fedora 的 smolt 会先让所有流量都通过代理服务器。\n"
+"这是记录 IP 地址的唯一位置，这些记录在保存 4 周后随着记\n"
+"录的滚动将会删除。Fedora 项目不会在 smolt 数据库中搜集 IP \n"
+"地址。这些记录都将看做隐私并且不会对外提供。<br>\n"
+"<br>\n"
+"对本政策不满的用户可不使用 smolt。对本政策有\n"
+"疑问的用户可以联系 Fedora 基础设施组\n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a>。同时请记住用户可在任何时间\n"
+"使用以下命令删除他们的硬件信息<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n"
+"感谢您的参与及对我们隐私策略的关注。\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr ""
+msgstr "当前对 制造商/型号 的评级。"
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr ""
+msgstr "未评级/未知"
 
 #: scan.py:46
 msgid "Non-working"
-msgstr ""
+msgstr "不工作"
 
 #: scan.py:47
 msgid "Partially-working"
-msgstr ""
+msgstr "部分工作"
 
 #: scan.py:48
 msgid "Requires 3rd party drivers"
-msgstr ""
+msgstr "需要第三方驱动程序"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr ""
+msgstr "工作，需要额外配置"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr ""
+msgstr "开机就可工作"
 
 #: scan.py:58
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr "为未知勘误扫描 %s。\n"
+msgstr "对 %s 进行已知勘误表扫描。\n"
 
 #: scan.py:88
-#, fuzzy
 msgid "\tErrata Found!"
-msgstr "找到勘误！"
+msgstr "\t找到勘误表！"
 
 #: scan.py:91
-#, fuzzy
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "没有找到勘误，如果机器出现问题，请到"
+msgstr "\t未找到勘误表，如果此计算机存在问题请访问"
 
 #: scan.py:92
-#, fuzzy
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "您的侧写中并为该设备删除一个 wiki，以方便"
+msgstr "\t您的信息并为设备创建 wiki 页面以便他人能够"
 
 #: scan.py:93
-#, fuzzy
 msgid "\tbenefit"
-msgstr "他人"
+msgstr "\t得到帮助"
 
-#: scan.py:101 smolt.py:1157
+#: scan.py:101
+#: smolt.py:1157
 msgid "Error:"
 msgstr "错误："
 
-#: scan.py:103 smolt.py:1159
+#: scan.py:103
+#: smolt.py:1159
 msgid "Hint:"
 msgstr "提示："
 
-#: sendProfile.py:53 smoltGui.py:327
+#: sendProfile.py:53
+#: smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr ""
+msgstr "指定要使用的（仅）配置文件位置"
 
 #: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
-msgstr "（可选）Fedora 帐户系统注册"
+msgstr "（可选）Fedora 用户系统注册"
 
 #: sendProfile.py:68
 msgid "password, will prompt if not specified"
-msgstr "密码，如未指定会提示"
+msgstr "密码，如果未指定将会提示"
 
 #: sendProfile.py:78
 msgid "don't prompt to send, just send"
-msgstr "直接发送而不要提示发送"
+msgstr "不提示发送，直接发送"
 
 #: sendProfile.py:83
 msgid "continue to send until success"
-msgstr "继续发送直至成功发送"
+msgstr "继续发送直到成功"
 
 #: sendProfile.py:98
 msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr "这是自动的 checkin，只有在 \"smolt\" 服务已经被启动时才会运行。"
+msgstr "这是自动 checkin，只有在 \"smolt\" 服务启动后才会运行"
 
 #: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "只能为未知硬件勘误扫描这台机器，不要发送侧写。"
+msgstr "只进行已知硬件勘误扫描，不发送硬件信息。"
 
 #: sendProfile.py:108
-#, fuzzy
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "只能为未知硬件勘误扫描这台机器，不要发送侧写。"
+msgstr "不对本计算机进行已知硬件勘误扫描，只提交硬件信息。"
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
-msgstr ""
+msgstr "申请一个新公共 UUID"
 
 #: sendProfile.py:126
 msgid "HTTP proxy"
-msgstr ""
+msgstr "HTTP 代理"
 
 #: sendProfile.py:146
+#, fuzzy
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "设置 Smolt 为 checkin，但 checkin 被禁用（提示：service smolt start）"
+msgstr "Smolt 设置为 checkin 但 checkins 已禁用（提示：service smolt start）"
 
 #: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
-msgstr ""
+msgstr "成功！ 您的新公共 UUID 是：%s"
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
-msgstr ""
+msgstr "Smolt 已收集了四类信息："
 
 #: sendProfile.py:173
 msgid "Do you want to .."
-msgstr ""
+msgstr "您想要 .."
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
-msgstr ""
+msgstr "要查看（v）收集的信息详情吗？"
 
 #: sendProfile.py:175
-#, fuzzy
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "把这个信息发送到 Smolt 服务器吗？（y/n）"
+msgstr "要将此信息发送（s）至 Smolt 服务器？（或用 [y] 代表 是）"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr ""
+msgstr "停止（_q） Smolt？（或用 [n] 代表否）"
 
-#: sendProfile.py:178 smolt.py:669
+#: sendProfile.py:178
+#: smolt.py:669
 msgid "Devices"
 msgstr "设备"
 
 #: sendProfile.py:179
 msgid "File system-related"
-msgstr ""
+msgstr "文件系统相关"
 
 #: sendProfile.py:180
-#, fuzzy
 msgid "Distribution-specific"
-msgstr "描述"
+msgstr "发行版专有"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr ""
+msgstr "您的选择（s/v/q/y/n)："
 
-#: sendProfile.py:215 sendProfile.py:234
+#: sendProfile.py:215
+#: sendProfile.py:234
 msgid "Exiting..."
-msgstr "退出..."
+msgstr "正在退出..."
 
 #: sendProfile.py:217
 msgid "s|y|yes"
-msgstr ""
+msgstr "s|y|是"
 
 #: sendProfile.py:220
 msgid "q|n|no"
-msgstr ""
+msgstr "q|n|否"
 
 #: sendProfile.py:222
 msgid "v"
-msgstr ""
+msgstr "v"
 
 #: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
-msgstr "启用重试 - 正在重试"
+msgstr "启用重试 - 重试中"
 
 #: sendProfile.py:255
 msgid "Could not send - Exiting"
-msgstr "不能发送 － 退出"
+msgstr "无法发送 - 退出中"
 
 #: sendProfile.py:260
 msgid "Password:"
@@ -334,218 +343,220 @@ msgstr "密码："
 
 #: sendProfile.py:265
 msgid "Registration Failed, Try again"
-msgstr "注册失败，重试"
+msgstr "注册失败，请重试"
 
 #: sendProfile.py:276
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "To share your profile: \n"
 "\t%s (public)"
-msgstr "要查看您的配置文件，可以访问：%s"
+msgstr ""
+"要分享您的硬件信息：\n"
+"\t%s (public)"
 
 #: sendProfile.py:280
-#, fuzzy, python-format
+#, python-format
 msgid "\tAdmin Password: %s"
-msgstr "密码："
+msgstr "\t管理密码：%s"
 
 #: sendProfile.py:283
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
-msgstr ""
+msgstr "未找到 公共 UUID！请加 -n 选项重新运行来生成新的公共 uuid"
 
-#: smoltFirstBoot.py:38 smoltFirstBoot.py:39
+#: smoltFirstBoot.py:38
+#: smoltFirstBoot.py:39
 msgid "Hardware Profile"
-msgstr "硬件配置"
+msgstr "硬件信息"
 
 #: smoltFirstBoot.py:56
 msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "您确定不发送配置文件吗？对于我们的开发来说，提交您的配置是很有价值的信息来源，这可以帮助我们解决您的硬件方面的问题。"
+msgstr "您确定不打算发送硬件信息吗？提交您的硬件信息对我们的开发工作来说是很有价值的信息源，并有助于解决您的硬件可能碰到的问题。"
 
 #: smoltFirstBoot.py:64
 msgid "_Reconsider sending"
-msgstr "重新考虑发送"
+msgstr "重新考虑发送（_R）"
 
 #: smoltFirstBoot.py:65
 msgid "_No, do not send."
-msgstr "不，不发送。"
+msgstr "不，不发送（_N)。"
 
 #: smoltFirstBoot.py:92
 msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt 是 Fedora 项目的一个硬件配置工具。提交您的硬件配置是对社区的重要回馈，因为这些信息可以用来帮助我们确认流行的硬件和平台。提交是匿名的。发送您的配置将启用每月的更新。"
+msgstr "Smolt 是 Fedora 项目的硬件信息收集工具。提交您的硬件信息是对社区反馈的极好方法，因为这些信息将有助于我们把精力集中到现时流行的硬件及平台上。提交是匿名的。发送您的硬件信息将会启用月度的更新。"
 
 #: smoltFirstBoot.py:119
 msgid "_Participate in KernelOOPS"
-msgstr ""
+msgstr "参与 KernelOOPS（_P）"
 
 #: smoltFirstBoot.py:120
 msgid "Submit profile link to _Bodhi"
-msgstr ""
+msgstr "将信息连接提交到 Bodhi（_B）"
 
 #: smoltFirstBoot.py:122
 msgid "_Send Profile"
-msgstr "发送配置文件"
+msgstr "发送硬件信息（_S）"
 
 #: smoltFirstBoot.py:123
 msgid "D_o not send profile"
-msgstr "不要发送配置文件"
+msgstr "不发送硬件信息（_o）"
 
 #: smoltGui.py:92
 msgid "Smolt"
-msgstr ""
+msgstr "Smolt"
 
 #: smoltGui.py:97
-#, fuzzy
 msgid "&File"
-msgstr "文件（_F）"
+msgstr "&文件"
 
 #: smoltGui.py:98
-#, fuzzy
 msgid "&Help"
-msgstr "帮助（_H）"
+msgstr "&帮助"
 
 #: smoltGui.py:101
-#, fuzzy
 msgid "&Send Profile"
-msgstr "发送配置文件"
+msgstr "&发送硬件信息"
 
 #: smoltGui.py:102
-#, fuzzy
 msgid "&My Smolt Page"
-msgstr "我的 Smolt 页（_M）"
+msgstr "&我的 Smolt 页面"
 
 #: smoltGui.py:103
 msgid "&Exit"
-msgstr ""
+msgstr "&退出"
 
 #: smoltGui.py:104
-#, fuzzy
 msgid "Show &Privacy Policy"
-msgstr "显示隐私策略"
+msgstr "显示 &隐私策略"
 
 #: smoltGui.py:105
-#, fuzzy
 msgid "&About"
-msgstr "关于"
+msgstr "&关于"
 
 #: smoltGui.py:106
-#, fuzzy
 msgid "About &Qt"
-msgstr "关于"
+msgstr "关于 &Qt"
 
 #: smoltGui.py:120
 msgid "Main Tool Bar"
-msgstr ""
+msgstr "主工具条"
 
 #: smoltGui.py:170
 msgid "No distribution-specific data yet"
-msgstr ""
+msgstr "还没有发行版专有数据"
 
-#: smoltGui.py:175 smoltGui.py:238
-#, fuzzy
+#: smoltGui.py:175
+#: smoltGui.py:238
 msgid "Error"
-msgstr "错误："
+msgstr "错误"
 
 #: smoltGui.py:239
 msgid "An error occurred while sending the data to the server."
-msgstr "发送数据至服务器时出现错误。"
+msgstr "向服务器发送数据时出错。"
 
 #: smoltGui.py:246
 msgid "Profile Sent"
-msgstr ""
+msgstr "硬件信息发送"
 
 #: smoltGui.py:247
 #, python-format
 msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
-msgstr ""
+msgstr "<b>您的硬件信息已成功发送！</b><br>\t\t\t\t<br>\t\t\t\t您的硬件信息位于：<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\t您的硬件信息管理密码是：<br><i>%(password)s</i>"
 
 #: smoltGui.py:270
-#, fuzzy
 msgid "Privacy Policy"
-msgstr "显示隐私策略"
+msgstr "隐私策略"
 
 #: smoltGui.py:284
 #, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
-msgstr ""
+msgstr "<h3>Smolt Qt</h3>版本 %(version)s<br/>"
 
 #: smoltGui.py:285
 msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
-msgstr ""
+msgstr "<br/>Smolt Qt 是一个将 Smolt 硬件信息提交 \t\t\t\t到 Smoon 服务器的 Smolt 图形用户界面客户端。<br/>"
 
 #: smoltGui.py:288
 msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr ""
+msgstr "<b>关于 Smolt：</b><br/>smolt 硬件信息工具是一个 服务器-客户端 \t\t\t\t系统，它对计算机进行硬件扫描并将结果发送 \t\t\t\t至 Fedora 项目的  turbogears 公共服务器上。发送是匿名进行的 \t\t\t\t并且不会包含除\t\t\t\t硬件信息及基本系统信息外的其它任何隐私信息。<br/>"
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
-msgstr ""
+msgstr "<b>作者：</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:296
 #, python-format
 msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr ""
+msgstr "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>许可：</b><br>\t\t\t\t本程序为自由软件；您可以按照 \t\t\t\t自由软件基金会发布的 GNU 通用公共许可证 \t\t\t\t第三版，或（根据您的选择）任何后续版本的条款对本程序进行重新发布及/或 \t\t\t\t修改。"
 
 #: smolt.py:362
 #, python-format
 msgid "Could not contact server: %s"
-msgstr "不能够连接服务器：%s"
+msgstr "无法连接服务器：%s"
 
 #: smolt.py:412
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr "无法绑定到 dbus。dbus 正在运行吗？"
+msgstr "无法绑定到 dbus。dbus 是否正在运行？"
 
 #: smolt.py:418
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
 msgstr ""
-"无法连接到 hal，它是否正在运行？\n"
-"请以根用户身份运行 \"service haldaemon start\" "
+"无法连接 hal，是否在运行？\n"
+"以 root 用户运行 \"service haldaemon start\""
 
 #: smolt.py:507
 msgid ""
 "\tYour pub_uuid could not be written.\n"
 "\n"
 msgstr ""
+"\t无法写入您的 pub_uuid。\n"
+"\n"
 
 #: smolt.py:516
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
 msgstr ""
 
-#: smolt.py:536 smolt.py:579 smolt.py:609
+#: smolt.py:536
+#: smolt.py:579
+#: smolt.py:609
 #, python-format
 msgid "Error contacting Server: %s"
-msgstr "连接服务器错误：%s"
+msgstr "连接服务器出错：%s"
 
-#: smolt.py:545 smolt.py:596
+#: smolt.py:545
+#: smolt.py:596
 msgid "Wrong version, server incapable of handling your client"
-msgstr "错误版本，服务器无法处理您的客户端"
+msgstr "版本错误，服务器无法处理您的客户端"
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
 msgstr ""
 
 #: smolt.py:589
-#, fuzzy, python-format
+#, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "发送数据至服务器时出现错误。"
+msgstr "连接到服务器时出错：%s"
 
-#: smolt.py:618 smolt.py:691
+#: smolt.py:618
+#: smolt.py:691
 msgid "OS"
-msgstr "OS"
+msgstr "操作系统"
 
-#: smolt.py:619 smolt.py:692
+#: smolt.py:619
+#: smolt.py:692
 msgid "Default run level"
-msgstr "缺省的运行级别"
+msgstr "默认运行级别"
 
-#: smolt.py:620 smolt.py:693
+#: smolt.py:620
+#: smolt.py:693
 msgid "Language"
 msgstr "语言"
 
 #: smolt.py:677
-#, fuzzy
 msgid "Filesystem Information"
-msgstr "启用调试信息"
+msgstr "文件系统信息"
 
 #: smolt.py:690
 msgid "UUID"
@@ -561,7 +572,7 @@ msgstr "BogoMIPS"
 
 #: smolt.py:696
 msgid "CPU Vendor"
-msgstr "CPU 供应商"
+msgstr "CPU 制造商"
 
 #: smolt.py:697
 msgid "CPU Model"
@@ -573,12 +584,12 @@ msgstr ""
 
 #: smolt.py:699
 msgid "CPU Family"
-msgstr ""
+msgstr "CPU 家族"
 
 #: smolt.py:700
 #, fuzzy
 msgid "CPU Model Num"
-msgstr "CPU 型号"
+msgstr "CPU 型号代号"
 
 #: smolt.py:701
 msgid "Number of CPUs"
@@ -586,7 +597,7 @@ msgstr "CPU 数量"
 
 #: smolt.py:702
 msgid "CPU Speed"
-msgstr "CPU 速度"
+msgstr "CPU 频率"
 
 #: smolt.py:703
 msgid "System Memory"
@@ -598,15 +609,15 @@ msgstr "系统交换空间"
 
 #: smolt.py:705
 msgid "Vendor"
-msgstr "供应商"
+msgstr "制造商"
 
 #: smolt.py:706
 msgid "System"
-msgstr "系统"
+msgstr "计算机"
 
 #: smolt.py:707
 msgid "Form factor"
-msgstr "Form factor"
+msgstr ""
 
 #: smolt.py:708
 msgid "Kernel"
@@ -614,25 +625,24 @@ msgstr "内核"
 
 #: smolt.py:709
 msgid "SELinux Enabled"
-msgstr "启用 SELinux"
+msgstr "SELinux 启用"
 
 #: smolt.py:710
-#, fuzzy
 msgid "SELinux Policy"
-msgstr "强制 SELinux"
+msgstr "SELinux 策略"
 
 #: smolt.py:711
 msgid "SELinux Enforce"
-msgstr "强制 SELinux"
+msgstr "SELinux Enforce"
 
 #: smolt.py:1180
 msgid "Unable to save UUID, continuing...\n"
-msgstr "无法保存 UUID，继续...\n"
+msgstr "无法保存 UUID，继续…… \n"
 
 #: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
-msgstr ""
+msgstr "无法创建您的 UUID 文件：%s \n"
 
 #: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
@@ -641,72 +651,13 @@ msgstr "无法确定系统 UUID！\n"
 #: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
-msgstr ""
+msgstr "确定公共 UUID 时出错：%s"
 
 #: smolt.py:1204
-#, fuzzy
 msgid "Unable to determine Public UUID!\n"
-msgstr "无法确定系统 UUID！\n"
+msgstr "无法确定公共 UUID！\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "无法确定运行级别"
 
-#~ msgid "y"
-#~ msgstr "y"
-
-#, fuzzy
-#~ msgid ""
-#~ "The data was successfully sent. If you need to refer to your hardware profile for a bug report your UUID is \n"
-#~ "%s\n"
-#~ "stored in %s"
-#~ msgstr ""
-#~ "数据被成功地发送了。如果您需要为 bug 报告而参考您的硬件配置，您的 UUID 是\n"
-#~ "%s\n"
-#~ "保存在 %s"
-
-#~ msgid "_Quit"
-#~ msgstr "退出"
-
-#~ msgid "Quit the program without sending your hardware profile to the server"
-#~ msgstr "直接退出而不发送您的配置到服务器"
-
-#~ msgid "_Send"
-#~ msgstr "发送"
-
-#~ msgid "Send your hardware profile to the server."
-#~ msgstr "把您的配置发送到服务器。"
-
-#~ msgid "Show the Smolt privacy policy."
-#~ msgstr "显示 Smolt 隐私策略。"
-
-#~ msgid "Take me to my smolt profile page"
-#~ msgstr "进入 smolt 侧写页"
-
-#~ msgid "Smolt Privacy Policy"
-#~ msgstr "Smolt 隐私策略"
-
-#~ msgid "translator-credits"
-#~ msgstr "译者"
-
-#~ msgid "Fedora hardware profiler."
-#~ msgstr "Fedora 硬件分析工具。"
-
-#~ msgid "Copyright © 2007 Mike McGrath"
-#~ msgstr "版权 © 2007 Mike McGrath"
-
-#~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
-#~ msgstr ""
-#~ "这个程序是一个自由软件，您可以根据自由软件基金发布的 GNU 通用公共许可证（版本 2 或者更新的版本）来重新发布和/或者修改这个软件。\n"
-#~ "\n"
-#~ "发布这个程序是希望它可以有所帮助，但并不确定它会有所帮助，甚至不保证其商用性质或者适用于某个特定的目的。详情请参考 GNU 通用公共许可证。\n"
-#~ "\n"
-#~ "您应该会收到此程序附带的 GNU 通用公共许可证，如果没有收到，请致信自由软件基金公司，675 Mass Ave, Cambridge, MA 02139, USA。"
-
-#~ msgid "Communication with server failed"
-#~ msgstr "与服务器通信失败"
