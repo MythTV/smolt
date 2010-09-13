@@ -1,16 +1,18 @@
 # Translations template for hardware.
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
+# Hajime Taira <htaira@redhat.com>, 2010.
+# Tadashi Jokagi <elf@elf.no-ip.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2010-09-05 01:50+0900\n"
-"Last-Translator: Tadashi Jokagi <elf@elf.no-ip.org>\n"
+"PO-Revision-Date: 2010-09-13 12:48+0900\n"
+"Last-Translator: Hajime Taira <htaira@redhat.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,16 +34,15 @@ msgstr "ログインしてください。"
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr ""
+msgstr "${type} クラスのデバイス"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
 msgstr "合計数"
 
 #: hardware/templates/deviceclass.html:19
-#, python-format
 msgid "% hosts detected ${type}"
-msgstr ""
+msgstr "% のホストを検出 ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -73,11 +74,11 @@ msgstr "ベンダー"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "サブ ベンダー"
+msgstr "サブベンダー"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "サブ デバイス"
+msgstr "サブデバイス"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
@@ -94,11 +95,11 @@ msgstr "総登録デバイス数"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr ""
+msgstr "ユニークデバイス"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr ""
+msgstr "RAWデバイス"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
@@ -115,7 +116,7 @@ msgstr "検索"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
-msgstr "データ セット"
+msgstr "データセット"
 
 #: hardware/templates/report_search.html:53
 msgid "Result Set"
@@ -123,7 +124,7 @@ msgstr "検索セット"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr ""
+msgstr "ショーボックス"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
@@ -131,15 +132,15 @@ msgstr "これを使っていない、もしくは知らない"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr "システムを壊す"
+msgstr "システムに悪影響を及ぼす"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
-msgstr "処理しない"
+msgstr "動作しない"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "サードパーティ ドライバーの要求"
+msgstr "サードパーティーのドライバーが必要"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
@@ -147,11 +148,11 @@ msgstr "動作するが、追加設定が必要"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr ""
+msgstr "このマシンでは動作する"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "全情報の表示"
+msgstr "すべての情報の表示"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
@@ -163,7 +164,7 @@ msgstr "公開 UUID"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
-msgstr "オペレーティング システム"
+msgstr "オペレーティングシステム"
 
 #: hardware/templates/show.html:44
 msgid "Platform"
@@ -171,11 +172,11 @@ msgstr "プラットフォーム"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr "システム ベンダー"
+msgstr "システムベンダー"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr "システム モデル"
+msgstr "システムモデル"
 
 #: hardware/templates/show.html:47
 #: hardware/templates/stats.html:180
@@ -184,15 +185,15 @@ msgstr "カーネル"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr "フォーム ファクター"
+msgstr "フォームファクター"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
-msgstr ""
+msgstr "最終更新日"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr "管理パスワード"
+msgstr "管理者パスワード"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
@@ -212,32 +213,31 @@ msgstr "総登録ホスト"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr "総 bogomips"
+msgstr "総 bogomips 値"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr "総プロセッサー"
+msgstr "総プロセッサー数"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr "総 Mhz"
+msgstr "総クロック数 (MHz)"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr "アーキテクチャ"
+msgstr "アーキテクチャー"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr "アーキテクチャ"
+msgstr "アーキテクチャー"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
 msgstr "件数"
 
 #: hardware/templates/stats.html:40
-#, python-format
 msgid "% of total"
-msgstr ""
+msgstr "%"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
@@ -245,7 +245,7 @@ msgstr "OS"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr "ラン レベル"
+msgstr "ランレベル"
 
 #: hardware/templates/stats.html:79
 msgid "Language"
@@ -273,7 +273,7 @@ msgstr "速度 (MHz)"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "CPU 数"
+msgstr "CPU数 (論理コア)"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
@@ -281,11 +281,11 @@ msgstr "CPU ベンダー"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr "Bogomips"
+msgstr "Bogomips値"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr "フォーム ファクター"
+msgstr "フォームファクター"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -305,7 +305,7 @@ msgstr "SELinux のポリシー"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
-msgstr "ファイル システム"
+msgstr "ファイルシステム"
 
 #: hardware/templates/stats.html:242
 msgid "Filesystem size"
@@ -313,15 +313,15 @@ msgstr "ファイルシステムのサイズ"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
-msgstr ""
+msgstr "Myth ロール"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr ""
+msgstr "Myth リモート"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr ""
+msgstr "Myth テーマ"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
@@ -329,7 +329,7 @@ msgstr "プロフィール UUID の入力"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
-msgstr "統計"
+msgstr "統計情報"
 
 #: hardware/templates/welcome.html:17
 msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
@@ -345,5 +345,5 @@ msgstr "追加情報"
 
 #: hardware/templates/welcome.html:25
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
+msgstr "<p>特定のデバイスの詳細な情報を得るために <a href='/wiki/'>Wiki</a> を検索したい場合、汎用的な使用方法と他の一般的な答えは、<a href='/wiki/'>Wiki</a> にまとめてあります。</p>"
 
