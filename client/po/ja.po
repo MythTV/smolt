@@ -4,14 +4,15 @@
 # Noriko Mizumoto <noriko@redhat.com>, 2007.
 # Makoto Mizukami <mmk9060@aol.com>, 2008.
 # Tadashi Jokagi <elf@elf.no-ip.org>, 2010.
+# Hajime Taira <htaira@redhat.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master.ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2010-09-08 02:21+0900\n"
-"Last-Translator: Tadashi Jokagi <elf@elf.no-ip.org>\n"
+"PO-Revision-Date: 2010-09-14 08:21+0900\n"
+"Last-Translator: Hajime Taira <htaira@redhat.com>\n"
 "Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -182,12 +183,11 @@ msgstr "\tエラッタが発見されました!"
 
 #: scan.py:91
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "\tエラッタは発見されませんでした。このマシンに問題がある場合はこちら:"
+msgstr "\tErrataは発見されませんでした。このマシンに問題がある場合は"
 
 #: scan.py:92
-#, fuzzy
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "あなたのプロフィールに行き、そのデバイスの wiki ページを作成して、他の人が"
+msgstr "\tあなたのプロフィールに行き、他の人がそのデバイスに使えるように Wiki ページを作成してください。"
 
 #: scan.py:93
 msgid "\tbenefit"
@@ -641,7 +641,6 @@ msgstr "ラン レベルを確認できません"
 #~ msgid "y"
 #~ msgstr "y"
 
-#, fuzzy
 #~ msgid ""
 #~ "The data was successfully sent. If you need to refer to your hardware "
 #~ "profile for a bug report your UUID is \n"
