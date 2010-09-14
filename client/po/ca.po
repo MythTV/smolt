@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2010-09-14 17:31+0100\n"
+"PO-Revision-Date: 2010-09-14 22:32+0100\n"
 "Last-Translator: Robert Antoni Buj Gelonch <robert.buj@gmail.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -237,7 +237,7 @@ msgstr "Error:"
 #: scan.py:103
 #: smolt.py:1159
 msgid "Hint:"
-msgstr "Consell"
+msgstr "Consell:"
 
 #: sendProfile.py:53
 #: smoltGui.py:327
@@ -304,7 +304,7 @@ msgstr "(v)isualitza els detalls de la informació recollida?"
 
 #: sendProfile.py:175
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "Voleu (e)nviar aquesta informació al servidor Smolt? (o [s] per si)"
+msgstr "Voleu (e)nviar aquesta informació al servidor Smolt? (o [s] per sí)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
@@ -334,7 +334,7 @@ msgstr "S'està sortint..."
 
 #: sendProfile.py:217
 msgid "s|y|yes"
-msgstr "e|s|si"
+msgstr "e|s|si|sí"
 
 #: sendProfile.py:220
 msgid "q|n|no"
@@ -405,7 +405,7 @@ msgstr "_Participeu a KernelOOPS"
 
 #: smoltFirstBoot.py:120
 msgid "Submit profile link to _Bodhi"
-msgstr "Envia l'enlla&ccedil; del perfil a _Bodhi"
+msgstr "Envia l'enllaç del perfil a _Bodhi"
 
 #: smoltFirstBoot.py:122
 msgid "_Send Profile"
@@ -587,31 +587,31 @@ msgstr "BogoMIPS"
 
 #: smolt.py:696
 msgid "CPU Vendor"
-msgstr "Fabricant de la CPU"
+msgstr "Fabricant del processador"
 
 #: smolt.py:697
 msgid "CPU Model"
-msgstr "Model de CPU"
+msgstr "Model del processador"
 
 #: smolt.py:698
 msgid "CPU Stepping"
-msgstr "Revisió de CPU"
+msgstr "Revisió del processador"
 
 #: smolt.py:699
 msgid "CPU Family"
-msgstr "Versió de CPU"
+msgstr "Família del processador"
 
 #: smolt.py:700
 msgid "CPU Model Num"
-msgstr "Número de model de CPU"
+msgstr "Número de model del processador"
 
 #: smolt.py:701
 msgid "Number of CPUs"
-msgstr "Nombre de CPU"
+msgstr "Número de processadors"
 
 #: smolt.py:702
 msgid "CPU Speed"
-msgstr "Velocitat de la CPU"
+msgstr "Velocitat del processador"
 
 #: smolt.py:703
 msgid "System Memory"
