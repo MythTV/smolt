@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: smolt.master.ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2010-09-14 08:21+0900\n"
+"PO-Revision-Date: 2010-09-14 18:26+0900\n"
 "Last-Translator: Hajime Taira <htaira@redhat.com>\n"
 "Language-Team: Japanese <fedora-trans-ja@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgid "Description"
 msgstr "説明"
 
 #: privacypolicy.py:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
@@ -136,13 +136,35 @@ msgid ""
 "<br>\n"
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
+"<span></span>\n"
 "Smolt はハードウェア情報および基本のオペレーティングシステム情報しか Fedora smolt \n"
-"サーバー (smoon) に送信しません。 データベースと送信者のマシンとのつながりは UUID \n"
+"サーバー (smoon) に送信しません。 smolt のデータベースと送信者のマシンとのつながりは UUID \n"
 "だけです。 送信者がこの UUID を送信しない限り、 この送信は anonymous です。 \n"
 "ユーザーがデータベースからプロフィールを削除したい場合は、 その時点で次を実行する\n"
 "だけです。\n"
-"\n"
-"    smoltDeleteProfile\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smolt プロファイルの削除</tt><br>\n"
+"<br>\n"
+"誰でも統計、データとマシンプロファイルを見ることができるという点で smolt データベースサーバーに\n"
+"送ったデータは公になっていると思わなければなりません。\n"
+"様々な点で、smolt はハードウェアベンダーと他の第三者から情報が入手できるようになっています。\n"
+"そのように、意志だけでなくこの情報が第三者と共有されること、我々は力としての smolt をオープンソース\n"
+"ドライバーとより良いサポートを行うために用いられています。\n"
+"我々は、オープンソースドライバーのより良いサポートと大方のより良い支持を得る力として、\n"
+"smolt を使っています。<br>\n"
+"<br>\n"
+"IP ロギング: Fedora smolt のインストールにおいて、すべてのWebトラフィックは、最初にプロキシサーバーに\n"
+"よって行きます。プロキシサーバーが IP アドレスが記録されている唯一のところです。そして、4週間ごとにログが\n"
+"ロテートされるようになっておりログが削除されます。Fedora Projectは、IPアドレスを smolt データベースで\n"
+"紐づけることはありません。これらのログはプライベートなもので一般に公開されることはありません。<br>\n"
+"<br>\n"
+"この方針に不満を抱いているユーザーは、smolt を使用してはなりません。この方針についての質問をもつユーザーは、\n"
+"Fedora Infrastructure チーム<a href=\"mailto:%(mail)s\">%(mail)s</a>に連絡しなければなりません。\n"
+"また、ユーザーがいつでも smolt のマシンプロファイルを削除することができることを思い出してください<br>\n"
+"<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smolt プロファイルの削除</tt><br>\n"
+"<br>\n"
+"我々のプライバシーポリシーに対して、関心を持ってくれてありがとう。\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
@@ -170,7 +192,7 @@ msgstr "処理には追加の設定が必要です"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr ""
+msgstr "このシステムでは動作した"
 
 #: scan.py:58
 #, python-format
@@ -455,7 +477,7 @@ msgstr "<br/>Smolt Qt は Smolt サーバーへハードウェアの Smolt プ�
 
 #: smoltGui.py:288
 msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr ""
+msgstr "<b>Smolt について:</b><br/>smolt はクライアントサーバーシステムのハードウェアプロファイラーです。\t\t\t\tシステムから情報を抜き出して、その結果を送ることができます。\t\t\t\tその情報をインターネット上のFedora Project turbogearsサーバーを送ります。\t\t\t\t送信された情報は匿名で扱われ、物理的なハードウェア情報と基本的なOS情報以外、つまり個人情報は含んではいけません。<br />"
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
@@ -464,7 +486,7 @@ msgstr "<b>開発者:</b><br/>Carlos Goncalves &lt;mail@cgoncalves.info&gt;"
 #: smoltGui.py:296
 #, python-format
 msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr ""
+msgstr "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
 
 #: smolt.py:362
 #, python-format
@@ -510,7 +532,7 @@ msgstr "バージョンがおかしいです。サーバーはご使用のクラ
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
-msgstr ""
+msgstr "何かがトークンを取ってきてうまくいかなかったです"
 
 #: smolt.py:589
 #, python-format
