@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2010-08-29 05:07+0100\n"
+"PO-Revision-Date: 2010-09-14 16:56+0100\n"
 "Last-Translator: Robert Antoni Buj Gelonch <robert.buj@gmail.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr "Les credencials que vàreu proporcionar no són correctes o bé no garan
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr ""
+msgstr "Abans d'accedir a aquest recurs, primer heu de proporcionar les vostres credencials."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
@@ -39,7 +39,7 @@ msgstr "Quantitat total"
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr ""
+msgstr "% hosts ${type} detectats"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -145,7 +145,7 @@ msgstr "Funciona, però necessita configuració addicional"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr ""
+msgstr "Ha funcionat for de l'encaixament"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
@@ -153,7 +153,7 @@ msgstr "Mostra tota la informació"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr ""
+msgstr "Classificació general:"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
@@ -182,7 +182,7 @@ msgstr "Nucli"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr ""
+msgstr "Format de placa mare"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
@@ -283,7 +283,7 @@ msgstr "Bogomips"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr ""
+msgstr "Format de placa mare"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -295,11 +295,11 @@ msgstr "SELinix habilitat"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "Compliment de SELinux"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr ""
+msgstr "Política de SELinux"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
@@ -331,7 +331,7 @@ msgstr "Estadístiques"
 
 #: hardware/templates/welcome.html:17
 msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
-msgstr ""
+msgstr "Per a estadístiques detallades quant als dispositius de la base de dades dirigiu-vos a<a href='/static/stats/stats.html'>/stats</a> o a <a href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
@@ -343,5 +343,5 @@ msgstr "Més informació"
 
 #: hardware/templates/welcome.html:25
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
+msgstr "<p>Navegueu i cerqueu en la <a href='/wiki/'>Wiki</a> per a informació detallada quant a dispositius concrets. La utilització i altres respostes generals també també pot estar disponible en la <a href='/wiki/'>Wiki</a>.</p>"
 
