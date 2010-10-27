@@ -1,34 +1,33 @@
 # translation of smolt.master.po to
 # Translation of smolt to Dutch
 # Copyright (C) 2007, 2008 Free Software Foundation, Inc.
-#
-#
 # Peter van Egdom <p.van.egdom@gmail.com>, 2007, 2008.
 # Bart Couvreur <couf@fedoraproject.org>, 2008.
-# Geert Warrink <geert.warrink@onsnet.nu>, 2009.
-# Geert Warrink <geert.warrink@onsnet.nu>, 2009.
+# Geert Warrink <geert.warrink@onsnet.nu>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-09-07 17:42+0200\n"
+"PO-Revision-Date: 2010-08-26 15:33+0200\n"
 "Last-Translator: Geert Warrink <geert.warrink@onsnet.nu>\n"
-"Language-Team: nl <nl@li.org>\n"
+"Language-Team: Fedora\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding:  \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.6.1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: deleteProfile.py:36 smolt.py:360
 #, python-format
 msgid "Server Message: \"%s\""
-msgstr "Servermelding: \"%s\""
+msgstr "Server boodschap: \"%s\""
 
 #: deleteProfile.py:46 sendProfile.py:48
 msgid "enable debug information"
-msgstr "Debug-informatie aanzetten"
+msgstr "Debug informatie aanzetten"
 
 #: deleteProfile.py:51 sendProfile.py:58
 #, python-format
@@ -52,7 +51,8 @@ msgstr "geef HTTP timeout in seconden op (standaard %default seconden)"
 #: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
 msgstr ""
-"geef te gebruiken UUID op, voornamelijk nuttig voor debuggen en testen."
+"specificeer de te gebruiken uuid, voornamelijk nuttig voor debuggen en "
+"testen."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -84,15 +84,15 @@ msgstr "Bus"
 
 #: gui.py:116
 msgid "Driver"
-msgstr "Stuurprogramma"
+msgstr "Driver"
 
 #: gui.py:117
 msgid "Type"
-msgstr "Soort"
+msgstr "Type"
 
 #: gui.py:118
 msgid "Description"
-msgstr "Omschrijving"
+msgstr "Beschrijving"
 
 #: privacypolicy.py:3
 #, python-format
@@ -139,36 +139,36 @@ msgid ""
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
 "<span></span>\n"
-"Smolt zend enkel informatie over de hardware en het besturingssysteem naar "
-"de\n"
-"Fedora smolt server (smoon).  Het enige verband tussen de database en de "
-"machine \n"
-"van de eigenaar is de UUID.  Zolang de eigenaar deze UUID niet distribueert "
+"Smolt stuurt slechts hardware en basis besturingssysteem informatie naar de\n"
+"Fedora smolt server (smoon). Het enige verband tussen de database en de "
+"machine\n"
+"van de eigenaar is de UUID. Zolang de eigenaar deze UUID niet distribueert "
 "is de\n"
-"toevoeging op anonieme basis.  Als een gebruiker zijn profiel op elk moment "
-"uit de\n"
-"database wil wissen, moet enkel<br>\n"
+"toevoeging op anonieme basis. Als een gebruiker op enig moment zijn profiel "
+"uit de database\n"
+"wil wissen, moet enkel<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
-"uitgevoerd worden.\n"
 "<br>\n"
+"uitgevoerd worden.\n"
 "De informatie die verstuurd wordt naar de smolt database server moet als "
 "publiek\n"
-"beschouwd worden aangezien iedereen de statistieken en de data kan bekijken "
-"en\n"
-"profielen kan uitwisselen.  Smolt is ontwikkeld om de hardware fabrikanten "
-"en andere\n"
-"partijen te informeren.  Daarom zal deze informatie gedeeld worden met die "
-"partijen om\n"
-"een betere ondersteuning te vragen voor open source drivers en support.<br>\n"
+"beschouwd worden aangezien iedereen statistieken, data en gedeelde machine "
+"profielen kan bekijken.\n"
+"Op een aantal manieren werd smolt ontwikkeld om de aandacht van hardware "
+"leveranciers en andere\n"
+"partijen te krijgen. Daarom zal deze informatie niet alleen gedeeld worden "
+"met die partijen,\n"
+"maar zullen we smolt ook gebruiken om een betere ondersteuning te vragen "
+"voor open bron drivers en betere ondersteuning in het algemeen.<br>\n"
 "<br>\n"
-"Loggen van IP:  Fedora's smolt is zodanig geïnstalleerd dat alle data eerst "
+"Loggen van IP: Fedora's smolt is zodanig geïnstalleerd dat alle data eerst "
 "door een\n"
-"proxy server gaat.  Dit is de enigste plaats waar IP adressen worden gelogd "
+"proxy server gaat. Dit is de enigste plaats waar IP adressen worden gelogd "
 "en bijgehouden\n"
-"voor een periode van 4 weken, waarna log rotation deze logs verwijdert.  Het "
+"voor een periode van 4 weken, waarna log rotatie deze logs verwijdert. Het "
 "Fedora\n"
-"project houdt geen IP adressen bij in de smolt database.  Deze logs zijn "
+"project houdt geen IP adressen bij in de smolt database. Deze logs zijn "
 "privé en\n"
 "worden niet vrijgegeven aan het publiek.<br>\n"
 "<br>\n"
@@ -176,13 +176,13 @@ msgstr ""
 "gebruiken.\n"
 "Gebruikers met vragen over deze werkwijze kunnen steeds het Fedora "
 "Infrastructure Team\n"
-"contacteren op <a href=\"mailto:%(mail)s\">%(mail)s</a>.  Gebruikers kunnen "
-"hun profiel steeds\n"
-"verwijderen met<br>\n"
+"contacteren op <a href=\"mailto:%(mail)s\">%(mail)s</a>. Denk er ook aan dat "
+"gebruikers kunnen hun profiel\n"
+"op elk moment kunnen verwijderen met<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
-"Bedankt voor het deelnemen en je interesse voor onze privacy richtlijnen.\n"
+"Bedankt voor de deelname en voor jouw interesse in onze privacy tactiek.\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
@@ -190,7 +190,7 @@ msgstr "Huidige waardebepaling voor verkoper/model."
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr "Waarde nog niet bepaald / Onbekend"
+msgstr "Niet bepaald/Onbekend"
 
 #: scan.py:46
 msgid "Non-working"
@@ -206,7 +206,7 @@ msgstr "Vereist drivers van derden"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr "Werkt, heef extra instelling nodig"
+msgstr "Werkt, heeft extra configuratie nodig"
 
 #: scan.py:50
 msgid "Works out of the box"
@@ -215,7 +215,7 @@ msgstr "Werkt recht uit de doos"
 #: scan.py:58
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr "Scannen van %s voor bekende hardware-errata.\n"
+msgstr "Scannen van %s voor bekende errata.\n"
 
 #: scan.py:88
 msgid "\tErrata Found!"
@@ -223,15 +223,15 @@ msgstr "\tErrata gevonden!"
 
 #: scan.py:91
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "\tGeen errata gevonden. Als deze machine problemen heeft, ga"
+msgstr "\tGeen errata gevonden, als deze machine problemen heeft ga je naar"
 
 #: scan.py:92
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "\tdan naar uw profiel en maak een wiki-pagina aan voor het apparaat"
+msgstr "\tjouw profiel en maak een wiki pagina aan voor het apparaat"
 
 #: scan.py:93
 msgid "\tbenefit"
-msgstr "\tin kwestie zodat anderen daar profijt van hebben"
+msgstr "\tzodat anderen daar profijt van hebben"
 
 #: scan.py:101 smolt.py:1157
 msgid "Error:"
@@ -244,7 +244,7 @@ msgstr "Hint:"
 #: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
 msgstr ""
-"specifeer de locatie van het (enigste) configuratie bestand dat gebruikt "
+"specificeer de locatie van het (enigste) configuratie bestand dat gebruikt "
 "wordt"
 
 #: sendProfile.py:63
@@ -268,20 +268,20 @@ msgid ""
 "this is an automated checkin, will only run if the \"smolt\" service has "
 "been started"
 msgstr ""
-"dit is een geautomatiseerde checkin, wordt alleen uitgevoerd als de \"smolt"
-"\" service opgestart is"
+"dit is een geautomatiseerde checkin, wordt alleen uitgevoerd als de \"smolt\" "
+"service opgestart is"
 
 #: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
 msgstr ""
-"deze machine alleen scannen naar bekende hardware-errata, profiel niet "
+"deze machine alleen scannen naar bekende hardware errata, profiel niet "
 "verzenden."
 
 #: sendProfile.py:108
 msgid "do not scan this machine for know hardware errata, only submit profile."
 msgstr ""
-"deze machine niet scannen voor bekende hardware-errata, verzend alleen "
-"profiel."
+"deze machine niet scannen voor bekende hardware errata, alleen profiel "
+"verzenden."
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
@@ -295,13 +295,13 @@ msgstr "HTTP proxy"
 msgid ""
 "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr ""
-"Smolt is ingesteld om in te checken, maar checkins zijn uitgeschakeld (hint: "
+"Smolt is ingesteld om in te checken, maar inchecken is uitgezet (hint: "
 "service smolt start)"
 
 #: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
-msgstr "Succes!  Je nieuwe publieke UUID is: %s"
+msgstr "Succes!  Jouw nieuwe publieke UUID is: %s"
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
@@ -313,15 +313,15 @@ msgstr "Wil je .."
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
-msgstr "Details over de _verzamelde informatie bekijken?"
+msgstr "(b)ekijk details over de verzamelde gegevens?"
 
 #: sendProfile.py:175
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "Deze informatie naar de Smolt-server ver_sturen? (of [j] voor ja)"
+msgstr "(s)tuur deze informatie naar de Smolt server? (of [j] voor ja)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr "S_molt verlaten?  (of [n] voor nee)"
+msgstr "(v)erlaat Smolt? (of [n] voor nee)"
 
 #: sendProfile.py:178 smolt.py:669
 msgid "Devices"
@@ -337,7 +337,7 @@ msgstr "Distributie specifiek"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr "Jouw keuze (s,v,m,j,n):"
+msgstr "Jouw keuze (b/j/n/s/v/):"
 
 #: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
@@ -349,11 +349,11 @@ msgstr "s|j|ja"
 
 #: sendProfile.py:220
 msgid "q|n|no"
-msgstr "m|n|nee"
+msgstr "v|n|nee"
 
 #: sendProfile.py:222
 msgid "v"
-msgstr "v"
+msgstr "b"
 
 #: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
@@ -369,7 +369,7 @@ msgstr "Wachtwoord:"
 
 #: sendProfile.py:265
 msgid "Registration Failed, Try again"
-msgstr "Registratie mislukte, probeer het opnieuw"
+msgstr "Registratie is mislukt. Probeer het opnieuw"
 
 #: sendProfile.py:276
 #, python-format
@@ -377,24 +377,24 @@ msgid ""
 "To share your profile: \n"
 "\t%s (public)"
 msgstr ""
-"Om je profiel te delen: \n"
+"Om jouw profiel te delen: \n"
 "\t%s (publiek)"
 
 #: sendProfile.py:280
 #, python-format
 msgid "\tAdmin Password: %s"
-msgstr " Beheer wachtwoord: %s"
+msgstr "\tBeheer wachtwoord: %s"
 
 #: sendProfile.py:283
 msgid ""
 "No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr ""
-"Geen publieke UUID gevonden!  Draai a.u.b. opnieuw met -n om een nieuwe "
-"publieke uuid aan te maken"
+"Geen publieke UUID gevonden!  Draai opnieuw met -n om een nieuwe publieke "
+"UUID te genereren "
 
 #: smoltFirstBoot.py:38 smoltFirstBoot.py:39
 msgid "Hardware Profile"
-msgstr "Hardwareprofiel"
+msgstr "Hardware profiel"
 
 #: smoltFirstBoot.py:56
 msgid ""
@@ -402,9 +402,9 @@ msgid ""
 "is a valuable source of information for our development and can help "
 "troubleshoot issues that may come up with your hardware."
 msgstr ""
-"Weet je3 zeker dat je het profiel niet wilt verzenden?  Het indienen van "
-"jouw profiel is een waardevolle bron van informatie voor onze ontwikkeling "
-"en kan van dienst zijn bij het verhelpen van problemen met jouw hardware."
+"Weet je zeker dat je het profiel niet wilt verzenden?  Het indienen van jouw "
+"profiel is een waardevolle bron van informatie voor onze ontwikkeling en "
+"kan van dienst zijn bij het verhelpen van problemen met jouw hardware."
 
 #: smoltFirstBoot.py:64
 msgid "_Reconsider sending"
@@ -422,20 +422,20 @@ msgid ""
 "Submissions are anonymous.  Sending your profile will enable a monthly "
 "update."
 msgstr ""
-"Smolt is een programma voor het registreren van hardwareprofielen voor het "
+"Smolt is een programma voor het registreren van hardware profielen voor het "
 "Fedora Project.  Het indienen van jouw profiel is een goede manier om iets "
 "terug te doen voor de gemeenschap omdat deze informatie wordt gebruikt om "
-"onze inspanningen te helpen concentreren op populaire hardware en "
-"platforms.  De ingediende profielen zijn anoniem.  Het verzenden van jouw "
-"profiel zal een maandelijkse update aanzetten."
+"onze inspanningen te helpen concentreren op populaire hardware en platforms. "
+" De ingediende profielen zijn anoniem.  Het verzenden van jouw profiel zal "
+"een maandelijkse vernieuwing aanzetten."
 
 #: smoltFirstBoot.py:119
 msgid "_Participate in KernelOOPS"
-msgstr "_Deelnemen in KernelOOPS"
+msgstr "_Deelnemen aan KernelOOPS"
 
 #: smoltFirstBoot.py:120
 msgid "Submit profile link to _Bodhi"
-msgstr "Verstuur profiel verwijzing naar _Bodhi"
+msgstr "Verstuur profiel link naar _Bodhi"
 
 #: smoltFirstBoot.py:122
 msgid "_Send Profile"
@@ -471,7 +471,7 @@ msgstr "&Verlaten"
 
 #: smoltGui.py:104
 msgid "Show &Privacy Policy"
-msgstr "&Privacybeleid tonen"
+msgstr "&Privacy beleid tonen"
 
 #: smoltGui.py:105
 msgid "&About"
@@ -483,7 +483,7 @@ msgstr "Over &Qt"
 
 #: smoltGui.py:120
 msgid "Main Tool Bar"
-msgstr "Hoofd menu balk"
+msgstr "Hoofd gereedschap balk"
 
 #: smoltGui.py:170
 msgid "No distribution-specific data yet"
@@ -496,12 +496,11 @@ msgstr "Fout"
 #: smoltGui.py:239
 msgid "An error occurred while sending the data to the server."
 msgstr ""
-"Er is een fout opgetreden tijdens het verzenden van de gegevens naar de "
-"server."
+"Er is een fout opgetreden tijdens het verzenden van de data naar de server."
 
 #: smoltGui.py:246
 msgid "Profile Sent"
-msgstr "Profiel is verstuurd"
+msgstr "Profiel verzonden"
 
 #: smoltGui.py:247
 #, python-format
@@ -511,14 +510,13 @@ msgid ""
 "a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)"
 "s</i>"
 msgstr ""
-"<b>Je profiel was met succes verzonden!</b><br>\t\t\t\t<br>\t\t\t\tJouw "
-"profielen zijn online beschikbaar op:<br>\t\t\t\t<a href=\"%(url)s\">%(url)"
-"s</a><br>\t\t\t\t<br>\t\t\t\tJouw profiel beheers wachtwoord is:<br><i>%"
-"(password)s</i>"
+"<b>Jouw profiel was succesvol verstuurd!</b><br>\t\t\t\t<br>\t\t\t\tJouw profielen "
+"zijn online beschikbaar op:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>"
+"\t\t\t\tJouw profiel beheer wachtwoord is:<br><i>%(password)s</i>"
 
 #: smoltGui.py:270
 msgid "Privacy Policy"
-msgstr "Privacybeleid"
+msgstr "Privacy beleid"
 
 #: smoltGui.py:284
 #, python-format
@@ -541,12 +539,12 @@ msgid ""
 "\t\t\t\tand should not contain any private information other than the "
 "physical \t\t\t\thardware information and basic OS info.<br/>"
 msgstr ""
-"<b>Over Smolt:</b><br/>De smolt hardware profiler is een server-cliënt \t\t\t"
-"\tsysteem dat een hardware scan uitvoert van een machine en de resultaten "
+"<b>Over Smolt:</b><br/>De smolt hardware profiler is een server-cliënt \t\t\t\t"
+"systeem dat een hardware scan uitvoert van een machine en de resultaten "
 "stuurt \t\t\t\tnaar een publieke Fedora Project turbogears server. De "
 "verzendingen zijn anoniem \t\t\t\ten zullen geen privé informatie bevatten "
-"anders dan de fysieke \t\t\t\thardware informatie en basus besturingssysteem."
-"<br/>"
+"anders dan de fysieke \t\t\t\thardware informatie en basis "
+"besturingssysteem.<br/>"
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
@@ -561,12 +559,11 @@ msgid ""
 "Public License \t\t\t\tas published by the Free Software Foundation; either "
 "version 3 \t\t\t\tof the License, or (at your option) any later version."
 msgstr ""
-"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
-"\t\t\t<b>Licentie:</b><br>\t\t\t\tDit programma is vrije ; je kunt het "
-"herdistribueren en/of \t\t\t\thet veranderen onder de regels van de GNU "
-"General Public License \t\t\t\tzoals gepubliceerd door de Free Software "
-"Foundation; volgens versie 3 \t\t\t\tVan de Licentie, of (naar jouw mening) "
-"eleke latere versie."
+"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t"
+"<b>Licentie:</b><br>\t\t\t\tDit programma is vrije ; je kunt het herdistribueren "
+"en/of \t\t\t\thet veranderen onder de regels van de GNU General Public License "
+"\t\t\t\tzoals gepubliceerd door de Free Software Foundation; volgens versie 3 "
+"\t\t\t\tVan de Licentie, of (naar jouw mening) elke latere versie."
 
 #: smolt.py:362
 #, python-format
@@ -589,12 +586,14 @@ msgstr ""
 msgid ""
 "\tYour pub_uuid could not be written.\n"
 "\n"
-msgstr "\tJe pub_uuid kon niet geschreven worden.\n"
+msgstr ""
+"\tJouw pub_uuid kon niet geschreven worden.\n"
+"\n"
 
 #: smolt.py:516
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr "\tJe admin teken kon niet bewaard worden: %s\n"
+msgstr "\tJouw admin token kon niet bewaard worden: %s\n"
 
 #: smolt.py:536 smolt.py:579 smolt.py:609
 #, python-format
@@ -604,17 +603,16 @@ msgstr "Fout bij het contact opnemen met de server: %s"
 #: smolt.py:545 smolt.py:596
 msgid "Wrong version, server incapable of handling your client"
 msgstr ""
-"Verkeerde versie, de server is niet in staat om je cliënt te behandelen"
+"Verkeerde versie, de server is niet in staat om jouw cliënt te behandelen"
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
-msgstr "Iets ging fout met het ophalen van een teken"
+msgstr "Iets ging fout met het ophalen van een token"
 
 #: smolt.py:589
 #, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr ""
-"Er is een fout opgetreden tijdens het contact opnemen met de server: %s"
+msgstr "Er is een fout opgetreden tijdens het contact opnemen met de server: %s"
 
 #: smolt.py:618 smolt.py:691
 msgid "OS"
@@ -646,39 +644,39 @@ msgstr "BogoMIPS"
 
 #: smolt.py:696
 msgid "CPU Vendor"
-msgstr "Processorfabrikant"
+msgstr "CPU fabrikant"
 
 #: smolt.py:697
 msgid "CPU Model"
-msgstr "Processormodel"
+msgstr "CPU model"
 
 #: smolt.py:698
 msgid "CPU Stepping"
-msgstr "Processor stepping"
+msgstr "CPU Stepping"
 
 #: smolt.py:699
 msgid "CPU Family"
-msgstr "Processor familie"
+msgstr "CPU familie"
 
 #: smolt.py:700
 msgid "CPU Model Num"
-msgstr "Processormodel nummer"
+msgstr "CPU model nummer"
 
 #: smolt.py:701
 msgid "Number of CPUs"
-msgstr "Aantal processoren"
+msgstr "Aantal CPU's"
 
 #: smolt.py:702
 msgid "CPU Speed"
-msgstr "Processorsnelheid"
+msgstr "CPU snelheid"
 
 #: smolt.py:703
 msgid "System Memory"
-msgstr "Systeemgeheugen"
+msgstr "Systeem geheugen"
 
 #: smolt.py:704
 msgid "System Swap"
-msgstr "Systeemwisselgeheugen"
+msgstr "Systeem wisselgeheugen"
 
 #: smolt.py:705
 msgid "Vendor"
@@ -702,7 +700,7 @@ msgstr "SELinux aangezet"
 
 #: smolt.py:710
 msgid "SELinux Policy"
-msgstr "SELinux taktiek"
+msgstr "SELinux tactiek"
 
 #: smolt.py:711
 msgid "SELinux Enforce"
@@ -715,7 +713,7 @@ msgstr "Niet in staat om UUID op te slaan, doorgaan...\n"
 #: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
-msgstr "Je UUID bestand kom niet aangemaakt worden: %s\n"
+msgstr "Jouw UUID bestand kom niet aangemaakt worden: %s\n"
 
 #: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
@@ -728,7 +726,7 @@ msgstr "Fout bij het bepalen van publieke UUID: %s"
 
 #: smolt.py:1204
 msgid "Unable to determine Public UUID!\n"
-msgstr "Niet in staat om publieke UUID vast te stellen!\n"
+msgstr "Niet in staat om UUID van systeem te bepalen!\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"

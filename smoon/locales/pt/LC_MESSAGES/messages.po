@@ -2,33 +2,38 @@
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
-#
+# Rui Gouveia <rui.gouveia@gmail.com>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt.master-smoon.messages\n"
+"Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-09-11 12:19+0100\n"
-"Last-Translator: Sérgio Mesquita <sergiomesquita@cm-porto.pt>\n"
-"Language-Team: pt <fedora-trans-pt@redhat.com>\n"
+"PO-Revision-Date: 2010-08-30 16:42+0100\n"
+"Last-Translator: Rui Gouveia <rui.gouveia@gmail.com>\n"
+"Language-Team: trans-pt@lists.fedoraproject.org\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.6.1\n"
 "Generated-By: Babel 0.9.1\n"
-"X-Poedit-Language: Portuguese\n"
-"X-Poedit-Country: PORTUGAL\n"
 
 #: hardware/controllers/root.py:95
-msgid "The credentials you supplied were not correct or did not grant access to this resource."
-msgstr "As credenciais que forneceu não estavam correctas ou não permitem o acesso a este recurso."
+msgid ""
+"The credentials you supplied were not correct or did not grant access to "
+"this resource."
+msgstr ""
+"As credenciais fornecidas não eram correctas ou não concederam acesso a este "
+"recurso."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr "Tem de fornecer as suas credenciais antes de aceder a a este recurso."
+msgstr "Deve fornecer as suas credenciais antes de aceder a este recurso."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "Inicie sessão."
+msgstr "Por favor, inicie sessão."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
@@ -41,56 +46,53 @@ msgstr "Contagem total"
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr "%d máquinas detectadas ${type}"
+msgstr ""
+"%ho máquinas detectadas ${type} -- NT: BUG. esta string não é utilizada."
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
 msgstr "Fabricantes"
 
-#: hardware/templates/deviceclass.html:34
-#: hardware/templates/devices.html:9
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
 msgstr "Dispositivos"
 
-#: hardware/templates/deviceclass.html:36
-#: hardware/templates/show.html:60
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
 msgid "Device"
 msgstr "Dispositivo"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Bus"
-msgstr "Barramento"
+msgstr "Bus"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Driver"
-msgstr "Driver"
+msgstr "Controlador"
 
-#: hardware/templates/deviceclass.html:36
-#: hardware/templates/stats.html:92
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
 msgid "Vendor"
 msgstr "Fabricante"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "Sub Fabricante"
+msgstr "Sub-fabricante"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "Sub Dispositivo"
+msgstr "Sub-dispositivo"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr "Data Adicionada"
+msgstr "Data de adição"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% tot. máq."
+msgstr "% tot maq."
 
-#: hardware/templates/devices.html:15
-#: hardware/templates/stats.html:19
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr "Total Dispositivos Registados"
+msgstr "Total dispositivos registados"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
@@ -98,20 +100,19 @@ msgstr "Dispositivos únicos"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr "Dispositivos"
+msgstr "Dispositivos raw"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "Máquinas / Dispositivo"
+msgstr "Máquinas / dispositivo"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
 msgstr "Classes"
 
-#: hardware/templates/report_search.html:37
-#: hardware/templates/welcome.html:10
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr "Procurar"
+msgstr "Procura"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
@@ -119,11 +120,11 @@ msgstr "Conjunto de dados"
 
 #: hardware/templates/report_search.html:53
 msgid "Result Set"
-msgstr "Resultados"
+msgstr "Conjunto de resultados"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr "Mostrar Caixa"
+msgstr "Mostrar caixa"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
@@ -131,35 +132,35 @@ msgstr "Eu não utilizo isto ou não sei"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr "Estraga o sistema"
+msgstr "Quebra o sistema"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
-msgstr "Não Funciona"
+msgstr "Não funciona"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "Precisa de Controladores de Terceiros"
+msgstr "Precisa de controladores de terceiros"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "Funciona, mas necessita de configuração adicional"
+msgstr "Funciona, mas precisa de configuração adicional"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr "Funciona \"ao sair da caixa\""
+msgstr "Funciona\tperfeitamente"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "Mostrar toda a informação"
+msgstr "Apresentar toda a informação"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr "Avaliação Geral:"
+msgstr "Classificação global:"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr "UUID Público"
+msgstr "UUID público"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
@@ -171,20 +172,19 @@ msgstr "Plataforma"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr "Fabricante do Sistema"
+msgstr "Fornecedor do sistema"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr "Modelo do Sistema"
+msgstr "Modelo do sistema"
 
-#: hardware/templates/show.html:47
-#: hardware/templates/stats.html:180
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
 msgstr "Kernel"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr "Formfactor"
+msgstr "Dimensões"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
@@ -192,11 +192,11 @@ msgstr "Última modificação"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr "Senha de administração"
+msgstr "Senha do administrador"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
-msgstr "Classificação"
+msgstr "Pontuação"
 
 #: hardware/templates/show.html:60
 msgid "Class"
@@ -208,11 +208,11 @@ msgstr "Estatísticas"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr "Total de Máquinas Registadas"
+msgstr "Total de máquinas registadas"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr "Total de bogomips"
+msgstr "Total bogomips"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
@@ -220,7 +220,7 @@ msgstr "Total de processadores"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr "Total de MHz"
+msgstr "Total MHz"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
@@ -232,7 +232,7 @@ msgstr "Arq."
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr "Contagem"
+msgstr "Contador"
 
 #: hardware/templates/stats.html:40
 #, python-format
@@ -277,19 +277,19 @@ msgstr "Número de CPUs"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr "Fabricante da CPU"
+msgstr "Fabricante do CPU"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr "BogoMIPS"
+msgstr "Bogomips"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr "\"Form Factor\""
+msgstr "Dimensões"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
-msgstr "SELinux"
+msgstr "Selinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
@@ -297,11 +297,11 @@ msgstr "SELinux Activo"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr "SELinux Forçado"
+msgstr "SELinux Obrigatório"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr "Políticas SELinux"
+msgstr "Política do SELinux"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
@@ -317,7 +317,7 @@ msgstr "Perfil Myth"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr "Myth Remoto"
+msgstr "Remoto Myth"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
@@ -325,25 +325,36 @@ msgstr "Tema Myth"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "Insira o seu UUID de perfil:"
+msgstr "Digite o seu UUID de perfil:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
 msgstr "Estatísticas"
 
 #: hardware/templates/welcome.html:17
-msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
-msgstr "Para estatísticas detalhadas sobre os dispositivos na base de dados veja <a href='/static/stats/stats.html'>/stats</a> ou <a href='/static/stats/devices.html'>/devices</a>"
+msgid ""
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
+msgstr ""
+"Para estatísticas detalhadas sobre os dispositivos na base de dados consulte "
+"<a href='/static/stats/stats.html'>/stats</a> ou <a "
+"href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr "Gráfico de Top de Vendedores"
+msgstr "Gráfico dos melhores fabricantes"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr "Mais informações"
+msgstr "Mais informação"
 
 #: hardware/templates/welcome.html:25
-msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr "<p>Navegue e pesquise a <a href='/wiki/'>Wiki</a> para informação detalhada sobre dispositivos específicos. A utilização e outras respostas gerais também podem ser encontradas na <a href='/wiki/'>Wiki</a>.</p>"
-
+msgid ""
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
+"information about specific devices. Usage and other general answers can "
+"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+"<p>Navegue e pesquise na <a href='/wiki/'>Wiki</a> para obter informações "
+"detalhadas sobre dispositivos específicos. Utilização e outras respostas "
+"genéricas também podem ser encontradas na <a href='/wiki/'>Wiki</a>.</p>"

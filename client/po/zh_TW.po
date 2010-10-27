@@ -1,23 +1,22 @@
-# translation of smolt.master.po to Traditional Chinese
-# Chinese translations for PACKAGE package
-# traditional Chinese translation for PACKAGE.
+# Translation of smolt to Traditional Chinese.
+# This file is distributed under the same license as the smolt package.
 # Copyright (C) 2007 ORGANIZATION
-#
 # Chester Cheng <ccheng@redhat.com>, 2007.
-# Terry Chuang <tchuang@redhat.com>, 2008, 2009.
+# Terry Chuang <tchuang@redhat.com>, 2008.
+# Wei-Lun Chao <chaoweilun@gmail.com>, 2010.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt.master\n"
+"Project-Id-Version: smolt 1.4.2.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-09-03 12:18+1000\n"
-"Last-Translator: Terry Chuang <tchuang@redhat.com>\n"
-"Language-Team: Traditional Chinese <en@li.org>\n"
+"PO-Revision-Date: 2010-09-12 17:53+0800\n"
+"Last-Translator: Wei-Lun Chao <chaoweilun@gmail.com>\n"
+"Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: pygettext.py 1.5\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: deleteProfile.py:36 smolt.py:360
 #, python-format
@@ -49,7 +48,7 @@ msgstr "以秒為單位來指定 HTTP 的逾時（預設值為 %default 秒）"
 
 #: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr "指定要使用哪個 uuid，大部分是有助於除錯和測試。"
+msgstr "指定使用哪一個 uuid，大多用於偵錯和測試。"
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -57,7 +56,7 @@ msgstr "和伺服器進行聯繫時發生錯誤："
 
 #: deleteProfile.py:97
 msgid "Profile removed, please verify at"
-msgstr "設定檔被移除，請在此進行驗證"
+msgstr "側寫檔被移除，請在此進行驗證"
 
 #: gui.py:35 sendProfile.py:177 smolt.py:655
 msgid "General"
@@ -65,7 +64,7 @@ msgstr "一般"
 
 #: gui.py:37
 msgid "Distribution"
-msgstr "發行"
+msgstr "發行版"
 
 #: gui.py:82
 msgid "Label"
@@ -77,7 +76,7 @@ msgstr "資料"
 
 #: gui.py:115
 msgid "Bus"
-msgstr "Bus"
+msgstr "匯流排"
 
 #: gui.py:116
 msgid "Driver"
@@ -96,39 +95,30 @@ msgstr "描述"
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a "
-"submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to "
-"delete\n"
+"the submission is anonymous.  If at any point in time a user wants to delete\n"
 "his/her profile from the database they need only run<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
-"The information sent to the smolt database server should be considered "
-"public\n"
-"in that anyone can view the statistics, data and share machine profiles.  "
-"In \n"
+"The information sent to the smolt database server should be considered public\n"
+"in that anyone can view the statistics, data and share machine profiles.  In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd "
-"parties,\n"
+"attention.  As such, not only will this information be shared with 3rd parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.<br>\n"
 "<br>\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and "
-"they\n"
+"server first.  This is the only place IP addresses are being logged and they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate IP addresses in\n"
-"the smolt database.  These logs are private and will not be available to "
-"the\n"
+"the smolt database.  These logs are private and will not be available to the\n"
 "general public.<br>\n"
 "<br>\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team "
-"at\n"
-"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can "
-"delete their\n"
+"questions about this policy should contact the Fedora Infrastructure Team at\n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can delete their\n"
 "profiles at any time using<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
@@ -136,63 +126,64 @@ msgid ""
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
 "<span></span>\n"
-"Smolt 只會將硬體和基本作業系統上的資訊傳送至\n"
+"Smolt 只會將硬體和基本作業系統上的資訊發送至\n"
 "Fedora smolt 伺服器（smoon）上。提交者機器和資料庫的唯一連結\n"
 "就是 UUID。只要提交者不提供他的 UUID，\n"
-"此提交就會是匿名的。若用戶想將個人的設定檔由資料庫\n"
+"此提交就會是匿名的。若用戶想將個人的側寫檔由資料庫\n"
 "中刪除掉，他們只需要執行<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
-"<br> 即可。\n"
-"傳送至 smolt 資料庫伺服器的資訊可供大眾檢視，\n"
-"任何人皆可檢視數據、資料和共享機器設定檔。Smolt\n"
+"<br>\n"
+"發送至 smolt 資料庫伺服器的資訊可供大眾檢視，\n"
+"任何人皆可檢視數據、資料和共享機器側寫檔。Smolt\n"
 "許多的設計著重於取得硬體供應商以及其他第三方用戶的\n"
 "注意力。正因如此，該資訊不只會共享於第三方用戶之間，\n"
-"我們也將利用 smolt 來取得更佳的開放式原始碼驅動程式上的\n"
-"支援以及更佳的一般支援。<br>\n"
+"我們也將利用 smolt 來取得開放原始碼上更佳的\n"
+"驅動程式與一般支援。<br>\n"
 "<br>\n"
-"IP Logging：在 Fedora 的 smolt 安裝進行時，所有的網站流量都會先通過一個 "
-"proxy\n"
-"伺服器。這是 IP 位址唯一會被紀錄的地方，並且它們\n"
-"會被保留在該伺服器上四個禮拜直到時間日誌循環\n"
-"將這些紀錄移除掉。Fedora 專案不會將 IP 位址聚合在\n"
+"IP 記錄：在 Fedora 的 smolt 安裝進行時，所有的網站流量都會先通過一個 proxy\n"
+"伺服器。這是 IP 位址唯一會被記錄的地方，並且它們\n"
+"會被保留在該伺服器上四個星期直到時間日誌循環\n"
+"將這些記錄移除掉。Fedora 專案不會將 IP 位址彙總在\n"
 "smolt 資料庫中。這些紀錄為私密紀錄，\n"
 "一般大眾將無法存取或檢視。<br>\n"
 "<br>\n"
-"無法同意此私隱權政策的用戶不該使用 smolt。對於此私密隱私政策\n"
+"無法同意此私密隱私政策的用戶不該使用 smolt。對於此私密隱私政策\n"
 "持有疑問的用戶應透過\n"
-"<a href=\"mailto:%(mail)s\">%(mail)s</a> 來與 Fedora Infrastructure Team 取得聯繫。請記得"
-"用戶可隨時透過使用\n"
-"「smoltDeleteProfile」來將他們的設定檔移除。<br>\n"
+"a<a href=\"郵寄到:%(mail)s\">%(mail)s</a> 來與 Fedora 基礎架構團隊取得聯繫。\n"
+"請記得用戶可隨時透過使用<br>\n"
 "<br>\n"
+"&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
+"<br>\n""來將他們的側寫檔移除。\n"
+"謝謝您的參與以及對於我們隱私權政策的興趣。\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr "供應商/型號的目前評等。"
+msgstr "對於供應商/型號的目前評價。"
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr "未進行評等/不明"
+msgstr "未評價/不明"
 
 #: scan.py:46
 msgid "Non-working"
-msgstr "無法運作"
+msgstr "無法使用"
 
 #: scan.py:47
 msgid "Partially-working"
-msgstr "部份可運作"
+msgstr "部份可用"
 
 #: scan.py:48
 msgid "Requires 3rd party drivers"
-msgstr "需要第三方驅動程式"
+msgstr "需求第三方驅動程式"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr "可運作，需進行額外的設定"
+msgstr "可用，但需要額外組態"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr "取得時即可運作"
+msgstr "開機就能使用"
 
 #: scan.py:58
 #, python-format
@@ -201,19 +192,19 @@ msgstr "掃描 %s 來取得已知的勘誤。\n"
 
 #: scan.py:88
 msgid "\tErrata Found!"
-msgstr "\t發現勘誤！"
+msgstr "\t找到勘誤表！"
 
 #: scan.py:91
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "\t未發現任何勘誤，若此機器有問題的話，請至"
+msgstr "\t找不到任何勘誤表，如果這個機器有問題的話，請到"
 
 #: scan.py:92
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "\t您的設定檔並為此裝置建立一個 wiki 頁面，如此一來其他人便可"
+msgstr "\t您的側寫檔並為此裝置建立一個 wiki 頁面，如此一來其他人便可"
 
 #: scan.py:93
 msgid "\tbenefit"
-msgstr "\t受益於此頁面"
+msgstr "\t受益於此"
 
 #: scan.py:101 smolt.py:1157
 msgid "Error:"
@@ -225,7 +216,7 @@ msgstr "提示："
 
 #: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr "（只）指定欲使用的設定檔的位置"
+msgstr "指定 (唯一) 使用的組態檔案位置"
 
 #: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
@@ -237,62 +228,60 @@ msgstr "密碼，若未指定的話將會被提示"
 
 #: sendProfile.py:78
 msgid "don't prompt to send, just send"
-msgstr "傳送時不提示，直接傳送即可"
+msgstr "發送時不提示，直接發送即可"
 
 #: sendProfile.py:83
 msgid "continue to send until success"
-msgstr "繼續進行傳送直到成功為止"
+msgstr "繼續進行發送直到成功為止"
 
 #: sendProfile.py:98
-msgid ""
-"this is an automated checkin, will only run if the \"smolt\" service has "
-"been started"
+msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
 msgstr "這是個自動的登記手續，只有在「smolt」服務被啟用時才會執行"
 
 #: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "只檢查此機器上的已知硬體勘誤，不傳送設定檔。"
+msgstr "只檢查此機器上的已知硬體勘誤，不發送側寫檔。"
 
 #: sendProfile.py:108
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "不在這部機器上掃描已知的硬體勘誤，只提交設定檔。"
+msgstr "不掃描此機器上的已知硬體勘誤，只有提交側寫檔。"
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
-msgstr "請求一組新的公共 UUID"
+msgstr "要求新的公用 UUID"
 
 #: sendProfile.py:126
 msgid "HTTP proxy"
-msgstr "HTTP proxy"
+msgstr "HTTP 代理伺服器"
 
 #: sendProfile.py:146
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "Smolt 已設為 checkin，不過 checkin 已被停用（提示：service smolt start）"
+msgstr "Smolt 已設為簽入，不過簽入卻被停用（提示：service smolt start）"
 
 #: sendProfile.py:156
 #, python-format
 msgid "Success!  Your new public UUID is: %s"
-msgstr "成功！您的新公用 UUID 是：%s"
+msgstr "成功！ 您新的公用 UUID 是：%s"
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
-msgstr "Smolt 已蒐集了四種類型的資訊："
+msgstr "Smolt 已收集四種類型的資訊："
 
 #: sendProfile.py:173
 msgid "Do you want to .."
-msgstr "您是否希望 .."
+msgstr "您想要…"
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
-msgstr "(v)檢視已搜尋的資訊詳情？"
+msgstr "(v)檢視所收集資訊的細節？"
 
 #: sendProfile.py:175
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "(s)將此資訊傳送至 Smolt 伺服器？（或以 [y] 來確認）"
+msgstr "(s)發送這個資訊到 Smolt 伺服器？(或 [y] 表示同意)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr "(q)退出 Smolt？（或以 [n] 來取消）"
+msgstr "(q)離開 Smolt？ (或 [n] 表示不要)"
 
 #: sendProfile.py:178 smolt.py:669
 msgid "Devices"
@@ -300,19 +289,19 @@ msgstr "裝置"
 
 #: sendProfile.py:179
 msgid "File system-related"
-msgstr "與檔案系統相關"
+msgstr "檔案系統相關"
 
 #: sendProfile.py:180
 msgid "Distribution-specific"
-msgstr "描述特屬"
+msgstr "特定發行版"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr "您的決定（s/v/q/y/n）："
+msgstr "您的選擇 (s/v/q/y/n)："
 
 #: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
-msgstr "正在退出..."
+msgstr "正在退出…"
 
 #: sendProfile.py:217
 msgid "s|y|yes"
@@ -332,7 +321,7 @@ msgstr "重新嘗試啟用 - 重新嘗試中"
 
 #: sendProfile.py:255
 msgid "Could not send - Exiting"
-msgstr "無法傳送 - 正在退出"
+msgstr "無法發送 - 退出中"
 
 #: sendProfile.py:260
 msgid "Password:"
@@ -344,12 +333,8 @@ msgstr "註冊失敗，請重新嘗試"
 
 #: sendProfile.py:276
 #, python-format
-msgid ""
-"To share your profile: \n"
-"\t%s (public)"
-msgstr ""
-"若要共享您的設定檔：\n"
-"\t%s (public)"
+msgid "To share your profile: \n\t%s (public)"
+msgstr "將會分享您的側寫檔：\n\t%s (公用的)"
 
 #: sendProfile.py:280
 #, python-format
@@ -358,40 +343,27 @@ msgstr "\t管理員密碼：%s"
 
 #: sendProfile.py:283
 msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
-msgstr "找不到公用 UUID！請以 -n 來重新執行以產生一組新的公用 uuid"
+msgstr "找不到任何公用的 UUID！請重新用 -n 執行以產生新的公用 uuid"
 
 #: smoltFirstBoot.py:38 smoltFirstBoot.py:39
 msgid "Hardware Profile"
-msgstr "硬體設定檔"
+msgstr "硬體側寫檔"
 
 #: smoltFirstBoot.py:56
-msgid ""
-"Are you sure you wouldn't like to send the profile?  Submitting your profile "
-"is a valuable source of information for our development and can help "
-"troubleshoot issues that may come up with your hardware."
-msgstr ""
-"您是否確定不想提交設定檔？您的設定檔有助於我們未來的開發並可協助我們針對於您"
-"硬體上的問題進行疑難排解。"
+msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
+msgstr "您是否確定不想提交側寫檔？您的側寫檔有助於我們未來的開發並可協助我們針對於您硬體上的問題進行疑難排解。"
 
 #: smoltFirstBoot.py:64
 msgid "_Reconsider sending"
-msgstr "重新考慮提交設定檔（_R）"
+msgstr "重新考慮提交側寫檔(_R)"
 
 #: smoltFirstBoot.py:65
 msgid "_No, do not send."
-msgstr "不，不提交設定檔。（_N）"
+msgstr "不，不提交側寫檔(_N)"
 
 #: smoltFirstBoot.py:92
-msgid ""
-"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
-"profile is a great way to give back to the community as this information is "
-"used to help focus our efforts on popular hardware and platforms.  "
-"Submissions are anonymous.  Sending your profile will enable a monthly "
-"update."
-msgstr ""
-"Smolt 為 Fedora 專案的硬體 profiler。提交您的設定檔有助於社群利用此資訊來專注"
-"於較流行的硬體和平台。此提交乃是匿名的。提交您的設定檔將可讓我們每個月進行更"
-"新。"
+msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
+msgstr "Smolt 為 Fedora 專案的硬體效能評測器。提交您的側寫檔有助於社群利用此資訊來專注於較流行的硬體和平台。此提交乃是匿名的。提交您的側寫檔將可讓我們每個月進行更新。"
 
 #: smoltFirstBoot.py:119
 msgid "_Participate in KernelOOPS"
@@ -399,15 +371,15 @@ msgstr "參與 KernelOOPS(_P)"
 
 #: smoltFirstBoot.py:120
 msgid "Submit profile link to _Bodhi"
-msgstr "將設定檔連結提交至 Bodhi(_B)"
+msgstr "提交側寫檔連結到 _Bodhi"
 
 #: smoltFirstBoot.py:122
 msgid "_Send Profile"
-msgstr "傳送設定檔(_S)"
+msgstr "發送側寫檔(_S)"
 
 #: smoltFirstBoot.py:123
 msgid "D_o not send profile"
-msgstr "不傳送設定檔(_o)"
+msgstr "不發送側寫檔(_O)"
 
 #: smoltGui.py:92
 msgid "Smolt"
@@ -415,31 +387,31 @@ msgstr "Smolt"
 
 #: smoltGui.py:97
 msgid "&File"
-msgstr "檔案(_F)"
+msgstr "檔案(&F)"
 
 #: smoltGui.py:98
 msgid "&Help"
-msgstr "協助(_H)"
+msgstr "求助(&H)"
 
 #: smoltGui.py:101
 msgid "&Send Profile"
-msgstr "傳送設定檔(_S)"
+msgstr "發送側寫檔(&S)"
 
 #: smoltGui.py:102
 msgid "&My Smolt Page"
-msgstr "我的 Smolt 頁面(_M)"
+msgstr "我的 Smolt 頁面(&M)"
 
 #: smoltGui.py:103
 msgid "&Exit"
-msgstr "退出(E)"
+msgstr "離開(&E)"
 
 #: smoltGui.py:104
 msgid "Show &Privacy Policy"
-msgstr "顯示私隱權政策(_P)"
+msgstr "顯示隱私權政策(&P)"
 
 #: smoltGui.py:105
 msgid "&About"
-msgstr "相關資訊(_A)"
+msgstr "關於(&A)"
 
 #: smoltGui.py:106
 msgid "About &Qt"
@@ -451,7 +423,7 @@ msgstr "主要工具列"
 
 #: smoltGui.py:170
 msgid "No distribution-specific data yet"
-msgstr "還沒有發佈特屬的資料"
+msgstr "尚無特定發行版資料"
 
 #: smoltGui.py:175 smoltGui.py:238
 msgid "Error"
@@ -459,28 +431,20 @@ msgstr "錯誤"
 
 #: smoltGui.py:239
 msgid "An error occurred while sending the data to the server."
-msgstr "將資料傳送至伺服器時發生了錯誤。"
+msgstr "將資料發送至伺服器時發生了錯誤。"
 
 #: smoltGui.py:246
 msgid "Profile Sent"
-msgstr "設定檔已提交"
+msgstr "側寫檔已發送"
 
 #: smoltGui.py:247
 #, python-format
-msgid ""
-"<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour "
-"profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</"
-"a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)"
-"s</i>"
-msgstr ""
-"<b>您的設定檔已成功提交！</b><br>\t\t\t\t<br>\t\t\t\t您的"
-"設定檔可透過網路存取，該設定檔位於：<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</"
-"a><br>\t\t\t\t<br>\t\t\t\t您的設定檔管理員密碼為：<br><i>%(password)"
-"s</i>"
+msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
+msgstr "<b>您的側寫檔已成功發送！</b><br>\t\t\t\t<br>\t\t\t\t您的側寫檔可於線上使用:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\t您的側寫檔管理密碼是:<br><i>%(password)s</i>"
 
 #: smoltGui.py:270
 msgid "Privacy Policy"
-msgstr "私隱權政策"
+msgstr "隱私權政策"
 
 #: smoltGui.py:284
 #, python-format
@@ -488,45 +452,21 @@ msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
 msgstr "<h3>Smolt Qt</h3>版本 %(version)s<br/>"
 
 #: smoltGui.py:285
-msgid ""
-"<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
-"\tto a Smoon server.<br/>"
-msgstr ""
-"<br/>Smolt Qt 是個用來將 Smolt 硬體設定檔提交至 Smoon 伺服器的 \t\t\t"
-"\tSmolt GUI 客戶端。<br/>"
+msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
+msgstr "<br/>Smolt Qt 是 Smolt 圖形使用者介面客戶端，用來提交 Smolt 硬體側寫檔\t\t\t\t給 Smoon 伺服器。<br/>"
 
 #: smoltGui.py:288
-msgid ""
-"<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t"
-"\tsystem that does a hardware scan against a machine and sends the results \t"
-"\t\t\tto a public Fedora Project turbogears server. The sends are anonymous "
-"\t\t\t\tand should not contain any private information other than the "
-"physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr ""
-"<b>有關於 Smolt：</b><br/>smolt 硬體設定檔是個會針對於一部機器進行\t\t\t"
-"\t硬體掃描並將結果傳送至一個公用的 Fedora Project turbogears 伺服器上\t"
-"\t\t\t的伺服器-客戶端系統。提交會是匿名的，"
-"\t\t\t\t並且除了實體的硬體資訊和基本的 OS 資訊之外"
-"\t\t\t\t不該包含任何其它私密資訊。<br/>"
+msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
+msgstr "<b>關於 Smolt:</b><br/>smolt 硬體效能評測器是伺服器-客戶端\t\t\t\t系統，針對機器進行硬體掃描和發送結果\t\t\t\t到公共的 Fedora 專案 turbogears 伺服器。發送是匿名\t\t\t\t並且除了實體硬體資訊和基本作業系統\t\t\t\t資訊之外，不應該包含任何私人資訊。<br/>"
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
-msgstr "<b>作者：</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
+msgstr "<b>作者:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
 #: smoltGui.py:296
 #, python-format
-msgid ""
-"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
-"\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can "
-"redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General "
-"Public License \t\t\t\tas published by the Free Software Foundation; either "
-"version 3 \t\t\t\tof the License, or (at your option) any later version."
-msgstr ""
-"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
-"\t\t\t<b>許可證：</b><br>\t\t\t\t此程式為免費軟體；您可將它"
-"重新發佈與/或\t\t\t\t遵照自由軟體基金會所發行的 GNU 通用公共"
-"許可證的使用條款\t\t\t\t來修改它；需要是"
-"版本 3 \t\t\t\t的許可證或是（依照您選擇）任何更新版本。"
+msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
+msgstr "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>授權:</b><br>\t\t\t\t這個程式是自由軟體；您可以遵循由自由軟體基金會\t\t\t\t所發布的的 GNU 通用公共授權去\t\t\t\t再次散布它和/或修改它；可以採用版本 3\t\t\t\t的授權，或 (您自行選擇的) 任何後續的版本。"
 
 #: smolt.py:362
 #, python-format
@@ -543,20 +483,16 @@ msgid ""
 "Run \"service haldaemon start\" as root"
 msgstr ""
 "無法連至 hal，它是否運作中？\n"
-"以 root 身份來執行「service haldaemon start」"
+"以 root 身分來執行「service haldaemon start」"
 
 #: smolt.py:507
-msgid ""
-"\tYour pub_uuid could not be written.\n"
-"\n"
-msgstr ""
-"\t您的 pub_uuid 無法寫入。\n"
-"\n"
+msgid "\tYour pub_uuid could not be written.\n\n"
+msgstr "\t您的 pub_uuid 無法被寫入。\n\n"
 
 #: smolt.py:516
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr "\t您的管理員 token 無法被快取儲存：%s\n"
+msgstr "\t您的管理符記無法被快取：%s\n"
 
 #: smolt.py:536 smolt.py:579 smolt.py:609
 #, python-format
@@ -569,20 +505,20 @@ msgstr "版本錯誤，伺服器無法處理您的客戶端"
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
-msgstr "嘗試取得 token 時發生了錯誤"
+msgstr "擷取符記時有些地方出錯了"
 
 #: smolt.py:589
 #, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "和伺服器進行聯繫時發生了錯誤：%s"
+msgstr "資料發送至伺服器時發生了錯誤：%s"
 
 #: smolt.py:618 smolt.py:691
 msgid "OS"
-msgstr "OS"
+msgstr "作業系統"
 
 #: smolt.py:619 smolt.py:692
 msgid "Default run level"
-msgstr "預設 run level"
+msgstr "預設執行階層"
 
 #: smolt.py:620 smolt.py:693
 msgid "Language"
@@ -598,7 +534,7 @@ msgstr "UUID"
 
 #: smolt.py:694
 msgid "Platform"
-msgstr "平台"
+msgstr "平臺"
 
 #: smolt.py:695
 msgid "BogoMIPS"
@@ -610,11 +546,11 @@ msgstr "CPU 供應商"
 
 #: smolt.py:697
 msgid "CPU Model"
-msgstr "CPU 型號"
+msgstr "CPU 型式"
 
 #: smolt.py:698
 msgid "CPU Stepping"
-msgstr "CPU Stepping"
+msgstr "CPU 製程"
 
 #: smolt.py:699
 msgid "CPU Family"
@@ -622,7 +558,7 @@ msgstr "CPU 家族"
 
 #: smolt.py:700
 msgid "CPU Model Num"
-msgstr "CPU 型號號碼"
+msgstr "CPU 型號"
 
 #: smolt.py:701
 msgid "Number of CPUs"
@@ -666,11 +602,11 @@ msgstr "SELinux 政策"
 
 #: smolt.py:711
 msgid "SELinux Enforce"
-msgstr "SELinux 強制實施"
+msgstr "SELinux 強制"
 
 #: smolt.py:1180
 msgid "Unable to save UUID, continuing...\n"
-msgstr "無法儲存 UUID，繼續進行中...\n"
+msgstr "無法儲存 UUID，繼續進行...\n"
 
 #: smolt.py:1181
 #, python-format
@@ -679,18 +615,17 @@ msgstr "無法建立您的 UUID 檔案：%s\n"
 
 #: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
-msgstr "無法判斷系統的 UUID！\n"
+msgstr "無法判定系統的 UUID！\n"
 
 #: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
-msgstr "判斷公用 UUID 時發生了錯誤：%s"
+msgstr "決定公用的 UUID 時發生錯誤：%s"
 
 #: smolt.py:1204
 msgid "Unable to determine Public UUID!\n"
-msgstr "無法判斷公用 UUID！\n"
+msgstr "無法判定公用的 UUID！\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
-msgstr "無法判斷 Runlevel"
-
+msgstr "無法判斷執行階層"

@@ -1,9 +1,8 @@
-# Catalan translations for smolt-smoon package.
-# Copyright © 2009 Free Software Foundation, Inc.
+# Catalan translations for smolt package
+# Copyright (C) 2009 Red Hat, Inc.
+# This file is distributed under the same license as the smolt package.
 #
-# This file is distributed under the same license as the smolt-smoon package.
-#
-# Xavier Conde Rueda <xavi.conde@gmail.com>, 2009.
+# Robert Antoni Buj Gelonch <robert.buj@gmail.com>, 2010
 #
 # This file is translated according to the glossary and style guide of
 #   Softcatalà. If you plan to modify this file, please read first the page
@@ -19,50 +18,55 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ca\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: hardware 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-09-09 23:35+0100\n"
-"Last-Translator: Xavier Conde Rueda <xavi.conde@gmail.com>\n"
+"PO-Revision-Date: 2010-09-20 05:42+0100\n"
+"Last-Translator: Robert Antoni Buj Gelonch <robert.buj@gmail.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Catalan\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: hardware/controllers/root.py:95
-msgid ""
-"The credentials you supplied were not correct or did not grant access to "
-"this resource."
-msgstr ""
-"Les credencials que heu proporcionat no són correctes o no permeten accedir "
-"aquest recurs."
+msgid "The credentials you supplied were not correct or did not grant access to this resource."
+msgstr "Les credencials que vàreu proporcionar no són correctes o bé no garanteixen l'accés a aquest recurs."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr "Heu de proporcionar les vostres credencials abans d'accedir aquest recurs."
+msgstr "Abans d'accedir a aquest recurs, primer heu de proporcionar les vostres credencials."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "Entreu, per favor."
+msgstr "Inicieu una sessió."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr "Dispositius per classe ${type}"
+msgstr "Dispositiu per classe ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "Compte total"
+msgstr "Quantitat total"
+
+#: hardware/templates/deviceclass.html:19
+#, python-format
+msgid "% hosts detected ${type}"
+msgstr "% hosts ${type} detectats"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
 msgstr "Fabricants"
 
-#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/deviceclass.html:34
+#: hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
 msgstr "Dispositius"
 
-#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/show.html:60
 msgid "Device"
 msgstr "Dispositiu"
 
@@ -74,7 +78,8 @@ msgstr "Bus"
 msgid "Driver"
 msgstr "Controlador"
 
-#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/stats.html:92
 msgid "Vendor"
 msgstr "Fabricant"
 
@@ -88,15 +93,16 @@ msgstr "Sub dispositiu"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr "Afegit el"
+msgstr "Data afegit"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% màquines total"
+msgstr "% equips totals"
 
-#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+#: hardware/templates/devices.html:15
+#: hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr "Dispositius registrats totals"
+msgstr "Dispositius totals registrats"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
@@ -104,19 +110,20 @@ msgstr "Dispositius únics"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr ""
+msgstr "Dispositius crus"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "Màquines / dispositius"
+msgstr "Ordinadors / dispositius"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
 msgstr "Classes"
 
-#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+#: hardware/templates/report_search.html:37
+#: hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr "Cerca"
+msgstr "Cercar"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
@@ -128,15 +135,15 @@ msgstr "Conjunt de resultats"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr ""
+msgstr "Mostra el quadre"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr "No el faig servir o no ho conec"
+msgstr "No se si ho utilitzo o ho desconec"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr "Espatlla el sistema"
+msgstr "Malmet el sistema"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
@@ -148,11 +155,11 @@ msgstr "Necessita controladors de tercers"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "Funciona pero necessita configuració addicional"
+msgstr "Funciona, però necessita configuració addicional"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr "Ha funcionat des del començament"
+msgstr "Ha funcionat for de l'encaixament"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
@@ -160,7 +167,7 @@ msgstr "Mostra tota la informació"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr "Puntuació global:"
+msgstr "Classificació general:"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
@@ -182,21 +189,22 @@ msgstr "Fabricant del sistema"
 msgid "System Model"
 msgstr "Model del sistema"
 
-#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+#: hardware/templates/show.html:47
+#: hardware/templates/stats.html:180
 msgid "Kernel"
 msgstr "Nucli"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr ""
+msgstr "Format de placa mare"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
-msgstr "Modificat per darrera vegada"
+msgstr "Darrera modificació"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
-msgstr "Contrasenya d'administrador"
+msgstr "Contrasenya d'administració"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
@@ -208,11 +216,11 @@ msgstr "Classe"
 
 #: hardware/templates/stats.html:9
 msgid "Stats"
-msgstr "Estadístiques"
+msgstr "Estadístques"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr "Màquines registrades totals"
+msgstr "Equips totals registrats"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
@@ -232,7 +240,7 @@ msgstr "Arquitectures"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr "Aquitectura"
+msgstr "Arquitectura"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
@@ -269,19 +277,19 @@ msgstr "Memòria d'intercanvi"
 
 #: hardware/templates/stats.html:145
 msgid "CPU"
-msgstr "UCP"
+msgstr "Processador"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
-msgstr "Velocitat (MHz)"
+msgstr "Velocitat (Mhz)"
 
 #: hardware/templates/stats.html:154
 msgid "Number of CPUs"
-msgstr "Nombre d'UCP"
+msgstr "Número de processadors"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr "Fabricant de l'UCP"
+msgstr "Fabricant del processador"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
@@ -289,7 +297,7 @@ msgstr "Bogomips"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr ""
+msgstr "Format de placa mare"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -297,15 +305,15 @@ msgstr "Selinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr "SELinux habilitat"
+msgstr "SELinix habilitat"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr "SELinux forçat"
+msgstr "Compliment de SELinux"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr "Política del SELinux"
+msgstr "Política de SELinux"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
@@ -317,49 +325,37 @@ msgstr "Mida dels sistemes de fitxers"
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
-msgstr "Rol del Myth"
+msgstr "Rol Myth"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr "Remot del Myth"
+msgstr "Myth remot"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr "Tema del Myth"
+msgstr "Tema de Myth"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "Entreu el vostre UUID del perfil:"
+msgstr "Introduïu l'UUID del vostre perfil:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
 msgstr "Estadístiques"
 
 #: hardware/templates/welcome.html:17
-msgid ""
-"For detailed statistics about the devices in the database see <a href='/"
-"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
-"devices</a>"
-msgstr ""
-"Per veure estadístiques detallades quant als dispositius a la base de "
-"dades, veieu <a href='/static/stats/stats.html'>/stats</a> o <a href='/static/stats/devices.html'>/"
-"devices</a>"
+msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
+msgstr "Per a estadístiques detallades quant als dispositius de la base de dades dirigiu-vos a<a href='/static/stats/stats.html'>/stats</a> o a <a href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr "Gràfica dels principals fabricants"
+msgstr "Fabricants principals"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
 msgstr "Més informació"
 
 #: hardware/templates/welcome.html:25
-msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
-"about specific devices. Usage and other general answers can also be found at "
-"the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
-"<p>Navegueu i cerqueu al <a href='/wiki/'>Wiki</a> informació detallada "
-"quant a dispositius específics. La forma d'ús i altres respostes generals es poden "
-"trobar al <a href='/wiki/'>Wiki</a>.</p>"
+msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr "<p>Navegueu i cerqueu en la <a href='/wiki/'>Wiki</a> per a informació detallada quant a dispositius concrets. La utilització i altres respostes generals també també pot estar disponible en la <a href='/wiki/'>Wiki</a>.</p>"
 

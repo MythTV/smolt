@@ -1,17 +1,19 @@
 # Finnish translation of Smolt
-# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2007-2009.
+# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2007, 2008, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: Smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-08-29 17:17+0300\n"
+"PO-Revision-Date: 2010-08-29 19:40+0300\n"
 "Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
-"Language-Team: Finnish <laatu@lokalisointi.org>\n"
+"Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.6.1\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: deleteProfile.py:36 smolt.py:360
@@ -45,7 +47,7 @@ msgstr "määritä HTTP-aikakatkaisu sekunneissa (oletus %default sekuntia)"
 #: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
 msgstr ""
-"määritä käytettävä uuid, tarvitaan lähinnä vianetsintään ja testaukseen."
+"määritä mitä uuid:tä käytetään, hyödyllinen debuggaukseen ja testaukseen"
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -58,11 +60,11 @@ msgstr "Profiili poistettu, varmista osoitteessa"
 
 #: gui.py:35 sendProfile.py:177 smolt.py:655
 msgid "General"
-msgstr "Yleistä"
+msgstr "Yleinen"
 
 #: gui.py:37
 msgid "Distribution"
-msgstr "Jakelu"
+msgstr "Jakeluversio"
 
 #: gui.py:82
 msgid "Label"
@@ -135,11 +137,11 @@ msgstr ""
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr "Nykyinen valmistajan/mallin arvostelu."
+msgstr "Valmistajan/mallin nykyinen luokitus."
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr "Arvostelematon/tuntematon"
+msgstr "Luokittelematon/tuntematon"
 
 #: scan.py:46
 msgid "Non-working"
@@ -155,11 +157,11 @@ msgstr "Vaatii kolmannen osapuolen ajureita"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr "Toimii, vaatii lisäasetusten tekemistä"
+msgstr "Toimii, vaatii lisäasetuksia"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr "Toimii oletuksena"
+msgstr "Toimii suoraan"
 
 #: scan.py:58
 #, python-format
@@ -172,7 +174,7 @@ msgstr "\tVirheitä löytyi!"
 
 #: scan.py:91
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "\tVirheitä ei löytynyt, jos laitteistossa on ongelmia, mene "
+msgstr "Virheitä ei löytynyt, jos laitteistossa on ongelmia, mene "
 
 #: scan.py:92
 msgid "\tyour profile and create a wiki page for the device so others can"
@@ -192,7 +194,7 @@ msgstr "Vinkki:"
 
 #: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr "määritä (ainoan) käytettävän asetustiedoston sijainti"
+msgstr "määritä (ainoan) asetustiedoston sijainti"
 
 #: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
@@ -227,8 +229,8 @@ msgstr ""
 #: sendProfile.py:108
 msgid "do not scan this machine for know hardware errata, only submit profile."
 msgstr ""
-"älä tutki konetta tunnettujen laitteistovirheiden osalta, lähetä vain "
-"profiili."
+"lähetä pelkästään profiili, älä tutki konetta tunnettujen "
+"laitteistovirheiden osalta"
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
@@ -253,7 +255,7 @@ msgstr "Onnistui! Uusi julkinen UUID on: %s"
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
-msgstr "Smolt on kerännyt neljän tyyppistä tietoa:"
+msgstr "Smolt on kerännyt neljän tyyppisiä tietoja:"
 
 #: sendProfile.py:173
 msgid "Do you want to .."
@@ -261,15 +263,15 @@ msgstr "Haluatko..."
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
-msgstr "k(a)tsella kerättyjä tietoja?"
+msgstr "(k)atsoa kerättyjä tietoja?"
 
 #: sendProfile.py:175
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "(l)ähettää nämä tiedot Smolt-palvelimelle? (tai k = kyllä)"
+msgstr "(l)ähettää nämä tiedot Smolt-palvelimelle? (tai [k] = kyllä)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr "l(o)pettaa Smoltin? (tai n = ei)"
+msgstr "l(o)pettaa Smoltin? (tai [e] = ei)"
 
 #: sendProfile.py:178 smolt.py:669
 msgid "Devices"
@@ -277,15 +279,15 @@ msgstr "Laitteet"
 
 #: sendProfile.py:179
 msgid "File system-related"
-msgstr "Tiedostojärjestelmiin liittyvää"
+msgstr "Tiedostojärjestelmiin liittyvä"
 
 #: sendProfile.py:180
 msgid "Distribution-specific"
-msgstr "Jakelukohtaista"
+msgstr "Jakelukohtainen"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr "Valinta (a/l/o/k/e): "
+msgstr "Valinta (l/k/o/k/e): "
 
 #: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
@@ -301,7 +303,7 @@ msgstr "o|e|ei"
 
 #: sendProfile.py:222
 msgid "v"
-msgstr "a"
+msgstr "k"
 
 #: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
@@ -325,20 +327,20 @@ msgid ""
 "To share your profile: \n"
 "\t%s (public)"
 msgstr ""
-"Profiilin jakamiseksi: \n"
+"Profiilin jakamiseksi:\n"
 "\t%s (julkinen)"
 
 #: sendProfile.py:280
 #, python-format
 msgid "\tAdmin Password: %s"
-msgstr "\tHallintasalasana: %s"
+msgstr "\tYlläpitosalasana: %s"
 
 #: sendProfile.py:283
 msgid ""
 "No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr ""
-"Julkista UUID:tä ei löytynyt! Suorita ohjelma uudestaan valitsimella -n "
-"uuden julkisen UUID:n luomiseksi"
+"Julkista UUID:tä ei löytynyt! Suorita uudelleen valitsimella -n uuden "
+"julkisen UUID:n luomiseksi"
 
 #: smoltFirstBoot.py:38 smoltFirstBoot.py:39
 msgid "Hardware Profile"
@@ -410,7 +412,7 @@ msgstr "&Lähetä profiili"
 
 #: smoltGui.py:102
 msgid "&My Smolt Page"
-msgstr "&Smolt-sivuni"
+msgstr "&Smolt-profiilisivu"
 
 #: smoltGui.py:103
 msgid "&Exit"
@@ -418,7 +420,7 @@ msgstr "&Lopeta"
 
 #: smoltGui.py:104
 msgid "Show &Privacy Policy"
-msgstr "Näytä &tietosuojakäytäntö"
+msgstr "Näytä &yksityisyyskäytäntö"
 
 #: smoltGui.py:105
 msgid "&About"
@@ -426,11 +428,11 @@ msgstr "&Tietoja"
 
 #: smoltGui.py:106
 msgid "About &Qt"
-msgstr "&Tietoja Qt:sta"
+msgstr "Tietoja &Qt:sta"
 
 #: smoltGui.py:120
 msgid "Main Tool Bar"
-msgstr "Päätyökalurivi"
+msgstr "Päätyökalupalkki"
 
 #: smoltGui.py:170
 msgid "No distribution-specific data yet"
@@ -456,29 +458,27 @@ msgid ""
 "a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)"
 "s</i>"
 msgstr ""
-"<b>Profiilin lähetys onnistui!</b><br>"
-"\t\t\t\t<br>"
-"\t\t\t\tProfiili on luettavissa verkossa osoitteessa:<br>"
-"\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>"
-"\t\t\t\t<br>"
-"\t\t\t\tProfiilin hallintasalasana on:<br><i>%(password)s</i>"
+"<b>Profiilin lähetys onnistui!</b><br>\t\t\t\t<br>\t\t\t\tProfiili "
+"on luettavissa verkossa osoitteessa:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</"
+"a><br>\t\t\t\t<br>\t\t\t\tProfiilin hallintasalasana on:<br><i>%(password)"
+"s</i>"
 
 #: smoltGui.py:270
 msgid "Privacy Policy"
-msgstr "Tietosuojakäytäntö"
+msgstr "Yksityisyyskäytäntö"
 
 #: smoltGui.py:284
 #, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
-msgstr "<h3>Smolt Qt</h3> Versio %(version)s<br/>"
+msgstr "<h3>Smolt Qt</h3>Versio %(version)s<br/>"
 
 #: smoltGui.py:285
 msgid ""
 "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
 "\tto a Smoon server.<br/>"
 msgstr ""
-"<br/>Smolt Qt on graafinen ohjelma Smolt-laitteistoprofiilien lähettämiseen "
-"\t\t\t\tSmoon-palvelimelle.<br/>"
+"<br/>Smolt Qt on graafinen ohjelma Smolt-laitteistoprofiilien lähettämiseen \t\t\t"
+"\tSmoon-palvelimelle.<br/>"
 
 #: smoltGui.py:288
 msgid ""
@@ -488,12 +488,11 @@ msgid ""
 "\t\t\t\tand should not contain any private information other than the "
 "physical \t\t\t\thardware information and basic OS info.<br/>"
 msgstr ""
-"<b>Tietoja Smoltista:</b><br/>"
-"Smolt-laitteistoprofiloija on asiakas-palvelin-järjestelmä, joka tutkii "
-"\t\t\t\ttietokoneen laitteiston ja lähettää tulokset julkiselle "
-"\t\t\t\tFedora-projektin turbogears-palvelimelle. Lähetykset ovat anonyymejä "
-"\t\t\t\teivätkä sisällä muuta yksityistä tietoa kuin tiedot fyysisestä "
-"\t\t\t\tlaitteistosta ja perustiedot käyttöjärjestelmästä.<br/>"
+"<b>Tietoja Smoltista:</b><br/>Smolt-laitteistoprofiloija on asiakas-palvelin- \t\t\t"
+"\tjärjestelmä, joka tutkii tietokoneen laitteiston ja lähettää tulokset julkiselle \t"
+"\t\t\tFedora-projektin turbogears-palvelimelle. Lähetykset ovat anonyymejä "
+"\t\t\t\teikä niiden pitäisi sisältää muuta yksityistä tietoa kuin "
+"\t\t\t\ttiedot laitteistosta ja käyttöjärjestelmän perustiedot.<br/>"
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
@@ -508,15 +507,6 @@ msgid ""
 "Public License \t\t\t\tas published by the Free Software Foundation; either "
 "version 3 \t\t\t\tof the License, or (at your option) any later version."
 msgstr ""
-"%(title)s<br>"
-"\t\t\t\t%(description)s<br>"
-"\t\t\t\t%(authors)s<br>"
-"\t\t\t\t<br>"
-"\t\t\t\t<b>Lisenssi:</b><br>"
-"\t\t\t\tTämä on vapaa ohjelma: tätä ohjelmaa saa levittää edelleen ja "
-"\t\t\t\tmuuttaa Free Software Foundationin julkaiseman GNU General Public "
-"\t\t\t\tLicensen (GPL-lisenssi) version 3 tai (valinnan mukaan) myöhemmän "
-"\t\t\t\tversion ehtojen mukaisesti."
 
 #: smolt.py:362
 #, python-format
@@ -559,12 +549,12 @@ msgstr "Väärä versio, palvelin ei ymmärrä asiakasohjelmaa"
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
-msgstr "Lipuketta haettaessa tapahtui virhe"
+msgstr "Lipukkeen noutaminen epäonnistui"
 
 #: smolt.py:589
 #, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr "Otettaessa yhteyttä palvelimelle tapahtui virhe: %s"
+msgstr "Palvelimelle yhdistettäessä tapahtui virhe: %s"
 
 #: smolt.py:618 smolt.py:691
 msgid "OS"
@@ -674,7 +664,7 @@ msgstr "Järjestelmän UUID:tä ei voida selvittää!\n"
 #: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
-msgstr "Julkisen UUID:n selvittämisessä tapahtui virhe: %s"
+msgstr "Virhe selvitettäessä julkista UUID:tä: %s"
 
 #: smolt.py:1204
 msgid "Unable to determine Public UUID!\n"

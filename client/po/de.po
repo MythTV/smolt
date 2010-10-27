@@ -1,3 +1,4 @@
+# translation of smolt.master.de.po to
 # German translation of smolt.
 # Copyright (C) 2007 Red Hat, Inc.
 # This file is distributed under the same license as the smolt package.
@@ -12,9 +13,9 @@ msgstr ""
 "Project-Id-Version: smolt.master.de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2009-08-30 16:43+0200\n"
-"Last-Translator: Marcus Nitzschke <kenda@fedoraproject.org>\n"
-"Language-Team: German <fedora-trans-de@redhat.com>\n"
+"PO-Revision-Date: 2010-08-25 22:06+1000\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -49,8 +50,7 @@ msgstr "HTTP-User-Agent angeben (Standard: \"%default\")"
 #: deleteProfile.py:66 sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr ""
-"HTTP-Zeitüberschreitung in Sekunden angeben (Standard: %default Sekunden)"
+msgstr "HTTP-Zeitüberschreitung in Sekunden angeben (Standard: %default Sekunden)"
 
 #: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
@@ -274,13 +274,11 @@ msgstr ""
 
 #: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr ""
-"Nur das System auf bekannte Hardware-Fehler durchsuchen, Profil nicht senden."
+msgstr "Nur das System auf bekannte Hardware-Fehler durchsuchen, Profil nicht senden."
 
 #: sendProfile.py:108
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr ""
-"Nur das System auf bekannte Hardware-Fehler durchsuchen, Profil nicht senden."
+msgstr "Nur das System auf bekannte Hardware-Fehler durchsuchen, Profil nicht senden."
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
@@ -291,8 +289,7 @@ msgid "HTTP proxy"
 msgstr "HTTP-Proxy"
 
 #: sendProfile.py:146
-msgid ""
-"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr ""
 "Smolt ist für Check-Ins eingerichtet, diese sind jedoch deaktiviert (Tipp: "
 "service smolt start)"
@@ -304,23 +301,23 @@ msgstr "Erfolg! Ihre neue öffentliche UUID lautet: %s"
 
 #: sendProfile.py:172
 msgid "Smolt has collected four types of information:"
-msgstr "Smolt hat 4 Arten von Informationen gesammelt:"
+msgstr "Smolt hat vier Typen von Informationen gesammelt:"
 
 #: sendProfile.py:173
 msgid "Do you want to .."
-msgstr "Möchten Sie .."
+msgstr "Möchten Sie ..."
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
-msgstr "Details der gesammelten Informationen (a)nsehen?"
+msgstr "die Details der gesammelten Informationen (a)nsehen?"
 
 #: sendProfile.py:175
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "Diese Informationen an den Smolt-Server (s)enden? (auch [j] für ja)"
+msgstr "Diese Informationen an den Smolt-Server (s)enden? (oder [j] für ja)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr "Smolt (b)eenden? ([n] für nein)"
+msgstr "Smolt (b)eenden  (oder [n] für nein)"
 
 #: sendProfile.py:178 smolt.py:669
 msgid "Devices"
@@ -328,7 +325,7 @@ msgstr "Geräte"
 
 #: sendProfile.py:179
 msgid "File system-related"
-msgstr "Dateisystem-bezogen"
+msgstr "Dateisystem-spezifisch"
 
 #: sendProfile.py:180
 msgid "Distribution-specific"
@@ -336,7 +333,7 @@ msgstr "Distributions-spezifisch"
 
 #: sendProfile.py:213
 msgid "Your choice (s/v/q/y/n): "
-msgstr "Ihre Wahl (s/a/b/j/n):"
+msgstr "Ihre Wahl (a/s/b/j/n): "
 
 #: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
@@ -344,7 +341,7 @@ msgstr "Beenden ..."
 
 #: sendProfile.py:217
 msgid "s|y|yes"
-msgstr "s|j|ja"
+msgstr "a|j|ja"
 
 #: sendProfile.py:220
 msgid "q|n|no"
@@ -352,7 +349,7 @@ msgstr "b|n|nein"
 
 #: sendProfile.py:222
 msgid "v"
-msgstr "a"
+msgstr "s"
 
 #: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
@@ -385,8 +382,7 @@ msgid "\tAdmin Password: %s"
 msgstr "\tAdmin-Passwort: %s"
 
 #: sendProfile.py:283
-msgid ""
-"No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
 msgstr ""
 "Keine öffentliche UUID gefunden. Bitte führen Sie das Kommando erneut mit "
 "der Option -n aus, um eine neue UUID zu generieren"
@@ -730,91 +726,3 @@ msgstr "Öffentliche UUID konnte nicht ermittelt werden!\n"
 msgid "Cannot Determine Runlevel"
 msgstr "Runlevel konnte nicht bestimmt werden"
 
-#~ msgid "y"
-#~ msgstr "j"
-
-#~ msgid "Submit this profile to Bodhi as well, for Fedora Developmnent"
-#~ msgstr "Dieses Profil auch an Bodhi (Fedora Entwicklung) übermitteln"
-
-#~ msgid ""
-#~ "The data was successfully sent. If you need to refer to your hardware "
-#~ "profile for a bug report your UUID is \n"
-#~ "%s\n"
-#~ "stored in %s"
-#~ msgstr ""
-#~ "Die Daten wurden erfolgreich gesendet. Falls Sie für einen Fehlerbericht "
-#~ "auf Ihr Hardware-Profil zurückgreifen müssen, ist Ihre UUID\n"
-#~ "%s\n"
-#~ "und befindet sich in %s"
-
-#~ msgid ""
-#~ "\tMaybe re-run as root?\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\tVielleicht als user 'root' neu ausfuehren?\n"
-#~ "\n"
-
-#~ msgid "_Quit"
-#~ msgstr "_Beenden"
-
-#~ msgid "Quit the program without sending your hardware profile to the server"
-#~ msgstr "Das Programm beenden, ohne das Hardware-Profil zu senden"
-
-#~ msgid "_Send"
-#~ msgstr "_Senden"
-
-#~ msgid "Send your hardware profile to the server."
-#~ msgstr "Senden Sie ihr Hardware-Profil an den Server"
-
-#~ msgid "Show the Smolt privacy policy."
-#~ msgstr "Smolt-Datenschutzrichtlinie anzeigen"
-
-#~ msgid "Take me to my smolt profile page"
-#~ msgstr "Zu meiner Smolt-Profilseite gehen"
-
-#~ msgid "Smolt Privacy Policy"
-#~ msgstr "Smolt-Datenschutzrichtlinie"
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Heiko Adams <heiko.adams@gmx.de>, 2007.\n"
-#~ "Severin Heiniger <severinheiniger@gmail.com>, 2007.\n"
-#~ "Fabian Affolter <fab@fedoraproject.org>, 2007-2009."
-
-#~ msgid "Fedora hardware profiler."
-#~ msgstr "Fedora-Hardwareprofiler"
-
-#~ msgid "Copyright © 2007 Mike McGrath"
-#~ msgstr "Copyright © 2007 Mike McGrath"
-
-#~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public License as published by the "
-#~ "Free Software Foundation; either version 2 of the License, or (at your "
-#~ "option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but "
-#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
-#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
-#~ "Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along "
-#~ "with this program; if not, write to the Free Software Foundation, Inc., "
-#~ "675 Mass Ave, Cambridge, MA 02139, USA."
-#~ msgstr ""
-#~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public License as published by the "
-#~ "Free Software Foundation; either version 2 of the License, or (at your "
-#~ "option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but "
-#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
-#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
-#~ "Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along "
-#~ "with this program; if not, write to the Free Software Foundation, Inc., "
-#~ "675 Mass Ave, Cambridge, MA 02139, USA."
-
-#~ msgid "Communication with server failed"
-#~ msgstr "Kommunikation mit dem Server fehlgeschlagen"

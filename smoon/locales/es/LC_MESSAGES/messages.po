@@ -1,11 +1,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-08-11 18:19+0200\n"
+"PO-Revision-Date: 2010-08-26 09:11-0300\n"
 "Last-Translator: Domingo Becker <domingobecker@gmail.com>\n"
 "Language-Team: Spanish <fedora-trans-es@redhat.com>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,7 +34,7 @@ msgstr "Cantidad Total"
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr "% hosts detectados ${type}"
+msgstr "% ho equipos detectados ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -338,3 +339,4 @@ msgstr "Más info"
 #: hardware/templates/welcome.html:25
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
 msgstr "<p>Navegue y busque en la <a href='/wiki/'>Wiki</a> la información detallada sobre ciertos dispositivos. El uso general y otras respuestas están en la <a href='/wiki/'>Wiki</a>.</p>"
+

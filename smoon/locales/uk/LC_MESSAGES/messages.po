@@ -1,47 +1,54 @@
-# Ukrainian translation of smolt
-# Copyright (C) Free Software Foundation, 2010
-# This file is distributed under the same license as the smolt package.
-# Maxim Dzumanenko <dziumanenko@gmail.com>, 2010
+# Translations template for hardware.
+# Copyright (C) 2008 ORGANIZATION
+# This file is distributed under the same license as the hardware project.
 #
+# Yuri Chornoivan <yurchor@ukr.net>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: smolt master smoon\n"
+"Project-Id-Version: hardware 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2010-03-22 01:58+0300\n"
-"Last-Translator: Maxim V. Dziumanenko <dziumanenko@gmail.com>\n"
+"PO-Revision-Date: 2010-09-03 14:40+0300\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.1\n"
+"X-Generator: Lokalize 1.1\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%"
+"10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: hardware/controllers/root.py:95
 msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
-msgstr "Надані дані авторизації не пройшли перевірку або некоректні."
+msgstr ""
+"Вами було вказано реєстраційні дані, які не є коректними або не надають "
+"доступу до цього ресурсу."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
 msgstr ""
-"Для доступу до цього ресурсу потрібно вказати дані авторизації."
+"До отримання доступу до цього ресурсу вам слід вказати ваші реєстраційні "
+"дані."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
-msgstr "Авторизуйтесь, будь ласка."
+msgstr "Будь ласка, увійдіть до системи."
 
 #: hardware/templates/deviceclass.html:9
 msgid "Devices by class ${type}"
-msgstr "Пристрої класу ${type}"
+msgstr "Пристрої за класом ${type}"
 
 #: hardware/templates/deviceclass.html:15
 msgid "Total Count"
-msgstr "Загальне число"
+msgstr "Загальна кількість"
 
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr "% oкремих вузлів ${type}"
+msgstr "% hoвиявлення вузлів ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -66,39 +73,39 @@ msgstr "Драйвер"
 
 #: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr "Постачальник"
+msgstr "Виробник"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr "Вторинний виробник"
+msgstr "Субпідрядник"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr "Вторинний пристрій"
+msgstr "Субпристрій"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
-msgstr "Дата додавання"
+msgstr "Додано дату"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr "% всіх вузлів"
+msgstr "% вузлів"
 
 #: hardware/templates/devices.html:15 hardware/templates/stats.html:19
 msgid "Total Registered Devices"
-msgstr "Загальна кількість зареєстрованих пристроїв"
+msgstr "Загалом зареєстрованих пристроїв"
 
 #: hardware/templates/devices.html:19
 msgid "Unique Devices"
-msgstr "Унікальні пристрої"
+msgstr "Унікальних пристроїв"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr "Raw-пристрої"
+msgstr "Пристрої без обробки даних"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr "Машини/пристрої"
+msgstr "Комп’ютери/Пристрій"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
@@ -118,15 +125,15 @@ msgstr "Набір результатів"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr "Показати вікно"
+msgstr "Показати панель"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr "Я не знаю чи не використовую це"
+msgstr "Я цього не використовую або не знаю"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr "Порушує роботу системи"
+msgstr "Робить систему недієздатною"
 
 #: hardware/templates/show.html:32
 msgid "Doesn't Work"
@@ -134,27 +141,27 @@ msgstr "Не працює"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "Вимагає драйверів сторонніх виробників"
+msgstr "Потребує сторонніх драйверів"
 
 #: hardware/templates/show.html:34
 msgid "Works, but required additional configuration"
-msgstr "Працює, але вимагає додаткового налаштування"
+msgstr "Працює, але потребує додаткового налаштування"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr "Працює «з коробки»"
+msgstr "Працює без налаштування"
 
 #: hardware/templates/show.html:36
 msgid "Show all Information"
-msgstr "Показати всю інформацію"
+msgstr "Показати всі відомості"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr "Загальний рейтинг:"
+msgstr "Загальна оцінка:"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr "Загальний UUID"
+msgstr "Публічний UUID"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
@@ -178,7 +185,7 @@ msgstr "Ядро"
 
 #: hardware/templates/show.html:48
 msgid "Formfactor"
-msgstr "Форм-фактор"
+msgstr "Формфактор"
 
 #: hardware/templates/show.html:49
 msgid "Last Modified"
@@ -190,7 +197,7 @@ msgstr "Пароль адміністратора"
 
 #: hardware/templates/show.html:60
 msgid "Rating"
-msgstr "Рейтинг"
+msgstr "Оцінка"
 
 #: hardware/templates/show.html:60
 msgid "Class"
@@ -202,19 +209,19 @@ msgstr "Статистика"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr "Всього зареєстровано вузлів"
+msgstr "Загалом зареєстрованих вузлів"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr "Загальний BogoMIPS"
+msgstr "Загальне значення bogoMIPS"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr "Всього процесорів"
+msgstr "Загалом процесорів"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr "МГц"
+msgstr "Загалом МГц"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
@@ -226,12 +233,12 @@ msgstr "Архітектура"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr "Лічильник"
+msgstr "Кількість"
 
 #: hardware/templates/stats.html:40
 #, python-format
 msgid "% of total"
-msgstr "% o від загального"
+msgstr "% oвід загального"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
@@ -251,15 +258,15 @@ msgstr "Модель"
 
 #: hardware/templates/stats.html:119
 msgid "RAM"
-msgstr "ОЗП"
+msgstr "Пам’ять"
 
 #: hardware/templates/stats.html:132
 msgid "Swap"
-msgstr "SWAP"
+msgstr "Свопінг"
 
 #: hardware/templates/stats.html:145
 msgid "CPU"
-msgstr "CPU"
+msgstr "Процесор"
 
 #: hardware/templates/stats.html:147
 msgid "Speed (MHz)"
@@ -271,7 +278,7 @@ msgstr "Кількість процесорів"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr "Виробник CPU"
+msgstr "Виробник процесора"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
@@ -279,7 +286,7 @@ msgstr "BogoMIPS"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr "Форм-фактор"
+msgstr "Формфактор"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
@@ -291,11 +298,11 @@ msgstr "SELinux увімкнено"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr "Примусовий режим SELinux"
+msgstr "Захист SELinux"
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr "Політика SELinux"
+msgstr "Правила SELinux"
 
 #: hardware/templates/stats.html:234
 msgid "Filesystems"
@@ -311,7 +318,7 @@ msgstr "Роль Myth"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr "Віддалений Myth"
+msgstr "Віддалене керування Myth"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
@@ -319,7 +326,7 @@ msgstr "Тема Myth"
 
 #: hardware/templates/welcome.html:12
 msgid "Enter your profile UUID:"
-msgstr "Введіть UUID профілю:"
+msgstr "Вкажіть UUID вашого профілю:"
 
 #: hardware/templates/welcome.html:15
 msgid "Statistics"
@@ -327,30 +334,30 @@ msgstr "Статистика"
 
 #: hardware/templates/welcome.html:17
 msgid ""
-"For detailed statistics about the devices in the database see <a href='/"
-"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
-"devices</a>"
+"For detailed statistics about the devices in the database see <a "
+"href='/static/stats/stats.html'>/stats</a> or <a "
+"href='/static/stats/devices.html'>/devices</a>"
 msgstr ""
-"Докладнішу статистику за пристроями можна знайти на <a href='/static/"
-"stats/stats.html'>/stats</a> чи <a href='/static/stats/devices.html'>/"
-"devices</a>"
+"Докладні статистичні дані щодо пристроїв у базі даних можна знайти у <a "
+"href='/static/stats/stats.html'>/stats</a> або <a "
+"href='/static/stats/devices.html'>/devices</a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr "Популярні виробники"
+msgstr "Рейтинг виробників"
 
 #: hardware/templates/welcome.html:23
 msgid "More info"
-msgstr "Подробиці"
+msgstr "Більше інформації"
 
 #: hardware/templates/welcome.html:25
 msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
-"about specific devices. Usage and other general answers can also be found at "
-"the <a href='/wiki/'>Wiki</a>.</p>"
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
+"information about specific devices. Usage and other general answers can "
+"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
 msgstr ""
-"<p>Докладнішу інформацію про пристрої можна отримати з <a href='/"
-"wiki/'>Вики</a>. Там же можна знайти інструкції з використання та відповіді на "
-"поширені питання. </p>"
+"<p>Докладні відомості щодо окремих пристроїв можна знайти у <a "
+"href='/wiki/'>вікі</a>. Настанови щодо користування та інші загальні "
+"відповіді можна також знайти у <a href='/wiki/'>вікі</a>.</p>"
 
 
