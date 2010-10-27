@@ -52,6 +52,7 @@ from smolt_config import get_config_attr
 from fs_util import get_fslist
 
 from gate import Gate
+from devicelist import get_device_list
 from uuiddb import UuidDb
 import logging
 from logging.handlers import RotatingFileHandler
@@ -496,68 +497,69 @@ class _Hardware:
             raise SystemBusError, _('Could not connect to hal, is it running?\nRun "service haldaemon start" as root')
 
         self.systemBus = systemBus
+
+        if Gate().grants('devices'):
+                self.devices = get_device_list()
         for udi in all_dev_lst:
             props = self.get_properties_for_udi (udi)
-            if Gate().grants('devices'):
-                self.devices[udi] = Device(props, self)
             if udi == '/org/freedesktop/Hal/devices/computer':
-                try:
-                    vendor = props['system.vendor']
-                    if len(vendor.strip()) == 0:
-                        vendor = None
-                except KeyError:
-                    try:
-                        vendor = props['vendor']
-                        if len(vendor.strip()) == 0:
-                            vendor = None
-                    except KeyError:
-                        vendor = None
-                try:
-                    product = props['system.product']
-                    if len(product.strip()) == 0:
-                        product = None
-                except KeyError:
-                    try:
-                        product = props['product']
-                        if len(product.strip()) == 0:
-                            product = None
-                    except KeyError:
-                        product = None
-
-                # This could be done with python-dmidecode but it would pull
-                # In an extra dep on smolt.  It may not be worth it
-                if vendor is None or product is None:
-                    try:
-                        dmiOutput = subprocess.Popen('/usr/sbin/dmidecode r 2> /dev/null', shell=True, stdout=subprocess.PIPE).stdout
-                    except NameError:
-                        i, dmiOutput, e = os.popen('/usr/sbin/dmidecode', 'r')
-                    section = None
-                    sysvendor = None
-                    sysproduct = None
-                    boardvendor = None
-                    boardproduct = None
-                    for line in dmiOutput:
-                        line = line.strip()
-                        if "Information" in line:
-                            section = line
-                        elif section is None:
-                            continue
-                        elif line.startswith("Manufacturer: ") and section.startswith("System"):
-                            sysvendor = line.split("Manufacturer: ", 1)[1]
-                        elif line.startswith("Product Name: ") and section.startswith("System"):
-                            sysproduct = line.split("Product Name: ", 1)[1]
-                        elif line.startswith("Manufacturer: ") and section.startswith("Base Board"):
-                            boardvendor = line.split("Manufacturer: ", 1)[1]
-                        elif line.startswith("Product Name: ") and section.startswith("Base Board"):
-                            boardproduct = line.split("Product Name: ", 1)[1]
-                    status = dmiOutput.close()
-                    if status is None:
-                        if sysvendor not in (None, 'System Manufacturer') and sysproduct not in (None, 'System Name'):
-                            props['system.vendor'] = sysvendor
-                            props['system.product'] = sysproduct
-                        elif boardproduct is not None and boardproduct is not None:
-                            props['system.vendor'] = boardvendor
-                            props['system.product'] = boardproduct
+#                try:
+#                    vendor = props['system.vendor']
+#                    if len(vendor.strip()) == 0:
+#                        vendor = None
+#                except KeyError:
+#                    try:
+#                        vendor = props['vendor']
+#                        if len(vendor.strip()) == 0:
+#                            vendor = None
+#                    except KeyError:
+#                        vendor = None
+#                try:
+#                    product = props['system.product']
+#                    if len(product.strip()) == 0:
+#                        product = None
+#                except KeyError:
+#                    try:
+#                        product = props['product']
+#                        if len(product.strip()) == 0:
+#                            product = None
+#                    except KeyError:
+#                        product = None
+#
+#                # This could be done with python-dmidecode but it would pull
+#                # In an extra dep on smolt.  It may not be worth it
+#                if vendor is None or product is None:
+#                    try:
+#                        dmiOutput = subprocess.Popen('/usr/sbin/dmidecode r 2> /dev/null', shell=True, stdout=subprocess.PIPE).stdout
+#                    except NameError:
+#                        i, dmiOutput, e = os.popen('/usr/sbin/dmidecode', 'r')
+#                    section = None
+#                    sysvendor = None
+#                    sysproduct = None
+#                    boardvendor = None
+#                    boardproduct = None
+#                    for line in dmiOutput:
+#                        line = line.strip()
+#                        if "Information" in line:
+#                            section = line
+#                        elif section is None:
+#                            continue
+#                        elif line.startswith("Manufacturer: ") and section.startswith("System"):
+#                            sysvendor = line.split("Manufacturer: ", 1)[1]
+#                        elif line.startswith("Product Name: ") and section.startswith("System"):
+#                            sysproduct = line.split("Product Name: ", 1)[1]
+#                        elif line.startswith("Manufacturer: ") and section.startswith("Base Board"):
+#                            boardvendor = line.split("Manufacturer: ", 1)[1]
+#                        elif line.startswith("Product Name: ") and section.startswith("Base Board"):
+#                            boardproduct = line.split("Product Name: ", 1)[1]
+#                    status = dmiOutput.close()
+#                    if status is None:
+#                        if sysvendor not in (None, 'System Manufacturer') and sysproduct not in (None, 'System Name'):
+#                            props['system.vendor'] = sysvendor
+#                            props['system.product'] = sysproduct
+#                        elif boardproduct is not None and boardproduct is not None:
+#                            props['system.vendor'] = boardvendor
+#                            props['system.product'] = boardproduct
                 self.host = Host(props)
 
         self.fss = get_file_systems()
@@ -953,21 +955,17 @@ class _Hardware:
     def deviceIter(self):
         '''Iterate over our devices.'''
         for device in self.devices:
-            try:
-                Bus = self.devices[device].bus
-                VendorID = self.devices[device].vendorid
-                DeviceID = self.devices[device].deviceid
-                SubsysVendorID = self.devices[device].subsysvendorid
-                SubsysDeviceID = self.devices[device].subsysdeviceid
-                Driver = self.devices[device].driver
-                Type = self.devices[device].type
-                Description = self.devices[device].description
-                Description = Description.decode('latin1')
-            except:
-                continue
-            else:
-                if not ignoreDevice(self.devices[device]):
-                    yield VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description
+            Bus = self.devices[device].bus
+            VendorID = self.devices[device].vendorid
+            DeviceID = self.devices[device].deviceid
+            SubsysVendorID = self.devices[device].subsysvendorid
+            SubsysDeviceID = self.devices[device].subsysdeviceid
+            Driver = self.devices[device].driver
+            Type = self.devices[device].type
+            Description = self.devices[device].description
+            #Description = Description.decode('latin1')
+            if not ignoreDevice(self.devices[device]):
+                yield VendorID, DeviceID, SubsysVendorID, SubsysDeviceID, Bus, Driver, Type, Description
 
 
 _hardware_instance = None
