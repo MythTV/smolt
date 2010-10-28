@@ -303,14 +303,14 @@ class Host:
 
         if Gate().grants('vendor'):
             #self.systemVendor = hostInfo.get('system.vendor'
-            self.systemVendor = cat('/sys/devices/virtual/dmi/id/product_name')[0].strip() + ' ' + cat('/sys/devices/virtual/dmi/id/product_version')[0].strip()
+            self.systemVendor = cat('/sys/devices/virtual/dmi/id/sys_vendor')[0].strip()
             if not self.systemVendor:
                 self.systemVendor = 'Unknown'
         else:
             self.systemVendor = WITHHELD_MAGIC_STRING
 
         if Gate().grants('model'):
-            self.systemModel = cat('/sys/devices/virtual/dmi/id/sys_vendor')[0].strip()
+            self.systemModel = cat('/sys/devices/virtual/dmi/id/product_name')[0].strip() + ' ' + cat('/sys/devices/virtual/dmi/id/product_version')[0].strip()
             if not self.systemModel:
                 self.systemModel = hostInfo.get('system.hardware.product')
                 if hostInfo.get('system.hardware.version'):
