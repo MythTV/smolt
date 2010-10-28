@@ -51,6 +51,7 @@ import logging
 import config
 from smolt_config import get_config_attr
 from fs_util import get_fslist
+from devicelist import cat
 
 from gate import Gate
 from devicelist import get_device_list
@@ -161,6 +162,38 @@ PCI_CLASS_SERIAL_USB =          3
 PCI_CLASS_SERIAL_FIBER =        4
 PCI_CLASS_SERIAL_SMBUS =        5
 
+
+# Taken from the DMI spec
+FORMFACTOR_LIST = [ "Unknown",
+                "Other",
+                "Unknown",
+                "Desktop",
+                "Low Profile Desktop",
+                "Pizza Box",
+                "Mini Tower",
+                "Tower",
+                "Portable",
+                "Laptop",
+                "Notebook",
+                "Hand Held",
+                "Docking Station",
+                "All In One",
+                "Sub Notebook",
+                "Space-saving",
+                "Lunch Box",
+                "Main Server Chassis",
+                "Expansion Chassis",
+                "Sub Chassis",
+                "Bus Expansion Chassis",
+                "Peripheral Chassis",
+                "RAID Chassis",
+                "Rack Mount Chassis",
+                "Sealed-case PC",
+                "Multi-system",
+                "CompactPCI",
+                "AdvancedTCA"
+    ]
+
 def to_ascii(o, current_encoding='utf-8'):
     if not isinstance(o, basestring):
         return o
@@ -270,16 +303,14 @@ class Host:
 
         if Gate().grants('vendor'):
             #self.systemVendor = hostInfo.get('system.vendor'
-            self.systemVendor = 'FIXME systemVendor'
-            if not self.systemVendor:
-                self.systemVendor = hostInfo.get('system.hardware.vendor')
+            self.systemVendor = cat('/sys/devices/virtual/dmi/id/product_name')[0].strip() + ' ' + cat('/sys/devices/virtual/dmi/id/product_version')[0].strip()
             if not self.systemVendor:
                 self.systemVendor = 'Unknown'
         else:
             self.systemVendor = WITHHELD_MAGIC_STRING
 
         if Gate().grants('model'):
-            self.systemModel = 'FIXME systemModel'
+            self.systemModel = cat('/sys/devices/virtual/dmi/id/sys_vendor')[0].strip()
             if not self.systemModel:
                 self.systemModel = hostInfo.get('system.hardware.product')
                 if hostInfo.get('system.hardware.version'):
@@ -291,7 +322,8 @@ class Host:
 
         if Gate().grants('form_factor'):
             try:
-                self.formfactor = hostInfo['system.formfactor']
+                formfactor_id = int(cat('/sys/devices/virtual/dmi/id/chassis_type')[0].strip())
+                self.formfactor = FORMFACTOR_LIST[formfactor_id]
             except:
                 self.formfactor = 'Unknown'
         else:
