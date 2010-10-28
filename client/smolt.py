@@ -32,7 +32,8 @@
 
 from i18n import _
 
-import dbus
+#import dbus
+import platform
 import software
 import commands
 import urlgrabber.grabber
@@ -230,7 +231,7 @@ class Device:
                 self.driver = 'Unknown'
 
 class Host:
-    def __init__(self, hostInfo):
+    def __init__(self):
         cpuInfo = read_cpuinfo()
         memory = read_memory()
         self.UUID = getUUID()
@@ -264,17 +265,12 @@ class Host:
         else:
             self.language = WITHHELD_MAGIC_STRING
 
-        try:
-            tempform = hostInfo['system.kernel.machine']
-        except KeyError:
-            try:
-                tempform = hostInfo['kernel.machine']
-            except KeyError:
-                tempform = 'Unknown'
+        tempform = platform.machine()
         self.platform = Gate().process('arch', tempform, WITHHELD_MAGIC_STRING)
 
         if Gate().grants('vendor'):
-            self.systemVendor = hostInfo.get('system.vendor')
+            #self.systemVendor = hostInfo.get('system.vendor'
+            self.systemVendor = 'FIXME systemVendor'
             if not self.systemVendor:
                 self.systemVendor = hostInfo.get('system.hardware.vendor')
             if not self.systemVendor:
@@ -283,7 +279,7 @@ class Host:
             self.systemVendor = WITHHELD_MAGIC_STRING
 
         if Gate().grants('model'):
-            self.systemModel = hostInfo.get('system.product')
+            self.systemModel = 'FIXME systemModel'
             if not self.systemModel:
                 self.systemModel = hostInfo.get('system.hardware.product')
                 if hostInfo.get('system.hardware.version'):
@@ -485,24 +481,24 @@ class PubUUIDError(Exception):
 class _Hardware:
     devices = {}
     def __init__(self):
-        try:
-            systemBus = dbus.SystemBus()
-        except:
-            raise SystemBusError, _('Could not bind to dbus.  Is dbus running?')
-
-        try:
-            mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
-            all_dev_lst = mgr.GetAllDevices()
-        except:
-            raise SystemBusError, _('Could not connect to hal, is it running?\nRun "service haldaemon start" as root')
-
-        self.systemBus = systemBus
+#        try:
+#            systemBus = dbus.SystemBus()
+#        except:
+#            raise SystemBusError, _('Could not bind to dbus.  Is dbus running?')
+#
+#        try:
+#            mgr = self.dbus_get_interface(systemBus, 'org.freedesktop.Hal', '/org/freedesktop/Hal/Manager', 'org.freedesktop.Hal.Manager')
+#            all_dev_lst = mgr.GetAllDevices()
+#        except:
+#            raise SystemBusError, _('Could not connect to hal, is it running?\nRun "service haldaemon start" as root')
+#
+#        self.systemBus = systemBus
 
         if Gate().grants('devices'):
                 self.devices = get_device_list()
-        for udi in all_dev_lst:
-            props = self.get_properties_for_udi (udi)
-            if udi == '/org/freedesktop/Hal/devices/computer':
+#        for udi in all_dev_lst:
+#            props = self.get_properties_for_udi (udi)
+#            if udi == '/org/freedesktop/Hal/devices/computer':
 #                try:
 #                    vendor = props['system.vendor']
 #                    if len(vendor.strip()) == 0:
@@ -560,7 +556,7 @@ class _Hardware:
 #                        elif boardproduct is not None and boardproduct is not None:
 #                            props['system.vendor'] = boardvendor
 #                            props['system.product'] = boardproduct
-                self.host = Host(props)
+                self.host = Host()
 
         self.fss = get_file_systems()
 
@@ -582,23 +578,23 @@ class _Hardware:
                 }
         return dist_dict
 
-    def get_properties_for_udi (self, udi):
-        dev = self.dbus_get_interface(self.systemBus, 'org.freedesktop.Hal',
-                                      udi, 'org.freedesktop.Hal.Device')
-        return dev.GetAllProperties()
+#    def get_properties_for_udi (self, udi):
+#        dev = self.dbus_get_interface(self.systemBus, 'org.freedesktop.Hal',
+#                                      udi, 'org.freedesktop.Hal.Device')
+#        return dev.GetAllProperties()
 
-    def dbus_get_interface(self, bus, service, object, interface):
-        iface = None
-        # dbus-python bindings as of version 0.40.0 use new api
-        if getattr(dbus, 'version', (0,0,0)) >= (0,40,0):
-            # newer api: get_object(), dbus.Interface()
-            proxy = bus.get_object(service, object)
-            iface = dbus.Interface(proxy, interface)
-        else:
-            # deprecated api: get_service(), get_object()
-            svc = bus.get_service(service)
-            iface = svc.get_object(object, interface)
-        return iface
+#    def dbus_get_interface(self, bus, service, object, interface):
+#        iface = None
+#        # dbus-python bindings as of version 0.40.0 use new api
+#        if getattr(dbus, 'version', (0,0,0)) >= (0,40,0):
+#            # newer api: get_object(), dbus.Interface()
+#            proxy = bus.get_object(service, object)
+#            iface = dbus.Interface(proxy, interface)
+#        else:
+#            # deprecated api: get_service(), get_object()
+#            svc = bus.get_service(service)
+#            iface = svc.get_object(object, interface)
+#        return iface
 
     def get_sendable_devices(self, protocol_version=smoltProtocol):
         my_devices = []
