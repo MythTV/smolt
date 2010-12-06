@@ -1,9 +1,9 @@
 # Low German translation of hardware
 # Copyright (C) 2008 Red Hat
 # This file is distributed under the same license as the hardware project.
-#
+# 
 # Nils-Christoph Fiedler <ncfiedler@fedoraproject.org>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: hardware 1.0\n"
@@ -15,10 +15,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 0.9.1\n"
-"X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Low German\n"
+"Generated-By: Babel 0.9.1\n"
+"X-Generator: Lokalize 0.3\n"
 
 #: hardware/controllers/root.py:95
 msgid "The credentials you supplied were not correct or did not grant access to this resource."
@@ -49,14 +49,12 @@ msgstr ""
 msgid "Vendors"
 msgstr ""
 
-#: hardware/templates/deviceclass.html:34
-#: hardware/templates/devices.html:9
+#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
 msgstr "Lööpwarks"
 
-#: hardware/templates/deviceclass.html:36
-#: hardware/templates/show.html:60
+#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
 msgid "Device"
 msgstr "Lööpwark"
 
@@ -64,68 +62,9 @@ msgstr "Lööpwark"
 msgid "Bus"
 msgstr "Bus"
 
-#: hardware/templates/deviceclass.html:36
-msgid "Driver"
-msgstr ""
-
-#: hardware/templates/deviceclass.html:36
-#: hardware/templates/stats.html:92
-msgid "Vendor"
-msgstr ""
-
-#: hardware/templates/deviceclass.html:36
-msgid "Sub Vendor"
-msgstr ""
-
-#: hardware/templates/deviceclass.html:36
-msgid "Sub Device"
-msgstr ""
-
-#: hardware/templates/deviceclass.html:36
-msgid "Date Added"
-msgstr ""
-
-#: hardware/templates/deviceclass.html:36
-msgid "% tot hosts"
-msgstr ""
-
-#: hardware/templates/devices.html:15
-#: hardware/templates/stats.html:19
-msgid "Total Registered Devices"
-msgstr ""
-
-#: hardware/templates/devices.html:19
-msgid "Unique Devices"
-msgstr ""
-
-#: hardware/templates/devices.html:24
-msgid "Raw Devices"
-msgstr ""
-
-#: hardware/templates/devices.html:34
-msgid "Machines / Device"
-msgstr ""
-
 #: hardware/templates/devices.html:44
 msgid "Classes"
 msgstr "Klassen"
-
-#: hardware/templates/report_search.html:37
-#: hardware/templates/welcome.html:10
-msgid "Lookup"
-msgstr ""
-
-#: hardware/templates/report_search.html:38
-msgid "Dataset"
-msgstr ""
-
-#: hardware/templates/report_search.html:53
-msgid "Result Set"
-msgstr ""
-
-#: hardware/templates/show.html:8
-msgid "Show Box"
-msgstr ""
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
@@ -179,8 +118,7 @@ msgstr ""
 msgid "System Model"
 msgstr ""
 
-#: hardware/templates/show.html:47
-#: hardware/templates/stats.html:180
+#: hardware/templates/show.html:47 hardware/templates/stats.html:180
 msgid "Kernel"
 msgstr "Kernel"
 
@@ -349,3 +287,58 @@ msgstr "Mehr Informatschoon"
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
 msgstr ""
 
+#: hardware/templates/devices.html:24
+msgid "Raw Devices"
+msgstr ""
+
+#: hardware/templates/devices.html:19
+msgid "Unique Devices"
+msgstr "Enkelartiges Lööpwark"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Driver"
+msgstr "Driever"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Vendor"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+msgid "Vendor"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:36
+msgid "Date Added"
+msgstr "Dag hentofögt"
+
+#: hardware/templates/deviceclass.html:36
+msgid "Sub Device"
+msgstr "Unnerlööpwark"
+
+#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+msgid "Total Registered Devices"
+msgstr ""
+
+#: hardware/templates/deviceclass.html:36
+msgid "% tot hosts"
+msgstr ""
+
+#: hardware/templates/report_search.html:53
+msgid "Result Set"
+msgstr ""
+
+#: hardware/templates/show.html:8
+msgid "Show Box"
+msgstr "Box opwiesen"
+
+#: hardware/templates/devices.html:34
+msgid "Machines / Device"
+msgstr "Maschinen / Lööpwark"
+
+#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+msgid "Lookup"
+msgstr "Nakieken"
+
+#: hardware/templates/report_search.html:38
+msgid "Dataset"
+msgstr ""
