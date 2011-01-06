@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: smolt.master.gu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2011-01-03 17:01+0530\n"
+"PO-Revision-Date: 2011-01-06 14:20+0530\n"
 "Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "HTTP સમયસમાપ્તિ ગાળો સેકન્ડો�
 
 #: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr ""
+msgstr "વાપરવા માટે ક્યુ uuid છે તે સ્પષ્ટ કરો, મોટેભાગે ડિબગીંગ અને ચકાસણી માટે ઉપયોગી છે."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
@@ -182,31 +182,31 @@ msgstr ""
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
-msgstr ""
+msgstr "વેન્ડર/મોડલ માટે હાલનો ક્રમાંક."
 
 #: scan.py:45
 msgid "Unrated/Unknown"
-msgstr ""
+msgstr "અક્રમાંકિત/અજ્ઞાત"
 
 #: scan.py:46
 msgid "Non-working"
-msgstr ""
+msgstr "કામ કરી રહ્યુ નથી"
 
 #: scan.py:47
 msgid "Partially-working"
-msgstr ""
+msgstr "શરૂઆતમાં કામ કરી રહ્યુ છે"
 
 #: scan.py:48
 msgid "Requires 3rd party drivers"
-msgstr ""
+msgstr "3rd પાર્ટી ડ્રાઇવરોની જરૂર છે"
 
 #: scan.py:49
 msgid "Works, needs additional configuration"
-msgstr ""
+msgstr "કામ કરે છે, વધારાનાં રૂપરેખાંકનની જરૂર છે"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr ""
+msgstr "બોક્સની બહાર કામ કરે છે"
 
 #: scan.py:58
 #, python-format
@@ -239,7 +239,7 @@ msgstr "ઈશારો:"
 
 #: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
-msgstr ""
+msgstr "(ફક્ત) config ફાઇલને વાપરવાનાં સ્થાનને સ્પષ્ટ કરો"
 
 #: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
@@ -491,6 +491,10 @@ msgid ""
 "a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)"
 "s</i>"
 msgstr ""
+"<b>તમારી રૂપરેખાને સફળતાપૂર્વક મોકલી દીધી!</b><br>\t\t\t\t<br>\t\t\t\tતમારી "
+"રૂપરેખાઓ આની પર ઓનલાઇન ઉપલબ્ધ છે:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</"
+"a><br>\t\t\t\t<br>\t\t\t\tતમારો રૂપરેખા એડમિન પાસવર્ડ આ છે:<br><i>%(password)"
+"s</i>"
 
 #: smoltGui.py:270
 msgid "Privacy Policy"
@@ -517,6 +521,11 @@ msgid ""
 "\t\t\t\tand should not contain any private information other than the "
 "physical \t\t\t\thardware information and basic OS info.<br/>"
 msgstr ""
+"<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t"
+"\tsystem that does a hardware scan against a machine and sends the results \t"
+"\t\t\tto a public Fedora Project turbogears server. The sends are anonymous "
+"\t\t\t\tand should not contain any private information other than the "
+"physical \t\t\t\thardware information and basic OS info.<br/>"
 
 #: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
@@ -531,6 +540,11 @@ msgid ""
 "Public License \t\t\t\tas published by the Free Software Foundation; either "
 "version 3 \t\t\t\tof the License, or (at your option) any later version."
 msgstr ""
+"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
+"\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can "
+"redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General "
+"Public License \t\t\t\tas published by the Free Software Foundation; either "
+"version 3 \t\t\t\tof the License, or (at your option) any later version."
 
 #: smolt.py:362
 #, python-format
@@ -554,11 +568,13 @@ msgid ""
 "\tYour pub_uuid could not be written.\n"
 "\n"
 msgstr ""
+"\tતમારી pub_uuid ને લખી શક્યા નહિં.\n"
+"\n"
 
 #: smolt.py:516
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr ""
+msgstr "\tતમારી એડમિન ટોકન કેશ કરી શક્યા નહિં: %s\n"
 
 #: smolt.py:536 smolt.py:579 smolt.py:609
 #, python-format
@@ -571,7 +587,7 @@ msgstr "ખોટી આવૃત્તિ, સર્વર તમારા ક�
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
-msgstr ""
+msgstr "ટોકનને લાવી રહ્યા હોય ત્યારે કંઇક ખોટુ થયુ"
 
 #: smolt.py:589
 #, python-format
@@ -616,7 +632,7 @@ msgstr "CPU મોડેલ"
 
 #: smolt.py:698
 msgid "CPU Stepping"
-msgstr ""
+msgstr "CPU સ્ટેપીંગ"
 
 #: smolt.py:699
 msgid "CPU Family"
@@ -677,7 +693,7 @@ msgstr "UUID સંગ્રહવામાં અસમર્થ, ચાલુ 
 #: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
-msgstr ""
+msgstr "તમારી UUID ફાઇલને બનાવી શક્યા નહિં: %s\n"
 
 #: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
@@ -686,7 +702,7 @@ msgstr "સિસ્ટમનું UUID નક્કી કરવામાં �
 #: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
-msgstr ""
+msgstr "સાર્વજનિક UUID ને નક્કી કરી રહ્યા હોય ત્યારે ભૂલ: %s"
 
 #: smolt.py:1204
 msgid "Unable to determine Public UUID!\n"
