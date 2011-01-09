@@ -46,7 +46,7 @@ msgstr "仅显示信息，不发送"
 #: sendProfile.py:88
 #, python-format
 msgid "specify HTTP user agent (default \"%default\")"
-msgstr ""
+msgstr "指定HTTP用户代理（默认 \"%default\"）"
 
 #: deleteProfile.py:66
 #: sendProfile.py:93
@@ -266,7 +266,6 @@ msgid "HTTP proxy"
 msgstr "HTTP 代理"
 
 #: sendProfile.py:146
-#, fuzzy
 msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
 msgstr "Smolt 设置为 checkin 但 checkins 已禁用（提示：service smolt start）"
 
@@ -516,7 +515,7 @@ msgstr ""
 #: smolt.py:516
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr ""
+msgstr "\t你的管理员令牌不能被缓存：%s\n"
 
 #: smolt.py:536
 #: smolt.py:579
@@ -532,7 +531,7 @@ msgstr "版本错误，服务器无法处理您的客户端"
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
-msgstr ""
+msgstr "有什么事情出错读取一个令牌"
 
 #: smolt.py:589
 #, python-format
@@ -580,16 +579,15 @@ msgstr "CPU 型号"
 
 #: smolt.py:698
 msgid "CPU Stepping"
-msgstr ""
+msgstr "CPU 步进"
 
 #: smolt.py:699
 msgid "CPU Family"
 msgstr "CPU 家族"
 
 #: smolt.py:700
-#, fuzzy
 msgid "CPU Model Num"
-msgstr "CPU 型号代号"
+msgstr "CPU 型号"
 
 #: smolt.py:701
 msgid "Number of CPUs"
@@ -617,7 +615,7 @@ msgstr "计算机"
 
 #: smolt.py:707
 msgid "Form factor"
-msgstr ""
+msgstr "形式因素"
 
 #: smolt.py:708
 msgid "Kernel"
