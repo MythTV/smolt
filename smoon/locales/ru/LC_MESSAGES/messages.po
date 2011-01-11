@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2011-01-11 20:03+0300\n"
+"PO-Revision-Date: 2011-01-11 20:22+0300\n"
 "Last-Translator: Alexander Opoycev <opoycev@yandex.ru>\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -148,7 +148,7 @@ msgstr "Общая оценка"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr "Публичный UUID"
+msgstr "UUID системы"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
