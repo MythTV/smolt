@@ -3,14 +3,14 @@
 # Copyright (C) 2008 ORGANIZATION
 # This file is distributed under the same license as the hardware project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2010-09-01 11:38+1000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2011-01-11 20:03+0300\n"
+"Last-Translator: Alexander Opoycev <opoycev@yandex.ru>\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: hardware/controllers/root.py:95
 msgid "The credentials you supplied were not correct or did not grant access to this resource."
-msgstr ""
+msgstr "Вами были указаны регистрационные данные, которые являются не корректными или не дают доступа к этому ресурсу."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
@@ -46,14 +46,16 @@ msgstr ""
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
-msgstr ""
+msgstr "Производители"
 
-#: hardware/templates/deviceclass.html:34 hardware/templates/devices.html:9
+#: hardware/templates/deviceclass.html:34
+#: hardware/templates/devices.html:9
 #: hardware/templates/show.html:57
 msgid "Devices"
 msgstr "Устройства"
 
-#: hardware/templates/deviceclass.html:36 hardware/templates/show.html:60
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/show.html:60
 msgid "Device"
 msgstr "Устройство"
 
@@ -65,17 +67,18 @@ msgstr "Шина"
 msgid "Driver"
 msgstr "Драйвер"
 
-#: hardware/templates/deviceclass.html:36 hardware/templates/stats.html:92
+#: hardware/templates/deviceclass.html:36
+#: hardware/templates/stats.html:92
 msgid "Vendor"
-msgstr ""
+msgstr "Производитель"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Vendor"
-msgstr ""
+msgstr "Субпоставщик"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Sub Device"
-msgstr ""
+msgstr "Подустройство"
 
 #: hardware/templates/deviceclass.html:36
 msgid "Date Added"
@@ -83,9 +86,10 @@ msgstr "Дата добавления"
 
 #: hardware/templates/deviceclass.html:36
 msgid "% tot hosts"
-msgstr ""
+msgstr "% узлов"
 
-#: hardware/templates/devices.html:15 hardware/templates/stats.html:19
+#: hardware/templates/devices.html:15
+#: hardware/templates/stats.html:19
 msgid "Total Registered Devices"
 msgstr "Всего зарегистрировано устройств"
 
@@ -95,99 +99,100 @@ msgstr "Уникальные устройства"
 
 #: hardware/templates/devices.html:24
 msgid "Raw Devices"
-msgstr ""
+msgstr "Raw-устройства"
 
 #: hardware/templates/devices.html:34
 msgid "Machines / Device"
-msgstr ""
+msgstr "Компьютеры / Устройство"
 
 #: hardware/templates/devices.html:44
 msgid "Classes"
 msgstr "Классы"
 
-#: hardware/templates/report_search.html:37 hardware/templates/welcome.html:10
+#: hardware/templates/report_search.html:37
+#: hardware/templates/welcome.html:10
 msgid "Lookup"
-msgstr ""
+msgstr "Поиск"
 
 #: hardware/templates/report_search.html:38
 msgid "Dataset"
-msgstr ""
+msgstr "Набор данных"
 
 #: hardware/templates/report_search.html:53
 msgid "Result Set"
-msgstr ""
+msgstr "Результат"
 
 #: hardware/templates/show.html:8
 msgid "Show Box"
-msgstr ""
+msgstr "Сводная информация"
 
 #: hardware/templates/show.html:30
 msgid "I don't use this or I don't know"
-msgstr ""
+msgstr "Я не использую это, либо не знаю"
 
 #: hardware/templates/show.html:31
 msgid "Breaks System"
-msgstr ""
+msgstr "Делает систему неработоспособной"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr ""
+msgstr "Требует сторонние драйверы"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
-msgstr ""
+msgstr "Работает без настройки"
 
 #: hardware/templates/show.html:39
 msgid "Overall Rating:"
-msgstr ""
+msgstr "Общая оценка"
 
 #: hardware/templates/show.html:42
 msgid "Public UUID"
-msgstr ""
+msgstr "Публичный UUID"
 
 #: hardware/templates/show.html:43
 msgid "Operating System"
-msgstr ""
+msgstr "Операционная система"
 
 #: hardware/templates/show.html:45
 msgid "System Vendor"
-msgstr ""
+msgstr "Производитель системы"
 
 #: hardware/templates/show.html:46
 msgid "System Model"
-msgstr ""
+msgstr "Модель системы"
 
 #: hardware/templates/stats.html:9
 msgid "Stats"
-msgstr ""
+msgstr "Статистика"
 
 #: hardware/templates/stats.html:15
 msgid "Total Registered Hosts"
-msgstr ""
+msgstr "Всего зарегистрированных узлов"
 
 #: hardware/templates/stats.html:23
 msgid "Total bogomips"
-msgstr ""
+msgstr "Общее значение bogoMIPS"
 
 #: hardware/templates/stats.html:27
 msgid "Total processors"
-msgstr ""
+msgstr "Всего процессоров"
 
 #: hardware/templates/stats.html:31
 msgid "Total MHz"
-msgstr ""
+msgstr "Всего МГц"
 
 #: hardware/templates/stats.html:38
 msgid "Archs"
-msgstr ""
+msgstr "Архитектуры"
 
 #: hardware/templates/stats.html:40
 msgid "Arch"
-msgstr ""
+msgstr "Архитектура"
 
 #: hardware/templates/stats.html:40
 msgid "Count"
-msgstr ""
+msgstr "Количество"
 
 #: hardware/templates/stats.html:40
 #, python-format
@@ -196,67 +201,67 @@ msgstr ""
 
 #: hardware/templates/stats.html:53
 msgid "OS"
-msgstr ""
+msgstr "ОС"
 
 #: hardware/templates/stats.html:66
 msgid "Runlevel"
-msgstr ""
+msgstr "Уровень запуска"
 
 #: hardware/templates/stats.html:132
 msgid "Swap"
-msgstr ""
+msgstr "Своп"
 
 #: hardware/templates/stats.html:161
 msgid "CPU Vendor"
-msgstr ""
+msgstr "Производитель процессора"
 
 #: hardware/templates/stats.html:168
 msgid "Bogomips"
-msgstr ""
+msgstr "BogoMIPS"
 
 #: hardware/templates/stats.html:193
 msgid "Form Factor"
-msgstr ""
+msgstr "Формфактор"
 
 #: hardware/templates/stats.html:206
 msgid "Selinux"
-msgstr ""
+msgstr "Selinux"
 
 #: hardware/templates/stats.html:208
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux включён"
 
 #: hardware/templates/stats.html:215
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "Защита SELinux "
 
 #: hardware/templates/stats.html:222
 msgid "SELinux Policy"
-msgstr ""
+msgstr "Правила SELinux "
 
 #: hardware/templates/stats.html:253
 msgid "Myth Role"
-msgstr ""
+msgstr "Роль Myth"
 
 #: hardware/templates/stats.html:266
 msgid "Myth Remote"
-msgstr ""
+msgstr "Удалённое управление Myth"
 
 #: hardware/templates/stats.html:279
 msgid "Myth  Theme"
-msgstr ""
+msgstr "Тема Myth"
 
 #: hardware/templates/welcome.html:17
 msgid "For detailed statistics about the devices in the database see <a href='/static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/devices</a>"
-msgstr ""
+msgstr "Подробные статистические данные по устройствамв базе данных можно найти  в <a href='/static/stats/stats.html'> / stats </ a> или <a href='/static/stats/devices.html'> / devices </ a>"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
-msgstr ""
+msgstr "Ркйтинг производителей"
 
 #: hardware/templates/welcome.html:25
 msgid "<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information about specific devices. Usage and other general answers can also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr ""
+msgstr "<p>Подробные сведения по отдельным устройствам можно найти в <a href='/wiki/'>Wiki</a>. В  <a href='/wiki/'>Wiki</a>вы также можете найти ответы на общие вопросы и вопросы по использованию.</p>"
 
 #: hardware/templates/show.html:50
 msgid "Admin Password"
@@ -338,6 +343,8 @@ msgstr "Работает, но нуждается в настройке"
 msgid "Platform"
 msgstr "Платформа"
 
-#: hardware/templates/show.html:47 hardware/templates/stats.html:180
+#: hardware/templates/show.html:47
+#: hardware/templates/stats.html:180
 msgid "Kernel"
 msgstr "Ядро"
+
