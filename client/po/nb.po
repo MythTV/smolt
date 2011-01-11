@@ -1,6 +1,7 @@
-# Norwegian/Bokmaal translation of PACKAGE.
-# Copyright (C) 2007 ORGANIZATION
+# Norwegian bokmål translation of smolt.
+# Copyright (C) 2007 Red Hat, Inc.
 # Espen Stefansen <espenas@gmail.com>, 2007.
+# Kjartan Maraas <kmaraas@gnome.org>, 2010.
 #
 #
 msgid ""
@@ -8,21 +9,21 @@ msgstr ""
 "Project-Id-Version: smolt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-08 15:06+0200\n"
-"PO-Revision-Date: 2007-12-13 13:54+0100\n"
-"Last-Translator: Stian Ellingsen <stiell@gmail.com>\n"
-"Language-Team: Norwegian/Bokmaal <i18n-nb@lister.ping.uio.no>\n"
+"PO-Revision-Date: 2010-10-24 17:39+0200\n"
+"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
+"Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: deleteProfile.py:36 smolt.py:360
-#, fuzzy, python-format
+#, python-format
 msgid "Server Message: \"%s\""
 msgstr "Melding fra tjener: «%s»"
 
 #: deleteProfile.py:46 sendProfile.py:48
 msgid "enable debug information"
-msgstr ""
+msgstr "slå på feilsøkingsinformasjon"
 
 #: deleteProfile.py:51 sendProfile.py:58
 #, python-format
@@ -56,34 +57,32 @@ msgid "Profile removed, please verify at"
 msgstr ""
 
 #: gui.py:35 sendProfile.py:177 smolt.py:655
-#, fuzzy
 msgid "General"
-msgstr "Kjerne"
+msgstr "Generelt"
 
 #: gui.py:37
-#, fuzzy
 msgid "Distribution"
-msgstr "Beskrivelse"
+msgstr "Distribusjon"
 
 #: gui.py:82
 msgid "Label"
-msgstr ""
+msgstr "Etikett"
 
 #: gui.py:83
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: gui.py:115
 msgid "Bus"
-msgstr ""
+msgstr "Buss"
 
 #: gui.py:116
 msgid "Driver"
-msgstr ""
+msgstr "Driver"
 
 #: gui.py:117
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: gui.py:118
 msgid "Description"
@@ -175,7 +174,6 @@ msgid "\tbenefit"
 msgstr ""
 
 #: scan.py:101 smolt.py:1157
-#, fuzzy
 msgid "Error:"
 msgstr "Feil:"
 
@@ -245,13 +243,12 @@ msgid "(v)iew details on collected information?"
 msgstr ""
 
 #: sendProfile.py:175
-#, fuzzy
 msgid "(s)end this information to the Smolt server? (or [y] for yes)"
-msgstr "Sende denne informasjonen til Smolt-tjeneren? (j/n)"
+msgstr "(s)end denne informasjonen til Smolt-tjeneren? (eller [y] for ja)"
 
 #: sendProfile.py:176
 msgid "(q)uit Smolt?  (or [n] for no)"
-msgstr ""
+msgstr "(q)avslutt Smolt? (eller [n] for nei)"
 
 #: sendProfile.py:178 smolt.py:669
 msgid "Devices"
@@ -272,7 +269,7 @@ msgstr ""
 
 #: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
-msgstr "Avslutter ..."
+msgstr "Avslutter …"
 
 #: sendProfile.py:217
 msgid "s|y|yes"
@@ -356,22 +353,19 @@ msgstr "_Ikke send profil"
 
 #: smoltGui.py:92
 msgid "Smolt"
-msgstr ""
+msgstr "Smolt"
 
 #: smoltGui.py:97
-#, fuzzy
 msgid "&File"
-msgstr "_Fil"
+msgstr "&Fil"
 
 #: smoltGui.py:98
-#, fuzzy
 msgid "&Help"
-msgstr "_Hjelp"
+msgstr "&Hjelp"
 
 #: smoltGui.py:101
-#, fuzzy
 msgid "&Send Profile"
-msgstr "_Send Profil"
+msgstr "&Send Profil"
 
 #: smoltGui.py:102
 msgid "&My Smolt Page"
@@ -379,21 +373,19 @@ msgstr ""
 
 #: smoltGui.py:103
 msgid "&Exit"
-msgstr ""
+msgstr "A&vslutt"
 
 #: smoltGui.py:104
 msgid "Show &Privacy Policy"
 msgstr ""
 
 #: smoltGui.py:105
-#, fuzzy
 msgid "&About"
-msgstr "_Om"
+msgstr "&Om"
 
 #: smoltGui.py:106
-#, fuzzy
 msgid "About &Qt"
-msgstr "_Om"
+msgstr "Om &Qt"
 
 #: smoltGui.py:120
 msgid "Main Tool Bar"
@@ -404,9 +396,8 @@ msgid "No distribution-specific data yet"
 msgstr ""
 
 #: smoltGui.py:175 smoltGui.py:238
-#, fuzzy
 msgid "Error"
-msgstr "Feil:"
+msgstr "Feil"
 
 #: smoltGui.py:239
 msgid "An error occurred while sending the data to the server."
@@ -414,7 +405,7 @@ msgstr ""
 
 #: smoltGui.py:246
 msgid "Profile Sent"
-msgstr ""
+msgstr "Profil sendt"
 
 #: smoltGui.py:247
 #, python-format
@@ -477,11 +468,11 @@ msgstr ""
 #: smolt.py:536 smolt.py:579 smolt.py:609
 #, python-format
 msgid "Error contacting Server: %s"
-msgstr ""
+msgstr "Feil under kontakt med tjener: %s"
 
 #: smolt.py:545 smolt.py:596
 msgid "Wrong version, server incapable of handling your client"
-msgstr ""
+msgstr "Feil versjon. Tjener kan ikke håndtere din klient"
 
 #: smolt.py:550
 msgid "Something went wrong fetching a token"
@@ -490,7 +481,7 @@ msgstr ""
 #: smolt.py:589
 #, python-format
 msgid "An error has occured while contacting the server: %s"
-msgstr ""
+msgstr "En feil oppsto under forsøk på å kontakte tjener: %s"
 
 #: smolt.py:618 smolt.py:691
 msgid "OS"
@@ -506,7 +497,7 @@ msgstr "Språk"
 
 #: smolt.py:677
 msgid "Filesystem Information"
-msgstr ""
+msgstr "Filsysteminformasjon"
 
 #: smolt.py:690
 msgid "UUID"
@@ -518,47 +509,47 @@ msgstr "Plattform"
 
 #: smolt.py:695
 msgid "BogoMIPS"
-msgstr ""
+msgstr "BogoMIPS"
 
 #: smolt.py:696
 msgid "CPU Vendor"
-msgstr ""
+msgstr "CPU-produsent"
 
 #: smolt.py:697
 msgid "CPU Model"
-msgstr ""
+msgstr "CPU-modell"
 
 #: smolt.py:698
 msgid "CPU Stepping"
-msgstr ""
+msgstr "CPU-stepping"
 
 #: smolt.py:699
 msgid "CPU Family"
-msgstr ""
+msgstr "CPU-familie"
 
 #: smolt.py:700
 msgid "CPU Model Num"
-msgstr ""
+msgstr "CPU modellnummer"
 
 #: smolt.py:701
 msgid "Number of CPUs"
-msgstr ""
+msgstr "Antall CPUer"
 
 #: smolt.py:702
 msgid "CPU Speed"
-msgstr ""
+msgstr "CPU-hastighet"
 
 #: smolt.py:703
 msgid "System Memory"
-msgstr ""
+msgstr "Systemminne"
 
 #: smolt.py:704
 msgid "System Swap"
-msgstr ""
+msgstr "Swap på systemet"
 
 #: smolt.py:705
 msgid "Vendor"
-msgstr ""
+msgstr "Leverandør"
 
 #: smolt.py:706
 msgid "System"
@@ -566,7 +557,7 @@ msgstr "System"
 
 #: smolt.py:707
 msgid "Form factor"
-msgstr ""
+msgstr "Formfaktor"
 
 #: smolt.py:708
 msgid "Kernel"
@@ -574,15 +565,16 @@ msgstr "Kjerne"
 
 #: smolt.py:709
 msgid "SELinux Enabled"
-msgstr ""
+msgstr "SELinux aktivert"
 
 #: smolt.py:710
 msgid "SELinux Policy"
-msgstr ""
+msgstr "SELinux regelsett"
 
 #: smolt.py:711
+#, fuzzy
 msgid "SELinux Enforce"
-msgstr ""
+msgstr "SELinux"
 
 #: smolt.py:1180
 msgid "Unable to save UUID, continuing...\n"
@@ -603,19 +595,9 @@ msgid "Error determining public UUID: %s"
 msgstr ""
 
 #: smolt.py:1204
-#, fuzzy
 msgid "Unable to determine Public UUID!\n"
-msgstr "Klarte ikke bestemme systemets UUID.\n"
+msgstr "Klarte ikke bestemme offentlig UUID!\n"
 
 #: software.py:44
 msgid "Cannot Determine Runlevel"
 msgstr "Klarte ikke bestemme kjøringsnivå"
-
-#~ msgid "y"
-#~ msgstr "j"
-
-#~ msgid "_Quit"
-#~ msgstr "_Avslutt"
-
-#~ msgid "_Send"
-#~ msgstr "_Send"
