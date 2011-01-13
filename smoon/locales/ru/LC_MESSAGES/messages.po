@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2011-01-13 19:52+0300\n"
+"PO-Revision-Date: 2011-01-13 19:55+0300\n"
 "Last-Translator: Alexander Opoycev <opoycev@yandex.ru>\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -136,7 +136,7 @@ msgstr "Делает систему неработоспособной"
 
 #: hardware/templates/show.html:33
 msgid "Requires 3rd Party Drivers"
-msgstr "Требует сторонние драйверы"
+msgstr "Требуются сторонние драйверы"
 
 #: hardware/templates/show.html:35
 msgid "Worked out of the box"
