@@ -1,21 +1,24 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Fethican Coşkuner <fethicanc@gmail.com>, 2009.
 #
+# Fethican Coşkuner <fethicanc@gmail.com>, 2009.
+# Hasan Alp İNAN, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-24 00:38+0200\n"
-"PO-Revision-Date: 2009-12-27 18:30+GTM+2\n"
-"Last-Translator: Fethican Coşkuner <fethicanc@gmail.com>\n"
-"Language-Team: Pardus-translators <pardus-translators@pardus.org.tr>\n"
+"POT-Creation-Date: 2009-08-08 15:06+0200\n"
+"PO-Revision-Date: 2011-02-02 14:37+0200\n"
+"Last-Translator: Hasan Alp İNAN\n"
+"Language-Team: Turkish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: deleteProfile.py:36 smolt.py:362
+#: deleteProfile.py:36 smolt.py:360
 #, python-format
 msgid "Server Message: \"%s\""
 msgstr "Sunucu Mesajı: \"%s\""
@@ -24,7 +27,7 @@ msgstr "Sunucu Mesajı: \"%s\""
 msgid "enable debug information"
 msgstr "debug bilgisini aktive et"
 
-#: deleteProfile.py:51 sendProfile.py:58 smoltGui.py:336
+#: deleteProfile.py:51 sendProfile.py:58
 #, python-format
 msgid "specify the URL of the server (default \"%default\")"
 msgstr "sunucu adresini belirt (öntanımlı \"%default\")"
@@ -41,21 +44,23 @@ msgstr "HTTP kullanıcı ajanını belirt (öntanımlı \"%default\")"
 #: deleteProfile.py:66 sendProfile.py:93
 #, python-format
 msgid "specify HTTP timeout in seconds (default %default seconds)"
-msgstr "HTTP zamanaşımını saniye cinsinden belirt (öntanımlı %default saniye)"
+msgstr "HTTP zaman aşımını saniye cinsinden belirt (öntanımlı %default saniye)"
 
 #: deleteProfile.py:70 sendProfile.py:112
 msgid "specify which uuid to use, useful for debugging and testing mostly."
-msgstr "hangi uuid bilgisinin kullanılacağını belirt, debug ve test işlemleri için kullanışlıdır."
+msgstr ""
+"hangi uuid bilgisinin kullanılacağını belirt, debug ve test işlemleri için "
+"kullanışlıdır."
 
 #: deleteProfile.py:89
 msgid "Error contacting Server:"
-msgstr "Sunucuya Bağlanılamadı:"
+msgstr "Sunucu bağlantı hatası:"
 
 #: deleteProfile.py:97
 msgid "Profile removed, please verify at"
 msgstr "Profil silindi, lütfen buradan doğrulayınız"
 
-#: gui.py:35 sendProfile.py:177 smolt.py:665
+#: gui.py:35 sendProfile.py:177 smolt.py:655
 msgid "General"
 msgstr "Genel"
 
@@ -92,30 +97,39 @@ msgstr "Tanım"
 msgid ""
 "<span></span>\n"
 "Smolt will only send hardware and basic operating system information to the\n"
-"Fedora smolt server (smoon).  The only tie from the database to a submitters\n"
+"Fedora smolt server (smoon).  The only tie from the database to a "
+"submitters\n"
 "machine is the UUID.  As long as the submitter does not give out this UUID\n"
-"the submission is anonymous.  If at any point in time a user wants to delete\n"
+"the submission is anonymous.  If at any point in time a user wants to "
+"delete\n"
 "his/her profile from the database they need only run<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
-"The information sent to the smolt database server should be considered public\n"
-"in that anyone can view the statistics, data and share machine profiles.  In \n"
+"The information sent to the smolt database server should be considered "
+"public\n"
+"in that anyone can view the statistics, data and share machine profiles.  "
+"In \n"
 "many ways smolt is designed to get hardware vendors and other 3rd parties'\n"
-"attention.  As such, not only will this information be shared with 3rd parties,\n"
+"attention.  As such, not only will this information be shared with 3rd "
+"parties,\n"
 "we will be using smolt as leverage to gain better support for open source\n"
 "drivers and better support in general.<br>\n"
 "<br>\n"
 "IP Logging:  In Fedora's smolt install all web traffic goes through a proxy\n"
-"server first.  This is the only place IP addresses are being logged and they\n"
+"server first.  This is the only place IP addresses are being logged and "
+"they\n"
 "are kept on that server for a period of 4 weeks at which time log rotation\n"
 "removes these logs.  The Fedora Project does not aggregate IP addresses in\n"
-"the smolt database.  These logs are private and will not be available to the\n"
+"the smolt database.  These logs are private and will not be available to "
+"the\n"
 "general public.<br>\n"
 "<br>\n"
 "Users unhappy with this policy should simply not use smolt.  Users with\n"
-"questions about this policy should contact the Fedora Infrastructure Team at\n"
-"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can delete their\n"
+"questions about this policy should contact the Fedora Infrastructure Team "
+"at\n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a>.  Also remember that users can "
+"delete their\n"
 "profiles at any time using<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
@@ -123,34 +137,48 @@ msgid ""
 "Thanks for participating and for your interest in our privacy policy.\n"
 msgstr ""
 "<span></span>\n"
-"Smolt, Fedora smolt sunucusuna sadece donanım ve temel işletim sistemi\n"
+"Smolt, Fedora smolt sunucusuna (smoon) sadece donanım ve temel işletim "
+"sistemi\n"
 "bilgilerini gönderir. Gönderenin bilgisayarıyla veritabanı arasındaki tek\n"
-"bağlantı UUID'dir. Gönderenler bu UUID'yi gizli tuttuğu sürece gönderim gizli\n"
-"kalır. Eğer kullanıcı veritabanından kendine ait verileri silmek isterse<br>\n"
+"bağlantı UUID'dir. Gönderenler bu UUID'yi gizli tuttuğu sürece gönderim "
+"gizli\n"
+"kalır. Eğer kullanıcı veritabanından kendine ait verileri silmek "
+"isterse<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
-"komutunu çalıştırmaları yeterlidir. Herkes istatistik ve verilere bakabildiği ve\n"
-"bilgisayar profillerini paylaşabildiği için smolt veritabanı sunucusuna gönderilen\n"
-"veri halka açık kabul edilmelidir. Pek çok yönden biz smolt'u açık kaynak sürücüler\n"
-"ve genel olarak daha iyi destek için kullanacağımız için smolt donanım üreticilerinin\n"
-"ve diğer üçüncü kişilerin faydasına sunulur, yani bu bilgiler üçüncü kişilerle paylaşılır.<br>\n"
+"komutunu çalıştırmaları yeterlidir. Herkes istatistik ve verilere "
+"bakabildiği ve\n"
+"bilgisayar profillerini paylaşabildiği için smolt veritabanı sunucusuna "
+"gönderilen\n"
+"veri halka açık kabul edilmelidir. Pek çok yönden biz smolt'u açık kaynak "
+"sürücüler\n"
+"ve genel olarak daha iyi destek için kullanacağımız için smolt donanım "
+"üreticilerinin\n"
+"ve diğer üçüncü kişilerin faydasına sunulur, yani bu bilgiler üçüncü "
+"kişilerle paylaşılır.<br>\n"
 "<br>\n"
-"IP Günlükleme:  Fedora'nın smolt kurulumunda tüm internet trafiği önce bir vekil sunucudan\n"
-"geçer. Bu vekil sunucu IP adreslerini günlüğüne kaydeder ve arşivler. Fedora Projesi IP\n"
-"adreslerini smolt veritabanında tutmaz. Bu günlükler gizlidir ve halka açık değildir.<br>\n"
+"IP Günlükleme:  Fedora'nın smolt kurulumunda tüm İnternet trafiği önce bir "
+"vekil sunucudan\n"
+"geçer. Bu vekil sunucu IP adreslerini günlüğüne kaydeder ve arşivler. Fedora "
+"Projesi IP\n"
+"adreslerini smolt veritabanında tutmaz. Bu günlükler gizlidir ve halka açık "
+"değildir.<br>\n"
 "<br>\n"
-"Bu politikadan hoşnut olmayan kullanıcıların smolt'u kullanmaması yeterli olacaktır.\n"
-"Bu politika hakkında soruları olan kullanıcılar ise Fedora Yönetim Ekibi'yle\n"
-"<a href=\"mailto:%(mail)s\">%(mail)s</a> adresinden iletişim kurabilirler. Ayrıca\n"
+"Bu politikadan hoşnut olmayan kullanıcıların smolt'u kullanmaması yeterli "
+"olacaktır.\n"
+"Bu politika hakkında soruları olan kullanıcılar ise Fedora Yönetim "
+"Ekibi'yle\n"
+"<a href=\"mailto:%(mail)s\">%(mail)s</a> adresinden iletişim kurabilirler. "
+"Ayrıca\n"
 "kullanıcılar<br>\n"
 "<br>\n"
 "&nbsp;&nbsp;&nbsp;<tt>smoltDeleteProfile</tt><br>\n"
 "<br>\n"
 "vasıtasıyla profillerini istedikleri zaman silebilirler.<br>\n"
 "<br>\n"
-"Katılımınız ve gizlilik politikamıza gösterdiğiniz ilgiden dolayı teşekkür ederiz.\n"
-
+"Katılımınız ve gizlilik politikamıza gösterdiğiniz ilgiden dolayı teşekkür "
+"ederiz.\n"
 
 #: scan.py:41
 msgid "Current rating for vendor/model."
@@ -178,44 +206,46 @@ msgstr "Çalışıyor, ekstra ayar gerektiriyor"
 
 #: scan.py:50
 msgid "Works out of the box"
-msgstr ""
+msgstr "Olduğu gibi çalışıyor"
 
 #: scan.py:58
 #, python-format
 msgid "Scanning %s for known errata.\n"
-msgstr "Bilinen cetvel için %s taranıyor.\n"
+msgstr "Bilinen hata için %s taranıyor.\n"
 
 #: scan.py:88
 msgid "\tErrata Found!"
-msgstr "\tDonanım Cetveli Bulundu!"
+msgstr "\tHata Bulundu!"
 
 #: scan.py:91
 msgid "\tNo errata found, if this machine is having issues please go to"
-msgstr "\tDonanım cetveli bulunamadı, eğer bu makinada problem varsa lütfen"
+msgstr "\tHata bulunamadı, eğer bu makinede problem varsa lütfen"
 
 #: scan.py:92
 msgid "\tyour profile and create a wiki page for the device so others can"
-msgstr "\tprofilinizi ziyaret edip cihazınız için bir wiki sayfası oluşturun, böylece diğerleri"
+msgstr ""
+"\tprofilinizi ziyaret edip cihazınız için bir wiki sayfası oluşturun, "
+"böylece diğerleri"
 
 #: scan.py:93
 msgid "\tbenefit"
 msgstr "\tfayda"
 
-#: scan.py:101 smolt.py:1167
+#: scan.py:101 smolt.py:1157
 msgid "Error:"
 msgstr "Hata:"
 
-#: scan.py:103 smolt.py:1169
+#: scan.py:103 smolt.py:1159
 msgid "Hint:"
 msgstr "İpucu:"
 
-#: sendProfile.py:53 smoltGui.py:331
+#: sendProfile.py:53 smoltGui.py:327
 msgid "specify the location of the (only) config file to use"
 msgstr "kullanılacak configürasyon dosyasının konumunu belirtin"
 
 #: sendProfile.py:63
 msgid "(optional) Fedora Account System registration"
-msgstr "(opsiyonel) Pardus Hesap Kayıt Sistemi"
+msgstr "(isteğe bağlı) Fedora Hesap Sistemi kaydı"
 
 #: sendProfile.py:68
 msgid "password, will prompt if not specified"
@@ -230,16 +260,20 @@ msgid "continue to send until success"
 msgstr "gönderme başarılı olana kadar denemeye devam et"
 
 #: sendProfile.py:98
-msgid "this is an automated checkin, will only run if the \"smolt\" service has been started"
-msgstr "bu otomatik bir kontroldür, sadece \"smolt\" servisi başlatıldıysa çalışacaktır"
+msgid ""
+"this is an automated checkin, will only run if the \"smolt\" service has "
+"been started"
+msgstr ""
+"bu otomatik bir kontroldür, sadece \"smolt\" servisi başlatıldıysa "
+"çalışacaktır"
 
 #: sendProfile.py:103
 msgid "only scan this machine for known hardware errata, do not send profile."
-msgstr "bu makineyi sadece bilinen donanım cetveli için ara, profil gönderme"
+msgstr "bu makineyi sadece bilinen donanım hataları için tara, profil gönderme"
 
 #: sendProfile.py:108
 msgid "do not scan this machine for know hardware errata, only submit profile."
-msgstr "bu makineyi donanım cetveli için arama, sadece profil gönder"
+msgstr "bu makineyi donanım hataları için tarama, sadece profil gönder"
 
 #: sendProfile.py:122
 msgid "Request a new public UUID"
@@ -250,8 +284,11 @@ msgid "HTTP proxy"
 msgstr "HTTP vekili"
 
 #: sendProfile.py:146
-msgid "Smolt set to checkin but checkins are disabled (hint: service smolt start)"
-msgstr "Smolt otomatik kontroller için ayarlanabilir fakat öntanımlı olarak kapatılmıştır (ipucu: service smolt start)"
+msgid ""
+"Smolt set to checkin but checkins are disabled (hint: service smolt start)"
+msgstr ""
+"Smolt otomatik kontroller için ayarlanabilir fakat öntanımlı olarak "
+"kapatılmıştır (ipucu: service smolt start)"
 
 #: sendProfile.py:156
 #, python-format
@@ -264,21 +301,21 @@ msgstr "Smolt dört tip bilgi topladı:"
 
 #: sendProfile.py:173
 msgid "Do you want to .."
-msgstr "Ne yapmak istersiniz .."
+msgstr "Yapmak istermisiniz .."
 
 #: sendProfile.py:174
 msgid "(v)iew details on collected information?"
 msgstr "(d)onanım taramasının ayrıntılarını göster?"
 
 #: sendProfile.py:175
-msgid "(s)end this information to the Smolt server?"
-msgstr "(g)Bu bilgiyi Smolt sunucusuna göndereyim mi?"
+msgid "(s)end this information to the Smolt server? (or [y] for yes)"
+msgstr "Bu bilgiyi Smolt sunucusuna (g)öndereyim mi? (evet için [e]) "
 
 #: sendProfile.py:176
-msgid "(q)uit Smolt?"
-msgstr "(ç)ık?"
+msgid "(q)uit Smolt?  (or [n] for no)"
+msgstr "Smolt'dan (ç)ık? (hayır için [h]) "
 
-#: sendProfile.py:178 smolt.py:679
+#: sendProfile.py:178 smolt.py:669
 msgid "Devices"
 msgstr "Aygıtlar"
 
@@ -291,10 +328,10 @@ msgid "Distribution-specific"
 msgstr "Dağıtıma özgü "
 
 #: sendProfile.py:213
-msgid "Your choice (s)end (v)iew (q)uit: "
-msgstr "Seçiminiz (g)önder (d)etay göster (ç)ıkış: "
+msgid "Your choice (s/v/q/y/n): "
+msgstr "Seçiminiz (s/v/q/y/n): "
 
-#: sendProfile.py:215 sendProfile.py:239
+#: sendProfile.py:215 sendProfile.py:234
 msgid "Exiting..."
 msgstr "Çıkıyor..."
 
@@ -310,23 +347,23 @@ msgstr "q|h|hayır"
 msgid "v"
 msgstr "d"
 
-#: sendProfile.py:251
+#: sendProfile.py:246
 msgid "Retry Enabled - Retrying"
-msgstr "Yeniden deneme aktif - Tekrar deneniyor"
+msgstr "Yeniden Deneme Ethin - Tekrar deneniyor"
 
-#: sendProfile.py:260
+#: sendProfile.py:255
 msgid "Could not send - Exiting"
 msgstr "Gönderilemedi - Çıkıyor"
 
-#: sendProfile.py:265
+#: sendProfile.py:260
 msgid "Password:"
 msgstr "Parola:"
 
-#: sendProfile.py:270
+#: sendProfile.py:265
 msgid "Registration Failed, Try again"
 msgstr "Kayıt Başarısız, Yeniden deneyin"
 
-#: sendProfile.py:281
+#: sendProfile.py:276
 #, python-format
 msgid ""
 "To share your profile: \n"
@@ -335,23 +372,32 @@ msgstr ""
 "Profilinizi paylaşmak için: \n"
 "\t%s (herkese açık)"
 
-#: sendProfile.py:285
+#: sendProfile.py:280
 #, python-format
 msgid "\tAdmin Password: %s"
 msgstr "\tYönetici Parolası: %s"
 
-#: sendProfile.py:288
-msgid "No Public UUID found!  Please re-run with -n to generate a new public uuid"
-msgstr "Genel UUID bulunamadı! Lütfen yeni genel uuid tanımlayıcısı oluşturmak için -n ile yeniden çalıştırın"
+#: sendProfile.py:283
+msgid ""
+"No Public UUID found!  Please re-run with -n to generate a new public uuid"
+msgstr ""
+"Genel UUID bulunamadı! Lütfen yeni genel uuid tanımlayıcısı oluşturmak için -"
+"n ile yeniden çalıştırın"
 
 #: smoltFirstBoot.py:38 smoltFirstBoot.py:39
 msgid "Hardware Profile"
 msgstr "Donanım Profili"
 
 #: smoltFirstBoot.py:56
-#, Fuzzy
-msgid "Are you sure you wouldn't like to send the profile?  Submitting your profile is a valuable source of information for our development and can help troubleshoot issues that may come up with your hardware."
-msgstr "Profilinizi göndermek istemediğinize emin misiniz? Profilinizi kayıt ettirmeniz, bizim Pardusu geliştirme çabalarımız için değerli bir kaynak oluşturmakta ve donanımınız ile ilgili problemleri çözmemize yardımcı olmaktadır."
+msgid ""
+"Are you sure you wouldn't like to send the profile?  Submitting your profile "
+"is a valuable source of information for our development and can help "
+"troubleshoot issues that may come up with your hardware."
+msgstr ""
+"Profilinizi göndermek istemediğinize emin misiniz? Profilinizi kayıt "
+"ettirmeniz, bizim geliştirme çabalarımız için değerli bir kaynak "
+"oluşturmakta ve donanımınız ile ilgili problemleri çözmemize yardımcı "
+"olmaktadır."
 
 #: smoltFirstBoot.py:64
 msgid "_Reconsider sending"
@@ -362,17 +408,26 @@ msgid "_No, do not send."
 msgstr "_Hayır, gönderme."
 
 #: smoltFirstBoot.py:92
-#, Fuzzy
-msgid "Smolt is a hardware profiler for The Fedora Project.  Submitting your profile is a great way to give back to the community as this information is used to help focus our efforts on popular hardware and platforms.  Submissions are anonymous.  Sending your profile will enable a monthly update."
-msgstr "Smolt, Fedora tarafından oluşturulmuş bir donanım profilcisidir. Profilinizi kayıt ettirerek bize sağladığınız bilgiler, bizim popüler donanım ve platformlar üzerinde yoğunlaşmamıza yardımcı olmaktadır."
+msgid ""
+"Smolt is a hardware profiler for The Fedora Project.  Submitting your "
+"profile is a great way to give back to the community as this information is "
+"used to help focus our efforts on popular hardware and platforms.  "
+"Submissions are anonymous.  Sending your profile will enable a monthly "
+"update."
+msgstr ""
+"Smolt, Fedora Projesi tarafından oluşturulmuş bir donanım profilcisidir. "
+"Profilinizi kayıt ettirerek bize sağladığınız bilgiler, bizim popüler "
+"donanım "
+"ve platformlar üzerinde yoğunlaşmamıza yardımcı olmaktadır. Gönderimler "
+"anonimdir. Profilinizi göndermeniz ayda bir güncellemeye izin verecektir."
 
 #: smoltFirstBoot.py:119
 msgid "_Participate in KernelOOPS"
-msgstr ""
+msgstr "KernelOOPS'a _Katılım"
 
 #: smoltFirstBoot.py:120
 msgid "Submit profile link to _Bodhi"
-msgstr "Profilini _Bodhi'ye gönder"
+msgstr "Profil bağını _Bodhi'ye gönder"
 
 #: smoltFirstBoot.py:122
 msgid "_Send Profile"
@@ -380,113 +435,146 @@ msgstr "Profili _Gönder"
 
 #: smoltFirstBoot.py:123
 msgid "D_o not send profile"
-msgstr "Pr_ofili gönderme"
+msgstr "Profili g_önderme"
 
-#: smoltGui.py:94
+#: smoltGui.py:92
 msgid "Smolt"
 msgstr "Smolt"
 
-#: smoltGui.py:99
+#: smoltGui.py:97
 msgid "&File"
 msgstr "&Dosya"
 
-#: smoltGui.py:100
+#: smoltGui.py:98
 msgid "&Help"
 msgstr "&Yardım"
 
-#: smoltGui.py:103
+#: smoltGui.py:101
 msgid "&Send Profile"
 msgstr "Profili &Gönder"
 
-#: smoltGui.py:104
+#: smoltGui.py:102
 msgid "&My Smolt Page"
-msgstr "&Benim Smolt Sayfam"
+msgstr "&Smolt Sayfam"
 
-#: smoltGui.py:105
+#: smoltGui.py:103
 msgid "&Exit"
 msgstr "&Çıkış"
 
-#: smoltGui.py:106
+#: smoltGui.py:104
 msgid "Show &Privacy Policy"
 msgstr "Gizlilik &Politikasını Göster"
 
-#: smoltGui.py:107
+#: smoltGui.py:105
 msgid "&About"
 msgstr "&Hakkında"
 
-#: smoltGui.py:108
+#: smoltGui.py:106
 msgid "About &Qt"
 msgstr "Qt &Hakkında"
 
-#: smoltGui.py:122
+#: smoltGui.py:120
 msgid "Main Tool Bar"
 msgstr "Ana Araç Çubuğu"
 
-#: smoltGui.py:172
+#: smoltGui.py:170
 msgid "No distribution-specific data yet"
 msgstr "Dağıtıma özgü veri henüz yok"
 
-#: smoltGui.py:177 smoltGui.py:240
+#: smoltGui.py:175 smoltGui.py:238
 msgid "Error"
 msgstr "Hata"
 
-#: smoltGui.py:241
+#: smoltGui.py:239
 msgid "An error occurred while sending the data to the server."
 msgstr "Veriyi sunucuya gönderirken bir hata oluştu."
 
-#: smoltGui.py:249
+#: smoltGui.py:246
 msgid "Profile Sent"
 msgstr "Profil Gönder"
 
-#: smoltGui.py:250
+#: smoltGui.py:247
 #, python-format
-msgid "<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)s</i>"
-msgstr "<b>Profiliniz başarıyla gönderildi!</b><br>\t\t\t\t<br>\t\t\t\tProfiliniz çevrimiçi olarak buradan ulaşabilirsiniz:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</a><br>\t\t\t\t<br>\t\t\t\tProfilinizin yönetim şifresi:<br><i>%(password)s</i>"
+msgid ""
+"<b>Your profile was sent successfully!</b><br>\t\t\t\t<br>\t\t\t\tYour "
+"profiles is available online at:<br>\t\t\t\t<a href=\"%(url)s\">%(url)s</"
+"a><br>\t\t\t\t<br>\t\t\t\tYour profile admin password is:<br><i>%(password)"
+"s</i>"
+msgstr ""
+"<b>Profiliniz başarıyla gönderildi!</b><br>\t\t\t\t<br>\t\t\t\tProfilinize "
+"çevrim içi olarak buradan ulaşabilirsiniz:<br>\t\t\t\t<a href=\"%(url)s\">%"
+"(url)s</a><br>\t\t\t\t<br>\t\t\t\tProfilinizin yönetim şifresi:<br><i>"
+"%(password)s</i>"
 
-#: smoltGui.py:274
+#: smoltGui.py:270
 msgid "Privacy Policy"
 msgstr "Gizlilik Politikası"
 
-#: smoltGui.py:288
+#: smoltGui.py:284
 #, python-format
 msgid "<h3>Smolt Qt</h3>Version %(version)s<br/>"
 msgstr "<h3>Smolt Qt</h3>Sürüm %(version)s<br/>"
 
-#: smoltGui.py:289
-msgid "<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t\tto a Smoon server.<br/>"
-msgstr "<br/>Smolt Qt, Smolt donanım profillerini Smoon sunucusuna kayıt ettirmek \t\t\t\tiçin sunulan bir Smolt GUI istemcisidir.<br/>"
+#: smoltGui.py:285
+msgid ""
+"<br/>Smolt Qt is a Smolt GUI client to submit Smolt hardware profiles \t\t\t"
+"\tto a Smoon server.<br/>"
+msgstr ""
+"<br/>Smolt Qt, Smolt donanım profillerini Smoon sunucusuna kayıt ettirmek \t"
+"\t\t\tiçin sunulan bir Smolt GUI istemcisidir.<br/>"
 
-#: smoltGui.py:292
-msgid "<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t\tsystem that does a hardware scan against a machine and sends the results \t\t\t\tto a public Fedora Project turbogears server. The sends are anonymous \t\t\t\tand should not contain any private information other than the physical \t\t\t\thardware information and basic OS info.<br/>"
-msgstr "<b>Smolt Hakkında:</b><br/>Smolt donanım profilcisi, sisteminizi oluşturan \t\t\t\t dananımları tarayan ve bunları halka açık Pardus turbogears sunucusuna \t\t\t\t gönderen bir sunucu-istemci yazılımıdır. Toplanan bilgiler anonim \t\t\t\tolarak gönderilmekte,  fiziksel donanım ve basit işletim sistemi bilgileriniz \t\t\t\tdışında hiçbir özel bilgi içermemektedir.<br/>"
+#: smoltGui.py:288
+msgid ""
+"<b>About Smolt:</b><br/>The smolt hardware profiler is a server-client \t\t\t"
+"\tsystem that does a hardware scan against a machine and sends the results \t"
+"\t\t\tto a public Fedora Project turbogears server. The sends are anonymous "
+"\t\t\t\tand should not contain any private information other than the "
+"physical \t\t\t\thardware information and basic OS info.<br/>"
+msgstr ""
+"<b>Smolt Hakkında:</b><br/>Smolt donanım profilcisi, sisteminizi oluşturan \t"
+"\t\t\t donanımları tarayan ve bunları halka açık Fedora Project turbogears "
+"sunucusuna \t\t\t\t gönderen bir sunucu-istemci yazılımıdır. Toplanan "
+"bilgiler anonim \t\t\t\tolarak gönderilmekte,  fiziksel donanım ve basit "
+"işletim sistemi bilgileriniz \t\t\t\tdışında hiçbir özel bilgi "
+"içermemektedir.<br/>"
 
-#: smoltGui.py:298
+#: smoltGui.py:294
 msgid "<b>Authors:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 msgstr "<b>Yazarlar:</b><br/>Carlos Gonçalves &lt;mail@cgoncalves.info&gt;"
 
-#: smoltGui.py:300
+#: smoltGui.py:296
 #, python-format
-msgid "%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General Public License \t\t\t\tas published by the Free Software Foundation; either version 3 \t\t\t\tof the License, or (at your option) any later version."
+msgid ""
+"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
+"\t\t\t<b>License:</b><br>\t\t\t\tThis program is free software; you can "
+"redistribute it and/or \t\t\t\tmodify it under the terms of the GNU General "
+"Public License \t\t\t\tas published by the Free Software Foundation; either "
+"version 3 \t\t\t\tof the License, or (at your option) any later version."
 msgstr ""
+"%(title)s<br>\t\t\t\t%(description)s<br>\t\t\t\t%(authors)s<br>\t\t\t\t<br>\t"
+"\t\t\t<b>Lisans:</b><br>\t\t\t\tBu program özgür bir yazılımdır; bu yazılımı "
+"Free Software Foundation \t\t\t\ttarafından yayımlanan GNU Genel Kamu "
+"Lisansı \t\t\t\tsürüm 3 veya (sizin seçiminize göre) daha sonraki bir sürümü "
+"koşulları altında dağıtabilir ve/veya değiştirebilirsiniz."
 
-#: smolt.py:364
+#: smolt.py:362
 #, python-format
 msgid "Could not contact server: %s"
 msgstr "Sunucu ile bağlantı kurulamadı: %s"
 
-#: smolt.py:414
+#: smolt.py:412
 msgid "Could not bind to dbus.  Is dbus running?"
-msgstr "dbus'a bağlanılamadı. dbus çalışıyor mu?"
+msgstr "Dbus'a bağlanılamadı. Dbus çalışıyor mu?"
 
-#: smolt.py:420
+#: smolt.py:418
 msgid ""
 "Could not connect to hal, is it running?\n"
 "Run \"service haldaemon start\" as root"
 msgstr ""
-"hal servisine bağlanılamadı, servis çalışıyor mu?\n"
-"\"sudo service hal start\" diyerek çalıştırabilirsiniz"
+"Hal servisine bağlanılamadı, servis çalışıyor mu?\n"
+"Root  haklarıyla \"service haldaemon start\" diyerek çalıştırabilirsiniz"
 
-#: smolt.py:509
+#: smolt.py:507
 msgid ""
 "\tYour pub_uuid could not be written.\n"
 "\n"
@@ -494,157 +582,140 @@ msgstr ""
 "\tpub_uuid tanımlayıcınız yazılamadı.\n"
 "\n"
 
-#: smolt.py:518
+#: smolt.py:516
 #, python-format
 msgid "\tYour admin token  could not be cached: %s\n"
-msgstr "\tYönetim anahtarınız önbelleğe alınamadı: %s\n"
+msgstr "\tYönetim anahtarınız ön belleğe alınamadı: %s\n"
 
-#: smolt.py:538 smolt.py:581 smolt.py:611
+#: smolt.py:536 smolt.py:579 smolt.py:609
 #, python-format
 msgid "Error contacting Server: %s"
 msgstr "Sunucuya bağlanmada hata: %s"
 
-#: smolt.py:547 smolt.py:598
+#: smolt.py:545 smolt.py:596
 msgid "Wrong version, server incapable of handling your client"
-msgstr "Yanlış versiyon, istemci sunucu ile uyumlu değil"
+msgstr "Yanlış sürüm, istemci sunucu ile uyumlu değil"
 
-#: smolt.py:552
+#: smolt.py:550
 msgid "Something went wrong fetching a token"
 msgstr "Anahtar getirme işlemi başarısız"
 
-#: smolt.py:591
+#: smolt.py:589
 #, python-format
 msgid "An error has occured while contacting the server: %s"
 msgstr "Sunucu ile bağlantı kurulurken bir hata oluştu: %s"
 
-#: smolt.py:620 smolt.py:701
+#: smolt.py:618 smolt.py:691
 msgid "OS"
 msgstr "İşletim Sistemi"
 
-#: smolt.py:621 smolt.py:702
+#: smolt.py:619 smolt.py:692
 msgid "Default run level"
 msgstr "Öntanımlı çalışma seviyesi"
 
-#: smolt.py:622 smolt.py:703
+#: smolt.py:620 smolt.py:693
 msgid "Language"
 msgstr "Dil"
 
-#: smolt.py:657
-#, Fuzzy
-msgid "This is a Smolt report shown within your default pager."
-msgstr "Bu öntanımlı sayfalayıcınız içinde gösterilen Smolt raporunuzdur."
-
-#: smolt.py:658
-msgid "Below you can see what data you will submit to the server."
-msgstr "Aşağıda sunucuya göndereceğiniz verileri görebilirsiniz."
-
-#: smolt.py:659
-msgid "To get back to Smolt exit the pager (try hitting \"q\")."
-msgstr "Smolt'a geri dönebilmek için sayfalıyıcıdan çıkınız (\"q\"'ya basınız)."
-
-#: smolt.py:661
-msgid "NOTE:  Editing this file does not change the data submitted."
-msgstr "NOT: Bu dosyanuın içeriğini değiştirmek gönderilecek verileri değiştirmez."
-
-#: smolt.py:687
+#: smolt.py:677
 msgid "Filesystem Information"
 msgstr "Dosya Sistemi Bilgisi"
 
-#: smolt.py:700
+#: smolt.py:690
 msgid "UUID"
 msgstr "UUID"
 
-#: smolt.py:704
+#: smolt.py:694
 msgid "Platform"
 msgstr "Mimari"
 
-#: smolt.py:705
+#: smolt.py:695
 msgid "BogoMIPS"
-msgstr ""
+msgstr "BogoMIPS"
 
-#: smolt.py:706
+#: smolt.py:696
 msgid "CPU Vendor"
 msgstr "CPU Sağlayıcı"
 
-#: smolt.py:707
+#: smolt.py:697
 msgid "CPU Model"
 msgstr "CPU Modeli"
 
-#: smolt.py:708
+#: smolt.py:698
 msgid "CPU Stepping"
-msgstr ""
+msgstr "CPU Sürümü"
 
-#: smolt.py:709
+#: smolt.py:699
 msgid "CPU Family"
 msgstr "CPU Ailesi"
 
-#: smolt.py:710
+#: smolt.py:700
 msgid "CPU Model Num"
-msgstr "CPU Model Num."
+msgstr "CPU Model Num"
 
-#: smolt.py:711
+#: smolt.py:701
 msgid "Number of CPUs"
 msgstr "CPU Sayısı"
 
-#: smolt.py:712
+#: smolt.py:702
 msgid "CPU Speed"
 msgstr "CPU Hızı"
 
-#: smolt.py:713
+#: smolt.py:703
 msgid "System Memory"
 msgstr "Sistem Hafızası"
 
-#: smolt.py:714
+#: smolt.py:704
 msgid "System Swap"
 msgstr "Sistem Takas Alanı"
 
-#: smolt.py:715
+#: smolt.py:705
 msgid "Vendor"
 msgstr "Sağlayıcı"
 
-#: smolt.py:716
+#: smolt.py:706
 msgid "System"
 msgstr "Sistem"
 
-#: smolt.py:717
+#: smolt.py:707
 msgid "Form factor"
-msgstr ""
+msgstr "Sınıfı"
 
-#: smolt.py:718
+#: smolt.py:708
 msgid "Kernel"
 msgstr "Çekirdek"
 
-#: smolt.py:719
+#: smolt.py:709
 msgid "SELinux Enabled"
 msgstr "SELinux Aktif"
 
-#: smolt.py:720
+#: smolt.py:710
 msgid "SELinux Policy"
 msgstr "SELinux Politikası"
 
-#: smolt.py:721
+#: smolt.py:711
 msgid "SELinux Enforce"
 msgstr "SELinux Uygulanabilirliği"
 
-#: smolt.py:1190
+#: smolt.py:1180
 msgid "Unable to save UUID, continuing...\n"
 msgstr "UUID kaydı başarısız, devam ediliyor...\n"
 
-#: smolt.py:1191
+#: smolt.py:1181
 #, python-format
 msgid "Your UUID file could not be created: %s\n"
-msgstr "UUID dosyanız yaratılamadı: %s\n"
+msgstr "UUID dosyanız oluşturulamadı: %s\n"
 
-#: smolt.py:1194
+#: smolt.py:1184
 msgid "Unable to determine UUID of system!\n"
 msgstr "Sistemin UUID'ini tanımlama başarısız!\n"
 
-#: smolt.py:1213
+#: smolt.py:1203
 #, python-format
 msgid "Error determining public UUID: %s"
 msgstr "Genel UUID tanımlamada hata: %s"
 
-#: smolt.py:1214
+#: smolt.py:1204
 msgid "Unable to determine Public UUID!\n"
 msgstr "Genel UUID tanımlama başarısız!\n"
 
@@ -652,3 +723,16 @@ msgstr "Genel UUID tanımlama başarısız!\n"
 msgid "Cannot Determine Runlevel"
 msgstr "Çalışma Seviyesi Tanımlanamadı"
 
+#~ msgid "This is a Smolt report shown within your default pager."
+#~ msgstr "Bu öntanımlı sayfalayıcınız içinde gösterilen Smolt raporunuzdur."
+
+#~ msgid "Below you can see what data you will submit to the server."
+#~ msgstr "Aşağıda sunucuya göndereceğiniz verileri görebilirsiniz."
+
+#~ msgid "To get back to Smolt exit the pager (try hitting \"q\")."
+#~ msgstr ""
+#~ "Smolt'a geri dönebilmek için sayfalıyıcıdan çıkınız (\"q\"'ya basınız)."
+
+#~ msgid "NOTE:  Editing this file does not change the data submitted."
+#~ msgstr ""
+#~ "NOT: Bu dosyanuın içeriğini değiştirmek gönderilecek verileri değiştirmez."
