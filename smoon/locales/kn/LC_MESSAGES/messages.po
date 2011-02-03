@@ -4,31 +4,34 @@
 # This file is distributed under the same license as the hardware project.
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
-# Shankar Prasad <svenkate@redhat.com>, 2009.
+# Shankar Prasad <svenkate@redhat.com>, 2009, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: smolt.master-smoon.messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2008-05-01 22:37-0400\n"
-"PO-Revision-Date: 2009-09-10 11:16+0530\n"
+"PO-Revision-Date: 2011-02-03 14:30+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.1\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: hardware/controllers/root.py:95
 msgid ""
 "The credentials you supplied were not correct or did not grant access to "
 "this resource."
-msgstr "ನೀವು ಒದಗಿಸಿದ ವಿಶ್ವಾಸಾರ್ಹತೆಯು ಸಮರ್ಪವಾಗಿಲ್ಲ ಅಥವ ಈ ಸಂಪನ್ಮೂಲವನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳಲು ಅನುಮತಿಯನ್ನು ನೀಡಲಾಗಿಲ್ಲ."
+msgstr ""
+"ನೀವು ಒದಗಿಸಿದ ವಿಶ್ವಾಸಾರ್ಹತೆಯು ಸಮರ್ಪವಾಗಿಲ್ಲ ಅಥವ ಈ ಸಂಪನ್ಮೂಲವನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳಲು "
+"ಅನುಮತಿಯನ್ನು ನೀಡಲಾಗಿಲ್ಲ."
 
 #: hardware/controllers/root.py:98
 msgid "You must provide your credentials before accessing this resource."
-msgstr "ಈ ಸಂಪನ್ಮೂಲವನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳುವ ಮೊದಲು ನೀವು ನಿಮ್ಮ ವಿಶ್ವಾಸಾರ್ಹತೆಯನ್ನು ಒದಗಿಸಬೇಕು."
+msgstr ""
+"ಈ ಸಂಪನ್ಮೂಲವನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳುವ ಮೊದಲು ನೀವು ನಿಮ್ಮ ವಿಶ್ವಾಸಾರ್ಹತೆಯನ್ನು ಒದಗಿಸಬೇಕು."
 
 #: hardware/controllers/root.py:101
 msgid "Please log in."
@@ -45,7 +48,7 @@ msgstr "ಒಟ್ಟು ಲೆಕ್ಕ"
 #: hardware/templates/deviceclass.html:19
 #, python-format
 msgid "% hosts detected ${type}"
-msgstr ""
+msgstr "% hosts detected ${type}"
 
 #: hardware/templates/deviceclass.html:24
 msgid "Vendors"
@@ -235,7 +238,7 @@ msgstr "ಲೆಕ್ಕ"
 #: hardware/templates/stats.html:40
 #, python-format
 msgid "% of total"
-msgstr ""
+msgstr "% of total"
 
 #: hardware/templates/stats.html:53
 msgid "OS"
@@ -331,13 +334,13 @@ msgstr "ಅಂಕಿಅಂಶಗಳು"
 
 #: hardware/templates/welcome.html:17
 msgid ""
-"For detailed statistics about the devices in the database see <a "
-"href='/static/stats/stats.html'>/stats</a> or <a "
-"href='/static/stats/devices.html'>/devices</a>"
+"For detailed statistics about the devices in the database see <a href='/"
+"static/stats/stats.html'>/stats</a> or <a href='/static/stats/devices.html'>/"
+"devices</a>"
 msgstr ""
-"ದತ್ತಸಂಚಯದಲ್ಲಿನ ಸಾಧನಗಳ ಬಗೆಗಿನ ಅಂಕಿಅಂಶಗಳಿಗಾಗಿ <a "
-"href='/static/stats/stats.html'>/stats</a> ಅನ್ನು ಅಥವ <a "
-"href='/static/stats/devices.html'>/devices</a> ಅನ್ನು ನೋಡಿ"
+"ದತ್ತಸಂಚಯದಲ್ಲಿನ ಸಾಧನಗಳ ಬಗೆಗಿನ ಅಂಕಿಅಂಶಗಳಿಗಾಗಿ <a href='/static/stats/stats."
+"html'>/stats</a> ಅನ್ನು ಅಥವ <a href='/static/stats/devices.html'>/devices</a> "
+"ಅನ್ನು ನೋಡಿ"
 
 #: hardware/templates/welcome.html:19
 msgid "Top Vendor Chart"
@@ -349,8 +352,12 @@ msgstr "ಹೆಚ್ಚಿನ ಮಾಹಿತಿ"
 
 #: hardware/templates/welcome.html:25
 msgid ""
-"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed "
-"information about specific devices. Usage and other general answers can "
-"also be found at the <a href='/wiki/'>Wiki</a>.</p>"
-msgstr "<p>ನಿಶ್ಚಿತ ಸಾಧನಗಳ ಬಗೆಗಿನ ವಿವರವಾದ ಮಾಹಿತಿಗಾಗಿ <a href='/wiki/'>ವಿಕಿ</a>ಯನ್ನು ಜಾಲಾಡಿ ಹಾಗು ಹುಡುಕಿ. ಬಳಕೆ ಹಾಗು ಇತರೆ ಸಾಮಾನ್ಯ ಮಾಹಿತಿಗಳೂ ಸಹ <a href='/wiki/'>ವಿಕಿ</a>ಯಲ್ಲಿ ಕಾಣಸಿಗುತ್ತವೆ.</p>"
+"<p>Browse and search the <a href='/wiki/'>Wiki</a> for detailed information "
+"about specific devices. Usage and other general answers can also be found at "
+"the <a href='/wiki/'>Wiki</a>.</p>"
+msgstr ""
+"<p>ನಿಶ್ಚಿತ ಸಾಧನಗಳ ಬಗೆಗಿನ ವಿವರವಾದ ಮಾಹಿತಿಗಾಗಿ <a href='/wiki/'>ವಿಕಿ</a>ಯನ್ನು "
+"ಜಾಲಾಡಿ ಹಾಗು ಹುಡುಕಿ. ಬಳಕೆ ಹಾಗು ಇತರೆ ಸಾಮಾನ್ಯ ಮಾಹಿತಿಗಳೂ ಸಹ <a href='/"
+"wiki/'>ವಿಕಿ</a>ಯಲ್ಲಿ ಕಾಣಸಿಗುತ್ತವೆ.</p>"
+
 
