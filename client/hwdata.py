@@ -20,7 +20,18 @@ class DeviceMap:
         self.vendors['usb'] = self.device_map('usb')
 
     def device_map(self, bus='pci'):
-        fn = "/usr/share/hwdata/%s.ids" % bus
+        fns = ['/usr/share/%s.ids' % bus,
+               '/usr/share/hwdata/%s.ids' % bus,
+               '/usr/share/misc/%s.ids' % bus]
+        for fn in fns:
+            try:
+                fo = open(fn, 'r')
+                break
+            except IOError:
+                pass
+        else:
+            raise Exception('Hardware data not found')
+	
         fo = open(fn, 'r')
         vendors = {}
         curvendor = None
