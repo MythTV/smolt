@@ -43,6 +43,7 @@ from smolt import get_config_attr
 from smolt import to_ascii
 from scan import scan, rating
 from gate import GateFromConfig
+from request import ConnSetup
 
 parser = OptionParser(version = smolt.clientVersion)
 
@@ -143,6 +144,8 @@ if opts.httpproxy == None:
 else:
     proxies = {'http':opts.httpproxy}
 
+ConnSetup(opts.smoonURL, opts.user_agent, opts.timeout, opts.httpproxy)
+
 if opts.checkin:
     # Smolt is set to run
     opts.autoSend = True
@@ -156,9 +159,7 @@ except smolt.UUIDError, e:
 
 if opts.new_pub:
     try:
-        pub_uuid = profile.regenerate_pub_uuid(user_agent=opts.user_agent,
-                              smoonURL=opts.smoonURL,
-                              timeout=opts.timeout)
+        pub_uuid = profile.regenerate_pub_uuid(smoonURL=opts.smoonURL)
     except ServerError, e:
         error(_('Error contacting server: %s') % str(e))
         sys.exit(1)
@@ -264,20 +265,14 @@ if not opts.autoSend:
 
 if opts.retry:
     while 1:
-        result, pub_uuid, admin = profile.send(user_agent=opts.user_agent,
-                              smoonURL=opts.smoonURL,
-                              timeout=opts.timeout,
-                              proxies=proxies,
+        result, pub_uuid, admin = profile.send(smoonURL=opts.smoonURL,
                               batch=opts.checkin)
         if not result:
             sys.exit(0)
         error(_('Retry Enabled - Retrying'))
         time.sleep(30)
 else:
-    result, pub_uuid, admin = profile.send(user_agent=opts.user_agent,
-                                    smoonURL=opts.smoonURL,
-                                    timeout=opts.timeout,
-                                    proxies=proxies,
+    result, pub_uuid, admin = profile.send(smoonURL=opts.smoonURL,
                                     batch=opts.checkin)
 
     if result:
@@ -290,7 +285,7 @@ if opts.userName:
     else:
         password = opts.password
 
-    if profile.register(userName=opts.userName, password=password, user_agent=opts.user_agent, smoonURL=opts.smoonURL, timeout=opts.timeout):
+    if profile.register(userName=opts.userName, password=password, smoonURL=opts.smoonURL):
         print _('Registration Failed, Try again')
 if not opts.submitOnly and not opts.checkin:
     scan(profile, opts.smoonURL)

@@ -36,15 +36,15 @@ from i18n import _
 import platform
 import software
 import commands
-import urlgrabber.grabber
 import sys
 import os
 from urlparse import urljoin
 from urlparse import urlparse
 from urllib import urlencode
 import urllib
-import simplejson
-from simplejson import JSONEncoder, JSONDecodeError
+import urllib2
+import json
+from json import JSONEncoder
 import datetime
 import logging
 
@@ -52,6 +52,7 @@ import config
 from smolt_config import get_config_attr
 from fs_util import get_fslist
 from devicelist import cat
+from request import Request
 
 from gate import Gate
 from devicelist import get_device_list
@@ -725,7 +726,7 @@ class _Hardware:
                 lines.append(v['html'])
         return '\n'.join(lines)
 
-    def send(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout, proxies=proxies, batch=False):
+    def send(self, smoonURL=smoonURL, batch=False):
         def serialize(object, human=False):
             if human:
                 indent = 2
@@ -736,17 +737,17 @@ class _Hardware:
             return JSONEncoder(indent=indent, sort_keys=sort_keys).encode(object)
 
         reset_resolver()
-        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout, proxies=proxies)
         #first find out the server desired protocol
         try:
-            token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/token_json?uuid=%s' % self.host.UUID, False))
-        except urlgrabber.grabber.URLGrabError, e:
+            req = Request('/tokens/token_json?uuid=%s' % self.host.UUID)
+            token = req.open()
+        except urllib2.URLError, e:
             error(_('Error contacting Server: %s') % e)
             return (1, None, None)
         tok_str = token.read()
         try:
             try:
-                tok_obj = simplejson.loads(tok_str)
+                tok_obj = json.loads(tok_str)
                 if tok_obj['prefered_protocol'] in supported_protocols:
                     prefered_protocol = tok_obj['prefered_protocol']
                 else:
@@ -829,12 +830,13 @@ class _Hardware:
             self.write_pub_uuid(smoonURL, pub_uuid)
 
             try:
-                admin_token = grabber.urlopen(urljoin(smoonURL + "/", '/tokens/admin_token_json?uuid=%s' % self.host.UUID, False))
-            except urlgrabber.grabber.URLGrabError, e:
+                req = Request('/tokens/admin_token_json?uuid=%s' % self.host.UUID)
+                admin_token = req.open()
+            except urllib2.URLError, e:
                 error(_('An error has occured while contacting the server: %s' % e))
                 sys.exit(1)
             admin_str = admin_token.read()
-            admin_obj = simplejson.loads(admin_str)
+            admin_obj = json.loads(admin_str)
             if admin_obj['prefered_protocol'] in supported_protocols:
                 prefered_protocol = admin_obj['prefered_protocol']
             else:
@@ -846,17 +848,17 @@ class _Hardware:
                 self.write_admin_token(smoonURL,admin,admin_token_file)
         return (0, pub_uuid, admin)
 
-    def regenerate_pub_uuid(self, user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
-        grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout)
+    def regenerate_pub_uuid(self, smoonURL=smoonURL):
         try:
-            new_uuid = grabber.urlopen(urljoin(smoonURL + "/", '/client/regenerate_pub_uuid?uuid=%s' % self.host.UUID))
-        except urlgrabber.grabber.URLGrabError, e:
+            req = Request('/client/regenerate_pub_uuid?uuid=%s' % self.host.UUID)
+            new_uuid = req.open()
+        except urllib2.URLError, e:
             raise ServerError, str(e)
 
         response = new_uuid.read()  # Either JSON or an error page in (X)HTML
         try:
-            response_dict = simplejson.loads(response)
-        except JSONDecodeError, e:
+            response_dict = json.loads(response)
+        except Exception, e:
             serverMessage(response)
             raise ServerError, _('Reply from server could not be interpreted')
         else:
@@ -1444,21 +1446,21 @@ def getUUID():
     hw_uuid = UUID
     return UUID
 
-def getPubUUID(user_agent=user_agent, smoonURL=smoonURL, timeout=timeout):
-	smoonURLparsed=urlparse(smoonURL)
-	res = UuidDb().get_pub_uuid(getUUID(), smoonURLparsed[1])
-	if res:
-		return res
+def getPubUUID(smoonURL=smoonURL):
+    smoonURLparsed=urlparse(smoonURL)
+    res = UuidDb().get_pub_uuid(getUUID(), smoonURLparsed[1])
+    if res:
+        return res
 
-	grabber = urlgrabber.grabber.URLGrabber(user_agent=user_agent, timeout=timeout, proxies=proxies)
-	try:
-		o = grabber.urlopen(urljoin(smoonURL + "/", '/client/pub_uuid/%s' % getUUID()))
-		pudict = simplejson.loads(o.read())
-		o.close()
-		UuidDb().set_pub_uuid(getUUID(), smoonURLparsed[1], pudict["pub_uuid"])
-		return pudict["pub_uuid"]
-	except Exception, e:
-		error(_('Error determining public UUID: %s') % e)
-		sys.stderr.write(_("Unable to determine Public UUID!  This could be a network error or you've\n"))
-		sys.stderr.write(_("not submitted your profile yet.\n"))
-		raise PubUUIDError, 'Could not determine Public UUID!\n'
+    try:
+        req = Request('/client/pub_uuid/%s' % getUUID())
+        o = req.open()
+        pudict = json.loads(o.read())
+        o.close()
+        UuidDb().set_pub_uuid(getUUID(), smoonURLparsed[1], pudict["pub_uuid"])
+        return pudict["pub_uuid"]
+    except Exception, e:
+        error(_('Error determining public UUID: %s') % e)
+        sys.stderr.write(_("Unable to determine Public UUID!  This could be a network error or you've\n"))
+        sys.stderr.write(_("not submitted your profile yet.\n"))
+        raise PubUUIDError, 'Could not determine Public UUID!\n'
