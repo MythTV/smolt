@@ -65,7 +65,7 @@ DEVICE_CLASS_LIST ={
                 '0C03' : 'USB',
                 'FF' : 'MISC' }
 
-BUS_LIST = [ 'pci', 'usb' ]
+BUS_LIST = [ 'pci' ]
 PCI_PATH='/sys/bus/pci/devices/'
 DATA_LIST = [   'vendor',
                 'device',
@@ -102,61 +102,29 @@ class Device():
         self.subsysdeviceid = 'Unknown'
         self.driver = 'None'
 
-def device_factory(cls, id):
-    cls = eval(cls.upper() + 'Device')
-    device = cls(id)
-    try:
-        device.process()
-    except OSError:
-        pass
-    except IOError:
-        pass
-    return device
-
-class Device( object ):
-    bus = 'Unknown'
-    def __init__(self, id):
-        self.id             = id
-        self.vendorid       = None
-        self.deviceid       = None
-        self.type           = None
-        self.description    = 'Unknown'
-        self.subsysvendorid = None
-        self.subsysdeviceid = None
-        self.driver         = 'None'
-    def process(self):
-        pass
-
-class PCIDevice( Device ):
-    bus = 'PCI'
-    def process(self):
-        PATH = '/sys/bus/pci/devices/' + self.id + '/'
-        self.vendorid       = int(cat(PATH +           'vendor')[0].strip(), 16)
-        self.deviceid       = int(cat(PATH +           'device')[0].strip(), 16)
-        self.subsysvendorid = int(cat(PATH + 'subsystem_vendor')[0].strip(), 16)
-        self.subsysdeviceid = int(cat(PATH + 'subsystem_device')[0].strip(), 16)
-        self.type           = get_class(cat(PATH +      'class')[0].strip())
-        self.description    = pci.subdevice(self.vendorid,
-                                            self.deviceid,
-                                            self.subsysvendorid,
-                                            self.subsysdeviceid)
-
-class USBDevice( Device ):
-    bus = 'USB'
-    def process(self):
-        PATH = '/sys/bus/usb/devices/' + self.id + '/'
-        self.vendorid       = int(cat(PATH +         'idVendor')[0].strip(), 16)
-        self.deviceid       = int(cat(PATH +        'idProduct')[0].strip(), 16)
-        desc                =     cat(PATH +          'product')[0].strip()
-        self.description    = usb.device(self.vendorid,
-                                         self.deviceid,
-                                         alt=desc)
-
 def get_device_list():
-    devices = {}
+    pci_devices = {}
     for bus in BUS_LIST:
         PATH = '/sys/bus/' + bus + '/devices/'
         for device in os.listdir(PATH):
-            devices[device] = device_factory(bus, device)
-    return devices
+            pci_devices[device] = Device(device)
+            try:
+                pci_devices[device].vendorid = int(cat(PATH + device + '/vendor')[0].strip(), 16)
+                pci_devices[device].deviceid = int(cat(PATH + device + '/device')[0].strip(), 16)
+                pci_devices[device].subsysvendorid = int(cat(PATH + device + '/subsystem_vendor')[0].strip(), 16)
+                pci_devices[device].subsysdeviceid = int(cat(PATH + device + '/subsystem_device')[0].strip(), 16)
+                pci_devices[device].bus = bus
+                pci_devices[device].type = get_class(cat(PATH + device + '/class' )[0].strip())
+                pci_devices[device].description = pci.subdevice(pci_devices[device].vendorid,
+                                                                pci_devices[device].deviceid,
+                                                                pci_devices[device].subsysvendorid,
+                                                                pci_devices[device].subsysdeviceid)
+                try:
+                    pci_devices[device].driver = os.readlink(PATH + device + '/driver').split('/')[-1]
+                except OSError:
+                    pass
+            except IOError:
+                pass
+
+    return pci_devices
 
