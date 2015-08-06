@@ -24,7 +24,7 @@ from datetime import datetime
 import logging
 import simplejson
 
-from sqlalchemy.exceptions import InvalidRequestError, OperationalError
+from sqlalchemy.exc import InvalidRequestError, OperationalError
 from turbogears.database import session
 
 from hardware.hwdata import DeviceMap
