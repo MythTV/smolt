@@ -1,0 +1,367 @@
+# smolt - Fedora hardware profiler
+#
+# Copyright (C) 2011 James Meyer
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+
+#import logging
+#from sqlalchemy import Table, Column, Integer, SmallInteger, String, ForeignKey, UniqueConstraint
+#from sqlalchemy.orm import mapper, relation
+
+
+from sqlalchemy import *
+from sqlalchemy.orm import *
+
+from hardware.model.model import metadata
+
+mythtv_host = Table('mythtv_host', metadata,
+                     Column('id', Integer, primary_key=True, autoincrement=True),
+                     Column('machine_id', Integer, nullable=False, unique=True),
+                     Column('branch', VARCHAR(36), nullable=False),
+                     Column('myth_uuid', VARCHAR(36),nullable=False),
+                     Column('language', VARCHAR(36),nullable=False),
+                     Column('libapi', VARCHAR(36),nullable=False),
+                     Column('protocol', VARCHAR(36),nullable=False),
+                     Column('sourcecount', Integer,nullable=False),
+                     Column('theme', VARCHAR(36),nullable=False),
+                     Column('timezone', VARCHAR(36),nullable=False),
+                     Column('country', VARCHAR(36),nullable=False),
+                     Column('tzoffset', Integer,nullable=False),
+                     Column('version', VARCHAR(36),nullable=False),
+                     Column('myth_version_bucket', VARCHAR(10),nullable=False),
+                     Column('qt_version', VARCHAR(16),nullable=False),
+                     Column('channel_count', Integer,nullable=False),
+                     Column('remote', VARCHAR(25),nullable=False),
+                     Column('myth_type', Integer,nullable=False),
+                     Column('last_modified',
+                             DATETIME,default=0, nullable=False))
+
+
+
+
+class mythtvHost(object):
+    def __init__(self,data,myth_branch,myth_uuid,
+                 myth_language,myth_libapi,
+                 myth_protocol,myth_sourcecount,
+                 myth_theme,myth_timezone,myth_country,
+                 myth_tzoffset, myth_version, myth_version_bucket,
+                 qt_version, channel_count,remote,
+                 myth_type,machine_id):
+
+        self.data = data
+        self.branch = myth_branch
+        self.myth_uuid = myth_uuid
+        self.language = myth_language
+        self.libapi = myth_libapi
+        self.protocol = myth_protocol
+        self.sourcecount = myth_sourcecount
+        self.theme = myth_theme
+        self.timezone = myth_timezone
+        self.country = myth_country
+        self.tzoffset = myth_tzoffset
+        self.version = myth_version
+        self.myth_version_bucket = myth_version_bucket
+        self.qt_version = qt_version
+        self.channel_count = channel_count
+        self.remote = remote
+        self.myth_type = myth_type
+        self.machine_id = machine_id
+        self.last_modified = text('NOW()')
+
+
+mythtv_grabbers = Table('mythtv_grabbers', metadata,
+                     Column('id', Integer, primary_key=True, autoincrement=True),
+                     Column('machine_id', Integer, ForeignKey('mythtv_host.machine_id')),
+                     Column('myth_uuid', VARCHAR(36), ForeignKey('mythtv_host.myth_uuid')),
+                     Column('grabber', VARCHAR(36), nullable=False),
+                     Column('last_modified',
+                             DATETIME,default=0, nullable=False))
+
+class mythtvGrabbers(object):
+    def __init__(self, myth_uuid, grabber):
+
+        #elf.machine_id = machine_id
+        self.myth_uuid = myth_uuid
+        self.grabber = grabber
+        self.last_modified = text('NOW()')
+
+
+mythtv_audio = Table('mythtv_audio', metadata,
+                     Column('id', Integer, primary_key=True, autoincrement=True),
+                     Column('machine_id', Integer, ForeignKey('mythtv_host.machine_id')),
+                     Column('passthru', VARCHAR(36)),
+                     Column('steropcm', SmallInteger),
+                     Column('upmixtype', VARCHAR(36)),
+                     Column('volcontrol', SmallInteger),
+                     Column('defaultupmix', SmallInteger),
+                     Column('maxchannels', SmallInteger),
+                     Column('passthruoverride', SmallInteger),
+                     Column('mixercontrol', VARCHAR(36)),
+                     Column('sr_override', SmallInteger),
+                     Column('passthrudevice', VARCHAR(36)),
+                     Column('device', VARCHAR(36)),
+                     Column('mixerdevice', VARCHAR(36)),
+                     Column('audio_sys', VARCHAR(10)),
+                     Column('audio_sys_version', VARCHAR(10)),
+                     Column('jack',SmallInteger),
+                     Column('pulse',SmallInteger),
+                     Column('last_modified',
+                             DATETIME,default=0, nullable=False))
+
+
+class mythtvAudio(object):
+    def __init__(self,machine_id,
+                 passthru,steropcm,
+                 upmixtype,volcontrol,
+                 defaultupmix,maxchannels,
+                 passthruoverride,mixercontrol,
+                 sr_override,passthrudevice,
+                 device,mixerdevice,audio_sys,
+                 audio_sys_version, jack, pulse):
+
+        self.machine_id = machine_id
+        self.passthru = passthru
+        self.steropcm = steropcm
+        self.upmixtype = upmixtype
+        self.volcontrol = volcontrol
+        self.defaultupmix = defaultupmix
+        self.maxchannels = maxchannels
+        self.passthruoverride = passthruoverride
+        self.mixercontrol = mixercontrol
+        self.sr_override = sr_override
+        self.passthrudevice = passthrudevice
+        self.device = device
+        self.mixerdevice = mixerdevice
+        self.audio_sys = audio_sys
+        self.audio_sys_version = audio_sys_version
+        self.jack = jack
+        self.pulse = pulse
+        self.last_modified = text('NOW()')
+
+
+
+mythtv_historical = Table('mythtv_historical', metadata,
+                     Column('id', Integer, primary_key=True, autoincrement=True),
+                     Column('myth_uuid', VARCHAR(36), ForeignKey('mythtv_host.myth_uuid')),
+                     Column('showcount', Integer),
+                     Column('rectime', Integer),
+                     Column('db_age', Integer),
+                     Column('reccount', Integer),
+                     Column('last_modified',
+                             DATETIME,default=0, nullable=False))
+
+
+class mythtvHistorical(object):
+    def __init__(self,
+                 myth_uuid,
+                 showcount,
+                 rectime,
+                 db_age,
+                 reccount):
+
+
+        self.myth_uuid = myth_uuid
+        self.showcount = showcount
+        self.rectime = rectime
+        self.db_age = db_age
+        self.reccount = reccount
+        self.last_modified = text('NOW()')
+
+
+
+
+mythtv_recordings = Table('mythtv_recordings', metadata,
+                     Column('id', Integer, primary_key=True, autoincrement=True),
+                     Column('myth_uuid', VARCHAR(36), ForeignKey('mythtv_host.myth_uuid')),
+                     Column('sched_count', Integer),
+                     Column('sched_time', Integer),
+                     Column('sched_size', BigInteger),
+                     Column('live_count', Integer),
+                     Column('live_time', Integer),
+                     Column('live_size', BigInteger),
+                     Column('exp_count', Integer),
+                     Column('exp_time', Integer),
+                     Column('exp_size', BigInteger),
+                     Column('upcoming_count', Integer),
+                     Column('upcoming_time', Integer),
+                     Column('last_modified',
+                             DATETIME,default=0, nullable=False))
+
+
+class mythtvRecordings(object):
+    def __init__(self,myth_uuid,
+                 sched_count,
+                 sched_time,
+                 sched_size,
+                 live_count,
+                 live_time,
+                 live_size,
+                 exp_count,
+                 exp_time,
+                 exp_size,
+                 upcoming_count,
+                 upcoming_time
+                 ):
+
+        self.myth_uuid = myth_uuid
+        self.sched_count = sched_count
+        self.sched_time = sched_time
+        self.sched_size = sched_size
+        self.live_count = live_count
+        self.live_time = live_time
+        self.live_size = live_size
+        self.exp_count = exp_count
+        self.exp_time = exp_time
+        self.exp_size = exp_size
+        self.upcoming_count =  upcoming_count
+        self.upcoming_time =  upcoming_time
+        self.last_modified = text('NOW()')
+
+
+
+mythtv_scheduler = Table('mythtv_scheduler', metadata,
+                     Column('id', Integer, primary_key=True, autoincrement=True),
+                     Column('myth_uuid', VARCHAR(36), ForeignKey('mythtv_host.myth_uuid')),
+                     Column('count', Integer),
+                     Column('place_stddev', Float),
+                     Column('match_stddev', Float),
+                     Column('match_avg', Float),
+                     Column('place_avg', Float),
+                     Column('last_modified',
+                             DATETIME,default=0, nullable=False))
+
+
+class mythtvScheduler(object):
+    def __init__(self,myth_uuid,
+                 count,
+                 place_stddev,
+                 match_stddev,
+                 match_avg,
+                 place_avg
+                 ):
+
+        self.myth_uuid = myth_uuid
+        self.count =  count
+        self.place_stddev = place_stddev
+        self.match_stddev = match_stddev
+        self.match_avg = match_avg
+        self.place_avg = place_avg
+        self.last_modified = text('NOW()')
+
+
+
+mythtv_storage = Table('mythtv_storage', metadata,
+                     Column('id', Integer, primary_key=True, autoincrement=True),
+                     Column('myth_uuid', VARCHAR(36), ForeignKey('mythtv_host.myth_uuid')),
+                     Column('rectotal', BigInteger),
+                     Column('recfree', BigInteger),
+                     Column('videototal', BigInteger),
+                     Column('videofree', BigInteger),
+                     Column('last_modified',
+                             DATETIME,default=0, nullable=False))
+
+class mythtvStorage(object):
+    def __init__(self,myth_uuid,
+                 rectotal,
+                 recfree,
+                 videototal,
+                 videofree):
+
+        self.myth_uuid = myth_uuid
+        self.rectotal = rectotal
+        self.recfree = recfree
+        self.videototal = videototal
+        self.videofree = videofree
+        self.last_modified = text('NOW()')
+
+
+mythtv_database = Table('mythtv_database', metadata,
+                     Column('id', Integer, primary_key=True, autoincrement=True),
+                     Column('myth_uuid', VARCHAR(36), ForeignKey('mythtv_host.myth_uuid')),
+                     Column('version', VARCHAR(36)),
+                     Column('usedengine', VARCHAR(36)),
+                     Column('engines', LargeBinary(1000000)),
+                     Column('schemas', LargeBinary(1000000)),
+                     Column('last_modified',
+                             DATETIME,default=0, nullable=False))
+
+class mythtvDatabase(object):
+    def __init__(self,myth_uuid,
+                 version,
+                 usedengine,
+                 engines,
+                 schemas
+                 ):
+
+        self.myth_uuid = myth_uuid
+        self.version = version
+        self.usedengine = usedengine
+        self.engines = engines
+        self.schemas = schemas
+        self.last_modified = text('NOW()')
+
+
+mythtv_pbp = Table('mythtv_pbp', metadata,
+                     Column('id', Integer, primary_key=True, autoincrement=True),
+                     Column('machine_id', Integer, ForeignKey('mythtv_host.machine_id')),
+                     Column('myth_uuid', VARCHAR(36), ForeignKey('mythtv_host.myth_uuid')),
+                     Column('name', VARCHAR(36)),
+                     Column('profiles', LargeBinary(1000000)),
+                     Column('last_modified',
+                             DATETIME,default=0, nullable=False))
+class mythtvPbp(object):
+    def __init__(self,machine_id,
+                 name,
+                 profiles
+                 ):
+
+        self.machine_id = machine_id
+        self.name= name
+        self.profiles = profiles
+        self.last_modified = text('NOW()')
+
+
+mythtv_tuners = Table('mythtv_tuners', metadata,
+                     Column('id', Integer, primary_key=True, autoincrement=True),
+                     Column('myth_uuid', VARCHAR(36), ForeignKey('mythtv_host.myth_uuid')),
+                     Column('tuner_type', VARCHAR(36), nullable=False),
+                     Column('tuner_count', Integer, nullable=False),
+                     Column('last_modified',
+                             DATETIME,default=0, nullable=False))
+
+class mythtvtuners(object):
+    def __init__(self, myth_uuid, tuner_type, tuner_count):
+
+        #elf.machine_id = machine_id
+        self.myth_uuid = myth_uuid
+        self.tuner_type = tuner_type
+        self.tuner_count = tuner_count
+        self.last_modified = text('NOW()')
+
+
+
+
+
+mapper(mythtvHost, mythtv_host)
+mapper(mythtvGrabbers, mythtv_grabbers)
+mapper(mythtvAudio, mythtv_audio)
+mapper(mythtvHistorical, mythtv_historical)
+mapper(mythtvRecordings, mythtv_recordings)
+mapper(mythtvScheduler, mythtv_scheduler)
+mapper(mythtvStorage, mythtv_storage)
+mapper(mythtvDatabase, mythtv_database)
+mapper(mythtvPbp, mythtv_pbp)
+mapper(mythtvtuners, mythtv_tuners)
+

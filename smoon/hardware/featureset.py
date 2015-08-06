@@ -18,8 +18,10 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
 
-_FINAL_SERVER_KEY = 'smolts.org'
-MYTH_TV = 'smolt.mythvantage.com'
+#_FINAL_SERVER_KEY = 'smolts.org'
+_FINAL_SERVER_KEY = 'smolt.mythtv.org'
+#MYTH_TV = 'smolt.mythvantage.com'
+MYTH_TV = 'smolt.mythtv.org'
 GENTOO = 'smolt.gentoo.org'
 
 _VALID_FEATURE_SET_KEYS = (
@@ -102,6 +104,10 @@ def init(config_filename=None):
         _config_filename = os.path.normpath(os.path.join(smoon_location, basename))
     else:
         _config_filename = config_filename
+
+    if not os.path.isfile(_config_filename):
+        sys.stderr.write('Aborting, config file "%s" does not exist.\n' % (_config_filename))
+        sys.exit(1)
     
     config = ConfigParser()
     config.read(_config_filename)

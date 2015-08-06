@@ -4,70 +4,542 @@
            lang="en"
            py:strip="">
 
-<py:if test='template_config["myth_role"]'>
-<div class="tabbertab"><h2>${_("Myth Role")}</h2>
-    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
-        <tr py:for='myth_role in stat["myth_role"]'>
-            <th align="right">${myth_role.myth_role}</th>
-            <td align="center">${myth_role.cnt}</td>
-            <td><strong>${'%.1f' % (float(myth_role.cnt) / total_active_hosts * 100) } %</strong></td>
-            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(myth_role.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
-        </tr>
+
+<div class="tabbertab"><h2>${_("MythTV_Data")}</h2>
+   <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+      <tr>
+        <th valign="top" width="25%">${_("Total Active Myth Hosts")}</th>
+        <td><strong>${stat['total_mh']}</strong></td>
+      </tr>
+
+     <tr>
+        <th valign="top" width="25%">${_("Total Active Myth Clusters")}</th>
+        <td><strong>${stat['total_mc']}</strong></td>
+      </tr>
+
+      <tr>
+        <th valign="top" width="25%">${_("Total Tuners")}</th>
+        <td><strong>${stat['myth_t_count']}</strong></td>
+      </tr>
+
     </table>
+
+<div>
+    <center><p>Cluster information</p></center>
 </div>
-</py:if>
+<table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+          <tr><th colspan="4">${_("Hosts per Myth cluster")}</th></tr>
+          <tr py:for='key,value in stat["myth_cluster"].items()'>
+            <th align="left">${key} host </th>
+            <td align="center">${value}</td>
+            <td><strong>${'%.1f' % (float(value) / stat["total_mc"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(value) / stat["total_mc"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+</table>
 
 
-<py:if test='template_config["myth_remote"]'>
-    <div class="tabbertab"><h2>${_("Myth Remote")}</h2>
+<div>
+    <center><p>Tuner information</p></center>
+</div>
+
     <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
-        <tr py:for='myth_remote in stat["myth_remote"]'>
-            <th align="right">${myth_remote.myth_remote}</th>
-            <td align="center">${myth_remote.cnt}</td>
-            <td><strong>${'%.1f' % (float(myth_remote.cnt) / total_active_hosts * 100) } %</strong></td>
-            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(myth_remote.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
-        </tr>
-    </table>
-</div>
-</py:if>
+        <tr bgcolor="#EEEEEE" height="15">
+        <td width="20%"></td>
+        <td width="80%" align="center"> <strong> ${_("Tuner per cluster")}</strong> </td>
+        <td width="20%" bgcolor="#EEEEEE" align="center">
+            <input id="lnk24" type="button" value="[+] Expand" onclick="toggle_visibility('tbl24','lnk24');"></input>
+        </td>
+       </tr>
+       <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl24">
+          <tr py:for='a in stat["myth_tuner_cluster"]'>
+          <th align="left">${a[0]}</th>
+          <td align="center">${a[1]}</td>
+          </tr>
+          <tr><th colspan="4"><strong>${_("Virtual Tuners Per Tuner  / Cluster ")}</strong></th></tr>
+          <tr py:for='a in stat["myth_vtuner_cluster"]'>
+            <th align="left">${a[0]}</th>
+            <td align="center">${a[1]}</td>
+          </tr>
 
-<py:if test='template_config["myth_theme"]'>
-    <div class="tabbertab"><h2>${_("Myth  Theme")}</h2>
+
+
+        </table>
+    </table>
+
     <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
-        <tr py:for='myth_theme in stat["myth_theme"]'>
-            <th align="right">${myth_theme.myth_theme}</th>
-            <td align="center">${myth_theme.cnt}</td>
-            <td><strong>${'%.1f' % (float(myth_theme.cnt) / total_active_hosts * 100) } %</strong></td>
-            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(myth_theme.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
-        </tr>
-    </table>
-</div>
-</py:if>
-
-<py:if test='template_config["myth_tuner"]'>
-    <div class="tabbertab"><h2>${_("# Tuners")}</h2>
-        <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
-            <tr><th colspan="4">${_("Number of tuners")}</th></tr>
-                <tr py:for='combined_fs_size in stat["myth_tuner"]'>
-                    <th align="left">${combined_fs_size[0]}</th>
-                    <td align="right">${combined_fs_size[1]}</td>
+        <tr bgcolor="#EEEEEE" height="15">
+        <td width="20%"></td>
+        <td width="80%" align="center"> <strong> ${_("Tuner breakdown")}</strong> </td>
+        <td width="20%" bgcolor="#EEEEEE" align="center">
+            <input id="lnk23" type="button" value="[+] Expand" onclick="toggle_visibility('tbl23','lnk23');"></input>
+        </td>
+       </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl23">
+            <tr py:for='a in stat["myth_global_tuner"]'>
+            <th align="left">${a[0]}</th>
+            <td align="center">${a[1]}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / float(stat["myth_t_count"]) * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / float(stat["myth_t_count"]) * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
             </tr>
         </table>
-    </div>
-</py:if>
+     </table>
 
 
-<py:if test='template_config["myth_plugins"]'>
-    <div class="tabbertab"><h2>${_("Myth Plugins")}</h2>
+
+
+<div>
+    <center><p>General Information</p></center>
+</div>
+
     <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
-            <tr><th colspan="4">${_("Plugins installed")}</th></tr>
-                <tr py:for='plugin,count in  stat["myth_plugins"].items()'>
-                    <th align="left">${plugin}</th>
-                    <td align="right">${count}</td>
+        <tr bgcolor="#EEEEEE" height="15">
+        <td width="20%"></td>
+        <td width="80%" align="center"> <strong> ${_("Language")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk10" type="button" value="[+] Expand" onclick="toggle_visibility('tbl10','lnk10');"></input>
+            </td>
+       </tr>
+
+
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl10">
+          <tr py:for='a in stat["myth_language"]'>
+            <th align="right">${a.language}</th>
+            <td align="center">${a.cnt}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mh"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mh"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+    </table>
+
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+        <td width="20%"></td>
+        <td width="80%" align="center"> <strong> ${_("TimeZone")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk11" type="button" value="[+] Expand" onclick="toggle_visibility('tbl11','lnk11');"></input>
+            </td>
+       </tr>
+
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl11">
+          <tr py:for='a in stat["myth_timezone"]'>
+            <th width = "35%" align="right">${a.timezone}</th>
+            <td align="center">${a.cnt}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mh"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mh"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+    </table>
+
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+        <td width="20%"></td>
+        <td width="80%" align="center"> <strong> ${_("Country")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk12" type="button" value="[+] Expand" onclick="toggle_visibility('tbl12','lnk12');"></input>
+            </td>
+        </tr>
+
+       <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl12">
+          <tr py:for='a in stat["myth_country"]'>
+            <th align="right">${a.country}</th>
+            <td align="center">${a.cnt}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mh"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mh"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+    </table>
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+        <td width="20%"></td>
+        <td width="80%" align="center"> <strong> ${_("Theme")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk13" type="button" value="[+] Expand" onclick="toggle_visibility('tbl13','lnk13');"></input>
+            </td>
+       </tr>
+       <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl13">
+          <tr py:for='a in stat["myth_theme"]'>
+            <th align="right">${a.theme}</th>
+            <td align="center">${a.cnt}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mh"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mh"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+    </table>
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+        <td width="20%"></td>
+        <td width="80%" align="center"> <strong> ${_("Remote")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk14" type="button" value="[+] Expand" onclick="toggle_visibility('tbl14','lnk14');"></input>
+            </td>
+       </tr>
+
+       <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl14">
+          <tr py:for='a in stat["myth_remote"]'>
+            <th align="right">${a.remote}</th>
+            <td align="center">${a.cnt}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mh"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mh"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+    </table>
+
+
+     <!--   <tr><th colspan="4">${_("Role")}</th></tr>
+          <tr py:for='a in stat["myth_type"]'>
+            <th align="right">${a.myth_type}</th>
+            <td align="center">${a.cnt}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mh"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mh"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>-->
+
+<div>
+    <center><p>Version Information</p></center>
+</div>
+<!--    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">-->
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("MythTV Version")}</strong> </td>
+                <td width="20%" bgcolor="#EEEEEE" align="center">
+                    <input id="lnk15" type="button" value="[+] Expand" onclick="toggle_visibility('tbl15','lnk15');"></input>
+                </td>
+        </tr>
+
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl15">
+            <tr py:for='a in stat["myth_version"]'>
+                <th align="left">${a.myth_version_bucket}</th>
+                <td align="center">${a.cnt}</td>
+                <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mh"] * 100) } %</strong></td>
+                <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mh"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+            </tr>
+        </table>
+    </table>
+
+   <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Database Version")}</strong> </td>
+                <td width="20%" bgcolor="#EEEEEE" align="center">
+                    <input id="lnk16" type="button" value="[+] Expand" onclick="toggle_visibility('tbl16','lnk16');"></input>
+                </td>
+        </tr>
+
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl16">
+          <tr py:for='key,value in stat["myth_dbversion"].items()'>
+            <th align="left">${key}</th>
+            <td align="center">${value}</td>
+            <td><strong>${'%.1f' % (float(value) / stat["total_mc"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(value) / stat["total_mc"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+    </table>
+
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("QT Version")}</strong> </td>
+                <td width="20%" bgcolor="#EEEEEE" align="center">
+                    <input id="lnk17" type="button" value="[+] Expand" onclick="toggle_visibility('tbl17','lnk17');"></input>
+                </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl17">
+            <tr py:for='a in stat["myth_qtversion"]'>
+                <th align="left">${a.qt_version}</th>
+                <td align="center">${a.cnt}</td>
+                <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mh"] * 100) } %</strong></td>
+                <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mh"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+            </tr>
+        </table>
+    </table>
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Branch")}</strong> </td>
+                <td width="20%" bgcolor="#EEEEEE" align="center">
+                    <input id="lnk18" type="button" value="[+] Expand" onclick="toggle_visibility('tbl18','lnk18');"></input>
+                </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl18">
+          <tr py:for='a in stat["myth_branch"]'>
+            <th align="left">${a.branch}</th>
+            <td align="center">${a.cnt}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mh"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mh"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+    </table>
+
+
+
+<div>
+    <center><p>Audio</p></center>
+</div>
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Base Audio")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk19" type="button" value="[+] Expand" onclick="toggle_visibility('tbl19','lnk19');"></input>
+            </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl19">
+          <tr py:for='a in stat["myth_snd"]'>
+            <th align="left">${a.audio_sys}</th>
+            <td align="center">${a.cnt}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mh"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mh"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+    </table>
+
+
+<div>
+    <center><p>Schedule Information.</p></center>
+</div>
+
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Guide Source Count")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk20" type="button" value="[+] Expand" onclick="toggle_visibility('tbl20','lnk20');"></input>
+            </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl20">
+          <tr py:for='a in stat["myth_sourcecount"]'>
+            <th align="left">${a.sourcecount}</th>
+            <td align="center">${a.cnt}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / stat["total_mc"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_mc"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+    </table>
+
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Data Grabbers")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk21" type="button" value="[+] Expand" onclick="toggle_visibility('tbl21','lnk21');"></input>
+            </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl21">
+          <tr py:for='a in stat["myth_grabber"]'>
+            <th align="left">${a.grabber}</th>
+            <td align="center">${a.cnt}</td>
+            <td><strong>${'%.1f' % (float(a.cnt) / stat["total_grabber"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a.cnt) / stat["total_grabber"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+     </table>
+
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Channel and Shows Scheduled")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk22" type="button" value="[+] Expand" onclick="toggle_visibility('tbl22','lnk22');"></input>
+            </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl22">
+        <tr><th colspan="4"><strong>${_("Channel Count")}</strong></th></tr>
+            <tr py:for='a in stat["myth_chan_count"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
             </tr>
 
+            <tr><th colspan="4"><strong>${_("Items Scheduled")}</strong></th></tr>
+            <tr py:for='a in stat["myth_sched_count"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
+            </tr>
+        </table>
     </table>
+
+
+
+<div>
+    <center><p>Historical</p></center>
 </div>
-</py:if>
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Database Age")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk25" type="button" value="[+] Expand" onclick="toggle_visibility('tbl25','lnk25');"></input>
+            </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl25">
+          <tr py:for='a in stat["myth_dbage_g"]'>
+            <th align="left">${a[0]}</th>
+            <td align="center">${a[1]}</td>
+            <td><strong>${'%.1f' % (float(a[1]) / stat["total_mc"] * 100) } %</strong></td>
+            <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(a[1]) / stat["total_mc"] * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+          </tr>
+        </table>
+    </table>
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Recordings")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk26" type="button" value="[+] Expand" onclick="toggle_visibility('tbl26','lnk26');"></input>
+            </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl26">
+        <tr><th colspan="4"><strong>${_("Records Show or Series")}</strong></th></tr>
+          <tr py:for='a in stat["myth_showcount"]'>
+            <th align="left">${a[0]}</th>
+            <td align="center">${a[1]}</td>
+          </tr>
+          <tr><th colspan="4"><strong>${_("Individual Recordings")}</strong></th></tr>
+          <tr py:for='a in stat["myth_reccount"]'>
+            <th align="left">${a[0]}</th>
+            <td align="center">${a[1]}</td>
+          </tr>
+        </table>
+    </table>
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Active/Current TV Data ")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk27" type="button" value="[+] Expand" onclick="toggle_visibility('tbl27','lnk27');"></input>
+            </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl27">
+        <tr><th colspan="4"><strong>${_("Recorded TV Count")}</strong></th></tr>
+            <tr py:for='a in stat["myth_recordings_rc"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
+            </tr>
+
+
+            <tr><th colspan="4"><strong>${_("Live TV Count")}</strong></th></tr>
+            <tr py:for='a in stat["myth_recordings_live"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
+            </tr>
+
+
+            <tr><th colspan="4"><strong>${_("Upcoming Count")}</strong></th></tr>
+            <tr py:for='a in stat["myth_recordings_upcoming"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
+            </tr>
+
+            <tr><th colspan="4"><strong>${_("Expireable Count")}</strong></th></tr>
+            <tr py:for='a in stat["myth_recordings_expire"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
+            </tr>
+        </table>
+    </table>
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Logging")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk29" type="button" value="[+] Expand" onclick="toggle_visibility('tbl29','lnk29');"></input>
+            </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl29">
+        <tr><th colspan="4"><strong>${_("Critical Log")}</strong></th></tr>
+            <tr py:for='a in stat["myth_log_crit"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
+            </tr>
+        <tr><th colspan="4"><strong>${_("Information Log")}</strong></th></tr>
+            <tr py:for='a in stat["myth_log_info"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
+         </tr>
+        <tr><th colspan="4"><strong>${_("Notice Log")}</strong></th></tr>
+            <tr py:for='a in stat["myth_log_notice"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
+        </tr>
+        <tr><th colspan="4"><strong>${_("Warning Log")}</strong></th></tr>
+            <tr py:for='a in stat["myth_log_warning"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
+        </tr>
+        <tr><th colspan="4"><strong>${_("Error Log")}</strong></th></tr>
+            <tr py:for='a in stat["myth_log_err"]'>
+                <th align="left">${a[0]}</th>
+                <td align="center">${a[1]}</td>
+        </tr>
+
+        </table>
+    </table>
+
+
+<div>
+    <center><p>Storage information</p></center>
+</div>
+
+
+
+    <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"></td>
+            <td width="80%" align="center"> <strong> ${_("Storage stats")}</strong> </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk28" type="button" value="[+] Expand" onclick="toggle_visibility('tbl28','lnk28');"></input>
+            </td>
+        </tr>
+        <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl28">
+          <tr><th colspan="4"><strong>${_("Total Available Recording Storage")}</strong></th></tr>
+          <tr py:for='a in stat["myth_storage_rt"]'>
+            <th align="left">${a[0]}</th>
+            <td align="center">${a[1]}</td>
+          </tr>
+
+          <tr><th colspan="4"><strong>${_("Free Space Recording Storage")}</strong></th></tr>
+          <tr py:for='a in stat["myth_storage_rf"]'>
+            <th align="left">${a[0]}</th>
+            <td align="center">${a[1]}</td>
+          </tr>
+
+          <tr><th colspan="4"><strong>${_("Total Available Video Storage")}</strong></th></tr>
+          <tr py:for='a in stat["myth_storage_vt"]'>
+            <th align="left">${a[0]}</th>
+            <td align="center">${a[1]}</td>
+          </tr>
+          <tr><th colspan="4"><strong>${_("Free Space Video Storage")}</strong></th></tr>
+          <tr py:for='a in stat["myth_storage_vf"]'>
+            <th align="left">${a[0]}</th>
+            <td align="center">${a[1]}</td>
+          </tr>
+        </table>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
 
 </html>

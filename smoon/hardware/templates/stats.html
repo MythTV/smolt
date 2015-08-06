@@ -4,9 +4,37 @@
   xmlns:xi="http://www.w3.org/2001/XInclude">
   <xi:include href="master.html" />
   <head>
+
+  <script type="text/javascript">
+  function toggle_visibility(tbid,lnkid)
+  {
+      if(document.all){document.getElementById(tbid).style.display = document.getElementById(tbid).style.display == "block" ? "none" : "block";}
+      else{document.getElementById(tbid).style.display = document.getElementById(tbid).style.display == "table" ? "none" : "table";}
+      document.getElementById(lnkid).value = document.getElementById(lnkid).value == "[-] Collapse" ? "[+] Expand" : "[-] Collapse";
+      }
+      </script>
+      <style type="text/css">
+      #tbl1,#tbl2,#tbl3,#tbl4,#tbl5,#tbl6,#tbl7,#tbl8,#tbl9,#tbl10 {display:none;}
+      #lnk1,#lnk2,#lnk3,#lnk4,#lnk5,#lnk6,#lnk7,#lnk8,#lnk9,#lnk10 {border:none;background:none;width:85px;}
+
+      #tbl11,#tbl12,#tbl13,#tbl14,#tbl15,#tbl16,#tbl17,#tbl18,#tbl19 {display:none;}
+      #lnk11,#lnk12,#lnk13,#lnk14,#lnk15,#lnk16,#lnk17,#lnk18,#lnk19 {border:none;background:none;width:85px;}
+
+      #tbl20,#tbl21,#tbl22,#tbl23,#tbl24,#tbl25,#tbl26,#tbl27,#tbl28,#tbl29 {display:none;}
+      #lnk20,#lnk21,#lnk22,#lnk23,#lnk24,#lnk25,#lnk26,#lnk27,#lnk28,#lnk29 {border:none;background:none;width:85px;}
+
+      /*#tbl1,#tbl2 {display:none;}
+      #lnk1,#lnk2 {border:none;background:none;width:85px;}*/
+      td {FONT-SIZE: 75%; MARGIN: 0px; COLOR: #000000;}
+      td {FONT-FAMILY: verdana,helvetica,arial,sans-serif}
+      a {TEXT-DECORATION: none;}
+      </style>
     <script src="/tg_widgets/turboflot/excanvas.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.js" type="text/javascript"></script><script src="/tg_widgets/turboflot/jquery.flot.js" type="text/javascript"></script>
     <link media="screen" href="/tg_widgets/turbogears.widgets/tabber/tabber.css" type="text/css" rel="stylesheet"/>
     <title>${_("Stats")}</title>
+
+
+
   </head>
   <body>
     <script src="/tg_widgets/turbogears.widgets/tabber/tabber-minimized.js" type="text/javascript"></script>
@@ -58,6 +86,18 @@
       <py:if test='template_config["os"]'>
       <div class="tabbertab"><h2>${_("OS")}</h2>
         <table id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+        <!-- ALL OS -->
+          <tr bgcolor="#EEEEEE" height="15">
+            <td width="20%"><strong>Top 45 OS</strong></td>
+            <td width="80%" align="center"> ${ total_active_hosts } total hosts </td>
+            <td width="20%" bgcolor="#EEEEEE" align="center">
+                <input id="lnk1" type="button" value="[+] Expand" onclick="toggle_visibility('tbl1','lnk1');"></input>
+            </td>
+          </tr>
+          <!--<tr>
+            <td colspan="3"> </td>
+         </tr>-->
+         <table width="100%" border="0" cellpadding="4" cellspacing="3" id="tbl1">
           <tr py:for='OS in stat["os"]'>
             <th align="left"><a href="${getOSWikiLink(OS.os)}">${OS.os}</a></th>
             <td align="right">${OS.cnt}</td>
@@ -65,6 +105,44 @@
             <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(OS.cnt) / total_active_hosts * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
           </tr>
         </table>
+        </table>
+        <!--end all OS -->
+        <div>
+            <center><p>Top 45 list divided by distribution type </p></center>
+        </div>
+
+        <!-- bucket list -->
+        <tr py:for='v in stat["os_stat"]'>
+            <table  id="stats" width="100%" border="0" cellpadding="3" cellspacing="3">
+                <tr bgcolor="#EEEEEE" height="15">
+                    <td width="20%"><strong>${v.get_bucket()}</strong></td>
+                    <td width="80%" align="center"> ${ v.get_total() } total hosts ${'%.1f' % (float(v.get_total()) / total_active_hosts * 100) } % </td>
+                    <td width="20%" bgcolor="#EEEEEE" align="center">
+                    <input id='lnk${v.get_tbl()}' type="button" value="[+] Expand" onclick="toggle_visibility('tbl${v.get_tbl()}','lnk${v.get_tbl()}');"></input>
+                    </td>
+                </tr>
+
+                <table width="100%" border="0" cellpadding="4" cellspacing="3" id='tbl${v.get_tbl()}'>
+                <tr py:for='OS in v.get_sorted_os()'>
+                    <th align="left"><a href="${getOSWikiLink(OS)}">${OS}</a></th>
+                    <td align="right">${v.get_count(OS)}</td>
+                    <td align="right"><strong>${'%.1f' % (float(v.get_count(OS)) / v.get_total() * 100) } %</strong></td>
+                    <td><table border='0' cellpadding='0' cellspacing='0'><tr><td width='${ float(v.get_count(OS)) / v.get_total() * 100 }'><div id="bar"></div></td><td></td></tr></table></td>
+                </tr>
+                </table>
+            </table>
+ <!--           <tr>
+                <td colspan="3"> </td>
+            </tr>
+            <tr>
+                <td colspan="3"> </td>
+            </tr>
+            <tr>
+                <td colspan="3"> </td>
+            </tr>-->
+        </tr>
+    <!-- END bucket list -->
+
       </div>
       </py:if>
 

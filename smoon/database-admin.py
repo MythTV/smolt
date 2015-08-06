@@ -54,11 +54,12 @@ if not args:
 # Import sits down here to reduce load time
 # .. and to save import warnings if we don't get here
 import os
+import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from ConfigParser import ConfigParser
 
-from hardware.featureset import init, config_filename, this_is, GENTOO
+from hardware.featureset import init, config_filename, this_is, GENTOO, MYTH_TV
 init(opts.config_file)
 
 # Import without warnings on stderr
@@ -72,8 +73,11 @@ sys.stderr = DevNull()
 from hardware.model.model import metadata
 if this_is(GENTOO):
     from hardware.model.model_gentoo import *
-sys.stderr = stderr_backup
 
+if this_is(MYTH_TV):
+    from hardware.model.model_mythtv import *
+
+sys.stderr = stderr_backup
 
 config = ConfigParser()
 config.read(config_filename())
@@ -103,7 +107,10 @@ for command in args:
             metadata.drop_all(engine)
     elif command == 'create':
         sys.stderr.write('Creating model-related tables%s\n' % (opts.force and ' (without prior check for existence)' or ''))
-        metadata.create_all(engine, checkfirst=(not opts.force))
+        try:
+            metadata.create_all(engine, checkfirst=(not opts.force))
+        except sqlalchemy.exc.OperationalError, e:
+            print 'FAILED, error is', str(e)
 
 if opts.fake_mysql:
     sys.stdout.write(buf.getvalue())

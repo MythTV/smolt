@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # smolt - Fedora hardware profiler
 #
@@ -23,7 +23,13 @@ __requires__='TurboGears[future]'
 import pkg_resources
 #pkg_resources.require("TurboGears")
 
+
+import warnings
+warnings.filterwarnings("ignore")
 from turbogears import update_config, start_server
+warnings.resetwarnings()
+
+
 import cherrypy
 cherrypy.lowercase_api = True
 from os.path import *
@@ -37,6 +43,20 @@ if len(sys.argv) > 1:
 init(_cfg_filename)
 update_config(configfile=config_filename(),modulename="hardware.config")
 
+
+warnings.filterwarnings("ignore")
 from hardware.controllers import Root
+warnings.resetwarnings()
+
+#--------------- write out the pid file -----------
+import os
+#pid = file('hardware.pid', 'w')
+pid = file('smoon.pid', 'w')
+pid.write(str(os.getpid()))
+pid.close()
+#--------------------------------------------------
+
+
+
 
 start_server(Root())

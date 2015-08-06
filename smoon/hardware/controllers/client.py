@@ -39,6 +39,7 @@ class Client(object):
     error = Error()
     def __init__(self, smolt_protocol, token):
         self._impl = make_client_impl(smolt_protocol, token)
+        #self._sender = None
         if at_final_server():
             self._sender = None
         else:

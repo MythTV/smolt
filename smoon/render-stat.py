@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # smolt - Fedora hardware profiler
 #
@@ -40,6 +40,7 @@ from hardware.turboflot import TurboFlot
 from hardware.featureset import init, config_filename, at_final_server
 from reportutils import _process_output
 from turbogears.database import session
+from hardware.featureset import this_is, MYTH_TV
 
 WITHHELD_MAGIC_STRING = 'WITHHELD'
 withheld_label = "withheld"
@@ -254,8 +255,105 @@ if not  template_config['archs'] == [] :
 print "====================== OS Stats ======================"
 if not  template_config['os'] == [] :
     stats['os'] = handle_withheld_elem(
-            session.query(OS).limit(30).all(),
+            session.query(OS).limit(45).all(),
             'os', WITHHELD_MAGIC_STRING)
+
+
+    class os_stat:
+        def __init__(self, bucket, tbl_num):
+            self.bucket = bucket
+            self.os_dict = {}
+            self.total_count = 0
+            self.tbl_num = tbl_num
+            pass
+
+
+        def set_tbl(self, tbl_num):
+            self.tbl_num = tbl_num
+
+        def add_os(self, os , count):
+            self.os_dict[os] = count
+            #update total hosts
+            self.total_count = self.total_count + count
+
+        def get_os_list(self):
+            os_list = self.os_dict.keys()
+            return os_list
+
+        def get_count(self, os):
+            count = self.os_dict[os]
+            return count
+
+        def get_total(self):
+            return self.total_count
+
+        def get_bucket(self):
+            return self.bucket
+
+        def get_tbl(self):
+            return self.tbl_num
+
+        def sort_os(self):
+            self.sorted_os = sorted(self.os_dict, key=self.os_dict.get, reverse=True)
+
+        def get_sorted_os(self):
+            self.sort_os()
+            return self.sorted_os
+
+
+
+
+    #break down the OS by major distros
+    os_search_list = {}
+    os_search_list['redhat']  = [ 'fedora' , 'centos' , 'mythdora', 'redhat' ]
+    os_search_list['suse']    = [ 'sles' , 'opensuse' , 'suse' ]
+    os_search_list['ubuntu']  = [ 'ubuntu' ]
+    os_search_list['linhes']   = [ 'linhes' ]
+    os_search_list['debian']  = [ 'debian' ]
+
+    os_stats_dict = { 'redhat':os_stat('RedHat',2) ,
+                      'suse' : os_stat('SuSE',3) ,
+                      'ubuntu' : os_stat('Ubuntu',4) ,
+                      'linhes' : os_stat('LinHES',5) ,
+                      'debian' : os_stat('Debian',6) ,
+                      'other' : os_stat('Other',7) }
+
+    os_stats_sort_list = []
+
+    # populate each bucket with it's OS
+    for i in stats['os']:
+        found = False
+        for k,v in os_search_list.iteritems():
+            for check_os in v:
+                if check_os in i.os.lower():
+                    bucket = k
+                    found = True
+                    break
+                else :
+                    bucket = 'other'
+            #if found is true break out of the os_search_list loop
+            if found == True :
+                break
+            else:
+                continue
+
+    #add the OS to the dict
+        osbucket_d = os_stats_dict[bucket]
+        osbucket_d.add_os(i.os,i.cnt)
+
+    #this sorting is needed to make the html output look nice
+    # create a list of buckets & total
+    os_list=[]
+    for k,v in os_stats_dict.iteritems():
+        temp_tuple=(k,v.get_total())
+        os_list.append(temp_tuple)
+
+    #sort the list by total
+    sort_list = sorted(os_list, key=lambda x: x[1] , reverse=True)
+    #create list of os_stat objects
+    for i in sort_list:
+        os_stats_sort_list.append(os_stats_dict[i[0]] )
+    stats['os_stat'] = os_stats_sort_list
 
 
 print "====================== Runlevel stats ======================"
@@ -474,19 +572,26 @@ stats['num_cpus'] = handle_withheld_elem(
         'num_cpus', 0)
 
 
+def none_to_zero(iterable):
+    """
+    Makes a copy of an iterable with all <None>s replaced by 0
+    """
+    return ((0 if e is None else e) for e in iterable)
+
+
 print '====================== bogomips count ======================'
 conn = select([func.sum(Host.bogomips * Host.num_cpus)]).where(Host.bogomips > 0).limit(1).execute()
-stats['bogomips_total'] = conn.fetchone()
+stats['bogomips_total'] = none_to_zero(conn.fetchone())
 conn.close()
 
 print '====================== cpu speed total ======================'
 conn = select([func.sum(Host.cpu_speed * Host.num_cpus)]).where(Host.cpu_speed > 0).limit(1).execute()
-stats['cpu_speed_total'] = conn.fetchone()
+stats['cpu_speed_total'] = none_to_zero(conn.fetchone())
 conn.close()
 
 print '====================== cpus total ======================'
 conn = select([func.sum(Host.num_cpus)]).limit(1).execute()
-stats['cpus_total'] = conn.fetchone()
+stats['cpus_total'] = none_to_zero(conn.fetchone())
 conn.close()
 
 print '====================== registered devices ======================'
@@ -530,124 +635,12 @@ if not  template_config['filesystem'] == [] :
     stats['combined_fs_size'].append((withheld_label,session.query(FileSystem).filter(FileSystem.f_fssize==0) .count()))
 
 
-#myth stuff
-#---------------
-template_config['smoon.myth_support'] = ''
-if config.get("smoon.myth_support"):
-    template_config['smoon.myth_support'] = 'YES'
-    template_config['myth_role']=config.get("stats_template.myth_role", [])
-    template_config['myth_remote']=config.get("stats_template.myth_remote", [])
-    template_config['myth_theme']=config.get("stats_template.myth_theme", [])
-    template_config['myth_plugins']=config.get("stats_template.myth_theme", [])
-    template_config['myth_tuner']=config.get("stats_template.myth_theme", [])
-
-    print "====================== Myth Role ======================"
-    if not  template_config['myth_role'] == [] :
-        stats['myth_role'] = handle_withheld_elem(
-                session.query(MythRole).limit(30).all(),
-                'myth_role', WITHHELD_MAGIC_STRING)
-
-    print "====================== Myth Remote ======================"
-    if not  template_config['myth_remote'] == [] :
-        stats['myth_remote'] = handle_withheld_elem(
-                session.query(MythRemote).limit(30).all(),
-                'myth_remote', WITHHELD_MAGIC_STRING)
-
-    print "====================== Myth theme ======================"
-    if not  template_config['myth_theme'] == [] :
-        stats['myth_theme'] = handle_withheld_elem(
-                session.query(MythTheme).limit(30).all(),
-                'myth_theme', WITHHELD_MAGIC_STRING)
-
-    print "====================== Myth plugins ======================"
-    if not  template_config['myth_plugins'] == [] :
-        temp_list = []
-        stats['myth_plugins']=[]
-        plugin_count = {}
-        temp_list = session.execute('''SELECT myth_plugins from host where host.last_modified > '%s' and not myth_plugins = ''  ;''' %
-        right_now).fetchall()
-        #print temp_list
-        #sys.exit(2)
-        for i in temp_list:
-            #retrieve the first record in the list
-            y = i[0]
-            split_plugins = y.split(',')
-            for plugin in split_plugins:
-                if plugin in plugin_count:
-                    plugin_count[plugin] = plugin_count[plugin] + 1
-                else:
-                    plugin_count[plugin] = 1
-
-        stats['myth_plugins'] = plugin_count
-        del temp_list
-        del plugin_count
-
-    print "====================== Myth Tuners ======================"
-    if not  template_config['myth_tuner'] == [] :
-
-        stats['myth_tuner']=[]
-        stats['myth_tuner'].append(("One Tuner",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner==1,
-                                                    Host.last_modified > (now))).count()))
-
-        stats['myth_tuner'].append(("Two Tuners",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner==2,
-                                                    Host.last_modified > (now))).count()))
-        stats['myth_tuner'].append(("Three Tuners",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner==3,
-                                                    Host.last_modified > (now))).count()))
-        stats['myth_tuner'].append(("Four Tuners",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner==4,
-                                                    Host.last_modified > (now))).count()))
-        stats['myth_tuner'].append(("Five Tuners",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner==5,
-                                                    Host.last_modified > (now))).count()))
-        stats['myth_tuner'].append(("Six Tuners",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner==6,
-                                                    Host.last_modified > (now))).count()))
-        stats['myth_tuner'].append(("Seven Tuners",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner==7,
-                                                    Host.last_modified > (now))).count()))
-        stats['myth_tuner'].append(("Eight Tuners",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner==8,
-                                                    Host.last_modified > (now))).count()))
-        stats['myth_tuner'].append(("Nine Tuners",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner==9,
-                                                    Host.last_modified > (now))).count()))
-        stats['myth_tuner'].append(("Ten Tuners",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner==10,
-                                                    Host.last_modified > (now))).count()))
-        stats['myth_tuner'].append(("More Then Ten Tuners",
-                            session.query(Host).filter(and_(
-                                                    Host.myth_tuner!=0,
-                                                    Host.myth_tuner>=10,
-                                                    Host.last_modified > (now))).count()))
-
-#------------------
-
-
-
-
+if this_is(MYTH_TV):
+    template_config['smoon.myth_support'] = True
+    from render_stat_mythtv import render_mythtv
+    stats = render_mythtv(stats)
+else:
+    template_config['smoon.myth_support'] = False
 
 t=engine.load_template('hardware.templates.stats')
 out_html=_process_output(engine, dict(stat=stats, tabs=tabs,

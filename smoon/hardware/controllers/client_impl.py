@@ -32,7 +32,10 @@ from hardware.model import BatchJob, Host
 from hardware.wiki import getDeviceWikiLink, getHostWikiLink, getOSWikiLink
 from hardware.ratingwidget import SingleRatingWidget
 from hardware.uuid import generate_uuid
+import hardware.compat as compat
 from hardware.model.model import *
+
+from hardware.controllers.client import request_format
 
 
 def _fix_vendor(vendor):
@@ -169,7 +172,9 @@ class ClientImplementation(object):
         raise ValueError('Success: UUID Removed')
 
     def host_rating(self, vendor, system):
-        q = session.query(Host).filter_by(vendor=vendor, system=system).add_column(func.count(Host.rating).label('count')).group_by(Host.rating)
+        q = session.query(Host).filter_by(vendor=vendor, system=system)
+        q = compat.add_column(q, func.count(Host.rating).label('count')).group_by(Host.rating)
+
         ratings = {}
         for rate in q:
             ratings[rate[0].rating] = rate[1]

@@ -3,7 +3,6 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 
 from hardware.model.model import *
-from hardware.featureset import this_is, MYTH_TV
 
 
 def old_hosts_clause():
@@ -224,10 +223,6 @@ def top_vendors_per_class(cls):
                         computer_logical_devices.c.vendor_id,
                         computer_logical_devices.c.cls==cls,
                         desc=True, distinct=False).execute().fetchall()[:100]
-
-if this_is(MYTH_TV):
-        from myth_views import myth_import_string
-        exec(myth_import_string)
 
 
 

@@ -2,6 +2,7 @@
 from turbogears import expose
 from hardware.model import *
 from sqlalchemy.sql import *
+from turbogears.database import session
 
 #I think that we'll need a way to attach meta data to our tables
 #to define how different fields can be search from.

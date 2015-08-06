@@ -13,6 +13,7 @@ from hardware.controllers.upgrade import Upgrade
 from hardware.controllers.error import error
 from hardware.controllers.reports import Reports
 from hardware.turboflot import TurboFlot
+import hardware.compat as compat
 
 from hardware.model import *
 
@@ -53,16 +54,19 @@ class Root(controllers.RootController):
         # log.debug("Happy TurboGears Controller Smooning For Duty")
         import math
         #archs = session.query(Arch).select()
-        topVendors = session.query(Host).group_by(Host.vendor).filter_by(rating=5).add_column(func.count(Host.rating).label('count')).order_by(desc('count')).limit(7)
+        topVendors = session.query(Host).group_by(Host.vendor).filter_by(rating=5)
+        topVendors = compat.add_column(topVendors, func.count(Host.rating).label('count')).order_by(desc('count')).limit(7)
         types = []
         count = []
         i = 1
         vendors = []
         counts = []
-        for vend in topVendors:
-            vendors.append([i + .5, vend[0].vendor])
-            counts.append([i, vend[1]])
-            i = i + 1
+#        for vend in topVendors:
+#            vendors.append([i + .5, vend[0].vendor])
+#            counts.append([i, vend[1]])
+#            i = i + 1
+
+
         vendorFlot = TurboFlot([
             {
                 'data' : counts,
@@ -73,6 +77,16 @@ class Root(controllers.RootController):
                 'xaxis' : { 'ticks' : vendors },
             }
         )
+#        vendorFlot = TurboFlot([
+#            {
+#                'data' : counts,
+#                'bars' : { 'show' : True },
+#                'label' : 'Vendors',
+#            }],
+#            {
+#                'xaxis' : { 'ticks' : vendors },
+#            }
+#        )
         return dict(now=time.ctime(), vendorFlot=vendorFlot)
         
     @exception_handler(error.error_web,rules="isinstance(tg_exceptions,ValueError)")

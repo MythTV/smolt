@@ -22,6 +22,7 @@ the smoon database.
  > CREATE DATABASE smoon;
  > CREATE USER 'smoon'@'smoon' IDENTIFIED BY 'smoon';
  > GRANT ALL ON smoon.* to 'smoon'@'localhost' ;
+ > SET PASSWORD FOR 'smoon'@'localhost' = PASSWORD(secure password in quotes);
  > quit
  $ mysql -p -u smoon smoon < smolt.sql
 

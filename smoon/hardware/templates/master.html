@@ -10,7 +10,6 @@
   _ = lambda text: Markup(gettext(text))
   ?>
   <head py:match="head" py:attrs="select('@*')">
-    <link py:for="js in tg_js_head" py:replace="Markup(js.render())" />
     <meta py:replace="select('*|text()')" />
     <style type="text/css">
       #pageLogin

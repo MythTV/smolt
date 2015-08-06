@@ -24,7 +24,7 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 #from sqlalchemy.ext.assignmapper import assign_mapper
 from datetime import timedelta, date, datetime
-from hardware.featureset import this_is, MYTH_TV
+from hardware.featureset import this_is
 
 from sqlalchemy.types import LargeBinary
 
@@ -123,14 +123,7 @@ if True:  # Stupid hack to not let indentation changes blow our diffs up
                 Column('cpu_family', INT, default=None),
                 Column('cpu_model_num', INT, default=None),
     ]
-    if this_is(MYTH_TV):
-        _host_columns += [
-                Column('myth_role', TEXT),
-                Column('myth_remote', TEXT),
-                Column('myth_theme', TEXT),
-                Column('myth_plugins',TEXT),
-                Column('myth_tuner', INT),
-        ]
+
     hosts = Table('host', metadata, *_host_columns)
 
     _hosts_archive_columns = [
@@ -169,14 +162,7 @@ if True:  # Stupid hack to not let indentation changes blow our diffs up
                 Column('cpu_family', INT, default=None),
                 Column('cpu_model_num', INT, default=None),
     ]
-    if this_is(MYTH_TV):
-        _host_columns += [
-                Column('myth_role', TEXT),
-                Column('myth_remote', TEXT),
-                Column('myth_theme', TEXT),
-                Column('myth_plugins',TEXT),
-                Column('myth_tuner', INT),
-        ]
+
     hosts_archive = Table('host_archive', metadata, *_hosts_archive_columns)
 
 
@@ -204,15 +190,15 @@ file_systems = Table('file_systems', metadata,
                             ForeignKey("host.id")),
                      Column('mnt_pnt', TEXT),
                      Column('fs_type', TEXT),
-                     Column('f_favail', INT),
+                     Column('f_favail', BigInteger),
                      Column('f_bsize', INT),
                      Column('f_frsize', INT),
-                     Column('f_blocks', INT),
-                     Column('f_bfree', INT),
-                     Column('f_bavail', INT),
-                     Column('f_files', INT),
-                     Column('f_ffree', INT),
-                     Column('f_fssize', INT))
+                     Column('f_blocks', BigInteger),
+                     Column('f_bfree', BigInteger),
+                     Column('f_bavail', BigInteger),
+                     Column('f_files', BigInteger),
+                     Column('f_ffree', BigInteger),
+                     Column('f_fssize', BigInteger))
 
 batch_queue = Table('batch_queue', metadata,
                     Column('id', Integer,
