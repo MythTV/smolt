@@ -138,7 +138,7 @@ def render_mythtv(stats):
     #stat = session.query(func.max(mythtvHistorical.db_age))[0]
     stat = list(session.query(mythtvHistorical).filter((mythtvHistorical.last_modified > now)).values(func.max(mythtvHistorical.db_age)))[0]
     try:
-        maxstat = stat[0]/sec_year
+        maxstat = int(stat[0]/sec_year)
     except:
         maxstat = 0
     stats['myth_dbage'].append(("maximum",stat))
