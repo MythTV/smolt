@@ -26,7 +26,7 @@ import pkg_resources
 
 import warnings
 warnings.filterwarnings("ignore")
-from turbogears import update_config, start_server
+from turbogears import update_config, start_server, config
 warnings.resetwarnings()
 
 
@@ -48,10 +48,15 @@ warnings.filterwarnings("ignore")
 from hardware.controllers import Root
 warnings.resetwarnings()
 
+if config.get('server.environment') == 'production':
+	pidfile='/var/run/smolt/smolt.pid'
+else:
+	pidfile='smolt.pid'
+
 #--------------- write out the pid file -----------
 import os
 #pid = file('hardware.pid', 'w')
-pid = file('smoon.pid', 'w')
+pid = file(pidfile, 'w')
 pid.write(str(os.getpid()))
 pid.close()
 #--------------------------------------------------
