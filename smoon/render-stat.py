@@ -310,13 +310,17 @@ if not  template_config['os'] == [] :
     os_search_list['ubuntu']  = [ 'ubuntu' ]
     os_search_list['linhes']   = [ 'linhes' ]
     os_search_list['debian']  = [ 'debian' ]
+    os_search_list['linuxmint'] = [ 'linuxmint' ]
+    os_search_list['raspbian'] = [ 'raspbian' ]
 
     os_stats_dict = { 'redhat':os_stat('RedHat',2) ,
                       'suse' : os_stat('SuSE',3) ,
                       'ubuntu' : os_stat('Ubuntu',4) ,
                       'linhes' : os_stat('LinHES',5) ,
                       'debian' : os_stat('Debian',6) ,
-                      'other' : os_stat('Other',7) }
+                      'other' : os_stat('Other',7) ,
+                      'linuxmint' : os_stat('LinuxMint',8) ,
+                      'raspbian' : os_stat('Raspbian', 9) }
 
     os_stats_sort_list = []
 
