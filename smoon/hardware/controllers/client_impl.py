@@ -287,10 +287,10 @@ class ClientImplementation(object):
             host_sql.os = 'Fedora release 11 (Leonidas)'
         else:
             host_sql.os = host_dict['os']
-        host_sql.default_runlevel = host_dict['default_runlevel']
+        host_sql.default_runlevel = 0 if host_dict['default_runlevel'] == 'Unknown' else host_dict['default_runlevel']
         host_sql.language = host_dict['language']
         host_sql.platform = host_dict['platform']
-        host_sql.bogomips = host_dict['bogomips']
+        host_sql.bogomips = 0 if not host_dict['bogomips'] else host_dict['bogomips']
         host_sql.cpu_vendor = host_dict['cpu_vendor']
         host_sql.cpu_model = host_dict['cpu_model']
         host_sql.cpu_speed = host_dict['cpu_speed']
