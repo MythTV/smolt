@@ -310,9 +310,9 @@ class ClientImplementation(object):
         except KeyError:
             host_sql.selinux_policy = 'Unknown'
         try:
-            host_sql.cpu_stepping = host_dict['cpu_stepping']
-            host_sql.cpu_family = host_dict['cpu_family']
-            host_sql.cpu_model_num = host_dict['cpu_model_num']
+            host_sql.cpu_stepping = 0 if not host_dict['cpu_stepping'] else host_dict['cpu_stepping']
+            host_sql.cpu_family = 0 if not host_dict['cpu_family'] else host_dict['cpu_family']
+            host_sql.cpu_model_num = 0 if not host_dict['cpu_model_num'] else host_dict['cpu_model_num']
         except KeyError:
             host_sql.cpu_stepping = host_sql.cpu_family = host_sql.cpu_model_num = None
 
@@ -393,19 +393,23 @@ class ClientImplementation(object):
 
         map(session.delete, host_sql.file_systems)
         def add_fs(fs_dict):
-            new_fs = FileSystem()
-            new_fs.mnt_pnt = fs_dict['mnt_pnt']
-            new_fs.fs_type = fs_dict['fs_type']
-            new_fs.f_favail = fs_dict['f_favail']
-            new_fs.f_bsize = fs_dict['f_bsize']
-            new_fs.f_frsize = fs_dict['f_frsize']
-            new_fs.f_blocks = fs_dict['f_blocks']
-            new_fs.f_bfree = fs_dict['f_bfree']
-            new_fs.f_bavail = fs_dict['f_bavail']
-            new_fs.f_files = fs_dict['f_files']
-            new_fs.f_ffree = fs_dict['f_ffree']
-            new_fs.f_fssize = (fs_dict['f_blocks'] * fs_dict['f_bsize'] ) / 1024
-            new_fs.host = host_sql
+            if fs_dict['f_favail'] == 'UNKNOWN':
+                pass
+            else:
+                new_fs = FileSystem()
+                new_fs.mnt_pnt = fs_dict['mnt_pnt']
+                new_fs.fs_type = fs_dict['fs_type']
+                new_fs.f_favail = fs_dict['f_favail']
+                new_fs.f_bsize = fs_dict['f_bsize']
+                new_fs.f_frsize = fs_dict['f_frsize']
+                new_fs.f_blocks = fs_dict['f_blocks']
+                new_fs.f_bfree = fs_dict['f_bfree']
+                new_fs.f_bavail = fs_dict['f_bavail']
+                new_fs.f_files = fs_dict['f_files']
+                new_fs.f_ffree = fs_dict['f_ffree']
+                new_fs.f_fssize = (fs_dict['f_blocks'] * fs_dict['f_bsize'] ) / 1024
+                new_fs.host = host_sql
+
         try:
             map(add_fs, host_dict['fss'])
         except:
