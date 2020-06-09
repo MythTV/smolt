@@ -21,6 +21,7 @@
 
 import copy
 import traceback
+import re
 
 import sqlalchemy
 from sqlalchemy.orm import eagerload
@@ -106,7 +107,7 @@ def _handle_simple_stuff(session, data, machine_id , myth_uuid):
     except:
         myth_version = "unknown"
 
-    myth_version_bucket = myth_version.split("-")[0]
+    myth_version_bucket = re.split('[-+~]',myth_version)[0]
 
 
     try:
